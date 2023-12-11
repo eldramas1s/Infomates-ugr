@@ -1,0 +1,117 @@
+
+Contraseña inicial: abduscan
+Contraseña codificada: b`gpzXn]
+
+Pin inicial: 2015
+Pin codificado: 2039
+
+Explicacion del funcionamiento de la bomba de numeros primos:
+
+    Esta bomba consiste en una contraseña y un pin codificados que para desactivarla es necesario conocer.
+
+    La codificación de la contraseña es la siguiente:
+        ·Tenemos una variable vector de un tamaño concreto, en este caso 
+         dicho tamaño es 26, que coincide con la cantidad de numeros primos entre
+         el 1 y el 100.
+        ·Establecemos una contraseña de tamaño entre 6 y 8 letras y usaremos ascii para
+         codificarla dentro del código.
+        ·Si tratamos de entender la codificación de la contraseña que tendremos que 
+         averiguar ya codificada, es decir, la contraseña real es la codificación de 
+         la contraseña establecida; veremos que hay un bucle for que recorre toda la 
+         contraseña letra a letra y realiza una operación según sea la posición par 
+         o impar.
+         Concretamente ocurre lo siguiente:
+            -Si la posición i-ésima es par, se suma a dicha posición, la i-ésima
+             posición del array de primos.
+            -Si es impar se resta.
+         Debido a que la contraseña es una palabra se realiza una suma con los valores ASCII.
+    
+    Una misma codificación es aplicada al pin.
+
+
+Desactivacion de la bomba:
+
+Para la desactivación de la bomba se van a ver dos métodos y un apunte adicional; el primero de ellos 
+donde se va a desactivar de forma completa y donde no va a ser necesario 
+conocer la codificación y otra segunda donde será necesario conocer la codificación
+para poder desactivarla.
+
+Veamos la primera forma, por pasos:
+
+    ·Usamos gdb sobre le ejecutable y escribimos layout asm y layout regs; 
+     de esta manera podremos conocer el código ensamblador aproximado del archivo fuente. 
+    ·Para localizar rápidamente el main haremos un breakpoint en el main y ejecutaremos paso a 
+     paso unas cuantas veces hasta la primera ejecucion de strlen donde veremos que se 
+     produce un bucle que comprueba que un indice no sobrepase una longitud.
+     Si miramos los registros, veremos que es en rax( y poco más tarde en rcx ) donde se comienzan a 
+     almacenar nnumeros primos.
+    ·Es aquí donde se está produciendo la codificacion de la contraseña; en este caso podremos 
+     obviarla puesto que desactivaremos los bucles de comprobacion, consiguiendo así que la bomba 
+     siempre se desactive.
+     Antes de comenzar a comprobar el pin y pedir la entrada del mismo se realizará la misma codificación 
+     sobre el pin establecido. Igualmente podremos obviarlo.
+    ·Tras pasar las comprobaciones del bucle podremos ver que llegamos a la ejecucion de gettimeofday@plt donde 
+     estableceremos otro breakpoint; es aquí donde hemos finalizado la etapa de codificación.
+     Siguiendo así veremos que llegamos a la entrada de la contraseña gracias a que se 
+     puede ver que se ejecuta la función fgets, luego pondremos otro breakpoint aquí.
+    ·Seguimos haciendo esto y vemos la ejecución de strncmp, ya hemos llegado a la comprobacion de la contraseña, hemos llegado al primer 
+     punto importante; aquí explotará la bomba.
+    
+    Volvemos a ejecutar la bomba con los breakpoints que hemos visto:
+
+    ·Una vez llegamos a la funcion strncmp de nuevo, activaremos la posibilidad de escritura, es decir, "set write on" y "file bombaPrimos".
+     Ya en este punto vamos a saltar la primera comprobacion. Cambiaremos el codigo de operación del jne para poner un jmp con
+     codigo de operacion 0xeb.
+    ·Como nos va a tomar tiempo, vamos a eliminar la comprobacion del gettime para poder tomar con tranquilidad los siguientes pasos.
+     Igual que antes ponemos breakpoint en gettimeofday y  cambiamos el codigo de operacion de jle.
+    ·Una vez aquí buscamos un nuevo jne para hacer el mismo proceso y desactivar la bomba.
+
+    Realmente, los puntos clave son los saltos antes de boom.
+
+Veamos la segunda forma:
+
+    ·Al igual que con la primera, vamos a localizar el final de bucle for para así saber que la contraseña se ha codificado. En este momento, ya 
+     está la contraseña en su estado final. Para conocerla vamos a conseguir un punto de vulnerabilidad, es decir, un caso en el que la contraseña
+     se encuentre en un registro da fácil acceso, como rdi, rsi o alguno de este estilo, es decir, buscaremos una llamada a una función que reciba como 
+     argumento la contrasena. 
+    ·Una vez localizado ese punto, imprimiremos la contraseña en pantalla con gdb y la usaremos para desactivar correctamente la bomba. Tras esto 
+     buscaremos el pin de la misma manera para así desactivar completamente la bomba.
+    
+    Como consejo, conviene desactivar como hicimos en la forma de desactivación anterior los saltos condicionales referidos a la instruccion gettimeofday 
+    para así no tener una presión constante sobre el tiempo de desactivacion.
+
+    Veamos como sacar la contraseña y el pin ya que esto puede ser complicado según la bomba a desactivar. En este caso:
+
+    ·Creamos un punto de ruptura en main como punto inicial de pensado y mostramos el código en ensamblador y los registros.
+    ·Está claro que el primer punto de ruptura de la bomba se encuentra en la llamada al <strncmp>, que es donde se ve el contenido de la contraseña de 
+     forma explícita en el contenido de rdi o rsi, ya que en alguno de ellos se encuentra la contraseña para comparar con la introducida. Tomamos dicho valor 
+     y lo apuntamos, ejecutamos de nuevo.
+    ·Cuando volvemos a llegar a este punto y probamos una nueva contraseña, podemos ver que es en el registro rdi donde se guarda el valor 
+     introducido en la lectura por pantalla y es en rsi donde se encuentra el valor de la contraseña real. 
+    ·En este momento, establecemos que el registro rdi tome el valor de rsi (yo lo hice metiendo a mano el valor numerico del display) y pasaremos la parte de la 
+     contraseña conociendo así su valor.
+    
+    Veamos la parte del pin:
+
+    Debido a que no se trabaja con cadenas de carácteres es más dificil conocer el valor del passcode, ya que no se ve a simple vista. Para
+    facilitar dicha busqueda se ha creado una función a la cual se le pasa como argumento el passcode; pero cuidado, ese passcode se va a 
+    codificar en dicha función, por lo que no nos interesa su entrada sino su salida. 
+    Por ello, examinaremos el valor de rax al terminar dicha llamada.
+
+    Comencemos:
+
+    ·Una vez pasada la contraseña, continuamos su ejecucion paso a paso hasta llegar a la funcion <gettimeofday@plt> que saltamos sin problemas
+     haciendo el proceso descrito en la primera forma de desactivacion.
+    ·Tras esto continuamos paso a paso y establecemos un breakpoint en una llamada sospechosa <Codiff_pc>; una llamada a una funcion auxiliar. Vemos sus 
+     argumentos y la evolución en ellos durante la ejecución de la funcion y encontramos que dicho valor poco mas tarde es comparado con nuestra entrada por pantalla.
+     De esta forma, hemos encontrado que nuestro passcode codificado es ese. En este momento pondremos un breakpoint 3 operaciones antes de la llamada a boom despues de la 
+     llamada a <Codiff_pc> (ya nos habrá pedido el passcode). Aquí explotará la bomba si no tenemos cuidado. 
+    ·En caso de explosión repetimos lo ya visto y llegamos a ese punto de ruptura, damos un paso y hacemos un display del registro rax(concretamente eax). Ya sabemos el 
+     valor que hay que guardar, asique lo guardamos y cuando llegamos a nuestro punto de ruptura copiaremos dicho valor en el registro correspondiente,
+     el cual averiguaremos comparando cada uno de los operandos con nuestro valor guardado. 
+    ·Una vez conocido dicho registro ponemos el valor de nuestra contraseña introducida por teclado, es decir, el otro registro del compare, al valor del passcode real.
+
+    Hemos desactivado la bomba conociendo la contraseña y el passcode.
+
+El apunte del que hablaba, consiste en usar p (char*) $registro en lugar de hacer un display para asi conseguir la contraseña (dichos registros son rdi o rsi). Para obtener el 
+pin, hay que usar p (int) $rax según se ha hecho el display en la segunda forma de desactivacion.

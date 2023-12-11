@@ -1,0 +1,204 @@
+Image Image::Zoom2X() const{
+
+    Image resultado(2*get_rows()-1,2*get_cols()-1);
+
+    // Añadimos en su nueva posición a los píxeles de la imagen original
+    for(int i=0; i < get_rows(); i++){
+        for(int j=0; j < get_cols(); j++)
+            resultado.set_pixel(2 * i, 2 * j, get_pixel(i, j));
+    }
+
+    // Rellenamos las columnas impares
+    for(int i=0; i < resultado.get_rows(); i+=2){
+        for(int j=1; j < resultado.get_cols(); j+=2)
+            resultado.set_pixel(i,j,round((resultado.get_pixel(i,j-1)+resultado.get_pixel(i,j+1))/2.0));
+    }
+
+    // Rellenamos el resto
+    for(int i=1; i < resultado.get_rows(); i+=2){
+        for(int j=0; j < resultado.get_cols(); j++) {
+
+            if(j%2 == 0) {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j) +
+                resultado.get_pixel(i+1, j)) / 2.0));
+            }
+            else {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j-1 )
+                + resultado.get_pixel(i-1,j+1)+resultado.get_pixel(i+1,j-1)+
+                resultado.get_pixel(i+1,j+1)) / 4.0));
+            }
+        }
+    }
+
+    return resultado;
+}
+Image Image::Zoom2X() const{
+
+    Image resultado(2*get_rows()-1,2*get_cols()-1);
+
+    // Añadimos en su nueva posición a los píxeles de la imagen original
+    for(int i=0; i < get_rows(); i++){
+        for(int j=0; j < get_cols(); j++)
+            resultado.set_pixel(2 * i, 2 * j, get_pixel(i, j));
+    }
+
+    // Rellenamos las columnas impares
+    for(int i=0; i < resultado.get_rows(); i+=2){
+        for(int j=1; j < resultado.get_cols(); j+=2)
+            resultado.set_pixel(i,j,round((resultado.get_pixel(i,j-1)+resultado.get_pixel(i,j+1))/2.0));
+    }
+
+    // Rellenamos el resto
+    for(int i=1; i < resultado.get_rows(); i+=2){
+        for(int j=0; j < resultado.get_cols(); j++) {
+
+            if(j%2 == 0) {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j) +
+                resultado.get_pixel(i+1, j)) / 2.0));
+            }
+            else {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j-1 )
+                + resultado.get_pixel(i-1,j+1)+resultado.get_pixel(i+1,j-1)+
+                resultado.get_pixel(i+1,j+1)) / 4.0));
+            }
+        }
+    }
+
+    return resultado;
+}
+Image Image::Zoom2X() const{
+
+    Image resultado(2*get_rows()-1,2*get_cols()-1);
+
+    // Añadimos en su nueva posición a los píxeles de la imagen original
+    for(int i=0; i < get_rows(); i++){
+        for(int j=0; j < get_cols(); j++)
+            resultado.set_pixel(2 * i, 2 * j, get_pixel(i, j));
+    }
+
+    // Rellenamos las columnas impares
+    for(int i=0; i < resultado.get_rows(); i+=2){
+        for(int j=1; j < resultado.get_cols(); j+=2)
+            resultado.set_pixel(i,j,round((resultado.get_pixel(i,j-1)+resultado.get_pixel(i,j+1))/2.0));
+    }
+
+    // Rellenamos el resto
+    for(int i=1; i < resultado.get_rows(); i+=2){
+        for(int j=0; j < resultado.get_cols(); j++) {
+
+            if(j%2 == 0) {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j) +
+                resultado.get_pixel(i+1, j)) / 2.0));
+            }
+            else {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j-1 )
+                + resultado.get_pixel(i-1,j+1)+resultado.get_pixel(i+1,j-1)+
+                resultado.get_pixel(i+1,j+1)) / 4.0));
+            }
+        }
+    }
+
+    return resultado;
+}
+Image Image::Zoom2X() const{
+
+    Image resultado(2*get_rows()-1,2*get_cols()-1);
+
+    // Añadimos en su nueva posición a los píxeles de la imagen original
+    for(int i=0; i < get_rows(); i++){
+        for(int j=0; j < get_cols(); j++)
+            resultado.set_pixel(2 * i, 2 * j, get_pixel(i, j));
+    }
+
+    // Rellenamos las columnas impares
+    for(int i=0; i < resultado.get_rows(); i+=2){
+        for(int j=1; j < resultado.get_cols(); j+=2)
+            resultado.set_pixel(i,j,round((resultado.get_pixel(i,j-1)+resultado.get_pixel(i,j+1))/2.0));
+    }
+
+    // Rellenamos el resto
+    for(int i=1; i < resultado.get_rows(); i+=2){
+        for(int j=0; j < resultado.get_cols(); j++) {
+
+            if(j%2 == 0) {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j) +
+                resultado.get_pixel(i+1, j)) / 2.0));
+            }
+            else {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j-1 )
+                + resultado.get_pixel(i-1,j+1)+resultado.get_pixel(i+1,j-1)+
+                resultado.get_pixel(i+1,j+1)) / 4.0));
+            }
+        }
+    }
+
+    return resultado;
+}
+Image Image::Zoom2X() const{
+
+    Image resultado(2*get_rows()-1,2*get_cols()-1);
+
+    // Añadimos en su nueva posición a los píxeles de la imagen original
+    for(int i=0; i < get_rows(); i++){
+        for(int j=0; j < get_cols(); j++)
+            resultado.set_pixel(2 * i, 2 * j, get_pixel(i, j));
+    }
+
+    // Rellenamos las columnas impares
+    for(int i=0; i < resultado.get_rows(); i+=2){
+        for(int j=1; j < resultado.get_cols(); j+=2)
+            resultado.set_pixel(i,j,round((resultado.get_pixel(i,j-1)+resultado.get_pixel(i,j+1))/2.0));
+    }
+
+    // Rellenamos el resto
+    for(int i=1; i < resultado.get_rows(); i+=2){
+        for(int j=0; j < resultado.get_cols(); j++) {
+
+            if(j%2 == 0) {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j) +
+                resultado.get_pixel(i+1, j)) / 2.0));
+            }
+            else {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j-1 )
+                + resultado.get_pixel(i-1,j+1)+resultado.get_pixel(i+1,j-1)+
+                resultado.get_pixel(i+1,j+1)) / 4.0));
+            }
+        }
+    }
+
+    return resultado;
+}
+Image Image::Zoom2X() const{
+
+    Image resultado(2*get_rows()-1,2*get_cols()-1);
+
+    // Añadimos en su nueva posición a los píxeles de la imagen original
+    for(int i=0; i < get_rows(); i++){
+        for(int j=0; j < get_cols(); j++)
+            resultado.set_pixel(2 * i, 2 * j, get_pixel(i, j));
+    }
+
+    // Rellenamos las columnas impares
+    for(int i=0; i < resultado.get_rows(); i+=2){
+        for(int j=1; j < resultado.get_cols(); j+=2)
+            resultado.set_pixel(i,j,round((resultado.get_pixel(i,j-1)+resultado.get_pixel(i,j+1))/2.0));
+    }
+
+    // Rellenamos el resto
+    for(int i=1; i < resultado.get_rows(); i+=2){
+        for(int j=0; j < resultado.get_cols(); j++) {
+
+            if(j%2 == 0) {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j) +
+                resultado.get_pixel(i+1, j)) / 2.0));
+            }
+            else {
+                resultado.set_pixel(i, j, round((resultado.get_pixel(i-1, j-1 )
+                + resultado.get_pixel(i-1,j+1)+resultado.get_pixel(i+1,j-1)+
+                resultado.get_pixel(i+1,j+1)) / 4.0));
+            }
+        }
+    }
+
+    return resultado;
+}
