@@ -29,7 +29,7 @@ int main()
 			auto start = high_resolution_clock::now();
 
 			for (unsigned i = 0; i < bytes.size(); i += line)
-				bytes[i]+=i;
+				bytes[i]^=1;
 
 			auto stop = high_resolution_clock::now();
 

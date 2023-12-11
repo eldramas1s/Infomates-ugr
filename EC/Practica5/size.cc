@@ -31,7 +31,7 @@ int main()
 			auto start = high_resolution_clock::now();
 
 			for (unsigned i = 0; i < STEPS; ++i)
-				bytes[i]+=i;
+				bytes[(64*i)&(size-1)]^=1;
 
 			auto stop = high_resolution_clock::now();
 
