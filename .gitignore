@@ -1,8 +1,11 @@
  # Ignorar archivos temporales
-**/*~
+**/*tmp
 
 # Ignorar archivos compilados
 **/*.o
+
+# Ignorar archivos ejecutables
+**/*exe
 
 # Ignorar directorios y archivos generados por IDEs
 **/.idea/
