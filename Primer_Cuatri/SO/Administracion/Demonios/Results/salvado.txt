@@ -1,0 +1,692 @@
+/home/el_dramas/Desktop
+├── EC
+│   ├── Practica1
+│   │   ├── hola
+│   │   ├── hola64
+│   │   ├── hola64.s
+│   │   ├── hola-c
+│   │   ├── hola-c.c
+│   │   ├── hola_global
+│   │   ├── holanini
+│   │   ├── hola.s
+│   │   ├── minimo1
+│   │   └── minimo1.c
+│   └── Practica2
+│       ├── ejercicio1
+│       │   ├── msum.c
+│       │   ├── msum.o
+│       │   ├── sum
+│       │   ├── sum.c
+│       │   ├── sum.o
+│       │   └── sum.s
+│       ├── ejercicio2
+│       │   ├── msum.c
+│       │   ├── msum.o
+│       │   ├── msum.s
+│       │   ├── sum.c
+│       │   ├── sum.o
+│       │   └── sum.s
+│       ├── ejercicio3
+│       │   ├── msum.c
+│       │   ├── msum.o
+│       │   ├── sum.c
+│       │   └── sum.o
+│       ├── ejercicio4
+│       │   ├── saludo
+│       │   ├── saludo.o
+│       │   └── saludo.s
+│       ├── ejercicio5
+│       │   ├── mediaconsigno
+│       │   ├── mediaconsigno.s
+│       │   ├── mediasinsigno
+│       │   ├── mediasinsigno.s
+│       │   ├── sumaconsigno
+│       │   ├── sumaconsigno.s
+│       │   ├── sumasinsigno
+│       │   ├── sumasinsigno2
+│       │   ├── sumasinsigno2.s
+│       │   └── sumasinsigno.s
+│       └── ProgInvest
+│           ├── proginvest
+│           ├── proginvest.o
+│           ├── proginvest.s
+│           ├── sumalistas
+│           ├── sumalistas.o
+│           └── sumalistas.s
+├── ED
+│   ├── crontab_pull
+│   ├── Ejercicios
+│   │   └── TDA_Lineales
+│   │       ├── ClasificaEnLista.cpp
+│   │       ├── cmake-build-debug
+│   │       │   ├── build.ninja
+│   │       │   ├── CMakeCache.txt
+│   │       │   ├── CMakeFiles
+│   │       │   │   ├── 3.26.4
+│   │       │   │   │   ├── CMakeCCompiler.cmake
+│   │       │   │   │   ├── CMakeCXXCompiler.cmake
+│   │       │   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │       │   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │       │   │   │   ├── CMakeSystem.cmake
+│   │       │   │   │   ├── CompilerIdC
+│   │       │   │   │   │   ├── a.out
+│   │       │   │   │   │   ├── CMakeCCompilerId.c
+│   │       │   │   │   │   └── tmp
+│   │       │   │   │   └── CompilerIdCXX
+│   │       │   │   │       ├── a.out
+│   │       │   │   │       ├── CMakeCXXCompilerId.cpp
+│   │       │   │   │       └── tmp
+│   │       │   │   ├── clion-Debug-log.txt
+│   │       │   │   ├── clion-environment.txt
+│   │       │   │   ├── cmake.check_cache
+│   │       │   │   ├── CMakeConfigureLog.yaml
+│   │       │   │   ├── CMakeScratch
+│   │       │   │   ├── pkgRedirects
+│   │       │   │   ├── rules.ninja
+│   │       │   │   ├── TargetDirectories.txt
+│   │       │   │   └── TDA_Lineales.dir
+│   │       │   ├── cmake_install.cmake
+│   │       │   └── Testing
+│   │       │       └── Temporary
+│   │       │           └── LastTest.log
+│   │       └── CMakeLists.txt
+│   ├── Practicas
+│   │   ├── Practica1
+│   │   │   ├── doc
+│   │   │   │   ├── html
+│   │   │   │   │   ├── annotated.html
+│   │   │   │   │   ├── arrowdown.png
+│   │   │   │   │   ├── arrowright.png
+│   │   │   │   │   ├── bc_s.png
+│   │   │   │   │   ├── bdwn.png
+│   │   │   │   │   ├── classes.html
+│   │   │   │   │   ├── classRacional.html
+│   │   │   │   │   ├── classRacional-members.html
+│   │   │   │   │   ├── closed.png
+│   │   │   │   │   ├── doc.png
+│   │   │   │   │   ├── doxygen.css
+│   │   │   │   │   ├── doxygen.png
+│   │   │   │   │   ├── doxygen.svg
+│   │   │   │   │   ├── dynsections.js
+│   │   │   │   │   ├── files.html
+│   │   │   │   │   ├── folderclosed.png
+│   │   │   │   │   ├── folderopen.png
+│   │   │   │   │   ├── functions_func.html
+│   │   │   │   │   ├── functions.html
+│   │   │   │   │   ├── functions_rela.html
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── jquery.js
+│   │   │   │   │   ├── menudata.js
+│   │   │   │   │   ├── menu.js
+│   │   │   │   │   ├── nav_f.png
+│   │   │   │   │   ├── nav_g.png
+│   │   │   │   │   ├── nav_h.png
+│   │   │   │   │   ├── open.png
+│   │   │   │   │   ├── pages.html
+│   │   │   │   │   ├── Racional_8h.html
+│   │   │   │   │   ├── Racional_8h_source.html
+│   │   │   │   │   ├── repConjunto.html
+│   │   │   │   │   ├── splitbar.png
+│   │   │   │   │   ├── sync_off.png
+│   │   │   │   │   ├── sync_on.png
+│   │   │   │   │   ├── tab_a.png
+│   │   │   │   │   ├── tab_b.png
+│   │   │   │   │   ├── tab_h.png
+│   │   │   │   │   ├── tabs.css
+│   │   │   │   │   └── tab_s.png
+│   │   │   │   ├── latex
+│   │   │   │   │   ├── annotated.tex
+│   │   │   │   │   ├── classRacional.tex
+│   │   │   │   │   ├── doxygen.sty
+│   │   │   │   │   ├── files.tex
+│   │   │   │   │   ├── longtable_doxygen.sty
+│   │   │   │   │   ├── Makefile
+│   │   │   │   │   ├── Racional_8h.tex
+│   │   │   │   │   ├── refman.tex
+│   │   │   │   │   ├── repConjunto.tex
+│   │   │   │   │   └── tabu_doxygen.sty
+│   │   │   │   ├── man
+│   │   │   │   │   └── man3
+│   │   │   │   │       ├── Racional.3
+│   │   │   │   │       ├── Racional.h.3
+│   │   │   │   │       └── repConjunto.3
+│   │   │   │   └── xml
+│   │   │   │       ├── classRacional.xml
+│   │   │   │       ├── combine.xslt
+│   │   │   │       ├── compound.xsd
+│   │   │   │       ├── index.xml
+│   │   │   │       ├── index.xsd
+│   │   │   │       ├── namespacestd.xml
+│   │   │   │       ├── Racional_8cpp.xml
+│   │   │   │       ├── Racional_8h.xml
+│   │   │   │       ├── repConjunto.xml
+│   │   │   │       ├── usoRacional_8cpp.xml
+│   │   │   │       └── xml.xsd
+│   │   │   ├── Doxyfile
+│   │   │   ├── doxygen_manual-1.7.3.pdf
+│   │   │   ├── makefile
+│   │   │   ├── Racional.cpp
+│   │   │   ├── Racional.h
+│   │   │   └── usoRacional.cpp
+│   │   ├── PracticaImagen
+│   │   │   └── codigo
+│   │   │       ├── cmake-build-debug
+│   │   │       │   ├── build.ninja
+│   │   │       │   ├── CMakeCache.txt
+│   │   │       │   ├── CMakeDoxyfile.in
+│   │   │       │   ├── CMakeDoxygenDefaults.cmake
+│   │   │       │   ├── CMakeFiles
+│   │   │       │   │   ├── 3.26.4
+│   │   │       │   │   │   ├── CMakeCCompiler.cmake
+│   │   │       │   │   │   ├── CMakeCXXCompiler.cmake
+│   │   │       │   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │   │       │   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │   │       │   │   │   ├── CMakeSystem.cmake
+│   │   │       │   │   │   ├── CompilerIdC
+│   │   │       │   │   │   │   ├── a.out
+│   │   │       │   │   │   │   ├── CMakeCCompilerId.c
+│   │   │       │   │   │   │   └── tmp
+│   │   │       │   │   │   └── CompilerIdCXX
+│   │   │       │   │   │       ├── a.out
+│   │   │       │   │   │       ├── CMakeCXXCompilerId.cpp
+│   │   │       │   │   │       └── tmp
+│   │   │       │   │   ├── clion-Debug-log.txt
+│   │   │       │   │   ├── clion-environment.txt
+│   │   │       │   │   ├── cmake.check_cache
+│   │   │       │   │   ├── CMakeConfigureLog.yaml
+│   │   │       │   │   ├── comparador.dir
+│   │   │       │   │   │   └── estudiante
+│   │   │       │   │   │       └── src
+│   │   │       │   │   │           └── comparador.cpp.o
+│   │   │       │   │   ├── contraste.dir
+│   │   │       │   │   │   └── estudiante
+│   │   │       │   │   │       └── src
+│   │   │       │   │   │           └── contraste.cpp.o
+│   │   │       │   │   ├── icono.dir
+│   │   │       │   │   │   └── estudiante
+│   │   │       │   │   │       └── src
+│   │   │       │   │   │           └── icono.cpp.o
+│   │   │       │   │   ├── image.dir
+│   │   │       │   │   │   └── estudiante
+│   │   │       │   │   │       └── src
+│   │   │       │   │   │           ├── comparador.cpp.o
+│   │   │       │   │   │           ├── image.cpp.o
+│   │   │       │   │   │           ├── imageIO.cpp.o
+│   │   │       │   │   │           ├── imageop.cpp.o
+│   │   │       │   │   │           └── negativo.cpp.o
+│   │   │       │   │   ├── negativo.dir
+│   │   │       │   │   │   └── estudiante
+│   │   │       │   │   │       └── src
+│   │   │       │   │   │           ├── comparador.cpp.o
+│   │   │       │   │   │           └── negativo.cpp.o
+│   │   │       │   │   ├── pkgRedirects
+│   │   │       │   │   ├── rules.ninja
+│   │   │       │   │   ├── subimagen.dir
+│   │   │       │   │   │   └── estudiante
+│   │   │       │   │   │       └── src
+│   │   │       │   │   │           ├── comparador.cpp.o
+│   │   │       │   │   │           └── subimagen.cpp.o
+│   │   │       │   │   ├── TargetDirectories.txt
+│   │   │       │   │   └── zoom.dir
+│   │   │       │   │       └── estudiante
+│   │   │       │   │           └── src
+│   │   │       │   │               └── zoom_imagen.cpp.o
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   ├── comparador
+│   │   │       │   ├── contraste
+│   │   │       │   ├── doc_doxygen
+│   │   │       │   │   └── html
+│   │   │       │   │       ├── annotated.html
+│   │   │       │   │       ├── bc_s.png
+│   │   │       │   │       ├── bdwn.png
+│   │   │       │   │       ├── classes.html
+│   │   │       │   │       ├── classImage.html
+│   │   │       │   │       ├── classImage-members.html
+│   │   │       │   │       ├── closed.png
+│   │   │       │   │       ├── dir_000002_000001.html
+│   │   │       │   │       ├── dir_68267d1309a1af8e8297ef4c3efbcdba_dep.dot
+│   │   │       │   │       ├── dir_68267d1309a1af8e8297ef4c3efbcdba.html
+│   │   │       │   │       ├── dir_d44c64559bbebec7f509842c48db8b23.html
+│   │   │       │   │       ├── dir_e68e8157741866f444e17edd764ebbae.html
+│   │   │       │   │       ├── doc.png
+│   │   │       │   │       ├── doxygen.css
+│   │   │       │   │       ├── doxygen.svg
+│   │   │       │   │       ├── doxyque.png
+│   │   │       │   │       ├── dynsections.js
+│   │   │       │   │       ├── files.html
+│   │   │       │   │       ├── folderclosed.png
+│   │   │       │   │       ├── folderopen.png
+│   │   │       │   │       ├── functions_func.html
+│   │   │       │   │       ├── functions.html
+│   │   │       │   │       ├── globals_enum.html
+│   │   │       │   │       ├── globals_func.html
+│   │   │       │   │       ├── globals.html
+│   │   │       │   │       ├── graph_legend.dot
+│   │   │       │   │       ├── graph_legend.html
+│   │   │       │   │       ├── image_8cpp.html
+│   │   │       │   │       ├── image_8cpp__incl.dot
+│   │   │       │   │       ├── image_8h__dep__incl.dot
+│   │   │       │   │       ├── image_8h.html
+│   │   │       │   │       ├── image_8h__incl.dot
+│   │   │       │   │       ├── image_8h_source.html
+│   │   │       │   │       ├── imageIO_8cpp.html
+│   │   │       │   │       ├── imageIO_8cpp__incl.dot
+│   │   │       │   │       ├── imageIO_8h__dep__incl.dot
+│   │   │       │   │       ├── imageIO_8h.html
+│   │   │       │   │       ├── imageIO_8h_source.html
+│   │   │       │   │       ├── imageop_8cpp.html
+│   │   │       │   │       ├── imageop_8cpp__incl.dot
+│   │   │       │   │       ├── index.html
+│   │   │       │   │       ├── invert.png
+│   │   │       │   │       ├── jquery.js
+│   │   │       │   │       ├── menudata.js
+│   │   │       │   │       ├── menu.js
+│   │   │       │   │       ├── nav_f.png
+│   │   │       │   │       ├── nav_g.png
+│   │   │       │   │       ├── nav_h.png
+│   │   │       │   │       ├── open.png
+│   │   │       │   │       ├── page_repImagen.html
+│   │   │       │   │       ├── pages.html
+│   │   │       │   │       ├── search
+│   │   │       │   │       │   ├── all_0.html
+│   │   │       │   │       │   ├── all_0.js
+│   │   │       │   │       │   ├── all_1.html
+│   │   │       │   │       │   ├── all_1.js
+│   │   │       │   │       │   ├── all_2.html
+│   │   │       │   │       │   ├── all_2.js
+│   │   │       │   │       │   ├── all_3.html
+│   │   │       │   │       │   ├── all_3.js
+│   │   │       │   │       │   ├── all_4.html
+│   │   │       │   │       │   ├── all_4.js
+│   │   │       │   │       │   ├── all_5.html
+│   │   │       │   │       │   ├── all_5.js
+│   │   │       │   │       │   ├── all_6.html
+│   │   │       │   │       │   ├── all_6.js
+│   │   │       │   │       │   ├── all_7.html
+│   │   │       │   │       │   ├── all_7.js
+│   │   │       │   │       │   ├── all_8.html
+│   │   │       │   │       │   ├── all_8.js
+│   │   │       │   │       │   ├── all_9.html
+│   │   │       │   │       │   ├── all_9.js
+│   │   │       │   │       │   ├── all_a.html
+│   │   │       │   │       │   ├── all_a.js
+│   │   │       │   │       │   ├── classes_0.html
+│   │   │       │   │       │   ├── classes_0.js
+│   │   │       │   │       │   ├── close.svg
+│   │   │       │   │       │   ├── enums_0.html
+│   │   │       │   │       │   ├── enums_0.js
+│   │   │       │   │       │   ├── files_0.html
+│   │   │       │   │       │   ├── files_0.js
+│   │   │       │   │       │   ├── functions_0.html
+│   │   │       │   │       │   ├── functions_0.js
+│   │   │       │   │       │   ├── functions_1.html
+│   │   │       │   │       │   ├── functions_1.js
+│   │   │       │   │       │   ├── functions_2.html
+│   │   │       │   │       │   ├── functions_2.js
+│   │   │       │   │       │   ├── functions_3.html
+│   │   │       │   │       │   ├── functions_3.js
+│   │   │       │   │       │   ├── functions_4.html
+│   │   │       │   │       │   ├── functions_4.js
+│   │   │       │   │       │   ├── functions_5.html
+│   │   │       │   │       │   ├── functions_5.js
+│   │   │       │   │       │   ├── functions_6.html
+│   │   │       │   │       │   ├── functions_6.js
+│   │   │       │   │       │   ├── functions_7.html
+│   │   │       │   │       │   ├── functions_7.js
+│   │   │       │   │       │   ├── functions_8.html
+│   │   │       │   │       │   ├── functions_8.js
+│   │   │       │   │       │   ├── functions_9.html
+│   │   │       │   │       │   ├── functions_9.js
+│   │   │       │   │       │   ├── mag_sel.svg
+│   │   │       │   │       │   ├── nomatches.html
+│   │   │       │   │       │   ├── pages_0.html
+│   │   │       │   │       │   ├── pages_0.js
+│   │   │       │   │       │   ├── pages_1.html
+│   │   │       │   │       │   ├── pages_1.js
+│   │   │       │   │       │   ├── search.css
+│   │   │       │   │       │   ├── searchdata.js
+│   │   │       │   │       │   ├── search.js
+│   │   │       │   │       │   ├── search_l.png
+│   │   │       │   │       │   ├── search_m.png
+│   │   │       │   │       │   └── search_r.png
+│   │   │       │   │       ├── splitbar.png
+│   │   │       │   │       ├── sync_off.png
+│   │   │       │   │       ├── sync_on.png
+│   │   │       │   │       ├── tab_a.png
+│   │   │       │   │       ├── tab_b.png
+│   │   │       │   │       ├── tab_h.png
+│   │   │       │   │       ├── tabs.css
+│   │   │       │   │       └── tab_s.png
+│   │   │       │   ├── Doxyfile
+│   │   │       │   ├── icono
+│   │   │       │   ├── libimage.a
+│   │   │       │   ├── subimagen
+│   │   │       │   ├── Testing
+│   │   │       │   │   └── Temporary
+│   │   │       │   │       └── LastTest.log
+│   │   │       │   └── zoom
+│   │   │       ├── CMakeLists.txt
+│   │   │       ├── Doxyfile.in
+│   │   │       ├── estudiante
+│   │   │       │   ├── doc
+│   │   │       │   │   ├── doxyque.png
+│   │   │       │   │   ├── html
+│   │   │       │   │   │   ├── annotated.html
+│   │   │       │   │   │   ├── arrowdown.png
+│   │   │       │   │   │   ├── arrowright.png
+│   │   │       │   │   │   ├── bc_s.png
+│   │   │       │   │   │   ├── bdwn.png
+│   │   │       │   │   │   ├── classes.html
+│   │   │       │   │   │   ├── classRacional.html
+│   │   │       │   │   │   ├── classRacional-members.html
+│   │   │       │   │   │   ├── closed.png
+│   │   │       │   │   │   ├── doc.png
+│   │   │       │   │   │   ├── doxygen.css
+│   │   │       │   │   │   ├── doxygen.png
+│   │   │       │   │   │   ├── files.html
+│   │   │       │   │   │   ├── folderclosed.png
+│   │   │       │   │   │   ├── folderopen.png
+│   │   │       │   │   │   ├── functions_func.html
+│   │   │       │   │   │   ├── functions.html
+│   │   │       │   │   │   ├── functions_rela.html
+│   │   │       │   │   │   ├── index.html
+│   │   │       │   │   │   ├── jquery.js
+│   │   │       │   │   │   ├── nav_f.png
+│   │   │       │   │   │   ├── nav_g.png
+│   │   │       │   │   │   ├── nav_h.png
+│   │   │       │   │   │   ├── open.png
+│   │   │       │   │   │   ├── pages.html
+│   │   │       │   │   │   ├── Racional_8h.html
+│   │   │       │   │   │   ├── Racional_8h_source.html
+│   │   │       │   │   │   ├── repConjunto.html
+│   │   │       │   │   │   ├── splitbar.png
+│   │   │       │   │   │   ├── sync_off.png
+│   │   │       │   │   │   ├── sync_on.png
+│   │   │       │   │   │   ├── tab_a.png
+│   │   │       │   │   │   ├── tab_b.png
+│   │   │       │   │   │   ├── tab_h.png
+│   │   │       │   │   │   ├── tabs.css
+│   │   │       │   │   │   └── tab_s.png
+│   │   │       │   │   ├── invert.png
+│   │   │       │   │   ├── latex
+│   │   │       │   │   │   ├── annotated.tex
+│   │   │       │   │   │   ├── classRacional.tex
+│   │   │       │   │   │   ├── doxygen.sty
+│   │   │       │   │   │   ├── files.tex
+│   │   │       │   │   │   ├── Makefile
+│   │   │       │   │   │   ├── Racional_8h.tex
+│   │   │       │   │   │   ├── refman.tex
+│   │   │       │   │   │   └── repConjunto.tex
+│   │   │       │   │   ├── mainpage.dox
+│   │   │       │   │   ├── man
+│   │   │       │   │   │   └── man3
+│   │   │       │   │   │       ├── Racional.3
+│   │   │       │   │   │       ├── Racional.h.3
+│   │   │       │   │   │       └── repConjunto.3
+│   │   │       │   │   └── xml
+│   │   │       │   │       ├── classRacional.xml
+│   │   │       │   │       ├── combine.xslt
+│   │   │       │   │       ├── compound.xsd
+│   │   │       │   │       ├── index.xml
+│   │   │       │   │       ├── index.xsd
+│   │   │       │   │       ├── namespacestd.xml
+│   │   │       │   │       ├── Racional_8cpp.xml
+│   │   │       │   │       ├── Racional_8h.xml
+│   │   │       │   │       ├── repConjunto.xml
+│   │   │       │   │       └── usoRacional_8cpp.xml
+│   │   │       │   ├── include
+│   │   │       │   │   ├── image.h
+│   │   │       │   │   └── imageIO.h
+│   │   │       │   └── src
+│   │   │       │       ├── comparador.cpp
+│   │   │       │       ├── contraste.cpp
+│   │   │       │       ├── icono.cpp
+│   │   │       │       ├── image.cpp
+│   │   │       │       ├── imageIO.cpp
+│   │   │       │       ├── imageop.cpp
+│   │   │       │       ├── negativo.cpp
+│   │   │       │       ├── subimagen.cpp
+│   │   │       │       └── zoom_imagen.cpp
+│   │   │       ├── expected
+│   │   │       │   └── cabeza.pgm
+│   │   │       ├── img
+│   │   │       │   ├── board.pgm
+│   │   │       │   ├── salida.pgm
+│   │   │       │   ├── shuffle_9973.pgm
+│   │   │       │   └── vacas.pgm
+│   │   │       └── ourResults
+│   │   │           ├── icono_board.pgm
+│   │   │           ├── ourHead(comparison).pgm
+│   │   │           ├── ourHead.pgm
+│   │   │           └── vacasContrast.pgm
+│   │   └── TDA_Lineales
+│   │       └── codigo
+│   │           ├── cmake-build-debug
+│   │           │   ├── build.ninja
+│   │           │   ├── CMakeCache.txt
+│   │           │   ├── CMakeDoxyfile.in
+│   │           │   ├── CMakeDoxygenDefaults.cmake
+│   │           │   ├── CMakeFiles
+│   │           │   │   ├── 3.26.4
+│   │           │   │   │   ├── CMakeCCompiler.cmake
+│   │           │   │   │   ├── CMakeCXXCompiler.cmake
+│   │           │   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │           │   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │           │   │   │   ├── CMakeSystem.cmake
+│   │           │   │   │   ├── CompilerIdC
+│   │           │   │   │   │   ├── a.out
+│   │           │   │   │   │   ├── CMakeCCompilerId.c
+│   │           │   │   │   │   └── tmp
+│   │           │   │   │   └── CompilerIdCXX
+│   │           │   │   │       ├── a.out
+│   │           │   │   │       ├── CMakeCXXCompilerId.cpp
+│   │           │   │   │       └── tmp
+│   │           │   │   ├── clion-Debug-log.txt
+│   │           │   │   ├── clion-environment.txt
+│   │           │   │   ├── cmake.check_cache
+│   │           │   │   ├── CMakeConfigureLog.yaml
+│   │           │   │   ├── cola_max.dir
+│   │           │   │   │   └── estudiante
+│   │           │   │   │       └── src
+│   │           │   │   ├── maxqueue.dir
+│   │           │   │   │   └── estudiante
+│   │           │   │   │       └── src
+│   │           │   │   ├── maxstack.dir
+│   │           │   │   │   └── estudiante
+│   │           │   │   │       └── src
+│   │           │   │   ├── pila_max.dir
+│   │           │   │   │   └── estudiante
+│   │           │   │   │       └── src
+│   │           │   │   ├── pkgRedirects
+│   │           │   │   ├── rules.ninja
+│   │           │   │   └── TargetDirectories.txt
+│   │           │   ├── cmake_install.cmake
+│   │           │   ├── Doxyfile
+│   │           │   └── Testing
+│   │           │       └── Temporary
+│   │           │           └── LastTest.log
+│   │           ├── CMakeLists.txt
+│   │           ├── Doxyfile.in
+│   │           └── estudiante
+│   │               ├── doc
+│   │               │   └── mainpage.dox
+│   │               ├── include
+│   │               │   ├── maxqueue.h
+│   │               │   └── maxstack.h
+│   │               └── src
+│   │                   ├── cola_max.cpp
+│   │                   ├── maxqueue.cpp
+│   │                   ├── maxstack.cpp
+│   │                   └── pila_max.cpp
+│   ├── publickey
+│   ├── publickey.pub
+│   ├── pull.sh
+│   └── retos
+│       └── TDA_Sudoku
+│           ├── cmake-build-debug
+│           │   ├── build.ninja
+│           │   ├── CMakeCache.txt
+│           │   ├── CMakeFiles
+│           │   │   ├── 3.26.4
+│           │   │   │   ├── CMakeCCompiler.cmake
+│           │   │   │   ├── CMakeCXXCompiler.cmake
+│           │   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│           │   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│           │   │   │   ├── CMakeSystem.cmake
+│           │   │   │   ├── CompilerIdC
+│           │   │   │   │   ├── a.out
+│           │   │   │   │   ├── CMakeCCompilerId.c
+│           │   │   │   │   └── tmp
+│           │   │   │   └── CompilerIdCXX
+│           │   │   │       ├── a.out
+│           │   │   │       ├── CMakeCXXCompilerId.cpp
+│           │   │   │       └── tmp
+│           │   │   ├── clion-Debug-log.txt
+│           │   │   ├── clion-environment.txt
+│           │   │   ├── cmake.check_cache
+│           │   │   ├── CMakeConfigureLog.yaml
+│           │   │   ├── pkgRedirects
+│           │   │   ├── rules.ninja
+│           │   │   ├── TargetDirectories.txt
+│           │   │   └── TDA_Sudoku.dir
+│           │   ├── cmake_install.cmake
+│           │   └── Testing
+│           │       └── Temporary
+│           │           └── LastTest.log
+│           ├── CMakeLists.txt
+│           ├── doc
+│           │   ├── html
+│           │   │   ├── annotated.html
+│           │   │   ├── arrowdown.png
+│           │   │   ├── arrowright.png
+│           │   │   ├── bc_s.png
+│           │   │   ├── bdwn.png
+│           │   │   ├── classes.html
+│           │   │   ├── classJaula.html
+│           │   │   ├── classJaula-members.html
+│           │   │   ├── classSudoku__killer.html
+│           │   │   ├── classSudoku__killer-members.html
+│           │   │   ├── closed.png
+│           │   │   ├── doc.png
+│           │   │   ├── doxygen.css
+│           │   │   ├── doxygen.png
+│           │   │   ├── files.html
+│           │   │   ├── folderclosed.png
+│           │   │   ├── folderopen.png
+│           │   │   ├── functions_func.html
+│           │   │   ├── functions.html
+│           │   │   ├── functions_vars.html
+│           │   │   ├── index.html
+│           │   │   ├── Jaula_8h_source.html
+│           │   │   ├── jquery.js
+│           │   │   ├── nav_f.png
+│           │   │   ├── nav_g.png
+│           │   │   ├── nav_h.png
+│           │   │   ├── open.png
+│           │   │   ├── splitbar.png
+│           │   │   ├── structCelda.html
+│           │   │   ├── structCelda-members.html
+│           │   │   ├── Sudoku__killer_8h_source.html
+│           │   │   ├── sync_off.png
+│           │   │   ├── sync_on.png
+│           │   │   ├── tab_a.png
+│           │   │   ├── tab_b.png
+│           │   │   ├── tab_h.png
+│           │   │   ├── tabs.css
+│           │   │   └── tab_s.png
+│           │   ├── latex
+│           │   │   ├── annotated.tex
+│           │   │   ├── classJaula.tex
+│           │   │   ├── classSudoku__killer.tex
+│           │   │   ├── doxygen.sty
+│           │   │   ├── Makefile
+│           │   │   ├── refman.tex
+│           │   │   └── structCelda.tex
+│           │   ├── man
+│           │   │   └── man3
+│           │   │       ├── Celda.3
+│           │   │       ├── Jaula.3
+│           │   │       └── Sudoku_killer.3
+│           │   └── xml
+│           │       ├── classJaula.xml
+│           │       ├── classSudoku__killer.xml
+│           │       ├── CMakeLists_8txt.xml
+│           │       ├── combine.xslt
+│           │       ├── compound.xsd
+│           │       ├── index.xml
+│           │       ├── index.xsd
+│           │       ├── Jaula_8h.xml
+│           │       ├── structCelda.xml
+│           │       └── Sudoku__killer_8h.xml
+│           ├── Jaula.h
+│           └── Sudoku_killer.h
+├── Fedora
+│   ├── Fedora14-x86-root_fs
+│   ├── Fedora14-x86-root_fs.gz
+│   ├── kernel32-3.0.4
+│   └── kernel32-3.0.4.gz
+├── fondo pantalla.jpeg
+└── SO
+    ├── Administracion
+    │   ├── Demonios
+    │   │   ├── CrontabDirectory
+    │   │   │   ├── crontab_Borracores
+    │   │   │   ├── crontab_Find
+    │   │   │   ├── crontab_listabusqueda
+    │   │   │   ├── crontab_reducelista
+    │   │   │   └── crontab_salvado
+    │   │   ├── Results
+    │   │   │   ├── BorraCores.txt
+    │   │   │   ├── listabusqueda.txt
+    │   │   │   └── salvado.txt
+    │   │   └── Scripts
+    │   │       ├── BorraCores.sh
+    │   │       ├── Find.sh
+    │   │       ├── genera_apunte.sh
+    │   │       ├── listabusqueda.sh
+    │   │       ├── Padre-Hijo.sh
+    │   │       ├── reducelista.sh
+    │   │       └── salvado.sh
+    │   └── Practica3
+    │       ├── infinito.sh
+    │       ├── petapc
+    │       └── petapc_symbolic -> infinito.sh
+    └── Programacion
+        ├── Sesion1
+        └── SO-P-Todos_MaterialModulo2
+            ├── Sesion1
+            │   ├── archivo
+            │   ├── tarea1.c
+            │   ├── tarea1prog
+            │   └── tarea2.c
+            ├── Sesion2
+            │   └── tarea3.c
+            ├── Sesion3
+            │   ├── tarea4.c
+            │   └── tarea5.c
+            ├── Sesion4
+            │   ├── consumidorFIFO.c
+            │   ├── productorFIFO.c
+            │   ├── tarea6.c
+            │   ├── tarea7.c
+            │   └── tarea8.c
+            ├── Sesion5
+            │   ├── envioSignal.c
+            │   ├── reciboSignal.c
+            │   ├── tarea10.c
+            │   ├── tarea11.c
+            │   ├── tarea12.c
+            │   └── tarea9.c
+            ├── Sesion6
+            │   ├── programa1-Tarea13-prac6.c
+            │   ├── programa2-Tarea14-prac6.c
+            │   ├── programa3-Tarea15-prac6.c
+            │   ├── programa4-Tarea16-prac6.c
+            │   ├── programa5-Tarea17-prac6.c
+            │   ├── programa6-Tarea18-prac6.c
+            │   └── programa7-Tarea19-prac6.c
+            └── Sesion7
+                └── clientes.c
+
+145 directories, 543 files
+2023-294-18:50:03-15537
