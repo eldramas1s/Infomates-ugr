@@ -1,0 +1,128 @@
+2023-336-17:11:24-26409
+PULL:
+Updating ce5785d..1ca792d
+Fast-forward
+ .../Testing/Temporary/LastTest.log                 |    4 +-
+ Practicas/Rutas_Aereas/.idea/.gitignore            |    8 +
+ Practicas/Rutas_Aereas/.idea/.name                 |    1 +
+ Practicas/Rutas_Aereas/.idea/Rutas_Aereas.iml      |    2 +
+ Practicas/Rutas_Aereas/.idea/misc.xml              |    4 +
+ Practicas/Rutas_Aereas/.idea/modules.xml           |    8 +
+ Practicas/Rutas_Aereas/.idea/vcs.xml               |    6 +
+ Practicas/Rutas_Aereas/CMakeLists.txt              |   56 +-
+ .../cmake-build-debug/.cmake/api/v1/query/cache-v2 |    0
+ .../.cmake/api/v1/query/cmakeFiles-v1              |    0
+ .../.cmake/api/v1/query/codemodel-v2               |    0
+ .../.cmake/api/v1/query/toolchains-v1              |    0
+ .../v1/reply/cache-v2-0640bea484931a0a9973.json    | 1227 ++++++++++++++++++++
+ .../reply/cmakeFiles-v1-3c2cb9bef3093a8b9d6c.json  |  154 +++
+ .../reply/codemodel-v2-9679b4a8d3fde8a1cd2b.json   |   87 ++
+ .../directory-.-Debug-f5ebdc15457944623624.json    |   14 +
+ .../v1/reply/index-2023-11-28T09-44-00-0503.json   |  108 ++
+ ...get-doc_doxygen-Debug-fe9097612216896aa3fe.json |   66 ++
+ .../target-image-Debug-ca814fc29b1a81549c04.json   |  197 ++++
+ ...et-pruebapegado-Debug-9a3b2f180d45eb62df26.json |  222 ++++
+ ...-pruebarotacion-Debug-d689eba955935e7f5acc.json |  222 ++++
+ .../reply/toolchains-v1-99265b04de7ada3aac9e.json  |  107 ++
+ .../Rutas_Aereas/cmake-build-debug/CMakeCache.txt  |  382 ++++++
+ .../cmake-build-debug/CMakeDoxyfile.in             |  285 +++++
+ .../cmake-build-debug/CMakeDoxygenDefaults.cmake   |  688 +++++++++++
+ .../CMakeFiles/3.26.4/CMakeCCompiler.cmake         |   72 ++
+ .../CMakeFiles/3.26.4/CMakeCXXCompiler.cmake       |   83 ++
+ .../3.26.4/CMakeDetermineCompilerABI_C.bin         |  Bin 0 -> 15968 bytes
+ .../3.26.4/CMakeDetermineCompilerABI_CXX.bin       |  Bin 0 -> 15992 bytes
+ .../CMakeFiles/3.26.4/CMakeSystem.cmake            |   15 +
+ .../3.26.4/CompilerIdC/CMakeCCompilerId.c          |  866 ++++++++++++++
+ .../CMakeFiles/3.26.4/CompilerIdC/a.out            |  Bin 0 -> 16088 bytes
+ .../3.26.4/CompilerIdCXX/CMakeCXXCompilerId.cpp    |  855 ++++++++++++++
+ .../CMakeFiles/3.26.4/CompilerIdCXX/a.out          |  Bin 0 -> 16096 bytes
+ .../CMakeFiles/CMakeConfigureLog.yaml              |  517 +++++++++
+ .../CMakeFiles/TargetDirectories.txt               |    6 +
+ .../CMakeFiles/clion-Debug-log.txt                 |    5 +
+ .../CMakeFiles/clion-environment.txt               |    3 +
+ .../cmake-build-debug/CMakeFiles/cmake.check_cache |    1 +
+ .../cmake-build-debug/CMakeFiles/rules.ninja       |  102 ++
+ Practicas/Rutas_Aereas/cmake-build-debug/Doxyfile  |    6 +
+ .../Testing/Temporary/LastTest.log                 |    3 +
+ .../Rutas_Aereas/cmake-build-debug/build.ninja     |  358 ++++++
+ .../cmake-build-debug/cmake_install.cmake          |   54 +
+ .../Rutas_Aereas/rutas_aereas/include/Almacen.h    |   27 +
+ .../Rutas_Aereas/rutas_aereas/include/Imagen.h     |   14 +
+ .../Rutas_Aereas/rutas_aereas/include/Mundo.h      |   14 +
+ Practicas/Rutas_Aereas/rutas_aereas/include/Pais.h |  108 ++
+ .../Rutas_Aereas/rutas_aereas/include/Punto.h      |   85 ++
+ Practicas/Rutas_Aereas/rutas_aereas/include/Ruta.h |  360 ++++++
+ .../Rutas_Aereas/rutas_aereas/src/Almacen.cpp      |    5 +
+ Practicas/Rutas_Aereas/rutas_aereas/src/Imagen.cpp |    5 +
+ Practicas/Rutas_Aereas/rutas_aereas/src/Mundo.cpp  |    5 +
+ Practicas/Rutas_Aereas/rutas_aereas/src/Pais.cpp   |   41 +
+ Practicas/Rutas_Aereas/rutas_aereas/src/Punto.cpp  |   39 +
+ Practicas/Rutas_Aereas/rutas_aereas/src/Ruta.cpp   |  256 ++++
+ retos/Intervalos/.idea/vcs.xml                     |    1 +
+ .../reply/cmakeFiles-v1-1156568a0cd4b508bf94.json  |  136 +++
+ .../reply/cmakeFiles-v1-ab46cf47c39ee6e9ba47.json  |  749 ------------
+ ...61.json => index-2023-11-20T19-24-55-0893.json} |    4 +-
+ .../CMakeFiles/clion-Debug-log.txt                 |   14 +-
+ .../Testing/Temporary/LastTest.log                 |    4 +-
+ retos/Intervalos/cmake-build-debug/build.ninja     |    9 +-
+ retos/Intervalos/main.cpp                          |    2 +-
+ retos/Intervalos/reto3.cpp                         |  313 +++++
+ 65 files changed, 8206 insertions(+), 779 deletions(-)
+ create mode 100644 Practicas/Rutas_Aereas/.idea/.gitignore
+ create mode 100644 Practicas/Rutas_Aereas/.idea/.name
+ create mode 100644 Practicas/Rutas_Aereas/.idea/Rutas_Aereas.iml
+ create mode 100644 Practicas/Rutas_Aereas/.idea/misc.xml
+ create mode 100644 Practicas/Rutas_Aereas/.idea/modules.xml
+ create mode 100644 Practicas/Rutas_Aereas/.idea/vcs.xml
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/query/cache-v2
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/query/codemodel-v2
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/query/toolchains-v1
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/cache-v2-0640bea484931a0a9973.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-3c2cb9bef3093a8b9d6c.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-9679b4a8d3fde8a1cd2b.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-28T09-44-00-0503.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/target-doc_doxygen-Debug-fe9097612216896aa3fe.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/target-image-Debug-ca814fc29b1a81549c04.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/target-pruebapegado-Debug-9a3b2f180d45eb62df26.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/target-pruebarotacion-Debug-d689eba955935e7f5acc.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-99265b04de7ada3aac9e.json
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeCache.txt
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeDoxyfile.in
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeDoxygenDefaults.cmake
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CMakeCCompiler.cmake
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CMakeCXXCompiler.cmake
+ create mode 100755 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin
+ create mode 100755 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_CXX.bin
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CMakeSystem.cmake
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/CMakeCCompilerId.c
+ create mode 100755 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/a.out
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+ create mode 100755 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/a.out
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/TargetDirectories.txt
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/clion-Debug-log.txt
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/clion-environment.txt
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/cmake.check_cache
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/CMakeFiles/rules.ninja
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/Doxyfile
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/Testing/Temporary/LastTest.log
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/build.ninja
+ create mode 100644 Practicas/Rutas_Aereas/cmake-build-debug/cmake_install.cmake
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/include/Almacen.h
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/include/Imagen.h
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/include/Mundo.h
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/include/Pais.h
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/include/Punto.h
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/include/Ruta.h
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/src/Almacen.cpp
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/src/Imagen.cpp
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/src/Mundo.cpp
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/src/Pais.cpp
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/src/Punto.cpp
+ create mode 100644 Practicas/Rutas_Aereas/rutas_aereas/src/Ruta.cpp
+ create mode 100644 retos/Intervalos/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-1156568a0cd4b508bf94.json
+ delete mode 100644 retos/Intervalos/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-ab46cf47c39ee6e9ba47.json
+ rename retos/Intervalos/cmake-build-debug/.cmake/api/v1/reply/{index-2023-11-08T14-29-31-0461.json => index-2023-11-20T19-24-55-0893.json} (93%)
+ create mode 100644 retos/Intervalos/reto3.cpp

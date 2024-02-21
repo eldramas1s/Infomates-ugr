@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="es">
+  <compound refid="structCelda" kind="struct"><name>Celda</name>
+    <member refid="structCelda_1a1ab3faa657021d321d4201c3a4a6d4c9" kind="variable"><name>posicion</name></member>
+    <member refid="structCelda_1a5c6d6d20b0c0b0a359715844955a0078" kind="variable"><name>siguiente</name></member>
+    <member refid="structCelda_1af1dadd95735043294599490d4abc6dc1" kind="function"><name>Celda</name></member>
+    <member refid="structCelda_1a0bcc2a50e80dc0c57cd7f9a32a52765a" kind="function"><name>Celda</name></member>
+  </compound>
+  <compound refid="classJaula" kind="class"><name>Jaula</name>
+    <member refid="classJaula_1ae8ac08565808e81ec83c0900c83f5945" kind="variable"><name>inicial</name></member>
+    <member refid="classJaula_1a459a2c918ed3da76859c439c20e0cde6" kind="variable"><name>suma</name></member>
+    <member refid="classJaula_1a93612a186627db007c1e03d361b2259d" kind="variable"><name>total_celdas</name></member>
+    <member refid="classJaula_1af3e815320f7cbf7cb580297d63dbd9cb" kind="function"><name>Jaula</name></member>
+    <member refid="classJaula_1a599a316211f81193a03b034914a0cae4" kind="function"><name>Jaula</name></member>
+    <member refid="classJaula_1a36aaf0804aa506468c8a6283a0f9c516" kind="function"><name>Jaula</name></member>
+    <member refid="classJaula_1a909c91c04756fc42d1b5b6db44ef2fcb" kind="function"><name>operator=</name></member>
+    <member refid="classJaula_1a7b543e5d242e490709cb6d9b4246fe15" kind="function"><name>~Jaula</name></member>
+    <member refid="classJaula_1a6f31934737d264c29ba9b588e04db286" kind="function"><name>Pertenece</name></member>
+    <member refid="classJaula_1a9f30dba787ad321fd00100fa1420d2d2" kind="function"><name>Pertenece</name></member>
+    <member refid="classJaula_1afa93e31751a879b1348077c629c51c4f" kind="function"><name>Aniade</name></member>
+    <member refid="classJaula_1a9ed64aff2061f1210d4fe82f3085cc10" kind="function"><name>TotalCeldas</name></member>
+    <member refid="classJaula_1a9ccbd25495b003beb62b32ae3a4d51d1" kind="function"><name>GetSuma</name></member>
+    <member refid="classJaula_1aaca1e9cb4999994fe6c79ff61ae1270c" kind="function"><name>SetSuma</name></member>
+    <member refid="classJaula_1aa55d430d54cdd10d8547b6f3f8cc3ce7" kind="function"><name>CeldasVacias</name></member>
+    <member refid="classJaula_1a57642cefc7d5d15bf15077f6b639b6bd" kind="function"><name>LiberarMemoria</name></member>
+    <member refid="classJaula_1a8e8decb7af4b3ce64142e080a961bc01" kind="function"><name>CopiarDatos</name></member>
+  </compound>
+  <compound refid="classSudoku__killer" kind="class"><name>Sudoku_killer</name>
+    <member refid="classSudoku__killer_1a271c01c74b0311d5b8a38c01d6fc772e" kind="variable"><name>TAMANIO_TABLERO</name></member>
+    <member refid="classSudoku__killer_1a725836926fdeaff8145800ab7aebcbe8" kind="variable"><name>SUMA</name></member>
+    <member refid="classSudoku__killer_1af620cce61f8d3121e076062a42f6f6a6" kind="variable"><name>tablero</name></member>
+    <member refid="classSudoku__killer_1a846c85d3b8acd28a473d98f674a2f13f" kind="variable"><name>jaulas</name></member>
+    <member refid="classSudoku__killer_1a354ae3f3a487793cd8d6621acd62e381" kind="function"><name>Sudoku_killer</name></member>
+    <member refid="classSudoku__killer_1a215fb2671ee00c38062abf7c5c6f9983" kind="function"><name>Sudoku_killer</name></member>
+    <member refid="classSudoku__killer_1a4e35dbc508ce53d9728d66b83099cb3f" kind="function"><name>Sudoku_killer</name></member>
+    <member refid="classSudoku__killer_1aace041fce5264a406d75e3135ac52468" kind="function"><name>operator=</name></member>
+    <member refid="classSudoku__killer_1ac751547d55ea671419e8b025b4a5d9b3" kind="function"><name>~Sudoku_killer</name></member>
+    <member refid="classSudoku__killer_1a81e7f435dbecbc292d2013552264203a" kind="function"><name>SumaJaula</name></member>
+    <member refid="classSudoku__killer_1aa7abc95ec217ccbb4d45d4fc4d66cb9c" kind="function"><name>SumaJaula</name></member>
+    <member refid="classSudoku__killer_1a7f37fc7a4673b1dd06f5b261c5299544" kind="function"><name>SumaFila</name></member>
+    <member refid="classSudoku__killer_1afabb202294f15d2554a31c8b84ae8361" kind="function"><name>EstaCompleta</name></member>
+    <member refid="classSudoku__killer_1ab9ccc9f87bd1773a0238ccc6de0764f9" kind="function"><name>CeldasVacias</name></member>
+    <member refid="classSudoku__killer_1a8b4410b5fc69f23408fc54d25f761d79" kind="function"><name>CalculaPosicionFC</name></member>
+    <member refid="classSudoku__killer_1af0a5b76933cda7c5609af7764d52f8db" kind="function"><name>ResolverSudokuKiller</name></member>
+    <member refid="classSudoku__killer_1aeed922450b0407ffcfb074cf6516f7e4" kind="function"><name>Inicializar</name></member>
+    <member refid="classSudoku__killer_1aa6fdeb2814b8bc10ca2d10f34bd2d7e5" kind="function"><name>RellenarCeldas</name></member>
+  </compound>
+  <compound refid="Jaula_8h" kind="file"><name>Jaula.h</name>
+    <member refid="Jaula_8h_1a431099b69fa71402d0e1aff8677878f5" kind="typedef"><name>Posicion</name></member>
+    <member refid="Jaula_8h_1a6fa5ba39eca5763b2bd123fc93157552" kind="function"><name>operator==</name></member>
+  </compound>
+  <compound refid="Sudoku__killer_8h" kind="file"><name>Sudoku_killer.h</name>
+  </compound>
+</doxygenindex>

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="es">
+  <compounddef id="Sudoku__killer_8h" kind="file" language="C++">
+    <compoundname>Sudoku_killer.h</compoundname>
+    <includes refid="Jaula_8h" local="yes">Jaula.h</includes>
+    <includes local="no">utility</includes>
+    <includes local="no">vector</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>Jaula.h</label>
+        <link refid="Jaula_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Sudoku_killer.h</label>
+        <link refid="Sudoku__killer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="3">
+        <label>utility</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classSudoku__killer" prot="public">Sudoku_killer</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/></highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>File:<sp/><sp/><sp/>Sudoku_killer.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Author:<sp/>mp</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Created<sp/>on<sp/>7<sp/>de<sp/>octubre<sp/>de<sp/>2023,<sp/>18:59</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SUDOKU_KILLER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SUDOKU_KILLER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;Jaula.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classSudoku__killer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="classSudoku__killer_1a354ae3f3a487793cd8d6621acd62e381" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classSudoku__killer_1a354ae3f3a487793cd8d6621acd62e381" kindref="member">Sudoku_killer</ref>();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="classSudoku__killer_1a215fb2671ee00c38062abf7c5c6f9983" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classSudoku__killer_1a215fb2671ee00c38062abf7c5c6f9983" kindref="member">Sudoku_killer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Jaula&gt;&amp;<sp/>jaulas);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="classSudoku__killer_1a4e35dbc508ce53d9728d66b83099cb3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classSudoku__killer_1a4e35dbc508ce53d9728d66b83099cb3f" kindref="member">Sudoku_killer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>&amp;<sp/>orig);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="classSudoku__killer_1aace041fce5264a406d75e3135ac52468" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>&amp;<sp/><ref refid="classSudoku__killer_1aace041fce5264a406d75e3135ac52468" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>&amp;<sp/>orig);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="classSudoku__killer_1ac751547d55ea671419e8b025b4a5d9b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classSudoku__killer_1ac751547d55ea671419e8b025b4a5d9b3" kindref="member">~Sudoku_killer</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="classSudoku__killer_1a81e7f435dbecbc292d2013552264203a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classSudoku__killer_1a81e7f435dbecbc292d2013552264203a" kindref="member">SumaJaula</ref>(Posicion<sp/>pos)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="classSudoku__killer_1aa7abc95ec217ccbb4d45d4fc4d66cb9c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classSudoku__killer_1aa7abc95ec217ccbb4d45d4fc4d66cb9c" kindref="member">SumaJaula</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124" refid="classSudoku__killer_1a7f37fc7a4673b1dd06f5b261c5299544" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classSudoku__killer_1a7f37fc7a4673b1dd06f5b261c5299544" kindref="member">SumaFila</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>modo=</highlight><highlight class="charliteral">&apos;f&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="classSudoku__killer_1afabb202294f15d2554a31c8b84ae8361" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classSudoku__killer_1afabb202294f15d2554a31c8b84ae8361" kindref="member">EstaCompleta</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>modo=</highlight><highlight class="charliteral">&apos;f&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="159" refid="classSudoku__killer_1ab9ccc9f87bd1773a0238ccc6de0764f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classSudoku__killer_1ab9ccc9f87bd1773a0238ccc6de0764f9" kindref="member">CeldasVacias</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>modo=</highlight><highlight class="charliteral">&apos;f&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="classSudoku__killer_1a8b4410b5fc69f23408fc54d25f761d79" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Posicion<sp/><ref refid="classSudoku__killer_1a8b4410b5fc69f23408fc54d25f761d79" kindref="member">CalculaPosicionFC</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>modo=</highlight><highlight class="charliteral">&apos;f&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="classSudoku__killer_1af0a5b76933cda7c5609af7764d52f8db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classSudoku__killer_1af0a5b76933cda7c5609af7764d52f8db" kindref="member">ResolverSudokuKiller</ref>();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="189"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@brief<sp/>Dimensión<sp/>del<sp/>tablero.<sp/>Un<sp/>tablero<sp/>de<sp/>sudoku<sp/>killer<sp/>es</highlight></codeline>
+<codeline lineno="190"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>una<sp/>cuadrícula<sp/>de<sp/>tamaño<sp/>9x9.</highlight></codeline>
+<codeline lineno="191"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>TAMANIO_TABLERO<sp/>=<sp/>9;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SUMA<sp/>=<sp/>45;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCelda" kindref="compound">Celda</ref><sp/>tablero[TAMANIO_TABLERO][TAMANIO_TABLERO];</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Jaula&gt;<sp/>jaulas;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Inicializar();</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>RellenarCeldas(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>f=0,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c=0);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SUDOKU_KILLER_H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="Sudoku_killer.h"/>
+  </compounddef>
+</doxygen>

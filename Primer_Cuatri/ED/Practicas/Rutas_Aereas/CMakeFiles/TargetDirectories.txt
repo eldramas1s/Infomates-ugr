@@ -1,0 +1,7 @@
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/CMakeFiles/image.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/CMakeFiles/pruebarotacion.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/CMakeFiles/pruebapegado.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/CMakeFiles/ruta_aerea.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/CMakeFiles/doc_doxygen.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/CMakeFiles/edit_cache.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/CMakeFiles/rebuild_cache.dir

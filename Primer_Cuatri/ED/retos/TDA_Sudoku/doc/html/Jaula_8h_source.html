@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Clase Sudoku Killer: Fichero Fuente Jaula.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Clase Sudoku Killer
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.1 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Buscar');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Jaula.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * File:   Jaula.h</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Author: mp</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Created on 7 de octubre de 2023, 18:18</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef JAULA_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define JAULA_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">typedef</span> std::pair&lt;int,int&gt; Posicion;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structCelda.html">   28</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCelda.html">Celda</a>{</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structCelda.html#a1ab3faa657021d321d4201c3a4a6d4c9">   33</a></span>&#160;    Posicion <a class="code" href="structCelda.html#a1ab3faa657021d321d4201c3a4a6d4c9">posicion</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structCelda.html#a5c6d6d20b0c0b0a359715844955a0078">   38</a></span>&#160;    <a class="code" href="structCelda.html">Celda</a>* <a class="code" href="structCelda.html#a5c6d6d20b0c0b0a359715844955a0078">siguiente</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structCelda.html#af1dadd95735043294599490d4abc6dc1">   45</a></span>&#160;    <a class="code" href="structCelda.html#af1dadd95735043294599490d4abc6dc1">Celda</a>() {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="structCelda.html#a1ab3faa657021d321d4201c3a4a6d4c9">posicion</a>.first = -1;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="structCelda.html#a1ab3faa657021d321d4201c3a4a6d4c9">posicion</a>.second = -1;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="structCelda.html#a5c6d6d20b0c0b0a359715844955a0078">siguiente</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structCelda.html#a0bcc2a50e80dc0c57cd7f9a32a52765a">   60</a></span>&#160;    <a class="code" href="structCelda.html#a0bcc2a50e80dc0c57cd7f9a32a52765a">Celda</a>(<span class="keywordtype">int</span> fila, <span class="keywordtype">int</span> columna) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="structCelda.html#a1ab3faa657021d321d4201c3a4a6d4c9">posicion</a>.first = fila;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="structCelda.html#a1ab3faa657021d321d4201c3a4a6d4c9">posicion</a>.second = columna;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="structCelda.html#a5c6d6d20b0c0b0a359715844955a0078">siguiente</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    };</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classJaula.html">   82</a></span>&#160;<span class="keyword">class </span><a class="code" href="classJaula.html">Jaula</a> {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classJaula.html#af3e815320f7cbf7cb580297d63dbd9cb">   89</a></span>&#160;    <a class="code" href="classJaula.html#af3e815320f7cbf7cb580297d63dbd9cb">Jaula</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classJaula.html#a599a316211f81193a03b034914a0cae4">   97</a></span>&#160;    <a class="code" href="classJaula.html#a599a316211f81193a03b034914a0cae4">Jaula</a>(<a class="code" href="structCelda.html">Celda</a> primera, <span class="keywordtype">int</span> suma_jaula);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classJaula.html#a36aaf0804aa506468c8a6283a0f9c516">  104</a></span>&#160;    <a class="code" href="classJaula.html#a36aaf0804aa506468c8a6283a0f9c516">Jaula</a>(<span class="keyword">const</span> <a class="code" href="classJaula.html">Jaula</a>&amp; orig);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classJaula.html#a909c91c04756fc42d1b5b6db44ef2fcb">  111</a></span>&#160;    <a class="code" href="classJaula.html">Jaula</a>&amp; <a class="code" href="classJaula.html#a909c91c04756fc42d1b5b6db44ef2fcb">operator=</a>(<span class="keyword">const</span> <a class="code" href="classJaula.html">Jaula</a>&amp; orig);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="classJaula.html#a7b543e5d242e490709cb6d9b4246fe15">  116</a></span>&#160;    <a class="code" href="classJaula.html#a7b543e5d242e490709cb6d9b4246fe15">~Jaula</a>();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="classJaula.html#a6f31934737d264c29ba9b588e04db286">  127</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classJaula.html#a6f31934737d264c29ba9b588e04db286">Pertenece</a>(<a class="code" href="structCelda.html">Celda</a> c) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classJaula.html#a9f30dba787ad321fd00100fa1420d2d2">  136</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classJaula.html#a9f30dba787ad321fd00100fa1420d2d2">Pertenece</a>(Posicion pos) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    </div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="classJaula.html#afa93e31751a879b1348077c629c51c4f">  144</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classJaula.html#afa93e31751a879b1348077c629c51c4f">Aniade</a>(<a class="code" href="structCelda.html">Celda</a> nueva);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    </div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="classJaula.html#a9ed64aff2061f1210d4fe82f3085cc10">  150</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classJaula.html#a9ed64aff2061f1210d4fe82f3085cc10">TotalCeldas</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    </div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classJaula.html#a9ccbd25495b003beb62b32ae3a4d51d1">  156</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classJaula.html#a9ccbd25495b003beb62b32ae3a4d51d1">GetSuma</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="classJaula.html#aaca1e9cb4999994fe6c79ff61ae1270c">  167</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classJaula.html#aaca1e9cb4999994fe6c79ff61ae1270c">SetSuma</a>(<span class="keywordtype">int</span> s);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="classJaula.html#aa55d430d54cdd10d8547b6f3f8cc3ce7">  176</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classJaula.html#aa55d430d54cdd10d8547b6f3f8cc3ce7">CeldasVacias</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="code" href="structCelda.html">Celda</a>* inicial;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordtype">int</span> suma;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordtype">int</span> total_celdas;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keywordtype">void</span> LiberarMemoria();</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">void</span> CopiarDatos(<span class="keyword">const</span> <a class="code" href="classJaula.html">Jaula</a>&amp; otra);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;};</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="structCelda.html">Celda</a> &amp; c1, <span class="keyword">const</span> <a class="code" href="structCelda.html">Celda</a> &amp; c2 );</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* JAULA_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="ttc" id="aclassJaula_html"><div class="ttname"><a href="classJaula.html">Jaula</a></div><div class="ttdoc">T.D.A Jaula.</div><div class="ttdef"><b>Definition:</b> Jaula.h:82</div></div>
+<div class="ttc" id="aclassJaula_html_a36aaf0804aa506468c8a6283a0f9c516"><div class="ttname"><a href="classJaula.html#a36aaf0804aa506468c8a6283a0f9c516">Jaula::Jaula</a></div><div class="ttdeci">Jaula(const Jaula &amp;orig)</div><div class="ttdoc">Constructor de copia de la clase Jaula.</div></div>
+<div class="ttc" id="aclassJaula_html_a599a316211f81193a03b034914a0cae4"><div class="ttname"><a href="classJaula.html#a599a316211f81193a03b034914a0cae4">Jaula::Jaula</a></div><div class="ttdeci">Jaula(Celda primera, int suma_jaula)</div><div class="ttdoc">Constructor de la clase Jaula. Recibe la primera celda que forma parte de la Jaula y la suma de la ja...</div></div>
+<div class="ttc" id="aclassJaula_html_a6f31934737d264c29ba9b588e04db286"><div class="ttname"><a href="classJaula.html#a6f31934737d264c29ba9b588e04db286">Jaula::Pertenece</a></div><div class="ttdeci">bool Pertenece(Celda c) const</div><div class="ttdoc">Comprueba si una celda.</div></div>
+<div class="ttc" id="aclassJaula_html_a7b543e5d242e490709cb6d9b4246fe15"><div class="ttname"><a href="classJaula.html#a7b543e5d242e490709cb6d9b4246fe15">Jaula::~Jaula</a></div><div class="ttdeci">~Jaula()</div><div class="ttdoc">Destructor de la clase Jaula.</div></div>
+<div class="ttc" id="aclassJaula_html_a909c91c04756fc42d1b5b6db44ef2fcb"><div class="ttname"><a href="classJaula.html#a909c91c04756fc42d1b5b6db44ef2fcb">Jaula::operator=</a></div><div class="ttdeci">Jaula &amp; operator=(const Jaula &amp;orig)</div><div class="ttdoc">Operador de asignación de la clase Jaula.</div></div>
+<div class="ttc" id="aclassJaula_html_a9ccbd25495b003beb62b32ae3a4d51d1"><div class="ttname"><a href="classJaula.html#a9ccbd25495b003beb62b32ae3a4d51d1">Jaula::GetSuma</a></div><div class="ttdeci">int GetSuma() const</div><div class="ttdoc">Suma de la jaula.</div></div>
+<div class="ttc" id="aclassJaula_html_a9ed64aff2061f1210d4fe82f3085cc10"><div class="ttname"><a href="classJaula.html#a9ed64aff2061f1210d4fe82f3085cc10">Jaula::TotalCeldas</a></div><div class="ttdeci">int TotalCeldas() const</div><div class="ttdoc">Número de celdas de la jaula.</div></div>
+<div class="ttc" id="aclassJaula_html_a9f30dba787ad321fd00100fa1420d2d2"><div class="ttname"><a href="classJaula.html#a9f30dba787ad321fd00100fa1420d2d2">Jaula::Pertenece</a></div><div class="ttdeci">bool Pertenece(Posicion pos) const</div><div class="ttdoc">Comprueba si en la jaula hay alguna celda que contenga la.</div></div>
+<div class="ttc" id="aclassJaula_html_aa55d430d54cdd10d8547b6f3f8cc3ce7"><div class="ttname"><a href="classJaula.html#aa55d430d54cdd10d8547b6f3f8cc3ce7">Jaula::CeldasVacias</a></div><div class="ttdeci">int CeldasVacias() const</div><div class="ttdoc">Número de celdas vacías en la jaula.</div></div>
+<div class="ttc" id="aclassJaula_html_aaca1e9cb4999994fe6c79ff61ae1270c"><div class="ttname"><a href="classJaula.html#aaca1e9cb4999994fe6c79ff61ae1270c">Jaula::SetSuma</a></div><div class="ttdeci">void SetSuma(int s)</div><div class="ttdoc">Método set del parametro suma.</div></div>
+<div class="ttc" id="aclassJaula_html_af3e815320f7cbf7cb580297d63dbd9cb"><div class="ttname"><a href="classJaula.html#af3e815320f7cbf7cb580297d63dbd9cb">Jaula::Jaula</a></div><div class="ttdeci">Jaula()</div><div class="ttdoc">Constructor por defecto de la clase Jaula. Crea una Jaula de 0 celdas y con suma 0.</div></div>
+<div class="ttc" id="aclassJaula_html_afa93e31751a879b1348077c629c51c4f"><div class="ttname"><a href="classJaula.html#afa93e31751a879b1348077c629c51c4f">Jaula::Aniade</a></div><div class="ttdeci">void Aniade(Celda nueva)</div><div class="ttdoc">Añade una celda nueva a la Jaula. Si nueva ya pertenecía a la jaula, no se hace nada.</div></div>
+<div class="ttc" id="astructCelda_html"><div class="ttname"><a href="structCelda.html">Celda</a></div><div class="ttdoc">T.D.A Celda.</div><div class="ttdef"><b>Definition:</b> Jaula.h:28</div></div>
+<div class="ttc" id="astructCelda_html_a0bcc2a50e80dc0c57cd7f9a32a52765a"><div class="ttname"><a href="structCelda.html#a0bcc2a50e80dc0c57cd7f9a32a52765a">Celda::Celda</a></div><div class="ttdeci">Celda(int fila, int columna)</div><div class="ttdoc">Constructor del tipo Celda. Recibe el.</div><div class="ttdef"><b>Definition:</b> Jaula.h:60</div></div>
+<div class="ttc" id="astructCelda_html_a1ab3faa657021d321d4201c3a4a6d4c9"><div class="ttname"><a href="structCelda.html#a1ab3faa657021d321d4201c3a4a6d4c9">Celda::posicion</a></div><div class="ttdeci">Posicion posicion</div><div class="ttdoc">posición de la celda en el tablero de Sudoku killer.</div><div class="ttdef"><b>Definition:</b> Jaula.h:33</div></div>
+<div class="ttc" id="astructCelda_html_a5c6d6d20b0c0b0a359715844955a0078"><div class="ttname"><a href="structCelda.html#a5c6d6d20b0c0b0a359715844955a0078">Celda::siguiente</a></div><div class="ttdeci">Celda * siguiente</div><div class="ttdoc">puntero a la siguiente celda de la jaula.</div><div class="ttdef"><b>Definition:</b> Jaula.h:38</div></div>
+<div class="ttc" id="astructCelda_html_af1dadd95735043294599490d4abc6dc1"><div class="ttname"><a href="structCelda.html#af1dadd95735043294599490d4abc6dc1">Celda::Celda</a></div><div class="ttdeci">Celda()</div><div class="ttdoc">Constructor sin argumentos del tipo Celda.</div><div class="ttdef"><b>Definition:</b> Jaula.h:45</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

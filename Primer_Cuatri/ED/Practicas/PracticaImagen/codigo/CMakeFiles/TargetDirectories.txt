@@ -1,0 +1,11 @@
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/image.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/negativo.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/subimagen.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/zoom.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/comparador.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/icono.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/contraste.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/barajar.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/doc_doxygen.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/edit_cache.dir
+/home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/CMakeFiles/rebuild_cache.dir

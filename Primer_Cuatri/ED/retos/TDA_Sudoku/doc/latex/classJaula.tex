@@ -1,0 +1,246 @@
+\doxysection{Referencia de la Clase Jaula}
+\label{classJaula}\index{Jaula@{Jaula}}
+
+
+T.\+D.\+A \doxyref{Jaula}{p.}{classJaula}.  
+
+
+
+
+{\ttfamily \#include $<$Jaula.\+h$>$}
+
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{classJaula_af3e815320f7cbf7cb580297d63dbd9cb}} 
+\textbf{ Jaula} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto de la clase \doxyref{Jaula}{p.}{classJaula}. Crea una \doxyref{Jaula}{p.}{classJaula} de 0 celdas y con suma 0. \end{DoxyCompactList}\item 
+\textbf{ Jaula} (\textbf{ Celda} primera, int suma\+\_\+jaula)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxyref{Jaula}{p.}{classJaula}. Recibe la primera celda que forma parte de la \doxyref{Jaula}{p.}{classJaula} y la suma de la jaula. \end{DoxyCompactList}\item 
+\textbf{ Jaula} (const \textbf{ Jaula} \&orig)
+\begin{DoxyCompactList}\small\item\em Constructor de copia de la clase \doxyref{Jaula}{p.}{classJaula}. \end{DoxyCompactList}\item 
+\textbf{ Jaula} \& \textbf{ operator=} (const \textbf{ Jaula} \&orig)
+\begin{DoxyCompactList}\small\item\em Operador de asignación de la clase \doxyref{Jaula}{p.}{classJaula}. \end{DoxyCompactList}\item 
+\mbox{\label{classJaula_a7b543e5d242e490709cb6d9b4246fe15}} 
+\textbf{ $\sim$\+Jaula} ()
+\begin{DoxyCompactList}\small\item\em Destructor de la clase \doxyref{Jaula}{p.}{classJaula}. \end{DoxyCompactList}\item 
+bool \textbf{ Pertenece} (\textbf{ Celda} c) const
+\begin{DoxyCompactList}\small\item\em Comprueba si una celda. \end{DoxyCompactList}\item 
+bool \textbf{ Pertenece} (Posicion pos) const
+\begin{DoxyCompactList}\small\item\em Comprueba si en la jaula hay alguna celda que contenga la. \end{DoxyCompactList}\item 
+void \textbf{ Aniade} (\textbf{ Celda} nueva)
+\begin{DoxyCompactList}\small\item\em Añade una celda nueva a la \doxyref{Jaula}{p.}{classJaula}. Si nueva ya pertenecía a la jaula, no se hace nada. \end{DoxyCompactList}\item 
+int \textbf{ Total\+Celdas} () const
+\begin{DoxyCompactList}\small\item\em Número de celdas de la jaula. \end{DoxyCompactList}\item 
+int \textbf{ Get\+Suma} () const
+\begin{DoxyCompactList}\small\item\em Suma de la jaula. \end{DoxyCompactList}\item 
+void \textbf{ Set\+Suma} (int s)
+\begin{DoxyCompactList}\small\item\em Método set del parametro suma. \end{DoxyCompactList}\item 
+int \textbf{ Celdas\+Vacias} () const
+\begin{DoxyCompactList}\small\item\em Número de celdas vacías en la jaula. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+T.\+D.\+A \doxyref{Jaula}{p.}{classJaula}. 
+
+Una instancia del tipo de dato abstracto \doxyref{Jaula}{p.}{classJaula} representa un conjunto de Celdas de un tablero de Sudoku killer, junto con la suma de los valores almacenados en cada celda de la \doxyref{Jaula}{p.}{classJaula}.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em inicial} & Puntero a una celda de la jaula, puede ser cualquiera de ellas. \\
+\hline
+{\em suma} & Suma de todas las celdas de la jaula \\
+\hline
+{\em total\+\_\+celdas} & Cantidad de celdas que forman la jaula\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+0 $<$= total\+\_\+celdas $<$= 81 (en caso de ser 81 se trataría como un sudoku normal) 
+
+0 $<$ suma 
+\end{DoxyPrecond}
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\label{classJaula_a599a316211f81193a03b034914a0cae4}} 
+\index{Jaula@{Jaula}!Jaula@{Jaula}}
+\index{Jaula@{Jaula}!Jaula@{Jaula}}
+\doxysubsubsection{Jaula()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Jaula\+::\+Jaula (\begin{DoxyParamCaption}\item[{\textbf{ Celda}}]{primera,  }\item[{int}]{suma\+\_\+jaula }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxyref{Jaula}{p.}{classJaula}. Recibe la primera celda que forma parte de la \doxyref{Jaula}{p.}{classJaula} y la suma de la jaula. 
+
+\begin{DoxyPrecond}{Precondición}
+suma\+\_\+jaula debe ser mayor o igual a 0. 
+\end{DoxyPrecond}
+\mbox{\label{classJaula_a36aaf0804aa506468c8a6283a0f9c516}} 
+\index{Jaula@{Jaula}!Jaula@{Jaula}}
+\index{Jaula@{Jaula}!Jaula@{Jaula}}
+\doxysubsubsection{Jaula()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Jaula\+::\+Jaula (\begin{DoxyParamCaption}\item[{const \textbf{ Jaula} \&}]{orig }\end{DoxyParamCaption})}
+
+
+
+Constructor de copia de la clase \doxyref{Jaula}{p.}{classJaula}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em orig} & objeto jaula que queremos copiar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondición}
+el objeto implicito resulta una copia de orig. 
+\end{DoxyPostcond}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\label{classJaula_afa93e31751a879b1348077c629c51c4f}} 
+\index{Jaula@{Jaula}!Aniade@{Aniade}}
+\index{Aniade@{Aniade}!Jaula@{Jaula}}
+\doxysubsubsection{Aniade()}
+{\footnotesize\ttfamily void Jaula\+::\+Aniade (\begin{DoxyParamCaption}\item[{\textbf{ Celda}}]{nueva }\end{DoxyParamCaption})}
+
+
+
+Añade una celda nueva a la \doxyref{Jaula}{p.}{classJaula}. Si nueva ya pertenecía a la jaula, no se hace nada. 
+
+\begin{DoxyPrecond}{Precondición}
+Una celda pertenece a la jaula si hay una celda de la jaula que contiene la misma posición. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+nueva queda añadida a la celda en caso de cumplir las condiciones 
+\end{DoxyPostcond}
+\mbox{\label{classJaula_aa55d430d54cdd10d8547b6f3f8cc3ce7}} 
+\index{Jaula@{Jaula}!CeldasVacias@{CeldasVacias}}
+\index{CeldasVacias@{CeldasVacias}!Jaula@{Jaula}}
+\doxysubsubsection{CeldasVacias()}
+{\footnotesize\ttfamily int Jaula\+::\+Celdas\+Vacias (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Número de celdas vacías en la jaula. 
+
+\begin{DoxyPostcond}{Postcondición}
+El objeto implícito no queda modificado.
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Devuelve}
+el número de celdas vacías de la jaula. 
+\end{DoxyReturn}
+\mbox{\label{classJaula_a9ccbd25495b003beb62b32ae3a4d51d1}} 
+\index{Jaula@{Jaula}!GetSuma@{GetSuma}}
+\index{GetSuma@{GetSuma}!Jaula@{Jaula}}
+\doxysubsubsection{GetSuma()}
+{\footnotesize\ttfamily int Jaula\+::\+Get\+Suma (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Suma de la jaula. 
+
+\begin{DoxyReturn}{Devuelve}
+suma 
+\end{DoxyReturn}
+\mbox{\label{classJaula_a909c91c04756fc42d1b5b6db44ef2fcb}} 
+\index{Jaula@{Jaula}!operator=@{operator=}}
+\index{operator=@{operator=}!Jaula@{Jaula}}
+\doxysubsubsection{operator=()}
+{\footnotesize\ttfamily \textbf{ Jaula}\& Jaula\+::operator= (\begin{DoxyParamCaption}\item[{const \textbf{ Jaula} \&}]{orig }\end{DoxyParamCaption})}
+
+
+
+Operador de asignación de la clase \doxyref{Jaula}{p.}{classJaula}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em orig} & objeto jaula que queremos asignar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondición}
+el objeto implicito resulta una copia de orig. 
+\end{DoxyPostcond}
+\mbox{\label{classJaula_a6f31934737d264c29ba9b588e04db286}} 
+\index{Jaula@{Jaula}!Pertenece@{Pertenece}}
+\index{Pertenece@{Pertenece}!Jaula@{Jaula}}
+\doxysubsubsection{Pertenece()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Jaula\+::\+Pertenece (\begin{DoxyParamCaption}\item[{\textbf{ Celda}}]{c }\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si una celda. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em c} & pertenece a la jaula. Diremos que una celda pertenece a la jaula si existe alguna celda de la jaula con la misma posición que c.\\
+\hline
+{\em c} & celda que queremos ver si pertenece al sudoku.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+true si pertenece a la jaula, false en caso contrario. 
+\end{DoxyReturn}
+\mbox{\label{classJaula_a9f30dba787ad321fd00100fa1420d2d2}} 
+\index{Jaula@{Jaula}!Pertenece@{Pertenece}}
+\index{Pertenece@{Pertenece}!Jaula@{Jaula}}
+\doxysubsubsection{Pertenece()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Jaula\+::\+Pertenece (\begin{DoxyParamCaption}\item[{Posicion}]{pos }\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si en la jaula hay alguna celda que contenga la. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & indicada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+0$<$= pos.\+first, pos.\+second() $<$ 9 
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em std\+::invalid\+\_\+arguments} & si no se cumple la precondición. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Devuelve}
+true si pertenece a la jaula, false en caso contrario. 
+\end{DoxyReturn}
+\mbox{\label{classJaula_aaca1e9cb4999994fe6c79ff61ae1270c}} 
+\index{Jaula@{Jaula}!SetSuma@{SetSuma}}
+\index{SetSuma@{SetSuma}!Jaula@{Jaula}}
+\doxysubsubsection{SetSuma()}
+{\footnotesize\ttfamily void Jaula\+::\+Set\+Suma (\begin{DoxyParamCaption}\item[{int}]{s }\end{DoxyParamCaption})}
+
+
+
+Método set del parametro suma. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em s} & Suma a introducir como dato.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+0 $<$ s y en caso de no complirse, no se cambiaría la suma.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+El parámetro suma queda cambiado con valor s. 
+\end{DoxyPostcond}
+\mbox{\label{classJaula_a9ed64aff2061f1210d4fe82f3085cc10}} 
+\index{Jaula@{Jaula}!TotalCeldas@{TotalCeldas}}
+\index{TotalCeldas@{TotalCeldas}!Jaula@{Jaula}}
+\doxysubsubsection{TotalCeldas()}
+{\footnotesize\ttfamily int Jaula\+::\+Total\+Celdas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Número de celdas de la jaula. 
+
+\begin{DoxyReturn}{Devuelve}
+total\+\_\+celdas 
+\end{DoxyReturn}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+Jaula.\+h\end{DoxyCompactItemize}

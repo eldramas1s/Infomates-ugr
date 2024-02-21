@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Clase Sudoku Killer: Fichero Fuente Sudoku_killer.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Clase Sudoku Killer
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.1 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Buscar');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Sudoku_killer.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * File:   Sudoku_killer.h</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Author: mp</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Created on 7 de octubre de 2023, 18:59</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SUDOKU_KILLER_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SUDOKU_KILLER_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Jaula.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classSudoku__killer.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSudoku__killer.html">Sudoku_killer</a> {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#a354ae3f3a487793cd8d6621acd62e381">   48</a></span>&#160;    <a class="code" href="classSudoku__killer.html#a354ae3f3a487793cd8d6621acd62e381">Sudoku_killer</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#a215fb2671ee00c38062abf7c5c6f9983">   59</a></span>&#160;    <a class="code" href="classSudoku__killer.html#a215fb2671ee00c38062abf7c5c6f9983">Sudoku_killer</a>(<span class="keyword">const</span> std::vector&lt;Jaula&gt;&amp; jaulas);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#a4e35dbc508ce53d9728d66b83099cb3f">   67</a></span>&#160;    <a class="code" href="classSudoku__killer.html#a4e35dbc508ce53d9728d66b83099cb3f">Sudoku_killer</a>(<span class="keyword">const</span> <a class="code" href="classSudoku__killer.html">Sudoku_killer</a>&amp; orig);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#aace041fce5264a406d75e3135ac52468">   77</a></span>&#160;    <a class="code" href="classSudoku__killer.html">Sudoku_killer</a>&amp; <a class="code" href="classSudoku__killer.html#aace041fce5264a406d75e3135ac52468">operator=</a>(<span class="keyword">const</span> <a class="code" href="classSudoku__killer.html">Sudoku_killer</a>&amp; orig);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#ac751547d55ea671419e8b025b4a5d9b3">   83</a></span>&#160;    <a class="code" href="classSudoku__killer.html#ac751547d55ea671419e8b025b4a5d9b3">~Sudoku_killer</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#a81e7f435dbecbc292d2013552264203a">   97</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSudoku__killer.html#a81e7f435dbecbc292d2013552264203a">SumaJaula</a>(Posicion pos) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#aa7abc95ec217ccbb4d45d4fc4d66cb9c">  112</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSudoku__killer.html#aa7abc95ec217ccbb4d45d4fc4d66cb9c">SumaJaula</a>(<span class="keywordtype">int</span> i) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#a7f37fc7a4673b1dd06f5b261c5299544">  124</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSudoku__killer.html#a7f37fc7a4673b1dd06f5b261c5299544">SumaFila</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">char</span> modo=<span class="charliteral">&#39;f&#39;</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#afabb202294f15d2554a31c8b84ae8361">  142</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSudoku__killer.html#afabb202294f15d2554a31c8b84ae8361">EstaCompleta</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">char</span> modo=<span class="charliteral">&#39;f&#39;</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#ab9ccc9f87bd1773a0238ccc6de0764f9">  159</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSudoku__killer.html#ab9ccc9f87bd1773a0238ccc6de0764f9">CeldasVacias</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">char</span> modo=<span class="charliteral">&#39;f&#39;</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#a8b4410b5fc69f23408fc54d25f761d79">  177</a></span>&#160;    Posicion <a class="code" href="classSudoku__killer.html#a8b4410b5fc69f23408fc54d25f761d79">CalculaPosicionFC</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">char</span> modo=<span class="charliteral">&#39;f&#39;</span>);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="classSudoku__killer.html#af0a5b76933cda7c5609af7764d52f8db">  184</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSudoku__killer.html#af0a5b76933cda7c5609af7764d52f8db">ResolverSudokuKiller</a>();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">     * @brief Dimensión del tablero. Un tablero de sudoku killer es</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">     * una cuadrícula de tamaño 9x9.</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> TAMANIO_TABLERO = 9;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> SUMA = 45;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <a class="code" href="structCelda.html">Celda</a> tablero[TAMANIO_TABLERO][TAMANIO_TABLERO];</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    std::vector&lt;Jaula&gt; jaulas;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">void</span> Inicializar();</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keywordtype">bool</span> RellenarCeldas(<span class="keywordtype">int</span> f=0, <span class="keywordtype">int</span> c=0);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;};</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SUDOKU_KILLER_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="ttc" id="aclassSudoku__killer_html"><div class="ttname"><a href="classSudoku__killer.html">Sudoku_killer</a></div><div class="ttdoc">T.D.A Sudoku_killer.</div><div class="ttdef"><b>Definition:</b> Sudoku_killer.h:40</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_a215fb2671ee00c38062abf7c5c6f9983"><div class="ttname"><a href="classSudoku__killer.html#a215fb2671ee00c38062abf7c5c6f9983">Sudoku_killer::Sudoku_killer</a></div><div class="ttdeci">Sudoku_killer(const std::vector&lt; Jaula &gt; &amp;jaulas)</div><div class="ttdoc">Constructor de la clase Sudoku_killer.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_a354ae3f3a487793cd8d6621acd62e381"><div class="ttname"><a href="classSudoku__killer.html#a354ae3f3a487793cd8d6621acd62e381">Sudoku_killer::Sudoku_killer</a></div><div class="ttdeci">Sudoku_killer()</div><div class="ttdoc">Constructor por defecto de la clase Sudoku_killer. Crea un sudoku killer vacío.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_a4e35dbc508ce53d9728d66b83099cb3f"><div class="ttname"><a href="classSudoku__killer.html#a4e35dbc508ce53d9728d66b83099cb3f">Sudoku_killer::Sudoku_killer</a></div><div class="ttdeci">Sudoku_killer(const Sudoku_killer &amp;orig)</div><div class="ttdoc">Constructor de copia de la clase Sudoku_killer.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_a7f37fc7a4673b1dd06f5b261c5299544"><div class="ttname"><a href="classSudoku__killer.html#a7f37fc7a4673b1dd06f5b261c5299544">Sudoku_killer::SumaFila</a></div><div class="ttdeci">int SumaFila(int i, char modo='f') const</div><div class="ttdoc">Suma de los elementos de la fila o columna i-esima.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_a81e7f435dbecbc292d2013552264203a"><div class="ttname"><a href="classSudoku__killer.html#a81e7f435dbecbc292d2013552264203a">Sudoku_killer::SumaJaula</a></div><div class="ttdeci">int SumaJaula(Posicion pos) const</div><div class="ttdoc">Devuelve la suma de la jaula indicada.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_a8b4410b5fc69f23408fc54d25f761d79"><div class="ttname"><a href="classSudoku__killer.html#a8b4410b5fc69f23408fc54d25f761d79">Sudoku_killer::CalculaPosicionFC</a></div><div class="ttdeci">Posicion CalculaPosicionFC(int i, char modo='f')</div><div class="ttdoc">Calcula el numero restante de una fila o columna aplicando la regla del 45.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_aa7abc95ec217ccbb4d45d4fc4d66cb9c"><div class="ttname"><a href="classSudoku__killer.html#aa7abc95ec217ccbb4d45d4fc4d66cb9c">Sudoku_killer::SumaJaula</a></div><div class="ttdeci">int SumaJaula(int i) const</div><div class="ttdoc">Devuelve la suma de la jaula indicada.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_aace041fce5264a406d75e3135ac52468"><div class="ttname"><a href="classSudoku__killer.html#aace041fce5264a406d75e3135ac52468">Sudoku_killer::operator=</a></div><div class="ttdeci">Sudoku_killer &amp; operator=(const Sudoku_killer &amp;orig)</div><div class="ttdoc">Operador de asignación de la clase Sudoku_killer.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_ab9ccc9f87bd1773a0238ccc6de0764f9"><div class="ttname"><a href="classSudoku__killer.html#ab9ccc9f87bd1773a0238ccc6de0764f9">Sudoku_killer::CeldasVacias</a></div><div class="ttdeci">int CeldasVacias(int i, char modo='f') const</div><div class="ttdoc">Número de celdas vacías en una fila o columna i-esima.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_ac751547d55ea671419e8b025b4a5d9b3"><div class="ttname"><a href="classSudoku__killer.html#ac751547d55ea671419e8b025b4a5d9b3">Sudoku_killer::~Sudoku_killer</a></div><div class="ttdeci">~Sudoku_killer()</div><div class="ttdoc">Destructor de la clase Sudoku_killer.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_af0a5b76933cda7c5609af7764d52f8db"><div class="ttname"><a href="classSudoku__killer.html#af0a5b76933cda7c5609af7764d52f8db">Sudoku_killer::ResolverSudokuKiller</a></div><div class="ttdeci">void ResolverSudokuKiller()</div><div class="ttdoc">Resuelve el sudoku killer de forma recursiva Para ello, utiliza el método privado RellenarCeldas.</div></div>
+<div class="ttc" id="aclassSudoku__killer_html_afabb202294f15d2554a31c8b84ae8361"><div class="ttname"><a href="classSudoku__killer.html#afabb202294f15d2554a31c8b84ae8361">Sudoku_killer::EstaCompleta</a></div><div class="ttdeci">bool EstaCompleta(int i, char modo='f') const</div><div class="ttdoc">Comprueba si la fila o columna i-ésima está completa.</div></div>
+<div class="ttc" id="astructCelda_html"><div class="ttname"><a href="structCelda.html">Celda</a></div><div class="ttdoc">T.D.A Celda.</div><div class="ttdef"><b>Definition:</b> Jaula.h:28</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

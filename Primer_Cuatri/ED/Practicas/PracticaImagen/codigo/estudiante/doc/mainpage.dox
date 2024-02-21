@@ -1,0 +1,136 @@
+/*! \mainpage TDA_Imagen
+
+# Introducción
+
+Esta página html contiene la especificación de una serie de programas donde se ha usado el TDA_Imagen creado por Lucas Hidalgo Herrera y Juan
+Manuel Fernández García, autores también de este sitio web.
+
+Algunos de dichos programas son **Negativo**, **Subimagen**, **Zoom**, **Contraste**, **Icono** y **Barajador**; cuya descripcion de uso se encuentra a continuación.
+
+Además de la especificación de los programas, contiene la especificación de la propia clase TDA_Imagen.
+
+# Ejecutables
+
+
+## Negativo:
+
+@image html invert.png
+
+Calcula el negativo de una imagen.
+Es un programa que recibido un fichero .pgm con la imagen inicial, devuelve una imagen en negativo, es decir con los colores "opuestos". Su progama para ejecutar es
+negativo.
+
+> __negativo__ \<FichImagenOriginal\> \<FichImagenDestino\>
+
+
+@param "<FichImagenOriginal>" Imagen PGM a la que se va a calcular
+@param <FichImagenDestino> Imagen PGM resultado de calcular el negativo
+
+@return Imagen con colores invertidos.
+
+
+##Subimagen:
+
+@image html subimagen.png
+
+Calcula un recorte de la imagen segun unos parametros. Dando lugar a una nueva imagen con la parte determinada. Su programa para compilar es subimagen.
+
+> __subimagen__ \<FichImagenOriginal\> \<FichImagenDestino\> \<initial-row\> \<initial-column\> \<height\> \<width\>
+
+@param "<FichImagenOriginal>" Imagen PGM de la que se va a hacer el recorte
+@param "<FichImagenDestino>"  Imagen PGM donde se va a guardar el recorte
+@param "<initial-row>" Fila de la imagen PGM de la esquina superior izquierda donde se va a empezar a recortar.
+@param "<initial-column>" Columna de la imagen PGM de la esquina superior izquierda donde se va a empezar a recortar.
+@param "<height>" Altura de la imagen PGM recortada.
+@param "<width>" Anchura de la imagen PGM recortada.
+
+@return Recorte de tamaño height x width de la imagen pasada como original.
+
+
+## Zoom:
+
+@image html zoom.png
+
+El programa zoom hace uso de interpolación bilineal para devolver una imagen con un tamaño mayor a la recibida como entrada (tomando como imagen la determinada según
+los parámetros). Su programa para compilar es zoom.
+
+> __zoom_imagen__  \<FichImagenOriginal\> \<FichImagenDestino\> \<row\> \<column\> \<size\>
+
+@param "<FichImagenOriginal>" Imagen PGM de la que se va a hacer el zoom
+@param "<FichImagenDestino>"  Imagen PGM donde se va a guardar el resultado
+@param "<row>" Fila de la imagen PGM de la esquina superior izquierda donde se va a hacer zoom.
+@param "<column>" Columna de la imagen PGM de la esquina superior izquierda donde se va a hacer zoom.
+@param "<size>" Lado de la parte de imagen que se quiere hacer zoom .
+
+@return Zoom de la imagen sún el tamaño pedido de la imagen, en realidad no es mas que hacer un recorte y aplicar el zoom a la imagen recortada.
+
+
+## Icono:
+
+@image html icono.png
+
+Obtiene un icono de una imagen haciendo la operacion inversa a zoom. Es decir, aplica la media de partes de la imagen que son de tamaño factor x factor dando
+lugar a un icono de la imagen. Su programa para compilar es icono.
+
+> __icono__ "\<FichImagenOriginal\> \<FichImagenDestino\> \<factor\>"
+
+@param "<FichImagenOriginal>" Imagen PGM de la que se va a hacer el icono
+@param "<FichImagenDestino>"  Imagen PGM donde se va a guardar el resultado
+@param "<factor>" Factor que determina el tamaño de las porciones a reducir para dar el icono, el tamaño de la porcion
+es factorxfactor.
+
+@return Icono de la imagen pasada como original con un factor de reducción 2.
+
+
+## Contraste:
+
+@image html contraste.png
+
+Este programa genera una imagen con niveles de gris con más contraste a partir de una dada gracias a la siguiente formula:
+
+@image html Ecuacion_contraste.png "Ecuación que se usa por cada intervalo del histograma para aumentar el contraste"
+
+En esa imagen:
+
+    - z': nuevo pixel.
+    - min: pixel de imagen de a.
+    - max: pixel de imagen de b.
+    - b: maximo del intervalo a considerar.
+    - a: minimo del intervalo a considerar.
+    - z: pixel entre a y b sobre el cual queremos aumentar el contraste.
+
+> __contraste__ "\<FichImagenOriginal\> \<FichImagenDestino\> \<infAbscisa\> \<supAbscisa\> \<infOrdenada\> \<supOrdenada\>"
+
+@param "<FichImagenOriginal>" Imagen PGM de la que se va a hacer el ajuste de contraste.
+@param "<FichImagenDestino>"  Imagen PGM donde se va a guardar el resultado.
+@param "<infAbscisa>" Umbral inferior de contraste a tomar de la imagen original.
+@param "<supAbscisa>" Umbral superior de contraste a tomar de la imagen original.
+@param "<infOrdenada>" Umbral inferior de contraste a tomar de la imagen resultante.
+@param "<supOrdenada>" Umbral superior de contraste a tomar de la imagen resultante
+
+@return Imagen con un contraste mayor, es decir más fácil de distinguir y ver.
+
+
+##Barajador
+
+@image html barajar.png
+
+Este programa realiza una reordenación pseudoaleatoria de las filas de una imagen según la siguiente fórmula:
+
+@image html Ecuacion_barajar.png
+
+En esa imagen:
+
+    - r': nueva fila para el puntero i-ésimo.
+    - r: fila i-esima
+    - p: número coprimo
+    - rows: filas de la imagen.
+
+> __barajar__ "\<FichImagenOriginal\> \<FichImagenDestino\>"
+
+@param "<FichImagenOriginal>" Imagen PGM de la que se va a hacer el ajuste de contraste.
+@param "<FichImagenDestino>"  Imagen PGM donde se va a guardar el resultado.
+
+@return Una imagen con la reordenación pseudoaleatoria de las filas de la imagen.
+
+*/

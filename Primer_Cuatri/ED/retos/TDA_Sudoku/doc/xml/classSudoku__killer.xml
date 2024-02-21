@@ -1,0 +1,748 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="es">
+  <compounddef id="classSudoku__killer" kind="class" language="C++" prot="public">
+    <compoundname>Sudoku_killer</compoundname>
+    <includes refid="Sudoku__killer_8h" local="no">Sudoku_killer.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classSudoku__killer_1a271c01c74b0311d5b8a38c01d6fc772e" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int Sudoku_killer::TAMANIO_TABLERO</definition>
+        <argsstring></argsstring>
+        <name>TAMANIO_TABLERO</name>
+        <initializer>= 9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="192" column="22" bodyfile="Sudoku_killer.h" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSudoku__killer_1a725836926fdeaff8145800ab7aebcbe8" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int Sudoku_killer::SUMA</definition>
+        <argsstring></argsstring>
+        <name>SUMA</name>
+        <initializer>= 45</initializer>
+        <briefdescription>
+<para>Constante SUMA: Todos los elementos de cada fila, cada columna y de cada cuadrícula de tamaño 3x3 en las que está dividido el tablero de un sudoku killer suman 45. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="199" column="22" bodyfile="Sudoku_killer.h" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classSudoku__killer_1af620cce61f8d3121e076062a42f6f6a6" prot="private" static="no" mutable="no">
+        <type><ref refid="structCelda" kindref="compound">Celda</ref></type>
+        <definition>Celda Sudoku_killer::tablero[TAMANIO_TABLERO][TAMANIO_TABLERO]</definition>
+        <argsstring>[TAMANIO_TABLERO][TAMANIO_TABLERO]</argsstring>
+        <name>tablero</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Tablero del sudoku killer. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="204" column="11" bodyfile="Sudoku_killer.h" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSudoku__killer_1a846c85d3b8acd28a473d98f674a2f13f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classJaula" kindref="compound">Jaula</ref> &gt;</type>
+        <definition>std::vector&lt;Jaula&gt; Sudoku_killer::jaulas</definition>
+        <argsstring></argsstring>
+        <name>jaulas</name>
+        <briefdescription>
+<para>vector de Jaulas. Contiene a todas las jaulas en las que hemos dividido el tablero. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="210" column="17" bodyfile="Sudoku_killer.h" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSudoku__killer_1a354ae3f3a487793cd8d6621acd62e381" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sudoku_killer::Sudoku_killer</definition>
+        <argsstring>()</argsstring>
+        <name>Sudoku_killer</name>
+        <briefdescription>
+<para>Constructor por defecto de la clase <ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>. Crea un sudoku killer vacío. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="post"><para>el objeto implícito queda inicializado con las jaulas a 0. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="48" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1a215fb2671ee00c38062abf7c5c6f9983" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sudoku_killer::Sudoku_killer</definition>
+        <argsstring>(const std::vector&lt; Jaula &gt; &amp;jaulas)</argsstring>
+        <name>Sudoku_killer</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="classJaula" kindref="compound">Jaula</ref> &gt; &amp;</type>
+          <declname>jaulas</declname>
+        </param>
+        <briefdescription>
+<para>Constructor de la clase <ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jaulas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>contiene todas las jaulas en las que hemos dividido el tablero.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>el conjunto de las jaulas almacenadas en jaulas debe ser una partición del tablero.</para>
+</simplesect>
+<simplesect kind="post"><para>El objeto implícito queda inicializado con las distintas jaulas. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="59" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1a4e35dbc508ce53d9728d66b83099cb3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sudoku_killer::Sudoku_killer</definition>
+        <argsstring>(const Sudoku_killer &amp;orig)</argsstring>
+        <name>Sudoku_killer</name>
+        <param>
+          <type>const <ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref> &amp;</type>
+          <declname>orig</declname>
+        </param>
+        <briefdescription>
+<para>Constructor de copia de la clase <ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sudoku del cual queremos hacer la copia.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="post"><para>El objeto implícito queda inicializado con los valores de orig. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="67" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1aace041fce5264a406d75e3135ac52468" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref> &amp;</type>
+        <definition>Sudoku_killer&amp; Sudoku_killer::operator=</definition>
+        <argsstring>(const Sudoku_killer &amp;orig)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref> &amp;</type>
+          <declname>orig</declname>
+        </param>
+        <briefdescription>
+<para>Operador de asignación de la clase <ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sudoku sobre el cual queremos hacer la asignación.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>En caso de que orig y *this sean el mismo no se procesa la asignación</para>
+</simplesect>
+<simplesect kind="post"><para>El objeto implícito queda como una copia de orig. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="77" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1ac751547d55ea671419e8b025b4a5d9b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sudoku_killer::~Sudoku_killer</definition>
+        <argsstring>()</argsstring>
+        <name>~Sudoku_killer</name>
+        <briefdescription>
+<para>Destructor de la clase <ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="post"><para>pone el tablero a 0. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="83" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1a81e7f435dbecbc292d2013552264203a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Sudoku_killer::SumaJaula</definition>
+        <argsstring>(Posicion pos) const</argsstring>
+        <name>SumaJaula</name>
+        <param>
+          <type>Posicion</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>Devuelve la suma de la jaula indicada. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Posición de una celda perteneciente a la jaula.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>0 &lt;= pos.first, pos.second() &lt; 9</para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si pos no cumple su precondición </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="post"><para>No se modifica el objeto</para>
+</simplesect>
+<simplesect kind="return"><para>la suma de todos los elementos de la jaula. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="97" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1aa7abc95ec217ccbb4d45d4fc4d66cb9c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Sudoku_killer::SumaJaula</definition>
+        <argsstring>(int i) const</argsstring>
+        <name>SumaJaula</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Devuelve la suma de la jaula indicada. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Posición de una celda_inicial del vector de jaulas.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>0 &lt;= i &lt; jaulas.size()</para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si i no cumple su precondición.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="post"><para>El objeto implícito no queda modificado</para>
+</simplesect>
+<simplesect kind="return"><para>la suma de todos los elementos de la jaula. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="112" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1a7f37fc7a4673b1dd06f5b261c5299544" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Sudoku_killer::SumaFila</definition>
+        <argsstring>(int i, char modo=&apos;f&apos;) const</argsstring>
+        <name>SumaFila</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>modo</declname>
+          <defval>&apos;f&apos;</defval>
+        </param>
+        <briefdescription>
+<para>Suma de los elementos de la fila o columna i-esima. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="pre"><para>i debe estar entre 0 y 8, ambos incluidos. </para>
+</simplesect>
+<simplesect kind="pre"><para>modo debe ser &apos;c&apos; o &apos;f&apos;.</para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si modo no cumple su precondición. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si i no cumple su precondición.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>la suma de los elementos de la fila. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="124" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1afabb202294f15d2554a31c8b84ae8361" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Sudoku_killer::EstaCompleta</definition>
+        <argsstring>(int i, char modo=&apos;f&apos;) const</argsstring>
+        <name>EstaCompleta</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>modo</declname>
+          <defval>&apos;f&apos;</defval>
+        </param>
+        <briefdescription>
+<para>Comprueba si la fila o columna i-ésima está completa. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Indice de la fila o columna a analizar. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>modo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Si modo es &apos;f&apos; se analiza la fila i, si es &apos;c&apos; se haría lo propio con la columna.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>Diremos que la fila o columna está completa cuando contenga a todos los números del 1 al 9, sin repetir ninguno. </para>
+</simplesect>
+<simplesect kind="pre"><para>i debe estar entre 0 y 8, ambos incluidos. </para>
+</simplesect>
+<simplesect kind="pre"><para>modo debe ser &apos;c&apos; o &apos;f&apos;.</para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si modo no cumple su precondición. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si i no cumple su precondición.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true si la fila o columna i-esima está completa, false en caso contrario. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="142" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1ab9ccc9f87bd1773a0238ccc6de0764f9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Sudoku_killer::CeldasVacias</definition>
+        <argsstring>(int i, char modo=&apos;f&apos;) const</argsstring>
+        <name>CeldasVacias</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>modo</declname>
+          <defval>&apos;f&apos;</defval>
+        </param>
+        <briefdescription>
+<para>Número de celdas vacías en una fila o columna i-esima. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>modo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Si modo es &apos;f&apos; se analiza la fila i, si es &apos;c&apos; se haría lo propio con la columna. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Indice de fila o columna según modo.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>Diremos que una celda está vacía si el dato que almacena es 0. </para>
+</simplesect>
+<simplesect kind="pre"><para>i debe estar entre 0 y 8, ambos incluidos. </para>
+</simplesect>
+<simplesect kind="pre"><para>modo debe ser &apos;c&apos; o &apos;f&apos;.</para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si modo no cumple su precondición. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si i no cumple su precondición.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>el número de celdas vacías de la fila o columna i-esima. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="159" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1a8b4410b5fc69f23408fc54d25f761d79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Posicion</type>
+        <definition>Posicion Sudoku_killer::CalculaPosicionFC</definition>
+        <argsstring>(int i, char modo=&apos;f&apos;)</argsstring>
+        <name>CalculaPosicionFC</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>modo</declname>
+          <defval>&apos;f&apos;</defval>
+        </param>
+        <briefdescription>
+<para>Calcula el numero restante de una fila o columna aplicando la regla del 45. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>modo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Si modo es &apos;f&apos; se analiza la fila i, si es &apos;c&apos; se haría lo propio con la columna. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Indice de la fila o columna que queremos solucionar</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>0 &lt;=</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>&lt; 9 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para></para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>modo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>debe ser &apos;c&apos; o &apos;f&apos;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>CeldasVacias(</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+<parametername>modo)==1;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>modo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>no cumple su precondición. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>no cumple su precondición.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="post"><para>El elemento calculado es añadido a su celda correspondiente. </para>
+</simplesect>
+<simplesect kind="return"><para>Devuelve la posicion donde ha añadido el elemento </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="177" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1af0a5b76933cda7c5609af7764d52f8db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sudoku_killer::ResolverSudokuKiller</definition>
+        <argsstring>()</argsstring>
+        <name>ResolverSudokuKiller</name>
+        <briefdescription>
+<para>Resuelve el sudoku killer de forma recursiva Para ello, utiliza el método privado RellenarCeldas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="post"><para>El sudoku killer queda resuelto. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="184" column="10"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSudoku__killer_1aeed922450b0407ffcfb074cf6516f7e4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sudoku_killer::Inicializar</definition>
+        <argsstring>()</argsstring>
+        <name>Inicializar</name>
+        <briefdescription>
+<para>Inicializa un tablero vacío, poniendo todas las casillas a cero. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="post"><para>El tablero queda inicializado a 0. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="218" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classSudoku__killer_1aa6fdeb2814b8bc10ca2d10f34bd2d7e5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Sudoku_killer::RellenarCeldas</definition>
+        <argsstring>(int f=0, int c=0)</argsstring>
+        <name>RellenarCeldas</name>
+        <param>
+          <type>int</type>
+          <declname>f</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>c</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Rellena todas las celdas del sudoku killer a partir de la indicada por f y c. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Si ( f, c) es la celda correspondiente a la fila f y columna c, procedemos de la siguiente forma:</para>
+<para>a) Si f==9, queremos resolver la fila siguiente a la última, por lo que el sudoku killer estaría resuelto.</para>
+<para>b) Si f != 9 y c==9, queremos resolver la celda siguiente a la última de la fila f, por lo que la fila f estaría resuelta y pasaríamos a resolver la celda (f+1,0).</para>
+<para>c) Si la celda ( f, c) no está vacía, pasaríamos a resolver la celda ( f, c+1), pues ( f, c) ya está llena.</para>
+<para>d) Si la celda ( f, c) estuviera vacía, se realiza un proceso de prueba y error con los posibles valores de la celda de forma que si un candidato se muestra incorrecto, se retorna al último paso antes de rellenar la celda con dicho valor. Este proceso se realiza hasta resolver el sudoku killer completamente o hasta encontrar un error.</para>
+<para>Para cada uno de los posibles valores de la celda, se haría lo suguiente: <verbatim> - Se comprueba que no incumple ninguna de las restricciones básicas del sudoku killer
+ (No se repiten números en las filas, columnas, subcuadrantes 3x3 y jaulas).
+
+ - Si no se cumplen todas las restricciones, se pasa a probar con el siguiente
+ valor. Si el valor con el que se está probando cumple con las restricciones
+ anteriores, supondremos que es el correcto, se rellena la celda con ese valor
+ y pasamos a resolver el resto de celdas.
+
+ - Si al tratar de resolver el resto de celdas ocurre que descartamos todos los
+ posibles valores de una celda, entonces el valor colocado en la celda
+ (@param f,@param c) sería incorrecto, por lo que vaciaríamos todas las celdas
+ que hemos rellenado tras resolver la celda (@param f,@param c) (incluida) y
+ probaríamos el siguiente valor.
+</verbatim> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>la fila de la celda a partir de la cual resolveremos las demás. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>la columna de la celda a partir de la cual resolveremos las demás.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>El sudoku killer no está completamente resuelto. </para>
+</simplesect>
+<simplesect kind="post"><para>El sudoku killer quedará completamente resuelto. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Sudoku_killer.h" line="265" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>T.D.A <ref refid="classSudoku__killer" kindref="compound">Sudoku_killer</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Una instancia del tipo de dato abstracto sudoku killer consiste en una partición del tablero por Jaulas; es decir, de un conjunto de Jaulas disjuntas de tal manera que cada <ref refid="structCelda" kindref="compound">Celda</ref> del tablero esté en una <ref refid="classJaula" kindref="compound">Jaula</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Tablero</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Consiste en una matriz estática de enteros donde se guardan los elementos de cada celda dando lugar al tablero del sudoku. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>celdas_iniciales</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector de Jaulas donde se guardan las distintas sumas repartidas por el tablero. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TAMANIO_TABLERO</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Constante estática que guarda el tamanio del tablero, en este caso es 9 por ser un sudoku dando lugar a un tablero 9x9. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>SUMA</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Constante estática que almacena el resultado de sumar todos los números naturales entre 1 y 9 incluyendo ambos es útil para averiguar qué numero poder colocar en una posición de una región, columna o fila.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Algunas reglas del sudoku killer son las siguientes:<itemizedlist>
+<listitem><para>No se pueden repetir números en una columna</para>
+</listitem><listitem><para>No se pueden repetir números en una fila</para>
+</listitem><listitem><para>No se pueden repetir números en una región (cruadrícula 3x3 del tablero)</para>
+</listitem><listitem><para>No se pueden repetir números en una jaula Cabe destacar que las tres primeras reglas son propias de un sudoku ordinario dando así paso a la regla del 45.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="pre"><para>El tablero siempre debe ser de 9x9, así viene determinado mediante la constante TAMANIO_TABLERO </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="Sudoku_killer.h" line="40" column="1" bodyfile="Sudoku_killer.h" bodystart="40" bodyend="266"/>
+    <listofallmembers>
+      <member refid="classSudoku__killer_1a8b4410b5fc69f23408fc54d25f761d79" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>CalculaPosicionFC</name></member>
+      <member refid="classSudoku__killer_1ab9ccc9f87bd1773a0238ccc6de0764f9" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>CeldasVacias</name></member>
+      <member refid="classSudoku__killer_1afabb202294f15d2554a31c8b84ae8361" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>EstaCompleta</name></member>
+      <member refid="classSudoku__killer_1aeed922450b0407ffcfb074cf6516f7e4" prot="private" virt="non-virtual"><scope>Sudoku_killer</scope><name>Inicializar</name></member>
+      <member refid="classSudoku__killer_1a846c85d3b8acd28a473d98f674a2f13f" prot="private" virt="non-virtual"><scope>Sudoku_killer</scope><name>jaulas</name></member>
+      <member refid="classSudoku__killer_1aace041fce5264a406d75e3135ac52468" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>operator=</name></member>
+      <member refid="classSudoku__killer_1aa6fdeb2814b8bc10ca2d10f34bd2d7e5" prot="private" virt="non-virtual"><scope>Sudoku_killer</scope><name>RellenarCeldas</name></member>
+      <member refid="classSudoku__killer_1af0a5b76933cda7c5609af7764d52f8db" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>ResolverSudokuKiller</name></member>
+      <member refid="classSudoku__killer_1a354ae3f3a487793cd8d6621acd62e381" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>Sudoku_killer</name></member>
+      <member refid="classSudoku__killer_1a215fb2671ee00c38062abf7c5c6f9983" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>Sudoku_killer</name></member>
+      <member refid="classSudoku__killer_1a4e35dbc508ce53d9728d66b83099cb3f" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>Sudoku_killer</name></member>
+      <member refid="classSudoku__killer_1a725836926fdeaff8145800ab7aebcbe8" prot="private" virt="non-virtual"><scope>Sudoku_killer</scope><name>SUMA</name></member>
+      <member refid="classSudoku__killer_1a7f37fc7a4673b1dd06f5b261c5299544" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>SumaFila</name></member>
+      <member refid="classSudoku__killer_1a81e7f435dbecbc292d2013552264203a" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>SumaJaula</name></member>
+      <member refid="classSudoku__killer_1aa7abc95ec217ccbb4d45d4fc4d66cb9c" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>SumaJaula</name></member>
+      <member refid="classSudoku__killer_1af620cce61f8d3121e076062a42f6f6a6" prot="private" virt="non-virtual"><scope>Sudoku_killer</scope><name>tablero</name></member>
+      <member refid="classSudoku__killer_1a271c01c74b0311d5b8a38c01d6fc772e" prot="private" virt="non-virtual"><scope>Sudoku_killer</scope><name>TAMANIO_TABLERO</name></member>
+      <member refid="classSudoku__killer_1ac751547d55ea671419e8b025b4a5d9b3" prot="public" virt="non-virtual"><scope>Sudoku_killer</scope><name>~Sudoku_killer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

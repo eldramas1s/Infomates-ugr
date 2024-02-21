@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/zoom.dir/estudiante/src/zoom_imagen.cpp.o -o zoom  libimage.a 

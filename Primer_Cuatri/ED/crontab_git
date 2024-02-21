@@ -1,0 +1,3 @@
+0 8 * * * /home/el_dramas/Desktop/ED/pull.sh
+0 15 * * * /home/el_dramas/Desktop/ED/pull.sh
+0 0 * * * /home/el_dramas/Desktop/ED/push.sh

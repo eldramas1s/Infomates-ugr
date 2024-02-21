@@ -1,0 +1,11 @@
+digraph "estudiante/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_9a0f087c5462c2cd29ef809929a48712 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="estudiante" fontname="Helvetica", fontsize="10", URL="dir_9a0f087c5462c2cd29ef809929a48712.html"]
+  dir_df335dec4bd016c2308870029aa617d6 [shape=box label="include" URL="dir_df335dec4bd016c2308870029aa617d6.html"];
+  dir_823aef3b9625aa06c2f52a5cab57b07a [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_823aef3b9625aa06c2f52a5cab57b07a.html"];
+  }
+  dir_823aef3b9625aa06c2f52a5cab57b07a->dir_df335dec4bd016c2308870029aa617d6 [headlabel="11", labeldistance=1.5 headhref="dir_000003_000002.html"];
+}

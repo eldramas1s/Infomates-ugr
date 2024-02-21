@@ -1,0 +1,6 @@
+PROJECT_NAME           = "Práctica 2. TDA_Imagen"
+OUTPUT_DIRECTORY       = /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/doc_doxygen/
+INPUT                  = /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/estudiante/include /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/estudiante/src /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/estudiante/doc
+GENERATE_LATEX         = NO
+IMAGE_PATH             = /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/PracticaImagen/codigo/estudiante/doc
+EXTRACT_PRIVATE	       = NO

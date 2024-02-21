@@ -1,0 +1,256 @@
+.TH "Jaula" 3 "Domingo, 22 de Octubre de 2023" "Clase Sudoku Killer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Jaula \- T\&.D\&.A \fBJaula\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Jaula\&.h>\fP
+.SS "Métodos públicos"
+
+.in +1c
+.ti -1c
+.RI "\fBJaula\fP ()"
+.br
+.RI "Constructor por defecto de la clase \fBJaula\fP\&. Crea una \fBJaula\fP de 0 celdas y con suma 0\&. "
+.ti -1c
+.RI "\fBJaula\fP (\fBCelda\fP primera, int suma_jaula)"
+.br
+.RI "Constructor de la clase \fBJaula\fP\&. Recibe la primera celda que forma parte de la \fBJaula\fP y la suma de la jaula\&. "
+.ti -1c
+.RI "\fBJaula\fP (const \fBJaula\fP &orig)"
+.br
+.RI "Constructor de copia de la clase \fBJaula\fP\&. "
+.ti -1c
+.RI "\fBJaula\fP & \fBoperator=\fP (const \fBJaula\fP &orig)"
+.br
+.RI "Operador de asignación de la clase \fBJaula\fP\&. "
+.ti -1c
+.RI "\fB~Jaula\fP ()"
+.br
+.RI "Destructor de la clase \fBJaula\fP\&. "
+.ti -1c
+.RI "bool \fBPertenece\fP (\fBCelda\fP c) const"
+.br
+.RI "Comprueba si una celda\&. "
+.ti -1c
+.RI "bool \fBPertenece\fP (Posicion pos) const"
+.br
+.RI "Comprueba si en la jaula hay alguna celda que contenga la\&. "
+.ti -1c
+.RI "void \fBAniade\fP (\fBCelda\fP nueva)"
+.br
+.RI "Añade una celda nueva a la \fBJaula\fP\&. Si nueva ya pertenecía a la jaula, no se hace nada\&. "
+.ti -1c
+.RI "int \fBTotalCeldas\fP () const"
+.br
+.RI "Número de celdas de la jaula\&. "
+.ti -1c
+.RI "int \fBGetSuma\fP () const"
+.br
+.RI "Suma de la jaula\&. "
+.ti -1c
+.RI "void \fBSetSuma\fP (int s)"
+.br
+.RI "Método set del parametro suma\&. "
+.ti -1c
+.RI "int \fBCeldasVacias\fP () const"
+.br
+.RI "Número de celdas vacías en la jaula\&. "
+.in -1c
+.SH "Descripción detallada"
+.PP 
+T\&.D\&.A \fBJaula\fP\&. 
+
+Una instancia del tipo de dato abstracto \fBJaula\fP representa un conjunto de Celdas de un tablero de Sudoku killer, junto con la suma de los valores almacenados en cada celda de la \fBJaula\fP\&.
+.PP
+\fBParámetros\fP
+.RS 4
+\fIinicial\fP Puntero a una celda de la jaula, puede ser cualquiera de ellas\&. 
+.br
+\fIsuma\fP Suma de todas las celdas de la jaula 
+.br
+\fItotal_celdas\fP Cantidad de celdas que forman la jaula
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+0 <= total_celdas <= 81 (en caso de ser 81 se trataría como un sudoku normal) 
+.PP
+0 < suma 
+.RE
+.PP
+
+.SH "Documentación del constructor y destructor"
+.PP 
+.SS "Jaula::Jaula (\fBCelda\fP primera, int suma_jaula)"
+
+.PP
+Constructor de la clase \fBJaula\fP\&. Recibe la primera celda que forma parte de la \fBJaula\fP y la suma de la jaula\&. 
+.PP
+\fBPrecondición\fP
+.RS 4
+suma_jaula debe ser mayor o igual a 0\&. 
+.RE
+.PP
+
+.SS "Jaula::Jaula (const \fBJaula\fP & orig)"
+
+.PP
+Constructor de copia de la clase \fBJaula\fP\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIorig\fP objeto jaula que queremos copiar 
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+el objeto implicito resulta una copia de orig\&. 
+.RE
+.PP
+
+.SH "Documentación de las funciones miembro"
+.PP 
+.SS "void Jaula::Aniade (\fBCelda\fP nueva)"
+
+.PP
+Añade una celda nueva a la \fBJaula\fP\&. Si nueva ya pertenecía a la jaula, no se hace nada\&. 
+.PP
+\fBPrecondición\fP
+.RS 4
+Una celda pertenece a la jaula si hay una celda de la jaula que contiene la misma posición\&. 
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+nueva queda añadida a la celda en caso de cumplir las condiciones 
+.RE
+.PP
+
+.SS "int Jaula::CeldasVacias () const"
+
+.PP
+Número de celdas vacías en la jaula\&. 
+.PP
+\fBPostcondición\fP
+.RS 4
+El objeto implícito no queda modificado\&.
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+el número de celdas vacías de la jaula\&. 
+.RE
+.PP
+
+.SS "int Jaula::GetSuma () const"
+
+.PP
+Suma de la jaula\&. 
+.PP
+\fBDevuelve\fP
+.RS 4
+suma 
+.RE
+.PP
+
+.SS "\fBJaula\fP& Jaula::operator= (const \fBJaula\fP & orig)"
+
+.PP
+Operador de asignación de la clase \fBJaula\fP\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIorig\fP objeto jaula que queremos asignar\&. 
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+el objeto implicito resulta una copia de orig\&. 
+.RE
+.PP
+
+.SS "bool Jaula::Pertenece (\fBCelda\fP c) const"
+
+.PP
+Comprueba si una celda\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIc\fP pertenece a la jaula\&. Diremos que una celda pertenece a la jaula si existe alguna celda de la jaula con la misma posición que c\&.
+.br
+\fIc\fP celda que queremos ver si pertenece al sudoku\&.
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+true si pertenece a la jaula, false en caso contrario\&. 
+.RE
+.PP
+
+.SS "bool Jaula::Pertenece (Posicion pos) const"
+
+.PP
+Comprueba si en la jaula hay alguna celda que contenga la\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIpos\fP indicada\&. 
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+0<= pos\&.first, pos\&.second() < 9 
+.RE
+.PP
+\fBExcepciones\fP
+.RS 4
+\fIstd::invalid_arguments\fP si no se cumple la precondición\&. 
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+true si pertenece a la jaula, false en caso contrario\&. 
+.RE
+.PP
+
+.SS "void Jaula::SetSuma (int s)"
+
+.PP
+Método set del parametro suma\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIs\fP Suma a introducir como dato\&.
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+0 < s y en caso de no complirse, no se cambiaría la suma\&.
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+El parámetro suma queda cambiado con valor s\&. 
+.RE
+.PP
+
+.SS "int Jaula::TotalCeldas () const"
+
+.PP
+Número de celdas de la jaula\&. 
+.PP
+\fBDevuelve\fP
+.RS 4
+total_celdas 
+.RE
+.PP
+
+
+.SH "Autor"
+.PP 
+Generado automáticamente por Doxygen para Clase Sudoku Killer del código fuente\&.

@@ -1,0 +1,6 @@
+PROJECT_NAME           = "Práctica Final: Rutas Aereas"
+OUTPUT_DIRECTORY       = /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/rutas_aereas/doc
+INPUT                  = /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/rutas_aereas/include /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/rutas_aereas/src /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/rutas_aereas/doc
+GENERATE_LATEX         = NO
+IMAGE_PATH             = /home/el_dramas/Desktop/Segundo_Curso/ED/Practicas/Rutas_Aereas/rutas_aereas/doc
+EXTRACT_PRIVATE        = NO

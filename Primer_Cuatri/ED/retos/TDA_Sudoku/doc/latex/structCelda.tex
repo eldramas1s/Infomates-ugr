@@ -1,0 +1,96 @@
+\doxysection{Referencia de la Estructura Celda}
+\label{structCelda}\index{Celda@{Celda}}
+
+
+T.\+D.\+A \doxyref{Celda}{p.}{structCelda}.  
+
+
+
+
+{\ttfamily \#include $<$Jaula.\+h$>$}
+
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Celda} ()
+\begin{DoxyCompactList}\small\item\em Constructor sin argumentos del tipo \doxyref{Celda}{p.}{structCelda}. \end{DoxyCompactList}\item 
+\textbf{ Celda} (int fila, int columna)
+\begin{DoxyCompactList}\small\item\em Constructor del tipo \doxyref{Celda}{p.}{structCelda}. Recibe el. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{structCelda_a1ab3faa657021d321d4201c3a4a6d4c9}} 
+Posicion \textbf{ posicion}
+\begin{DoxyCompactList}\small\item\em posición de la celda en el tablero de Sudoku killer. \end{DoxyCompactList}\item 
+\mbox{\label{structCelda_a5c6d6d20b0c0b0a359715844955a0078}} 
+\textbf{ Celda} $\ast$ \textbf{ siguiente}
+\begin{DoxyCompactList}\small\item\em puntero a la siguiente celda de la jaula. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+T.\+D.\+A \doxyref{Celda}{p.}{structCelda}. 
+
+El struct \doxyref{Celda}{p.}{structCelda} consiste en un registro de 2 campos que representa una celda de un tablero de sudoku.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em posicion} & Consiste en un par Posicion que guarda la fila y columna de la celda en el propio tablero del sudoku. \\
+\hline
+{\em siguiente} & puntero a la siguiente celda.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+0 $<$= posicion.\+first(), posicion.\+second() $<$ 9 
+\end{DoxyPrecond}
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\label{structCelda_af1dadd95735043294599490d4abc6dc1}} 
+\index{Celda@{Celda}!Celda@{Celda}}
+\index{Celda@{Celda}!Celda@{Celda}}
+\doxysubsubsection{Celda()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Celda\+::\+Celda (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor sin argumentos del tipo \doxyref{Celda}{p.}{structCelda}. 
+
+\begin{DoxyPostcond}{Postcondición}
+La celda queda inicializada a un valor imposible. 
+\end{DoxyPostcond}
+
+
+Hace referencia a posicion y siguiente.
+
+\mbox{\label{structCelda_a0bcc2a50e80dc0c57cd7f9a32a52765a}} 
+\index{Celda@{Celda}!Celda@{Celda}}
+\index{Celda@{Celda}!Celda@{Celda}}
+\doxysubsubsection{Celda()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Celda\+::\+Celda (\begin{DoxyParamCaption}\item[{int}]{fila,  }\item[{int}]{columna }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor del tipo \doxyref{Celda}{p.}{structCelda}. Recibe el. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em fila} & y el \\
+\hline
+{\em columna.} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+fila y columna deben estar entre 0 y 8.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+La celda tiene una posicion pero no tiene un valor ni una celda siguiente a la que apunta. 
+\end{DoxyPostcond}
+
+
+Hace referencia a posicion y siguiente.
+
+
+
+La documentación para esta estructura fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+Jaula.\+h\end{DoxyCompactItemize}

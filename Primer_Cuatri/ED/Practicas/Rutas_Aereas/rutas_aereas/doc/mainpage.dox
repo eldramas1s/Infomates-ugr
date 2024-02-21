@@ -1,0 +1,125 @@
+/*! \mainpage Rutas Aéreas
+
+# Introducción
+
+___
+___
+
+Esta página html contiene la especificación de una serie de programas donde se han usado los siguientes TDA: Punto, Pais, Ruta, Mundo, Almacen e Imagen.
+Creadores: Lucas Hidalgo Herrera, Juan Manuel Fernández García.
+
+Esta página contiene la especificación de las clases y una breve descripción de los programas.
+
+___
+___
+
+# Clases
+
+___
+___
+
+## TDA_Punto
+
+Simplemente comentar que es un par de numeros reales con plena funcionalidad que representa un punto en un espacio, en este caso en un mapa del mundo.
+
+## TDA_Ruta
+
+Consiste en un conjunto de puntos cuyo orden es importante, pues representa la ruta seguida en un viaje en avión.
+
+## TDA_Almacén
+
+Consiste en un conjunto de rutas, simulando un almacén de rutas de un aeropuerto.
+
+## TDA_País
+
+Es una TDA que representa a un país, contiene su bandera, su nombre y su localidad en el mapa haciendo uso del TDA_Punto.
+
+## TDA_Mundo
+
+Consiste en un almacén de países, es decir una representación en datos del Planeta Tierra con los países más conocidos.
+
+## TDA_Imagen
+
+Es una representación de una imagen a color, es una adaptación de la clase Imagen ya usada en una práctica anterior.
+
+___
+___
+
+# Ejecutables
+
+___
+___
+
+## Prueba de Pegado
+
+Consiste en un programa que realiza el pegado de una imagen pasada como argumento sobre otra también como argumento. Normalmente,
+se pegará una avión sobre una bandera y esa imagen resultante sobre un mapa.
+
+Salida tras ejecutar pruebapegado banderas/espana_reshigh.ppm
+aviones/avion2.ppm aviones/mascara_avion2.pgm data/salida_prueba_pegado.pgm 0 0 1 :
+
+@image html salida_prueba_pegado.png
+
+
+> __pruebapegado__ "\<FichImagenFondo\> \<FichImagenPegar\> \<MascaraPegado\> \<FichImagenFinal\> \<FilaPegar\> \<ColumnaPegar\> \<TipoPegado\>"
+
+@param "<FichImagenFondo>" Fichero donde se encuentra la imagen sobre la que se va a pegar.
+@param "<FichImagenPegar>" Fichero donde se encuentra la imagen a pegar sobre lo anterior.
+@param "<MascaraPegado>" Fichero donde se encuentra la mascara que ayudara al pegado de la imagen.
+@param "<FichImagenFinal>" Fichero donde se va a guardar la imagen resultante.
+@param "<FilaPegar>" Fila de la imagen de fondo donde se va a comenzar el pegado de la imagen, será la fila superior de la imagen.
+@param "<ColumnaPegar>" Columna de la imagen de fondo donde se va a comenzar el pegado de la imagen, será la columna izquierda de la imagen.
+@param "<TipoPegado>" Hace alusión al tipo de pegado a usar, opaco o traslúcido.
+
+@return Imagenes ya conjuntas con el tipo de pegado especificado.
+
+
+## Prueba de Rotación
+
+Consiste en un programa que dada una imagen y un ángulo de giro, devuelve la imagen rotada ese ángulo de giro en el sentido de las agujas del reloj.
+Este giro se consigue al aplicarle a la imagen la siguiente matriz del giro:
+
+            /                   \
+            | cos(a)    -sen(a) |
+            | sen(a)     cos(a) |
+            \                   /
+
+
+Salida tras ejecutar pruebarotacion aviones/avion1.ppm 45 data/salida_prueba_rotacion.pgm:
+
+@image html salida_prueba_rotacion.png
+
+Imagen del resultado del programa
+
+> __pruebarotacion__ "\<FichImagenRotar\> \<Angulo\> \<FichImagenFinal\>"
+
+@param "<FichImagenRotar>" Fichero donde se encuentra la imagen a rotar.
+@param "<Angulo>" Angulo de giro
+@param "<FichImagenFInal>" Fichero donde se va a guardar la imagen ya rotada
+
+@return Imagen rotada el angulo determinado siguiendo el sentido de las agujas del reloj.
+
+
+## Rutas_Aéreas
+
+Este programa, dada una ruta, implementa sobre un mapamundi la ruta a seguir por el avion, realizando el pegado del mismo sobre el mapa o
+sobre la bandera, la cual, posteriormente, se pegará en el mapamundi.
+De esta manera, se representará lo mas claro posible el itinerario a segui de la ruta.
+
+Salida tras ejecutar ruta_aerea data/paises.txt data/mapa1.ppm banderas/
+data/prueba_almacen aviones/avion3.ppm aviones/mascara_avion3.pgm data/salida_el_mi_mapa.ppm :
+
+@image html salida_ruta_aerea.png
+
+> __rutas_Aereas__ "\<FichPaises\> \<FichMapa\> \<DirBanderas\> \<FichRutas\> \<FichAvion\> \<FichMascara\> \<FichSalida>\"
+
+@param "<FichPaises>" Fichero donde se encuentran todos los países a considerar en nuestro viaje.
+@param "<FichMapa>" Imagen ppm del mapamundi.
+@param "<DirBanderas>" Directorio con las imagenes de las banderas.
+@param "<FichRutas>" Fichero con la ruta a seguir de nuestro viaje.
+@param "<FichAvion>" Imagen ppm del avión que se pegará en el mapamundi.
+@param "<FichMascara>" Imagen ppm de la mascara del avión usada para el pegado.
+@param "<FichSalida>" Imagen ppm donde se va a guardar el resultado de la ejecucion.
+
+@return Imagen del mapamundi completa con los aviones que siguen el itinerario y las banderas en los países a visitar.
+*/

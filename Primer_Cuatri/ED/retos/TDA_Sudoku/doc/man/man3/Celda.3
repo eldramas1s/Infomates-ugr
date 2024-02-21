@@ -1,0 +1,98 @@
+.TH "Celda" 3 "Domingo, 22 de Octubre de 2023" "Clase Sudoku Killer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Celda \- T\&.D\&.A \fBCelda\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Jaula\&.h>\fP
+.SS "Métodos públicos"
+
+.in +1c
+.ti -1c
+.RI "\fBCelda\fP ()"
+.br
+.RI "Constructor sin argumentos del tipo \fBCelda\fP\&. "
+.ti -1c
+.RI "\fBCelda\fP (int fila, int columna)"
+.br
+.RI "Constructor del tipo \fBCelda\fP\&. Recibe el\&. "
+.in -1c
+.SS "Atributos públicos"
+
+.in +1c
+.ti -1c
+.RI "Posicion \fBposicion\fP"
+.br
+.RI "posición de la celda en el tablero de Sudoku killer\&. "
+.ti -1c
+.RI "\fBCelda\fP * \fBsiguiente\fP"
+.br
+.RI "puntero a la siguiente celda de la jaula\&. "
+.in -1c
+.SH "Descripción detallada"
+.PP 
+T\&.D\&.A \fBCelda\fP\&. 
+
+El struct \fBCelda\fP consiste en un registro de 2 campos que representa una celda de un tablero de sudoku\&.
+.PP
+\fBParámetros\fP
+.RS 4
+\fIposicion\fP Consiste en un par Posicion que guarda la fila y columna de la celda en el propio tablero del sudoku\&. 
+.br
+\fIsiguiente\fP puntero a la siguiente celda\&.
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+0 <= posicion\&.first(), posicion\&.second() < 9 
+.RE
+.PP
+
+.SH "Documentación del constructor y destructor"
+.PP 
+.SS "Celda::Celda ()\fC [inline]\fP"
+
+.PP
+Constructor sin argumentos del tipo \fBCelda\fP\&. 
+.PP
+\fBPostcondición\fP
+.RS 4
+La celda queda inicializada a un valor imposible\&. 
+.RE
+.PP
+
+.PP
+Hace referencia a posicion y siguiente\&.
+.SS "Celda::Celda (int fila, int columna)\fC [inline]\fP"
+
+.PP
+Constructor del tipo \fBCelda\fP\&. Recibe el\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIfila\fP y el 
+.br
+\fIcolumna\&.\fP 
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+fila y columna deben estar entre 0 y 8\&.
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+La celda tiene una posicion pero no tiene un valor ni una celda siguiente a la que apunta\&. 
+.RE
+.PP
+
+.PP
+Hace referencia a posicion y siguiente\&.
+
+.SH "Autor"
+.PP 
+Generado automáticamente por Doxygen para Clase Sudoku Killer del código fuente\&.

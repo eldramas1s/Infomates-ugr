@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/comparador.dir/estudiante/src/comparador.cpp.o -o comparador  libimage.a 

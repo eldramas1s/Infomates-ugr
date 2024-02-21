@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
+
+using namespace std;
+
+void dividirlista(list <int> lista, int k){
+
+    list <int>::iterator it = list.begin();
+
+    while ( *it != list.end()){
+        if(*it>k){
+            list.puch_back(*it);
+            it=list.erase(it);
+        }
+        else
+            ++it;
+    }
+}
+
+queue <int> multiinterseccion (queue <int> q1, queue <int> q2){
+	if ( q1.empty() || q2.empty())
+		return queue <int> result;
+	queue <int> result;
+	
+	while(!q1.empty() && !q2.empty()){
+	
+	}
+	
+}
+

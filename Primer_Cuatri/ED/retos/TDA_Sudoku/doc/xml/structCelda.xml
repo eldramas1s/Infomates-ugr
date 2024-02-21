@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="es">
+  <compounddef id="structCelda" kind="struct" language="C++" prot="public">
+    <compoundname>Celda</compoundname>
+    <includes refid="Jaula_8h" local="no">Jaula.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCelda_1a1ab3faa657021d321d4201c3a4a6d4c9" prot="public" static="no" mutable="no">
+        <type>Posicion</type>
+        <definition>Posicion Celda::posicion</definition>
+        <argsstring></argsstring>
+        <name>posicion</name>
+        <briefdescription>
+<para>posición de la celda en el tablero de Sudoku killer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="33" column="14" bodyfile="Jaula.h" bodystart="33" bodyend="-1"/>
+        <referencedby refid="structCelda_1af1dadd95735043294599490d4abc6dc1" compoundref="Jaula_8h" startline="45" endline="50">Celda</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCelda_1a5c6d6d20b0c0b0a359715844955a0078" prot="public" static="no" mutable="no">
+        <type><ref refid="structCelda" kindref="compound">Celda</ref> *</type>
+        <definition>Celda* Celda::siguiente</definition>
+        <argsstring></argsstring>
+        <name>siguiente</name>
+        <briefdescription>
+<para>puntero a la siguiente celda de la jaula. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="38" column="11" bodyfile="Jaula.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="structCelda_1af1dadd95735043294599490d4abc6dc1" compoundref="Jaula_8h" startline="45" endline="50">Celda</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structCelda_1af1dadd95735043294599490d4abc6dc1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Celda::Celda</definition>
+        <argsstring>()</argsstring>
+        <name>Celda</name>
+        <briefdescription>
+<para>Constructor sin argumentos del tipo <ref refid="structCelda" kindref="compound">Celda</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="post"><para>La celda queda inicializada a un valor imposible. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="45" column="5" bodyfile="Jaula.h" bodystart="45" bodyend="50"/>
+        <references refid="structCelda_1a1ab3faa657021d321d4201c3a4a6d4c9" compoundref="Jaula_8h" startline="33">posicion</references>
+        <references refid="structCelda_1a5c6d6d20b0c0b0a359715844955a0078" compoundref="Jaula_8h" startline="38">siguiente</references>
+      </memberdef>
+      <memberdef kind="function" id="structCelda_1a0bcc2a50e80dc0c57cd7f9a32a52765a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Celda::Celda</definition>
+        <argsstring>(int fila, int columna)</argsstring>
+        <name>Celda</name>
+        <param>
+          <type>int</type>
+          <declname>fila</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>columna</declname>
+        </param>
+        <briefdescription>
+<para>Constructor del tipo <ref refid="structCelda" kindref="compound">Celda</ref>. Recibe el. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fila</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y el </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>columna.</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>fila y columna deben estar entre 0 y 8.</para>
+</simplesect>
+<simplesect kind="post"><para>La celda tiene una posicion pero no tiene un valor ni una celda siguiente a la que apunta. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="60" column="5" bodyfile="Jaula.h" bodystart="60" bodyend="65"/>
+        <references refid="structCelda_1a1ab3faa657021d321d4201c3a4a6d4c9" compoundref="Jaula_8h" startline="33">posicion</references>
+        <references refid="structCelda_1a5c6d6d20b0c0b0a359715844955a0078" compoundref="Jaula_8h" startline="38">siguiente</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>T.D.A <ref refid="structCelda" kindref="compound">Celda</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>El struct <ref refid="structCelda" kindref="compound">Celda</ref> consiste en un registro de 2 campos que representa una celda de un tablero de sudoku.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>posicion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Consiste en un par Posicion que guarda la fila y columna de la celda en el propio tablero del sudoku. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>siguiente</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>puntero a la siguiente celda.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>0 &lt;= posicion.first(), posicion.second() &lt; 9 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Celda</label>
+        <link refid="structCelda"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>siguiente</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Jaula.h" line="28" column="1" bodyfile="Jaula.h" bodystart="28" bodyend="66"/>
+    <listofallmembers>
+      <member refid="structCelda_1af1dadd95735043294599490d4abc6dc1" prot="public" virt="non-virtual"><scope>Celda</scope><name>Celda</name></member>
+      <member refid="structCelda_1a0bcc2a50e80dc0c57cd7f9a32a52765a" prot="public" virt="non-virtual"><scope>Celda</scope><name>Celda</name></member>
+      <member refid="structCelda_1a1ab3faa657021d321d4201c3a4a6d4c9" prot="public" virt="non-virtual"><scope>Celda</scope><name>posicion</name></member>
+      <member refid="structCelda_1a5c6d6d20b0c0b0a359715844955a0078" prot="public" virt="non-virtual"><scope>Celda</scope><name>siguiente</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

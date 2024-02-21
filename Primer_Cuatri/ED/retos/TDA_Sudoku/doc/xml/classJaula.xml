@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="es">
+  <compounddef id="classJaula" kind="class" language="C++" prot="public">
+    <compoundname>Jaula</compoundname>
+    <includes refid="Jaula_8h" local="no">Jaula.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJaula_1ae8ac08565808e81ec83c0900c83f5945" prot="private" static="no" mutable="no">
+        <type><ref refid="structCelda" kindref="compound">Celda</ref> *</type>
+        <definition>Celda* Jaula::inicial</definition>
+        <argsstring></argsstring>
+        <name>inicial</name>
+        <briefdescription>
+<para>Puntero a la <ref refid="classJaula" kindref="compound">Jaula</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>inicial apunta a una celda de la <ref refid="classJaula" kindref="compound">Jaula</ref>, que actuará como la primera celda. A partir de inicial, podremos acceder al resto de celdas. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="186" column="11" bodyfile="Jaula.h" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJaula_1a459a2c918ed3da76859c439c20e0cde6" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Jaula::suma</definition>
+        <argsstring></argsstring>
+        <name>suma</name>
+        <briefdescription>
+<para>Suma de todos los elementos de la <ref refid="classJaula" kindref="compound">Jaula</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="191" column="9" bodyfile="Jaula.h" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJaula_1a93612a186627db007c1e03d361b2259d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Jaula::total_celdas</definition>
+        <argsstring></argsstring>
+        <name>total_celdas</name>
+        <briefdescription>
+<para>Número de celdas que pertenecen a la <ref refid="classJaula" kindref="compound">Jaula</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="196" column="9" bodyfile="Jaula.h" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJaula_1af3e815320f7cbf7cb580297d63dbd9cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Jaula::Jaula</definition>
+        <argsstring>()</argsstring>
+        <name>Jaula</name>
+        <briefdescription>
+<para>Constructor por defecto de la clase <ref refid="classJaula" kindref="compound">Jaula</ref>. Crea una <ref refid="classJaula" kindref="compound">Jaula</ref> de 0 celdas y con suma 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="89" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a599a316211f81193a03b034914a0cae4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Jaula::Jaula</definition>
+        <argsstring>(Celda primera, int suma_jaula)</argsstring>
+        <name>Jaula</name>
+        <param>
+          <type><ref refid="structCelda" kindref="compound">Celda</ref></type>
+          <declname>primera</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>suma_jaula</declname>
+        </param>
+        <briefdescription>
+<para>Constructor de la clase <ref refid="classJaula" kindref="compound">Jaula</ref>. Recibe la primera celda que forma parte de la <ref refid="classJaula" kindref="compound">Jaula</ref> y la suma de la jaula. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="pre"><para>suma_jaula debe ser mayor o igual a 0. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="97" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a36aaf0804aa506468c8a6283a0f9c516" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Jaula::Jaula</definition>
+        <argsstring>(const Jaula &amp;orig)</argsstring>
+        <name>Jaula</name>
+        <param>
+          <type>const <ref refid="classJaula" kindref="compound">Jaula</ref> &amp;</type>
+          <declname>orig</declname>
+        </param>
+        <briefdescription>
+<para>Constructor de copia de la clase <ref refid="classJaula" kindref="compound">Jaula</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>objeto jaula que queremos copiar </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="post"><para>el objeto implicito resulta una copia de orig. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="104" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a909c91c04756fc42d1b5b6db44ef2fcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classJaula" kindref="compound">Jaula</ref> &amp;</type>
+        <definition>Jaula&amp; Jaula::operator=</definition>
+        <argsstring>(const Jaula &amp;orig)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classJaula" kindref="compound">Jaula</ref> &amp;</type>
+          <declname>orig</declname>
+        </param>
+        <briefdescription>
+<para>Operador de asignación de la clase <ref refid="classJaula" kindref="compound">Jaula</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>objeto jaula que queremos asignar. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="post"><para>el objeto implicito resulta una copia de orig. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="111" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a7b543e5d242e490709cb6d9b4246fe15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Jaula::~Jaula</definition>
+        <argsstring>()</argsstring>
+        <name>~Jaula</name>
+        <briefdescription>
+<para>Destructor de la clase <ref refid="classJaula" kindref="compound">Jaula</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="116" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a6f31934737d264c29ba9b588e04db286" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Jaula::Pertenece</definition>
+        <argsstring>(Celda c) const</argsstring>
+        <name>Pertenece</name>
+        <param>
+          <type><ref refid="structCelda" kindref="compound">Celda</ref></type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Comprueba si una celda. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pertenece a la jaula. Diremos que una celda pertenece a la jaula si existe alguna celda de la jaula con la misma posición que c.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>celda que queremos ver si pertenece al sudoku.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true si pertenece a la jaula, false en caso contrario. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="127" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a9f30dba787ad321fd00100fa1420d2d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Jaula::Pertenece</definition>
+        <argsstring>(Posicion pos) const</argsstring>
+        <name>Pertenece</name>
+        <param>
+          <type>Posicion</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>Comprueba si en la jaula hay alguna celda que contenga la. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>indicada. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>0&lt;= pos.first, pos.second() &lt; 9 </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_arguments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>si no se cumple la precondición. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true si pertenece a la jaula, false en caso contrario. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="136" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1afa93e31751a879b1348077c629c51c4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Jaula::Aniade</definition>
+        <argsstring>(Celda nueva)</argsstring>
+        <name>Aniade</name>
+        <param>
+          <type><ref refid="structCelda" kindref="compound">Celda</ref></type>
+          <declname>nueva</declname>
+        </param>
+        <briefdescription>
+<para>Añade una celda nueva a la <ref refid="classJaula" kindref="compound">Jaula</ref>. Si nueva ya pertenecía a la jaula, no se hace nada. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="pre"><para>Una celda pertenece a la jaula si hay una celda de la jaula que contiene la misma posición. </para>
+</simplesect>
+<simplesect kind="post"><para>nueva queda añadida a la celda en caso de cumplir las condiciones </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="144" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a9ed64aff2061f1210d4fe82f3085cc10" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Jaula::TotalCeldas</definition>
+        <argsstring>() const</argsstring>
+        <name>TotalCeldas</name>
+        <briefdescription>
+<para>Número de celdas de la jaula. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>total_celdas </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="150" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a9ccbd25495b003beb62b32ae3a4d51d1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Jaula::GetSuma</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSuma</name>
+        <briefdescription>
+<para>Suma de la jaula. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>suma </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="156" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1aaca1e9cb4999994fe6c79ff61ae1270c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Jaula::SetSuma</definition>
+        <argsstring>(int s)</argsstring>
+        <name>SetSuma</name>
+        <param>
+          <type>int</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Método set del parametro suma. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Suma a introducir como dato.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>0 &lt; s y en caso de no complirse, no se cambiaría la suma.</para>
+</simplesect>
+<simplesect kind="post"><para>El parámetro suma queda cambiado con valor s. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="167" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1aa55d430d54cdd10d8547b6f3f8cc3ce7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Jaula::CeldasVacias</definition>
+        <argsstring>() const</argsstring>
+        <name>CeldasVacias</name>
+        <briefdescription>
+<para>Número de celdas vacías en la jaula. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="post"><para>El objeto implícito no queda modificado.</para>
+</simplesect>
+<simplesect kind="return"><para>el número de celdas vacías de la jaula. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="176" column="9"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJaula_1a57642cefc7d5d15bf15077f6b639b6bd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Jaula::LiberarMemoria</definition>
+        <argsstring>()</argsstring>
+        <name>LiberarMemoria</name>
+        <briefdescription>
+<para>Libera la memoria dinámica reservada. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="201" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classJaula_1a8e8decb7af4b3ce64142e080a961bc01" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Jaula::CopiarDatos</definition>
+        <argsstring>(const Jaula &amp;otra)</argsstring>
+        <name>CopiarDatos</name>
+        <param>
+          <type>const <ref refid="classJaula" kindref="compound">Jaula</ref> &amp;</type>
+          <declname>otra</declname>
+        </param>
+        <briefdescription>
+<para>Copia los datos de una <ref refid="classJaula" kindref="compound">Jaula</ref> en el objeto implícito. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Jaula.h" line="206" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>T.D.A <ref refid="classJaula" kindref="compound">Jaula</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Una instancia del tipo de dato abstracto <ref refid="classJaula" kindref="compound">Jaula</ref> representa un conjunto de Celdas de un tablero de Sudoku killer, junto con la suma de los valores almacenados en cada celda de la <ref refid="classJaula" kindref="compound">Jaula</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inicial</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Puntero a una celda de la jaula, puede ser cualquiera de ellas. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>suma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Suma de todas las celdas de la jaula </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>total_celdas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cantidad de celdas que forman la jaula</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>0 &lt;= total_celdas &lt;= 81 (en caso de ser 81 se trataría como un sudoku normal) </para>
+</simplesect>
+<simplesect kind="pre"><para>0 &lt; suma </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="Jaula.h" line="82" column="1" bodyfile="Jaula.h" bodystart="82" bodyend="208"/>
+    <listofallmembers>
+      <member refid="classJaula_1afa93e31751a879b1348077c629c51c4f" prot="public" virt="non-virtual"><scope>Jaula</scope><name>Aniade</name></member>
+      <member refid="classJaula_1aa55d430d54cdd10d8547b6f3f8cc3ce7" prot="public" virt="non-virtual"><scope>Jaula</scope><name>CeldasVacias</name></member>
+      <member refid="classJaula_1a8e8decb7af4b3ce64142e080a961bc01" prot="private" virt="non-virtual"><scope>Jaula</scope><name>CopiarDatos</name></member>
+      <member refid="classJaula_1a9ccbd25495b003beb62b32ae3a4d51d1" prot="public" virt="non-virtual"><scope>Jaula</scope><name>GetSuma</name></member>
+      <member refid="classJaula_1ae8ac08565808e81ec83c0900c83f5945" prot="private" virt="non-virtual"><scope>Jaula</scope><name>inicial</name></member>
+      <member refid="classJaula_1af3e815320f7cbf7cb580297d63dbd9cb" prot="public" virt="non-virtual"><scope>Jaula</scope><name>Jaula</name></member>
+      <member refid="classJaula_1a599a316211f81193a03b034914a0cae4" prot="public" virt="non-virtual"><scope>Jaula</scope><name>Jaula</name></member>
+      <member refid="classJaula_1a36aaf0804aa506468c8a6283a0f9c516" prot="public" virt="non-virtual"><scope>Jaula</scope><name>Jaula</name></member>
+      <member refid="classJaula_1a57642cefc7d5d15bf15077f6b639b6bd" prot="private" virt="non-virtual"><scope>Jaula</scope><name>LiberarMemoria</name></member>
+      <member refid="classJaula_1a909c91c04756fc42d1b5b6db44ef2fcb" prot="public" virt="non-virtual"><scope>Jaula</scope><name>operator=</name></member>
+      <member refid="classJaula_1a6f31934737d264c29ba9b588e04db286" prot="public" virt="non-virtual"><scope>Jaula</scope><name>Pertenece</name></member>
+      <member refid="classJaula_1a9f30dba787ad321fd00100fa1420d2d2" prot="public" virt="non-virtual"><scope>Jaula</scope><name>Pertenece</name></member>
+      <member refid="classJaula_1aaca1e9cb4999994fe6c79ff61ae1270c" prot="public" virt="non-virtual"><scope>Jaula</scope><name>SetSuma</name></member>
+      <member refid="classJaula_1a459a2c918ed3da76859c439c20e0cde6" prot="private" virt="non-virtual"><scope>Jaula</scope><name>suma</name></member>
+      <member refid="classJaula_1a93612a186627db007c1e03d361b2259d" prot="private" virt="non-virtual"><scope>Jaula</scope><name>total_celdas</name></member>
+      <member refid="classJaula_1a9ed64aff2061f1210d4fe82f3085cc10" prot="public" virt="non-virtual"><scope>Jaula</scope><name>TotalCeldas</name></member>
+      <member refid="classJaula_1a7b543e5d242e490709cb6d9b4246fe15" prot="public" virt="non-virtual"><scope>Jaula</scope><name>~Jaula</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

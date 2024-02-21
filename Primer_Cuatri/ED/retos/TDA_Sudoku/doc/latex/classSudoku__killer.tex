@@ -1,0 +1,395 @@
+\doxysection{Referencia de la Clase Sudoku\+\_\+killer}
+\label{classSudoku__killer}\index{Sudoku\_killer@{Sudoku\_killer}}
+
+
+T.\+D.\+A \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}.  
+
+
+
+
+{\ttfamily \#include $<$Sudoku\+\_\+killer.\+h$>$}
+
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Sudoku\+\_\+killer} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. Crea un sudoku killer vacío. \end{DoxyCompactList}\item 
+\textbf{ Sudoku\+\_\+killer} (const std\+::vector$<$ \textbf{ Jaula} $>$ \&jaulas)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. \end{DoxyCompactList}\item 
+\textbf{ Sudoku\+\_\+killer} (const \textbf{ Sudoku\+\_\+killer} \&orig)
+\begin{DoxyCompactList}\small\item\em Constructor de copia de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. \end{DoxyCompactList}\item 
+\textbf{ Sudoku\+\_\+killer} \& \textbf{ operator=} (const \textbf{ Sudoku\+\_\+killer} \&orig)
+\begin{DoxyCompactList}\small\item\em Operador de asignación de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. \end{DoxyCompactList}\item 
+\textbf{ $\sim$\+Sudoku\+\_\+killer} ()
+\begin{DoxyCompactList}\small\item\em Destructor de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. \end{DoxyCompactList}\item 
+int \textbf{ Suma\+Jaula} (Posicion pos) const
+\begin{DoxyCompactList}\small\item\em Devuelve la suma de la jaula indicada. \end{DoxyCompactList}\item 
+int \textbf{ Suma\+Jaula} (int i) const
+\begin{DoxyCompactList}\small\item\em Devuelve la suma de la jaula indicada. \end{DoxyCompactList}\item 
+int \textbf{ Suma\+Fila} (int i, char modo=\textquotesingle{}f\textquotesingle{}) const
+\begin{DoxyCompactList}\small\item\em Suma de los elementos de la fila o columna i-\/esima. \end{DoxyCompactList}\item 
+bool \textbf{ Esta\+Completa} (int i, char modo=\textquotesingle{}f\textquotesingle{}) const
+\begin{DoxyCompactList}\small\item\em Comprueba si la fila o columna i-\/ésima está completa. \end{DoxyCompactList}\item 
+int \textbf{ Celdas\+Vacias} (int i, char modo=\textquotesingle{}f\textquotesingle{}) const
+\begin{DoxyCompactList}\small\item\em Número de celdas vacías en una fila o columna i-\/esima. \end{DoxyCompactList}\item 
+Posicion \textbf{ Calcula\+Posicion\+FC} (int i, char modo=\textquotesingle{}f\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Calcula el numero restante de una fila o columna aplicando la regla del 45. \end{DoxyCompactList}\item 
+void \textbf{ Resolver\+Sudoku\+Killer} ()
+\begin{DoxyCompactList}\small\item\em Resuelve el sudoku killer de forma recursiva Para ello, utiliza el método privado Rellenar\+Celdas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+T.\+D.\+A \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. 
+
+Una instancia del tipo de dato abstracto sudoku killer consiste en una partición del tablero por Jaulas; es decir, de un conjunto de Jaulas disjuntas de tal manera que cada \doxyref{Celda}{p.}{structCelda} del tablero esté en una \doxyref{Jaula}{p.}{classJaula}.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em Tablero} & Consiste en una matriz estática de enteros donde se guardan los elementos de cada celda dando lugar al tablero del sudoku. \\
+\hline
+{\em celdas\+\_\+iniciales} & Vector de Jaulas donde se guardan las distintas sumas repartidas por el tablero. \\
+\hline
+{\em TAMANIO\+\_\+\+TABLERO} & Constante estática que guarda el tamanio del tablero, en este caso es 9 por ser un sudoku dando lugar a un tablero 9x9. \\
+\hline
+{\em SUMA} & Constante estática que almacena el resultado de sumar todos los números naturales entre 1 y 9 incluyendo ambos es útil para averiguar qué numero poder colocar en una posición de una región, columna o fila.\\
+\hline
+\end{DoxyParams}
+Algunas reglas del sudoku killer son las siguientes\+:
+\begin{DoxyItemize}
+\item No se pueden repetir números en una columna
+\item No se pueden repetir números en una fila
+\item No se pueden repetir números en una región (cruadrícula 3x3 del tablero)
+\item No se pueden repetir números en una jaula Cabe destacar que las tres primeras reglas son propias de un sudoku ordinario dando así paso a la regla del 45.
+\end{DoxyItemize}
+
+\begin{DoxyPrecond}{Precondición}
+El tablero siempre debe ser de 9x9, así viene determinado mediante la constante TAMANIO\+\_\+\+TABLERO 
+\end{DoxyPrecond}
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\label{classSudoku__killer_a354ae3f3a487793cd8d6621acd62e381}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!Sudoku\_killer@{Sudoku\_killer}}
+\index{Sudoku\_killer@{Sudoku\_killer}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{Sudoku\_killer()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Sudoku\+\_\+killer\+::\+Sudoku\+\_\+killer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. Crea un sudoku killer vacío. 
+
+\begin{DoxyPostcond}{Postcondición}
+el objeto implícito queda inicializado con las jaulas a 0. 
+\end{DoxyPostcond}
+\mbox{\label{classSudoku__killer_a215fb2671ee00c38062abf7c5c6f9983}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!Sudoku\_killer@{Sudoku\_killer}}
+\index{Sudoku\_killer@{Sudoku\_killer}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{Sudoku\_killer()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Sudoku\+\_\+killer\+::\+Sudoku\+\_\+killer (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \textbf{ Jaula} $>$ \&}]{jaulas }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em jaulas} & contiene todas las jaulas en las que hemos dividido el tablero.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+el conjunto de las jaulas almacenadas en jaulas debe ser una partición del tablero.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+El objeto implícito queda inicializado con las distintas jaulas. 
+\end{DoxyPostcond}
+\mbox{\label{classSudoku__killer_a4e35dbc508ce53d9728d66b83099cb3f}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!Sudoku\_killer@{Sudoku\_killer}}
+\index{Sudoku\_killer@{Sudoku\_killer}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{Sudoku\_killer()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Sudoku\+\_\+killer\+::\+Sudoku\+\_\+killer (\begin{DoxyParamCaption}\item[{const \textbf{ Sudoku\+\_\+killer} \&}]{orig }\end{DoxyParamCaption})}
+
+
+
+Constructor de copia de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em orig} & sudoku del cual queremos hacer la copia.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondición}
+El objeto implícito queda inicializado con los valores de orig. 
+\end{DoxyPostcond}
+\mbox{\label{classSudoku__killer_ac751547d55ea671419e8b025b4a5d9b3}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!````~Sudoku\_killer@{$\sim$Sudoku\_killer}}
+\index{````~Sudoku\_killer@{$\sim$Sudoku\_killer}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{$\sim$Sudoku\_killer()}
+{\footnotesize\ttfamily Sudoku\+\_\+killer\+::$\sim$\+Sudoku\+\_\+killer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. 
+
+\begin{DoxyPostcond}{Postcondición}
+pone el tablero a 0. 
+\end{DoxyPostcond}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\label{classSudoku__killer_a8b4410b5fc69f23408fc54d25f761d79}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!CalculaPosicionFC@{CalculaPosicionFC}}
+\index{CalculaPosicionFC@{CalculaPosicionFC}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{CalculaPosicionFC()}
+{\footnotesize\ttfamily Posicion Sudoku\+\_\+killer\+::\+Calcula\+Posicion\+FC (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{char}]{modo = {\ttfamily \textquotesingle{}f\textquotesingle{}} }\end{DoxyParamCaption})}
+
+
+
+Calcula el numero restante de una fila o columna aplicando la regla del 45. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em modo} & Si modo es \textquotesingle{}f\textquotesingle{} se analiza la fila i, si es \textquotesingle{}c\textquotesingle{} se haría lo propio con la columna. \\
+\hline
+{\em i} & Indice de la fila o columna que queremos solucionar\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+0 $<$=
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parámetros}
+{\em i} & $<$ 9 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parámetros}
+{\em modo} & debe ser \textquotesingle{}c\textquotesingle{} o \textquotesingle{}f\textquotesingle{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+Celdas\+Vacias(
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parámetros}
+{\em i,modo)==1;} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em std\+::invalid\+\_\+arguments} & si\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parámetros}
+{\em modo} & no cumple su precondición. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em std\+::invalid\+\_\+arguments} & si\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parámetros}
+{\em i} & no cumple su precondición.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondición}
+El elemento calculado es añadido a su celda correspondiente. 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Devuelve}
+Devuelve la posicion donde ha añadido el elemento 
+\end{DoxyReturn}
+\mbox{\label{classSudoku__killer_ab9ccc9f87bd1773a0238ccc6de0764f9}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!CeldasVacias@{CeldasVacias}}
+\index{CeldasVacias@{CeldasVacias}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{CeldasVacias()}
+{\footnotesize\ttfamily int Sudoku\+\_\+killer\+::\+Celdas\+Vacias (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{char}]{modo = {\ttfamily \textquotesingle{}f\textquotesingle{}} }\end{DoxyParamCaption}) const}
+
+
+
+Número de celdas vacías en una fila o columna i-\/esima. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em modo} & Si modo es \textquotesingle{}f\textquotesingle{} se analiza la fila i, si es \textquotesingle{}c\textquotesingle{} se haría lo propio con la columna. \\
+\hline
+{\em i} & Indice de fila o columna según modo.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+Diremos que una celda está vacía si el dato que almacena es 0. 
+
+i debe estar entre 0 y 8, ambos incluidos. 
+
+modo debe ser \textquotesingle{}c\textquotesingle{} o \textquotesingle{}f\textquotesingle{}.
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em std\+::invalid\+\_\+arguments} & si modo no cumple su precondición. \\
+\hline
+{\em std\+::invalid\+\_\+arguments} & si i no cumple su precondición.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Devuelve}
+el número de celdas vacías de la fila o columna i-\/esima. 
+\end{DoxyReturn}
+\mbox{\label{classSudoku__killer_afabb202294f15d2554a31c8b84ae8361}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!EstaCompleta@{EstaCompleta}}
+\index{EstaCompleta@{EstaCompleta}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{EstaCompleta()}
+{\footnotesize\ttfamily bool Sudoku\+\_\+killer\+::\+Esta\+Completa (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{char}]{modo = {\ttfamily \textquotesingle{}f\textquotesingle{}} }\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si la fila o columna i-\/ésima está completa. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em i} & Indice de la fila o columna a analizar. \\
+\hline
+{\em modo} & Si modo es \textquotesingle{}f\textquotesingle{} se analiza la fila i, si es \textquotesingle{}c\textquotesingle{} se haría lo propio con la columna.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+Diremos que la fila o columna está completa cuando contenga a todos los números del 1 al 9, sin repetir ninguno. 
+
+i debe estar entre 0 y 8, ambos incluidos. 
+
+modo debe ser \textquotesingle{}c\textquotesingle{} o \textquotesingle{}f\textquotesingle{}.
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em std\+::invalid\+\_\+arguments} & si modo no cumple su precondición. \\
+\hline
+{\em std\+::invalid\+\_\+arguments} & si i no cumple su precondición.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Devuelve}
+true si la fila o columna i-\/esima está completa, false en caso contrario. 
+\end{DoxyReturn}
+\mbox{\label{classSudoku__killer_aace041fce5264a406d75e3135ac52468}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!operator=@{operator=}}
+\index{operator=@{operator=}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{operator=()}
+{\footnotesize\ttfamily \textbf{ Sudoku\+\_\+killer}\& Sudoku\+\_\+killer\+::operator= (\begin{DoxyParamCaption}\item[{const \textbf{ Sudoku\+\_\+killer} \&}]{orig }\end{DoxyParamCaption})}
+
+
+
+Operador de asignación de la clase \doxyref{Sudoku\+\_\+killer}{p.}{classSudoku__killer}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em orig} & sudoku sobre el cual queremos hacer la asignación.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+En caso de que orig y $\ast$this sean el mismo no se procesa la asignación
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+El objeto implícito queda como una copia de orig. 
+\end{DoxyPostcond}
+\mbox{\label{classSudoku__killer_af0a5b76933cda7c5609af7764d52f8db}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!ResolverSudokuKiller@{ResolverSudokuKiller}}
+\index{ResolverSudokuKiller@{ResolverSudokuKiller}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{ResolverSudokuKiller()}
+{\footnotesize\ttfamily void Sudoku\+\_\+killer\+::\+Resolver\+Sudoku\+Killer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resuelve el sudoku killer de forma recursiva Para ello, utiliza el método privado Rellenar\+Celdas. 
+
+\begin{DoxyPostcond}{Postcondición}
+El sudoku killer queda resuelto. 
+\end{DoxyPostcond}
+\mbox{\label{classSudoku__killer_a7f37fc7a4673b1dd06f5b261c5299544}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!SumaFila@{SumaFila}}
+\index{SumaFila@{SumaFila}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{SumaFila()}
+{\footnotesize\ttfamily int Sudoku\+\_\+killer\+::\+Suma\+Fila (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{char}]{modo = {\ttfamily \textquotesingle{}f\textquotesingle{}} }\end{DoxyParamCaption}) const}
+
+
+
+Suma de los elementos de la fila o columna i-\/esima. 
+
+\begin{DoxyPrecond}{Precondición}
+i debe estar entre 0 y 8, ambos incluidos. 
+
+modo debe ser \textquotesingle{}c\textquotesingle{} o \textquotesingle{}f\textquotesingle{}.
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em std\+::invalid\+\_\+arguments} & si modo no cumple su precondición. \\
+\hline
+{\em std\+::invalid\+\_\+arguments} & si i no cumple su precondición.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Devuelve}
+la suma de los elementos de la fila. 
+\end{DoxyReturn}
+\mbox{\label{classSudoku__killer_aa7abc95ec217ccbb4d45d4fc4d66cb9c}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!SumaJaula@{SumaJaula}}
+\index{SumaJaula@{SumaJaula}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{SumaJaula()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int Sudoku\+\_\+killer\+::\+Suma\+Jaula (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve la suma de la jaula indicada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em i} & Posición de una celda\+\_\+inicial del vector de jaulas.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+0 $<$= i $<$ jaulas.\+size()
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em std\+::invalid\+\_\+arguments} & si i no cumple su precondición.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyPostcond}{Postcondición}
+El objeto implícito no queda modificado
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Devuelve}
+la suma de todos los elementos de la jaula. 
+\end{DoxyReturn}
+\mbox{\label{classSudoku__killer_a81e7f435dbecbc292d2013552264203a}} 
+\index{Sudoku\_killer@{Sudoku\_killer}!SumaJaula@{SumaJaula}}
+\index{SumaJaula@{SumaJaula}!Sudoku\_killer@{Sudoku\_killer}}
+\doxysubsubsection{SumaJaula()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int Sudoku\+\_\+killer\+::\+Suma\+Jaula (\begin{DoxyParamCaption}\item[{Posicion}]{pos }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve la suma de la jaula indicada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posición de una celda perteneciente a la jaula.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+0 $<$= pos.\+first, pos.\+second() $<$ 9
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em std\+::invalid\+\_\+arguments} & si pos no cumple su precondición \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyPostcond}{Postcondición}
+No se modifica el objeto
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Devuelve}
+la suma de todos los elementos de la jaula. 
+\end{DoxyReturn}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+Sudoku\+\_\+killer.\+h\end{DoxyCompactItemize}

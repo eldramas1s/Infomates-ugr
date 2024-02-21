@@ -1,0 +1,423 @@
+.TH "Sudoku_killer" 3 "Domingo, 22 de Octubre de 2023" "Clase Sudoku Killer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Sudoku_killer \- T\&.D\&.A \fBSudoku_killer\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Sudoku_killer\&.h>\fP
+.SS "Métodos públicos"
+
+.in +1c
+.ti -1c
+.RI "\fBSudoku_killer\fP ()"
+.br
+.RI "Constructor por defecto de la clase \fBSudoku_killer\fP\&. Crea un sudoku killer vacío\&. "
+.ti -1c
+.RI "\fBSudoku_killer\fP (const std::vector< \fBJaula\fP > &jaulas)"
+.br
+.RI "Constructor de la clase \fBSudoku_killer\fP\&. "
+.ti -1c
+.RI "\fBSudoku_killer\fP (const \fBSudoku_killer\fP &orig)"
+.br
+.RI "Constructor de copia de la clase \fBSudoku_killer\fP\&. "
+.ti -1c
+.RI "\fBSudoku_killer\fP & \fBoperator=\fP (const \fBSudoku_killer\fP &orig)"
+.br
+.RI "Operador de asignación de la clase \fBSudoku_killer\fP\&. "
+.ti -1c
+.RI "\fB~Sudoku_killer\fP ()"
+.br
+.RI "Destructor de la clase \fBSudoku_killer\fP\&. "
+.ti -1c
+.RI "int \fBSumaJaula\fP (Posicion pos) const"
+.br
+.RI "Devuelve la suma de la jaula indicada\&. "
+.ti -1c
+.RI "int \fBSumaJaula\fP (int i) const"
+.br
+.RI "Devuelve la suma de la jaula indicada\&. "
+.ti -1c
+.RI "int \fBSumaFila\fP (int i, char modo='f') const"
+.br
+.RI "Suma de los elementos de la fila o columna i-esima\&. "
+.ti -1c
+.RI "bool \fBEstaCompleta\fP (int i, char modo='f') const"
+.br
+.RI "Comprueba si la fila o columna i-ésima está completa\&. "
+.ti -1c
+.RI "int \fBCeldasVacias\fP (int i, char modo='f') const"
+.br
+.RI "Número de celdas vacías en una fila o columna i-esima\&. "
+.ti -1c
+.RI "Posicion \fBCalculaPosicionFC\fP (int i, char modo='f')"
+.br
+.RI "Calcula el numero restante de una fila o columna aplicando la regla del 45\&. "
+.ti -1c
+.RI "void \fBResolverSudokuKiller\fP ()"
+.br
+.RI "Resuelve el sudoku killer de forma recursiva Para ello, utiliza el método privado RellenarCeldas\&. "
+.in -1c
+.SH "Descripción detallada"
+.PP 
+T\&.D\&.A \fBSudoku_killer\fP\&. 
+
+Una instancia del tipo de dato abstracto sudoku killer consiste en una partición del tablero por Jaulas; es decir, de un conjunto de Jaulas disjuntas de tal manera que cada \fBCelda\fP del tablero esté en una \fBJaula\fP\&.
+.PP
+\fBParámetros\fP
+.RS 4
+\fITablero\fP Consiste en una matriz estática de enteros donde se guardan los elementos de cada celda dando lugar al tablero del sudoku\&. 
+.br
+\fIceldas_iniciales\fP Vector de Jaulas donde se guardan las distintas sumas repartidas por el tablero\&. 
+.br
+\fITAMANIO_TABLERO\fP Constante estática que guarda el tamanio del tablero, en este caso es 9 por ser un sudoku dando lugar a un tablero 9x9\&. 
+.br
+\fISUMA\fP Constante estática que almacena el resultado de sumar todos los números naturales entre 1 y 9 incluyendo ambos es útil para averiguar qué numero poder colocar en una posición de una región, columna o fila\&.
+.RE
+.PP
+Algunas reglas del sudoku killer son las siguientes:
+.IP "\(bu" 2
+No se pueden repetir números en una columna
+.IP "\(bu" 2
+No se pueden repetir números en una fila
+.IP "\(bu" 2
+No se pueden repetir números en una región (cruadrícula 3x3 del tablero)
+.IP "\(bu" 2
+No se pueden repetir números en una jaula Cabe destacar que las tres primeras reglas son propias de un sudoku ordinario dando así paso a la regla del 45\&.
+.PP
+.PP
+\fBPrecondición\fP
+.RS 4
+El tablero siempre debe ser de 9x9, así viene determinado mediante la constante TAMANIO_TABLERO 
+.RE
+.PP
+
+.SH "Documentación del constructor y destructor"
+.PP 
+.SS "Sudoku_killer::Sudoku_killer ()"
+
+.PP
+Constructor por defecto de la clase \fBSudoku_killer\fP\&. Crea un sudoku killer vacío\&. 
+.PP
+\fBPostcondición\fP
+.RS 4
+el objeto implícito queda inicializado con las jaulas a 0\&. 
+.RE
+.PP
+
+.SS "Sudoku_killer::Sudoku_killer (const std::vector< \fBJaula\fP > & jaulas)"
+
+.PP
+Constructor de la clase \fBSudoku_killer\fP\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIjaulas\fP contiene todas las jaulas en las que hemos dividido el tablero\&.
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+el conjunto de las jaulas almacenadas en jaulas debe ser una partición del tablero\&.
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+El objeto implícito queda inicializado con las distintas jaulas\&. 
+.RE
+.PP
+
+.SS "Sudoku_killer::Sudoku_killer (const \fBSudoku_killer\fP & orig)"
+
+.PP
+Constructor de copia de la clase \fBSudoku_killer\fP\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIorig\fP sudoku del cual queremos hacer la copia\&.
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+El objeto implícito queda inicializado con los valores de orig\&. 
+.RE
+.PP
+
+.SS "Sudoku_killer::~Sudoku_killer ()"
+
+.PP
+Destructor de la clase \fBSudoku_killer\fP\&. 
+.PP
+\fBPostcondición\fP
+.RS 4
+pone el tablero a 0\&. 
+.RE
+.PP
+
+.SH "Documentación de las funciones miembro"
+.PP 
+.SS "Posicion Sudoku_killer::CalculaPosicionFC (int i, char modo = \fC'f'\fP)"
+
+.PP
+Calcula el numero restante de una fila o columna aplicando la regla del 45\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fImodo\fP Si modo es 'f' se analiza la fila i, si es 'c' se haría lo propio con la columna\&. 
+.br
+\fIi\fP Indice de la fila o columna que queremos solucionar
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+0 <=
+.RE
+.PP
+\fBParámetros\fP
+.RS 4
+\fIi\fP < 9 
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+.RE
+.PP
+\fBParámetros\fP
+.RS 4
+\fImodo\fP debe ser 'c' o 'f'\&. 
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+CeldasVacias(
+.RE
+.PP
+\fBParámetros\fP
+.RS 4
+\fIi,modo)==1;\fP 
+.RE
+.PP
+\fBExcepciones\fP
+.RS 4
+\fIstd::invalid_arguments\fP si
+.RE
+.PP
+\fBParámetros\fP
+.RS 4
+\fImodo\fP no cumple su precondición\&. 
+.RE
+.PP
+\fBExcepciones\fP
+.RS 4
+\fIstd::invalid_arguments\fP si
+.RE
+.PP
+\fBParámetros\fP
+.RS 4
+\fIi\fP no cumple su precondición\&.
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+El elemento calculado es añadido a su celda correspondiente\&. 
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+Devuelve la posicion donde ha añadido el elemento 
+.RE
+.PP
+
+.SS "int Sudoku_killer::CeldasVacias (int i, char modo = \fC'f'\fP) const"
+
+.PP
+Número de celdas vacías en una fila o columna i-esima\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fImodo\fP Si modo es 'f' se analiza la fila i, si es 'c' se haría lo propio con la columna\&. 
+.br
+\fIi\fP Indice de fila o columna según modo\&.
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+Diremos que una celda está vacía si el dato que almacena es 0\&. 
+.PP
+i debe estar entre 0 y 8, ambos incluidos\&. 
+.PP
+modo debe ser 'c' o 'f'\&.
+.RE
+.PP
+\fBExcepciones\fP
+.RS 4
+\fIstd::invalid_arguments\fP si modo no cumple su precondición\&. 
+.br
+\fIstd::invalid_arguments\fP si i no cumple su precondición\&.
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+el número de celdas vacías de la fila o columna i-esima\&. 
+.RE
+.PP
+
+.SS "bool Sudoku_killer::EstaCompleta (int i, char modo = \fC'f'\fP) const"
+
+.PP
+Comprueba si la fila o columna i-ésima está completa\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIi\fP Indice de la fila o columna a analizar\&. 
+.br
+\fImodo\fP Si modo es 'f' se analiza la fila i, si es 'c' se haría lo propio con la columna\&.
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+Diremos que la fila o columna está completa cuando contenga a todos los números del 1 al 9, sin repetir ninguno\&. 
+.PP
+i debe estar entre 0 y 8, ambos incluidos\&. 
+.PP
+modo debe ser 'c' o 'f'\&.
+.RE
+.PP
+\fBExcepciones\fP
+.RS 4
+\fIstd::invalid_arguments\fP si modo no cumple su precondición\&. 
+.br
+\fIstd::invalid_arguments\fP si i no cumple su precondición\&.
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+true si la fila o columna i-esima está completa, false en caso contrario\&. 
+.RE
+.PP
+
+.SS "\fBSudoku_killer\fP& Sudoku_killer::operator= (const \fBSudoku_killer\fP & orig)"
+
+.PP
+Operador de asignación de la clase \fBSudoku_killer\fP\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIorig\fP sudoku sobre el cual queremos hacer la asignación\&.
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+En caso de que orig y *this sean el mismo no se procesa la asignación
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+El objeto implícito queda como una copia de orig\&. 
+.RE
+.PP
+
+.SS "void Sudoku_killer::ResolverSudokuKiller ()"
+
+.PP
+Resuelve el sudoku killer de forma recursiva Para ello, utiliza el método privado RellenarCeldas\&. 
+.PP
+\fBPostcondición\fP
+.RS 4
+El sudoku killer queda resuelto\&. 
+.RE
+.PP
+
+.SS "int Sudoku_killer::SumaFila (int i, char modo = \fC'f'\fP) const"
+
+.PP
+Suma de los elementos de la fila o columna i-esima\&. 
+.PP
+\fBPrecondición\fP
+.RS 4
+i debe estar entre 0 y 8, ambos incluidos\&. 
+.PP
+modo debe ser 'c' o 'f'\&.
+.RE
+.PP
+\fBExcepciones\fP
+.RS 4
+\fIstd::invalid_arguments\fP si modo no cumple su precondición\&. 
+.br
+\fIstd::invalid_arguments\fP si i no cumple su precondición\&.
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+la suma de los elementos de la fila\&. 
+.RE
+.PP
+
+.SS "int Sudoku_killer::SumaJaula (int i) const"
+
+.PP
+Devuelve la suma de la jaula indicada\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIi\fP Posición de una celda_inicial del vector de jaulas\&.
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+0 <= i < jaulas\&.size()
+.RE
+.PP
+\fBExcepciones\fP
+.RS 4
+\fIstd::invalid_arguments\fP si i no cumple su precondición\&.
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+El objeto implícito no queda modificado
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+la suma de todos los elementos de la jaula\&. 
+.RE
+.PP
+
+.SS "int Sudoku_killer::SumaJaula (Posicion pos) const"
+
+.PP
+Devuelve la suma de la jaula indicada\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIpos\fP Posición de una celda perteneciente a la jaula\&.
+.RE
+.PP
+\fBPrecondición\fP
+.RS 4
+0 <= pos\&.first, pos\&.second() < 9
+.RE
+.PP
+\fBExcepciones\fP
+.RS 4
+\fIstd::invalid_arguments\fP si pos no cumple su precondición 
+.RE
+.PP
+\fBPostcondición\fP
+.RS 4
+No se modifica el objeto
+.RE
+.PP
+\fBDevuelve\fP
+.RS 4
+la suma de todos los elementos de la jaula\&. 
+.RE
+.PP
+
+
+.SH "Autor"
+.PP 
+Generado automáticamente por Doxygen para Clase Sudoku Killer del código fuente\&.
