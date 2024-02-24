@@ -1,11 +1,14 @@
- # Ignorar archivos temporales
+#Ignorar imagenes
+**/*.png
+
+# Ignorar archivos temporales
 **/*tmp
 
 # Ignorar archivos compilados
 **/*.o
 
 # Ignorar archivos ejecutables
-**/*exe
+**/exe*
 
 # Ignorar directorios y archivos generados por IDEs
 **/.idea/
