@@ -17,6 +17,7 @@ public class Probar {
     public static void main(String[] args) {
         Persona p=new Persona("Juan",10,ColorPelo.RUBIO);
         p.saluda();
+        System.out.println("HashCode: " +p.hashCode());
     }
     
 }
