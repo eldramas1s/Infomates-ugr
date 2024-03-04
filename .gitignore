@@ -17,7 +17,11 @@
 
 # Ignorar archivo .DS_Store generado por el Finder
 **/.DS_Store
+<<<<<<< HEAD
 /Segundo_Cuatri/PDOO/Probar/nbproject/private/
 /Segundo_Cuatri/PDOO/Probar/build/
 /Segundo_Cuatri/PDOO/Trasteo/Probar/build/
 /Segundo_Cuatri/PDOO/Trasteo/Probar/nbproject/private/
+=======
+
+>>>>>>> refs/remotes/origin/main
