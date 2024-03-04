@@ -6,29 +6,27 @@ package irrgarten;
 
 /**
  *
- * @author airam
+ * @author el_dramas
  */
-public class Weapon {
-    private float power;
+public class Shield {
+    private float protection;
     private int uses;
     
-    Weapon(float strength, int durability){
-        power = strength;
+    Shield (float defense, int durability ){
+        protection = defense;
         uses = durability;
     }
     
-    public float attack(){  
-        float atk_val = 0;
-        if(uses > 0){
-            atk_val = power;
+    public float protect(){
+        float prt_val=0;
+        if(uses>0){
+            prt_val=protection;
             uses--;
         }
-        return atk_val;
+        return prt_val;
     }
-    
-    public String toString(){
-        return "W[" + power +"," + uses + "]";
-    }
-    
-}
 
+    public String toString(){
+        return "S[" + protection + "," + uses + "]";
+    }
+}
