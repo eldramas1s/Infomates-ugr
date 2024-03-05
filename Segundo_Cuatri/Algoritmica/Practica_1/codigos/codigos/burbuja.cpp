@@ -1,5 +1,5 @@
 /**
-   @file Ordenación por inserción
+   @file Ordenación por burbuja
 */
 
    
@@ -10,16 +10,17 @@ using namespace std;
 #include <climits>
 #include <cassert>
 
-
+#include <chrono>
+using namespace std::chrono;
 
 
 
 
 /* ************************************************************ */ 
-/*  Método de ordenación por inserción  */
+/*  Método de ordenación por burbuja  */
 
 /**
-   @brief Ordena un vector por el método de inserción.
+   @brief Ordena un vector por el método de la burbuja.
 
    @param T: vector de elementos. Debe tener num_elem elementos.
              Es MODIFICADO.
@@ -27,18 +28,19 @@ using namespace std;
 
    Cambia el orden de los elementos de T de forma que los dispone
    en sentido creciente de menor a mayor.
-   Aplica el algoritmo de inserción.
+   Aplica el algoritmo de la burbuja.
 */
 inline static 
-void insercion(int T[], int num_elem);
+void burbuja(int T[], int num_elem);
 
 
 
 /**
-   @brief Ordena parte de un vector por el método de inserción.
+   @brief Ordena parte de un vector por el método de la burbuja.
 
    @param T: vector de elementos. Tiene un número de elementos 
-                   mayor o igual a final. Es MODIFICADO.
+                   mayor o igual a final.Es MODIFICADO.
+
    @param inicial: Posición que marca el incio de la parte del
                    vector a ordenar.
    @param final: Posición detrás de la última de la parte del
@@ -48,9 +50,9 @@ void insercion(int T[], int num_elem);
    Cambia el orden de los elementos de T entre las posiciones
    inicial y final - 1de forma que los dispone en sentido creciente
    de menor a mayor.
-   Aplica el algoritmo de inserción.
+   Aplica el algoritmo de la burbuja.
 */
-static void insercion_lims(int T[], int inicial, int final);
+static void burbuja_lims(int T[], int inicial, int final);
 
 
 
@@ -58,34 +60,33 @@ static void insercion_lims(int T[], int inicial, int final);
    Implementación de las funciones
 **/
 
-inline static void insercion(int T[], int num_elem)
+inline void burbuja(int T[], int num_elem)
 {
-  insercion_lims(T, 0, num_elem);
-}
+  burbuja_lims(T, 0, num_elem);
+};
 
 
-static void insercion_lims(int T[], int inicial, int final)
+static void burbuja_lims(int T[], int inicial, int final)
 {
   int i, j;
   int aux;
-  for (i = inicial + 1; i < final; i++) {
-    j = i;
-    while ((T[j] < T[j-1]) && (j > 0)) {
-      aux = T[j];
-      T[j] = T[j-1];
-      T[j-1] = aux;
-      j--;
-    };
-  };
+  for (i = inicial; i < final - 1; i++)
+    for (j = final - 1; j > i; j--)
+      if (T[j] < T[j-1])
+	{
+	  aux = T[j];
+	  T[j] = T[j-1];
+	  T[j-1] = aux;
+	}
 }
 
 
 
-int main()
+
+int main(int argc, char** argv)
 {
-  int n;
-  cout << "Introduce número de elementos del vector: ";
-  cin >> n;
+    int n = strtol(argv[1], NULL, 10);
+    //
 
   int * T = new int[n];
   assert(T);
@@ -97,8 +98,21 @@ int main()
       T[i] = random();
     };
 
-  insercion(T, n);
+  // 
 
+  high_resolution_clock::time_point tantes, tdespues;
+  duration<double> transcurrido;
+
+  tantes = high_resolution_clock::now();
+
+  burbuja(T, n);
+
+  tdespues = high_resolution_clock::now();
+  transcurrido = duration_cast<duration<double>>(tdespues - tantes);
+  cout << n << " " << transcurrido.count() << endl;
+
+  //
+  
   delete [] T;
 
   return 0;

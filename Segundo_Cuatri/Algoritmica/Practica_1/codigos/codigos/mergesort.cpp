@@ -9,9 +9,10 @@ using namespace std;
 #include <cstdlib>
 #include <climits>
 #include <cassert>
+#include <fstream>
 
-
-
+#include <chrono>
+using namespace std::chrono;
 
 
 
@@ -30,7 +31,7 @@ using namespace std;
    Aplica el algoritmo de mezcla.
 */
 inline static 
-void mergesort(int T[], int num_elem);
+void mergesort(string T[], int num_elem);
 
 
 
@@ -50,7 +51,7 @@ void mergesort(int T[], int num_elem);
    de menor a mayor.
    Aplica el algoritmo de la mezcla.
 */
-static void mergesort_lims(int T[], int inicial, int final);
+static void mergesort_lims(string T[], int inicial, int final);
 
 
 /**
@@ -65,7 +66,7 @@ static void mergesort_lims(int T[], int inicial, int final);
    Aplica el algoritmo de inserción.
 */
 inline static 
-void insercion(int T[], int num_elem);
+void insercion(string T[], int num_elem);
 
 
 /**
@@ -84,7 +85,7 @@ void insercion(int T[], int num_elem);
    de menor a mayor.
    Aplica el algoritmo de la inserción.
 */
-static void insercion_lims(int T[], int inicial, int final);
+static void insercion_lims(string T[], int inicial, int final);
 
 
 /**
@@ -106,7 +107,7 @@ static void insercion_lims(int T[], int inicial, int final);
    pone ordenados en sentido creciente, de menor a mayor, los
    elementos de los vectores U y V.
 */
-static void fusion(int T[], int inicial, int final, int U[], int V[]);
+static void fusion(string T[], int inicial, int final, string U[], string V[]);
 
 
 
@@ -115,16 +116,16 @@ static void fusion(int T[], int inicial, int final, int U[], int V[]);
 **/
 
 
-inline static void insercion(int T[], int num_elem)
+inline static void insercion(string T[], int num_elem)
 {
   insercion_lims(T, 0, num_elem);
 }
 
 
-static void insercion_lims(int T[], int inicial, int final)
+static void insercion_lims(string T[], int inicial, int final)
 {
   int i, j;
-  int aux;
+  string aux;
   for (i = inicial + 1; i < final; i++) {
     j = i;
     while ((T[j] < T[j-1]) && (j > 0)) {
@@ -139,12 +140,12 @@ static void insercion_lims(int T[], int inicial, int final)
 
 const int UMBRAL_MS = 100;
 
-void mergesort(int T[], int num_elem)
+void mergesort(string T[], int num_elem)
 {
   mergesort_lims(T, 0, num_elem);
 }
 
-static void mergesort_lims(int T[], int inicial, int final)
+static void mergesort_lims(string T[], int inicial, int final)
 {
   if (final - inicial < UMBRAL_MS)
     {
@@ -152,14 +153,14 @@ static void mergesort_lims(int T[], int inicial, int final)
     } else {
       int k = (final - inicial)/2;
 
-      int * U = new int [k - inicial + 1];
+      string * U = new string [k - inicial + 1];
       assert(U);
       int l, l2;
       for (l = 0, l2 = inicial; l < k; l++, l2++)
 	U[l] = T[l2];
       U[l] = INT_MAX;
 
-      int * V = new int [final - k + 1];
+      string * V = new string [final - k + 1];
       assert(V);
       for (l = 0, l2 = k; l < final - k; l++, l2++)
 	V[l] = T[l2];
@@ -174,7 +175,7 @@ static void mergesort_lims(int T[], int inicial, int final)
 }
   
 
-static void fusion(int T[], int inicial, int final, int U[], int V[])
+static void fusion(int T[], int inicial, int final, string U[], string V[])
 {
   int j = 0;
   int k = 0;
@@ -205,16 +206,26 @@ int main(int argc, char * argv[])
 
   int n = atoi(argv[1]);
 
-  int * T = new int[n];
+  string * T = new string[n];
   assert(T);
 
   srandom(time(0));
 
-  for (int i = 0; i < n; i++)
+  /*for (int i = 0; i < n; i++)
     {
       T[i] = random();
-    };
-
+   }; */
+	
+std::ifstream ifs("/home/el_dramas/Desktop/Segundo_Curso/Segundo_Cuatri/Algoritmica/Practica_1/Datos/quijote.txt");
+		if(!ifs.is_open()){
+			throw std::ios::failure("wat");
+		}
+		int i=0;
+		while(i < n && ifs){
+			ifs >> T[i];
+			++i;
+		}
+ ifs.close();
   const int TAM_GRANDE = 10000;
   const int NUM_VECES = 1000;
 
@@ -229,7 +240,7 @@ int main(int argc, char * argv[])
       cout << n << "  " << ((double)(t_despues - t_antes)) / CLOCKS_PER_SEC 
 	   << endl;
     } else {
-      int * U = new int[n];
+      string * U = new string[n];
       assert(U);
 
       for (int i = 0; i < n; i++)

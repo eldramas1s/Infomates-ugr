@@ -11,6 +11,8 @@ using namespace std;
 #include <cassert>
 
 
+#include <chrono>
+using namespace std::chrono;
 
 
 
@@ -186,11 +188,9 @@ static void dividir_qs(int T[], int inicial, int final, int & pp)
 
 
 
-int main()
+int main(int argc, char** argv)
 {
-  int n;
-  cout << "Introduce número de elementos del vector: ";
-  cin >> n;
+    int n = strtol(argv[1], NULL, 10);
 
   int * T = new int[n];
   assert(T);
@@ -202,7 +202,14 @@ int main()
       T[i] = random();
     };
 
+  high_resolution_clock::time_point tantes, tdespues;
+  duration<double> transcurrido;
+
+  tantes = high_resolution_clock::now();
   quicksort(T, n);
+  tdespues = high_resolution_clock::now();
+  transcurrido = duration_cast<duration<double>>(tdespues - tantes);
+  cout << n << " " << transcurrido.count() << endl;
 
   delete [] T;
 

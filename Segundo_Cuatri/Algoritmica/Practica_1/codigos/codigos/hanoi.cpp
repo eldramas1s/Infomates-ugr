@@ -6,6 +6,8 @@
 #include <iostream>
 using namespace std;
 #include <ctime>
+#include <chrono>
+using namespace std::chrono;
 
 
 /**
@@ -32,22 +34,26 @@ void hanoi (int M, int i, int j)
   if (M > 0)
     {
       hanoi(M-1, i, 6-i-j);
-      cout << i << " -> " << j << endl;
+//      cout << i << " -> " << j << endl;
       hanoi (M-1, 6-i-j, j);
   }
 }
 
-int main()
+int main(int argc, char** argv)
 {
 
-  int M;
-  do
-    {
-      cout << "Número de discos: ";
-      cin >> M;
-    } while (M <= 0);
+    int n = strtol(argv[1], NULL, 10);
 
-  hanoi(M, 1, 2);
+  high_resolution_clock::time_point tantes, tdespues;
+  duration<double> transcurrido;
+
+  tantes = high_resolution_clock::now();
+
+  hanoi(n, 1, 2);
+
+  tdespues = high_resolution_clock::now();
+  transcurrido = duration_cast<duration<double>>(tdespues - tantes);
+  cout << n << " " << transcurrido.count() << endl;
 
   return 0;
 }

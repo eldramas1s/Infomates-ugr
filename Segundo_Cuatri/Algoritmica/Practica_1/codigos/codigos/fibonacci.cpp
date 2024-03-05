@@ -6,6 +6,8 @@
 #include <iostream>
 using namespace std;
 #include <ctime>
+#include <chrono>
+using namespace std::chrono;
 
 
 /**
@@ -24,18 +26,20 @@ int fibo(int n)
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
+    int n = strtol(argv[1], NULL, 10);
+    int f;
 
-  int n;
-  int f;
- 
-  cout << "¿Número del término: ";
-  cin >> n;
+  high_resolution_clock::time_point tantes, tdespues;
+  duration<double> transcurrido;
 
+  tantes = high_resolution_clock::now();
   f = fibo(n);
+  tdespues = high_resolution_clock::now();
+  transcurrido = duration_cast<duration<double>>(tdespues - tantes);
+  cout << n << " " << transcurrido.count() << endl;
 
-  cout << "El término " << n << "-ésimo es: " << f << endl;
 
   return 0;
 }
