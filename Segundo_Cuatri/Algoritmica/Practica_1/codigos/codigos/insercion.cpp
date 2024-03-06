@@ -32,7 +32,7 @@ using namespace std::chrono;
    Aplica el algoritmo de inserción.
 */
 inline static 
-void insercion(int T[], int num_elem);
+void insercion(string T[], int num_elem);
 
 
 
@@ -52,7 +52,7 @@ void insercion(int T[], int num_elem);
    de menor a mayor.
    Aplica el algoritmo de inserción.
 */
-static void insercion_lims(int T[], int inicial, int final);
+static void insercion_lims(string T[], int inicial, int final);
 
 
 
@@ -60,16 +60,16 @@ static void insercion_lims(int T[], int inicial, int final);
    Implementación de las funciones
 **/
 
-inline static void insercion(int T[], int num_elem)
+inline static void insercion(string T[], int num_elem)
 {
   insercion_lims(T, 0, num_elem);
 }
 
 
-static void insercion_lims(int T[], int inicial, int final)
+static void insercion_lims(string T[], int inicial, int final)
 {
   int i, j;
-  int aux;
+  string aux;
   for (i = inicial + 1; i < final; i++) {
     j = i;
     while ((j > 0) && (T[j] < T[j-1])) {
@@ -87,16 +87,16 @@ int main(int argc, char** argv)
 {
     int n = strtol(argv[1], NULL, 10);
 
-  int * T = new int[n];
+  string * T = new string[n];
   assert(T);
 
   srandom(time(0));
 
-  for (int i = 0; i < n; i++)
+  /*for (int i = 0; i < n; i++)
     {
       T[i] = random();
-    };
-  /*std::ifstream ifs("/home/el_dramas/Desktop/Segundo_Curso/Segundo_Cuatri/Algoritmica/Practica_1/Datos/quijote.txt");
+    };*/
+  std::ifstream ifs("/home/el_dramas/Desktop/Segundo_Curso/Segundo_Cuatri/Algoritmica/Practica_1/Datos/quijote.txt");
 		if(!ifs.is_open()){
 			throw std::ios::failure("wat");
 		}
@@ -105,7 +105,7 @@ int main(int argc, char** argv)
 			ifs >> T[i];
 			++i;
 		}
-  ifs.close();*/
+  ifs.close();
   high_resolution_clock::time_point tantes, tdespues;
   duration<double> transcurrido;
 
