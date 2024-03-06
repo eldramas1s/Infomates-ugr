@@ -18,9 +18,8 @@
 			// tamaño de la pila del programa)
 //#define VECTOR_DYNAMIC	// descomentar para que los vectores sean variables ...
 			// dinámicas (memoria reutilizable durante la ejecución)
-
 #ifdef VECTOR_GLOBAL
-#define MAX 33554432	//=2^25
+#define MAX 2^25-1	//=2^25
    
 double v1[MAX], v2[MAX], v3[MAX]; 
 #endif
@@ -58,7 +57,9 @@ int main(int argc, char** argv){
     exit(-1);
   }
   
-  unsigned int N = atoi(argv[1]);	// Máximo N =2^32-1=4294967295 (sizeof(unsigned int) = 4 B)
+  unsigned int N = atoi(argv[1]);
+  //unsigned int N = 4294967295;	
+// Máximo N =2^32-1=4294967295 (sizeof(unsigned int) = 4 B)
   printf("Tamaño Vectores:%lu (%lu B)\n",N*sizeof(unsigned int), sizeof(unsigned int)); 
   #ifdef VECTOR_LOCAL
   double v1[N], v2[N], v3[N];   // Tamaño variable local en tiempo de ejecución ...
