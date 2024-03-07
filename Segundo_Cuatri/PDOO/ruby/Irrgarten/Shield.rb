@@ -18,5 +18,6 @@ module Shield
         def to_s
             return "S[" + @protection + "," + @uses + "]*"
         end
+
     end
 end
