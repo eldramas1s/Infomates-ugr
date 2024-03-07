@@ -7,11 +7,11 @@ module Weapon
         end
 
         public def attack
-            power = @power 
-            unless @uses > 0 
-                power = 0 
-                @uses -= 1
-            end
+            power = 0 
+                if @uses > 0 
+                    power = @power
+                    @uses -= 1
+                end
             return power
         end
         
