@@ -30,5 +30,8 @@ public class Weapon {
         return "W[" + power +"," + uses + "]";
     }
     
+    public boolean discard(){
+        return true;
+    }
 }
 
