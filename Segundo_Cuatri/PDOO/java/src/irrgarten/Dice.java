@@ -90,6 +90,7 @@ public class Dice {
     }
 
     public boolean discardElement(int usesLeft){
+        //distribuye de forma uniforme la probabilidad
         return generator.nextFloat() < (MAX_USES-usesLeft)/(float) MAX_USES;
     }
     
