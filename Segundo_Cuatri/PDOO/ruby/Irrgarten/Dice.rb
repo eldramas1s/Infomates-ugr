@@ -22,15 +22,15 @@ module Dice
     end
 
     def randomIntelligence
-        return (@generator.rand()*@MAX_ITELLIGENCE)
+        return (@generator.rand(@MAX_ITELLIGENCE))
     end
 
     def randomStrength
-        return (@generator.rand()*@MAX_STRENGTH)
+        return (@generator.rand(@MAX_STRENGTH))
     end
 
     def resurrectPlayer
-        return @generator.rand() < RESURRECT_PROB
+        return @generator.rand(1.0) < RESURRECT_PROB
     end
 
     def weaponsReward
@@ -57,7 +57,7 @@ module Dice
     end
 
     def intensity(competence)
-        return @generator.rand()*competence
+        return @generator.rand(competence)
     end
 
     def discardElement(usesLeft)
