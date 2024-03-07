@@ -1,5 +1,5 @@
 #encoding: UTF-8
-module Dice
+module Dice #TODO Cambiar a atributos de clase
     def initialize()
         @MAX_USES = 5
         @MAX_ITELLIGENCE = 10.0
