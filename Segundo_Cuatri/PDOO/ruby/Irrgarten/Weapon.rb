@@ -6,17 +6,21 @@ module Weapon
             @uses = uses
         end
 
-        public def attack
+        def attack
             power = 0 
-                if @uses > 0 
+                if @uses > 0 then
                     power = @power
                     @uses -= 1
                 end
-            return power
+             power
         end
         
+	def discard
+	    Dice::discardElement(@uses)
+	end
+
         def to_s
-            return "W[" + @power + "," + @uses + "]*"
+            "W[" + @power + "," + @uses + "]*"
         end
     end
 end

@@ -1,4 +1,7 @@
 #encoding: UTF-8
+
+#require 'Dice'
+# TODO: revisar por Airam
 module Shield
     class Shield
         def initialize(defense,durability)
@@ -8,15 +11,19 @@ module Shield
         
         def protect
             prt_val = 0
-                if @uses > 0
+                if @uses > 0 then
                     prt_val = @protection
                     @uses -= 1
                 end
-            return prt_val
-        end 
+            prt_val
+        end
+ 
+	def discard
+		Dice::discarElement(@uses)
+	end
         
         def to_s
-            return "S[" + @protection + "," + @uses + "]*"
+            "S[" + @protection + "," + @uses + "]*"
         end
 
     end

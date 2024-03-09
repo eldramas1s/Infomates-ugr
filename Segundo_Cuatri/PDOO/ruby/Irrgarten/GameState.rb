@@ -10,28 +10,28 @@ module GameState
 			@log = account
 		end
 		
-		def get_labyrinthv
-			return @labyrinthv
+		def labyrinthv
+			@labyrinthv
 		end
 		
-		def get_players
-			return @players
+		def players
+			@players
 		end
 
-		def get_monsters
-			return @monsters
+		def monsters
+			@monsters
 		end
 		
-		def get_current_player
-			return @current_player
+		def current_player
+			@current_player
 		end
 		
-		def get_winner
-			return @winner
+		def winner
+			@winner
 		end
 		
-		def get_log
-			return @log
+		def log
+			@log
 		end
     end
 end
