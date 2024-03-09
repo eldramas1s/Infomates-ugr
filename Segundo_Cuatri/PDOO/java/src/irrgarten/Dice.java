@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author airam
  */
-public class Dice { //TODO cambiar a de clase
+public class Dice { //TODO: cambiar a de clase
     int MAX_USES; //numero máximo de usos de armas y escudos
     float MAX_INTELLIGENCE; //Valor máximo para la inteligencia de jugadores y monstruos
     float MAX_STRENGTH; //Valor máximo fuerza jugadores
