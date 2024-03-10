@@ -13,31 +13,20 @@ import java.util.Random;
  * @author airam
  */
 public class Dice { //TODO: cambiar a de clase
-    int MAX_USES; //numero máximo de usos de armas y escudos
-    float MAX_INTELLIGENCE; //Valor máximo para la inteligencia de jugadores y monstruos
-    float MAX_STRENGTH; //Valor máximo fuerza jugadores
-    float RESURRECT_PROB; //probabilidad de ser resucitado en cada turno
-    int WEAPONS_REWARD; //máximo de armas ganadas por combate ganado
-    int SHIELDS_REWARD;//máximo de escudos ganados por combate ganado
-    int HEALTH_REWARD;//maximo de vida recuperada por combate ganado
-    int MAX_ATTACK;//máxima potencia de las armas
-    int MAX_SHIELD;//máximo potencia de los escudos
+    static private int MAX_USES; //numero máximo de usos de armas y escudos
+    static private float MAX_INTELLIGENCE; //Valor máximo para la inteligencia de jugadores y monstruos
+    static private float MAX_STRENGTH; //Valor máximo fuerza jugadores
+    static private float RESURRECT_PROB; //probabilidad de ser resucitado en cada turno
+    static private int WEAPONS_REWARD; //máximo de armas ganadas por combate ganado
+    static private int SHIELDS_REWARD;//máximo de escudos ganados por combate ganado
+    static private int HEALTH_REWARD;//maximo de vida recuperada por combate ganado
+    static private int MAX_ATTACK;//máxima potencia de las armas
+    static private int MAX_SHIELD;//máximo potencia de los escudos
     
+    // TODO: Mirar si esto es static
     Random generator;
     
-    public Dice(){
-        MAX_USES=5;
-        MAX_INTELLIGENCE=10.0f;
-        MAX_STRENGTH=10.0f;
-        RESURRECT_PROB=0.3f;
-        WEAPONS_REWARD=2;
-        SHIELDS_REWARD=3;
-        HEALTH_REWARD=5;
-        MAX_ATTACK=3;
-        MAX_SHIELD=2;
-        
-    }
-    
+    // Que yo sepa no hay constructor
     public int randomPos(int max){
         return generator.nextInt(max);
     }

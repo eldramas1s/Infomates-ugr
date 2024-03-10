@@ -1,6 +1,4 @@
 #encoding: UTF-8
-
-#require 'Dice'
 #TODO: Revisar por Airam
 module Dice
     class Dice
@@ -14,10 +12,9 @@ module Dice
         @@HEALTH_REWARD = 5
         @@MAX_ATTACK = 3
         @@MAX_SHIELD = 2
-	@@generator = Random.new		
-	def initialize
-	     #TODO: que hago con esto?
-	end
+	@@generator = Random.new	
+
+	# No hay initialize creado por nosotros pues no se van a crear objetos
 
 	def self.randomPos(max)
 	    return @@generator.rand(max)
@@ -28,39 +25,39 @@ module Dice
 	end
 
 	def self.randomIntelligence
-	    return (@@generator.rand(@MAX_ITELLIGENCE))
+	    return (@@generator.rand(@@MAX_ITELLIGENCE))
 	end
 
 	def self.randomStrength
-	    return (@@generator.rand(@MAX_STRENGTH))
+	    return (@@generator.rand(@@MAX_STRENGTH))
 	end
 
 	def self.resurrectPlayer
-	    return @@generator.rand(1.0) < RESURRECT_PROB
+	    return @@generator.rand(1.0) < @@RESURRECT_PROB
 	end
 
 	def self.weaponsReward
-	    return @@generator.rand(@WEAPONS_REWARD)
+	    return @@generator.rand(@@WEAPONS_REWARD)
 	end
 
 	def self.shieldsReward
-	    return @@generator.rand(@SHIELDS_REWARD)
+	    return @@generator.rand(@@SHIELDS_REWARD)
 	end
 
 	def self.healthReward
-	    return @@generator.rand(@HEALTH_REWARD)
+	    return @@generator.rand(@@HEALTH_REWARD)
 	end
 
 	def self.weaponPower
-	    return @@generator.rand(@MAX_ATTACK)
+	    return @@generator.rand(@@MAX_ATTACK)
 	end
 
 	def self.shieldPower
-	    return @@generator.rand(@MAX_SHIELD)
+	    return @@generator.rand(@@MAX_SHIELD)
 	end
 
 	def self.usesLeft
-	    return @@generator.rand(@MAX_USES)
+	    return @@generator.rand(@@MAX_USES)
 	end
 
 	def self.intensity(competence)
@@ -68,8 +65,37 @@ module Dice
 	end
 
 	def self.discardElement(usesLeft)
-	    return (@@generator.rand() < (@MAX_USES-usesLeft).to_f()/@MAX_USES.to_f())
+	    return (@@generator.rand() < (@@MAX_USES-usesLeft).to_f()/@@MAX_USES.to_f())
    	end
 	
     end
+
+#Main
+
+puts Dice.randomPos(100)
+
+puts Dice.whoStarts(3)
+
+puts Dice.randomIntelligence
+
+puts Dice.randomStrength
+
+puts Dice.resurrectPlayer
+
+puts Dice.weaponsReward
+
+puts Dice.shieldsReward
+
+puts Dice.healthReward
+
+puts Dice.weaponPower
+
+puts Dice.shieldPower
+
+puts Dice.usesLeft
+
+puts Dice.intensity(5.0)
+
+puts Dice.discardElement(6)
+
 end
