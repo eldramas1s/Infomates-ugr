@@ -1,6 +1,6 @@
 #encoding: UTF-8
 
-#require 'Dice'
+#require_relative 'Dice' 
 # TODO: revisar por Airam
 module Shield
     class Shield
@@ -18,8 +18,9 @@ module Shield
             prt_val
         end
  
+ 
 	def discard
-		Dice::discarElement(@uses)
+		Dice::discardElement(@uses)
 	end
         
         def to_s

@@ -2,7 +2,7 @@
 module GameState
     class GameState
 		def initialize(laby,avatars,beasts,p_player,victorious,account)
-			@labyrinthv = laby
+			@labyrinth = laby
 			@players = avatars
 			@monsters = beasts
 			@current_player = p_player
@@ -10,8 +10,8 @@ module GameState
 			@log = account
 		end
 		
-		def labyrinthv
-			@labyrinthv
+		def labyrinth
+			@labyrinth
 		end
 		
 		def players

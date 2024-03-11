@@ -9,7 +9,7 @@ package irrgarten;
  * @author el_dramas
  */
 public class GameState {
-    private String labyrinthv;
+    private String labyrinth;
     private String players;
     private String monsters;
     private int currentPlayer;
@@ -17,7 +17,7 @@ public class GameState {
     private String log;
     
     GameState(String laby, String avatars, String beasts,int principalPlayer, boolean victorious, String account){
-        labyrinthv = laby;
+        labyrinth = laby;
         players = avatars;
         monsters = beasts;
         currentPlayer = principalPlayer;
@@ -27,7 +27,7 @@ public class GameState {
     }
     
     public String getLabyrinthv(){
-        return labyrinthv;
+        return labyrinth;
     }
     
     public String getPlayers(){
