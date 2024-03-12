@@ -12,73 +12,72 @@ import java.util.Random;
  *
  * @author airam
  */
-public class Dice { //TODO: cambiar a de clase
-    static private int MAX_USES; //numero máximo de usos de armas y escudos
-    static private float MAX_INTELLIGENCE; //Valor máximo para la inteligencia de jugadores y monstruos
-    static private float MAX_STRENGTH; //Valor máximo fuerza jugadores
-    static private float RESURRECT_PROB; //probabilidad de ser resucitado en cada turno
-    static private int WEAPONS_REWARD; //máximo de armas ganadas por combate ganado
-    static private int SHIELDS_REWARD;//máximo de escudos ganados por combate ganado
-    static private int HEALTH_REWARD;//maximo de vida recuperada por combate ganado
-    static private int MAX_ATTACK;//máxima potencia de las armas
-    static private int MAX_SHIELD;//máximo potencia de los escudos
+public class Dice { 
     
-    // TODO: Mirar si esto es static
-    Random generator;
+    static private int MAX_USES = 5; //numero máximo de usos de armas y escudos
+    static private float MAX_INTELLIGENCE = 10.0f; //Valor máximo para la inteligencia de jugadores y monstruos
+    static private float MAX_STRENGTH =10.0f; //Valor máximo fuerza jugadores
+    static private float RESURRECT_PROB=0.3f; //probabilidad de ser resucitado en cada turno
+    static private int WEAPONS_REWARD=2; //máximo de armas ganadas por combate ganado
+    static private int SHIELDS_REWARD=3;//máximo de escudos ganados por combate ganado
+    static private int HEALTH_REWARD=5;//maximo de vida recuperada por combate ganado
+    static private int MAX_ATTACK=3;//máxima potencia de las armas
+    static private int MAX_SHIELD=2;//máximo potencia de los escudos
     
-    // Que yo sepa no hay constructor
-    public int randomPos(int max){
+    static Random generator;
+    
+    static public int randomPos(int max){
         return generator.nextInt(max);
     }
     
-    public int whoStarts(int nPlayers){
+    static public int whoStarts(int nPlayers){
         return generator.nextInt(nPlayers);
     }
     
-    public float randomIntelligence(){
+    static public float randomIntelligence(){
         return generator.nextFloat()*MAX_INTELLIGENCE;
     }
     
-    public float randomStrength(){
+    static public float randomStrength(){
         return generator.nextFloat()*MAX_STRENGTH;
     }
     
-    public boolean resurrectPlayer(){
+    static public boolean resurrectPlayer(){
         //Consideramos true como menor para ajustar bien los rangos
         return generator.nextFloat() < RESURRECT_PROB; 
     }
     
-    public int weaponsReward(){
+    static public int weaponsReward(){
         //+1 para ajustar rango
         return generator.nextInt(WEAPONS_REWARD+1);
     }
     
-    public int shieldsReward(){
+    static public int shieldsReward(){
         //+1 para ajustar rango
         return generator.nextInt(SHIELDS_REWARD+1);
     }
     
-    public int healthReward(){
+    static public int healthReward(){
         return generator.nextInt(HEALTH_REWARD+1);
     }
     
-    public float weaponPower(){
+    static public float weaponPower(){
         return generator.nextFloat()*MAX_ATTACK;
     }
 
-    public float shieldPower(){
+    static public float shieldPower(){
         return generator.nextFloat()*MAX_SHIELD;
     }
 
-    public int usesLeft(){
+    static public int usesLeft(){
         return generator.nextInt(MAX_USES+1);
     }
 
-    public float intensity(float competence){
+    static public float intensity(float competence){
         return generator.nextFloat() * competence;
     }
 
-    public boolean discardElement(int usesLeft){
+    static public boolean discardElement(int usesLeft){
         //distribuye de forma uniforme la probabilidad
         return generator.nextFloat() < (MAX_USES-usesLeft)/(float) MAX_USES;
     }

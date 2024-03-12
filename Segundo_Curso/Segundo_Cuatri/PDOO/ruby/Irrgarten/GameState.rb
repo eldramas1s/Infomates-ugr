@@ -19,7 +19,7 @@ module GameState
 		# @param account Almacen de eventos del turno anterior
 		# @pos La instacia queda inicializada al completo
 		def initialize(laby,avatars,beasts,p_player,victorious,account)
-			@labyrinthv = laby
+			@labyrinth = laby
 			@players = avatars
 			@monsters = beasts
 			@current_player = p_player
@@ -29,8 +29,9 @@ module GameState
 		
 		# Consultor del estado del laberinto
 		# return Estado del laberinto
-		def labyrinthv
-			@labyrinthv
+
+		def labyrinth
+			@labyrinth
 		end
 
 		# Consultor del estado de los jugadores
@@ -71,7 +72,7 @@ estadio = GameState.new('Carpena','juan','varios',5,true,'dramas.es')
 
 puts estadio.inspect
 
-puts estadio.labyrinthv
+puts estadio.labyrinth
 
 puts estadio.players
 
