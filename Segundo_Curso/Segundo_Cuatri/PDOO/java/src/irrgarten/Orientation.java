@@ -8,6 +8,10 @@ package irrgarten;
  *
  * @author airam
  */
+
+ /**
+  * Las orientaciones que se pueden tomar
+  */
 public enum Orientation {
     VERTICAL, HORIZONTAL
 }
