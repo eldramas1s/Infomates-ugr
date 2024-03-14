@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * @author el_dramas
  */
 public class Player {
+    //TODO: Cambiar posicion de inicio por una random
     static private final String DEFAULT_NAME = "Player #";
     static private final int INVALID_POS = -1;
     
@@ -77,6 +78,9 @@ public class Player {
         return this.strength+this.sumWeapons();
     }
     
+    public void receiveReward(){
+        throw new UnsupportedOperationException();
+    }
     public boolean defend(float receivedReward){
         return this.manageHit(receivedReward);
     }
