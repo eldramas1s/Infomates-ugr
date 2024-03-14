@@ -6,9 +6,14 @@ package irrgarten;
  */
 
 /**
- *
+ * 
  * @author airam
  */
+
+ /**
+  * @brief Direcciones posibles para realizar un movimiento.
+  */
 public enum Directions {
+    
     LEFT, RIGHT, UP, DOWN
 }

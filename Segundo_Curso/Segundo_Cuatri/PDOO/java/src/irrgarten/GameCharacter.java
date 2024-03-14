@@ -8,6 +8,10 @@ package irrgarten;
  *
  * @author airam
  */
+
+ /**
+  * @brief Tipos de personajes
+  */
 public enum GameCharacter {
     PLAYER, MONSTER
 }
