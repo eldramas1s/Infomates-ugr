@@ -35,7 +35,9 @@ public class Monster {
     } 
     
     public float attack(){
-        return Dice.intensity(strength);
+        if (this.dead())
+            return 0;
+        else return Dice.intensity(strength);
     }
     
     public boolean defend(float receivedAttack){

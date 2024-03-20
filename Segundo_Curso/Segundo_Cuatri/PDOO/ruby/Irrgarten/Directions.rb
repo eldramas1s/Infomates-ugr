@@ -1,7 +1,9 @@
 #encoding: UTF-8
-module Directions
-    LEFT =:left
-    RIGHT =:right
-    UP =:up
-    DOWN =:down
+module Irrgarten
+	module Directions
+	    LEFT =:left
+	    RIGHT =:right
+	    UP =:up
+	    DOWN =:down
+	end
 end

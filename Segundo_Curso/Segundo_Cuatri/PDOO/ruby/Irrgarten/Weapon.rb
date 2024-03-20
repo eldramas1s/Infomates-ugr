@@ -4,7 +4,8 @@
 
 require_relative 'Dice.rb'
 
-module Weapon
+module Irrgarten
+
     # Clase que simboliza el arma de un jugador
     # @param power Daño que realiza el arma
     # @para uses Veces que se puede utilizar el arma para atacar
@@ -36,7 +37,7 @@ module Weapon
 	# @return true si se descarta el arma
 	# 	  false si no se descarta 
 	def discard
-	    Dice::Dice.discardElement(@uses)
+	    Dice.discardElement(@uses)
 	end
 	
 	# Metodo encargado de encadenar la informacion de estado de la instancia

@@ -3,7 +3,7 @@
 #Inclusion modulo Dice
 require_relative 'Dice.rb'
 
-module Shield
+module Irrgarten
     # Esta clase pretende crear un objeto escudo que se encargará de 
     # proteger a los individuos de juego
     # @param protection Cantidad de daño que protege
@@ -36,7 +36,7 @@ module Shield
 	# @return Decisión de inutilizacion
 	# @pos Si no hya usos suficientes el objeto quedará inutilizable
 	def discard
-		Dice::Dice.discardElement(@uses)
+		Dice.discardElement(@uses)
 	end
         
 	# Metodo to string encargado de encadenar el estado del objeto

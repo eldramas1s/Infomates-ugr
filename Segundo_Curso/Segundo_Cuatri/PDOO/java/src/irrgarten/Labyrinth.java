@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * @author el_dramas
  */
 public class Labyrinth {
+    static private int INVALID_POS=-1;
     static private char BLOCK_CHAR = 'X';
     static private char EMPTY_BLOCK = '-';
     static private char MONSTER_CHAR = 'M';
@@ -24,6 +25,7 @@ public class Labyrinth {
     private char ltab[][];
     private Player ptab[][];
     
+    //TODO: Crear un laberinto especifico
     public Labyrinth(int nRows, int nCols, int exitRow, int exitCol){
         this.nRows = nRows;
         this.nCols = nCols;
@@ -56,8 +58,19 @@ public class Labyrinth {
     }
     
     //TODO: implementar(copypaste de ruby)
+    //TODO: Preguntar idea de vision especifica de jugador
     public String toString(){
-        return "luego";
+        String cad = "Labyrinth: \n";
+        
+        cad += this.convertToString(ltab, nRows, nCols) + "\n\n";
+        
+        cad += "Monsters: \n";
+        
+        cad += this.convertToString(mtab, nRows, nCols) + "\n\n";
+        
+        cad += "Players: \n";
+        
+        cad += this.convertToString(ptab, nRows, nCols) + "\n\n";
     }
     
     public void addMonster(int row, int col, Monster monster){
@@ -66,6 +79,8 @@ public class Labyrinth {
             ltab[row][col] = MONSTER_CHAR;
             monster.setPos(row, col);
         }
+        
+        //TODO: Preguntar si asignar una posicion aleatoria hasta encontrar una adecuada.
     }
     
     public Monster putPlayer(Directions direction, Player player){
@@ -87,20 +102,19 @@ public class Labyrinth {
     }
     
     private boolean emptyPos(int row, int col){
-        return (ltab[row][col] == EMPTY_BLOCK);
+        return (this.posOK(row,col))&&(ltab[row][col] == EMPTY_BLOCK);
     }
     
     private boolean monsterPos(int row, int col){
-        return (ltab[row][col] == MONSTER_CHAR);
+        return (this.posOK(row,col))&&(ltab[row][col] == MONSTER_CHAR);
     }
     
     private boolean exitPos(int row, int col){
-        return (row==exitRow)&&(col==exitCol);
-        //return (ltab[row][col]==EXIT_CHAR;
+        return (this.posOK(row,col))&&(ltab[row][col]==EXIT_CHAR);
     }
     
     private boolean combatPos(int row, int col){
-        return ltab[row][col] == COMBAT_CHAR;
+        return (this.posOK(row,col))&&(ltab[row][col] == COMBAT_CHAR);
     }
     
     private boolean canStepOn(int row, int col){
@@ -139,20 +153,49 @@ public class Labyrinth {
                     break;
         }
         
-        ArrayList<Integer> position = new ArrayList<Integer>();
-        position.clear();
-        position.add(nextRow);
-        position.add(nextCol);
+        
+        ArrayList<Integer> position = new ArrayList<Integer>(2);
+        position.add(0, nextRow);
+        position.add(1,nextCol);
         return position;
-        
-        
     }
     
     private ArrayList<Integer> randomEmptyPos(){
-        return null;
+        Integer row=INVALID_POS,col=INVALID_POS;
+        
+        while(!this.posOK(row, col) && !this.emptyPos(row, col)){
+            row=Dice.randomPos(nRows);
+            col=Dice.randomPos(nCols);
+        }
+        
+        ArrayList<Integer> position= new ArrayList<Integer>(2);
+        position.add(0,row);
+        position.add(1,col);
+        return position;
     }
     
     private Monster putPlayer2D(int oldRow, int oldCol, int row, int col, Player player){
         return null;
     }
+    
+    //TODO: Preguntar como hacer un template en java.
+    private String convertToString(char matrix[][], int rows, int cols){
+        String cad="";
+        
+        for (int i=0; i<rows; ++i){
+            
+            if(i==0)
+                for (int j=0; j<cols; ++j)
+                    cad +="_";
+            
+            for (int j=0; j<cols; ++j)
+                cad += "|"+matrix[i][j]+"|";
+            
+            if(i==rows-1)
+                for(int j=0; j<cols; ++j)
+                    cad+=(char)238;
+        }
+        return cad;
+    }
+
 }

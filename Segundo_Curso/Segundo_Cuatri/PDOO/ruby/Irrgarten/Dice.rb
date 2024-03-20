@@ -1,6 +1,6 @@
 #encoding: UTF-8
 
-module Dice
+module Irrgarten
     # Clase encargada de tomar las decisiones de azar en la partida
     class Dice
    	#Atributos de clase

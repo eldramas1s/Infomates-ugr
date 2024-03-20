@@ -1,5 +1,5 @@
 #encoding: UTF-8
-module GameState
+module Irrgarten
 
     # Clase encargada de la distribución del area de juego
     # @param labyrinthv Estado del laberinto

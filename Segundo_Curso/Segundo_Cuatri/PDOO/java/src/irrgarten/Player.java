@@ -75,7 +75,9 @@ public class Player {
     }
     
     public float attack(){
-        return this.strength+this.sumWeapons();
+        if(this.dead())
+            return 0;
+        else return this.strength+this.sumWeapons();
     }
     
     public void receiveReward(){
@@ -86,7 +88,23 @@ public class Player {
     }
     
     public String toString(){
-        return "P[" + name + ", " + intelligence + ", " + strength + ", " + health + ",(" + row + ", " +col + ")]"; 
+        String cad= "P[" + name + ", " + intelligence + ", " + strength + ", " + health + ",(" + row + ", " +col + ", "+ consecutiveHits +")]\n"; 
+        
+        cad += "Weapons:\n";
+        
+        for (int i=0; i<weapons.size()-1; ++i){
+            cad += weapons.get(i).toString() + " - ";
+        }
+        cad += weapons.get(weapons.size()-1).toString() + "\n";
+        
+        cad += "Shields:\n";
+        
+        for (int i=0; i<shields.size()-1; ++i){
+            cad += shields.get(i).toString() + " - ";
+        }
+        cad += shields.get(shields.size()-1).toString() + "\n";
+       
+        return cad;
     }
     
     private void receiveWeapon(Weapon w){
