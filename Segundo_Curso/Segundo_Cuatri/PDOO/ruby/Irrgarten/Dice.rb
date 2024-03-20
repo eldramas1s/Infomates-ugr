@@ -67,26 +67,26 @@ module Irrgarten
 	# jugador al terminar un combate
 	# @return Valor de las unidades de salud
 	def self.healthReward
-	    @@generator.rand(@@HEALTH_REWARD)
+	    @@generator.rand(@@HEALTH_REWARD+1)
 	end
 
 	# Metodo de clase encargado de determinar un valor de poder de un arma
 	# @return Poder del arma
 	def self.weaponPower
-	    @@generator.rand(@@MAX_ATTACK)
+	    @@generator.rand(@@MAX_ATTACK+1)
 	end
 
 	# Metodo de clase encargado de determinar un valor de inteligencia
 	# @return Valor de inteligencia
 	def self.shieldPower
-	    @@generator.rand(@@MAX_SHIELD)
+	    @@generator.rand(@@MAX_SHIELD+1)
 	end
 
 	# Metodo de clase encargado de determinar el numero de usos que se le asignaran a un arma
 	# o escudo
 	# @return Usos de dichos objetos
 	def self.usesLeft
-	    @@generator.rand(@@MAX_USES)
+	    @@generator.rand(@@MAX_USES+1)
 	end
 	
 	# Metodo de clase que devuelve la cantidad de competencia aplicada.
