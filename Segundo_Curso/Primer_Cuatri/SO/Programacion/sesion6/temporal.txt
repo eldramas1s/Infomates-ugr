@@ -1,4 +1,0 @@
-ejer1
-ejercicio1
-ejercicio1.c
-temporal.txt
