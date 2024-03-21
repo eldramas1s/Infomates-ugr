@@ -9,5 +9,13 @@ package irrgarten;
  * @author airam
  */
 public class TestP1 {
-    
+    public static void main(String [] args){
+        String name="Pepo";
+        float intelligence=15,strength = 10;
+        
+        Monster monster = new Monster(name, intelligence, strength);
+        
+        
+        
+    }
 }

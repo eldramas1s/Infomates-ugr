@@ -29,7 +29,9 @@ public class Monster {
         this.row = INVALID_POS;
         this.health = INITIAL_HEALTH;
     }
-    
+    public void matar(){
+        this.health=0;
+    }
     public boolean dead(){
         return this.health <= 0;
     } 
