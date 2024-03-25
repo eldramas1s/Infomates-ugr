@@ -28,8 +28,8 @@ public class Game {
     private String log;
     
     private Player currentPlayer;
-    private ArrayList<Player> players;
-    private ArrayList<Monster> monsters;
+    private ArrayList<Player> players=new ArrayList<Player>();
+    private ArrayList<Monster> monsters=new ArrayList<Monster>();
     private Labyrinth labyrinth;
     
     //TODO: Constructor
@@ -43,8 +43,6 @@ public class Game {
         currentPlayerIndex = Dice.whoStarts(nplayers);
         currentPlayer = players.get(currentPlayerIndex);
         
-        monsters = new ArrayList<Monster>();
-        
         //Creado asi a posta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         
@@ -52,7 +50,6 @@ public class Game {
         
         labyrinth.spreadPlayers(players);
     }
-    
     public boolean finished(){
         return labyrinth.haveAWinner();
     }
