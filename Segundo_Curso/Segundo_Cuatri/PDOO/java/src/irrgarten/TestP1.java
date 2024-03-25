@@ -27,7 +27,7 @@ public class TestP1 {
         
         monster.matar();
         
-        System.out.println(monster.attack());
+        //System.out.println(monster.attack());
         
     }
 }
