@@ -9,5 +9,8 @@ package irrgarten;
  * @author airam
  */
 public class TestP1 {
+    static public void main(String args[]){
+        System.out.println(Dice.intensity(2));
+    }
     
 }
