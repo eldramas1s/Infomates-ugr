@@ -15,7 +15,19 @@ public class TestP1 {
         
         Monster monster = new Monster(name, intelligence, strength);
         
+        System.out.println(monster.toString());
         
+        System.out.println(monster.dead());
+        
+        System.out.println(monster.attack());
+        
+        monster.setPos(0,5);
+        
+        System.out.println(monster.toString());
+        
+        monster.matar();
+        
+        System.out.println(monster.attack());
         
     }
 }
