@@ -95,15 +95,20 @@ public class Player {
         for (int i=0; i<weapons.size()-1; ++i){
             cad += weapons.get(i).toString() + " - ";
         }
-        cad += weapons.get(weapons.size()-1).toString() + "\n";
+        
+        if(weapons.size()>0){
+            cad += weapons.get(weapons.size()-1).toString() + "\n";
+        }
         
         cad += "Shields:\n";
         
         for (int i=0; i<shields.size()-1; ++i){
             cad += shields.get(i).toString() + " - ";
         }
-        cad += shields.get(shields.size()-1).toString() + "\n";
-       
+        
+        if(weapons.size()>0){
+            cad += shields.get(shields.size()-1).toString() + "\n";
+        }
         return cad;
     }
     

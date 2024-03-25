@@ -9,14 +9,15 @@ import java.util.ArrayList;
  * @author el_dramas
  */
 public class Labyrinth {
-    static private int INVALID_POS=-1;
-    static private char BLOCK_CHAR = 'X';
-    static private char EMPTY_BLOCK = '-';
-    static private char MONSTER_CHAR = 'M';
-    static private char COMBAT_CHAR = 'C';
-    static private char EXIT_CHAR = 'E';
-    static private int ROW = 0;
-    static private int COL = 1;
+    static private final int INVALID_POS=-1;
+    static private final char BLOCK_CHAR = 'X';
+    static private final char EMPTY_BLOCK = '-';
+    static private final char MONSTER_CHAR = 'M';
+    static private final char COMBAT_CHAR = 'C';
+    static private final char EXIT_CHAR = 'E';
+    static private final int ROW = 0;
+    static private final int COL = 1;
+    
     private int nRows;
     private int nCols;
     private int exitRow;
@@ -41,7 +42,6 @@ public class Labyrinth {
             }
         }
         
-        //TODO: ¿Poner como constantes?
         if(this.posOK(exitRow, exitCol))
             ltab[exitRow][exitCol] = EXIT_CHAR;
         else
@@ -57,20 +57,20 @@ public class Labyrinth {
         return ptab[this.exitRow][this.exitCol]!=null;
     }
     
-    //TODO: implementar(copypaste de ruby)
-    //TODO: Preguntar idea de vision especifica de jugador
     public String toString(){
         String cad = "Labyrinth: \n";
         
         cad += this.convertToString(ltab, nRows, nCols) + "\n\n";
         
-        cad += "Monsters: \n";
+        //cad += "Monsters: \n";
         
-        cad += this.convertToString(mtab, nRows, nCols) + "\n\n";
+        //cad += this.convertToString(mtab, nRows, nCols) + "\n\n";
         
-        cad += "Players: \n";
+        //cad += "Players: \n";
         
-        cad += this.convertToString(ptab, nRows, nCols) + "\n\n";
+        //cad += this.convertToString(ptab, nRows, nCols) + "\n\n";
+        
+        return cad;
     }
     
     public void addMonster(int row, int col, Monster monster){
@@ -78,9 +78,7 @@ public class Labyrinth {
             mtab[row][col] = monster;
             ltab[row][col] = MONSTER_CHAR;
             monster.setPos(row, col);
-        }
-        
-        //TODO: Preguntar si asignar una posicion aleatoria hasta encontrar una adecuada.
+        }        
     }
     
     public Monster putPlayer(Directions direction, Player player){
@@ -131,7 +129,6 @@ public class Labyrinth {
         
     }
     
-    //TODO: Devolver arrays java
     private ArrayList<Integer> dir2Pos(int row, int col, Directions direction){
         Integer nextRow=row;
         Integer nextCol=col;
@@ -149,14 +146,12 @@ public class Labyrinth {
             case DOWN:
                 nextRow++;
                 break;
-            default:
-                    break;
         }
         
         
         ArrayList<Integer> position = new ArrayList<Integer>(2);
-        position.add(0, nextRow);
-        position.add(1,nextCol);
+        position.add(ROW, nextRow);
+        position.add(COL,nextCol);
         return position;
     }
     
@@ -169,8 +164,8 @@ public class Labyrinth {
         }
         
         ArrayList<Integer> position= new ArrayList<Integer>(2);
-        position.add(0,row);
-        position.add(1,col);
+        position.add(ROW,row);
+        position.add(COL,col);
         return position;
     }
     
@@ -178,7 +173,7 @@ public class Labyrinth {
         return null;
     }
     
-    //TODO: Preguntar como hacer un template en java.
+    //TODO: Templates
     private String convertToString(char matrix[][], int rows, int cols){
         String cad="";
         

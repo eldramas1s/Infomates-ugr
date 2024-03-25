@@ -9,8 +9,13 @@ package irrgarten;
  * @author airam
  */
 public class TestP1 {
-    static public void main(String args[]){
-        System.out.println(Dice.intensity(2));
+    public static void main(String [] args){
+        String name="Pepo";
+        float intelligence=15,strength = 10;
+        
+        Monster monster = new Monster(name, intelligence, strength);
+        
+        
+        
     }
-    
 }

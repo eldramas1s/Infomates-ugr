@@ -11,14 +11,14 @@ import java.util.ArrayList;
 public class Game {
     
     //Constantes
-    private static final String PLAYER_WON = "Player Won.";
-    private static final String MONSTER_WON = "Monster Won.";
-    private static final String RESURRECTED_MESSAGE = "Player resurrected.";
-    private static final String SKIP_TURN = "Player is dead, turn skipped.";
-    private static final String NO_ORDER = "Player couldn't move due to physical problems.";
-    private static final String EMPTY_BLOCK = "Block with no action.";
+    private static final String PLAYER_WON_MSG = "Player Won.";
+    private static final String MONSTER_WON_MSG = "Monster Won.";
+    private static final String RESURRECTED_MSG = "Player resurrected.";
+    private static final String SKIP_TURN_MSG = "Player is dead, turn skipped.";
+    private static final String NO_ORDER_MSG = "Player couldn't move due to physical problems.";
+    private static final String EMPTY_BLOCK_MSG = "Block with no action.";
     private static final int MAX_ROUNDS = 10;
-    private static final String MONSTER_NAME = "Amobinuos";        
+    private static final String MONSTER_NAME = "Mike Wazousky";        
     private static final int COLS = 10;
     private static final int ROWS = 10;
     private static final String EMPTY_LOG = "";
@@ -37,22 +37,18 @@ public class Game {
         
         //creacion de jugadores
         for (int i=0; i< nplayers; ++i){
-            Player p = new Player((char)i,Dice.randomIntelligence(),Dice.randomStrength());
+            Player p = new Player(String.valueOf(i).charAt(0),Dice.randomIntelligence(),Dice.randomStrength());
             players.add(p);
         }
+        currentPlayerIndex = Dice.whoStarts(nplayers);
+        currentPlayer = players.get(currentPlayerIndex);
         
-        currentPlayer = players.get(Dice.whoStarts(nplayers));
-        
-        for (int i=0; i<nplayers/2; ++i){
-            Monster m = new Monster(MONSTER_NAME,Dice.randomIntelligence(), Dice.randomStrength());
-            monsters.add(m);
-        }   
+        monsters = new ArrayList<Monster>();
         
         //Creado asi a posta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         
         log = EMPTY_LOG;
-        currentPlayerIndex = 0;
         
         labyrinth.spreadPlayers(players);
     }
@@ -76,9 +72,9 @@ public class Game {
         
     }
     
-    //TODO: Esperar que lo haga airam
     private void nextPlayer(){
-        
+        ++currentPlayerIndex;
+        currentPlayerIndex=currentPlayerIndex % players.size();
     }
     
     private Directions actualDirection(Directions preferredDirection){
@@ -98,27 +94,27 @@ public class Game {
     }
     
     private void logPlayerWon(){
-        log+= PLAYER_WON + "\n";
+        log+= PLAYER_WON_MSG + "\n";
     }
     
     private void logMonsterWon(){
-        log+= MONSTER_WON + "\n";
+        log+= MONSTER_WON_MSG + "\n";
     }
     
     private void logResurrected(){
-        log += RESURRECTED_MESSAGE + "\n"; 
+        log += RESURRECTED_MSG + "\n"; 
     }
     
     private void logPlayerSkipTurn(){
-        log +=SKIP_TURN + "\n"; 
+        log +=SKIP_TURN_MSG + "\n"; 
     }
     
     private void logPlayerNoOrders(){
-        log += NO_ORDER + "\n";
+        log += NO_ORDER_MSG + "\n";
     }
     
     private void logNoMonster(){
-        log += EMPTY_BLOCK + " " + NO_ORDER + "\n";
+        log += EMPTY_BLOCK_MSG + " " + NO_ORDER_MSG + "\n";
     }
     
     private void logRounds(int rounds, int max){
