@@ -43,8 +43,6 @@ public class Game {
         currentPlayerIndex = Dice.whoStarts(nplayers);
         currentPlayer = players.get(currentPlayerIndex);
         
-        monsters = new ArrayList<Monster>();
-        
         //Creado asi a posta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         
