@@ -29,5 +29,8 @@ public class TestP1 {
         
         //System.out.println(monster.attack());
         
+=======
+        System.out.println(monster.attack());
+>>>>>>> PDOO
     }
 }

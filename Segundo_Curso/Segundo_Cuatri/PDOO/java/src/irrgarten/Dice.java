@@ -56,7 +56,7 @@ public class Dice {
     /**
      *  Generador de números aleatorios
      */
-    static Random generator;
+    static Random generator = new Random();
 
 
     /**
@@ -160,7 +160,7 @@ public class Dice {
      * @return La competencia generada
      */
     static public float intensity(float competence){
-        return generator.nextFloat() * competence;
+        return (generator.nextFloat() * competence);
     }
 
     /**
