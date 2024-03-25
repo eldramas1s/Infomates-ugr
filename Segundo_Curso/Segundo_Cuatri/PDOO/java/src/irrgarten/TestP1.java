@@ -14,8 +14,6 @@ public class TestP1 {
         float intelligence=15,strength = 10;
         
         Monster monster = new Monster(name, intelligence, strength);
-        
-        
-        
+        System.out.println(monster.attack());
     }
 }
