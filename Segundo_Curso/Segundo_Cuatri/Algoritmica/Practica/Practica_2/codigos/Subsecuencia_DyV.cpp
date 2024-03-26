@@ -15,15 +15,10 @@ using namespace std;
 int suma(const vector<int> & v, int init, int fin){
     int result=0; 
     int middle=init+(fin-init)/2;
-    //cout << "fin:" << fin << endl << endl;
     int i=middle;
     int j=middle+1;
-
-    //if((fin==init)||(fin==0)) return v[init];
-
     
     while((i>=init)||(j<=fin)){
-        //cout << i << " ," << j << endl;
         if(i>=init){
             result+=v[i];
             --i;
@@ -33,12 +28,6 @@ int suma(const vector<int> & v, int init, int fin){
             ++j;
         }
     }
-
-    
-    /*for (int i= init; i<fin; ++i){
-        result+=v[i];
-    }*/
-    //cout << "Result: "<< result << endl;
     return result;
 }
 
@@ -166,18 +155,5 @@ int main (int argc,char **argv){
     }
     output.close();
     return 0;
-
-
-    /*vector <int> v;
-    pair <int,int> result;
-    for (int i=-3; i<4; ++i){
-        v.push_back(i);
-    }
-    result=subsecMax(v,0,v.size()-1);
-    for (int i=0; i< v.size(); i++){
-        cout << v[i]<<" ";
-    }
-    cout <<endl << result.first << " , " << result.second<< endl;
-    return 0;*/
 
 }
