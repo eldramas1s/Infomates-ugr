@@ -65,7 +65,6 @@ module Irrgarten
                 @health <= 0
             end
 
-            #TODO
             def attack
                 @strength + sumWeapons
             end
@@ -105,7 +104,6 @@ module Irrgarten
                 Shield.new(Dice::Dice.randomShield, Dice::Dice.usesLeft)
             end
 
-            #TODO
             def defensiveEnergy
                 @intelligence + sumShields
             end
@@ -122,7 +120,6 @@ module Irrgarten
                 @consecutiveHits +=1
             end
 
-            #TODO comprobar sintaxis
             def sumWeapons
                 sum=0
                 for i in 0..@weapons.size do
@@ -131,7 +128,6 @@ module Irrgarten
                 sum
             end
 
-            #TODO
             def sumShields
                 sum=0
                 for i in 0..@shields.size do
