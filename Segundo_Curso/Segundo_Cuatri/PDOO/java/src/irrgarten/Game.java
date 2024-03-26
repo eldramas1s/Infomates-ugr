@@ -28,8 +28,8 @@ public class Game {
     private String log;
     
     private Player currentPlayer;
-    private ArrayList<Player> players;
-    private ArrayList<Monster> monsters;
+    private ArrayList<Player> players=new ArrayList<Player>();
+    private ArrayList<Monster> monsters=new ArrayList<Monster>();
     private Labyrinth labyrinth;
     
     //TODO: Constructor
@@ -52,7 +52,6 @@ public class Game {
         
         labyrinth.spreadPlayers(players);
     }
-    
     public boolean finished(){
         return labyrinth.haveAWinner();
     }

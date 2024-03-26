@@ -33,7 +33,10 @@ public class Labyrinth {
         this.exitCol = exitCol;
         this.exitRow = exitRow;
         
-        //TODO: Algo no me cuadra sobre las dimensiones
+        mtab = new Monster[nRows][nCols];
+        ltab = new char[nRows][nCols];
+        ptab = new Player[nRows][nCols];
+        
         for (int i=0; i<nRows; ++i){
             for(int j=0; j<nCols; ++j){
                 ltab[i][j]=EMPTY_BLOCK;
@@ -74,7 +77,7 @@ public class Labyrinth {
     }
     
     public void addMonster(int row, int col, Monster monster){
-        if(this.posOK(row, col)&&(ltab[row][col]==EMPTY_BLOCK)){
+        if(this.posOK(row, col)&&(ltab[row][col]==EMPTY_BLOCK) && !(this.exitPos(row, col))){
             mtab[row][col] = monster;
             ltab[row][col] = MONSTER_CHAR;
             monster.setPos(row, col);
@@ -179,16 +182,20 @@ public class Labyrinth {
         
         for (int i=0; i<rows; ++i){
             
-            if(i==0)
-                for (int j=0; j<cols; ++j)
-                    cad +="_";
-            
+            if(i==0){
+                for (int j=0; j<3*cols; ++j)
+                    cad +="=";
+                cad += "\n";
+            }
             for (int j=0; j<cols; ++j)
                 cad += "|"+matrix[i][j]+"|";
             
-            if(i==rows-1)
-                for(int j=0; j<cols; ++j)
-                    cad+=(char)238;
+            cad += "\n";
+            if(i==rows-1){
+                for(int j=0; j<3*cols; ++j)
+                    cad+="=";
+                cad += "\n";
+            }
         }
         return cad;
     }
