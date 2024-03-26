@@ -13,7 +13,7 @@ module Irrgarten
             @@INVALID_POS = -1 #TODO: Ver si lo puedes meter junto con el de monstruo en Labyrinth
             
             @@MAX_WEAPONS = 2
-            @@MAX_SHIELD = 3
+            @@MAX_SHIELDS = 3
             @@INITIAL_HEALTH = 10
             @@HITS2LOSE = 3
 
@@ -44,20 +44,45 @@ module Irrgarten
 		end
 		size = @weapons.size
 		if(size<@@MAX_WEAPONS)
+			w = newWeapon
+			@weapons.push(w)	
+		end
+	    end
 
-            void receiveShield(Shield s)
+            def receiveShield(Shield s)
+		for i in 0..@shields.size do
+			si = @shields[i]
+			if(si.discard)
+				@shields.shift
+			end
+		end
+		size = @shields.size
+		if(size<@@MAX_SHIELDS)
+			s = newShield
+			@shields.push(s)
+		end
+	    end
             boolean manageHit(float receivedAttack)
 
             def move 
             end
-            def receiveReward
+            def manageHit(receivedAttack)
+		defense=defensiveEnergy
+		if(defense<receivedAttack)
+			gotWounded
+			incConsecutiveHits
+		else
+			resetHits
+		end
+		lose=true
+		if((@consecutiveHits == @@HITS2LOSE)||(dead()))
+			resetHits
+		else	
+			lose=false
+		end
+		return lose
             end
-            def receiveWeapon
-            end
-            def receiveShield
-            end
-            def manageHit
-            end
+
             def resurrect
                 weapons.clear()
                 shields.clear()
