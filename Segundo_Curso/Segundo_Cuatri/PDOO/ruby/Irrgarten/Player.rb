@@ -35,7 +35,16 @@ module Irrgarten
 
             Directions move(Directions direction,ArrayList<Directions> validMoves)
             void receiveReward()
-            void receiveWeapon(Weapon w)
+            def receiveWeapon(Weapon w)
+		for i in 0..@weapons.size do 
+			wi = @weapons[i]
+			if(wi.discard)
+				@weapons.shift
+			end
+		end
+		size = @weapons.size
+		if(size<@@MAX_WEAPONS)
+
             void receiveShield(Shield s)
             boolean manageHit(float receivedAttack)
 
@@ -65,7 +74,6 @@ module Irrgarten
                 @health <= 0
             end
 
-            #TODO
             def attack
                 @strength + sumWeapons
             end
@@ -105,7 +113,6 @@ module Irrgarten
                 Shield.new(Dice::Dice.randomShield, Dice::Dice.usesLeft)
             end
 
-            #TODO
             def defensiveEnergy
                 @intelligence + sumShields
             end
@@ -122,7 +129,6 @@ module Irrgarten
                 @consecutiveHits +=1
             end
 
-            #TODO comprobar sintaxis
             def sumWeapons
                 sum=0
                 for i in 0..@weapons.size do
@@ -131,7 +137,6 @@ module Irrgarten
                 sum
             end
 
-            #TODO
             def sumShields
                 sum=0
                 for i in 0..@shields.size do
