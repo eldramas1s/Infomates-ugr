@@ -42,7 +42,7 @@ module Irrgarten
         end
 
         def haveAWinner #bool
-		
+            ptab[@exitRow][@exitCol] != nil
         end
 
         def to_s
