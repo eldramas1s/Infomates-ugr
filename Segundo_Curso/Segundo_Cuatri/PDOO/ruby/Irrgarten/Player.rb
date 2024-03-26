@@ -35,7 +35,16 @@ module Irrgarten
 
             Directions move(Directions direction,ArrayList<Directions> validMoves)
             void receiveReward()
-            void receiveWeapon(Weapon w)
+            def receiveWeapon(Weapon w)
+		for i in 0..@weapons.size do 
+			wi = @weapons[i]
+			if(wi.discard)
+				@weapons.shift
+			end
+		end
+		size = @weapons.size
+		if(size<@@MAX_WEAPONS)
+
             void receiveShield(Shield s)
             boolean manageHit(float receivedAttack)
 
