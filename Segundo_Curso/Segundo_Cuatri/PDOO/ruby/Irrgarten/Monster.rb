@@ -52,8 +52,17 @@ module Irrgarten
         end
 
         #Calclua como se defiende el monstruo
-        def defend
-            #nos dicen que hacer en la práctica 3
+        def defend(receivedAttack)
+		isDead = dead
+          	unless isDead
+			defensiveEnergy = Irrgarten::Dice::intensity(@intelligence)
+			if(defensiveEnergy < receivedAttack)
+				gotWounded
+				isDead = dead 
+			end
+		end
+		#TODO: Comprobar si devuelve eso sin poner return
+		isDead			
         end
 
 

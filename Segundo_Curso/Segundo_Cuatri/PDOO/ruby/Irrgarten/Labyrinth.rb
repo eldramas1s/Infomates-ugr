@@ -1,6 +1,7 @@
 #encoding: UTF-8
 
 require_relative 'Dice'
+require_relative 'Directions'
 
 module Irrgarten
     
@@ -34,11 +35,14 @@ module Irrgarten
         end
 
         def spreadPlayers(players)
-            #p3
+            for i in 0..players.size do
+		pos = randomEmptyPos
+		putPlayer2D(-1,-1,pos[@@ROW],pos[@@COL],players[i]
+	    end
         end
 
         def haveAWinner #bool
-
+		
         end
 
         def to_s
@@ -60,13 +64,54 @@ module Irrgarten
         end
 
         def putPlayer(direction, player) #monster
+		oldRow = player.row
+		oldCOl = player.col
+		newPos = dir2Pos(oldRow,oldCol,direction)
+		monster = putPlayer2D(oldRow,oldCol,newPos[@@ROW],newPos[@@col],player)
+		monster
         end
 
         def addBlock(orientation,startRow,startcol, length)#void
+		if orientation == Orientation::VERTICAL then
+			incRow = 1
+			incCol = 0
+		else
+			incRow = 0
+			incCol = 1
+		end
+		row = startRow
+		col = startCol
+		
+		while posOK(row,col) && emptyPos(row,col) && length > 0
+			ltab[row][col] = @@BLOCK_CHAR
+			length -= 1
+			row += incRow
+			col += incCol
+		end 
+			
         end
 
         def validMoves(row,col)#Directions[]
+		output = []
+		if(canStepOn(row+1,col))then
+			output.push(Directions::DOWN)
+		end
+
+		if(canStepOn(row-1,col))then
+			output.push(Directions::UP)
+		end
+
+		if(canStepOn(row,col+1))then
+			output.push(Directions::RIGHT)
+		end
+
+		if(canStepOn(row,col-1))then
+			output.push(Directions::LEFT)
+		end
+		#TODO: revisar si la salida la pasa bien
+		output
         end
+
 
         def posOK(row,col)#bool
             (0 <= row && row < @nRows && 0 <= col && col < @nCols)
