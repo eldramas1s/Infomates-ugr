@@ -21,7 +21,7 @@ public class Game {
     private static final String MONSTER_NAME = "Mike Wazousky";        
     private static final int COLS = 10;
     private static final int ROWS = 10;
-    private static final String EMPTY_LOG = "";
+    private static final String EMPTY_LOG = ""; //TODO revisar esta
     
     //Datos miembro
     private int currentPlayerIndex;
@@ -43,7 +43,9 @@ public class Game {
         currentPlayerIndex = Dice.whoStarts(nplayers);
         currentPlayer = players.get(currentPlayerIndex);
         
-        //Creado asi a posta
+        monsters = new ArrayList<Monster>();
+        
+        //Creado asi aposta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         
         log = EMPTY_LOG;

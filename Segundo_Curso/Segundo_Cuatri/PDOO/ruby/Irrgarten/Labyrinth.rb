@@ -129,13 +129,6 @@ module Irrgarten
         end
 
     end
-    
 
-    laby = Labyrinth.new(2,1,1,0)
-    for i in 1..10 do
-        print laby.randomEmptyPos 
-        print " "
-    end
-    puts
 end
 
