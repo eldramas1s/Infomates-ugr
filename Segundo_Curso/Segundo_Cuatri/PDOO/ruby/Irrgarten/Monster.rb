@@ -30,7 +30,7 @@ module Irrgarten
         #Calcula la intensidad de ataque del monstruo
         def attack
             atk=0
-            atk=Irrgarten::Dice.intensity(@strength) unless dead 
+            atk=Dice::Dice.intensity(@strength) unless dead 
             atk
         end
 
@@ -55,13 +55,12 @@ module Irrgarten
         def defend(receivedAttack)
 		isDead = dead
           	unless isDead
-			defensiveEnergy = Irrgarten::Dice::intensity(@intelligence)
+			defensiveEnergy = Dice::Dice.intensity(@intelligence)
 			if(defensiveEnergy < receivedAttack)
 				gotWounded
 				isDead = dead 
 			end
 		end
-		#TODO: Comprobar si devuelve eso sin poner return
 		isDead			
         end
 

@@ -32,10 +32,17 @@ module Irrgarten
             #getter row y col
             attr_reader :row
             attr_reader :col
+	    attr_reader :number
+	    
+ 	    def setPos(row,col)
+		if row >= 0 && col >= 0 then
+			@row = row
+			@col = col
+		end
+            end
 
-            Directions move(Directions direction,ArrayList<Directions> validMoves)
-            void receiveReward()
-            def receiveWeapon(Weapon w)
+
+            def receiveWeapon(w)
 		for i in 0..@weapons.size do 
 			wi = @weapons[i]
 			if(wi.discard)
@@ -43,13 +50,13 @@ module Irrgarten
 			end
 		end
 		size = @weapons.size
-		if(size<@@MAX_WEAPONS)
+		if size<@@MAX_WEAPONS then
 			w = newWeapon
 			@weapons.push(w)	
 		end
 	    end
 
-            def receiveShield(Shield s)
+            def receiveShield(s)
 		for i in 0..@shields.size do
 			si = @shields[i]
 			if(si.discard)
@@ -62,20 +69,27 @@ module Irrgarten
 			@shields.push(s)
 		end
 	    end
-            boolean manageHit(float receivedAttack)
 
-            def move 
-            end
+            def move(direction, validMoves)
+		size = validMoves.size
+		contained = find(direction,validMoves)
+		if (size > 0) && !contained then
+			firstElement = validMoves[0]
+			return firstElement
+		else 	
+			return direction
+		end 
+	    end
             def manageHit(receivedAttack)
 		defense=defensiveEnergy
-		if(defense<receivedAttack)
+		if defense<receivedAttack then
 			gotWounded
 			incConsecutiveHits
 		else
 			resetHits
 		end
 		lose=true
-		if((@consecutiveHits == @@HITS2LOSE)||(dead()))
+		if (@consecutiveHits == @@HITS2LOSE)||(dead()) then
 			resetHits
 		else	
 			lose=false
@@ -103,9 +117,8 @@ module Irrgarten
                 @strength + sumWeapons
             end
 
-            #TODO
-            def defend(received_Attack)
-                #Se manejará en manageHit
+            def defend(receivedAttack)
+                manageHit(receivedAttack)
             end
 
             def to_s
@@ -127,6 +140,20 @@ module Irrgarten
                 str
                     
             end
+	    def receiveReward
+		wReward = Dice::Dice.weaponsReward
+		sReward = Dice::Dice.shieldsReward
+		for i in 0..wReward do
+			wnew = newWeapon
+			receiveWeapon(wnew)
+		end
+		for i in 0..sReward do
+			snew = newShield
+			receiveShield(snew)
+		end
+		extraHealth = Dice::Dice.healthReward
+		@health += extraHealth
+	    end
 
             private  
 
@@ -169,13 +196,16 @@ module Irrgarten
                 end
                 sum
             end
+	    def find(element,array)
+		found = false
+		i = 0
+		while !found && (i<array.size) 
+			if array[i] == element then 
+				found = true
+			end
+		end
+		found	
+	    end
         end
     end
 end
-
-p = Irrgarten::Player::Player.new(1,2,3)
-p.newWeapon
-puts
-puts
-
-puts p.to_s

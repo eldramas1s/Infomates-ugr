@@ -47,17 +47,4 @@ module Irrgarten
             "W[" + @power.to_s + "," + @uses.to_s + "]*"
         end
     end
-
-#Main
-
-arma = Weapon.new(3.0,5)
-
-puts arma.inspect
-
-arma.attack
-
-puts arma.to_s
-
-puts arma.discard 
-
 end

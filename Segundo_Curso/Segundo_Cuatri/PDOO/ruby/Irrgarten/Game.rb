@@ -1,6 +1,7 @@
 #encoding: UTF-8
 
 require_relative 'Dice'
+require_relative 'GameCharacter'
 
 module Irrgarten
     class Game
@@ -39,8 +40,31 @@ module Irrgarten
             @labyrinth.haveAWinner
         end
 
-        def nextStep(preferredDirection)
-
+        def nextStep(preferredDirection)#boolean
+		@log = ""
+		dead = @currentPlayer.dead()
+		if !dead then
+			direction = actualDirection(preferredDirection)
+			if direction != preferredDirection then
+				logPlayerNoOrders
+			end
+			monster = @labyrinth.putPlayer(direction,@currentPlayer)
+			if monster == NULL then
+				logNoMonster
+			else
+				winner = combat(monster)
+				manageReward(winner)
+			end
+		else
+			manageResurrection
+		end
+		
+		endGame = finished
+		
+		if !endGame then
+			nextPlayer
+		end
+		endGame
         end
 
         def getGameState
@@ -63,15 +87,51 @@ module Irrgarten
         end
 
         def actualDirection(preferredDirection)
+		currentRow = @currentPlayer.row
+		currentCol = @currentPlayer.col
+		validMoves = @labyrinth.validMoves(currentRow,currentCol)
+		output = @currentPlayer.move(preferredDirection,validMoves)
         end
 
         def combat(monster)
+		rounds = 0
+		winner = GameCharacter::PLAYER
+		playerAttack = @currentPlayer.attack
+		lose = monster.defend(playerAttack)
+		while !lose && (ronds < @@MAX_ROUNDS) 
+			winner = GameCharacter::MONSTER
+			rounds++
+			monsterAttack = monster.attack
+			lose = @currentPlayer.defend(monsterAttack)
+			if !lose then
+				playerAttack = @currentPlayer.attack
+				winner = GameCharacter::PLAYER
+				lose = monster.defend(playerAttack)
+			end
+		end
+		logRounds(rounds,@@MAX_ROUNDS)
+		winner
         end
 
+	#TODO: Comprender clase GameCharacter (GameCharacter.PLAYER)
         def manageRewared(winner)
+		if winner == GameCharacter::PLAYER then
+			@currentPlayer.receiveReward
+			logPlayerWon
+		else
+			logMonsterWon
+		end
         end
-
+	
+	#TODO: Mirar estructura para llmar a Dice
         def manageResurrection
+		resurrect = Dice::Dice.resurrectPlayer
+		if resurrect then
+			@currentPlayer.resurrect
+			logResurrected
+		else
+			logPlayerSkipTurn
+		end
         end
 
         def logPlayerWon

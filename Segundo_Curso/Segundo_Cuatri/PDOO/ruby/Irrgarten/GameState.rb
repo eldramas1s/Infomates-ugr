@@ -65,23 +65,4 @@ module Irrgarten
 			@log
 		end
     end
-
-# Main
-
-estadio = GameState.new('Carpena','juan','varios',5,true,'dramas.es')
-
-puts estadio.inspect
-
-puts estadio.labyrinth
-
-puts estadio.players
-
-puts estadio.monsters
-
-puts estadio.current_player
-
-puts estadio.winner
-
-puts estadio.log
-
 end

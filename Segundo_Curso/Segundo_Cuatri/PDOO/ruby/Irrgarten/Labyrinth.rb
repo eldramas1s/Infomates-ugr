@@ -37,12 +37,12 @@ module Irrgarten
         def spreadPlayers(players)
             for i in 0..players.size do
 		pos = randomEmptyPos
-		putPlayer2D(-1,-1,pos[@@ROW],pos[@@COL],players[i]
+		putPlayer2D(-1,-1,pos[@@ROW],pos[@@COL],players[i])
 	    end
         end
 
         def haveAWinner #bool
-		
+		ptab[@exitRow][@exitCol]!=NULL
         end
 
         def to_s
@@ -108,7 +108,6 @@ module Irrgarten
 		if(canStepOn(row,col-1))then
 			output.push(Directions::LEFT)
 		end
-		#TODO: revisar si la salida la pasa bien
 		output
         end
 
@@ -169,8 +168,32 @@ module Irrgarten
             [row,col]
             
         end
-
+	
+	
+	#TODO: Preguntar si debemos hacer un reader de las posiciones de cada tablita
         def putPlayer2D(oldRow, oldCol, row, col, player) #monster
+		output = NULL
+		if canStepOn(row,col) then
+			if posOk(oldRow,oldCol) then
+				p = @ptab[aldRow][oldCol]
+				if p == player then
+					updateOldPos(oldRow,oldCol)
+					@ptab[oldRow][oldCol] = NULL
+				end
+			end
+	
+			monsterPos = monsterPos(row,col)
+			if monsterPos then
+				@ltab[row][col] = @@COMBAT_CHAR
+				output = @mtab[row][col]
+			else
+				number = player.number
+				@ltab[row][col] = number
+			end
+			@ptab[row][col] = player
+			player.setPos(row,col)
+		end
+		output
         end
 
     end

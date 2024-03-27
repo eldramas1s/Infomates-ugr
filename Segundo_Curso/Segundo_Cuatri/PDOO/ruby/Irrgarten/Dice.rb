@@ -103,33 +103,4 @@ module Irrgarten
    	end
 	
     end
-
-#Main
-
-# puts Dice.randomPos(100)
-
-# puts Dice.whoStarts(3)
-
-# puts Dice.randomIntelligence
-
-# puts Dice.randomStrength
-
-# puts Dice.resurrectPlayer
-
-# puts Dice.weaponsReward
-
-# puts Dice.shieldsReward
-
-# puts Dice.healthReward
-
-# puts Dice.weaponPower
-
-# puts Dice.shieldPower
-
-# puts Dice.usesLeft
-
-# puts Dice.intensity(5.0)
-
-# puts Dice.discardElement(6)
-
 end

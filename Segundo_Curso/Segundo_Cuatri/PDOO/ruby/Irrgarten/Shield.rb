@@ -46,20 +46,6 @@ module Irrgarten
         end
 
     end
-
-#Main
-escudo = Shield.new(3.0,5)
-
-puts escudo.inspect
-
-escudo.protect
-
-puts escudo.inspect
-
-puts escudo.discard
-
-puts escudo.to_s
-
 end
 
 
