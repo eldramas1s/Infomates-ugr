@@ -48,11 +48,11 @@ public class Game {
         //Creado asi aposta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         
-        log = EMPTY_LOG;
+        log = EMPTY_LOG; 
         
         labyrinth.spreadPlayers(players);
     }
-    public boolean finished(){
+    public boolean finished(){ 
         return labyrinth.haveAWinner();
     }
     
@@ -74,6 +74,7 @@ public class Game {
     private void nextPlayer(){
         ++currentPlayerIndex;
         currentPlayerIndex=currentPlayerIndex % players.size();
+        currentPlayer = players.get(currentPlayerIndex);
     }
     
     private Directions actualDirection(Directions preferredDirection){
