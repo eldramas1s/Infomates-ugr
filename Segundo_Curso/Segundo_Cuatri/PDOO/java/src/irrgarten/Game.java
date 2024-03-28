@@ -57,7 +57,29 @@ public class Game {
     }
     
     public boolean nextStep(Directions preferredDirection){
-        return true;
+        boolean dead = currentPlayer.dead();
+        if(!dead){
+            Directions direction = actualDirection(preferredDirection);
+            if(direction != preferredDirection){
+                logPlayerNoOrders();
+            }
+            Monster monster = labyrinth.putPlayer(direction, currentPlayer);
+            if(monster == null){
+                logNoMonster();
+            } else{
+                GameCharacter winner = combat(monster);
+                manageReward(winner);
+            }
+
+        } else{
+            manageResurrection();
+        }
+
+        boolean endGame = finished(); 
+        if(endGame){
+            nextPlayer();
+        }
+        return endGame;
     }
     
     public GameState getGameState(){
@@ -78,19 +100,45 @@ public class Game {
     }
     
     private Directions actualDirection(Directions preferredDirection){
+        int currentRow = currentPlayer.getRow();
+        int currentCol = currentPlayer.getCol();
+        currentPlayer.move(preferredDirection, labyrinth.validMoves(currentRow,currentCol));
         return null;
     }
     
     private GameCharacter combat(Monster monster){
-        return null;
+        int rounds = 0;
+        GameCharacter winner = GameCharacter.PLAYER;
+        boolean lose = monster.defend(currentPlayer.attack());
+        while (!lose && rounds < MAX_ROUNDS){
+            lose = currentPlayer.defend(monster.attack());
+            winner = GameCharacter.MONSTER;
+            rounds++;
+            if(!lose){ //TODO preguntar por qué player tiene un turno más
+                monster.defend(currentPlayer.attack());
+                winner = GameCharacter.PLAYER;
+            }
+        }
+        logRounds(rounds, MAX_ROUNDS);
+        return winner;
     }
     
     private void manageReward(GameCharacter winner){
-        
+        if(winner == GameCharacter.PLAYER){
+            currentPlayer.receiveReward();
+            logPlayerWon();
+        } else{
+            logMonsterWon();
+        }
     }
     
     private void manageResurrection(){
-        
+        if(Dice.resurrectPlayer()){
+            currentPlayer.resurrect();
+            logResurrected();
+        } else{
+            logPlayerSkipTurn();
+        }
     }
     
     private void logPlayerWon(){
