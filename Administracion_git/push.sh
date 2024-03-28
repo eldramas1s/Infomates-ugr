@@ -1,7 +1,9 @@
 #! /bin/bash
 
 ruta="/home/el_dramas/Desktop/Infomates/Administracion_git"
+ruta_add="/home/el_dramas/Desktop/Infomates/"
 fecha=`date +%Y-%j-%T-$$`
+cd $ruta_add
 echo $fecha > $ruta/push_error.txt
 echo $fecha > $ruta/push_ok.txt
 
@@ -11,9 +13,9 @@ if [ $# -ne 0 ]; then
 else
 	printf "ADD:\n" > $ruta/push_ok.txt
 	printf "ADD:\n" > $ruta/push_error.txt
-	git add $ruta/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
-	git add $ruta/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
-	git add $ruta/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
+	git add $ruta_add/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
+	git add $ruta_add/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
+	git add $ruta_add/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
 
 	printf "PUSH:\n" >> $ruta/push_ok.txt
 	printf "PUSH:\n" >> $ruta/push_error.txt

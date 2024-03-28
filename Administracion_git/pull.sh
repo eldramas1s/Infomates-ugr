@@ -1,4 +1,5 @@
 #!/bin/bash
+ruta_pull="/home/el_dramas/Desktop/Infomates"
 ruta="/home/el_dramas/Desktop/Infomates/Administracion_git"
 echo `date +%Y-%j-%T-$$` > $ruta/pullerror.txt
 echo `date +%Y-%j-%T-$$` > $ruta/pullok.txt
