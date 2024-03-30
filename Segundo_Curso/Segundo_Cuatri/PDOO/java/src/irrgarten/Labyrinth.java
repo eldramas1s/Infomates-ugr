@@ -6,6 +6,7 @@ package irrgarten;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+
 /**
  *
  * @author el_dramas
@@ -58,6 +59,7 @@ public class Labyrinth {
     public void spreadPlayers(ArrayList<Player> players){
         for (Player player : players) {
             ArrayList<Integer> newPos = randomEmptyPos();
+            System.out.println(newPos);
             putPlayer2D(INVALID_POS, INVALID_POS, newPos.get(ROW), newPos.get(COL), player);
         }
     }
@@ -121,16 +123,14 @@ public class Labyrinth {
         Iterator<Directions> it = directions.listIterator();
         
         //Depende del número de direcciones
-        for(int i = 0; i < 4;++i){
-            ArrayList<Integer> posToCheck = dir2Pos(row, col, directions.get(i));
-            if(canStepOn(posToCheck.get(ROW),posToCheck.get(COL))){
-                it.next();
-            } else{
-                it.remove();
+        while(it.hasNext()){
+            ArrayList<Integer> posToCheck = dir2Pos(row, col, it.next());
+            if(!canStepOn(posToCheck.get(ROW),posToCheck.get(COL))){
+                it.remove();  
             }
         }
-        
         return directions;
+
     }
     
     private boolean posOK(int row, int col){
@@ -156,7 +156,7 @@ public class Labyrinth {
     }
     
     private boolean canStepOn(int row, int col){
-        return (this.posOK(row, col))&&(this.exitPos(row, col))&&(this.emptyPos(row, col)) && (this.monsterPos(row, col));
+        return (this.posOK(row, col))&& ((this.exitPos(row, col))||(this.emptyPos(row, col)) || (this.monsterPos(row, col)));
     }
     
     private void updateOldPos(int row, int col){
@@ -170,9 +170,8 @@ public class Labyrinth {
     }
     
     private ArrayList<Integer> dir2Pos(int row, int col, Directions direction){
-        Integer nextRow=row;
-        Integer nextCol=col;
-        
+        int nextRow=row;
+        int nextCol=col;
         switch (direction){
             case LEFT:
                 nextCol--;
@@ -189,21 +188,21 @@ public class Labyrinth {
         }
         
         
-        ArrayList<Integer> position = new ArrayList<Integer>(2);
-        position.add(ROW, nextRow);
-        position.add(COL,nextCol);
+        ArrayList<Integer> position = new ArrayList<Integer>();
+        position.add(nextRow); //Añade en pos ROW = 0
+        position.add(nextCol);  //Añade en pos COL = 1
         return position;
     }
     
     private ArrayList<Integer> randomEmptyPos(){
         Integer row=INVALID_POS,col=INVALID_POS;
         
-        while(!this.posOK(row, col) && !this.emptyPos(row, col)){
+        while(!(this.posOK(row, col) && this.emptyPos(row, col))){
             row=Dice.randomPos(nRows);
             col=Dice.randomPos(nCols);
         }
         
-        ArrayList<Integer> position= new ArrayList<Integer>(2);
+        ArrayList<Integer> position= new ArrayList<Integer>();
         position.add(ROW,row);
         position.add(COL,col);
         return position;
@@ -257,28 +256,28 @@ public class Labyrinth {
     }
 
     private void setBlock(int row, int col, char bloque){
-        ltab[row][row] = bloque;
+        ltab[row][col] = bloque;
     }
 
     private char getBlock(int row, int col){
-        return ltab[row][row];
+        return ltab[row][col];
     }
 
     private void setMonsterAt(int row, int col, Monster monster){
-        mtab[row][row] = monster;
+        mtab[row][col] = monster;
     }
 
     private Monster getMonsterAt(int row, int col){
-        return mtab[row][row];
+        return mtab[row][col];
     }
 
     
     private void setPlayerAt(int row, int col, Player player){
-        ptab[row][row] = player;
+        ptab[row][col] = player;
     }
 
     private Player getPlayerAt(int row, int col){
-        return ptab[row][row];
+        return ptab[row][col];
     }
 
 }

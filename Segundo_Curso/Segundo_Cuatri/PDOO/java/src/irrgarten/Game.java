@@ -15,13 +15,13 @@ public class Game {
     private static final String MONSTER_WON_MSG = "Monster Won.";
     private static final String RESURRECTED_MSG = "Player resurrected.";
     private static final String SKIP_TURN_MSG = "Player is dead, turn skipped.";
-    private static final String NO_ORDER_MSG = "Player couldn't move due to physical problems.";
+    private static final String NO_ORDER_MSG = "Player couldn't move due to physical problems."; //TODO revisar esta frase tmb
     private static final String EMPTY_BLOCK_MSG = "Block with no action.";
     private static final int MAX_ROUNDS = 10;
     private static final String MONSTER_NAME = "Mike Wazousky";        
     private static final int COLS = 10;
     private static final int ROWS = 10;
-    private static final String EMPTY_LOG = ""; //TODO revisar esta
+    private static final String EMPTY_LOG = ""; //TODO revisar esta (creo que esta bien :Airam)
     
     //Datos miembro
     private int currentPlayerIndex;
@@ -45,8 +45,10 @@ public class Game {
         
         monsters = new ArrayList<Monster>();
         
+        //TODO revisar esto
         //Creado asi aposta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
+        this.configureLabyrinth(); //inicia el laberinto
         
         log = EMPTY_LOG; 
         
@@ -61,6 +63,7 @@ public class Game {
         if(!dead){
             Directions direction = actualDirection(preferredDirection);
             if(direction != preferredDirection){
+                System.out.println("khe");
                 logPlayerNoOrders();
             }
             Monster monster = labyrinth.putPlayer(direction, currentPlayer);
@@ -76,7 +79,7 @@ public class Game {
         }
 
         boolean endGame = finished(); 
-        if(endGame){
+        if(!endGame){
             nextPlayer();
         }
         return endGame;
@@ -87,14 +90,24 @@ public class Game {
                     monsters.toString(), this.currentPlayerIndex, this.finished(), log );
         return gameState;
     }
+
+    public String getLabyrinthv(){ //TODO Eliminar cuando acabe el debug
+        return labyrinth.toString();
+    }
     
     //TODO: Mirar si es con Dice
     private void configureLabyrinth(){
-        
+        //TODO: Cambiar esto, esto es solo para la prueba
+        labyrinth.addBlock(Orientation.VERTICAL, 0, 0,10);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 0, 1, 9);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 9, 1, 9);
+        labyrinth.addBlock(Orientation.VERTICAL, 1, 9, 9);
+        labyrinth.addMonster(3,3,new Monster(MONSTER_NAME, Dice.randomIntelligence(),Dice.randomStrength()));
+
     }
     
     private void nextPlayer(){
-        ++currentPlayerIndex;
+        currentPlayerIndex++;
         currentPlayerIndex=currentPlayerIndex % players.size();
         currentPlayer = players.get(currentPlayerIndex);
     }
@@ -102,8 +115,7 @@ public class Game {
     private Directions actualDirection(Directions preferredDirection){
         int currentRow = currentPlayer.getRow();
         int currentCol = currentPlayer.getCol();
-        currentPlayer.move(preferredDirection, labyrinth.validMoves(currentRow,currentCol));
-        return null;
+        return currentPlayer.move(preferredDirection, labyrinth.validMoves(currentRow,currentCol));
     }
     
     private GameCharacter combat(Monster monster){
@@ -161,6 +173,7 @@ public class Game {
         log += NO_ORDER_MSG + "\n";
     }
     
+    //TODO mirar esto
     private void logNoMonster(){
         log += EMPTY_BLOCK_MSG + " " + NO_ORDER_MSG + "\n";
     }

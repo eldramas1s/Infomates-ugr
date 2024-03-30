@@ -4,7 +4,7 @@
  */
 package irrgarten;
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  *
  * @author el_dramas
@@ -38,6 +38,7 @@ public class Player {
         this.strength = strength;
         this.col = INVALID_POS;
         this.row = INVALID_POS;
+        health = INITIAL_HEALTH;
     }
     
     public void resurrect(){
@@ -124,18 +125,22 @@ public class Player {
             cad += shields.get(i).toString() + " - ";
         }
         
-        if(weapons.size()>0){
+        if(shields.size()>0){
             cad += shields.get(shields.size()-1).toString() + "\n";
         }
         return cad;
     }
     
     private void receiveWeapon(Weapon w){
-        for (Weapon wl : weapons) {
+
+        Iterator<Weapon> it = weapons.iterator();
+        while(it.hasNext()){
+            Weapon wl = it.next();
             if( wl.discard()){
-                weapons.remove(wl);
+                it .remove();
             }
         }
+        
         if(weapons.size() < MAX_WEAPONS){
             weapons.add(w);
         }
@@ -201,6 +206,7 @@ public class Player {
             resetHits();
         }
         boolean lose = false;
+        //TODO preguntar si aqui se debe matar al jugador (poner vida = 0)
         if(consecutiveHits == HITS2LOSE || dead()){
             resetHits();
             lose = true;

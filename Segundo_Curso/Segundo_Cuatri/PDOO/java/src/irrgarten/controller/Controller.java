@@ -18,11 +18,17 @@ public class Controller {
     public void play() {
         boolean endOfGame = false;
         while (!endOfGame) {
+            //TODO: quitar esto cuando la clase GameState esté completa
+            System.out.println(game.getLabyrinthv()); 
+
             view.showGame(game.getGameState()); 
             Directions direction = view.nextMove(); 
             endOfGame = game.nextStep(direction);
         }
-      view.showGame(game.getGameState());        
+        //TODO: quitar esto cuando la clase GameState esté completa
+        System.out.println(game.getLabyrinthv());
+
+        view.showGame(game.getGameState());        
     }
-    
+        
 }
