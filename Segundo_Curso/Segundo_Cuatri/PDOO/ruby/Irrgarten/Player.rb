@@ -208,4 +208,11 @@ module Irrgarten
 	    end
         end
     end
+
+p = Player.new('45',0,0)
+
+puts p.to_s
+
+p.setPos(0,0)
+
 end
