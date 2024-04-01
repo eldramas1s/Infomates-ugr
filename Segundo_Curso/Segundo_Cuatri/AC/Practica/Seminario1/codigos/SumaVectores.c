@@ -101,8 +101,7 @@ int main(int argc, char** argv){
            i,i,i,v1[i],v2[i],v3[i]); 
   }
   else
-    printf("Tiempo:%11.9f\t / Tamaño Vectores:%u\t/ V1[0]+V2[0]=V3[0](%8.6f+%8.6f=%8.6f) / / V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
-           ncgt,N,v1[0],v2[0],v3[0],N-1,N-1,N-1,v1[N-1],v2[N-1],v3[N-1]); 
+    printf("Tiempo:%11.9f\n",ncgt); 
  
 
   #ifdef VECTOR_DYNAMIC
