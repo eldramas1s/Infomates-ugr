@@ -11,7 +11,7 @@ package irrgarten;
 public class GameState {
 
     /**
-     *  Nombre del laberinto 
+     *  Estado del laberinto 
      */
     private String labyrinth;
     /**
@@ -55,8 +55,8 @@ public class GameState {
     }
     
     /** 
-     * Devuelve el nombre del laberinto actual
-     * @return El nombre del laberinto actual
+     * Devuelve el estado del laberinto actual
+     * @return El estado del laberinto actual
      */
     public String getLabyrinthv(){
         return labyrinth;
