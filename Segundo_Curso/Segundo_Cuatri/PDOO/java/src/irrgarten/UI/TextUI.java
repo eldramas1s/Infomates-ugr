@@ -49,7 +49,7 @@ public class TextUI {
         }    
         return direction;
     }
-    
+    //TODO: Preguntar a Lastra
     public void showGame(GameState gameState) {   
         System.out.println(gameState.getLog());
     }
