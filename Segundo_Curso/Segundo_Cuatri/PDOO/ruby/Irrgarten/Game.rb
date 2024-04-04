@@ -6,7 +6,7 @@ require_relative 'GameCharacter'
 module Irrgarten
     class Game
 
-        #Mensajes 
+        #Mensajes
         @@PLAYER_WON_MSG = "Player Won."
         @@MONSTER_WON_MSG = " Monster Won."
         @@RESURRECTED_MSG = "Player resurrected."
@@ -33,7 +33,7 @@ module Irrgarten
             @log=""
 
             #TODO cambiar a algo con sentido
-            @labyrinth=Labyrinth.new(@@ROWS,@@COLS,0,0) 
+            @labyrinth=Labyrinth.new(@@ROWS,@@COLS,0,0)
         end
 
         def finished
@@ -58,9 +58,9 @@ module Irrgarten
 		else
 			manageResurrection
 		end
-		
+
 		endGame = finished
-		
+
 		if !endGame then
 			nextPlayer
 		end
@@ -78,44 +78,7 @@ module Irrgarten
         end
 
         def configureLabyrinth
-		@labyrinth.addBlock(Orientation::VERTICAL,0,0,@@COLS)
-		@labyrinth.addBlock(Orientation::HORIZONTAL,0,1,@@COLS)
-		@labyrinth.addBlock(Orientation::HORIZONTAL,@@ROWS-1,1,@@ROWS)
-		@labyrinth.addBlock(Orientation::VERTICAL,1,@@COLS-1,@@COLS)
-		
-		#Creación de monstruos
-		@labyrinth.addMonster(@@ROWS-1,@@COLS-2, Monster.new(@@BOSS_NAME,8,8))
-		
-		#Monstruos debiles		
-		@labyrinth.addMonster(6,@@COLS-3,Monster.new(@@MONSTER_NAME,2,3)
-		@labyrinth.addMonster(1,@COLS-3,Monster.new(@@MONSTER_NAME,3,2)
-		@labyrinth.addMonster(11,11,Monster.new(@@MONSTER_NAME,3,3)
-		@labyrinth.addMonster(12,11,Monster.new(@@MONSTER_NAME,5,6)
-		@labyrinth.addMonster(13,10,Monster.new(@@MONSTER_NAME,6,5)
-		
-		#VERTICAL
-		@labyrinth.addBlock(Orientation::VERTICAL,1,@COLS-2,@@COLS)
-		@labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1),@@COLS-3,(@@COLS>>1)-1)
-		@labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1)-2,@@COLS-4,(@@COLS>>1)-1)
-		@labyrinth.addBlock(Orientation::VERTICAL,9,2,3)
-		@labyrinth.addBlock(Orientation::VERTICAL,9,3,2)
-		@labyrinth.addBlock(Orientation::VERTICAL,9,4,3)
 
-		#HORIZONTAL
-		@labyrinth.addBlock(Orientation::HORZONTAL,5,9,2)
-		@labyrinth.addBlock(Orientation::HORZONTAL,1,9,3)
-		@labyrinth.addBlock(Orientation::HORZONTAL,2,9,3)
-		@labyrinth.addBlock(Orientation::HORZONTAL,3,9,3)
-		@labyrinth.addBlock(Orientation::HORZONTAL,8,6,6)
-		@labyrinth.addBlock(Orientation::HORZONTAL,9.,6,6)
-		@labyrinth.addBlock(Orientation::HORZONTAL,10,6,6)
-		@labyrinth.addBlock(Orientation::HORZONTAL,11,6,4)
-		@labyrinth.addBlock(Orientation::HORZONTAL,13,1,@@ROWS-6)
-		@labyrinth.addBlock(Orientation::HORZONTAL,11,6,4)
-
-
-		
-		
         end
 
         def nextPlayer
@@ -135,7 +98,7 @@ module Irrgarten
 		winner = GameCharacter::PLAYER
 		playerAttack = @currentPlayer.attack
 		lose = monster.defend(playerAttack)
-		while !lose && (ronds < @@MAX_ROUNDS) 
+		while !lose && (ronds < @@MAX_ROUNDS)
 			winner = GameCharacter::MONSTER
 			rounds++
 			monsterAttack = monster.attack
@@ -159,7 +122,7 @@ module Irrgarten
 				logMonsterWon
 			end
         end
-	
+
         def manageResurrection
 			resurrect = Dice.resurrectPlayer
 			if resurrect then
@@ -173,30 +136,30 @@ module Irrgarten
         def logPlayerWon
             @log += @@PLAYER_WON_MSG + "\n"
           end
-        
+
           def logMonsterWon
             @log += @@MONSTER_WON_MSG + "\n"
           end
-        
+
           def logResurrected
             @log += @@RESURRECTED_MSG + "\n"
           end
-        
+
           def logPlayerSkipTurn
             @log += @@SKIP_TURN_MSG + "\n"
           end
-        
+
           def logPlayerNoOrders
             @log += @@NO_ORDER_MSG + "\n"
           end
-        
+
           def logNoMonster
             @log += @@EMPTY_BLOCK_MSG + " " + @@NO_ORDER_MSG + "\n"
           end
-        
+
           def logRounds(rounds, max)
             @log += " Se han producido #{rounds} de #{max}\n"
           end
-        
+
     end
 end

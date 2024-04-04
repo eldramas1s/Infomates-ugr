@@ -6,9 +6,11 @@
 
 #include <stdlib.h>	// biblioteca con funciones atoi()
 #include <stdio.h>	// biblioteca donde se encuentra la función printf()
+#include <omp.h> //biblioteca openMP
 
 //Tratamos siempre como vector global
-
+#define PC
+#define NUM_THREADS 4
 #define MAX 2^25-1	//=2^25
    
 double v1[MAX], v2[MAX], v3[MAX]; 
@@ -38,8 +40,7 @@ double v1[MAX], v2[MAX], v3[MAX];
 int main(int argc, char** argv){ 
   
   int i; 
-
-  int cgt1,cgt2; int ncgt; //para tiempo de ejecución
+  double cgt1,cgt2; double ncgt; //para tiempo de ejecución
   
   //Leer argumento de entrada (nº de componentes del vector)
   if (argc<2){	
@@ -47,22 +48,29 @@ int main(int argc, char** argv){
     exit(-1);
   }
   
-  unsigned int N = atoi(argv[1]);
-
-  printf("Tamaño Vectores:%lu (%lu B)\n",N*sizeof(unsigned int), sizeof(unsigned int)); 
+  unsigned int n = atoi(argv[1]);
+  long unsigned int tam = n*sizeof(unsigned int);
   
-  if (N>MAX) N=MAX;
-
+  //N=15;
+  printf("Tamaño Vectores:%lu (%lu B)\n",tam, sizeof(unsigned int)); 
+  printf("N: %u\n", n);
+  //TODO: Corregir y preguntar poke hace el cambio siempre
+  if (n>MAX) n=MAX;
+  printf("N: %u\n", n);
   //Inicializar vectores 
 
+  #ifdef PC 
+  omp_set_num_threads(NUM_THREADS);
+  #endif
+  
   int max_num_threads = omp_get_max_threads();
   int num_threads_i = 0;
-  #pragma omp parallel for
+  #pragma omp parallel 
   {
-    for(i=0; i<N; i++)
-      v1[i] = N*0.1+i*0.1; v2[i] = N*0.1-i*0.1; //Se puede usar drand48() para generar los valores de forma aleatoria (drand48_r() para una versión paralela)
-    
-    
+    printf("N: %u\n", n);
+    #pragma omp for
+    for(i=0; i<n; i++)
+      v1[i] = n*0.1+i*0.1; v2[i] = n*0.1-i*0.1; //Se puede usar drand48() para generar los valores de forma aleatoria (drand48_r() para una versión paralela) 
   }
   num_threads_i = omp_get_num_threads();
   cgt1 = omp_get_wtime();
@@ -70,12 +78,17 @@ int main(int argc, char** argv){
   //Calcular suma de vectores 
 
   int num_threads_p = 0;
-  #pragma omp parallel for
+  #pragma omp parallel 
   {
-    for(i=0; i<N; i++) 
+    #pragma omp for
+    for(i=0; i<n; i++){
       v3[i] = v1[i] + v2[i];
+    } 
+      
+    num_threads_p = omp_get_num_threads();
   }
-  num_threads_p = omp_get_num_threads();
+
+ 
  
   cgt2 = omp_get_wtime();
 
@@ -84,16 +97,16 @@ int main(int argc, char** argv){
   printf ( "Threads:\n\t Inicializacion: %d \n\t Calculo: %d\n",num_threads_i,num_threads_p);
 
   //Imprimir resultado de la suma y el tiempo de ejecución
-  if (N<15) {
-    printf("Tiempo:%d\t / Tamaño Vectores:%u\n",ncgt,N); 
+  if (n<15) {
+    printf("Tiempo:%f\t / Tamaño Vectores:%u\n",ncgt,n); 
     //Imprimir vector y suma
-    for(i=0; i<N; i++) 
+    for(i=0; i<n; i++) 
       printf("/ V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
            i,i,i,v1[i],v2[i],v3[i]); 
   }
   else
-    printf("Tiempo:%d\t / Tamaño Vectores:%u\t/ V1[0]+V2[0]=V3[0](%8.6f+%8.6f=%8.6f) / / V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
-           ncgt,N,v1[0],v2[0],v3[0],N-1,N-1,N-1,v1[N-1],v2[N-1],v3[N-1]); 
-
+    //printf("Tiempo:%f\t / Tamaño Vectores:%lu\t/ V1[0]+V2[0]=V3[0](%8.6f+%8.6f=%8.6f) / / V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
+    //       ncgt,tam,v1[0],v2[0],v3[0],N-1,N-1,N-1,v1[N-1],v2[N-1],v3[N-1]); 
+      printf("Tiempo:%f\t NumThreads:%u\n",ncgt,num_threads_p);
   return 0; 
 }

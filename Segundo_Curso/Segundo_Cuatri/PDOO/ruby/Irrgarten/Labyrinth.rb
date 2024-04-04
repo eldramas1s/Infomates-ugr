@@ -220,7 +220,6 @@ module Irrgarten
 	def getPlayerAt(row, col)
 	  @ptab[row][col]
 	end
-		
     end
 
 end

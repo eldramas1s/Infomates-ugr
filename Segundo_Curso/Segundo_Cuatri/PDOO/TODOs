@@ -1,2 +1,0 @@
-Airam:
-Refactorizar Labyrinth ruby para no suponer representacion interna (Crear setBlock(row,col), getBlock(...),...);
