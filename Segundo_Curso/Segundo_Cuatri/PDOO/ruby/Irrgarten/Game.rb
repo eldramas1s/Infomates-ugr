@@ -115,23 +115,22 @@ module Irrgarten
 
 	#TODO: Comprender clase GameCharacter (GameCharacter.PLAYER)
         def manageRewared(winner)
-		if winner == GameCharacter::PLAYER then
-			@currentPlayer.receiveReward
-			logPlayerWon
-		else
-			logMonsterWon
-		end
+			if winner == GameCharacter::PLAYER then
+				@currentPlayer.receiveReward
+				logPlayerWon
+			else
+				logMonsterWon
+			end
         end
 	
-	#TODO: Mirar estructura para llmar a Dice
         def manageResurrection
-		resurrect = Dice::Dice.resurrectPlayer
-		if resurrect then
-			@currentPlayer.resurrect
-			logResurrected
-		else
-			logPlayerSkipTurn
-		end
+			resurrect = Dice.resurrectPlayer
+			if resurrect then
+				@currentPlayer.resurrect
+				logResurrected
+			else
+				logPlayerSkipTurn
+			end
         end
 
         def logPlayerWon
