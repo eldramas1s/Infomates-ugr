@@ -8,6 +8,8 @@
 #include <stdio.h>	// biblioteca donde se encuentra la funcion printf()
 #include <omp.h> //biblioteca openMP 
 
+#define PC
+#define NUM_THREADS 4
 #define MAX 33554432	//=2^25
    
 double v1[MAX], v2[MAX], v3[MAX]; 
@@ -51,6 +53,10 @@ int main(int argc, char** argv){
 
   if(N>MAX) N=MAX;
 
+  #ifdef PC 
+  omp_set_num_threads(NUM_THREADS);
+  #endif
+  
   //Inicializar vectores 
   #pragma omp parallel for
   
@@ -72,14 +78,16 @@ int main(int argc, char** argv){
   ncgt = cgt2-cgt1;
   //Imprimir resultado de la suma y el tiempo de ejecucion
   if (N<15) {
-  printf("Tiempo:%11.9f\t/ Max_num_threads: %11.d / Tamanio Vectores:%lu\n",ncgt,max_num_threads,N*sizeof(double)); 
-  for(i=0; i<N; i++) 
-    printf("/ V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
-           i,i,i,v1[i],v2[i],v3[i]); 
+    printf("Tiempo:%11.9f\t/ Max_num_threads: %11.d / Tamanio Vectores:%lu\n",ncgt,max_num_threads,N*sizeof(double)); 
+    for(i=0; i<N; i++) 
+      printf("/ V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
+             i,i,i,v1[i],v2[i],v3[i]); 
   }
   else{
-    printf("Tiempo:%11.9f\t Max_num_threads: %11.d\t/ Tamanio Vectores:%lu\n",ncgt,max_num_threads,N*sizeof(double)); 
-    printf("V1[0]=%f, V2[0]=%f, V3[0]=%f \n V1[N-1]=%f,V2[N-1]=%f,V3[0]=%F\n",v1[0],v2[0],v3[0],v1[N-1],v2[N-1],v3[N-1]);
+    //printf("Tiempo:%11.9f\t Max_num_threads: %11.d\t/ Tamanio Vectores:%lu\n",ncgt,max_num_threads,N*sizeof(double)); 
+    //printf("V1[0]=%f, V2[0]=%f, V3[0]=%f \n V1[N-1]=%f,V2[N-1]=%f,V3[0]=%F\n",v1[0],v2[0],v3[0],v1[N-1],v2[N-1],v3[N-1]);
+
+    printf ("%d\t %11.9f\n",N,ncgt);
   }
   return 0; 
 }

@@ -19,7 +19,7 @@
 //#define VECTOR_DYNAMIC	// descomentar para que los vectores sean variables ...
 			// dinámicas (memoria reutilizable durante la ejecución)
 #ifdef VECTOR_GLOBAL
-#define MAX 2^25-1	//=2^25
+#define MAX 33554432	//=2^25
    
 double v1[MAX], v2[MAX], v3[MAX]; 
 #endif
@@ -60,7 +60,7 @@ int main(int argc, char** argv){
   unsigned int N = atoi(argv[1]);
   //unsigned int N = 4294967295;	
 // Máximo N =2^32-1=4294967295 (sizeof(unsigned int) = 4 B)
-  printf("Tamaño Vectores:%lu (%lu B)\n",N*sizeof(unsigned int), sizeof(unsigned int)); 
+  //printf("Tamaño Vectores:%lu (%lu B)\n",N*sizeof(unsigned int), sizeof(unsigned int)); 
   #ifdef VECTOR_LOCAL
   double v1[N], v2[N], v3[N];   // Tamaño variable local en tiempo de ejecución ...
 				// disponible en C a partir de C99 
@@ -95,13 +95,14 @@ int main(int argc, char** argv){
 
   //Imprimir resultado de la suma y el tiempo de ejecución
   if (N<10) {
-  printf("Tiempo:%11.9f\t / Tamaño Vectores:%u\n",ncgt,N); 
-  for(i=0; i<N; i++) 
-    printf("/ V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
-           i,i,i,v1[i],v2[i],v3[i]); 
+    printf("Tiempo:%11.9f\t / Tamaño Vectores:%u\n",ncgt,N); 
+    for(i=0; i<N; i++) 
+      printf("/ V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
+            i,i,i,v1[i],v2[i],v3[i]); 
   }
   else
-    printf("Tiempo:%11.9f\n",ncgt); 
+    //printf("Tiempo:%11.9f\n",ncgt); 
+    printf("%d\t %11.9f\n", N,ncgt);
  
 
   #ifdef VECTOR_DYNAMIC

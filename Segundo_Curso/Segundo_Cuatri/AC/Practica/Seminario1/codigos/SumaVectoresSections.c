@@ -10,6 +10,8 @@
 
 //Tratamos siempre como vector global
 
+#define PC
+#define NUM_THREADS 4
 #define MAX 33554432 	//=2^25
    
 double v1[MAX], v2[MAX], v3[MAX]; 
@@ -50,9 +52,13 @@ int main(int argc, char** argv){
   unsigned int N = atoi(argv[1]);
   long unsigned int tam = N*sizeof(unsigned int);
   
-  printf("Tamaño Vectores:%lu (%lu B)\n",tam, sizeof(unsigned int)); 
+  //printf("Tamaño Vectores:%lu (%lu B)\n",tam, sizeof(unsigned int)); 
 
   if (N>MAX) N=MAX;
+  
+  #ifdef PC 
+  omp_set_num_threads(NUM_THREADS);
+  #endif
   
   //Inicializar vectores 
 
@@ -125,8 +131,8 @@ int main(int argc, char** argv){
   cgt2 = omp_get_wtime();
   ncgt=cgt2-cgt1;
 
-  printf ("Max Threads: %d\n",max_num_threads);
-  printf ("Num Threads: %d\n", num_threads);
+  //printf ("Max Threads: %d\n",max_num_threads);
+  //printf ("Num Threads: %d\n", num_threads);
   //Imprimir resultado de la suma y el tiempo de ejecución
   if (N<15) {
     printf("Tiempo:%f\t / Tamaño Vectores:%u\n",ncgt,N); 
@@ -136,8 +142,9 @@ int main(int argc, char** argv){
            i,i,i,v1[i],v2[i],v3[i]); 
   }
   else{
-    printf("Tiempo:%f\t / Tamaño Vectores:%lu\t/ V1[0]+V2[0]=V3[0](%8.6f+%8.6f=%8.6f) / / V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
-         ncgt,tam,v1[0],v2[0],v3[0],N-1,N-1,N-1,v1[N-1],v2[N-1],v3[N-1]); 
+    //printf("Tiempo:%f\t / Tamaño Vectores:%lu\t/ V1[0]+V2[0]=V3[0](%8.6f+%8.6f=%8.6f) / / V1[%d]+V2[%d]=V3[%d](%8.6f+%8.6f=%8.6f) /\n",
+    //     ncgt,tam,v1[0],v2[0],v3[0],N-1,N-1,N-1,v1[N-1],v2[N-1],v3[N-1]); 
+    printf("%d\t %11.9f\n",N,ncgt);  
   }
 
     

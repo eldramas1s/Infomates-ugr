@@ -6,13 +6,6 @@ fi
 
 #Ejecutamos el ejecutable
 
-echo "Secuencial: "
-./ejecutables/exeSumaVectores $1
-
-echo "Parallel for: "
-./ejecutables/exeSumaVectoresParallel $1
-
-echo "Parallel sections: "
-./ejecutables/exeSumaVectoresSections $1
-
-
+./ejecutables/exeSumaVectores $1 >> ./results/SumaVectores.txt
+./ejecutables/exeSumaVectoresParallel $1 >> ./results/SumaVectoresParallel.txt
+./ejecutables/exeSumaVectoresSections $1 >> ./results/SumaVectoresSections.txt

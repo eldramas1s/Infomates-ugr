@@ -9,7 +9,8 @@
 #include <omp.h> //biblioteca openMP
 
 //Tratamos siempre como vector global
-
+#define PC
+#define NUM_THREADS 4
 #define MAX 2^25-1	//=2^25
    
 double v1[MAX], v2[MAX], v3[MAX]; 
@@ -58,6 +59,10 @@ int main(int argc, char** argv){
   printf("N: %u\n", n);
   //Inicializar vectores 
 
+  #ifdef PC 
+  omp_set_num_threads(NUM_THREADS);
+  #endif
+  
   int max_num_threads = omp_get_max_threads();
   int num_threads_i = 0;
   #pragma omp parallel 
