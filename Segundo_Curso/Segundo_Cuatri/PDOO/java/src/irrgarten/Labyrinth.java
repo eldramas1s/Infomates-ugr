@@ -29,9 +29,7 @@ public class Labyrinth {
     private char ltab[][];
     private Player ptab[][];
     
-    //TODO: Crear un laberinto especifico
     public Labyrinth(int nRows, int nCols, int exitRow, int exitCol){
-        //TODO: preguntar si comprobar índices nrows y ncols
         this.nRows = nRows;
         this.nCols = nCols;
         this.exitCol = exitCol;

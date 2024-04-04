@@ -113,7 +113,6 @@ module Irrgarten
 		winner
         end
 
-	#TODO: Comprender clase GameCharacter (GameCharacter.PLAYER)
         def manageRewared(winner)
 			if winner == GameCharacter::PLAYER then
 				@currentPlayer.receiveReward

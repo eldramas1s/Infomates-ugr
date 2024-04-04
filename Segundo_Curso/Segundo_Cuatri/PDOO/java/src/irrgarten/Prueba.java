@@ -17,7 +17,6 @@ import irrgarten.UI.TextUI;
 
 
 //TODO Preguntar en tutoria
-//? Como se debe manejar log
 //? Como se deben imprimir en pantalla las instancias de GameState
 //? Tras un combate que pasa con las cosas
 

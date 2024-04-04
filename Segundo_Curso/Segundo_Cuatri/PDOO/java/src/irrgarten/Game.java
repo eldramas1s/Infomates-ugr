@@ -18,7 +18,8 @@ public class Game {
     private static final String NO_ORDER_MSG = "Player couldn't move due to physical problems."; //TODO revisar esta frase tmb
     private static final String EMPTY_BLOCK_MSG = "Block with no action.";
     private static final int MAX_ROUNDS = 10;
-    private static final String MONSTER_NAME = "Mike Wazousky";        
+    private static final String MONSTER_NAME = "Mike Wazousky";      
+    private static final String BOSS_NAME = "Bowser";      
     private static final int COLS = 15;
     private static final int ROWS = 15;
     private static final String EMPTY_LOG = "";
@@ -32,7 +33,6 @@ public class Game {
     private ArrayList<Monster> monsters=new ArrayList<Monster>();
     private Labyrinth labyrinth;
     
-    //TODO: Constructor
     public Game(int nplayers){
         
         //creacion de jugadores
@@ -96,22 +96,50 @@ public class Game {
         return labyrinth.toString();
     }
     
-    //TODO: Mirar si es con Dice
     private void configureLabyrinth(){
-        //TODO: Cambiar esto, esto es solo para la prueba
-        //Creacion de paredes iniciales
+        //TODO: revisar
+        //*Creacion de paredes iniciales
         labyrinth.addBlock(Orientation.VERTICAL, 0, 0,COLS);
         labyrinth.addBlock(Orientation.HORIZONTAL, 0, 1, ROWS);
         labyrinth.addBlock(Orientation.HORIZONTAL, ROWS-1, 1, ROWS);
         labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-1, COLS);
 
-        //Creacion de monstruos
-        labyrinth.addMonster(ROWS-2, COLS-2,new Monster(MONSTER_NAME,8f,8f));//TODO preguntar si podemos
+        //*Creacion de monstruos
+        labyrinth.addMonster(ROWS-2, COLS-2,new Monster(BOSS_NAME,8f,8f)); //Boss de la salida
+
+        //Monstruos débiles (regalo en sitios lejanos o algo así)
+        labyrinth.addMonster(6, COLS-3, new Monster(MONSTER_NAME, 2f, 3f)); 
+        labyrinth.addMonster(1, COLS-3, new Monster(MONSTER_NAME, 3f, 2f)); 
+        labyrinth.addMonster(11, 11, new Monster(MONSTER_NAME, 3f, 3f));
+        labyrinth.addMonster(12, 11, new Monster(MONSTER_NAME, 5f, 6f));
+        labyrinth.addMonster(13, 10, new Monster(MONSTER_NAME, 6f, 5f));
 
 
-        //creacion del resto de paredes
+
+        //*Creacion del resto de paredes
         labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-2, COLS);
-        labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-2, COLS);
+        labyrinth.addBlock(Orientation.VERTICAL, (ROWS>>1), COLS-3, (COLS>>1) -1);
+        labyrinth.addBlock(Orientation.VERTICAL, (ROWS>>1) -2, COLS-4, (COLS>>1) -1);
+     
+        labyrinth.addBlock(Orientation.VERTICAL, 9, 2, 3);
+        labyrinth.addBlock(Orientation.VERTICAL, 9, 3, 2);
+        labyrinth.addBlock(Orientation.VERTICAL, 9, 4, 3);
+
+
+        labyrinth.addBlock(Orientation.HORIZONTAL, 1,9, 3);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 2,9, 3);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 3,9, 3);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 5,9, 2);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 8,6, 6);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 9,6, 6);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 10,6, 6);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 11,6, 4); 
+        labyrinth.addBlock(Orientation.HORIZONTAL, 13,1, ROWS-6);
+
+
+
+
+
 
 
     }
@@ -136,7 +164,7 @@ public class Game {
             lose = currentPlayer.defend(monster.attack());
             winner = GameCharacter.MONSTER;
             rounds++;
-            if(!lose){ //TODO preguntar por qué player tiene un turno más
+            if(!lose){ 
                 monster.defend(currentPlayer.attack());
                 winner = GameCharacter.PLAYER;
             }

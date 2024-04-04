@@ -205,7 +205,7 @@ public class Player {
             resetHits();
         }
         boolean lose = false;
-        //TODO preguntar si aqui se debe matar al jugador (poner vida = 0)
+        //TODO preguntar si aqui se debe matar al jugador (poner vida = 0) NO
         if(consecutiveHits == HITS2LOSE || dead()){
             resetHits();
             lose = true;
