@@ -78,7 +78,7 @@ module Irrgarten
         end
 
         def configureLabyrinth
-
+		labyrinth.addBlock
         end
 
         def nextPlayer
