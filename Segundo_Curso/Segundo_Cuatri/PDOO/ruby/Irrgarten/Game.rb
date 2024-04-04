@@ -6,18 +6,18 @@ require_relative 'GameCharacter'
 module Irrgarten
     class Game
 
-        #Mensajes 
+        #Mensajes
         @@PLAYER_WON_MSG = "Player Won."
         @@MONSTER_WON_MSG = " Monster Won."
         @@RESURRECTED_MSG = "Player resurrected."
         @@SKIP_TURN_MSG = "Player is dead, turn skipped."
         @@NO_ORDER_MSG = "Player couldn't move due to physical problems."
         @@EMPTY_BLOCK_MSG = "Block with no action."
-
+	@@BOSS_NAME = "Bowser"
         @@MAX_ROUNDS=10
         @@MONSTER_NAMES = ["Mike Wazousky"]
-        @@ROWS = 10
-        @@COLS = 10
+        @@ROWS = 15
+        @@COLS = 15
 
         def initialize(nplayers)
             @currentPlayerIndex=Dice.whoStarts(nplayers)
@@ -33,7 +33,7 @@ module Irrgarten
             @log=""
 
             #TODO cambiar a algo con sentido
-            @labyrinth=Labyrinth.new(@@ROWS,@@COLS,0,0) 
+            @labyrinth=Labyrinth.new(@@ROWS,@@COLS,0,0)
         end
 
         def finished
@@ -58,9 +58,9 @@ module Irrgarten
 		else
 			manageResurrection
 		end
-		
+
 		endGame = finished
-		
+
 		if !endGame then
 			nextPlayer
 		end
@@ -78,7 +78,7 @@ module Irrgarten
         end
 
         def configureLabyrinth
-
+		labyrinth.addBlock
         end
 
         def nextPlayer
@@ -98,7 +98,7 @@ module Irrgarten
 		winner = GameCharacter::PLAYER
 		playerAttack = @currentPlayer.attack
 		lose = monster.defend(playerAttack)
-		while !lose && (ronds < @@MAX_ROUNDS) 
+		while !lose && (ronds < @@MAX_ROUNDS)
 			winner = GameCharacter::MONSTER
 			rounds++
 			monsterAttack = monster.attack
@@ -121,7 +121,7 @@ module Irrgarten
 				logMonsterWon
 			end
         end
-	
+
         def manageResurrection
 			resurrect = Dice.resurrectPlayer
 			if resurrect then
@@ -135,30 +135,30 @@ module Irrgarten
         def logPlayerWon
             @log += @@PLAYER_WON_MSG + "\n"
           end
-        
+
           def logMonsterWon
             @log += @@MONSTER_WON_MSG + "\n"
           end
-        
+
           def logResurrected
             @log += @@RESURRECTED_MSG + "\n"
           end
-        
+
           def logPlayerSkipTurn
             @log += @@SKIP_TURN_MSG + "\n"
           end
-        
+
           def logPlayerNoOrders
             @log += @@NO_ORDER_MSG + "\n"
           end
-        
+
           def logNoMonster
             @log += @@EMPTY_BLOCK_MSG + " " + @@NO_ORDER_MSG + "\n"
           end
-        
+
           def logRounds(rounds, max)
             @log += " Se han producido #{rounds} de #{max}\n"
           end
-        
+
     end
 end

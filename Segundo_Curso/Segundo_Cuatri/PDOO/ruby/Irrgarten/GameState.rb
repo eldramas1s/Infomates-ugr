@@ -64,5 +64,9 @@ module Irrgarten
 		def log
 			@log
 		end
+		#TODO: Esperar tutoria
+		def to_s
+			
+		end
     end
 end

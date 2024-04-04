@@ -4,7 +4,7 @@ require_relative 'Dice'
 require_relative 'Directions'
 
 module Irrgarten
-    
+
     class Labyrinth
 
         @@INVALID_POS=-1
@@ -22,7 +22,7 @@ module Irrgarten
             @exitRow=exitRow
             @exitCol=exitCol
             @mtab=Array.new(nRows) {(Array.new(nCols))}
-            @ltab=Array.new(nRows) {(Array.new(nCols))} 
+            @ltab=Array.new(nRows) {(Array.new(nCols))}
             @ptab=Array.new(nRows) {(Array.new(nCols))}
 
             for i in 0...nRows do
@@ -81,14 +81,14 @@ module Irrgarten
 		end
 		row = startRow
 		col = startCol
-		
+
 		while posOK(row,col) && emptyPos(row,col) && length > 0
 			ltab[row][col] = @@BLOCK_CHAR
 			length -= 1
 			row += incRow
 			col += incCol
-		end 
-			
+		end
+
         end
 
         def validMoves(row,col)#Directions[]
@@ -111,7 +111,7 @@ module Irrgarten
 		output
         end
 
-
+	private
         def posOK(row,col)#bool
             (0 <= row && row < @nRows && 0 <= col && col < @nCols)
         end
@@ -137,14 +137,14 @@ module Irrgarten
         end
 
         def updateOldPos(row,col)#void
-            if posOK(row, col) 
+            if posOK(row, col)
                 if @ltab[row][col] == @@COMBAT_CHAR then
                     @ltab[row][col] = @@MONSTER_CHAR
-                else 
+                else
                     @ltab[row][col] = @@EMPTY_BLOCK
                 end
             end
-            
+
         end
 
         def dir2Pos(row,col, direction) #int[]
@@ -164,12 +164,12 @@ module Irrgarten
             begin
                 row = Dice.randomPos(@nRows)
                 col = Dice.randomPos(@nCols)
-            end until emptyPos(row,col) 
+            end until emptyPos(row,col)
             [row,col]
-            
+
         end
-	
-	
+
+
 	#TODO: Preguntar si debemos hacer un reader de las posiciones de cada tablita
     #TODO: hacerlo
         def putPlayer2D(oldRow, oldCol, row, col, player) #monster
@@ -182,7 +182,7 @@ module Irrgarten
 					@ptab[oldRow][oldCol] = NULL
 				end
 			end
-	
+
 			monsterPos = monsterPos(row,col)
 			if monsterPos then
 				@ltab[row][col] = @@COMBAT_CHAR
@@ -197,7 +197,29 @@ module Irrgarten
 		output
         end
 
+        def setBlock(direction,row, col, bloque)
+	  @ltab[row][col] = bloque
+	end
+
+	def getBlock(row, col)
+	  @ltab[row][col]
+	end
+
+	def setMonsterAt(row, col, monster)
+	  @mtab[row][col] = monster
+	end
+
+	def getMonsterAt(row, col)
+	  @mtab[row][col]
+	end
+
+	def setPlayerAt(row, col, player)
+	  @ptab[row][col] = player
+	end
+
+	def getPlayerAt(row, col)
+	  @ptab[row][col]
+	end
     end
 
 end
-
