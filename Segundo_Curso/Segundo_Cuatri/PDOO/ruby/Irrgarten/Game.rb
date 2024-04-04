@@ -13,11 +13,11 @@ module Irrgarten
         @@SKIP_TURN_MSG = "Player is dead, turn skipped."
         @@NO_ORDER_MSG = "Player couldn't move due to physical problems."
         @@EMPTY_BLOCK_MSG = "Block with no action."
-
+	@@BOSS_NAME = "Bowser"
         @@MAX_ROUNDS=10
         @@MONSTER_NAMES = ["Mike Wazousky"]
-        @@ROWS = 10
-        @@COLS = 10
+        @@ROWS = 15
+        @@COLS = 15
 
         def initialize(nplayers)
             @currentPlayerIndex=Dice.whoStarts(nplayers)
@@ -78,7 +78,44 @@ module Irrgarten
         end
 
         def configureLabyrinth
+		@labyrinth.addBlock(Orientation::VERTICAL,0,0,@@COLS)
+		@labyrinth.addBlock(Orientation::HORIZONTAL,0,1,@@COLS)
+		@labyrinth.addBlock(Orientation::HORIZONTAL,@@ROWS-1,1,@@ROWS)
+		@labyrinth.addBlock(Orientation::VERTICAL,1,@@COLS-1,@@COLS)
+		
+		#Creación de monstruos
+		@labyrinth.addMonster(@@ROWS-1,@@COLS-2, Monster.new(@@BOSS_NAME,8,8))
+		
+		#Monstruos debiles		
+		@labyrinth.addMonster(6,@@COLS-3,Monster.new(@@MONSTER_NAME,2,3)
+		@labyrinth.addMonster(1,@COLS-3,Monster.new(@@MONSTER_NAME,3,2)
+		@labyrinth.addMonster(11,11,Monster.new(@@MONSTER_NAME,3,3)
+		@labyrinth.addMonster(12,11,Monster.new(@@MONSTER_NAME,5,6)
+		@labyrinth.addMonster(13,10,Monster.new(@@MONSTER_NAME,6,5)
+		
+		#VERTICAL
+		@labyrinth.addBlock(Orientation::VERTICAL,1,@COLS-2,@@COLS)
+		@labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1),@@COLS-3,(@@COLS>>1)-1)
+		@labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1)-2,@@COLS-4,(@@COLS>>1)-1)
+		@labyrinth.addBlock(Orientation::VERTICAL,9,2,3)
+		@labyrinth.addBlock(Orientation::VERTICAL,9,3,2)
+		@labyrinth.addBlock(Orientation::VERTICAL,9,4,3)
 
+		#HORIZONTAL
+		@labyrinth.addBlock(Orientation::HORZONTAL,5,9,2)
+		@labyrinth.addBlock(Orientation::HORZONTAL,1,9,3)
+		@labyrinth.addBlock(Orientation::HORZONTAL,2,9,3)
+		@labyrinth.addBlock(Orientation::HORZONTAL,3,9,3)
+		@labyrinth.addBlock(Orientation::HORZONTAL,8,6,6)
+		@labyrinth.addBlock(Orientation::HORZONTAL,9.,6,6)
+		@labyrinth.addBlock(Orientation::HORZONTAL,10,6,6)
+		@labyrinth.addBlock(Orientation::HORZONTAL,11,6,4)
+		@labyrinth.addBlock(Orientation::HORZONTAL,13,1,@@ROWS-6)
+		@labyrinth.addBlock(Orientation::HORZONTAL,11,6,4)
+
+
+		
+		
         end
 
         def nextPlayer

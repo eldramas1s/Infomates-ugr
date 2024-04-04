@@ -111,7 +111,7 @@ module Irrgarten
 		output
         end
 
-
+	private
         def posOK(row,col)#bool
             (0 <= row && row < @nRows && 0 <= col && col < @nCols)
         end
@@ -196,7 +196,31 @@ module Irrgarten
 		end
 		output
         end
+        
+        def setBlock(direction,row, col, bloque)
+	  @ltab[row][col] = bloque
+	end
 
+	def getBlock(row, col)
+	  @ltab[row][col]
+	end
+
+	def setMonsterAt(row, col, monster)
+	  @mtab[row][col] = monster
+	end
+
+	def getMonsterAt(row, col)
+	  @mtab[row][col]
+	end
+
+	def setPlayerAt(row, col, player)
+	  @ptab[row][col] = player
+	end
+
+	def getPlayerAt(row, col)
+	  @ptab[row][col]
+	end
+		
     end
 
 end
