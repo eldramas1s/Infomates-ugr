@@ -4,18 +4,17 @@
  */
 package irrgarten;
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  *
  * @author el_dramas
  */
 public class Player {
-    //TODO: Cambiar posicion de inicio por una random
     static private final String DEFAULT_NAME = "Player #";
     static private final int INVALID_POS = -1;
     
     static private int MAX_WEAPONS = 2;
-    static private int MAX_SHIELD = 3;
+    static private int MAX_SHIELDS = 3;
     static private int INITIAL_HEALTH = 10;
     static private int HITS2LOSE = 3;
     
@@ -38,6 +37,7 @@ public class Player {
         this.strength = strength;
         this.col = INVALID_POS;
         this.row = INVALID_POS;
+        health = INITIAL_HEALTH;
     }
     
     public void resurrect(){
@@ -70,8 +70,12 @@ public class Player {
         return health <= 0;
     }
     
-    public Directions move(Directions directions, ArrayList<Directions> validMoves){
-        throw new UnsupportedOperationException();        
+    public Directions move(Directions direction, ArrayList<Directions> validMoves){
+        Directions output = direction;
+        if(validMoves.size() > 0 && !validMoves.contains(direction)){
+            output = validMoves.get(0);
+        }
+        return output;
     }
     
     public float attack(){
@@ -81,8 +85,22 @@ public class Player {
     }
     
     public void receiveReward(){
-        throw new UnsupportedOperationException();
+        int wReward = Dice.weaponsReward();
+        int sReward = Dice.shieldsReward();
+        while(wReward != 0){
+            wReward--;
+            Weapon wnew = newWeapon();
+            receiveWeapon(wnew);
+        }
+        while(sReward != 0){
+            sReward--;
+            Shield snew = newShield();
+            receiveShield(snew);
+        }
+        health += Dice.healthReward();
     }
+
+
     public boolean defend(float receivedReward){
         return this.manageHit(receivedReward);
     }
@@ -106,18 +124,36 @@ public class Player {
             cad += shields.get(i).toString() + " - ";
         }
         
-        if(weapons.size()>0){
+        if(shields.size()>0){
             cad += shields.get(shields.size()-1).toString() + "\n";
         }
         return cad;
     }
     
     private void receiveWeapon(Weapon w){
-        throw new UnsupportedOperationException();
+
+        Iterator<Weapon> it = weapons.iterator();
+        while(it.hasNext()){
+            Weapon wl = it.next();
+            if( wl.discard()){
+                it .remove();
+            }
+        }
+        
+        if(weapons.size() < MAX_WEAPONS){
+            weapons.add(w);
+        }
     }
     
     private void receiveShield(Shield s){
-        throw new UnsupportedOperationException();
+        for(Shield si : shields){
+            if(si.discard()){
+                shields.remove(s);
+            }
+        }
+        if(shields.size()<MAX_SHIELDS){
+            shields.add(s);
+        }
     }
     
     private Weapon newWeapon(){
@@ -160,7 +196,21 @@ public class Player {
     }
     
     private boolean manageHit(float receivedAttack){
-        throw new UnsupportedOperationException();        
+
+        float defense = defensiveEnergy();
+        if(defense < receivedAttack){
+            gotWounded();
+            incConsecutiveHits();
+        } else {
+            resetHits();
+        }
+        boolean lose = false;
+        //TODO preguntar si aqui se debe matar al jugador (poner vida = 0)
+        if(consecutiveHits == HITS2LOSE || dead()){
+            resetHits();
+            lose = true;
+        }
+        return lose;
     }
     
     private void resetHits(){
