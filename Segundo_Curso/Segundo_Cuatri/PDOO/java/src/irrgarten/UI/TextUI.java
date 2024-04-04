@@ -23,7 +23,7 @@ public class TextUI {
         boolean gotInput = false;
         
         while (!gotInput) {
-            char c = readChar();
+            char c = readChar(); //TODO: Peta si la input es vacia
             switch(c) {
                 case 'w':
                     System.out.print(" UP\n");
@@ -45,6 +45,7 @@ public class TextUI {
                     direction = Directions.LEFT;
                     gotInput = true;    
                     break;
+                
             }
         }    
         return direction;

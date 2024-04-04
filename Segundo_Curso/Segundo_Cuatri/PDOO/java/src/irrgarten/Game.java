@@ -19,8 +19,8 @@ public class Game {
     private static final String EMPTY_BLOCK_MSG = "Block with no action.";
     private static final int MAX_ROUNDS = 10;
     private static final String MONSTER_NAME = "Mike Wazousky";        
-    private static final int COLS = 10;
-    private static final int ROWS = 10;
+    private static final int COLS = 15;
+    private static final int ROWS = 15;
     private static final String EMPTY_LOG = "";
     
     //Datos miembro
@@ -59,6 +59,7 @@ public class Game {
     }
     
     public boolean nextStep(Directions preferredDirection){
+        log = EMPTY_LOG;
         boolean dead = currentPlayer.dead();
         if(!dead){
             Directions direction = actualDirection(preferredDirection);
@@ -98,11 +99,20 @@ public class Game {
     //TODO: Mirar si es con Dice
     private void configureLabyrinth(){
         //TODO: Cambiar esto, esto es solo para la prueba
-        labyrinth.addBlock(Orientation.VERTICAL, 0, 0,10);
-        labyrinth.addBlock(Orientation.HORIZONTAL, 0, 1, 9);
-        labyrinth.addBlock(Orientation.HORIZONTAL, 9, 1, 9);
-        labyrinth.addBlock(Orientation.VERTICAL, 1, 9, 9);
-        labyrinth.addMonster(3,3,new Monster(MONSTER_NAME, Dice.randomIntelligence(),Dice.randomStrength()));
+        //Creacion de paredes iniciales
+        labyrinth.addBlock(Orientation.VERTICAL, 0, 0,COLS);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 0, 1, ROWS);
+        labyrinth.addBlock(Orientation.HORIZONTAL, ROWS-1, 1, ROWS);
+        labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-1, COLS);
+
+        //Creacion de monstruos
+        labyrinth.addMonster(ROWS-2, COLS-2,new Monster(MONSTER_NAME,8f,8f));//TODO preguntar si podemos
+
+
+        //creacion del resto de paredes
+        labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-2, COLS);
+        labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-2, COLS);
+
 
     }
     

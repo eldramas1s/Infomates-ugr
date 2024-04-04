@@ -24,7 +24,7 @@ module Irrgarten
             @health = @INITIAL_HEALTH
             @row = @INVALID_POS
             @col = @INVALID_POS
-            @consecutiveHits = 0 #Constante?
+            @consecutiveHits = 0 
             @weapons = []
             @shields = []
         end
