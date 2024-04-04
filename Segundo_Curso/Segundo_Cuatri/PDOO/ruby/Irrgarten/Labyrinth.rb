@@ -171,6 +171,7 @@ module Irrgarten
 	
 	
 	#TODO: Preguntar si debemos hacer un reader de las posiciones de cada tablita
+    #TODO: hacer
         def putPlayer2D(oldRow, oldCol, row, col, player) #monster
 		output = NULL
 		if canStepOn(row,col) then

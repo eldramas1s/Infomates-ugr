@@ -21,7 +21,7 @@ public class Game {
     private static final String MONSTER_NAME = "Mike Wazousky";        
     private static final int COLS = 10;
     private static final int ROWS = 10;
-    private static final String EMPTY_LOG = ""; //TODO revisar esta (creo que esta bien :Airam)
+    private static final String EMPTY_LOG = "";
     
     //Datos miembro
     private int currentPlayerIndex;

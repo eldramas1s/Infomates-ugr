@@ -10,7 +10,6 @@ import java.util.Iterator;
  * @author el_dramas
  */
 public class Player {
-    //TODO: Cambiar posicion de inicio por una random
     static private final String DEFAULT_NAME = "Player #";
     static private final int INVALID_POS = -1;
     
