@@ -1,6 +1,5 @@
 #encoding: UTF-8
 
-
 require_relative 'Dice'
 require_relative 'Weapon'
 require_relative 'Shield'
@@ -15,7 +14,9 @@ module Irrgarten
         @@MAX_SHIELDS = 3
         @@INITIAL_HEALTH = 10
         @@HITS2LOSE = 3
-
+	
+	##TODO: PREGUNTAR LOS CONTENEDORES QUE SON
+ 
         def initialize(number,intelligence,strength)
             @name = @@DEFAULT_NAME
             @number = number
@@ -25,10 +26,18 @@ module Irrgarten
             @row = @INVALID_POS
             @col = @INVALID_POS
             @consecutiveHits = 0 
-            @weapons = []
-            @shields = []
+            @weapons = Array.new
+            @shields = Array.new
         end
-        #getter row y col
+
+	 def resurrect
+            weapons.clear()
+            shields.clear()
+            health = @INITIAL_HEALTH
+            consecutiveHits = 0
+        end
+
+        #getter row, col, number
         attr_reader :row
         attr_reader :col
         attr_reader :number
@@ -40,37 +49,12 @@ module Irrgarten
             end
         end
 
-
-        def receiveWeapon(w)
-            for i in 0..@weapons.size do 
-                wi = @weapons[i]
-                if(wi.discard)
-                    @weapons.shift
-                end
-            end
-            size = @weapons.size
-            if size<@@MAX_WEAPONS then
-                w = newWeapon
-                @weapons.push(w)	
-            end
+        def dead
+            @health <= 0
         end
 
-        def receiveShield(s)
-            for i in 0..@shields.size do
-                si = @shields[i]
-                if(si.discard)
-                    @shields.shift
-                end
-            end
-            size = @shields.size
-            if(size<@@MAX_SHIELDS)
-                s = newShield
-                @shields.push(s)
-            end
-        end
-
-        def move(direction, validMoves)
-            size = validMoves.size
+	def move(direction, validMoves)
+            size = validMoves.length
             contained = find(direction,validMoves)
             if (size > 0) && !contained then
                 firstElement = validMoves[0]
@@ -78,6 +62,86 @@ module Irrgarten
             else 	
                 return direction
             end 
+        end
+
+	def attack
+            @strength + sumWeapons
+        end
+
+	def defend(receivedAttack)
+            manageHit(receivedAttack)
+        end
+
+	def receiveReward
+            wReward = Dice.weaponsReward
+            sReward = Dice.shieldsReward
+            for i in 0..wReward do
+                wnew = newWeapon
+                receiveWeapon(wnew)
+            end
+            for i in 0..sReward do
+                snew = newShield
+                receiveShield(snew)
+            end
+            extraHealth = Dice.healthReward
+            @health += extraHealth
+        end
+
+	 def to_s
+            str="#{@name}, #{@number}, #{@intelligence}, #{@strength}\n"
+            str+= "Weapons: ["
+            str += @weapons[0] unless @weapons.length==0
+
+            for w in 1..@weapons.length do
+                str += " - " + w.to_s
+            end
+            str += "]\n"
+            str+= "Shields: ["
+            str += @shields[0] unless @shields.size==0
+
+            for sh in 1..@shields.size do
+                str += " - " + sh.to_s
+            end
+            str += "]\n"
+            str
+                
+        end 
+
+	##private
+
+        def receiveWeapon(w)
+	    i=0
+	    while i<@weapons.length
+		wi=@weapons[i] 
+           	if(wi.discard()) then
+                    @weapons.shift
+                else
+		    i+=1
+		end
+            end
+            size = @weapons.length
+            if size<@@MAX_WEAPONS then
+                w = newWeapon
+                @weapons.append(w)	
+            end
+        end
+
+	#TODO: Si no tiene armas o escudos da fallo
+        def receiveShield(s)
+            i=0
+	    while i<@shield.length
+		si=@shield[i]
+		if(si.discard) then
+                    @shields.shift
+                else
+		    i+=1
+		end
+	    end
+            size = @shields.length
+            if(size<@@MAX_SHIELDS) then
+                s = newShield
+                @shields.append(s)
+            end
         end
 
         def manageHit(receivedAttack)
@@ -95,74 +159,16 @@ module Irrgarten
                 lose=false
             end
             return lose
-        end
+        end 
 
-        def resurrect
-            weapons.clear()
-            shields.clear()
-            health = @INITIAL_HEALTH
-            consecutiveHits = 0
-        end
-
-        def setPos(row,col)
-            @row = row
-            @col = col
-        end
-
-        def dead
-            @health <= 0
-        end
-
-        def attack
-            @strength + sumWeapons
-        end
-
-        def defend(receivedAttack)
-            manageHit(receivedAttack)
-        end
-
-        def to_s
-            str="#{@name}, #{@number}, #{@intelligence}, #{@strength}\n"
-            str+= "Weapons: ["
-            str += @weapons[0] unless @weapons.size==0
-
-            for w in 1..@weapons.size do
-                str += " - " + w.to_s
-            end
-            str += "]\n"
-            str+= "Shields: ["
-            str += @shields[0] unless @shields.size==0
-
-            for sh in 1..@shields.size do
-                str += " - " + sh.to_s
-            end
-            str += "]\n"
-            str
-                
-        end
-        def receiveReward
-            wReward = Dice::Dice.weaponsReward
-            sReward = Dice::Dice.shieldsReward
-            for i in 0..wReward do
-                wnew = newWeapon
-                receiveWeapon(wnew)
-            end
-            for i in 0..sReward do
-                snew = newShield
-                receiveShield(snew)
-            end
-            extraHealth = Dice::Dice.healthReward
-            @health += extraHealth
-        end
-
-        private  
-
+	#TODO: No añade el arma al set de armas?
         def newWeapon
-            Weapon.new(Dice::Dice.randomStrength, Dice::Dice.usesLeft)
+            Weapon.new(Dice.weaponPower, Dice.usesLeft)
         end
 
+	#TODO: Acordar si el metodo shieldPower es el que hay que usar(igual con weaponPower)
         def newShield
-            Shield.new(Dice::Dice.randomShield, Dice::Dice.usesLeft)
+            Shield.new(Dice.shieldPower, Dice.usesLeft)
         end
 
         def defensiveEnergy
@@ -208,7 +214,7 @@ module Irrgarten
         end
         found	
     end
-end
+end #class
 
 
 p = Player.new('45',0,0)
@@ -217,4 +223,29 @@ puts p.to_s
 
 p.setPos(0,0)
 
-end
+w = p.newWeapon
+s = p.newShield
+
+puts w.to_s
+puts s.to_s
+
+p.receiveWeapon(w)
+
+p.receiveShield(s)
+
+puts p.to_s
+
+validMoves = [Directions::UP]
+
+p.move(Directions::UP,validMoves)
+
+p.manageHit(10)
+
+puts p.to_s
+
+puts p.dead()
+
+p.receiveReward
+
+puts p.to_s
+end #module

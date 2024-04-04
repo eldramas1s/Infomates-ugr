@@ -76,8 +76,8 @@ module Irrgarten
 	    @@generator.rand(@@MAX_ATTACK+1)
 	end
 
-	# Metodo de clase encargado de determinar un valor de inteligencia
-	# @return Valor de inteligencia
+	# Metodo de clase encargado de determinar un valor de escudo
+	# @return Valor de escudo
 	def self.shieldPower
 	    @@generator.rand(@@MAX_SHIELD+1)
 	end
@@ -102,5 +102,5 @@ module Irrgarten
 	    (@@generator.rand() < (@@MAX_USES-usesLeft).to_f()/@@MAX_USES.to_f())
    	end
 	
-    end
-end
+    end#class
+end#module
