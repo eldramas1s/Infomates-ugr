@@ -9,23 +9,23 @@ module Irrgarten
     class Player
         @@DEFAULT_NAME = "Player #"
         @@INVALID_POS = -1 #TODO: Ver si lo puedes meter junto con el de monstruo en Labyrinth
-        
+
         @@MAX_WEAPONS = 2
         @@MAX_SHIELDS = 3
         @@INITIAL_HEALTH = 10
         @@HITS2LOSE = 3
-	
+
 	##TODO: PREGUNTAR LOS CONTENEDORES QUE SON
- 
+        #TODO: EL numero no se usa solo para crear el nombre?
         def initialize(number,intelligence,strength)
-            @name = @@DEFAULT_NAME
+            @name = @@DEFAULT_NAME + number.to_s #Por si no se pasa una cadena
             @number = number
             @intelligence = intelligence
-            @strength =strength
-            @health = @INITIAL_HEALTH
-            @row = @INVALID_POS
-            @col = @INVALID_POS
-            @consecutiveHits = 0 
+            @strength = strength
+            @health = @@INITIAL_HEALTH
+            @row = @@INVALID_POS
+            @col = @@INVALID_POS
+            @consecutiveHits = 0
             @weapons = Array.new
             @shields = Array.new
         end
@@ -41,7 +41,7 @@ module Irrgarten
         attr_reader :row
         attr_reader :col
         attr_reader :number
-    
+
         def setPos(row,col)
             if row >= 0 && col >= 0 then
                 @row = row
@@ -59,9 +59,9 @@ module Irrgarten
             if (size > 0) && !contained then
                 firstElement = validMoves[0]
                 return firstElement
-            else 	
+            else
                 return direction
-            end 
+            end
         end
 
 	def attack
@@ -88,7 +88,7 @@ module Irrgarten
         end
 
 	 def to_s
-            str="#{@name}, #{@number}, #{@intelligence}, #{@strength}\n"
+            str="#{@name},#{@intelligence}, #{@strength}\n"
             str+= "Weapons: ["
             str += @weapons[0] unless @weapons.length==0
 
@@ -104,40 +104,40 @@ module Irrgarten
             end
             str += "]\n"
             str
-                
-        end 
+
+        end
 
 	##private
 
         def receiveWeapon(w)
 	    i=0
-	    while i<@weapons.length
-		wi=@weapons[i] 
+	    while i<@weapons.size
+		    wi=@weapons[i]
            	if(wi.discard()) then
                     @weapons.shift
                 else
 		    i+=1
 		end
             end
-            size = @weapons.length
+            size = @weapons.size
             if size<@@MAX_WEAPONS then
                 w = newWeapon
-                @weapons.append(w)	
+                @weapons.append(w)
             end
         end
 
 	#TODO: Si no tiene armas o escudos da fallo
         def receiveShield(s)
             i=0
-	    while i<@shield.length
-		si=@shield[i]
-		if(si.discard) then
-                    @shields.shift
-                else
-		    i+=1
+            while !@shield.nil? && i<@shield.size
+            si=@shield[i]
+            if(si.discard) then
+                        @shields.shift
+                    else
+                i+=1
 		end
 	    end
-            size = @shields.length
+            size = @shields.size
             if(size<@@MAX_SHIELDS) then
                 s = newShield
                 @shields.append(s)
@@ -155,11 +155,11 @@ module Irrgarten
             lose=true
             if (@consecutiveHits == @@HITS2LOSE)||(dead()) then
                 resetHits
-            else	
+            else
                 lose=false
             end
             return lose
-        end 
+        end
 
 	#TODO: No añade el arma al set de armas?
         def newWeapon
@@ -205,14 +205,14 @@ module Irrgarten
     def find(element,array)
         found = false
         i = 0
-        while !found && (i<array.size) 
-            if array[i] == element then 
+        while !found && (i<array.size)
+            if array[i] == element then
                 found = true
-            else 
+            else
                 i += 1
             end
         end
-        found	
+        found
     end
 end #class
 
@@ -220,8 +220,13 @@ end #class
 p = Player.new('45',0,0)
 
 puts p.to_s
+puts p.row.to_s + "," + p.col.to_s
 
-p.setPos(0,0)
+p.setPos(15,15)
+
+puts p.to_s
+
+puts p.row.to_s + "," + p.col.to_s
 
 w = p.newWeapon
 s = p.newShield
@@ -230,22 +235,23 @@ puts w.to_s
 puts s.to_s
 
 p.receiveWeapon(w)
+puts p-to_s
 
-p.receiveShield(s)
+#p.receiveShield(s)
 
-puts p.to_s
+#puts p.to_s
 
-validMoves = [Directions::UP]
+#validMoves = [Directions::UP]
 
-p.move(Directions::UP,validMoves)
+#p.move(Directions::UP,validMoves)
 
-p.manageHit(10)
+#p.manageHit(10)
 
-puts p.to_s
+#puts p.to_s
 
-puts p.dead()
+#puts p.dead()
 
-p.receiveReward
+#p.receiveReward
 
-puts p.to_s
+#puts p.to_s
 end #module
