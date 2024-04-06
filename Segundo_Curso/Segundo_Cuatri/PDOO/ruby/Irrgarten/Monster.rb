@@ -4,7 +4,7 @@ require_relative 'Dice'
 
 
 module Irrgarten
-    
+
     class Monster
 
         #Vida inicial de un monstruo
@@ -24,26 +24,26 @@ module Irrgarten
 
         #Comprueba si un moustruo esta muerto
         def dead
-            @health <= 0 
+            @health <= 0
         end
 
         #Calcula la intensidad de ataque del monstruo
         def attack
             atk=0
-            atk=Dice::Dice.intensity(@strength) unless dead 
+            atk=Dice::Dice.intensity(@strength) unless dead
             atk
         end
 
         #Reposiciona al monstruo
-        def setPos(row, col) 
+        def setPos(row, col)
             @row = row
             @col = col
             # en java es void, aqui simplemente ignoramos lo devuelto
         end
-        
+
         #Devuelve el estado del monstruo en forma de cadena
         def to_s
-            "M[#{@name},#{@intelligence},#{@strength},#{@health},({#{@row},#{@col}})]"
+            "M[#{@name},#{@health} HP,#{@intelligence} IP,#{@strength} SP]"
         end
 
         #Daña al monstruo
@@ -53,19 +53,18 @@ module Irrgarten
 
         #Calclua como se defiende el monstruo
         def defend(receivedAttack)
-		isDead = dead
-          	unless isDead
-			defensiveEnergy = Dice::Dice.intensity(@intelligence)
-			if(defensiveEnergy < receivedAttack)
-				gotWounded
-				isDead = dead 
-			end
-		end
-		isDead			
+		    isDead = dead
+          	while !isDead
+                defensiveEnergy = Dice.intensity(@intelligence)
+                if(defensiveEnergy < receivedAttack)
+                    gotWounded
+                    isDead = dead
+                end
+		    end
+		    isDead
         end
 
 
         private :gotWounded
-    end
-
-end
+    end#class
+end#module
