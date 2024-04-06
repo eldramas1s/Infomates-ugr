@@ -3,6 +3,7 @@
 require_relative 'Dice'
 require_relative 'Weapon'
 require_relative 'Shield'
+require_relative 'Directions'
 
 module Irrgarten
 
@@ -216,32 +217,32 @@ module Irrgarten
 end #class
 
 
-#p = Player.new('45',0,0)
+p = Player.new('45',0,0)
 
-#puts p.to_s
-#puts p.row.to_s + "," + p.col.to_s
+puts p.to_s
+puts p.row.to_s + "," + p.col.to_s
 
-#p.setPos(15,15)
+p.setPos(15,15)
 
-#puts p.to_s
+puts p.to_s
 
-#puts p.row.to_s + "," + p.col.to_s
+puts p.row.to_s + "," + p.col.to_s
 
 #TODO: Comprobar move
-#validMoves = Array.new
-#validMoves.append(Irrgarten::Directions::UP)
-#puts validMoves.o_st
+validMoves = Array.new
+validMoves.append(Directions::UP)
+puts validMoves.to_s
 
-#p.move(Directions::UP,validMoves)
+p.move(Directions::UP,validMoves)
 
-#p.defend(15)
-#p.attack
+p.defend(15)
+p.attack
 
-#puts p.to_s
+puts p.to_s
 
-#puts p.dead()
+puts p.dead()
 
-#p.receiveReward
+p.receiveReward
 
-#puts p.to_s
+puts p.to_s
 end #module

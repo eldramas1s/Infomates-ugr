@@ -177,7 +177,7 @@ module Irrgarten
             output = nil
             if canStepOn(row,col) then
                 if posOK(oldRow,oldCol) then
-                    p = @ptab[aldRow][oldCol]
+                    p = @ptab[oldRow][oldCol]
                     if p == player then
                         updateOldPos(oldRow,oldCol)
                         @ptab[oldRow][oldCol] = nil
