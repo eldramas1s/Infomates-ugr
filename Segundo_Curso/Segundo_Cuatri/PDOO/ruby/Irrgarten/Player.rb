@@ -15,8 +15,6 @@ module Irrgarten
         @@INITIAL_HEALTH = 10
         @@HITS2LOSE = 3
 
-	##TODO: PREGUNTAR LOS CONTENEDORES QUE SON
-        #TODO: EL numero no se usa solo para crear el nombre?
         def initialize(number,intelligence,strength)
             @name = @@DEFAULT_NAME + number.to_s #Por si no se pasa una cadena
             @number = number
@@ -88,36 +86,36 @@ module Irrgarten
         end
 
 	 def to_s
-            str="#{@name},#{@intelligence}, #{@strength}\n"
+            str="#{@name},#{@health} HP,#{@intelligence} IP,#{@strength} SP\n"
             str+= "Weapons: ["
-            str += @weapons[0] unless @weapons.length==0
+            str += @weapons[0].to_s unless @weapons.size==0
 
-            for w in 1..@weapons.length do
-                str += " - " + w.to_s
+            for w in 1..@weapons.size()-1 do
+                str += " ," + @weapons[w].to_s
             end
-            str += "]\n"
+            str+= "]\n"
             str+= "Shields: ["
-            str += @shields[0] unless @shields.size==0
+            str += @shields[0].to_s unless @shields.size==0
 
-            for sh in 1..@shields.size do
-                str += " - " + sh.to_s
+            for sh in 1..@shields.size()-1 do
+                str += " ," + @shields[sh].to_s
             end
             str += "]\n"
             str
 
         end
 
-	##private
+	private
 
         def receiveWeapon(w)
-	    i=0
-	    while i<@weapons.size
-		    wi=@weapons[i]
-           	if(wi.discard()) then
-                    @weapons.shift
-                else
-		    i+=1
-		end
+            i=0
+            while i<@weapons.size
+                wi=@weapons[i]
+                if(wi.discard()) then
+                        @weapons.shift
+                    else
+                i+=1
+            end
             end
             size = @weapons.size
             if size<@@MAX_WEAPONS then
@@ -126,16 +124,16 @@ module Irrgarten
             end
         end
 
-	#TODO: Si no tiene armas o escudos da fallo
+        #TODO: Con weapons no da fallos, con shields si(fallo nil)
         def receiveShield(s)
             i=0
             while !@shield.nil? && i<@shield.size
             si=@shield[i]
             if(si.discard) then
-                        @shields.shift
-                    else
+                    @shields.shift
+                else
                 i+=1
-		end
+		    end
 	    end
             size = @shields.size
             if(size<@@MAX_SHIELDS) then
@@ -189,7 +187,7 @@ module Irrgarten
 
         def sumWeapons
             sum=0
-            for i in 0..@weapons.size do
+            for i in 0..@weapons.size-1 do
                 sum += @weapons[i].attack
             end
             sum
@@ -197,7 +195,7 @@ module Irrgarten
 
         def sumShields
             sum=0
-            for i in 0..@shields.size do
+            for i in 0..@shields.size-1 do
                 sum += @shields[i].protect
             end
             sum
@@ -217,35 +215,26 @@ module Irrgarten
 end #class
 
 
-p = Player.new('45',0,0)
+#p = Player.new('45',0,0)
 
-puts p.to_s
-puts p.row.to_s + "," + p.col.to_s
+#puts p.to_s
+#puts p.row.to_s + "," + p.col.to_s
 
-p.setPos(15,15)
-
-puts p.to_s
-
-puts p.row.to_s + "," + p.col.to_s
-
-w = p.newWeapon
-s = p.newShield
-
-puts w.to_s
-puts s.to_s
-
-p.receiveWeapon(w)
-puts p-to_s
-
-#p.receiveShield(s)
+#p.setPos(15,15)
 
 #puts p.to_s
 
-#validMoves = [Directions::UP]
+#puts p.row.to_s + "," + p.col.to_s
+
+#TODO: Comprobar move
+#validMoves = Array.new
+#validMoves.append(Irrgarten::Directions::UP)
+#puts validMoves.o_st
 
 #p.move(Directions::UP,validMoves)
 
-#p.manageHit(10)
+#p.defend(15)
+#p.attack
 
 #puts p.to_s
 
