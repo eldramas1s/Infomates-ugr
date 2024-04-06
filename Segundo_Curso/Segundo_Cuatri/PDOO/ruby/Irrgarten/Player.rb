@@ -26,11 +26,11 @@ module Irrgarten
             @row = @INVALID_POS
             @col = @INVALID_POS
             @consecutiveHits = 0 
-            @weapons = Array.new
-            @shields = Array.new
+            @weapons = Array.new(0)
+            @shields = Array.new(0)
         end
 
-	 def resurrect
+	    def resurrect
             weapons.clear()
             shields.clear()
             health = @INITIAL_HEALTH
@@ -53,7 +53,7 @@ module Irrgarten
             @health <= 0
         end
 
-	def move(direction, validMoves)
+	    def move(direction, validMoves)
             size = validMoves.length
             contained = find(direction,validMoves)
             if (size > 0) && !contained then
@@ -64,42 +64,42 @@ module Irrgarten
             end 
         end
 
-	def attack
+	    def attack
             @strength + sumWeapons
         end
 
-	def defend(receivedAttack)
+	    def defend(receivedAttack)
             manageHit(receivedAttack)
         end
 
 	def receiveReward
-            wReward = Dice.weaponsReward
-            sReward = Dice.shieldsReward
-            for i in 0..wReward do
-                wnew = newWeapon
-                receiveWeapon(wnew)
-            end
-            for i in 0..sReward do
-                snew = newShield
-                receiveShield(snew)
-            end
-            extraHealth = Dice.healthReward
-            @health += extraHealth
+        wReward = Dice.weaponsReward
+        sReward = Dice.shieldsReward
+        for i in 0..wReward do
+            wnew = newWeapon
+            receiveWeapon(wnew)
         end
+        for i in 0..sReward do
+            snew = newShield
+            receiveShield(snew)
+        end
+        extraHealth = Dice.healthReward
+        @health += extraHealth
+    end
 
-	 def to_s
+	    def to_s
             str="#{@name}, #{@number}, #{@intelligence}, #{@strength}\n"
             str+= "Weapons: ["
-            str += @weapons[0] unless @weapons.length==0
+            str += @weapons[0].to_s unless @weapons.length==0
 
-            for w in 1..@weapons.length do
+            for w in 1...@weapons.length do
                 str += " - " + w.to_s
             end
             str += "]\n"
             str+= "Shields: ["
-            str += @shields[0] unless @shields.size==0
+            str += @shields[0].to_s unless @shields.size==0
 
-            for sh in 1..@shields.size do
+            for sh in 1...@shields.size do
                 str += " - " + sh.to_s
             end
             str += "]\n"
@@ -129,14 +129,14 @@ module Irrgarten
 	#TODO: Si no tiene armas o escudos da fallo
         def receiveShield(s)
             i=0
-	    while i<@shield.length
-		si=@shield[i]
-		if(si.discard) then
+            while i<@shields.length
+                si=@shield[i]
+                if(si.discard) then
                     @shields.shift
-                else
-		    i+=1
-		end
-	    end
+                        else
+                    i+=1
+                end
+	        end
             size = @shields.length
             if(size<@@MAX_SHIELDS) then
                 s = newShield
@@ -202,6 +202,7 @@ module Irrgarten
             end
             sum
         end
+
     def find(element,array)
         found = false
         i = 0
