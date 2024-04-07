@@ -136,12 +136,6 @@ public class Game {
         labyrinth.addBlock(Orientation.HORIZONTAL, 11,6, 4); 
         labyrinth.addBlock(Orientation.HORIZONTAL, 13,1, ROWS-6);
 
-
-
-
-
-
-
     }
     
     private void nextPlayer(){
