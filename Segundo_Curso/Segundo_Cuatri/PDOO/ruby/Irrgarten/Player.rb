@@ -87,7 +87,7 @@ module Irrgarten
     end
 
 	    def to_s
-            str="#{@name}, #{@number}, #{@intelligence}, #{@strength}\n"
+            str="#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP\n"
             str+= "Weapons: ["
             str += @weapons[0].to_s unless @weapons.size==0
 
@@ -129,7 +129,7 @@ module Irrgarten
         def receiveShield(s)
             i=0
             while i<@shields.length
-                si=@shield[i]
+                si=@shields[i]
                 if(si.discard) then
                     @shields.shift
                 else
@@ -217,32 +217,32 @@ module Irrgarten
 end #class
 
 
-p = Player.new('45',0,0)
+    #p = Player.new('45',0,0)
 
-puts p.to_s
-puts p.row.to_s + "," + p.col.to_s
+    #puts p.to_s
+    #puts p.row.to_s + "," + p.col.to_s
 
-p.setPos(15,15)
+    #p.setPos(15,15)
 
-puts p.to_s
+    #puts p.to_s
 
-puts p.row.to_s + "," + p.col.to_s
+    #puts p.row.to_s + "," + p.col.to_s
 
-#TODO: Comprobar move
-validMoves = Array.new
-validMoves.append(Directions::UP)
-puts validMoves.to_s
+    #TODO: Comprobar move
+    #validMoves = Array.new
+    #validMoves.append(Directions::UP)
+    #puts validMoves.to_s
 
-p.move(Directions::UP,validMoves)
+    #p.move(Directions::UP,validMoves)
 
-p.defend(15)
-p.attack
+    #p.defend(15)
+    #p.attack
 
-puts p.to_s
+    #puts p.to_s
 
-puts p.dead()
+    #puts p.dead()
 
-p.receiveReward
+    #p.receiveReward
 
-puts p.to_s
+    #puts p.to_s
 end #module

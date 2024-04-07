@@ -3,6 +3,7 @@
 require_relative 'Dice'
 require_relative 'Directions'
 require_relative 'Player'
+require_relative 'Orientation'
 
 module Irrgarten
 
@@ -38,6 +39,8 @@ module Irrgarten
         def spreadPlayers(players)
             for i in 0..players.size-1 do
                 pos = randomEmptyPos
+                puts i
+                puts players[i].to_s
                 putPlayer2D(@@INVALID_POS,@@INVALID_POS,pos[@@ROW],pos[@@COL],players[i])
             end
         end
@@ -47,11 +50,12 @@ module Irrgarten
         end
 
         def to_s
-            str="#{@nRows}, #{@nCols},#{@exitRow},#{@exitCol} \n"
+            str="[#{@nRows}x#{@nCols}],(#{@exitRow},#{@exitCol}) \n"
             for i in 0...@nRows do
                 for j in 0...@nCols do
-                    str += "|" + @ltab[i][j] + ""+ "|"
+                    str += "|" + @ltab[i][j].to_s + "|"
                 end
+                str +="\n"
             end
             return str
         end
@@ -66,13 +70,13 @@ module Irrgarten
 
         def putPlayer(direction, player) #monster
             oldRow = player.row
-            oldCOl = player.col
+            oldCol = player.col
             newPos = dir2Pos(oldRow,oldCol,direction)
-            monster = putPlayer2D(oldRow,oldCol,newPos[@@ROW],newPos[@@col],player)
+            monster = putPlayer2D(oldRow,oldCol,newPos[@@ROW],newPos[@@COL],player)
             monster
         end
 
-        def addBlock(orientation,startRow,startcol, length)#void
+        def addBlock(orientation,startRow,startCol, length)#void
             if orientation == Orientation::VERTICAL then
                 incRow = 1
                 incCol = 0
@@ -84,7 +88,7 @@ module Irrgarten
             col = startCol
 
             while posOK(row,col) && emptyPos(row,col) && length > 0
-                ltab[row][col] = @@BLOCK_CHAR
+                @ltab[row][col] = @@BLOCK_CHAR
                 length -= 1
                 row += incRow
                 col += incCol
@@ -133,7 +137,7 @@ module Irrgarten
             @ltab[row][col] == @@COMBAT_CHAR
         end
 
-        def canSetOn(row,col)#bool
+        def canStepOn(row,col)#bool
             posOK(row,col) && (emptyPos(row,col) || monsterPos(row,col) || exitPos(row,col))
         end
 
@@ -222,27 +226,27 @@ module Irrgarten
             @ptab[row][col]
         end
 
-        def canStepOn(row,col)
-            result = true
-            if(@ltab[row][col]!= @@EMPTY_BLOCK) then
-                result = false
-            end
-            if(@ptab[row][col]!=nil)then
-                result = false
-            end
-            result
-        end
     end#class
 
     l = Labyrinth.new(3,3,0,0)
-    #puts l.to_s
-    p = Array.new(5)
-    for i in 0..4 do
+    p = Array.new()
+    for i in 0..1 do
         p_i = Player.new(i,10,10)
         p.append(p_i)
     end
 
-    l.spreadPlayers(p)
+    #l.spreadPlayers(p)
 
-    l.to_s
+    #puts l.to_s
+
+    #puts l.validMoves(p[0].row,p[0].col)
+
+    #l.putPlayer(Directions::UP,p[0])
+
+    #puts l.to_s
+
+    #l.addBlock(Orientation::HORIZONTAL,0,1,2)
+
+    #puts l.to_s
+
 end#module
