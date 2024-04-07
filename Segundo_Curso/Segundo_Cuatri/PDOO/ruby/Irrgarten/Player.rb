@@ -30,10 +30,10 @@ module Irrgarten
         end
 
 	    def resurrect
-            weapons.clear()
-            shields.clear()
-            health = @INITIAL_HEALTH
-            consecutiveHits = 0
+            @weapons.clear()
+            @shields.clear()
+            @health = @INITIAL_HEALTH
+            @consecutiveHits = 0
         end
 
         #getter row, col, number
@@ -87,15 +87,15 @@ module Irrgarten
     end
 
 	    def to_s
-            str="#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP\n"
-            str+= "Weapons: ["
+            str="\t#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP\n"
+            str+= "\t\tWeapons: ["
             str += @weapons[0].to_s unless @weapons.size==0
 
             for w in 1...@weapons.length do
                 str += ", " + w.to_s
             end
             str+= "]\n"
-            str+= "Shields: ["
+            str+= "\t\tShields: ["
             str += @shields[0].to_s unless @shields.size==0
 
             for sh in 1...@shields.size do
@@ -217,7 +217,8 @@ module Irrgarten
 end #class
 
 
-    #p = Player.new('45',0,0)
+    p = Player.new('45',0,0)
+    puts p.dead
 
     #puts p.to_s
     #puts p.row.to_s + "," + p.col.to_s

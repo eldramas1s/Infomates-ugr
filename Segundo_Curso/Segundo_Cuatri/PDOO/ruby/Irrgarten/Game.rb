@@ -2,6 +2,11 @@
 
 require_relative 'Dice'
 require_relative 'GameCharacter'
+require_relative 'Player'
+require_relative 'Labyrinth'
+require_relative 'GameState'
+require_relative 'Monster'
+require_relative 'Directions'
 
 module Irrgarten
   class Game
@@ -15,7 +20,7 @@ module Irrgarten
     @@EMPTY_BLOCK_MSG = "Block with no action."
     @@BOSS_NAME = "Bowser"
     @@MAX_ROUNDS=10
-    @@MONSTER_NAMES = ["Mike Wazousky"]
+    @@MONSTER_NAME = "Mike Wazousky"
     @@ROWS = 15
     @@COLS = 15
 
@@ -24,7 +29,7 @@ module Irrgarten
 
         @players = Array.new(nplayers)
         for i in 0...nplayers do
-            @players[i] = Player.new("")
+            @players[i] = Player.new(i,Dice.randomStrength,Dice.randomIntelligence)
         end
         @currentPlayer = @players[@currentPlayerIndex]
 
@@ -33,7 +38,9 @@ module Irrgarten
         @log=""
 
         #TODO cambiar a algo con sentido
-        @labyrinth=Labyrinth.new(@@ROWS,@@COLS,0,0)
+        @labyrinth=Labyrinth.new(@@ROWS,@@COLS,@@ROWS-2,@@COLS-1)
+        configureLabyrinth
+        @labyrinth.spreadPlayers(@players)
     end
 
     def finished
@@ -51,7 +58,7 @@ module Irrgarten
 
         monster = @labyrinth.putPlayer(direction,@currentPlayer)
 
-        if monster == NULL then
+        if monster == nil then
           logNoMonster
         else
           winner = combat(monster)
@@ -73,15 +80,25 @@ module Irrgarten
 
     def getGameState
       laby = @labyrinth.to_s
-      avatars = @players.to_s
-      beasts = @monsters.to_s
+      avatars = ""
+
+      for i in 0..@players.size-1 do
+        avatars += @players[i].to_s + "\n"
+      end
+
+      beasts = ""
+
+      for i in 0..@monsters.size-1 do
+        beasts += @monsters[i].to_s + "\n"
+      end
+
       curr = @currentPlayerIndex
       win = finished
       tempLog = @log
       gs = GameState.new(laby,avatars,beasts,curr,win,tempLog)
     end
 
-    private
+    #private
 
     def configureLabyrinth
       @labyrinth.addBlock(Orientation::VERTICAL, 0, 0,@@COLS);
@@ -101,8 +118,22 @@ module Irrgarten
 
       #REsto de paredes
       @labyrinth.addBlock(Orientation::VERTICAL,1,@@COLS-2,@@COLS)
-      @labyrinth.addBlock(Orientation::VERTICAL,(@ROWS>>1),@@COLS-3,@@COLS>>1,-1)
-      @labyrinth.addBlock(Orientation::VERTICAL,(@ROWS>>1)-2,@@COLS-4,@@COLS>>1,-1)
+      @labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1),@@COLS-3,(@@COLS>>1)-1)
+      @labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1)-2,@@COLS-4,(@@COLS>>1)-1)
+
+      @labyrinth.addBlock(Orientation::VERTICAL, 9, 2, 3);
+      @labyrinth.addBlock(Orientation::VERTICAL, 9, 3, 2);
+      @labyrinth.addBlock(Orientation::VERTICAL, 9, 4, 3);
+
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 1,9, 3);
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 2,9, 3);
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 3,9, 3);
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 5,9, 2);
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 8,6, 6);
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 9,6, 6);
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 10,6, 6);
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 11,6, 4);
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 13,1, @@ROWS-6);
 
     end
 
@@ -138,7 +169,7 @@ module Irrgarten
       winner
     end
 
-    def manageRewared(winner)
+    def manageReward(winner)
       if winner == GameCharacter::PLAYER then
         @currentPlayer.receiveReward
         logPlayerWon
@@ -161,29 +192,52 @@ module Irrgarten
       @log += @@PLAYER_WON_MSG + "\n"
     end
 
-      def logMonsterWon
-        @log += @@MONSTER_WON_MSG + "\n"
-      end
-
-      def logResurrected
-        @log += @@RESURRECTED_MSG + "\n"
-      end
-
-      def logPlayerSkipTurn
-        @log += @@SKIP_TURN_MSG + "\n"
-      end
-
-      def logPlayerNoOrders
-        @log += @@NO_ORDER_MSG + "\n"
-      end
-
-      def logNoMonster
-        @log += @@EMPTY_BLOCK_MSG + " " + @@NO_ORDER_MSG + "\n"
-      end
-
-      def logRounds(rounds, max)
-        @log += " Se han producido #{rounds} de #{max}\n"
-      end
-
+    def logMonsterWon
+      @log += @@MONSTER_WON_MSG + "\n"
     end
-end
+
+    def logResurrected
+      @log += @@RESURRECTED_MSG + "\n"
+    end
+
+    def logPlayerSkipTurn
+      @log += @@SKIP_TURN_MSG + "\n"
+    end
+
+    def logPlayerNoOrders
+      @log += @@NO_ORDER_MSG + "\n"
+    end
+
+    def logNoMonster
+      @log += @@EMPTY_BLOCK_MSG + " " + @@NO_ORDER_MSG + "\n"
+    end
+
+    def logRounds(rounds, max)
+      @log += " Se han producido #{rounds} de #{max}\n"
+    end
+
+  end#Class
+
+  g = Game.new(5)
+
+  gs = g.getGameState
+
+  puts gs.to_s
+
+  #puts g.combat(Monster.new("mike",1000,1000))
+
+  #gs = g.getGameState
+
+  #puts gs.to_s
+
+  #puts g.manageResurrection
+
+  #puts g.manageReward(GameCharacter::MONSTER)
+
+  #puts g.nextStep(Directions::UP)
+
+  #gs = g.getGameState
+
+  #puts gs.to_s
+
+end#Module

@@ -5,32 +5,32 @@ module Irrgarten
     class Dice
    	#Atributos de clase
 	@@MAX_USES = 5			# Numero maximo de usos de armas y escudos
-        @@MAX_ITELLIGENCE = 10.0	# Valor maximo para la inteligencia de jugadores y monstruos
-        @@MAX_STRENGTH = 10.0		# Valor maximo para la fuerza de jugadores y monstruos
-        @@RESURRECT_PROB = 0.3		# Numero maximo de armas recibidas al ganar un combate
-        @@WEAPONS_REWARD = 2		# Probabilidad de que un jugador sea resucitado en cada turno
-        @@SHIELDS_REWARD = 3		# Numero maximo de escudos recibidos al ganar un combate
-        @@HEALTH_REWARD = 5		# Numero maximo de unidades de salud recibidas al ganar un combate
-        @@MAX_ATTACK = 3		# Maxima potencia de armas
-        @@MAX_SHIELD = 2		# Maxima potencia de escudos
+	@@MAX_ITELLIGENCE = 10.0	# Valor maximo para la inteligencia de jugadores y monstruos
+	@@MAX_STRENGTH = 10.0		# Valor maximo para la fuerza de jugadores y monstruos
+	@@RESURRECT_PROB = 0.3		# Numero maximo de armas recibidas al ganar un combate
+	@@WEAPONS_REWARD = 2		# Probabilidad de que un jugador sea resucitado en cada turno
+	@@SHIELDS_REWARD = 3		# Numero maximo de escudos recibidos al ganar un combate
+	@@HEALTH_REWARD = 5		# Numero maximo de unidades de salud recibidas al ganar un combate
+	@@MAX_ATTACK = 3		# Maxima potencia de armas
+	@@MAX_SHIELD = 2		# Maxima potencia de escudos
 	@@generator = Random.new	# Encargado de las decisiones de azar
 
 	# No hay initialize creado por nosotros pues no se van a crear objetos
-	
+
 	# Metodo de clase encargado de generar una posicion en el tablero
 	# @param max Posicion maxima de una dimension del tablero
-	# @return Posicion en esa dimension del tablero 
+	# @return Posicion en esa dimension del tablero
 	def self.randomPos(max)
 	    @@generator.rand(max)
 	end
-	
+
 	# Metodo de clase encargado de decidir que jugador empieza
 	# @param players Numero de jugadores de la partida
 	# @return Entero que representa el jugador que empieza
 	def self.whoStarts(players)
 	    @@generator.rand(players)
 	end
-	
+
 	# Metodo de clase encargado de determinar un valor de inteligencia
 	# @return Valor de inteligencia
 	def self.randomIntelligence
@@ -44,12 +44,12 @@ module Irrgarten
 	end
 
 	# Metodo de clase encargado de determinar una probabilidad de resurrecion
-	# @return Valor de probabilidad de resurrecion 
+	# @return Valor de probabilidad de resurrecion
 	def self.resurrectPlayer
 	    @@generator.rand(1.0) < @@RESURRECT_PROB
 	end
 
-	# Metodo de clase encargado de determinar un valor de la cantidad de armas que puede 
+	# Metodo de clase encargado de determinar un valor de la cantidad de armas que puede
 	# recibir el jugador al final del combate
 	# @return Valor de dicha cantidad
 	def self.weaponsReward
@@ -63,7 +63,7 @@ module Irrgarten
 	    @@generator.rand(@@SHIELDS_REWARD)
 	end
 
-	# Metodo de clase encargado de determinar la cantidad de unidades de salud que recibe un 
+	# Metodo de clase encargado de determinar la cantidad de unidades de salud que recibe un
 	# jugador al terminar un combate
 	# @return Valor de las unidades de salud
 	def self.healthReward
@@ -88,19 +88,19 @@ module Irrgarten
 	def self.usesLeft
 	    @@generator.rand(@@MAX_USES+1)
 	end
-	
+
 	# Metodo de clase que devuelve la cantidad de competencia aplicada.
-	# @return Competencia aplicada  
+	# @return Competencia aplicada
 	def self.intensity(competence)
 	    @@generator.rand(competence)
 	end
-	
+
 	# Metodo de clase asigna la probabilidad de deshechar un objeto equipado
 	# @return true si se descarta
 	# 	  false si no se descarta
 	def self.discardElement(usesLeft)
 	    (@@generator.rand() < (@@MAX_USES-usesLeft).to_f()/@@MAX_USES.to_f())
    	end
-	
+
     end#class
 end#module
