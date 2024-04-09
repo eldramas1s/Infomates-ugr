@@ -65,7 +65,8 @@ int main(int argc, char **argv)
        printf(" Hebra %d suma de a[%d]=%d sumalocal=%d \n",
              omp_get_thread_num(),i,a[i],sumalocal);
    } 
-   #pragma omp critical (x)
+   #pragma omp critical (x) //x es el identificador del critical
+   
        suma += sumalocal;
 }  
    printf("Fuera de 'parallel for' suma=%d\n",suma); 
