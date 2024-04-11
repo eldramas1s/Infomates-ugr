@@ -227,26 +227,4 @@ module Irrgarten
         end
 
     end#class
-
-    l = Labyrinth.new(3,3,0,0)
-    p = Array.new()
-    for i in 0..1 do
-        p_i = Player.new(i,10,10)
-        p.append(p_i)
-    end
-
-    #l.spreadPlayers(p)
-
-    #puts l.to_s
-
-    #puts l.validMoves(p[0].row,p[0].col)
-
-    #l.putPlayer(Directions::UP,p[0])
-
-    #puts l.to_s
-
-    #l.addBlock(Orientation::HORIZONTAL,0,1,2)
-
-    #puts l.to_s
-
 end#module
