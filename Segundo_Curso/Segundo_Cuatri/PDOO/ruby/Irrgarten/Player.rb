@@ -47,7 +47,7 @@ module Irrgarten
                 @col = col
             end
         end
-
+        #TODO: buscar or qué se hace NIL
         def dead
             @health <= 0
         end

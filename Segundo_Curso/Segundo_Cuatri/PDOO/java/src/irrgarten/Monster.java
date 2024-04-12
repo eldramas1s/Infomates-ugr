@@ -42,7 +42,7 @@ public class Monster {
     
     public boolean defend(float receivedAttack){
         Boolean isDead = dead();
-        if(isDead){
+        if(!isDead){
             float defensiveEnergy = Dice.intensity(intelligence);
             if(defensiveEnergy < receivedAttack){
                 gotWounded();
@@ -58,10 +58,10 @@ public class Monster {
     }
     
     public String toString(){
-        return "M[" + name + ", " + intelligence + ", " + strength + ", " + health + ", ("+ row + ", " + col + " )]";
+        return "M[" + name + ", " + health +" HP," + strength + " SP, " +  intelligence + " IP, " + "(" + row + ", " +col + ")]"; 
     }
     
     private void gotWounded(){
-        health --;
+        health--;
     }
 }

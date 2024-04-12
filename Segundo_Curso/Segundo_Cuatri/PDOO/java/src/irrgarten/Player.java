@@ -106,7 +106,7 @@ public class Player {
     }
     
     public String toString(){
-        String cad= "P[" + name + ", " + intelligence + ", " + strength + ", " + health + ",(" + row + ", " +col + ", "+ consecutiveHits +")]\n"; 
+        String cad= "P[" + name + ", " + health +" HP,"+ strength + " SO, " +  intelligence + " IP, "  + ",(" + row + ", " +col + ", "+ consecutiveHits +")]\n"; 
         
         cad += "Weapons:\n";
         
@@ -136,7 +136,7 @@ public class Player {
         while(it.hasNext()){
             Weapon wl = it.next();
             if( wl.discard()){
-                it .remove();
+                it.remove();
             }
         }
         
@@ -146,25 +146,29 @@ public class Player {
     }
     
     private void receiveShield(Shield s){
-        for(Shield si : shields){
-            if(si.discard()){
-                shields.remove(s);
+        Iterator<Shield> it = shields.iterator();
+        
+        while(it.hasNext()){
+            Shield sl = it.next();
+            if( sl.discard()){
+                it.remove();
             }
         }
+
         if(shields.size()<MAX_SHIELDS){
             shields.add(s);
         }
     }
     
     private Weapon newWeapon(){
-        float power = Dice.randomStrength();
+        float power = Dice.weaponPower();
         int durability = Dice.usesLeft();
         Weapon arma = new Weapon(power,durability);
         return arma;
     }
     
     private Shield newShield(){
-        float protection = Dice.randomStrength();
+        float protection = Dice.shieldPower();
         int durability = Dice.usesLeft();
         Shield shield = new Shield(protection,durability);
         return shield;
@@ -205,7 +209,6 @@ public class Player {
             resetHits();
         }
         boolean lose = false;
-        //TODO preguntar si aqui se debe matar al jugador (poner vida = 0) NO
         if(consecutiveHits == HITS2LOSE || dead()){
             resetHits();
             lose = true;

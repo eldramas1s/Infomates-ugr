@@ -26,7 +26,7 @@ public class Controller {
             endOfGame = game.nextStep(direction);
         }
         //TODO: quitar esto cuando la clase GameState esté completa
-        System.out.println(game.getLabyrinthv());
+        //System.out.println(game.getLabyrinthv());
 
         view.showGame(game.getGameState());        
     }

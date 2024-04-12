@@ -86,11 +86,28 @@ public class Game {
         return endGame;
     }
     
-    public GameState getGameState(){
-        GameState gameState = new GameState(labyrinth.toString(), players.toString(), 
-                    monsters.toString(), this.currentPlayerIndex, this.finished(), log );
-        return gameState;
+    public GameState getGameState() {
+        String laby = labyrinth.toString();
+    
+        StringBuilder avatarsBuilder = new StringBuilder();
+        for (Player player : players) {
+            avatarsBuilder.append(player.toString()).append("\n");
+        }
+        String avatars = avatarsBuilder.toString();
+    
+        StringBuilder beastsBuilder = new StringBuilder();
+        for (Monster monster : monsters) {
+            beastsBuilder.append(monster.toString()).append("\n");
+        }
+        String beasts = beastsBuilder.toString();
+    
+        int curr = currentPlayerIndex;
+        boolean win = finished();
+        String tempLog = log;
+    
+        return new GameState(laby, avatars, beasts, curr, win, tempLog);
     }
+    
 
     public String getLabyrinthv(){ //TODO Eliminar cuando acabe el debug
         return labyrinth.toString();
@@ -105,14 +122,25 @@ public class Game {
         labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-1, COLS);
 
         //*Creacion de monstruos
-        labyrinth.addMonster(ROWS-2, COLS-2,new Monster(BOSS_NAME,8f,8f)); //Boss de la salida
+        monsters.add(new Monster(BOSS_NAME,8f,8f));
+        labyrinth.addMonster(ROWS-2, COLS-2,monsters.get(0)); //Boss de la salida
 
         //Monstruos débiles (regalo en sitios lejanos o algo así)
-        labyrinth.addMonster(6, COLS-3, new Monster(MONSTER_NAME, 2f, 3f)); 
-        labyrinth.addMonster(1, COLS-3, new Monster(MONSTER_NAME, 3f, 2f)); 
-        labyrinth.addMonster(11, 11, new Monster(MONSTER_NAME, 3f, 3f));
-        labyrinth.addMonster(12, 11, new Monster(MONSTER_NAME, 5f, 6f));
-        labyrinth.addMonster(13, 10, new Monster(MONSTER_NAME, 6f, 5f));
+        int nMonsters = 5;
+
+        Integer[] intelligences = {3, 2, 3, 6, 5};
+        Integer[] strengths = {2, 3, 3, 5, 6};
+        for(int i = 0; i < nMonsters; i++){
+            monsters.add(new Monster(MONSTER_NAME,intelligences[i],strengths[i]));
+        }
+
+        labyrinth.addMonster(6, COLS-3, monsters.get(1)); 
+        labyrinth.addMonster(1, COLS-3, monsters.get(2)); 
+        labyrinth.addMonster(11, 11,monsters.get(3));
+
+
+        labyrinth.addMonster(12, 11,monsters.get(4));
+        labyrinth.addMonster(13, 10,monsters.get(5));
 
 
 
@@ -159,7 +187,7 @@ public class Game {
             winner = GameCharacter.MONSTER;
             rounds++;
             if(!lose){ 
-                monster.defend(currentPlayer.attack());
+                lose = monster.defend(currentPlayer.attack());
                 winner = GameCharacter.PLAYER;
             }
         }

@@ -51,7 +51,7 @@ public class TextUI {
         return direction;
     }
     public void showGame(GameState gameState) {   
-        System.out.println(gameState.getLog()); //TODO imprimir gameState completo
+        System.out.println(gameState.toString()); //TODO imprimir gameState completo
     }
     
 }
