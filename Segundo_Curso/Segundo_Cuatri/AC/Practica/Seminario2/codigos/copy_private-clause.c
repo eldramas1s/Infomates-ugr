@@ -83,7 +83,7 @@ int main()
        b[i] = -1;
 #pragma omp parallel 
 {  int a;
-   #pragma omp single copyprivate(a)
+   #pragma omp single 
    {
       printf("Introduce valor de inicialización a: ");scanf("%d",&a);
       printf("Single ejecutada por la hebra %d\n",

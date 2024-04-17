@@ -39,7 +39,7 @@
 **/
 int main()
 {
-   int i, n = 7;
+   int i, n = 10;
    int a[n],suma=0;
 
    for (i=0; i<n; i++)

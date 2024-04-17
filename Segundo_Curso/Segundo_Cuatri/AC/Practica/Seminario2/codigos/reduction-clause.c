@@ -53,7 +53,7 @@ int main(int argc, char **argv)
    }
  
    #pragma omp parallel for default(none) private(i) shared(a,n) \
-                            reduction(+:suma)
+                              reduction(+:suma)
    for (i=0; i<n; i++)
    {   suma += a[i];
    } 
