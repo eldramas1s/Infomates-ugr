@@ -64,7 +64,6 @@ public class Game {
         if(!dead){
             Directions direction = actualDirection(preferredDirection);
             if(direction != preferredDirection){
-                System.out.println("khe");
                 logPlayerNoOrders();
             }
             Monster monster = labyrinth.putPlayer(direction, currentPlayer);

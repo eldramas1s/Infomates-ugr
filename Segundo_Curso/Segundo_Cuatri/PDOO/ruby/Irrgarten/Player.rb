@@ -9,8 +9,7 @@ module Irrgarten
 
     class Player
         @@DEFAULT_NAME = "Player #"
-        @@INVALID_POS = -1 #TODO: Ver si lo puedes meter junto con el de monstruo en Labyrinth
-
+        @@INVALID_POS = -1 
         @@MAX_WEAPONS = 2
         @@MAX_SHIELDS = 3
         @@INITIAL_HEALTH = 10
@@ -47,7 +46,7 @@ module Irrgarten
                 @col = col
             end
         end
-        #TODO: buscar or qué se hace NIL
+
         def dead
             @health <= 0
         end
@@ -125,7 +124,6 @@ module Irrgarten
             end
         end
 
-        #TODO: Con weapons no da fallos, con shields si(fallo nil)
         def receiveShield(s)
             i=0
             while i<@shields.length
@@ -160,12 +158,10 @@ module Irrgarten
             return lose
         end
 
-	#TODO: No añade el arma al set de armas?
         def newWeapon
             Weapon.new(Dice.weaponPower, Dice.usesLeft)
         end
 
-	#TODO: Acordar si el metodo shieldPower es el que hay que usar(igual con weaponPower)
         def newShield
             Shield.new(Dice.shieldPower, Dice.usesLeft)
         end

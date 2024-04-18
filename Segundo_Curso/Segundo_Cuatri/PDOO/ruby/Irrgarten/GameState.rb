@@ -64,7 +64,7 @@ module Irrgarten
 		def log
 			@log
 		end
-		#TODO: Esperar tutoria
+
 		def to_s
 
 			#Lo pongo modo esquematico siendo el tablero de juego lo ultimo junto con quien le toca jugar
