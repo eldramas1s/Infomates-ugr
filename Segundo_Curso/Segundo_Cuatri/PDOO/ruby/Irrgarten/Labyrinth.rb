@@ -39,8 +39,6 @@ module Irrgarten
         def spreadPlayers(players)
             for i in 0..players.size-1 do
                 pos = randomEmptyPos
-                puts i
-                puts players[i].to_s
                 putPlayer2D(@@INVALID_POS,@@INVALID_POS,pos[@@ROW],pos[@@COL],players[i])
             end
         end
@@ -174,9 +172,6 @@ module Irrgarten
 
         end
 
-
-	#TODO: Preguntar si debemos hacer un reader de las posiciones de cada tablita
-    #TODO: hacerlo
         def putPlayer2D(oldRow, oldCol, row, col, player) #monster
             output = nil
             if canStepOn(row,col) then
