@@ -9,11 +9,11 @@ module Control
     def play
       end_of_game = false
       while (!end_of_game)
-        @view.show_game(@game.game_state) 
-        direction = @view.next_move 
-        end_of_game = @game.next_step(direction)
+        @view.show_game(@game.getGameState)
+        direction = @view.next_move
+        end_of_game = @game.nextStep(direction)
       end
-      @view.show_game(@game.game_state)
+      @view.show_game(@game.getGameState)
     end
-  end # class   
-end # module        
+  end # class
+end # module

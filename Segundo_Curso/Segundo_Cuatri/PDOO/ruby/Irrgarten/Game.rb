@@ -82,14 +82,14 @@ module Irrgarten
       laby = @labyrinth.to_s
       avatars = ""
 
-      for i in 0..@players.size-1 do
+      for i in 0...@players.size do
         avatars += @players[i].to_s + "\n"
       end
 
       beasts = ""
 
-      for i in 0..@monsters.size-1 do
-        beasts += @monsters[i].to_s + "\n"
+      for i in 0...@monsters.size do
+        beasts += "\t" + @monsters[i].to_s + "\n"
       end
 
       curr = @currentPlayerIndex
@@ -107,16 +107,25 @@ module Irrgarten
       @labyrinth.addBlock(Orientation::VERTICAL, 1, @@COLS-1, @@COLS);
 
       # Creación de boss
+
+      nMonsters=5
+      intelligence = [2,3,3,5,6]
+      strength = [3,2,3,6,5]
+
+
+      for i in 0...nMonsters do
+        @monsters << Monster.new(@@MONSTER_NAME,intelligence[i],strength[i])
+      end
+
       @labyrinth.addMonster(@@ROWS-2, @@COLS-2,Monster.new(@@BOSS_NAME,8,8));
-
       #Monstruos débiles
-      @labyrinth.addMonster(6, @@COLS-3, Monster.new(@@MONSTER_NAME, 2, 3));
-      @labyrinth.addMonster(1, @@COLS-3, Monster.new(@@MONSTER_NAME, 3, 2));
-      @labyrinth.addMonster(11, 11, Monster.new(@@MONSTER_NAME, 3, 3));
-      @labyrinth.addMonster(12, 11, Monster.new(@@MONSTER_NAME, 5, 6));
-      @labyrinth.addMonster(13, 10, Monster.new(@@MONSTER_NAME, 6, 5));
+      @labyrinth.addMonster(6, @@COLS-3, @monsters[0]);
+      @labyrinth.addMonster(1, @@COLS-3, @monsters[1]);
+      @labyrinth.addMonster(11, 11, @monsters[2]);
+      @labyrinth.addMonster(12, 11, @monsters[3]);
+      @labyrinth.addMonster(13, 10, @monsters[4]);
 
-      #REsto de paredes
+      #Resto de paredes
       @labyrinth.addBlock(Orientation::VERTICAL,1,@@COLS-2,@@COLS)
       @labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1),@@COLS-3,(@@COLS>>1)-1)
       @labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1)-2,@@COLS-4,(@@COLS>>1)-1)
@@ -154,9 +163,9 @@ module Irrgarten
       winner = GameCharacter::PLAYER
       playerAttack = @currentPlayer.attack
       lose = monster.defend(playerAttack)
-      while !lose && (ronds < @@MAX_ROUNDS)
+      while ((!lose) && (rounds < @@MAX_ROUNDS))
         winner = GameCharacter::MONSTER
-        rounds++
+        rounds += 1
         monsterAttack = monster.attack
         lose = @currentPlayer.defend(monsterAttack)
         if !lose then
@@ -217,27 +226,4 @@ module Irrgarten
     end
 
   end#Class
-
-  g = Game.new(5)
-
-  gs = g.getGameState
-
-  puts gs.to_s
-
-  #puts g.combat(Monster.new("mike",1000,1000))
-
-  #gs = g.getGameState
-
-  #puts gs.to_s
-
-  #puts g.manageResurrection
-
-  #puts g.manageReward(GameCharacter::MONSTER)
-
-  #puts g.nextStep(Directions::UP)
-
-  #gs = g.getGameState
-
-  #puts gs.to_s
-
 end#Module

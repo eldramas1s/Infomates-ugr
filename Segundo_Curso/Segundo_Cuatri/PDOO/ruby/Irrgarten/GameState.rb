@@ -77,9 +77,14 @@ module Irrgarten
 			str += "Players:\n" + @players
 			str += "Monsters:\n" + @monsters
 			str += "Some context:\n" + @log + "\n"
-			str += "Player #" + @current_player.to_s + "is your turn.\n"
-			str += "Labyrinth: " + @labyrinth + "\n"
-			str += "Make a good choice!\n"
+
+			if @winner then
+				str += "Labyrinth: " + @labyrinth + "\n"
+			else
+				str += "Player #" + @current_player.to_s + " is your turn.\n"
+				str += "Labyrinth: " + @labyrinth + "\n"
+				str += "Make a good choice!\n"
+			end
 			str
 		end
   end#class

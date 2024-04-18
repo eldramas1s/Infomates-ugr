@@ -91,15 +91,15 @@ module Irrgarten
             str+= "\t\tWeapons: ["
             str += @weapons[0].to_s unless @weapons.size==0
 
-            for w in 1...@weapons.length do
-                str += ", " + w.to_s
+            for i in 1...@weapons.length do
+                str += ", " + @weapons[i].to_s
             end
             str+= "]\n"
             str+= "\t\tShields: ["
             str += @shields[0].to_s unless @shields.size==0
 
-            for sh in 1...@shields.size do
-                str += ", " + sh.to_s
+            for i in 1...@shields.size do
+                str += ", " + @shields[i].to_s
             end
             str += "]\n"
             str
@@ -114,9 +114,9 @@ module Irrgarten
                 wi=@weapons[i]
                 if(wi.discard()) then
                         @weapons.shift
-                    else
-                i+=1
-            end
+                else
+                    i+=1
+                end
             end
             size = @weapons.size
             if size<@@MAX_WEAPONS then
@@ -188,7 +188,7 @@ module Irrgarten
 
         def sumWeapons
             sum=0
-            for i in 0..@weapons.size-1 do
+            for i in 0...@weapons.size do
                 sum += @weapons[i].attack
             end
             sum
@@ -202,48 +202,17 @@ module Irrgarten
             sum
         end
 
-    def find(element,array)
-        found = false
-        i = 0
-        while !found && (i<array.size)
-            if array[i] == element then
-                found = true
-            else
-                i += 1
+        def find(element,array)
+            found = false
+            i = 0
+            while !found && (i<array.size)
+                if array[i] == element then
+                    found = true
+                else
+                    i += 1
+                end
             end
+            found
         end
-        found
-    end
-end #class
-
-
-    p = Player.new('45',0,0)
-    puts p.dead
-
-    #puts p.to_s
-    #puts p.row.to_s + "," + p.col.to_s
-
-    #p.setPos(15,15)
-
-    #puts p.to_s
-
-    #puts p.row.to_s + "," + p.col.to_s
-
-    #TODO: Comprobar move
-    #validMoves = Array.new
-    #validMoves.append(Directions::UP)
-    #puts validMoves.to_s
-
-    #p.move(Directions::UP,validMoves)
-
-    #p.defend(15)
-    #p.attack
-
-    #puts p.to_s
-
-    #puts p.dead()
-
-    #p.receiveReward
-
-    #puts p.to_s
+    end #class
 end #module
