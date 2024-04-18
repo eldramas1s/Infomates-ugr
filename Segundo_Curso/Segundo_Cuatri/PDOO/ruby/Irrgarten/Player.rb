@@ -32,7 +32,7 @@ module Irrgarten
 	    def resurrect
             @weapons.clear()
             @shields.clear()
-            @health = @INITIAL_HEALTH
+            @health = @@INITIAL_HEALTH
             @consecutiveHits = 0
         end
 

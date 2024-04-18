@@ -128,7 +128,6 @@ public class Dice {
         return generator.nextInt(HEALTH_REWARD+1);
     }
     
-    //TODO: cuando sepas que hace expandir comentario
     /**
      * Decide el poder de un arma 
      * @return El poder del arma

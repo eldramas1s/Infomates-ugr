@@ -15,7 +15,7 @@ public class Game {
     private static final String MONSTER_WON_MSG = "Monster Won.";
     private static final String RESURRECTED_MSG = "Player resurrected.";
     private static final String SKIP_TURN_MSG = "Player is dead, turn skipped.";
-    private static final String NO_ORDER_MSG = "Player couldn't move due to physical problems."; //TODO revisar esta frase tmb
+    private static final String NO_ORDER_MSG = "Player couldn't move due to physical problems."; 
     private static final String EMPTY_BLOCK_MSG = "Block with no action.";
     private static final int MAX_ROUNDS = 10;
     private static final String MONSTER_NAME = "Mike Wazousky";      
@@ -45,7 +45,7 @@ public class Game {
         
         monsters = new ArrayList<Monster>();
         
-        //TODO revisar esto
+        
         //Creado asi aposta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         this.configureLabyrinth(); //inicia el laberinto
@@ -108,13 +108,8 @@ public class Game {
         return new GameState(laby, avatars, beasts, curr, win, tempLog);
     }
     
-
-    public String getLabyrinthv(){ //TODO Eliminar cuando acabe el debug
-        return labyrinth.toString();
-    }
-    
     private void configureLabyrinth(){
-        //TODO: revisar
+        
         //*Creacion de paredes iniciales
         labyrinth.addBlock(Orientation.VERTICAL, 0, 0,COLS);
         labyrinth.addBlock(Orientation.HORIZONTAL, 0, 1, ROWS);
@@ -233,7 +228,6 @@ public class Game {
         log += NO_ORDER_MSG + "\n";
     }
     
-    //TODO mirar esto
     private void logNoMonster(){
         log += EMPTY_BLOCK_MSG + " " + NO_ORDER_MSG + "\n";
     }
