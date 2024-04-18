@@ -113,7 +113,7 @@ public class Player {
     
     /**
      * Maneja el ataque
-     * @return 
+     * @return la fuerza del ataque
      */
     public float attack(){
         if(this.dead())
@@ -121,6 +121,10 @@ public class Player {
         else return this.strength+this.sumWeapons();
     }
     
+    /**
+     * Maneja el recibo de recompensas
+     * 
+     */
     public void receiveReward(){
         int wReward = Dice.weaponsReward();
         int sReward = Dice.shieldsReward();
@@ -138,8 +142,13 @@ public class Player {
     }
 
 
-    public boolean defend(float receivedReward){
-        return this.manageHit(receivedReward);
+    /**
+     * Defiende de un ataque
+     * @param receivedAttack La fuerza del ataque
+     * @return true si ha perdido por el golpe
+     */
+    public boolean defend(float receivedAttack){
+        return this.manageHit(receivedAttack);
     }
     
     public String toString(){
@@ -167,6 +176,10 @@ public class Player {
         return cad;
     }
     
+    /**
+     * Recibe un arma y maneja el inventario
+     * @param w el arma
+     */
     private void receiveWeapon(Weapon w){
 
         Iterator<Weapon> it = weapons.iterator();
@@ -182,6 +195,10 @@ public class Player {
         }
     }
     
+    /**
+     * Recibe un escudo y maneja el inventario
+     * @param s el escudo
+     */
     private void receiveShield(Shield s){
         Iterator<Shield> it = shields.iterator();
         
@@ -197,6 +214,10 @@ public class Player {
         }
     }
     
+    /**
+     * Genera un arma
+     * @return el arma
+     */
     private Weapon newWeapon(){
         float power = Dice.weaponPower();
         int durability = Dice.usesLeft();
@@ -204,6 +225,10 @@ public class Player {
         return arma;
     }
     
+    /**
+     * Genera un escudo
+     * @return el escudo
+     */
     private Shield newShield(){
         float protection = Dice.shieldPower();
         int durability = Dice.usesLeft();
@@ -211,6 +236,10 @@ public class Player {
         return shield;
     }
     
+    /**
+     * Calcula el ataque con tus armas
+     * @return el ataque total
+     */
     private float sumWeapons(){
         float fullAttack = 0;
         
@@ -221,6 +250,10 @@ public class Player {
         return fullAttack;
     }
     
+    /**
+     * Calcula la defensa de los escudos
+     * @return La defensa
+     */
     private float sumShield(){
         float fullProtection = 0;
         
@@ -231,11 +264,20 @@ public class Player {
         return fullProtection;
     }
     
+    /**
+     * Calcula la defensa total
+     * @return la defensa
+     */
     private float defensiveEnergy(){
         float defenseEnergy  = intelligence + this.sumShield();
         return defenseEnergy;
     }
     
+    /**
+     * Maneja un ataque
+     * @param receivedAttack la fuerza del ataque
+     * @return si ha perdido por el ataque
+     */
     private boolean manageHit(float receivedAttack){
 
         float defense = defensiveEnergy();
