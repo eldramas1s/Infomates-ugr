@@ -30,6 +30,12 @@ public class Player {
     private ArrayList<Weapon> weapons = new ArrayList<Weapon>();
     private ArrayList<Shield> shields = new ArrayList<Shield>();
     
+    /**
+     * Construye un jugador
+     * @param number Su numero 
+     * @param intelligence su inteligencia / defensa
+     * @param strength su fuerza
+     */
     public Player(char number, float intelligence, float strength){
         this.name = DEFAULT_NAME + number;
         this.number = number;
@@ -40,6 +46,9 @@ public class Player {
         health = INITIAL_HEALTH;
     }
     
+    /**
+     * Maneja la resurreccion
+     */
     public void resurrect(){
         this.resetHits();
         this.health = INITIAL_HEALTH;
@@ -49,27 +58,51 @@ public class Player {
         this.weapons = newWeapons;
     }
     
+    /**
+     * @return la fila del jugador
+     */
     public int getRow(){
         return row;
     }
     
+    /**
+     * @return La columna del jugador
+     */
     public int getCol(){
         return col;
     }
     
+    /**
+     * @return El numero del jugador
+     */
     public char getNumber(){
         return number;
     }
     
+    /**
+     * Almacena la posicion del jugador
+     * @param row la fila 
+     * @param col la columna
+     */
     public void setPos(int row, int col){
         this.row = row;
         this.col = col;
     }
     
+    /**
+     * Comprueba si el jugador esta muerto
+     * @return True si esta muerto
+     */
     public boolean dead(){
         return health <= 0;
     }
     
+    /**
+     * Mueve a un jugador
+     * @param direction La direccion preferida
+     * @param validMoves Direcciones posibles
+     * @return La direccion a la que mover al jugador
+     */
     public Directions move(Directions direction, ArrayList<Directions> validMoves){
         Directions output = direction;
         if(validMoves.size() > 0 && !validMoves.contains(direction)){
@@ -78,6 +111,10 @@ public class Player {
         return output;
     }
     
+    /**
+     * Maneja el ataque
+     * @return 
+     */
     public float attack(){
         if(this.dead())
             return 0;
