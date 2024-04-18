@@ -54,7 +54,7 @@ module Irrgarten
 
 		# Consultor del fin de la partida por vencedor
 		# return true si hay vencedor
-		# 	 false si no lo hay
+		# 	 		 false si no lo hay
 		def winner
 			@winner
 		end
