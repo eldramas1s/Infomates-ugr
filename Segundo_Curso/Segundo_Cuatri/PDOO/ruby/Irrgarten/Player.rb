@@ -16,6 +16,10 @@ module Irrgarten
         @@INITIAL_HEALTH = 10
         @@HITS2LOSE = 3
 
+        # Inicializador
+        # number -> Numero de jugador
+        # intelligence -> Inteligencia del jugador
+        # strength -> Fuerza del jugador
         def initialize(number,intelligence,strength)
             @name = @@DEFAULT_NAME + number.to_s #Por si no se pasa una cadena
             @number = number
@@ -29,6 +33,7 @@ module Irrgarten
             @shields = Array.new
         end
 
+        # Resucita a un jugador
 	    def resurrect
             @weapons.clear()
             @shields.clear()
@@ -41,6 +46,9 @@ module Irrgarten
         attr_reader :col
         attr_reader :number
 
+        # Modificador de la posicion de un jugador
+        # row -> fila nueva
+        # col -> columna nueva
         def setPos(row,col)
             if row >= 0 && col >= 0 then
                 @row = row
@@ -48,10 +56,15 @@ module Irrgarten
             end
         end
 
+        # Comprueba si el jugador esta muerto
         def dead
             @health <= 0
         end
 
+        # Mueve al jugador a la posicion indicada por direction si esta en validMoves
+        # direction -> direccion de movimiento
+        # validMoves -> movimientos validos
+        # si el movimiento realizado no esta en los validos se mueve uno aleatorio dentro de los validos
 	    def move(direction, validMoves)
             size = validMoves.length
             contained = find(direction,validMoves)
@@ -63,28 +76,32 @@ module Irrgarten
             end
         end
 
+        # Calcula el ataque de un jugador
 	    def attack
             @strength + sumWeapons
         end
 
+        # Calcula la defensa de un jugador
 	    def defend(receivedAttack)
             manageHit(receivedAttack)
         end
 
-	def receiveReward
-        wReward = Dice.weaponsReward
-        sReward = Dice.shieldsReward
-        for i in 0..wReward do
-            wnew = newWeapon
-            receiveWeapon(wnew)
+        # Asignar los recursos que obtiene el jugador en una pelea si gana
+        # Puede añadir: vida, armas y escudos
+        def receiveReward
+            wReward = Dice.weaponsReward
+            sReward = Dice.shieldsReward
+            for i in 0..wReward do
+                wnew = newWeapon
+                receiveWeapon(wnew)
+            end
+            for i in 0..sReward do
+                snew = newShield
+                receiveShield(snew)
+            end
+            extraHealth = Dice.healthReward
+            @health += extraHealth
         end
-        for i in 0..sReward do
-            snew = newShield
-            receiveShield(snew)
-        end
-        extraHealth = Dice.healthReward
-        @health += extraHealth
-    end
 
 	    def to_s
             str="\t#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP\n"
@@ -108,6 +125,8 @@ module Irrgarten
 
 	private
 
+        # Encargado de obtener la probabilidad de recibir un nuevo arma y borra las que tomen probabilidad de borrado igual a true (wi.discard())
+        # Añade un arma si hay huecos en la mochila del jugador
         def receiveWeapon(w)
             i=0
             while i<@weapons.size
@@ -124,7 +143,8 @@ module Irrgarten
                 @weapons.append(w)
             end
         end
-
+        # Encargado de obtener la probabilidad de recibir un nuevo escudo y borra las que tomen probabilidad de borrado igual a true (wi.discard())
+        # Añade un escudo si hay huecos en la mochila del jugador
         def receiveShield(s)
             i=0
             while i<@shields.length
@@ -142,6 +162,11 @@ module Irrgarten
             end
         end
 
+        # Gesstiona los golpes que recibe el jugador
+        # receivedAttack -> valor del ataque recibido
+        # return -> lose
+        #               True -> Jugador muere
+        #               False -> No muere
         def manageHit(receivedAttack)
             defense=defensiveEnergy
             if defense<receivedAttack then
@@ -159,30 +184,37 @@ module Irrgarten
             return lose
         end
 
+        # Crea un nuevo arma y lo devuelve
         def newWeapon
             Weapon.new(Dice.weaponPower, Dice.usesLeft)
         end
 
+        # Crea un nuevo escudo y lo devuelve
         def newShield
             Shield.new(Dice.shieldPower, Dice.usesLeft)
         end
 
+        # Devuelve la enegia defensiva
         def defensiveEnergy
             @intelligence + sumShields
         end
 
+        # Resetea los hits
         def resetHits
             @consecutiveHits = 0
         end
 
+        # Decrementa el valor de health
         def gotWounded
             @health -= 1
         end
 
+        # Incrementa los hits consecutivos
         def incConsecutiveHits
             @consecutiveHits +=1
         end
 
+        # Suma y devuelve el valor de ataque de todas las armas
         def sumWeapons
             sum=0
             for i in 0...@weapons.size do
@@ -191,6 +223,7 @@ module Irrgarten
             sum
         end
 
+        # Suma y devuelve el valor de defensa de todos los escudos
         def sumShields
             sum=0
             for i in 0..@shields.size-1 do
@@ -199,6 +232,12 @@ module Irrgarten
             sum
         end
 
+        # Busca un elemento en un array
+        # Se usa para encontrar una direccion en validMoves
+        # element -> Elemento a buscar
+        # array -> Array donde buscar
+        # True -> Encontrado
+        # False -> No encontrado
         def find(element,array)
             found = false
             i = 0

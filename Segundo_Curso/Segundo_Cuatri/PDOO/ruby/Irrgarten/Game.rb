@@ -24,6 +24,9 @@ module Irrgarten
     @@ROWS = 15
     @@COLS = 15
 
+    # Inicializador
+    # nplayers -> Numero de jugadores del juego
+    # crea el juego al completo, inicializa el laberinto, tantos jugadores como se quiera y se mande en el main
     def initialize(nplayers)
         @currentPlayerIndex=Dice.whoStarts(nplayers)
 
@@ -37,17 +40,19 @@ module Irrgarten
         @monsters=[]
         @log=""
 
-        #TODO cambiar a algo con sentido
         @labyrinth=Labyrinth.new(@@ROWS,@@COLS,@@ROWS-2,@@COLS-1)
         configureLabyrinth
         @labyrinth.spreadPlayers(@players)
     end
 
+    # Devuelve true si hay un ganador
     def finished
         @labyrinth.haveAWinner
     end
 
-    def nextStep(preferredDirection)#boolean
+    # Maneja el turno y devuelve si acaba el juego
+    # Maneja: combate, movimiento y recompensas del jugador en juego en cada turno
+    def nextStep(preferredDirection)
       @log = ""
       dead = @currentPlayer.dead()
       if !dead then
@@ -78,6 +83,7 @@ module Irrgarten
       endGame
     end
 
+    # Devuelve el estado de juego con el formato deseado
     def getGameState
       laby = @labyrinth.to_s
       avatars = ""
@@ -100,6 +106,7 @@ module Irrgarten
 
     #private
 
+    # Configura el laberinto a nuestro gusto, es un 15x15 con 5 monstruos y un jefe.
     def configureLabyrinth
       @labyrinth.addBlock(Orientation::VERTICAL, 0, 0,@@COLS);
       @labyrinth.addBlock(Orientation::HORIZONTAL, 0, 1, @@ROWS);
@@ -148,11 +155,14 @@ module Irrgarten
 
     end
 
+    # Devuelve el jugador del siguiente turno, es un ciclo.
     def nextPlayer
         @currentPlayerIndex = (@currentPlayerIndex +1)% @players.size
         @currentPlayer = @players[@currentPlayerIndex]
     end
 
+    # Devuelve la direccion de movimiento real, es decir, si se pasa un movimiento imposible devuelve la solucion a ese conflicto
+    # preferredDirection -> Direccion a la que me quiero mover
     def actualDirection(preferredDirection)
       currentRow = @currentPlayer.row
       currentCol = @currentPlayer.col
@@ -160,6 +170,12 @@ module Irrgarten
       output = @currentPlayer.move(preferredDirection,validMoves)
     end
 
+    # Maneja el combate con un monstruo y lo registra en el log
+    # monster -> monstruo con el que se combate
+    # Se controla el numero de turnos
+    # True -> gana jugador
+    # False -> gana monstruo
+    # Player tiene un turno mas
     def combat(monster)
       rounds = 0
       winner = GameCharacter::PLAYER
@@ -180,6 +196,8 @@ module Irrgarten
       winner
     end
 
+    # Maneja si el jugador que ha combatido recibe o no regalos dependiendo si gana o no
+    # winner -> bool que es True si current player ha ganado
     def manageReward(winner)
       if winner == GameCharacter::PLAYER then
         @currentPlayer.receiveReward
@@ -189,6 +207,8 @@ module Irrgarten
       end
     end
 
+    # Maneja si un jugador resucita o no y lo registra en log
+    # Delega en Dice
     def manageResurrection
       resurrect = Dice.resurrectPlayer
       if resurrect then

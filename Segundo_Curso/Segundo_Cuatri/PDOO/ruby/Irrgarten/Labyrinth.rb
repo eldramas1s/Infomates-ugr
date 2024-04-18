@@ -18,6 +18,11 @@ module Irrgarten
         @@ROW=0
         @@COL=1
 
+        # Inicializador
+        # nRows->Numero de filas del laberinto
+        # nCols->Numero de columnas del laberinto
+        # exitRow->Fila de la salida
+        # exitCol->Columna de la salida
         def initialize(nRows,nCols,exitRow,exitCol)
             @nRows=nRows
             @nCols=nCols
@@ -36,6 +41,8 @@ module Irrgarten
             @ltab[exitRow][exitCol] = @@EXIT_CHAR
         end
 
+        # Spawnea los jugadores en el laberinto de forma aleatoria, solo aparecen en bloques vacios
+        # Delega en PutPlayer2D
         def spreadPlayers(players)
             for i in 0..players.size-1 do
                 pos = randomEmptyPos
@@ -43,6 +50,8 @@ module Irrgarten
             end
         end
 
+        # True -> Hay ganador
+        # False -> No hay ganador
         def haveAWinner #bool
             @ptab[@exitRow][@exitCol] != nil
         end
@@ -58,14 +67,21 @@ module Irrgarten
             return str
         end
 
+        # Añade un monstruo en una posicion del laberinto, lo añade en el laberinto como una M y en la matriz de monstruos
+        # row -> fila del monstruo
+        # col -> columna del monstruo
+        # monster -> monstruo a añadir
         def addMonster(row,col,monster) #void
             if @ltab[row][col] == @@EMPTY_BLOCK then
                 @ltab[row][col] = @@MONSTER_CHAR
                 @mtab[row][col] = monster
             end
-
         end
 
+        # Mueve al jugador a una casilla adyacente
+        # direction -> direccion de movimiento
+        # player -> jugador a mover
+        # return monster -> si hay un monstruo en la posicion de llegada devuelve ese monstruo, si no lo hay devuelve nil
         def putPlayer(direction, player) #monster
             oldRow = player.row
             oldCol = player.col
@@ -74,6 +90,11 @@ module Irrgarten
             monster
         end
 
+        # Añade un bloque o conjunto de bloque segun:
+        # orientation -> orientacion que se sigue para añadir los bloques
+        # startRow -> fila de inicio
+        # startCol -> columna de inicio
+        # length -> longitud del conjunto de bloques a añadir
         def addBlock(orientation,startRow,startCol, length)#void
             if orientation == Orientation::VERTICAL then
                 incRow = 1
@@ -94,6 +115,10 @@ module Irrgarten
 
         end
 
+        # Devuelve un array con las direcciones de movimientos posibles del currentPlayer
+        # row -> fila del jugador
+        # col -> columna del jugador
+        # output -> Array con las direcciones posibles
         def validMoves(row,col)#Directions[]
             output = Array.new
             if(canStepOn(row+1,col))then
@@ -139,6 +164,9 @@ module Irrgarten
             posOK(row,col) && (emptyPos(row,col) || monsterPos(row,col) || exitPos(row,col))
         end
 
+        # Actualiza la posicion del tablero despues de combate
+        # row -> fila
+        # col -> columna
         def updateOldPos(row,col)#void
             if posOK(row, col)
                 if @ltab[row][col] == @@COMBAT_CHAR then
@@ -147,9 +175,13 @@ module Irrgarten
                     @ltab[row][col] = @@EMPTY_BLOCK
                 end
             end
-
         end
 
+        # Traduce una direccion a una coordenada
+        # row -> fila
+        # col -> columna
+        # direction -> direccion de movimiento
+        # devuelve un array de dos enteros que representa la posicion
         def dir2Pos(row,col, direction) #int[]
             case direction
             when Directions::UP
@@ -163,6 +195,8 @@ module Irrgarten
             end
         end
 
+        # Busca un aposicion vacia de forma aleatoria en el tablero
+        # Devuelve una posicion en un array de dos posiciones
         def randomEmptyPos #int[]
             begin
                 row = Dice.randomPos(@nRows)
@@ -172,6 +206,13 @@ module Irrgarten
 
         end
 
+        # Mueve el jugador y procura dejar el tablero en estado consistente
+        # oldRow -> Fila inicial
+        # oldCol -> Columna inicial
+        # row -> nueva fila
+        # col -> nueva columna
+        # player -> nuevo jugador
+        # Devuelve un monstruo si lo hay, si no devuelve nil
         def putPlayer2D(oldRow, oldCol, row, col, player) #monster
             output = nil
             if canStepOn(row,col) then
