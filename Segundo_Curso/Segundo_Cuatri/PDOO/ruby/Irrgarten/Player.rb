@@ -10,6 +10,7 @@ module Irrgarten
     class Player
         @@DEFAULT_NAME = "Player #"
         @@INVALID_POS = -1 
+        
         @@MAX_WEAPONS = 2
         @@MAX_SHIELDS = 3
         @@INITIAL_HEALTH = 10
