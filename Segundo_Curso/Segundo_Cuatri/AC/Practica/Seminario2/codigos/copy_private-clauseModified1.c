@@ -1,6 +1,6 @@
 /**
  * 
- Cláusula shared
+ Cláusula copyprivate
  * 
  */
 
@@ -9,11 +9,13 @@
 
 #ifdef _OPENMP
   #include <omp.h>
+#else
+  #define omp_get_thread_num() 0
 #endif
 /**
- * @file  shared-clause.c 
- * @brief _Se actualizan los componentes de un vector en paralelo_
- * @author Extraído del libro: Chapman, B: Using OpenMP. Portable Shared Memory Parallel Programming
+ * @file  copyprivate-clause.c 
+ * @brief _Se inicializa los componentes de un vector con el valor solicitado al usuario por el hilo que ejecuta <tt>single</tt>_
+ * @author Modificación al código single.c extraído del libro: Chapman, B: Using OpenMP. Portable Shared Memory Parallel Programming
  
  *  DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
@@ -52,47 +54,51 @@
  *   You acknowledge that this software is not designed, licensed or intended for 
  *   use in the design, construction, operation or maintenance of any nuclear facility. 
  *  
- * @return 0 upon exit success (print los componentes del vector)
+ * @return 0 upon exit success (print los componentes del vector una vez inicializados )
  *  
  * **Objetivo**
  * 
- * El código usa:
+ * El código ilustra:
  * 
- * - Directivas <tt>parallel, for</tt> 
- * - Cláusula <tt>shared</tt> 
+ * - Directivas <tt>single, for, parallel</tt> 
+ * - Cláusula <tt>copyprivate</tt> 
  *
  * **Compilación **
  * @code
- * gcc -O2 -fopenmp -o shared-clause shared-clause.c
+ * gcc -O2 -fopenmp -o copyprivate-clause copyprivate-clause.c
  * @endcode
  * 
  *  **Ejecución **
  * ~~~~~~~~~~~~~~~~~~~~~
- * shared-clause 
+ * copyprivate-clause 
  * ~~~~~~~~~~~~~~~~~~~~~
  * 
 */
 int main()
 {
-   int i, n = 7;
-   int a[n];
+   int n = 9;
+   int i, b[n];
 
    for (i=0; i<n; i++)
-      a[i] = i+1;
-
-<<<<<<< HEAD
-   #pragma omp parallel for shared(a,i,n) default(none)
-=======
-   #pragma omp parallel for shared(a)
->>>>>>> main
-   for (i=0; i<n; i++)
+       b[i] = -1;
+#pragma omp parallel 
+{  int a;
+   #pragma omp single 
    {
-       a[i] += i;
-   } 
+      printf("Introduce valor de inicialización a: ");scanf("%d",&a);
+      printf("Single ejecutada por la hebra %d\n",
+             omp_get_thread_num());
+   }
 
-   printf("Después de parallel for:\n");
+   #pragma omp for
    for (i=0; i<n; i++)
-      printf("a[%d] = %d\n",i,a[i]);
+       b[i] = a;
 
+} 
+
+   printf("Depués de la región parallel:\n");
+   for (i=0; i<n; i++)
+       printf(" b[%d] = %d\t",i,b[i]);
+   printf("\n");
    return(0);
 }

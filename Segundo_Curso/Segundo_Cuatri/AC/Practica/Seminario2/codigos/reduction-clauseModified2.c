@@ -41,23 +41,32 @@
 int main(int argc, char **argv)
 {
    int i, n=20;
-   int a[n],suma=0;
+   int a[n],suma=0,suma_total=0;
    if(argc < 2)     {
       fprintf(stderr,"[ERROR]-Falta iteraciones\n");
       exit(-1);
      }
    n = atoi(argv[1]); if (n>20) {n=20; printf("n=%d",n);}
 
+   #pragma omp for
    for (i=0; i<n; i++) {
       a[i] = i; 
    }
- 
-   #pragma omp parallel for default(none) private(i) shared(a,n) \
-                            reduction(+:suma)
-   for (i=0; i<n; i++)
-   {   suma += a[i];
-   } 
+   
+   
+   #pragma omp parallel default(none) private(i) \ 
+                        shared(a,n,suma_total) firstprivate(suma)
+   {
+      #pragma omp for
+      for (i=0; i<n; i++)
+      {   suma += a[i];
+      }
 
-   printf("Tras 'parallel' suma=%d\n",suma);
+      #pragma omp atomic
+      suma_total+=suma;
+   }
+    
+
+   printf("Tras 'parallel' suma=%d\n",suma_total);
    return(0);
 }

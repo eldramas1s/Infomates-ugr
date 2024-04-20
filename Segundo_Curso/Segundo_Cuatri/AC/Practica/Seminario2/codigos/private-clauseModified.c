@@ -1,6 +1,6 @@
 /**
  * 
- Cláusulas firstprivate lastprivate
+ Cláusula private
  *
  **/
 
@@ -12,9 +12,8 @@
 #else
    #define omp_get_thread_num() 0
 #endif
-
 /**
- * @file  firstlastprivate-clause.c 
+ * @file  private-clause.c 
  * @brief _Parte del código de suma paralalela_
  * @return 0 upon exit success (print la variable suma dentro y fuera del <tt>parallel</tt>)
  *  
@@ -23,44 +22,42 @@
  * El código usa:
  * 
  * - Directivas <tt>parallel, for</tt> 
- * - Cláusulas <tt>firstprivate, lastprivate</tt> 
+ * - Cláusulas <tt>private</tt> 
  * - Funciones <tt>omp_get_thread_num()</tt> 
  *
  * **Compilación **
  * @code
- * gcc -O2 -fopenmp -o firstlastprivate-clause firstlastprivate-clause.c
+ * gcc -O2 -fopenmp -o private-clause private-clause.c
  * @endcode
  * 
  *  **Ejecución **
  * ~~~~~~~~~~~~~~~~~~~~~
- * firstlastprivate-clause 
+ * private-clause 
  * ~~~~~~~~~~~~~~~~~~~~~
  * 
 **/
 int main()
 {
-   int i, n = 10;
-   int a[n],suma=0;
+   int i, n = 7;
+   int a[n],suma=5,suma_total=0;
 
    for (i=0; i<n; i++)
       a[i] = i;
 
-#pragma omp parallel 
+#pragma omp parallel firstprivate(suma)
 {
-   #pragma omp for firstprivate(suma) lastprivate(suma)
+   #pragma omp for private(i)	
    for (i=0; i<n; i++)
    {
        suma = suma + a[i];
-       printf(" Hebra %d suma a[%d] suma=%d \n",
-             omp_get_thread_num(),i,suma);
    } 
 
-   #pragma omp single
-   {
-      suma+=a[1];
-   } 
+   #pragma omp atomic
+   suma_total += suma;
+
+   printf("\n* Hebra %d suma= %d\n",
+             omp_get_thread_num(),suma);
 }
-   
-   printf("\nFuera de la construcción parallel suma=%d\n",suma); 
-   return(0);
+   printf("Suma = %d",suma_total);
+   printf("\n"); return(0);
 }

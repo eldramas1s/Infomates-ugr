@@ -44,7 +44,7 @@ int main()
    for (i=0; i<n; i++)
       a[i] = i;
 
-#pragma omp parallel 
+#pragma omp parallel private(suma)
 {
    suma=0;
    #pragma omp for private(i)	
