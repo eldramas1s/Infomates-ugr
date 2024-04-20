@@ -80,11 +80,7 @@ int main()
    for (i=0; i<n; i++)
       a[i] = i+1;
 
-<<<<<<< HEAD
-   #pragma omp parallel for shared(a,i,n) default(none)
-=======
-   #pragma omp parallel for shared(a)
->>>>>>> main
+   #pragma omp parallel for shared(a) default(none)
    for (i=0; i<n; i++)
    {
        a[i] += i;

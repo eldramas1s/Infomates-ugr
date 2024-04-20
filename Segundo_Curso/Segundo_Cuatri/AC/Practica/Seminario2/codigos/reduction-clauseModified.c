@@ -41,7 +41,7 @@
 int main(int argc, char **argv)
 {
    int i, n=20;
-   int a[n],suma=0;
+   int a[n],suma=10;
    if(argc < 2)     {
       fprintf(stderr,"[ERROR]-Falta iteraciones\n");
       exit(-1);
