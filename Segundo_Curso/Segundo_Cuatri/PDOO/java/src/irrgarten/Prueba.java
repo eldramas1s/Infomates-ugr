@@ -8,7 +8,7 @@ import irrgarten.controller.Controller;
 
 //import java.util.ArrayList;
 
-import UI.TextUI;
+import irrgarten.UI.TextUI;
 
 /**
  *

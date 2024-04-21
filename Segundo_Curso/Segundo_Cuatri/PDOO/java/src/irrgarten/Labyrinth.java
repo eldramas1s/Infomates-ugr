@@ -68,7 +68,7 @@ public class Labyrinth {
     public void spreadPlayers(ArrayList<Player> players){
         for (Player player : players) {
             ArrayList<Integer> newPos = randomEmptyPos();
-            System.out.println(newPos);
+            //System.out.println(newPos);
             putPlayer2D(INVALID_POS, INVALID_POS, newPos.get(ROW), newPos.get(COL), player);
         }
     }
@@ -98,7 +98,7 @@ public class Labyrinth {
     }
     
     /**
-     * Añade un mounstruo a la posicion (row, col)
+     * Añade un monstruo a la posicion (row, col)
      * @param row fila
      * @param col columna
      * @param monster El mountruo a añadir
@@ -157,8 +157,8 @@ public class Labyrinth {
      */
     public ArrayList<Directions> validMoves(int row, int col){
 
-        ArrayList<Directions> directions = new ArrayList<>(Arrays.asList(Directions.DOWN, Directions.UP, Directions.RIGHT, Directions.LEFT));
-        Iterator<Directions> it = directions.listIterator();
+        ArrayList<Directions> directions = new ArrayList<>(Arrays.asList(Directions.DOWN, Directions.UP, Directions.RIGHT, Directions.LEFT)); //Inicializa la lista con los valores pasados por argumentos
+        Iterator<Directions> it = directions.listIterator();  //IMPORTANTE
         
         //Depende del número de direcciones
         while(it.hasNext()){
