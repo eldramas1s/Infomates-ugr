@@ -73,13 +73,13 @@ module Irrgarten
 	# Metodo de clase encargado de determinar un valor de poder de un arma
 	# @return Poder del arma
 	def self.weaponPower
-	    @@generator.rand(@@MAX_ATTACK+1)
+	    @@generator.rand(@@MAX_ATTACK.to_f+1)
 	end
 
 	# Metodo de clase encargado de determinar un valor de escudo
 	# @return Valor de escudo
 	def self.shieldPower
-	    @@generator.rand(@@MAX_SHIELD+1)
+	    @@generator.rand(@@MAX_SHIELD.to_f+1)
 	end
 
 	# Metodo de clase encargado de determinar el numero de usos que se le asignaran a un arma

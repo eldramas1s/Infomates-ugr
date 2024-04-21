@@ -119,18 +119,20 @@ module Irrgarten
       intelligence = [2,3,3,5,6]
       strength = [3,2,3,6,5]
 
-
+      @monsters << Monster.new(@@BOSS_NAME,8,8)
       for i in 0...nMonsters do
         @monsters << Monster.new(@@MONSTER_NAME,intelligence[i],strength[i])
       end
 
-      @labyrinth.addMonster(@@ROWS-2, @@COLS-2,Monster.new(@@BOSS_NAME,8,8));
+      @labyrinth.addMonster(5,5,Monster.new("debugOnly",20,20))
+
+      @labyrinth.addMonster(@@ROWS-2, @@COLS-2,@monsters[0]);
       #Monstruos débiles
-      @labyrinth.addMonster(6, @@COLS-3, @monsters[0]);
-      @labyrinth.addMonster(1, @@COLS-3, @monsters[1]);
-      @labyrinth.addMonster(11, 11, @monsters[2]);
-      @labyrinth.addMonster(12, 11, @monsters[3]);
-      @labyrinth.addMonster(13, 10, @monsters[4]);
+      @labyrinth.addMonster(6, @@COLS-3, @monsters[1]);
+      @labyrinth.addMonster(1, @@COLS-3, @monsters[2]);
+      @labyrinth.addMonster(11, 11, @monsters[3]);
+      @labyrinth.addMonster(12, 11, @monsters[4]);
+      @labyrinth.addMonster(13, 10, @monsters[5]);
 
       #Resto de paredes
       @labyrinth.addBlock(Orientation::VERTICAL,1,@@COLS-2,@@COLS)

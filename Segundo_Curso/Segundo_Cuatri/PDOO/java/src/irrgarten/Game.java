@@ -15,7 +15,7 @@ public class Game {
     private static final String MONSTER_WON_MSG = "Monster Won.";
     private static final String RESURRECTED_MSG = "Player resurrected.";
     private static final String SKIP_TURN_MSG = "Player is dead, turn skipped.";
-    private static final String NO_ORDER_MSG = "Player couldn't move due to physical problems."; //TODO revisar esta frase tmb
+    private static final String NO_ORDER_MSG = "Player couldn't move due to physical problems."; 
     private static final String EMPTY_BLOCK_MSG = "Block with no action.";
     private static final int MAX_ROUNDS = 10;
     private static final String MONSTER_NAME = "Mike Wazousky";      
@@ -33,6 +33,10 @@ public class Game {
     private ArrayList<Monster> monsters=new ArrayList<Monster>();
     private Labyrinth labyrinth;
     
+    /**
+     * Crea un juego
+     * @param nplayers número de jugardoes con los que jugar
+     */
     public Game(int nplayers){
         
         //creacion de jugadores
@@ -45,7 +49,7 @@ public class Game {
         
         monsters = new ArrayList<Monster>();
         
-        //TODO revisar esto
+        
         //Creado asi aposta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         this.configureLabyrinth(); //inicia el laberinto
@@ -54,17 +58,26 @@ public class Game {
         
         labyrinth.spreadPlayers(players);
     }
+
+    /**
+     * Comprueba si hay ganador
+     * @return true si hay ganador
+     */
     public boolean finished(){ 
         return labyrinth.haveAWinner();
     }
     
+    /**
+     * Mueve a un jugador
+     * @param preferredDirection La direccion a la que mover, de ser posible, al personaje
+     * @return La direacion a la que se va a mover, puede no ser preferredDirection
+     */
     public boolean nextStep(Directions preferredDirection){
         log = EMPTY_LOG;
         boolean dead = currentPlayer.dead();
         if(!dead){
             Directions direction = actualDirection(preferredDirection);
             if(direction != preferredDirection){
-                System.out.println("khe");
                 logPlayerNoOrders();
             }
             Monster monster = labyrinth.putPlayer(direction, currentPlayer);
@@ -86,18 +99,37 @@ public class Game {
         return endGame;
     }
     
-    public GameState getGameState(){
-        GameState gameState = new GameState(labyrinth.toString(), players.toString(), 
-                    monsters.toString(), this.currentPlayerIndex, this.finished(), log );
-        return gameState;
-    }
-
-    public String getLabyrinthv(){ //TODO Eliminar cuando acabe el debug
-        return labyrinth.toString();
+    /**
+     * Devuelve el estado del juego
+     * @return el gameState actual
+     */
+    public GameState getGameState() {
+        String laby = labyrinth.toString();
+    
+        StringBuilder avatarsBuilder = new StringBuilder();
+        for (Player player : players) {
+            avatarsBuilder.append(player.toString()).append("\n");
+        }
+        String avatars = avatarsBuilder.toString();
+    
+        StringBuilder beastsBuilder = new StringBuilder();
+        for (Monster monster : monsters) {
+            beastsBuilder.append(monster.toString()).append("\n");
+        }
+        String beasts = beastsBuilder.toString();
+    
+        int curr = currentPlayerIndex;
+        boolean win = finished();
+        String tempLog = log;
+    
+        return new GameState(laby, avatars, beasts, curr, win, tempLog);
     }
     
+    /**
+     * Configura el laberinto
+     */
     private void configureLabyrinth(){
-        //TODO: revisar
+        
         //*Creacion de paredes iniciales
         labyrinth.addBlock(Orientation.VERTICAL, 0, 0,COLS);
         labyrinth.addBlock(Orientation.HORIZONTAL, 0, 1, ROWS);
@@ -105,14 +137,25 @@ public class Game {
         labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-1, COLS);
 
         //*Creacion de monstruos
-        labyrinth.addMonster(ROWS-2, COLS-2,new Monster(BOSS_NAME,8f,8f)); //Boss de la salida
+        monsters.add(new Monster(BOSS_NAME,8f,8f));
+        labyrinth.addMonster(ROWS-2, COLS-2,monsters.get(0)); //Boss de la salida
 
         //Monstruos débiles (regalo en sitios lejanos o algo así)
-        labyrinth.addMonster(6, COLS-3, new Monster(MONSTER_NAME, 2f, 3f)); 
-        labyrinth.addMonster(1, COLS-3, new Monster(MONSTER_NAME, 3f, 2f)); 
-        labyrinth.addMonster(11, 11, new Monster(MONSTER_NAME, 3f, 3f));
-        labyrinth.addMonster(12, 11, new Monster(MONSTER_NAME, 5f, 6f));
-        labyrinth.addMonster(13, 10, new Monster(MONSTER_NAME, 6f, 5f));
+        int nMonsters = 5;
+
+        Integer[] intelligences = {3, 2, 3, 6, 5};
+        Integer[] strengths = {2, 3, 3, 5, 6};
+        for(int i = 0; i < nMonsters; i++){
+            monsters.add(new Monster(MONSTER_NAME,intelligences[i],strengths[i]));
+        }
+
+        labyrinth.addMonster(6, COLS-3, monsters.get(1)); 
+        labyrinth.addMonster(1, COLS-3, monsters.get(2)); 
+        labyrinth.addMonster(11, 11,monsters.get(3));
+
+
+        labyrinth.addMonster(12, 11,monsters.get(4));
+        labyrinth.addMonster(13, 10,monsters.get(5));
 
 
 
@@ -138,18 +181,31 @@ public class Game {
 
     }
     
+    /**
+     * Pasa el turno al siguiente jugador
+     */
     private void nextPlayer(){
         currentPlayerIndex++;
         currentPlayerIndex=currentPlayerIndex % players.size();
         currentPlayer = players.get(currentPlayerIndex);
     }
     
+    /**
+     * Decide a que direccion te vas a mover
+     * @param preferredDirection La direccion a la que te intenta mover primero
+     * @return La primera dirección a la que te puede mover, puede no ser ninguna
+     */
     private Directions actualDirection(Directions preferredDirection){
         int currentRow = currentPlayer.getRow();
         int currentCol = currentPlayer.getCol();
         return currentPlayer.move(preferredDirection, labyrinth.validMoves(currentRow,currentCol));
     }
     
+    /**
+     * Maneja el combate
+     * @param monster El monstruo con el que combatir
+     * @return el ganador (Jugador/Monstruo)
+     */
     private GameCharacter combat(Monster monster){
         int rounds = 0;
         GameCharacter winner = GameCharacter.PLAYER;
@@ -159,7 +215,7 @@ public class Game {
             winner = GameCharacter.MONSTER;
             rounds++;
             if(!lose){ 
-                monster.defend(currentPlayer.attack());
+                lose = monster.defend(currentPlayer.attack());
                 winner = GameCharacter.PLAYER;
             }
         }
@@ -167,6 +223,10 @@ public class Game {
         return winner;
     }
     
+    /**
+     * Maneja las recompensas cuando un jugador gana el combate
+     * @param winner Player si ha ganado el jugador
+     */
     private void manageReward(GameCharacter winner){
         if(winner == GameCharacter.PLAYER){
             currentPlayer.receiveReward();
@@ -176,6 +236,9 @@ public class Game {
         }
     }
     
+    /**
+     * Decide al azar si resucitar a un jugador muerto en su turno
+     */
     private void manageResurrection(){
         if(Dice.resurrectPlayer()){
             currentPlayer.resurrect();
@@ -205,7 +268,6 @@ public class Game {
         log += NO_ORDER_MSG + "\n";
     }
     
-    //TODO mirar esto
     private void logNoMonster(){
         log += EMPTY_BLOCK_MSG + " " + NO_ORDER_MSG + "\n";
     }

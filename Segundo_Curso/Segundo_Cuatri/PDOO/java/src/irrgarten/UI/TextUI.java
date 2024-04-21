@@ -23,7 +23,7 @@ public class TextUI {
         boolean gotInput = false;
         
         while (!gotInput) {
-            char c = readChar(); //TODO: Peta si la input es vacia (preguntar)
+            char c = readChar(); 
             switch(c) {
                 case 'w':
                     System.out.print(" UP\n");
@@ -51,7 +51,7 @@ public class TextUI {
         return direction;
     }
     public void showGame(GameState gameState) {   
-        System.out.println(gameState.getLog()); //TODO imprimir gameState completo
+        System.out.println(gameState.toString());
     }
     
 }

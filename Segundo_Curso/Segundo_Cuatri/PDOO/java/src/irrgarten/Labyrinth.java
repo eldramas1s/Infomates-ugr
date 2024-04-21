@@ -29,6 +29,13 @@ public class Labyrinth {
     private char ltab[][];
     private Player ptab[][];
     
+    /**
+     * Construye un laberinto
+     * @param nRows Numero de filas
+     * @param nCols Numero de columnas
+     * @param exitRow Fila en la que poner la salida
+     * @param exitCol Columna en la que poner la salida
+     */
     public Labyrinth(int nRows, int nCols, int exitRow, int exitCol){
         this.nRows = nRows;
         this.nCols = nCols;
@@ -54,6 +61,10 @@ public class Labyrinth {
         
     }
     
+    /**
+     * Reparte los jugadores por el tablero
+     * @param players Los jugadores a repartir
+     */
     public void spreadPlayers(ArrayList<Player> players){
         for (Player player : players) {
             ArrayList<Integer> newPos = randomEmptyPos();
@@ -62,6 +73,10 @@ public class Labyrinth {
         }
     }
     
+    /**
+     * Comprueba si hay un jugador en la casilla de salida
+     * @return True si hay un jugador
+     */
     public boolean haveAWinner(){
         return getPlayerAt(exitRow, exitCol) != null;
     }
@@ -82,6 +97,12 @@ public class Labyrinth {
         return cad;
     }
     
+    /**
+     * Añade un mounstruo a la posicion (row, col)
+     * @param row fila
+     * @param col columna
+     * @param monster El mountruo a añadir
+     */
     public void addMonster(int row, int col, Monster monster){
         if(this.posOK(row, col)&&(getBlock(row, col)==EMPTY_BLOCK) && !(this.exitPos(row, col))){
             setMonsterAt(row,col,monster);
@@ -91,6 +112,12 @@ public class Labyrinth {
            
     }
     
+    /**
+     * Mueve el jugador a una casilla adyacente
+     * @param direction Direccion en la que intentar ponerlo
+     * @param player El jugador a mover
+     * @return Un monstruo si se lo encuentra en la casilla, si no devuelve null
+     */
     public Monster putPlayer(Directions direction, Player player){
         int oldRow = player.getRow();
         int oldCol = player.getCol();
@@ -98,6 +125,13 @@ public class Labyrinth {
         return putPlayer2D(oldRow, oldCol, newPos.get(ROW), newPos.get(COL), player);
     }
     
+    /**
+     * Añade bloques hasta encontrarse con un obstaculo o llegar al numero deseado
+     * @param orientation Si ponerlos en horizontal o vertical
+     * @param startRow Fila en la que poner el primer bloque
+     * @param startCol Columna en la que poner el primer bloque
+     * @param length Numero de bloques a poner
+     */
     public void addBlock(Orientation orientation, int startRow, int startCol, int length){
         int incRow=0, incCol=0;
         if(orientation == Orientation.VERTICAL){
@@ -115,6 +149,12 @@ public class Labyrinth {
 
     }
     
+    /**
+     * Comprueba que movimientos son válidos
+     * @param row la fila
+     * @param col la columna
+     * @return Los movimientos válidos
+     */
     public ArrayList<Directions> validMoves(int row, int col){
 
         ArrayList<Directions> directions = new ArrayList<>(Arrays.asList(Directions.DOWN, Directions.UP, Directions.RIGHT, Directions.LEFT));
@@ -131,12 +171,24 @@ public class Labyrinth {
 
     }
     
+    /**
+     * Comprueba si la posicion esta dentro del laberinto
+     * @param row la fila
+     * @param col la columna
+     * @return True si esta dentro
+     */
     private boolean posOK(int row, int col){
         boolean dentroRow = (0 <= row) && (row<this.nRows);
         boolean dentroCol = (0 <= col) && (col<this.nCols);
         return (dentroRow && dentroCol);
     }
     
+    /**
+     * Comprueba si una posición esta vacia
+     * @param row fila 
+     * @param col columna
+     * @return True si la posición esta vacia
+     */
     private boolean emptyPos(int row, int col){
         return (this.posOK(row,col))&&(getBlock(row, col) == EMPTY_BLOCK);
     }
@@ -157,6 +209,11 @@ public class Labyrinth {
         return (this.posOK(row, col))&& ((this.exitPos(row, col))||(this.emptyPos(row, col)) || (this.monsterPos(row, col)));
     }
     
+    /**
+     * Actualiza una casilla tras moverse un jugador
+     * @param row fila en la que estaba el jugador
+     * @param col columna en la que estaba el jugador
+     */
     private void updateOldPos(int row, int col){
         if(this.posOK(row, col)){
             if(this.combatPos(row, col))
@@ -167,6 +224,13 @@ public class Labyrinth {
         
     }
     
+    /**
+     * Traduce una dirección a una coordenada
+     * @param row fila en la que esta el jugador
+     * @param col columna en la que esta el jugador
+     * @param direction direccion a la que mover
+     * @return la nueva posicion
+     */
     private ArrayList<Integer> dir2Pos(int row, int col, Directions direction){
         int nextRow=row;
         int nextCol=col;
@@ -192,6 +256,10 @@ public class Labyrinth {
         return position;
     }
     
+    /**
+     * Busca una posición vacia en el tablero
+     * @return la posición que encuentre primero
+     */
     private ArrayList<Integer> randomEmptyPos(){
         Integer row=INVALID_POS,col=INVALID_POS;
         
@@ -206,6 +274,15 @@ public class Labyrinth {
         return position;
     }
     
+    /**
+     * Mueve al jugador y procura dejar el tablero en estado consistente
+     * @param oldRow fila antigua
+     * @param oldCol columna antigua
+     * @param row fila nueva
+     * @param col columna nueva
+     * @param player El jugador que mover
+     * @return Un monstruo si al mover al jugador encuentra a uno, null si no
+     */
     private Monster putPlayer2D(int oldRow, int oldCol, int row, int col, Player player){
         Monster output = null;
         if(canStepOn(row, col)){

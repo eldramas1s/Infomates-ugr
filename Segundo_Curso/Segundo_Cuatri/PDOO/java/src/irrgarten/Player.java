@@ -30,6 +30,12 @@ public class Player {
     private ArrayList<Weapon> weapons = new ArrayList<Weapon>();
     private ArrayList<Shield> shields = new ArrayList<Shield>();
     
+    /**
+     * Construye un jugador
+     * @param number Su numero 
+     * @param intelligence su inteligencia / defensa
+     * @param strength su fuerza
+     */
     public Player(char number, float intelligence, float strength){
         this.name = DEFAULT_NAME + number;
         this.number = number;
@@ -40,6 +46,9 @@ public class Player {
         health = INITIAL_HEALTH;
     }
     
+    /**
+     * Maneja la resurreccion
+     */
     public void resurrect(){
         this.resetHits();
         this.health = INITIAL_HEALTH;
@@ -49,27 +58,51 @@ public class Player {
         this.weapons = newWeapons;
     }
     
+    /**
+     * @return la fila del jugador
+     */
     public int getRow(){
         return row;
     }
     
+    /**
+     * @return La columna del jugador
+     */
     public int getCol(){
         return col;
     }
     
+    /**
+     * @return El numero del jugador
+     */
     public char getNumber(){
         return number;
     }
     
+    /**
+     * Almacena la posicion del jugador
+     * @param row la fila 
+     * @param col la columna
+     */
     public void setPos(int row, int col){
         this.row = row;
         this.col = col;
     }
     
+    /**
+     * Comprueba si el jugador esta muerto
+     * @return True si esta muerto
+     */
     public boolean dead(){
         return health <= 0;
     }
     
+    /**
+     * Mueve a un jugador
+     * @param direction La direccion preferida
+     * @param validMoves Direcciones posibles
+     * @return La direccion a la que mover al jugador
+     */
     public Directions move(Directions direction, ArrayList<Directions> validMoves){
         Directions output = direction;
         if(validMoves.size() > 0 && !validMoves.contains(direction)){
@@ -78,12 +111,20 @@ public class Player {
         return output;
     }
     
+    /**
+     * Maneja el ataque
+     * @return la fuerza del ataque
+     */
     public float attack(){
         if(this.dead())
             return 0;
         else return this.strength+this.sumWeapons();
     }
     
+    /**
+     * Maneja el recibo de recompensas
+     * 
+     */
     public void receiveReward(){
         int wReward = Dice.weaponsReward();
         int sReward = Dice.shieldsReward();
@@ -101,12 +142,17 @@ public class Player {
     }
 
 
-    public boolean defend(float receivedReward){
-        return this.manageHit(receivedReward);
+    /**
+     * Defiende de un ataque
+     * @param receivedAttack La fuerza del ataque
+     * @return true si ha perdido por el golpe
+     */
+    public boolean defend(float receivedAttack){
+        return this.manageHit(receivedAttack);
     }
     
     public String toString(){
-        String cad= "P[" + name + ", " + intelligence + ", " + strength + ", " + health + ",(" + row + ", " +col + ", "+ consecutiveHits +")]\n"; 
+        String cad= "P[" + name + ", " + health +" HP,"+ strength + " SO, " +  intelligence + " IP, "  + ",(" + row + ", " +col + ", "+ consecutiveHits +")]\n"; 
         
         cad += "Weapons:\n";
         
@@ -130,13 +176,17 @@ public class Player {
         return cad;
     }
     
+    /**
+     * Recibe un arma y maneja el inventario
+     * @param w el arma
+     */
     private void receiveWeapon(Weapon w){
 
         Iterator<Weapon> it = weapons.iterator();
         while(it.hasNext()){
             Weapon wl = it.next();
             if( wl.discard()){
-                it .remove();
+                it.remove();
             }
         }
         
@@ -145,31 +195,51 @@ public class Player {
         }
     }
     
+    /**
+     * Recibe un escudo y maneja el inventario
+     * @param s el escudo
+     */
     private void receiveShield(Shield s){
-        for(Shield si : shields){
-            if(si.discard()){
-                shields.remove(s);
+        Iterator<Shield> it = shields.iterator();
+        
+        while(it.hasNext()){
+            Shield sl = it.next();
+            if( sl.discard()){
+                it.remove();
             }
         }
+
         if(shields.size()<MAX_SHIELDS){
             shields.add(s);
         }
     }
     
+    /**
+     * Genera un arma
+     * @return el arma
+     */
     private Weapon newWeapon(){
-        float power = Dice.randomStrength();
+        float power = Dice.weaponPower();
         int durability = Dice.usesLeft();
         Weapon arma = new Weapon(power,durability);
         return arma;
     }
     
+    /**
+     * Genera un escudo
+     * @return el escudo
+     */
     private Shield newShield(){
-        float protection = Dice.randomStrength();
+        float protection = Dice.shieldPower();
         int durability = Dice.usesLeft();
         Shield shield = new Shield(protection,durability);
         return shield;
     }
     
+    /**
+     * Calcula el ataque con tus armas
+     * @return el ataque total
+     */
     private float sumWeapons(){
         float fullAttack = 0;
         
@@ -180,6 +250,10 @@ public class Player {
         return fullAttack;
     }
     
+    /**
+     * Calcula la defensa de los escudos
+     * @return La defensa
+     */
     private float sumShield(){
         float fullProtection = 0;
         
@@ -190,11 +264,20 @@ public class Player {
         return fullProtection;
     }
     
+    /**
+     * Calcula la defensa total
+     * @return la defensa
+     */
     private float defensiveEnergy(){
         float defenseEnergy  = intelligence + this.sumShield();
         return defenseEnergy;
     }
     
+    /**
+     * Maneja un ataque
+     * @param receivedAttack la fuerza del ataque
+     * @return si ha perdido por el ataque
+     */
     private boolean manageHit(float receivedAttack){
 
         float defense = defensiveEnergy();
@@ -205,7 +288,6 @@ public class Player {
             resetHits();
         }
         boolean lose = false;
-        //TODO preguntar si aqui se debe matar al jugador (poner vida = 0) NO
         if(consecutiveHits == HITS2LOSE || dead()){
             resetHits();
             lose = true;

@@ -9,8 +9,8 @@ module Irrgarten
 
     class Player
         @@DEFAULT_NAME = "Player #"
-        @@INVALID_POS = -1
-
+        @@INVALID_POS = -1 
+        
         @@MAX_WEAPONS = 2
         @@MAX_SHIELDS = 3
         @@INITIAL_HEALTH = 10
@@ -37,7 +37,7 @@ module Irrgarten
 	    def resurrect
             @weapons.clear()
             @shields.clear()
-            @health = @INITIAL_HEALTH
+            @health = @@INITIAL_HEALTH
             @consecutiveHits = 0
         end
 

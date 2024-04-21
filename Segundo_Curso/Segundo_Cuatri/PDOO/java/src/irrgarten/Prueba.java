@@ -16,13 +16,10 @@ import irrgarten.UI.TextUI;
  */
 
 
-//TODO Preguntar en tutoria
-//? Como se deben imprimir en pantalla las instancias de GameState
-//? Tras un combate que pasa con las cosas
-
 public class Prueba {
     public static void main(String args[]){
-        Game game = new Game(1); 
+        final int NPLAYERS = 2;
+        Game game = new Game(NPLAYERS); 
         TextUI UI = new TextUI();
         Controller control = new Controller(game,UI);
         control.play();

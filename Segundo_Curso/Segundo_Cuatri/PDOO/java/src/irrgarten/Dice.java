@@ -49,7 +49,7 @@ public class Dice {
      */
     static private int MAX_ATTACK=3;
     /**
-     *  Máximo potencia de los escudos
+     *  Máxima potencia de los escudos
      */
     static private int MAX_SHIELD=2;
     
@@ -128,7 +128,6 @@ public class Dice {
         return generator.nextInt(HEALTH_REWARD+1);
     }
     
-    //TODO: cuando sepas que hace expandir comentario
     /**
      * Decide el poder de un arma 
      * @return El poder del arma
