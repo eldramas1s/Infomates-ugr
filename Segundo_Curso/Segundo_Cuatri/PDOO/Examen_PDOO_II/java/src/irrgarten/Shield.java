@@ -44,7 +44,7 @@ public class Shield {
         return prt_val;
     }
     /**
-     * @brief Representa la clase como string
+     * @brief Representa la instancia como string
      * @return Los atributos del escudo
      */
     public String toString(){

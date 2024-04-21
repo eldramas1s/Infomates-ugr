@@ -58,7 +58,7 @@ public class GameState {
      * Devuelve el estado del laberinto actual
      * @return El estado del laberinto actual
      */
-    public String getLabyrinthv(){
+    public String getLabyrinth(){
         return labyrinth;
     }
     
@@ -125,21 +125,3 @@ public class GameState {
         return str;
     }
 }  
-
-// def to_s
-
-// #Lo pongo modo esquematico siendo el tablero de juego lo ultimo junto con quien le toca jugar
-// str = ""
-// if @winner then
-//     str += "There's a winner!\n"
-// else
-//     str += "Just keep playing...\n"
-// end
-// str += "Players:\n" + @players
-// str += "Monsters:\n" + @monsters
-// str += "Some context:\n" + @log + "\n"
-// str += "Player #" + @current_player.to_s + "is your turn.\n"
-// str += "Labyrinth: " + @labyrinth + "\n"
-// str += "Make a good choice!\n"
-// str
-// end

@@ -42,7 +42,7 @@ public class Weapon {
     }
     
     /**
-     * @brief Representa la clase como string
+     * @brief Representa la instancia como string
      * @return Los atributos del arma
      */
     public String toString(){

@@ -13,9 +13,7 @@ import java.util.Random;
  * @author airam
  */
 public class Dice { 
-    
-    
-    
+        
     /**
      *  Numero máximo de usos de armas y escudos
      */
@@ -112,7 +110,7 @@ public class Dice {
     }
     
     /**
-     * Decide la cantidad de escudos ganadas tras un combate
+     * Decide la cantidad de escudos ganados tras un combate
      * @return el número de escudos en el rango [0,SHIELDS_REWARD]
      */
     static public int shieldsReward(){

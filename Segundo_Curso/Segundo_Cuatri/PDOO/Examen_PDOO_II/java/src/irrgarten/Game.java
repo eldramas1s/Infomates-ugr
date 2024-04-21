@@ -45,12 +45,15 @@ public class Game {
             players.add(p);
         }
         currentPlayerIndex = Dice.whoStarts(nplayers);
+
+        //Creacion del jugador inicial
         currentPlayer = players.get(currentPlayerIndex);
         
-        monsters = new ArrayList<Monster>();
+        //Creacion de los monstruos
+        monsters = new ArrayList<Monster>(); //Tambien se puede poner new Monster[//necesitaparametro]
         
         
-        //Creado asi aposta
+        //Creado asi a posta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         this.configureLabyrinth(); //inicia el laberinto
         
@@ -76,7 +79,7 @@ public class Game {
         log = EMPTY_LOG;
         boolean dead = currentPlayer.dead();
         if(!dead){
-            Directions direction = actualDirection(preferredDirection);
+            Directions direction = actualDirection(preferredDirection); //Devuelve su direccion de movimiento en funcion de su posicion y su direccion preferida.
             if(direction != preferredDirection){
                 logPlayerNoOrders();
             }
@@ -107,16 +110,16 @@ public class Game {
         String laby = labyrinth.toString();
     
         StringBuilder avatarsBuilder = new StringBuilder();
-        for (Player player : players) {
+        for (Player player : players) { //Para cada jugador añado su to_string y un endl
             avatarsBuilder.append(player.toString()).append("\n");
         }
-        String avatars = avatarsBuilder.toString();
+        String avatars = avatarsBuilder.toString(); //Lo paso a un String
     
         StringBuilder beastsBuilder = new StringBuilder();
-        for (Monster monster : monsters) {
+        for (Monster monster : monsters) { //Para cada monstruo añado su to_string y un endl
             beastsBuilder.append(monster.toString()).append("\n");
         }
-        String beasts = beastsBuilder.toString();
+        String beasts = beastsBuilder.toString(); //Lo paso a un String
     
         int curr = currentPlayerIndex;
         boolean win = finished();
