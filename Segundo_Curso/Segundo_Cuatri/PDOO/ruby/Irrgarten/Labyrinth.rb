@@ -28,9 +28,9 @@ module Irrgarten
             @nCols=nCols
             @exitRow=exitRow
             @exitCol=exitCol
-            @mtab=Array.new(nRows) {(Array.new(nCols))}
+            @mtab=Array.new(nRows) {(Array.new(nCols))}     #Declaración de un array de arrays de nRows filas y nCols columnas
             @ltab=Array.new(nRows) {(Array.new(nCols))}
-            @ptab=Array.new(nRows) {(Array.new(nCols))}
+            @ptab=Array.new(nRows) {(Array.new(nCols))}     # Se inicializan a nil por defecto
 
             for i in 0...nRows do
                 for j in 0...nCols do
@@ -82,6 +82,7 @@ module Irrgarten
         # direction -> direccion de movimiento
         # player -> jugador a mover
         # return monster -> si hay un monstruo en la posicion de llegada devuelve ese monstruo, si no lo hay devuelve nil
+        # post -> La casilla a la que se mueva no tiene por qué ser la que se busca
         def putPlayer(direction, player) #monster
             oldRow = player.row
             oldCol = player.col
@@ -115,7 +116,7 @@ module Irrgarten
 
         end
 
-        # Devuelve un array con las direcciones de movimientos posibles del currentPlayer
+        # Devuelve un array con las direcciones de movimientos posibles de un jugador
         # row -> fila del jugador
         # col -> columna del jugador
         # output -> Array con las direcciones posibles
@@ -183,7 +184,7 @@ module Irrgarten
         # direction -> direccion de movimiento
         # devuelve un array de dos enteros que representa la posicion
         def dir2Pos(row,col, direction) #int[]
-            case direction
+            case direction      #switch
             when Directions::UP
                 [row-1, col]
             when Directions::DOWN
@@ -195,7 +196,7 @@ module Irrgarten
             end
         end
 
-        # Busca un aposicion vacia de forma aleatoria en el tablero
+        # Busca una posicion vacia de forma aleatoria en el tablero
         # Devuelve una posicion en un array de dos posiciones
         def randomEmptyPos #int[]
             begin

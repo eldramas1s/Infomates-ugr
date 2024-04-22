@@ -37,7 +37,7 @@ module Irrgarten
         @currentPlayer = @players[@currentPlayerIndex]
 
 
-        @monsters=[]
+        @monsters=[]    # Igual que poner Array.new
         @log=""
 
         @labyrinth=Labyrinth.new(@@ROWS,@@COLS,@@ROWS-2,@@COLS-1)
@@ -124,7 +124,7 @@ module Irrgarten
         @monsters << Monster.new(@@MONSTER_NAME,intelligence[i],strength[i])
       end
 
-      @labyrinth.addMonster(5,5,Monster.new("debugOnly",20,20))
+      #@labyrinth.addMonster(5,5,Monster.new("debugOnly",20,20))
 
       @labyrinth.addMonster(@@ROWS-2, @@COLS-2,@monsters[0]);
       #Monstruos débiles
