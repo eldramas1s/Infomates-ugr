@@ -29,8 +29,8 @@ public class Game {
     private String log;
     
     private Player currentPlayer;
-    private ArrayList<Player> players=new ArrayList<Player>();
-    private ArrayList<Monster> monsters=new ArrayList<Monster>();
+    private ArrayList<Player> players;
+    private ArrayList<Monster> monsters;
     private Labyrinth labyrinth;
     
     /**
@@ -40,6 +40,7 @@ public class Game {
     public Game(int nplayers){
         
         //creacion de jugadores
+        players = new ArrayList<Player>();
         for (int i=0; i< nplayers; ++i){
             Player p = new Player(String.valueOf(i).charAt(0),Dice.randomIntelligence(),Dice.randomStrength());
             players.add(p);
