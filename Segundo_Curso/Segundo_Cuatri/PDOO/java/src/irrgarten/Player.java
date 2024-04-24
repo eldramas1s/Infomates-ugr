@@ -27,8 +27,8 @@ public class Player {
     private int col;
     private int consecutiveHits = 0;
     
-    private ArrayList<Weapon> weapons = new ArrayList<Weapon>();
-    private ArrayList<Shield> shields = new ArrayList<Shield>();
+    private ArrayList<Weapon> weapons = new ArrayList<>();
+    private ArrayList<Shield> shields = new ArrayList<>();
     
     /**
      * Construye un jugador
@@ -52,8 +52,8 @@ public class Player {
     public void resurrect(){
         this.resetHits();
         this.health = INITIAL_HEALTH;
-        ArrayList<Shield> newShields = new ArrayList<Shield>();
-        ArrayList<Weapon> newWeapons = new ArrayList<Weapon>();
+        ArrayList<Shield> newShields = new ArrayList<>();
+        ArrayList<Weapon> newWeapons = new ArrayList<>();
         this.shields = newShields;
         this.weapons = newWeapons;
     }
@@ -98,14 +98,14 @@ public class Player {
     }
     
     /**
-     * Mueve a un jugador
+     * Porporciona una direccion de movimiento de un jugador, si direction es correcta es la que se devuelve.
      * @param direction La direccion preferida
      * @param validMoves Direcciones posibles
      * @return La direccion a la que mover al jugador
      */
     public Directions move(Directions direction, ArrayList<Directions> validMoves){
         Directions output = direction;
-        if(validMoves.size() > 0 && !validMoves.contains(direction)){
+        if(validMoves.size() > 0 && !validMoves.contains(direction)){   //Comprueba si la direccion esta en el array
             output = validMoves.get(0);
         }
         return output;
@@ -182,16 +182,16 @@ public class Player {
      */
     private void receiveWeapon(Weapon w){
 
-        Iterator<Weapon> it = weapons.iterator();
-        while(it.hasNext()){
-            Weapon wl = it.next();
+        Iterator<Weapon> it = weapons.iterator(); //Iteradores en java
+        while(it.hasNext()){                      //Comprueba si hay otro 
+            Weapon wl = it.next();                //Devuelve el siguiente
             if( wl.discard()){
                 it.remove();
             }
         }
         
         if(weapons.size() < MAX_WEAPONS){
-            weapons.add(w);
+            weapons.add(w);                        //Añade en la ultima posicion
         }
     }
     
@@ -200,10 +200,10 @@ public class Player {
      * @param s el escudo
      */
     private void receiveShield(Shield s){
-        Iterator<Shield> it = shields.iterator();
+        Iterator<Shield> it = shields.iterator();   //Lo inicializa antes del primero
         
         while(it.hasNext()){
-            Shield sl = it.next();
+            Shield sl = it.next();  //Devuelve el siguiente
             if( sl.discard()){
                 it.remove();
             }
@@ -244,7 +244,7 @@ public class Player {
         float fullAttack = 0;
         
         for (int i=0; i<weapons.size(); ++i){
-            fullAttack += weapons.get(i).attack();
+            fullAttack += weapons.get(i).attack();      //COnsulta el elemento de la posicion i-ésima
         }
         
         return fullAttack;

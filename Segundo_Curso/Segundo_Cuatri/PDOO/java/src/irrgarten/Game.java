@@ -45,12 +45,15 @@ public class Game {
             players.add(p);
         }
         currentPlayerIndex = Dice.whoStarts(nplayers);
+
+        //Creacion del jugador inicial
         currentPlayer = players.get(currentPlayerIndex);
         
-        monsters = new ArrayList<Monster>();
+        //Creacion de los monstruos
+        monsters = new ArrayList<Monster>(); //Tambien se puede poner new Monster[//necesitaparametro]
         
         
-        //Creado asi aposta
+        //Creado asi a posta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         this.configureLabyrinth(); //inicia el laberinto
         
@@ -76,7 +79,7 @@ public class Game {
         log = EMPTY_LOG;
         boolean dead = currentPlayer.dead();
         if(!dead){
-            Directions direction = actualDirection(preferredDirection);
+            Directions direction = actualDirection(preferredDirection); //Devuelve su direccion de movimiento en funcion de su posicion y su direccion preferida.
             if(direction != preferredDirection){
                 logPlayerNoOrders();
             }
@@ -107,7 +110,7 @@ public class Game {
         String laby = labyrinth.toString();
     
         String avatars = "";
-        for (Player player : players) {
+        for (Player player : players) { //Para cada jugador añado su to_string y un endl
             avatars+= (player.toString() + "\n");
         }
     

@@ -71,7 +71,8 @@ int main(int argc, char** argv){
         }
     }
     #endif
-
+    int k = atoi(argv[2]);
+    omp_set_num_threads(k);
     // Inicializar vector y matriz
     #pragma omp parallel shared(m,v1,v2)
     {
@@ -85,7 +86,6 @@ int main(int argc, char** argv){
     }
     // Calcular v2 = m * v1
     cgt1 = omp_get_wtime();
-   
     #pragma omp parallel shared(m,v1,v2)
     {
         hilos = omp_get_num_threads();

@@ -9,8 +9,8 @@ module Irrgarten
 
     class Player
         @@DEFAULT_NAME = "Player #"
-        @@INVALID_POS = -1 
-        
+        @@INVALID_POS = -1
+
         @@MAX_WEAPONS = 2
         @@MAX_SHIELDS = 3
         @@INITIAL_HEALTH = 10
@@ -29,7 +29,7 @@ module Irrgarten
             @row = @@INVALID_POS
             @col = @@INVALID_POS
             @consecutiveHits = 0
-            @weapons = Array.new
+            @weapons = Array.new        # Declara un array de objetos, tambien vale []
             @shields = Array.new
         end
 
@@ -49,6 +49,7 @@ module Irrgarten
         # Modificador de la posicion de un jugador
         # row -> fila nueva
         # col -> columna nueva
+        # @pre la posicion debe estar dentro del tablero
         def setPos(row,col)
             if row >= 0 && col >= 0 then
                 @row = row
@@ -67,7 +68,7 @@ module Irrgarten
         # si el movimiento realizado no esta en los validos se mueve uno aleatorio dentro de los validos
 	    def move(direction, validMoves)
             size = validMoves.length
-            contained = find(direction,validMoves)
+            contained = find(direction,validMoves)      # existe la funcion include?()
             if (size > 0) && !contained then
                 firstElement = validMoves[0]
                 return firstElement
@@ -81,7 +82,7 @@ module Irrgarten
             @strength + sumWeapons
         end
 
-        # Calcula la defensa de un jugador
+        # Calcula la defensa de un jugador y maneja la recepcion de un golpe.
 	    def defend(receivedAttack)
             manageHit(receivedAttack)
         end
@@ -108,7 +109,7 @@ module Irrgarten
             str+= "\t\tWeapons: ["
             str += @weapons[0].to_s unless @weapons.size==0
 
-            for i in 1...@weapons.length do
+            for i in 1...@weapons.length do         # for element in @weapons
                 str += ", " + @weapons[i].to_s
             end
             str+= "]\n"
@@ -132,7 +133,7 @@ module Irrgarten
             while i<@weapons.size
                 wi=@weapons[i]
                 if(wi.discard()) then
-                        @weapons.shift
+                        @weapons.shift      # Extrae los n primeros elementos del array, sin args devuelve el primero
                 else
                     i+=1
                 end
@@ -140,7 +141,7 @@ module Irrgarten
             size = @weapons.size
             if size<@@MAX_WEAPONS then
                 w = newWeapon
-                @weapons.append(w)
+                @weapons.append(w)          # Añade un elemento al final del array, similar a <<
             end
         end
         # Encargado de obtener la probabilidad de recibir un nuevo escudo y borra las que tomen probabilidad de borrado igual a true (wi.discard())
@@ -217,7 +218,7 @@ module Irrgarten
         # Suma y devuelve el valor de ataque de todas las armas
         def sumWeapons
             sum=0
-            for i in 0...@weapons.size do
+            for i in 0...@weapons.size do   #rango exclusivo
                 sum += @weapons[i].attack
             end
             sum
@@ -226,7 +227,7 @@ module Irrgarten
         # Suma y devuelve el valor de defensa de todos los escudos
         def sumShields
             sum=0
-            for i in 0..@shields.size-1 do
+            for i in 0..@shields.size-1 do  # rango inclusivo
                 sum += @shields[i].protect
             end
             sum
