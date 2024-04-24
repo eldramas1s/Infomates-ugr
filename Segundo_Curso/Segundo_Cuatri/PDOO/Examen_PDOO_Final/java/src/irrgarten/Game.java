@@ -109,18 +109,15 @@ public class Game {
     public GameState getGameState() {
         String laby = labyrinth.toString();
     
-        StringBuilder avatarsBuilder = new StringBuilder();
+        String avatars = "";
         for (Player player : players) { //Para cada jugador añado su to_string y un endl
-            avatarsBuilder.append(player.toString()).append("\n");
+            avatars+= (player.toString() + "\n");
         }
-        String avatars = avatarsBuilder.toString(); //Lo paso a un String
     
-        StringBuilder beastsBuilder = new StringBuilder();
-        for (Monster monster : monsters) { //Para cada monstruo añado su to_string y un endl
-            beastsBuilder.append(monster.toString()).append("\n");
-        }
-        String beasts = beastsBuilder.toString(); //Lo paso a un String
-    
+        String beasts = "";
+        for (Monster monster : monsters) {
+            beasts += (monster.toString() +"\n");
+        }    
         int curr = currentPlayerIndex;
         boolean win = finished();
         String tempLog = log;
