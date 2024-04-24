@@ -1,7 +1,7 @@
 
 package irrgarten.UI;
 
-import irrgarten.Directions;
+import irrgarten.Directions;  //Paquete y archivo, si quiero todos los archivo poner *
 import irrgarten.GameState;
 import java.util.Scanner;
 
