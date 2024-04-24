@@ -20,8 +20,8 @@ public class Game {
     private static final int MAX_ROUNDS = 10;
     private static final String MONSTER_NAME = "Mike Wazousky";      
     private static final String BOSS_NAME = "Bowser";      
-    private static final int COLS = 4;
-    private static final int ROWS = 5;
+    private static final int COLS = 15;
+    private static final int ROWS = 15;
     private static final String EMPTY_LOG = "";
     
     //Datos miembro
@@ -54,7 +54,7 @@ public class Game {
         
         
         //Creado asi a posta
-        labyrinth = new Labyrinth(ROWS,COLS,0,0);
+        labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         this.configureLabyrinth(); //inicia el laberinto
         
         log = EMPTY_LOG; 
@@ -109,15 +109,18 @@ public class Game {
     public GameState getGameState() {
         String laby = labyrinth.toString();
     
-        String avatars = "";
+        StringBuilder avatarsBuilder = new StringBuilder();
         for (Player player : players) { //Para cada jugador añado su to_string y un endl
-            avatars+= (player.toString() + "\n");
+            avatarsBuilder.append(player.toString()).append("\n");
         }
+        String avatars = avatarsBuilder.toString(); //Lo paso a un String
     
-        String beasts = "";
-        for (Monster monster : monsters) {
-            beasts += (monster.toString() +"\n");
-        }    
+        StringBuilder beastsBuilder = new StringBuilder();
+        for (Monster monster : monsters) { //Para cada monstruo añado su to_string y un endl
+            beastsBuilder.append(monster.toString()).append("\n");
+        }
+        String beasts = beastsBuilder.toString(); //Lo paso a un String
+    
         int curr = currentPlayerIndex;
         boolean win = finished();
         String tempLog = log;
@@ -131,14 +134,54 @@ public class Game {
     private void configureLabyrinth(){
         
         //*Creacion de paredes iniciales
-        labyrinth.addBlock(Orientation.HORIZONTAL, 2, 1, 3);
+        labyrinth.addBlock(Orientation.VERTICAL, 0, 0,COLS);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 0, 1, ROWS);
+        labyrinth.addBlock(Orientation.HORIZONTAL, ROWS-1, 1, ROWS);
+        labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-1, COLS);
 
         //*Creacion de monstruos
-        monsters.add(new Monster(BOSS_NAME,99999f,99999f));
-        monsters.add(new Monster(MONSTER_NAME,0f,0f));
-        labyrinth.addMonster(0, 2,monsters.get(0)); //Boss de la salida
-        labyrinth.addMonster(3, 1,monsters.get(1)); //Boss de la salida
-        
+        monsters.add(new Monster(BOSS_NAME,8f,8f));
+        labyrinth.addMonster(ROWS-2, COLS-2,monsters.get(0)); //Boss de la salida
+
+        //Monstruos débiles (regalo en sitios lejanos o algo así)
+        int nMonsters = 5;
+
+        Integer[] intelligences = {3, 2, 3, 6, 5};
+        Integer[] strengths = {2, 3, 3, 5, 6};
+        for(int i = 0; i < nMonsters; i++){
+            monsters.add(new Monster(MONSTER_NAME,intelligences[i],strengths[i]));
+        }
+
+        labyrinth.addMonster(6, COLS-3, monsters.get(1)); 
+        labyrinth.addMonster(1, COLS-3, monsters.get(2)); 
+        labyrinth.addMonster(11, 11,monsters.get(3));
+
+
+        labyrinth.addMonster(12, 11,monsters.get(4));
+        labyrinth.addMonster(13, 10,monsters.get(5));
+
+
+
+        //*Creacion del resto de paredes
+        labyrinth.addBlock(Orientation.VERTICAL, 1, COLS-2, COLS);
+        labyrinth.addBlock(Orientation.VERTICAL, (ROWS>>1), COLS-3, (COLS>>1) -1);
+        labyrinth.addBlock(Orientation.VERTICAL, (ROWS>>1) -2, COLS-4, (COLS>>1) -1);
+     
+        labyrinth.addBlock(Orientation.VERTICAL, 9, 2, 3);
+        labyrinth.addBlock(Orientation.VERTICAL, 9, 3, 2);
+        labyrinth.addBlock(Orientation.VERTICAL, 9, 4, 3);
+
+
+        labyrinth.addBlock(Orientation.HORIZONTAL, 1,9, 3);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 2,9, 3);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 3,9, 3);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 5,9, 2);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 8,6, 6);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 9,6, 6);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 10,6, 6);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 11,6, 4); 
+        labyrinth.addBlock(Orientation.HORIZONTAL, 13,1, ROWS-6);
+
     }
     
     /**
