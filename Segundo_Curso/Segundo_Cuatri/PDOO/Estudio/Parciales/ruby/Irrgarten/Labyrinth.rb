@@ -44,10 +44,8 @@ module Irrgarten
         # Spawnea los jugadores en el laberinto de forma aleatoria, solo aparecen en bloques vacios
         # Delega en PutPlayer2D
         def spreadPlayers(players)
-            for i in 0..players.size-1 do
-                pos = randomEmptyPos
-                putPlayer2D(@@INVALID_POS,@@INVALID_POS,pos[@@ROW],pos[@@COL],players[i])
-            end
+            putPlayer2D(@@INVALID_POS,@@INVALID_POS,1,3,players[0])
+	    putPlayer2D(@@INVALID_POS,@@INVALID_POS,4,3,players[1])
         end
 
         # True -> Hay ganador
@@ -87,7 +85,7 @@ module Irrgarten
             oldRow = player.row
             oldCol = player.col
             newPos = dir2Pos(oldRow,oldCol,direction)
-            monster = putPlayer2D(oldRow,oldCol,newPos[@@ROW],newPos[@@COL],player)
+            monster=putPlayer2D(oldRow,oldCol,newPos[@@ROW],newPos[@@COL],player)
             monster
         end
 

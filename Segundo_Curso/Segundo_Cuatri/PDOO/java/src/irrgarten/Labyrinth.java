@@ -66,11 +66,8 @@ public class Labyrinth {
      * @param players Los jugadores a repartir
      */
     public void spreadPlayers(ArrayList<Player> players){
-        for (Player player : players) {
-            ArrayList<Integer> newPos = randomEmptyPos();
-            //System.out.println(newPos);
-            putPlayer2D(INVALID_POS, INVALID_POS, newPos.get(ROW), newPos.get(COL), player);
-        }
+        putPlayer2D(INVALID_POS,INVALID_POS,1,3,players.get(0));
+        putPlayer2D(INVALID_POS,INVALID_POS,4,3,players.get(1));
     }
     
     /**

@@ -21,8 +21,8 @@ module Irrgarten
     @@BOSS_NAME = "Bowser"
     @@MAX_ROUNDS=10
     @@MONSTER_NAME = "Mike Wazousky"
-    @@ROWS = 15
-    @@COLS = 15
+    @@ROWS = 5
+    @@COLS = 4
 
     # Inicializador
     # nplayers -> Numero de jugadores del juego
@@ -40,7 +40,7 @@ module Irrgarten
         @monsters=[]    # Igual que poner Array.new
         @log=""
 
-        @labyrinth=Labyrinth.new(@@ROWS,@@COLS,@@ROWS-2,@@COLS-1)
+        @labyrinth=Labyrinth.new(@@ROWS,@@COLS,0,0)
         configureLabyrinth
         @labyrinth.spreadPlayers(@players)
     end
@@ -108,51 +108,16 @@ module Irrgarten
 
     # Configura el laberinto a nuestro gusto, es un 15x15 con 5 monstruos y un jefe.
     def configureLabyrinth
-      @labyrinth.addBlock(Orientation::VERTICAL, 0, 0,@@COLS);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 0, 1, @@ROWS);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, @@ROWS-1, 1, @@ROWS);
-      @labyrinth.addBlock(Orientation::VERTICAL, 1, @@COLS-1, @@COLS);
-
-      # Creación de boss
-
-      nMonsters=5
-      intelligence = [2,3,3,5,6]
-      strength = [3,2,3,6,5]
-
-      @monsters << Monster.new(@@BOSS_NAME,8,8)
-      for i in 0...nMonsters do
-        @monsters << Monster.new(@@MONSTER_NAME,intelligence[i],strength[i])
-      end
+      @labyrinth.addBlock(Orientation::HORIZONTAL, 2, 1, 3);
+  	  
+      @monsters << Monster.new(@@MONSTER_NAME,0,0)
+      @monsters << Monster.new(@@BOSS_NAME,99999,99999)
 
       #@labyrinth.addMonster(5,5,Monster.new("debugOnly",20,20))
 
-      @labyrinth.addMonster(@@ROWS-2, @@COLS-2,@monsters[0]);
-      #Monstruos débiles
-      @labyrinth.addMonster(6, @@COLS-3, @monsters[1]);
-      @labyrinth.addMonster(1, @@COLS-3, @monsters[2]);
-      @labyrinth.addMonster(11, 11, @monsters[3]);
-      @labyrinth.addMonster(12, 11, @monsters[4]);
-      @labyrinth.addMonster(13, 10, @monsters[5]);
-
-      #Resto de paredes
-      @labyrinth.addBlock(Orientation::VERTICAL,1,@@COLS-2,@@COLS)
-      @labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1),@@COLS-3,(@@COLS>>1)-1)
-      @labyrinth.addBlock(Orientation::VERTICAL,(@@ROWS>>1)-2,@@COLS-4,(@@COLS>>1)-1)
-
-      @labyrinth.addBlock(Orientation::VERTICAL, 9, 2, 3);
-      @labyrinth.addBlock(Orientation::VERTICAL, 9, 3, 2);
-      @labyrinth.addBlock(Orientation::VERTICAL, 9, 4, 3);
-
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 1,9, 3);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 2,9, 3);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 3,9, 3);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 5,9, 2);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 8,6, 6);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 9,6, 6);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 10,6, 6);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 11,6, 4);
-      @labyrinth.addBlock(Orientation::HORIZONTAL, 13,1, @@ROWS-6);
-
+      @labyrinth.addMonster(0, 2,@monsters[1]);
+      @labyrinth.addMonster(3, 1,@monsters[0]);
+      
     end
 
     # Devuelve el jugador del siguiente turno, es un ciclo.
