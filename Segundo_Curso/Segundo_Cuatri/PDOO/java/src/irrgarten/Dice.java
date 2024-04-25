@@ -6,6 +6,7 @@ package irrgarten;
  */
 
 import java.util.Random;
+import java.util.ArrayList;
 
 
 /**
@@ -168,6 +169,11 @@ public class Dice {
     static public boolean discardElement(int usesLeft){
         //distribuye de forma uniforme la probabilidad
         return generator.nextFloat() < (MAX_USES-usesLeft)/(float) MAX_USES;
+    }
+    
+    
+    static public Directions nextStep(Directions preference, ArrayList<Directions> validMoves,float intelligence){
+        
     }
     
 }
