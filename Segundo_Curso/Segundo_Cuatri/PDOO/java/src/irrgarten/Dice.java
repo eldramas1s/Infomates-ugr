@@ -173,7 +173,7 @@ public class Dice {
     
     
     static public Directions nextStep(Directions preference, ArrayList<Directions> validMoves,float intelligence){
-        
+        return Directions.UP;
     }
     
 }
