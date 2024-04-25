@@ -64,7 +64,7 @@ public class Dice {
      * @return El índice de la fila o columna
      */
     static public int randomPos(int max){
-        return generator.nextInt(max); 
+        return generator.nextInt(max);
     }
     
     /**

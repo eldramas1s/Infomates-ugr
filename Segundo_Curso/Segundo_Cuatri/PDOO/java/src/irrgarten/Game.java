@@ -29,7 +29,11 @@ public class Game {
     private String log;
     
     private Player currentPlayer;
+<<<<<<< HEAD
     private ArrayList<Player> players;
+=======
+    private ArrayList<Player> players=new ArrayList<>();
+>>>>>>> main
     private ArrayList<Monster> monsters;
     private Labyrinth labyrinth;
     
@@ -110,15 +114,18 @@ public class Game {
     public GameState getGameState() {
         String laby = labyrinth.toString();
     
-        String avatars = "";
+        StringBuilder avatarsBuilder = new StringBuilder();
         for (Player player : players) { //Para cada jugador añado su to_string y un endl
-            avatars+= (player.toString() + "\n");
+            avatarsBuilder.append(player.toString()).append("\n");
         }
+        String avatars = avatarsBuilder.toString(); //Lo paso a un String
     
-        String beasts = "";
-        for (Monster monster : monsters) {
-            beasts += (monster.toString() +"\n");
-        }    
+        StringBuilder beastsBuilder = new StringBuilder();
+        for (Monster monster : monsters) { //Para cada monstruo añado su to_string y un endl
+            beastsBuilder.append(monster.toString()).append("\n");
+        }
+        String beasts = beastsBuilder.toString(); //Lo paso a un String
+    
         int curr = currentPlayerIndex;
         boolean win = finished();
         String tempLog = log;

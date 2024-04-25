@@ -58,8 +58,7 @@ module Irrgarten
         end
 
         # Comprueba si el jugador esta muerto
-        def dead
-            @health <= 0
+        def dead @health <= 0
         end
 
         # Mueve al jugador a la posicion indicada por direction si esta en validMoves

@@ -5,8 +5,14 @@ require_relative '../Directions'
 module UI
 
   class TextUI
-
+    @@desp = Array.new(22){Irrgarten::Directions::LEFT}
+    @@desp[0]=@@desp[1]=Irrgarten::Directions::UP
     #https://gist.github.com/acook/4190379
+
+    def initialize
+	@index = 0
+    end
+    
     def read_char
       STDIN.echo = false
       STDIN.raw!
@@ -24,36 +30,9 @@ module UI
     end
 
     def next_move
-      print "Where? "
-      got_input = false
-      while (!got_input)
-        c = read_char
-        case c
-          when "\e[A"
-            puts "UP ARROW"
-            output = Irrgarten::Directions::UP
-            got_input = true
-          when "\e[B"
-            puts "DOWN ARROW"
-            output = Irrgarten::Directions::DOWN
-            got_input = true
-          when "\e[C"
-            puts "RIGHT ARROW"
-            output = Irrgarten::Directions::RIGHT
-            got_input = true
-          when "\e[D"
-            puts "LEFT ARROW"
-            output = Irrgarten::Directions::LEFT
-            got_input = true
-          when "\u0003"
-            puts "CONTROL-C"
-            got_input = true
-            exit(1)
-          else
-            #Error
-        end
-      end
-      output
+	output = @@desp[@index]
+	@index += 1
+	output
     end
 
     def show_game(game_state)
