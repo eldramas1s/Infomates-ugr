@@ -29,11 +29,7 @@ public class Game {
     private String log;
     
     private Player currentPlayer;
-<<<<<<< HEAD
-    private ArrayList<Player> players;
-=======
     private ArrayList<Player> players=new ArrayList<>();
->>>>>>> main
     private ArrayList<Monster> monsters;
     private Labyrinth labyrinth;
     
