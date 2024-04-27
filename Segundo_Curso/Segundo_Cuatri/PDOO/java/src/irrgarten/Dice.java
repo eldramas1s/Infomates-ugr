@@ -171,7 +171,7 @@ public class Dice {
         return generator.nextFloat() < (MAX_USES-usesLeft)/(float) MAX_USES;
     }
     
-    
+    //TODO: No entiendo como aplicar la obtencion de la probabilidad.
     static public Directions nextStep(Directions preference, ArrayList<Directions> validMoves,float intelligence){
         return Directions.UP;
     }

@@ -8,26 +8,15 @@ package irrgarten;
  *
  * @author el_dramas
  */
-public class Shield {
-    /**
-     * @brief Atributo que representa de cuanto daño te puedes 
-     * proteger con el escudo
-     */
-    private float protection;
-    /**
-     * @brief Atributo que representa cuantos usos quedan hasta
-     * que tu escudo quede inservible.
-     */
-    private int uses;
-    
+public class Shield extends CombatElement {
+       
     /**
      * @brief Constructor, construye un escudo nuevo.
      * @param defense Defensa del escudo
      * @param durability Usos que le quedan al escudo
      */
     Shield (float defense, int durability ){
-        protection = defense;
-        uses = durability;
+        super(defense,durability);
     }
     
     /**
@@ -36,26 +25,23 @@ public class Shield {
      * @return El valor de la absorción de daño del escudo
      */
     public float protect(){
-        float prt_val=0;
-        if(uses>0){
-            prt_val=protection;
-            uses--;
-        }
-        return prt_val;
+        return super.produceEffect();
     }
     /**
      * @brief Representa la instancia como string
      * @return Los atributos del escudo
      */
+    @Override
     public String toString(){
-        return "S[" + protection + "," + uses + "]";
+        return "S" + super.toString();
     }
 
+    //TODO: Preguntar si hay que sobrecargarlo pues no se dice nada de el
     /**
      * Decide si desechar un arma
      * @return True si la desecha
      */
-    public boolean discard(){
-        return Dice.discardElement(uses);
-    }
+    //public boolean discard(){
+    //    return Dice.discardElement(uses);
+    //}
 }

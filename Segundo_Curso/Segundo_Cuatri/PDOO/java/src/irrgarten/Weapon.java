@@ -8,15 +8,7 @@ package irrgarten;
  *
  * @author airam
  */
-public class Weapon {
-    /**
-     * Poder de ataque del arma
-     */
-    private float power;
-    /**
-     * Número de usos restantes del arma
-     */
-    private int uses;
+public class Weapon extends CombatElement{
     
     /**
      * @brief Constructor, construye un arma según sus atributos
@@ -24,8 +16,7 @@ public class Weapon {
      * @param durability Número de usos del arma
      */
     Weapon(float strength, int durability){
-        power = strength;
-        uses = durability;
+        super (strength,durability);
     }
     
     /**
@@ -33,30 +24,27 @@ public class Weapon {
      * @return El poder de ataque
      */
     public float attack(){  
-        float atk_val = 0;
-        if(uses > 0){
-            atk_val = power;
-            uses--;
-        }
-        return atk_val;
+        return super.produceEffect();
     }
     
     /**
      * @brief Representa la instancia como string
      * @return Los atributos del arma
      */
+    @Override
     public String toString(){
-        return "W[" + power +"," + uses + "]";
+        return "W"+super.toString();
     }
     
 
+    //TODO: Preguntar si hay que sobrecargarlo pues no se dice nada de el
     /**
      * Decide si desechar el arma según los usos que le queden
      * @return True si decide desecharla
      */
-    public boolean discard(){
-        return Dice.discardElement(uses);  
-    }
+    //public boolean discard(){
+    //    return Dice.discardElement(uses);  
+    //}
 }
 
 

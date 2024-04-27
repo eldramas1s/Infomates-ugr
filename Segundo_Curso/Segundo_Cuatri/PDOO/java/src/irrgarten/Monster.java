@@ -8,18 +8,10 @@ package irrgarten;
  *
  * @author el_dramas
  */
-public class Monster {
+public class Monster extends LabyrinthCharacter {
     
-    static private final int INVALID_POS = -1;
-    
-    
-    static private int INITIAL_HEALTH = 5; 
-    private String name;
-    private float intelligence;
-    private float strength;
-    private float health;
-    private int row;
-    private int col;
+    //TODO: Consultar con Airam
+    static private final int INITIAL_HEALTH = 5; 
     
     /** 
      * Crea un monstruo
@@ -28,26 +20,23 @@ public class Monster {
      * @param strength su fuerza
      */
     public Monster (String name, float intelligence, float strength){
-        this.name = name;
-        this.intelligence = intelligence;
-        this.strength = strength;
-        this.col = INVALID_POS;
-        this.row = INVALID_POS;
-        this.health = INITIAL_HEALTH;
+        super (name,intelligence,strength,INITIAL_HEALTH);
     }
     
     /**
      * Comprueba si un monstruo esta muerto
      * @return True si el monstruo esta muerto
      */
+    @Override
     public boolean dead(){
-        return this.health <= 0;
+        return super.dead();
     } 
     
     /**
      * Maneja un ataque
      * @return el valor del ataque
      */
+    @Override
     public float attack(){
         if (this.dead())
             return 0;
@@ -59,6 +48,7 @@ public class Monster {
      * @param receivedAttack la fuerza del ataque recibido
      * @return True si muere con el ataque
      */
+    @Override
     public boolean defend(float receivedAttack){
         Boolean isDead = dead();
         if(!isDead){
@@ -76,19 +66,22 @@ public class Monster {
      * @param row La fila
      * @param col La columna
      */
+    @Override
     public void setPos(int row, int col){
-        this.row = row;
-        this.col = col;
+        super.setPos(row, col);
     }
     
+    @Override
     public String toString(){
-        return "M[" + name + ", " + health +" HP," + strength + " SP, " +  intelligence + " IP, " + "(" + row + ", " +col + ")]"; 
+        return "M"+super.toString(); 
     }
     
     /**
      * Maneja el daño a un monstruo
      */
-    private void gotWounded(){
-        health--;
+    //TODO: ¿Hay que sobrecargarlo? Da fallo de restriccion de prioridad.
+    @Override
+    protected void gotWounded(){
+        super.gotWounded();
     }
 }

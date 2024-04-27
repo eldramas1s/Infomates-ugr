@@ -8,6 +8,29 @@ package irrgarten;
  *
  * @author el_dramas
  */
-public class CombatElement {
+public abstract class CombatElement {
+    private float effect;
+    private int uses;
     
+    public CombatElement(float eff,int durability){
+        effect = eff;
+        uses = durability;
+    }
+    
+    protected float produceEffect(){
+        float eff_val = 0;
+        if(uses > 0){
+            eff_val = effect;
+            uses--;
+        }
+        return eff_val;
+    }
+    
+    public boolean discard(){
+        return Dice.discardElement(uses);
+    }
+    
+    public String toString(){
+        return "[" + effect + "," + uses + "]";
+    }
 }
