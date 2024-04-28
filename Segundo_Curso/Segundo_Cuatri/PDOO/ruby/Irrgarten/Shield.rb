@@ -1,24 +1,26 @@
 #encoding: UTF-8
 
 #Inclusion modulo Dice
-require_relative 'Dice.rb'
+require_relative 'Dice'
+require_relative 'CombatElement'
 
 module Irrgarten
     # Esta clase pretende crear un objeto escudo que se encargará de
     # proteger a los individuos de juego
     # @param protection Cantidad de daño que protege
     # @param uses Cantidad de usos
-    class Shield
+    class Shield < CombatElement
 
+    #TODO: No es necesario
 	# Metodo inicializador de la clase Shield
 	# @param defense Proteccion del escudo
 	# @param durability Usos del escudo
 	# @pos La instancia creada queda inicializada
         def initialize(defense,durability)
-            @protection = defense
-            @uses = durability
+            super
         end
 
+    #TODO: Redefinir
 	# Efectúa la proteccion de un golpe
 	# @return Valor de proteccion
 	# @pos Si uses>0 perdera un uso
@@ -42,8 +44,10 @@ module Irrgarten
 	# Metodo to string encargado de encadenar el estado del objeto
 	# @return cadena con toda la informacion
         def to_s
-            "S[" + @protection.to_s + "," + @uses.to_s + "]*"
+            "S" + super
         end
 
     end
+    s = Shield.new(15,0);
+    puts s.to_s
 end

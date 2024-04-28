@@ -104,5 +104,8 @@ module Irrgarten
 			(@@generator.rand() < (@@MAX_USES-usesLeft).to_f()/@@MAX_USES.to_f())
 		end
 
+		#TODO:
+		def nextStep(preference, validMoves,intelligence)
+		end
 	end#class
 end#module

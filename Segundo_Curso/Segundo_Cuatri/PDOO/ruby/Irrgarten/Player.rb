@@ -104,7 +104,7 @@ module Irrgarten
         end
 
 	    def to_s
-            str="\t#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP\n"
+            str="P" + super
             str+= "\t\tWeapons: ["
             str += @weapons[0].to_s unless @weapons.size==0
 

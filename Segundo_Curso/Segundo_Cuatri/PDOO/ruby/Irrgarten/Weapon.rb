@@ -3,6 +3,7 @@
 #Inclusiones
 
 require_relative 'Dice'
+require_relative 'CombatElement'
 
 module Irrgarten
 
@@ -11,6 +12,7 @@ module Irrgarten
     # @param uses Veces que se puede utilizar el arma para atacar
     class Weapon < CombatElement
 
+    #TODO:no hace falta
 	# Inicializador de la clase
 	# @param power Daño que va a tener el arma
 	# @param uses Número de veces que se podrá usar el arma
@@ -19,6 +21,7 @@ module Irrgarten
             super
         end
 
+    #TODO: Redefinir
 	# Metodo que simboliza el acto de ataque por parte de una entidad
 	# @return Daño causado
 	# @pos Si @uses>0 => @uses=@uses-1
