@@ -31,7 +31,11 @@ public abstract class LabyrinthCharacter {
     }
     
     public LabyrinthCharacter(LabyrinthCharacter other){
-        
+        //TODO: Preguntar por que no me deja
+        //LabyrinthCharacter(other.name,other.getIntelligence(),other.getStrength(),other.getHealth());
+        this.row = other.getRow();
+        this.col = other.getCol();
+        //TODO: Preguntar si usar setPos
     }
     
     boolean dead(){
@@ -78,4 +82,5 @@ public abstract class LabyrinthCharacter {
     public abstract float attack();
     
     public abstract boolean defend(float attack);
+
 }

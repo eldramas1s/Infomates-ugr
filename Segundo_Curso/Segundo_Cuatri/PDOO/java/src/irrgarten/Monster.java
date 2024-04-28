@@ -27,8 +27,8 @@ public class Monster extends LabyrinthCharacter {
      * Comprueba si un monstruo esta muerto
      * @return True si el monstruo esta muerto
      */
-    @Override
-    public boolean dead(){
+    //@Override
+    /*public boolean dead(){
         return super.dead();
     } 
     
@@ -40,7 +40,7 @@ public class Monster extends LabyrinthCharacter {
     public float attack(){
         if (this.dead())
             return 0;
-        else return Dice.intensity(strength);
+        else return Dice.intensity(super.getStrength());
     }
     
     /**
@@ -52,7 +52,7 @@ public class Monster extends LabyrinthCharacter {
     public boolean defend(float receivedAttack){
         Boolean isDead = dead();
         if(!isDead){
-            float defensiveEnergy = Dice.intensity(intelligence);
+            float defensiveEnergy = Dice.intensity(super.getIntelligence());
             if(defensiveEnergy < receivedAttack){
                 gotWounded();
                 isDead = dead();
