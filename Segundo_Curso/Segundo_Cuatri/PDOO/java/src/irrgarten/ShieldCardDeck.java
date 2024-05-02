@@ -8,6 +8,13 @@ package irrgarten;
  *
  * @author el_dramas
  */
-public class ShieldCardDeck {
+public class ShieldCardDeck extends CardDeck<Shield>{
+
+    @Override
+    protected void addCards(){
+        for(int i = 0; i < NUM_CARDS; i++){
+            addCard(new Shield(Dice.shieldPower(), Dice.usesLeft()));
+        }
+    }
     
 }

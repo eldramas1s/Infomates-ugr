@@ -5,13 +5,11 @@ require_relative 'Dice'
 
 module Irrgarten
 
-    class Monster
+    class Monster < LabyrinthCharacter
 
         #Vida inicial de un monstruo
         @@INITIAL_HEALTH = 5
-        #Posicion que consideramos inválida. Si una fila o columna
-        #es menor o igual a INVALID_POS, no es válido dicho estado
-        @@INVALID_POS = -1
+
 
         def initialize(name, intelligence, strength)
             @name = name                        #nombre del monstruo

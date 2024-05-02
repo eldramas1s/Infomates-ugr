@@ -7,9 +7,8 @@ require_relative 'Directions'
 
 module Irrgarten
 
-    class Player
+    class Player < LabyrinthCharacter
         @@DEFAULT_NAME = "Player #"
-        @@INVALID_POS = -1
 
         @@MAX_WEAPONS = 2
         @@MAX_SHIELDS = 3
@@ -58,7 +57,8 @@ module Irrgarten
         end
 
         # Comprueba si el jugador esta muerto
-        def dead @health <= 0
+        def dead 
+            @health <= 0
         end
 
         # Mueve al jugador a la posicion indicada por direction si esta en validMoves
