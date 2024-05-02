@@ -8,6 +8,11 @@ package irrgarten;
  *
  * @author el_dramas
  */
-public class WeaponCardDeck {
-    
+public class WeaponCardDeck extends CardDeck<Weapon>{
+    @Override
+    protected void addCards(){
+        for(int i = 0; i < NUM_CARDS; i++){
+            addCard(new Weapon(Dice.weaponPower(), Dice.usesLeft()));
+        }
+    }
 }

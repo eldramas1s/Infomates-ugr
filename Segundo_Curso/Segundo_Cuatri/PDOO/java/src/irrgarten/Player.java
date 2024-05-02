@@ -52,22 +52,6 @@ public class Player extends LabyrinthCharacter {
     }
     
     /**
-     * @return la fila del jugador
-     */
-    //@Override
-    /*public int getRow(){
-        return super.getRow();
-    }
-    
-    /**
-     * @return La columna del jugador
-     */
-    //@Override
-    /*public int getCol(){
-        return super.getCol();
-    }
-    
-    /**
      * @return El numero del jugador
      */
     public char getNumber(){

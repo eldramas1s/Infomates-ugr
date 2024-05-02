@@ -9,10 +9,10 @@ import java.util.ArrayList;
  * @author el_dramas
  * @param <T> elemento de combate que queramos crear la baraja
  */
-public class CardDeck<T extends CombatElement> {
+public abstract class CardDeck<T extends CombatElement> {
     private static final int NEXT_CARD = 0;
     //TODO: Revisar si es así
-    private static final int NUM_CARDS = 20;
+    protected static final int NUM_CARDS = 10;
     private ArrayList<T> cardDeck;
     
     public CardDeck(){
