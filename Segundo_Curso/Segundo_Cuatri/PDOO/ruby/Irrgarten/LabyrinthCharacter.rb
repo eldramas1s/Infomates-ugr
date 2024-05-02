@@ -2,16 +2,16 @@ module Irrgarten
   class LabyrinthCharacter
     @@INVALID_POS = -1
 
-    # def initialize(name,intelligence,strength,health)
-    #   @name = name
-    #   @intelligence = intelligence
-    #   @strength = strength
-    #   @health = health
-    #   @row = @@INVALID_POS
-    #   @col = @@INVALID_POS
-    # end
+    def initialize(name,intelligence,strength,health)
+      @name = name
+      @intelligence = intelligence
+      @strength = strength
+      @health = health
+      @row = @@INVALID_POS
+      @col = @@INVALID_POS
+    end
 
-    #Constructor privado porque se pretende que sea abstracta / no instanciable
+    # Constructor privado porque se pretende que sea abstracta / no instanciable
     private_class_method :new
 
     attr_reader :name
@@ -69,8 +69,4 @@ module Irrgarten
       end
 
   end#class
-  lc = LabyrinthCharacter.new("ª",1,5,9)
-  lc.to_s
-  lc_1 = LabyrinthCharacter.newCopy(lc)
-  lc_1.to_s
 end#module
