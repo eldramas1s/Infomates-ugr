@@ -104,8 +104,22 @@ module Irrgarten
 			(@@generator.rand() < (@@MAX_USES-usesLeft).to_f()/@@MAX_USES.to_f())
 		end
 
-		#TODO:
+		# Devuelve un movimiento segun la probabilidad en función de la inteligencia.
+		# @param preference Movimiento preferente.
+		# @param validMoves Posibles movimientos.
+		# @param intelligence Valor de inteligencia que proporciona la probabilidad.
+		# @return Movimiento de un fuzzy player.
 		def nextStep(preference, validMoves,intelligence)
+			if(intelligence >= @@generator.rand(@@MAX_ITELLIGENCE)) then
+				result = preference
+			else
+				if validMoves.nil? then
+					result = nil
+				else
+					result = validMoves[@@generator.rand(validMoves.size)]
+				end
+				result
+			end
 		end
 	end#class
 end#module
