@@ -15,7 +15,6 @@ public class WeaponCardDeck extends CardDeck<Weapon>{
         int usos[] = {3,5,1,5,1,4,3,3,2,1};
         for(int i = 0; i < NUM_CARDS; i++){
             addCard(new Weapon(ataque[i],usos[i]));
-        }
-        
+        } 
     }
 }

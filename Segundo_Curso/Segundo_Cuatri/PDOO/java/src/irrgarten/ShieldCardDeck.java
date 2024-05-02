@@ -9,7 +9,6 @@ package irrgarten;
  * @author el_dramas
  */
 public class ShieldCardDeck extends CardDeck<Shield>{
-
     @Override
     protected void addCards(){
         int defensa[] = {1,2,3,4,2,2,3,4,1,1};
@@ -17,6 +16,5 @@ public class ShieldCardDeck extends CardDeck<Shield>{
         for(int i = 0; i < NUM_CARDS; i++){
             addCard(new Shield(defensa[i], usos[i]));
         }
-    }
-    
+    }  
 }

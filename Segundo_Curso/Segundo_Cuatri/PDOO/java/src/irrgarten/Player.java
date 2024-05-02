@@ -47,6 +47,7 @@ public class Player extends LabyrinthCharacter {
         this.consecutiveHits = other.consecutiveHits;
         this.number = other.getNumber();
     }
+    //TODO: Cambiar a fuzzy player
     /**
      * Maneja la resurreccion
      */
@@ -279,10 +280,6 @@ public class Player extends LabyrinthCharacter {
     private void resetHits(){
         this.consecutiveHits = 0;
     }
-    
-    /*private void gotWounded(){
-        this.health--;
-    }*/
     
     //TODO:
     private void incConsecutiveHits(){
