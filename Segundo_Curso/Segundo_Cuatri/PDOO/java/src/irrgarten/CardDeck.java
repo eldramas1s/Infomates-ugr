@@ -15,20 +15,35 @@ public abstract class CardDeck<T extends CombatElement> {
     protected static final int NUM_CARDS = 10;
     private ArrayList<T> cardDeck;
     
+    /**
+     * Constructor de CardDeck.
+     */
     public CardDeck(){
         cardDeck = new ArrayList<>();
     }
     
-    //TODO:Cuantas cartas añado
-    protected void addCards(){
-    }
+    /**
+     * Añade un numero determinado de cartas de forma automatica.
+     */
+    protected abstract void addCards();
     
+    
+    /**
+     * Añade una carta de tipo T
+     * @param card Carta a añadir
+     */
     protected void addCard(T card){
         cardDeck.add(card);
     }
     
-    //TODO: Revisar si es así
+    /**
+     * Obtiene una carta del mazo eliminandola del mismo
+     * @return Carta del mazo.
+     */
     public T nextCard(){
+        if(cardDeck.isEmpty()){
+            this.addCards();
+        }
         T card = cardDeck.get(NEXT_CARD); 
         cardDeck.remove(NEXT_CARD);
         return card;
