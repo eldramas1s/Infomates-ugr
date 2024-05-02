@@ -18,7 +18,7 @@ module Irrgarten
     attr_reader :row
     attr_reader :col
 
-    def self.newCopy(other)
+    def newCopy(other)
       new(other.name,other.intelligence, other.strength, other.health)
       @row = other.row
       @col = other.col
@@ -60,11 +60,12 @@ module Irrgarten
         "[#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP,(#{@row},#{@col})]\n"
       end
 
-      #TODO?: Como se hacen metodos abstractos en ruby
       def attack
+        raise Exception.new "No implementado, LabyrinthCharacter"
       end
 
       def defend
+        raise Exception.new "No implementado, LabyrinthCharacter"
       end
 
   end#class
