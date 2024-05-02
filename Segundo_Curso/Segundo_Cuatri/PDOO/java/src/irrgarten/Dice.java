@@ -171,9 +171,27 @@ public class Dice {
         return generator.nextFloat() < (MAX_USES-usesLeft)/(float) MAX_USES;
     }
     
-    //TODO: No entiendo como aplicar la obtencion de la probabilidad.
+    /**
+     * Devuelve un movimiento segun la probabilidad en función de la inteligencia.
+     * @param preference Movimiento preferente.
+     * @param validMoves Posibles movimientos.
+     * @param intelligence Valor de inteligencia que proporciona la probabilidad.
+     * @return Movimiento de un fuzzy player.
+     */
     static public Directions nextStep(Directions preference, ArrayList<Directions> validMoves,float intelligence){
-        return Directions.UP;
+        Directions result;
+        if(intelligence>=generator.nextFloat()*MAX_INTELLIGENCE){
+            result=preference;
+        }
+        else{
+            if(validMoves.isEmpty()){
+               result = null; 
+            }
+            else{
+               result = validMoves.get(generator.nextInt(validMoves.size()));
+            }
+        }
+        return result;
     }
     
 }
