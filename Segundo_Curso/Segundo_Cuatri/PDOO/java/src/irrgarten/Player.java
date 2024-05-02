@@ -18,8 +18,11 @@ public class Player extends LabyrinthCharacter {
     
     private char number;
     private int consecutiveHits = 0;
-    private ArrayList<Weapon> weapons = new ArrayList<>();
-    private ArrayList<Shield> shields = new ArrayList<>();
+    private ArrayList<Weapon> weapons;
+    private ArrayList<Shield> shields; 
+
+    private ShieldCardDeck shieldDeck;
+    private WeaponCardDeck weaponDeck;
     
     /**
      * Construye un jugador
@@ -29,8 +32,13 @@ public class Player extends LabyrinthCharacter {
      */
     public Player(char number, float intelligence, float strength){
         super (DEFAULT_NAME+number,intelligence,strength,INITIAL_HEALTH);
+        weapons = new ArrayList<Weapon>();
+        shields = new ArrayList<Shield>();
+
+        shieldDeck = new ShieldCardDeck();
+        weaponDeck = new WeaponCardDeck();
+
         this.number = number;
-        
     }
     
     
@@ -50,25 +58,13 @@ public class Player extends LabyrinthCharacter {
         this.shields = newShields;
         this.weapons = newWeapons;
     }
+
     
     /**
      * @return El numero del jugador
      */
     public char getNumber(){
         return number;
-    }
-    
-    /**
-     * Almacena la posicion del jugador
-     * @param direction
-     * @param validMoves
-     * @param row la fila 
-     * @param col la columna
-     * @return 
-     */
-    //@Override
-    /*public void setPos(int row, int col){
-        super.setPos(row,col);
     }
     
     /**
@@ -166,7 +162,6 @@ public class Player extends LabyrinthCharacter {
         return cad;
     }
     
-    //TODO:
     /**
      * Recibe un arma y maneja el inventario
      * @param w el arma
@@ -186,7 +181,6 @@ public class Player extends LabyrinthCharacter {
         }
     }
     
-    //TODO:
     /**
      * Recibe un escudo y maneja el inventario
      * @param s el escudo
@@ -206,28 +200,20 @@ public class Player extends LabyrinthCharacter {
         }
     }
     
-    //TODO:
     /**
-     * Genera un arma
+     * Coge un arma de la baraja 
      * @return el arma
      */
     private Weapon newWeapon(){
-        float power = Dice.weaponPower();
-        int durability = Dice.usesLeft();
-        Weapon arma = new Weapon(power,durability);
-        return arma;
+        return weaponDeck.nextCard();
     }
     
-    //TODO:
     /**
-     * Genera un escudo
+     * Coge un escudo de la baraja
      * @return el escudo
      */
     private Shield newShield(){
-        float protection = Dice.shieldPower();
-        int durability = Dice.usesLeft();
-        Shield shield = new Shield(protection,durability);
-        return shield;
+        return shieldDeck.nextCard();
     }
     
     /**
