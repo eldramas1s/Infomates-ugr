@@ -21,8 +21,8 @@ module Irrgarten
 
 	# Efectúa la proteccion de un golpe
 	# @return Valor de proteccion
-	# @pos Si uses>0 perdera un uso
-	#      Si uses==0 se destruirá el objeto
+	# pre -> delega en produceEffect
+    # see -> CombatElement -> produceEffect
     def protect
         self.produceEffect
     end
@@ -40,7 +40,5 @@ module Irrgarten
             "S" + super
         end
 
-    end
-    s = Shield.new(15,0);
-    puts s.to_s
-end
+    end#class
+end#module

@@ -3,7 +3,6 @@
 require_relative 'Dice'
 require_relative 'LabyrinthCharacter'
 
-
 module Irrgarten
 
     class Monster < LabyrinthCharacter

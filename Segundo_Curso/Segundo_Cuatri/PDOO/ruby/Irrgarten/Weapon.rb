@@ -21,8 +21,8 @@ module Irrgarten
 
 	# Metodo que simboliza el acto de ataque por parte de una entidad
 	# @return Daño causado
-	# @pos Si @uses>0 => @uses=@uses-1
-	#      Si @uses==0 => arma rota
+	# pre -> delega en produceEffect
+    # see -> CombatElement->produceEfect
         def attack
             self.produceEffect
         end
