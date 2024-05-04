@@ -21,8 +21,8 @@ module Irrgarten
 
 	# Efectúa la proteccion de un golpe
 	# @return Valor de proteccion
-	# @pos Si uses>0 perdera un uso
-	#      Si uses==0 se destruirá el objeto
+	# pre -> delega en produceEffect
+    # see -> CombatElement -> produceEffect
     def protect
         self.produceEffect
     end
