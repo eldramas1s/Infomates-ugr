@@ -1,7 +1,5 @@
 #encoding: UTF-8
 
-#Inclusiones
-
 require_relative 'Dice'
 require_relative 'CombatElement'
 

@@ -4,8 +4,8 @@ module Irrgarten
 
     def initialize(name,intelligence,strength,health)
       @name = name
-      @intelligence = intelligence
-      @strength = strength
+      @intelligence = intelligence.to_f
+      @strength = strength.to_f
       @health = health
       @row = @@INVALID_POS
       @col = @@INVALID_POS

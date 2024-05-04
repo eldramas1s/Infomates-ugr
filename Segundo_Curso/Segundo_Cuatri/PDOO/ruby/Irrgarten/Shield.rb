@@ -1,6 +1,5 @@
 #encoding: UTF-8
 
-#Inclusion modulo Dice
 require_relative 'Dice'
 require_relative 'CombatElement'
 

@@ -1,12 +1,13 @@
 #encoding: UTF-8
 
 require_relative 'Dice'
-require_relative 'Weapon'
-require_relative 'Shield'
+require_relative 'CombatElement'
 require_relative 'Directions'
+require_relative 'LabyrinthCharacter'
 
 module Irrgarten
 
+    #TODO?: hay cardDeck??
     class Player < LabyrinthCharacter
         @@DEFAULT_NAME = "Player #"
 
@@ -20,16 +21,25 @@ module Irrgarten
         # intelligence -> Inteligencia del jugador
         # strength -> Fuerza del jugador
         def initialize(number,intelligence,strength)
-            @name = @@DEFAULT_NAME + number.to_s #Por si no se pasa una cadena
             @number = number
-            @intelligence = intelligence
-            @strength = strength
-            @health = @@INITIAL_HEALTH
-            @row = @@INVALID_POS
-            @col = @@INVALID_POS
+            super(@@DEFAULT_NAME+number.to_s,intelligence,strength,@@INITIAL_HEALTH)
             @consecutiveHits = 0
             @weapons = Array.new        # Declara un array de objetos, tambien vale []
             @shields = Array.new
+        end
+
+        def cloner(other)
+            self.initialize(other.number,other.intelligence,other.strength)
+            @health = other.health
+            @row = other.row
+            @col = other.col
+            @consecutiveHits = other.consecutiveHits
+
+            #TODO*:Esto provoca que tengan el mismo array de elementos de combate no una copia.
+            #@weapons = other.weapons
+            #@shields = other.shields
+            copy(other.weapons,@weapons)
+            copy(other.shields,@shields) #TODO: revisar la funcion copy
         end
 
         # Resucita a un jugador
@@ -44,6 +54,9 @@ module Irrgarten
         attr_reader :row
         attr_reader :col
         attr_reader :number
+        attr_reader :weapons
+        attr_reader :shields
+        attr_reader :consecutiveHits
 
         # Modificador de la posicion de un jugador
         # row -> fila nueva
@@ -57,7 +70,7 @@ module Irrgarten
         end
 
         # Comprueba si el jugador esta muerto
-        def dead 
+        def dead
             @health <= 0
         end
 
@@ -194,11 +207,6 @@ module Irrgarten
             Shield.new(Dice.shieldPower, Dice.usesLeft)
         end
 
-        # Devuelve la enegia defensiva
-        def defensiveEnergy
-            @intelligence + sumShields
-        end
-
         # Resetea los hits
         def resetHits
             @consecutiveHits = 0
@@ -214,6 +222,7 @@ module Irrgarten
             @consecutiveHits +=1
         end
 
+    protected
         # Suma y devuelve el valor de ataque de todas las armas
         def sumWeapons
             sum=0
@@ -232,6 +241,11 @@ module Irrgarten
             sum
         end
 
+        # Devuelve la enegia defensiva
+        def defensiveEnergy
+            @intelligence + sumShields
+        end
+    private
         # Busca un elemento en un array
         # Se usa para encontrar una direccion en validMoves
         # element -> Elemento a buscar
@@ -249,6 +263,20 @@ module Irrgarten
                 end
             end
             found
+        end
+
+        # Copia un array en otro, ninguna comprobacion de tipos es hecha
+        # Se usa para el "constructor" de copia
+        # emisor -> vector a copiar
+        # receptor -> vector que recibe la copia
+        # return -> receptor, vector ya copiado
+        def copy(emisor, receptor)
+            if !emisor.nil? then
+                for i in 0...emisor.size do
+                    receptor[i]=emisor[i]
+                end
+            end
+            receptor
         end
     end #class
 end #module
