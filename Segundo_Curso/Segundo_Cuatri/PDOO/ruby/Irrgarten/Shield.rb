@@ -40,7 +40,5 @@ module Irrgarten
             "S" + super
         end
 
-    end
-    s = Shield.new(15,0);
-    puts s.to_s
-end
+    end#class
+end#module

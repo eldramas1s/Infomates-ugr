@@ -28,11 +28,11 @@ module Irrgarten
             @shields = Array.new
         end
 
+        # Constructor de copia de un Player
+        # other -> jugador del que copiar
         def cloner(other)
-            self.initialize(other.number,other.intelligence,other.strength)
-            @health = other.health
-            @row = other.row
-            @col = other.col
+            super
+            @number = other.number
             @consecutiveHits = other.consecutiveHits
 
             #TODO*:Esto provoca que tengan el mismo array de elementos de combate no una copia.
@@ -116,6 +116,8 @@ module Irrgarten
             @health += extraHealth
         end
 
+        # Concatena la informacion de un Player
+        # Cadena con la informacion
 	    def to_s
             str="P" + super
             str+= "\t\tWeapons: ["
