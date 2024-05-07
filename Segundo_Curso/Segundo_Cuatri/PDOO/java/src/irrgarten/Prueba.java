@@ -18,7 +18,7 @@ import irrgarten.UI.TextUI;
 
 public class Prueba {
     public static void main(String args[]){
-        final int NPLAYERS = 2;
+        final int NPLAYERS = 1;
         Game game = new Game(NPLAYERS); 
         TextUI UI = new TextUI();
         Controller control = new Controller(game,UI);

@@ -46,6 +46,8 @@ public class Player extends LabyrinthCharacter {
         super (other);
         this.consecutiveHits = other.consecutiveHits;
         this.number = other.getNumber();
+        this.weapons = other.weapons;
+        this.shields = other.shields;
     }
     //TODO: Cambiar a fuzzy player
     /**
@@ -54,10 +56,8 @@ public class Player extends LabyrinthCharacter {
     public void resurrect(){
         this.resetHits();
         this.setHealth(INITIAL_HEALTH);
-        ArrayList<Shield> newShields = new ArrayList<>();
-        ArrayList<Weapon> newWeapons = new ArrayList<>();
-        this.shields = newShields;
-        this.weapons = newWeapons;
+        this.shields.clear();
+        this.weapons.clear();        
     }
 
     
