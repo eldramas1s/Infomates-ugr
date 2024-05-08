@@ -18,6 +18,8 @@ module Irrgarten
     # def initialize(defense,durability)
     #     super
     # end
+    
+    public_class_method :new
 
 	# Efectúa la proteccion de un golpe
 	# @return Valor de proteccion

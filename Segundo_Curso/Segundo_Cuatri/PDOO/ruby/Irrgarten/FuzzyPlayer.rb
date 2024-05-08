@@ -10,6 +10,10 @@ module Irrgarten
     #  super
     #end
 
+    def initialize(player)
+        cloner(player)
+    end
+
     # Se encarga de realizar el movimiento de un FuzzyPlayer
     # Depende del azar y la direccion preferente es filtrada por el metodo move de
     # Player.

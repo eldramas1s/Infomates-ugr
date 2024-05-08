@@ -1,13 +1,13 @@
 #encoding: UTF-8
 
 require_relative 'Dice'
-require_relative 'CombatElement'
+require_relative 'Weapon'
+require_relative 'Shield'
 require_relative 'Directions'
 require_relative 'LabyrinthCharacter'
 
 module Irrgarten
 
-    #TODO?: hay cardDeck??
     class Player < LabyrinthCharacter
         @@DEFAULT_NAME = "Player #"
 
@@ -28,6 +28,8 @@ module Irrgarten
             @shields = Array.new
         end
 
+        public_class_method :new
+
         # Constructor de copia de un Player
         # other -> jugador del que copiar
         def cloner(other)
@@ -38,8 +40,11 @@ module Irrgarten
             #TODO*:Esto provoca que tengan el mismo array de elementos de combate no una copia.
             #@weapons = other.weapons
             #@shields = other.shields
+            @weapons = Array.new
+            @shields = Array.new
             copy(other.weapons,@weapons)
             copy(other.shields,@shields) #TODO: revisar la funcion copy
+
         end
 
         # Resucita a un jugador
@@ -104,6 +109,11 @@ module Irrgarten
         def receiveReward
             wReward = Dice.weaponsReward
             sReward = Dice.shieldsReward
+
+            #TODO: DEBUG, quitar esto
+            #wReward = 2
+            #sReward = 2
+
             for i in 0..wReward do
                 wnew = newWeapon
                 receiveWeapon(wnew)
@@ -273,10 +283,19 @@ module Irrgarten
         # receptor -> vector que recibe la copia
         # return -> receptor, vector ya copiado
         def copy(emisor, receptor)
-            if !emisor.nil? then
-                for i in 0...emisor.size do
-                    receptor[i]=emisor[i]
-                end
+                #Esta manera tambien copia las mismas armas, aunque ahora el array si es diferente
+                #Se copia la referencia de cada objeto    
+            # if !emisor.nil? then
+            #     for i in 0...emisor.size do
+            #         receptor[i]=emisor[i]
+            #     end
+            # end
+            # #TODO: quitar esto que es de debug
+            # puts receptor[0].equal? emisor[0] 
+            # receptor
+            #Con el dup duplicas el objeto en si, no la referencia
+            if !emisor.nil? && !receptor.nil? then
+                emisor.each{|e| receptor << e.dup}
             end
             receptor
         end

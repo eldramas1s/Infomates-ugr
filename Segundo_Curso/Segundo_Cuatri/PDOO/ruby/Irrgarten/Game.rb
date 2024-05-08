@@ -213,6 +213,7 @@ module Irrgarten
       resurrect = Dice.resurrectPlayer
       if resurrect then
         @currentPlayer.resurrect
+        @currentPlayer = FuzzyPlayer.new()
         logResurrected
       else
         logPlayerSkipTurn
