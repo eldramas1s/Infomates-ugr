@@ -1,6 +1,5 @@
 #encoding: UTF-8
 
-#Inclusion modulo Dice
 require_relative 'Dice'
 require_relative 'CombatElement'
 
@@ -16,23 +15,17 @@ module Irrgarten
 	# @param defense Proteccion del escudo
 	# @param durability Usos del escudo
 	# @pos La instancia creada queda inicializada
-        def initialize(defense,durability)
-            super
-        end
+    # def initialize(defense,durability)
+    #     super
+    # end
 
-    #TODO: Redefinir
 	# Efectúa la proteccion de un golpe
 	# @return Valor de proteccion
-	# @pos Si uses>0 perdera un uso
-	#      Si uses==0 se destruirá el objeto
-        def protect
-            prt_val = 0
-                if @uses > 0 then
-                    prt_val = @protection
-                    @uses -= 1
-                end
-            prt_val
-        end
+	# pre -> delega en produceEffect
+    # see -> CombatElement -> produceEffect
+    def protect
+        self.produceEffect
+    end
 
 	# Se encarga de eliminar el escudo si no hay usos suficientes
 	# @return Decisión de inutilizacion
@@ -47,7 +40,5 @@ module Irrgarten
             "S" + super
         end
 
-    end
-    s = Shield.new(15,0);
-    puts s.to_s
-end
+    end#class
+end#module

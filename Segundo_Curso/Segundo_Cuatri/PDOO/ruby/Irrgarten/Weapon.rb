@@ -1,7 +1,5 @@
 #encoding: UTF-8
 
-#Inclusiones
-
 require_relative 'Dice'
 require_relative 'CombatElement'
 
@@ -17,22 +15,16 @@ module Irrgarten
 	# @param power Daño que va a tener el arma
 	# @param uses Número de veces que se podrá usar el arma
 	# @pos La instancia de la clase queda inicializada
-        def initialize(power,uses)
-            super
-        end
+    # def initialize(power,uses)
+    #    super
+    # end
 
-    #TODO: Redefinir
 	# Metodo que simboliza el acto de ataque por parte de una entidad
 	# @return Daño causado
-	# @pos Si @uses>0 => @uses=@uses-1
-	#      Si @uses==0 => arma rota
+	# pre -> delega en produceEffect
+    # see -> CombatElement->produceEfect
         def attack
-            power = 0
-                if @uses > 0 then
-                    power = @power
-                    @uses -= 1
-                end
-            power
+            self.produceEffect
         end
 
 	# Metodo encargado de encadenar la informacion de estado de la instancia

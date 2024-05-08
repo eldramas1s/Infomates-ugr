@@ -1,7 +1,7 @@
 #encoding: UTF-8
 
 require_relative 'Dice'
-
+require_relative 'LabyrinthCharacter'
 
 module Irrgarten
 
@@ -10,20 +10,12 @@ module Irrgarten
         #Vida inicial de un monstruo
         @@INITIAL_HEALTH = 5
 
-
         def initialize(name, intelligence, strength)
-            @name = name                        #nombre del monstruo
-            @intelligence = intelligence.to_f   #inteligencia del monstruo
-            @strength = strength.to_f           #fuerza del monstruo
-            @health = @@INITIAL_HEALTH          #vida del monstruo
-            @row = @@INVALID_POS                #Fila en la que está el monstruo en un tablero
-            @col = @@INVALID_POS                #Columna en la que esta el mounstruo en un tablero
+            super(name,intelligence,strength,@@INITIAL_HEALTH)
         end
 
-        #Comprueba si un moustruo esta muerto
-        def dead
-            @health <= 0
-        end
+        #TODO*: Revisar si todos a gusto
+        #*Eliminados: dead, setPos, gotWounded
 
         #Calcula la intensidad de ataque del monstruo
         def attack
@@ -32,21 +24,9 @@ module Irrgarten
             atk
         end
 
-        #Reposiciona al monstruo
-        def setPos(row, col)
-            @row = row
-            @col = col
-            # en java es void, aqui simplemente ignoramos lo devuelto
-        end
-
         #Devuelve el estado del monstruo en forma de cadena
         def to_s
-            "M[#{@name},#{@health} HP,#{@intelligence} IP,#{@strength} SP]"
-        end
-
-        #Daña al monstruo
-        def gotWounded
-            @health -= 1
+            "M"+super
         end
 
         #Calcula como se defiende el monstruo
@@ -61,8 +41,5 @@ module Irrgarten
 		    end
 		    isDead
         end
-
-
-        private :gotWounded
     end#class
 end#module
