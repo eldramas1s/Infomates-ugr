@@ -14,7 +14,7 @@ module Irrgarten
     def setStats(name, intelligence,strength,health)
       @name = name
       @intelligence = intelligence.to_f
-      @strengh = strength.to_f
+      @strength = strength.to_f
       @health = health
     end
     private_methods :setStats

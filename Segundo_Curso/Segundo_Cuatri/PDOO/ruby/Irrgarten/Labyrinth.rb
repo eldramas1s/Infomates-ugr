@@ -2,7 +2,7 @@
 
 require_relative 'Dice'
 require_relative 'Directions'
-require_relative 'Player'
+require_relative 'FuzzyPlayer'
 require_relative 'Orientation'
 
 module Irrgarten
@@ -138,6 +138,10 @@ module Irrgarten
                 output.append(Directions::LEFT)
             end
             output
+        end
+
+        def turnFuzzy(fuzz)
+            @ptab[fuzz.row][fuzz.col] = fuzz
         end
 
 	private

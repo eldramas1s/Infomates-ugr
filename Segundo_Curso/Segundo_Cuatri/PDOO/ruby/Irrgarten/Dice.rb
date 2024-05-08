@@ -109,7 +109,7 @@ module Irrgarten
 		# @param validMoves Posibles movimientos.
 		# @param intelligence Valor de inteligencia que proporciona la probabilidad.
 		# @return Movimiento de un fuzzy player.
-		def nextStep(preference, validMoves,intelligence)
+		def self.nextStep(preference, validMoves,intelligence)
 			if(intelligence >= @@generator.rand(@@MAX_ITELLIGENCE)) then
 				result = preference
 			else
@@ -118,8 +118,8 @@ module Irrgarten
 				else
 					result = validMoves[@@generator.rand(validMoves.size)]
 				end
-				result
 			end
+			result
 		end
 	end#class
 end#module

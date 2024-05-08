@@ -6,11 +6,14 @@ require_relative 'FuzzyPlayer'
 module Irrgarten
 	NPLAYERS = 2
 
-	p = Player.new('0',0,0)
+	p = Player.new('0',0,0.0)
 	p.receiveReward()
 	fp = FuzzyPlayer.new(p)
 	q = Player.new('3',1,1)
 	fq = FuzzyPlayer.new(q)
+	puts p.to_s
 	puts fp.to_s
 	puts fq.to_s
+
+	
 end

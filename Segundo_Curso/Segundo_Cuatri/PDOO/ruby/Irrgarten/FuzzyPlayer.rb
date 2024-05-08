@@ -21,7 +21,8 @@ module Irrgarten
     # validMoves -> array de movimientos validos
     # return -> direccion de movimiento ya calculada
     def move(direction,validMoves)
-      Dice.nextStep(super,validMoves,self.intelligence)
+      direction = Dice.nextStep(super,validMoves,self.intelligence)
+      super(direction,validMoves)
     end
 
     # Ataque de un FuzzyPlayer

@@ -124,8 +124,6 @@ module Irrgarten
         @monsters << Monster.new(@@MONSTER_NAME,intelligence[i],strength[i])
       end
 
-      #@labyrinth.addMonster(5,5,Monster.new("debugOnly",20,20))
-
       @labyrinth.addMonster(@@ROWS-2, @@COLS-2,@monsters[0]);
       #Monstruos débiles
       @labyrinth.addMonster(6, @@COLS-3, @monsters[1]);
@@ -133,6 +131,11 @@ module Irrgarten
       @labyrinth.addMonster(11, 11, @monsters[3]);
       @labyrinth.addMonster(12, 11, @monsters[4]);
       @labyrinth.addMonster(13, 10, @monsters[5]);
+
+      #SOLO PARA DEBUG
+      @monsters << Monster.new("DEBUG", 10000, 10000)
+      @labyrinth.addMonster(5,5,@monsters[-1])
+
 
       #Resto de paredes
       @labyrinth.addBlock(Orientation::VERTICAL,1,@@COLS-2,@@COLS)
@@ -213,7 +216,9 @@ module Irrgarten
       resurrect = Dice.resurrectPlayer
       if resurrect then
         @currentPlayer.resurrect
-        @currentPlayer = FuzzyPlayer.new()
+        @currentPlayer = FuzzyPlayer.new(@currentPlayer)
+        @players[@currentPlayerIndex] = @currentPlayer
+        @labyrinth.turnFuzzy(@currentPlayer)
         logResurrected
       else
         logPlayerSkipTurn
