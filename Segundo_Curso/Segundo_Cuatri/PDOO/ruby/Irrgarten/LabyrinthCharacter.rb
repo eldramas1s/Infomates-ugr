@@ -17,7 +17,7 @@ module Irrgarten
       @strength = strength.to_f
       @health = health
     end
-    private_methods :setStats
+    private_method :setStats
 
     attr_reader :name
     attr_reader :row
@@ -80,17 +80,6 @@ module Irrgarten
       # return -> cadena con la informacion
       def to_s
         "[#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP,(#{@row},#{@col})]\n"
-      end
-
-      #TODO: Preguntar si hay que declararlo
-      # Ataque de un Personaje (abstracto)
-      def attack
-        raise Exception.new "No implementado, LabyrinthCharacter"
-      end
-
-      # Defensa de un personaje (abstracto)
-      def defend
-        raise Exception.new "No implementado, LabyrinthCharacter"
       end
 
   end#class
