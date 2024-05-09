@@ -38,8 +38,6 @@ module Irrgarten
         return "[" + @effect.to_s + "," + @uses.to_s + "]*"
       end
 
-    #Es una clase abstracta
-    private_class_method :new
   end
 
 end

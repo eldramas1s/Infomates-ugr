@@ -46,10 +46,16 @@ public class Player extends LabyrinthCharacter {
         super (other);
         this.consecutiveHits = other.consecutiveHits;
         this.number = other.getNumber();
-        this.weapons = other.weapons;
-        this.shields = other.shields;
+        this.weapons = new ArrayList<Weapon>();
+        for(Weapon w: other.weapons){
+            this.weapons.add(new Weapon(w));
+        }
+        this.shields = new ArrayList<Shield>();
+        for(Shield s: other.shields){
+            this.shields.add(new Shield(s));
+        }
     }
-    //TODO: Cambiar a fuzzy player
+
     /**
      * Maneja la resurreccion
      */

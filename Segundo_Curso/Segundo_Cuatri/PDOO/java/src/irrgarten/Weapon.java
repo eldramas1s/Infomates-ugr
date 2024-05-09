@@ -18,7 +18,11 @@ public class Weapon extends CombatElement{
     Weapon(float strength, int durability){
         super (strength,durability);
     }
-    
+
+    Weapon(Weapon other){
+        super(other);
+    }
+
     /**
      * Ataca con el arma si no esta rota, pierde un uso
      * @return El poder de ataque

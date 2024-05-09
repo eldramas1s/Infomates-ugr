@@ -14,8 +14,9 @@ module Irrgarten
             super(name,intelligence,strength,@@INITIAL_HEALTH)
         end
 
-        #TODO: Preguntar si es necesario.
-        public_class_method :new
+
+        #TODO*: Revisar si todos a gusto
+        #*Eliminados: dead, setPos, gotWounded
 
         #Calcula la intensidad de ataque del monstruo
         def attack

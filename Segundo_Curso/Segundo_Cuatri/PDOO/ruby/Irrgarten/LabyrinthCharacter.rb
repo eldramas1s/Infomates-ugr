@@ -19,9 +19,6 @@ module Irrgarten
     end
     private_methods :setStats
 
-    # Constructor privado porque se pretende que sea abstracta / no instanciable
-    private_class_method :new
-
     attr_reader :name
     attr_reader :row
     attr_reader :col
