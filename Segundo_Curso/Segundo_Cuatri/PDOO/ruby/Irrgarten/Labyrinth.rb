@@ -140,8 +140,9 @@ module Irrgarten
             output
         end
 
-        def turnFuzzy(fuzz)
-            @ptab[fuzz.row][fuzz.col] = fuzz
+        def switchPlayer(player)
+            @ptab[player.row][player.col] = player
+            @ltab[player.row][player.col] = player.number
         end
 
 	private
