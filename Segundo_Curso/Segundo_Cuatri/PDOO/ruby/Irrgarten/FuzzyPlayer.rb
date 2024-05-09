@@ -5,10 +5,6 @@ module Irrgarten
 
   class FuzzyPlayer < Player
     @@FUZZY = "Fuzzy"
-    #?Es innecesario pues ya toma el de su padre
-    #def cloner(other)
-    #  super
-    #end
 
     def initialize(player)
         cloner(player)
@@ -37,13 +33,12 @@ module Irrgarten
       @@FUZZY + super
     end
 
-    protected
+  protected
+    # Intensidad defensiva de un FuzzyPlayer
+    # return -> Valor que representa la intensidad defensiva.
+    def defensiveEnergy
+      sumShields + Dice.intensity(self.intelligence)
+    end
 
-      # Intensidad defensiva de un FuzzyPlayer
-      # return -> Valor que representa la intensidad defensiva.
-      def defensiveEnergy
-        sumShields + Dice.intensity(self.intelligence)
-      end
   end#class
-
 end#module

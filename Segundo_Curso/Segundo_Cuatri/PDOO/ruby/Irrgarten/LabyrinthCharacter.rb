@@ -29,7 +29,7 @@ module Irrgarten
     # Constructor de copia de un Player
     # other -> Personaje del que copiar
     def cloner(other)
-      setStats(other.name,other.intelligence, other.strength,other.health) 
+      setStats(other.name,other.intelligence, other.strength,other.health)
       @row = other.row
       @col = other.col
     end
@@ -85,6 +85,7 @@ module Irrgarten
         "[#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP,(#{@row},#{@col})]\n"
       end
 
+      #TODO: Preguntar si hay que declararlo
       # Ataque de un Personaje (abstracto)
       def attack
         raise Exception.new "No implementado, LabyrinthCharacter"
