@@ -10,6 +10,10 @@ module Irrgarten
     #  super
     #end
 
+    def initialize(player)
+        cloner(player)
+    end
+
     # Se encarga de realizar el movimiento de un FuzzyPlayer
     # Depende del azar y la direccion preferente es filtrada por el metodo move de
     # Player.
@@ -17,7 +21,8 @@ module Irrgarten
     # validMoves -> array de movimientos validos
     # return -> direccion de movimiento ya calculada
     def move(direction,validMoves)
-      Dice.nextStep(super,validMoves,self.intelligence)
+      direction = Dice.nextStep(super,validMoves,self.intelligence)
+      super(direction,validMoves)
     end
 
     # Ataque de un FuzzyPlayer

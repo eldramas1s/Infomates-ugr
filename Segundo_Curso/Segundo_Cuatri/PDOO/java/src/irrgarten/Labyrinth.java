@@ -170,6 +170,10 @@ public class Labyrinth {
         return directions;
 
     }
+
+    public void turnFuzzy(FuzzyPlayer player){
+        setPlayerAt(player.getRow(),player.getCol(), player);
+    }
     
     /**
      * Comprueba si la posicion esta dentro del laberinto

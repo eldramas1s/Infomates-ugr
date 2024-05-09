@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package irrgarten;
+
 import java.util.ArrayList;
 /**
  *
@@ -15,7 +16,7 @@ public class FuzzyPlayer extends Player{
      * @param other Otro jugador.
      */
     public FuzzyPlayer(Player other){
-        super (other);
+        super(other);
     }
     
     //TODO: Preguntar si es esto lo que se busca.
@@ -48,7 +49,7 @@ public class FuzzyPlayer extends Player{
     protected float defensiveEnergy(){
         return this.sumShield()+Dice.intensity(this.getIntelligence());
     }
-    
+
     /**
      * Concatena la informacion de una instancia.
      * @return Cadena con la informacion de la instancia.

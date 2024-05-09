@@ -4,6 +4,7 @@
  */
 package irrgarten;
 import java.util.ArrayList;
+import java.util.Collections;
 /**
  *
  * @author el_dramas
@@ -11,7 +12,6 @@ import java.util.ArrayList;
  */
 public abstract class CardDeck<T extends CombatElement> {
     private static final int NEXT_CARD = 0;
-    //TODO: Revisar si es así
     protected static final int NUM_CARDS = 10;
     private ArrayList<T> cardDeck;
     
@@ -43,6 +43,7 @@ public abstract class CardDeck<T extends CombatElement> {
     public T nextCard(){
         if(cardDeck.isEmpty()){
             this.addCards();
+            Collections.shuffle(cardDeck);
         }
         T card = cardDeck.get(NEXT_CARD); 
         cardDeck.remove(NEXT_CARD);

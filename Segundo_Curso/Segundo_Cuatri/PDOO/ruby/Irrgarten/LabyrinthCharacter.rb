@@ -3,13 +3,21 @@ module Irrgarten
     @@INVALID_POS = -1
 
     def initialize(name,intelligence,strength,health)
+      #TODO: Preguntar porque es un poco raro
+      setStats(name,intelligence,strength,health)
+      @row = @@INVALID_POS
+      @col = @@INVALID_POS
+    end
+
+    #Creado porque si se sobrecarga initialize no se puede usar de forma segura
+    #De esta forma podemos en el cloner delegar aqui
+    def setStats(name, intelligence,strength,health)
       @name = name
       @intelligence = intelligence.to_f
       @strength = strength.to_f
       @health = health
-      @row = @@INVALID_POS
-      @col = @@INVALID_POS
     end
+    private_methods :setStats
 
     # Constructor privado porque se pretende que sea abstracta / no instanciable
     private_class_method :new
@@ -21,7 +29,7 @@ module Irrgarten
     # Constructor de copia de un Player
     # other -> Personaje del que copiar
     def cloner(other)
-      initialize(other.name,other.intelligence, other.strength, other.health)
+      setStats(other.name,other.intelligence, other.strength,other.health) 
       @row = other.row
       @col = other.col
     end

@@ -54,7 +54,7 @@ public class Game {
         monsters = new ArrayList<Monster>(); //Tambien se puede poner new Monster[//necesitaparametro]
         
         
-        //Creado asi a posta
+        //Creado asi aposta
         labyrinth = new Labyrinth(ROWS,COLS,ROWS-2,COLS-1);
         this.configureLabyrinth(); //inicia el laberinto
         
@@ -161,6 +161,9 @@ public class Game {
         labyrinth.addMonster(12, 11,monsters.get(4));
         labyrinth.addMonster(13, 10,monsters.get(5));
 
+        //? Monstruo para debug de resurrección 
+        labyrinth.addMonster(5,5,new Monster("elpapu",100,100));
+
 
 
         //*Creacion del resto de paredes
@@ -246,6 +249,9 @@ public class Game {
     private void manageResurrection(){
         if(Dice.resurrectPlayer()){
             currentPlayer.resurrect();
+            currentPlayer = new FuzzyPlayer(currentPlayer);
+            players.set(currentPlayerIndex,currentPlayer);
+            labyrinth.turnFuzzy((FuzzyPlayer) currentPlayer);
             logResurrected();
         } else{
             logPlayerSkipTurn();
