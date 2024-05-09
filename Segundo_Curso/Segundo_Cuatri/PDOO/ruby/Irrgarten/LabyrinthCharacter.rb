@@ -17,7 +17,7 @@ module Irrgarten
       @strength = strength.to_f
       @health = health
     end
-    private_method :setStats
+    private :setStats
 
     attr_reader :name
     attr_reader :row
