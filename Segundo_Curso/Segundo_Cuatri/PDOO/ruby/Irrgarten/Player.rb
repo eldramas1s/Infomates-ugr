@@ -293,6 +293,7 @@ module Irrgarten
             # receptor
             #Con el dup duplicas el objeto en si, no la referencia
             if !emisor.nil? && !receptor.nil? then
+                receptor.clear()
                 emisor.each{|e| receptor << e.dup}
             end
             receptor
