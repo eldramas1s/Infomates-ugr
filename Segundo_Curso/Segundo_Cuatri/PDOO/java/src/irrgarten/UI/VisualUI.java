@@ -4,13 +4,18 @@
  */
 package irrgarten.UI;
 
+import irrgarten.Directions;
 import irrgarten.GameState;
+import java.util.Scanner;
 
 /**
  *
  * @author el_dramas
  */
 public class VisualUI extends javax.swing.JFrame implements UI{
+
+    //TODO: quitar esto
+    private static Scanner in = new Scanner(System.in);
 
     /**
      * Creates new form VisualUI
@@ -22,7 +27,54 @@ public class VisualUI extends javax.swing.JFrame implements UI{
 
     @Override
     public void showGame(GameState gameState) {   
-        System.out.println(gameState.toString());
+        //System.out.println(gameState.toString());
+        prompt.setText(gameState.toString());
+        prompt.repaint();
+    }
+    
+
+    
+    //TODO: quitar esto
+    private char readChar() {
+        String s = in.nextLine();     
+        return s.charAt(0);
+    }
+    
+    //TODO: quitar esto
+    @Override
+    public Directions nextMove() {
+        System.out.print("Where? ");
+        
+        Directions direction = Directions.DOWN;
+        boolean gotInput = false;
+        
+        while (!gotInput) {
+            char c = readChar(); 
+            switch(c) {
+                case 'w':
+                    System.out.print(" UP\n");
+                    direction = Directions.UP;
+                    gotInput = true;
+                    break;
+                case 's':
+                    System.out.print(" DOWN\n");
+                    direction = Directions.DOWN;
+                    gotInput = true;
+                    break;
+                case 'd':
+                    System.out.print("RIGHT\n");
+                    direction = Directions.RIGHT;
+                    gotInput = true;
+                    break;
+                case 'a':
+                    System.out.print(" LEFT\n");
+                    direction = Directions.LEFT;
+                    gotInput = true;    
+                    break;
+                
+            }
+        }    
+        return direction;
     }
     
     
@@ -37,6 +89,8 @@ public class VisualUI extends javax.swing.JFrame implements UI{
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        prompt = new javax.swing.JTextArea();
 
         jInternalFrame1.setVisible(true);
 
@@ -53,21 +107,33 @@ public class VisualUI extends javax.swing.JFrame implements UI{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        prompt.setColumns(20);
+        prompt.setRows(5);
+        jScrollPane1.setViewportView(prompt);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 91, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jScrollPane1.getAccessibleContext().setAccessibleName("prompt");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea prompt;
     // End of variables declaration//GEN-END:variables
 }
