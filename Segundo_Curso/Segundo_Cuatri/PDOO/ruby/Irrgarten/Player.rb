@@ -28,8 +28,6 @@ module Irrgarten
             @shields = Array.new
         end
 
-        public_class_method :new
-
         # Constructor de copia de un Player
         # other -> jugador del que copiar
         def cloner(other)

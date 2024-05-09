@@ -19,9 +19,6 @@ module Irrgarten
     end
     private_methods :setStats
 
-    # Constructor privado porque se pretende que sea abstracta / no instanciable
-    private_class_method :new
-
     attr_reader :name
     attr_reader :row
     attr_reader :col
@@ -85,15 +82,6 @@ module Irrgarten
         "[#{@name}, #{@health} HP, #{@intelligence} IP, #{@strength} SP,(#{@row},#{@col})]\n"
       end
 
-      # Ataque de un Personaje (abstracto)
-      def attack
-        raise Exception.new "No implementado, LabyrinthCharacter"
-      end
-
-      # Defensa de un personaje (abstracto)
-      def defend
-        raise Exception.new "No implementado, LabyrinthCharacter"
-      end
 
   end#class
 end#module

@@ -14,7 +14,6 @@ module Irrgarten
             super(name,intelligence,strength,@@INITIAL_HEALTH)
         end
 
-        public_class_method :new
 
         #TODO*: Revisar si todos a gusto
         #*Eliminados: dead, setPos, gotWounded

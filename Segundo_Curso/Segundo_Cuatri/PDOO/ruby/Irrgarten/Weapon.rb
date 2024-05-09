@@ -12,7 +12,6 @@ module Irrgarten
 
     #TODO: preguntar si lo de initialize en privado esta bien
     #porque me extraña poner en todos el new en público 
-    public_class_method :new
 
     #TODO:no hace falta
 	# Inicializador de la clase
