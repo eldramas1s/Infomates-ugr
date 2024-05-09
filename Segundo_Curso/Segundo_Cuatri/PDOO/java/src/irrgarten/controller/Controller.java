@@ -2,7 +2,6 @@ package irrgarten.controller;
 
 import irrgarten.Directions;
 import irrgarten.Game;
-import irrgarten.UI.TextUI;
 import irrgarten.UI.UI;
 
 
