@@ -35,7 +35,7 @@ module Irrgarten
             @number = other.number
             @consecutiveHits = other.consecutiveHits
 
-            #TODO*:Esto provoca que tengan el mismo array de elementos de combate no una copia.
+            #Esto provoca que tengan el mismo array de elementos de combate no una copia.
             #@weapons = other.weapons
             #@shields = other.shields
             @weapons = Array.new
@@ -107,10 +107,6 @@ module Irrgarten
         def receiveReward
             wReward = Dice.weaponsReward
             sReward = Dice.shieldsReward
-
-            #TODO: DEBUG, quitar esto
-            #wReward = 2
-            #sReward = 2
 
             for i in 0..wReward do
                 wnew = newWeapon
