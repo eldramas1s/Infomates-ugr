@@ -171,8 +171,9 @@ public class Labyrinth {
 
     }
 
-    public void turnFuzzy(FuzzyPlayer player){
+    public void switchPlayer(Player player){
         setPlayerAt(player.getRow(),player.getCol(), player);
+        setBlock(player.getRow(), player.getCol(), player.getNumber());
     }
     
     /**

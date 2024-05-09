@@ -251,7 +251,7 @@ public class Game {
             currentPlayer.resurrect();
             currentPlayer = new FuzzyPlayer(currentPlayer);
             players.set(currentPlayerIndex,currentPlayer);
-            labyrinth.turnFuzzy((FuzzyPlayer) currentPlayer);
+            labyrinth.switchPlayer(currentPlayer);
             logResurrected();
         } else{
             logPlayerSkipTurn();
