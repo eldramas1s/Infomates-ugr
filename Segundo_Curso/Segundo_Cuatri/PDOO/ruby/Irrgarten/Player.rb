@@ -282,6 +282,7 @@ module Irrgarten
                 #Esta manera tambien copia las mismas armas, aunque ahora el array si es diferente
                 #Se copia la referencia de cada objeto
                 # if !emisor.nil? then
+                #     recepto.clear()
                 #     for i in 0...emisor.size do
                 #         receptor[i]=emisor[i]
                 #     end
