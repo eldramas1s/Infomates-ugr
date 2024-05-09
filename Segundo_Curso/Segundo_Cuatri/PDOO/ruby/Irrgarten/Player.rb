@@ -35,10 +35,9 @@ module Irrgarten
             @number = other.number
             @consecutiveHits = other.consecutiveHits
 
-            #!Esto provoca que tengan el mismo array de elementos de combate no una copia.
+            #TODO*:Esto provoca que tengan el mismo array de elementos de combate no una copia.
             #@weapons = other.weapons
             #@shields = other.shields
-
             @weapons = Array.new
             @shields = Array.new
             copy(other.weapons,@weapons)
@@ -109,8 +108,13 @@ module Irrgarten
             wReward = Dice.weaponsReward
             sReward = Dice.shieldsReward
 
+            #TODO: DEBUG, quitar esto
+            #wReward = 2
+            #sReward = 2
+
             for i in 0..wReward do
-                wnew = newWeapon(wnew)
+                wnew = newWeapon
+                receiveWeapon(wnew)
             end
             for i in 0..sReward do
                 snew = newShield
@@ -279,15 +283,14 @@ module Irrgarten
         def copy(emisor, receptor)
                 #Esta manera tambien copia las mismas armas, aunque ahora el array si es diferente
                 #Se copia la referencia de cada objeto
-                # if !emisor.nil? then
-                #     recepto.clear()
-                #     for i in 0...emisor.size do
-                #         receptor[i]=emisor[i]
-                #     end
-                # end
-                # #TODO: quitar esto que es de debug
-                # puts receptor[0].equal? emisor[0]
-                # receptor
+            # if !emisor.nil? then
+            #     for i in 0...emisor.size do
+            #         receptor[i]=emisor[i]
+            #     end
+            # end
+            # #TODO: quitar esto que es de debug
+            # puts receptor[0].equal? emisor[0]
+            # receptor
             #Con el dup duplicas el objeto en si, no la referencia
             if !emisor.nil? && !receptor.nil? then
                 emisor.each{|e| receptor << e.dup}
