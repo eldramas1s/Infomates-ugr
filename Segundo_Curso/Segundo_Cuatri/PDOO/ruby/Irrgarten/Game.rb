@@ -218,7 +218,7 @@ module Irrgarten
         @currentPlayer.resurrect
         @currentPlayer = FuzzyPlayer.new(@currentPlayer)
         @players[@currentPlayerIndex] = @currentPlayer
-        @labyrinth.turnFuzzy(@currentPlayer)
+        @labyrinth.switchPlayer(@currentPlayer)
         logResurrected
       else
         logPlayerSkipTurn
