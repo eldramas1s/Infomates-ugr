@@ -21,6 +21,11 @@ public abstract class CombatElement {
         effect = eff;
         uses = durability;
     }
+
+    public CombatElement(CombatElement other){
+        effect = other.effect;
+        uses = other.uses;
+    }
     
     /**
      * Devuelve el efecto del elemento

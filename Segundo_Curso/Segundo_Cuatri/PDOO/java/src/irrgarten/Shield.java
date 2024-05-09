@@ -18,7 +18,11 @@ public class Shield extends CombatElement {
     Shield (float defense, int durability ){
         super(defense,durability);
     }
-    
+
+    Shield(Shield other){
+        super(other);
+    }
+
     /**
      * Proteje al jugador que porte el escudo si no está roto,
      * disminuyendo la vida útil del escudo en uno.

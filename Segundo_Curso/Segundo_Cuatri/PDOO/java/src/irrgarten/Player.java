@@ -48,9 +48,12 @@ public class Player extends LabyrinthCharacter {
         this.number = other.getNumber();
         this.weapons = new ArrayList<Weapon>();
         for(Weapon w: other.weapons){
-            
+            this.weapons.add(new Weapon(w));
         }
-        this.shields = other.shields;
+        this.shields = new ArrayList<Shield>();
+        for(Shield s: other.shields){
+            this.shields.add(new Shield(s));
+        }
     }
 
     /**
