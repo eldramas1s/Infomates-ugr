@@ -107,6 +107,7 @@ public class Game {
      * Devuelve el estado del juego
      * @return el gameState actual
      */
+    //TODO!: Quitar el StringBuilder de una vez
     public GameState getGameState() {
         String laby = labyrinth.toString();
     

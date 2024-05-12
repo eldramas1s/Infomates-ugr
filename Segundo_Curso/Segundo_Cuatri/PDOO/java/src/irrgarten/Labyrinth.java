@@ -84,7 +84,7 @@ public class Labyrinth {
     public String toString(){
         String cad = "Labyrinth: \n";
         
-        cad += this.convertToString(ltab, nRows, nCols) + "\n\n";
+        cad += this.convertToString(ltab, nRows, nCols);
         
         //cad += "Monsters: \n";
         
@@ -329,7 +329,6 @@ public class Labyrinth {
             if(i==rows-1){
                 for(int j=0; j<3*cols; ++j)
                     cad+="=";
-                cad += "\n";
             }
         }
         return cad;
