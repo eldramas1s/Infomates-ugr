@@ -51,37 +51,10 @@ public class VisualUI extends javax.swing.JFrame implements UI{
     //TODO: quitar esto
     @Override
     public Directions nextMove() {
-        System.out.print("Where? ");
         
         Directions direction = Directions.DOWN;
-        boolean gotInput = false;
         
-        while (!gotInput) {
-            char c = readChar(); 
-            switch(c) {
-                case 'w':
-                    System.out.print(" UP\n");
-                    direction = Directions.UP;
-                    gotInput = true;
-                    break;
-                case 's':
-                    System.out.print(" DOWN\n");
-                    direction = Directions.DOWN;
-                    gotInput = true;
-                    break;
-                case 'd':
-                    System.out.print("RIGHT\n");
-                    direction = Directions.RIGHT;
-                    gotInput = true;
-                    break;
-                case 'a':
-                    System.out.print(" LEFT\n");
-                    direction = Directions.LEFT;
-                    gotInput = true;    
-                    break;
-                
-            }
-        }    
+            
         return direction;
     }
     
@@ -108,7 +81,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{
         downButton = new java.awt.Button();
         leftButton = new java.awt.Button();
         rightButton = new java.awt.Button();
-        upButton1 = new java.awt.Button();
+        upButton = new java.awt.Button();
         endOfGame = new javax.swing.JTextField();
 
         jInternalFrame1.setVisible(true);
@@ -144,13 +117,28 @@ public class VisualUI extends javax.swing.JFrame implements UI{
 
         downButton.setActionCommand("UP");
         downButton.setLabel("DOWN");
+        downButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downButtonActionPerformed(evt);
+            }
+        });
 
         leftButton.setLabel("LEFT");
+        leftButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leftButtonActionPerformed(evt);
+            }
+        });
 
         rightButton.setLabel("RIGHT");
 
-        upButton1.setActionCommand("UP");
-        upButton1.setLabel("UP");
+        upButton.setActionCommand("UP");
+        upButton.setLabel("UP");
+        upButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upButtonActionPerformed(evt);
+            }
+        });
 
         endOfGame.setText("THERE'S A WINNER");
         endOfGame.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +164,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(downButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(upButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(upButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90))
@@ -210,7 +198,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{
                                 .addGap(25, 25, 25))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(upButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(upButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(downButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
@@ -225,8 +213,20 @@ public class VisualUI extends javax.swing.JFrame implements UI{
     }// </editor-fold>//GEN-END:initComponents
 
     private void endOfGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endOfGameActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_endOfGameActionPerformed
+
+    private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
+        
+    }//GEN-LAST:event_upButtonActionPerformed
+
+    private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_leftButtonActionPerformed
+
+    private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_downButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea currentPlayer;
@@ -242,6 +242,6 @@ public class VisualUI extends javax.swing.JFrame implements UI{
     private javax.swing.JTextArea monsters;
     private javax.swing.JTextArea players;
     private java.awt.Button rightButton;
-    private java.awt.Button upButton1;
+    private java.awt.Button upButton;
     // End of variables declaration//GEN-END:variables
 }

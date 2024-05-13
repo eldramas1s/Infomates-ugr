@@ -57,7 +57,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="downButton" max="32767" attributes="0"/>
-                          <Component id="upButton1" min="-2" pref="54" max="-2" attributes="0"/>
+                          <Component id="upButton" min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="rightButton" min="-2" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="upButton1" min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Component id="upButton" min="-2" pref="45" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="downButton" min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
@@ -188,22 +188,31 @@
         <Property name="actionCommand" type="java.lang.String" value="UP"/>
         <Property name="label" type="java.lang.String" value="DOWN"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="downButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Button" name="leftButton">
       <Properties>
         <Property name="label" type="java.lang.String" value="LEFT"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leftButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Button" name="rightButton">
       <Properties>
         <Property name="label" type="java.lang.String" value="RIGHT"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Button" name="upButton1">
+    <Component class="java.awt.Button" name="upButton">
       <Properties>
         <Property name="actionCommand" type="java.lang.String" value="UP"/>
         <Property name="label" type="java.lang.String" value="UP"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="upButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="endOfGame">
       <Properties>
