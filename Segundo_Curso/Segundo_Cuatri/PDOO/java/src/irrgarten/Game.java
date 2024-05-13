@@ -29,7 +29,7 @@ public class Game {
     private String log;
     
     private Player currentPlayer;
-    private ArrayList<Player> players=new ArrayList<>();
+    private ArrayList<Player> players;
     private ArrayList<Monster> monsters;
     private Labyrinth labyrinth;
     
@@ -40,7 +40,7 @@ public class Game {
     public Game(int nplayers){
         
         //creacion de jugadores
-        players = new ArrayList<Player>();
+        players = new ArrayList<>();
         for (int i=0; i< nplayers; ++i){
             Player p = new Player(String.valueOf(i).charAt(0),Dice.randomIntelligence(),Dice.randomStrength());
             players.add(p);
@@ -51,7 +51,7 @@ public class Game {
         currentPlayer = players.get(currentPlayerIndex);
         
         //Creacion de los monstruos
-        monsters = new ArrayList<Monster>(); //Tambien se puede poner new Monster[//necesitaparametro]
+        monsters = new ArrayList<>(); //Tambien se puede poner new Monster[//necesitaparametro]
         
         
         //Creado asi aposta
@@ -107,6 +107,7 @@ public class Game {
      * Devuelve el estado del juego
      * @return el gameState actual
      */
+    //TODO!: Quitar el StringBuilder de una vez
     public GameState getGameState() {
         String laby = labyrinth.toString();
     

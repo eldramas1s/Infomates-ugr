@@ -84,7 +84,7 @@ public class Labyrinth {
     public String toString(){
         String cad = "Labyrinth: \n";
         
-        cad += this.convertToString(ltab, nRows, nCols) + "\n\n";
+        cad += this.convertToString(ltab, nRows, nCols);
         
         //cad += "Monsters: \n";
         
@@ -171,9 +171,11 @@ public class Labyrinth {
 
     }
 
+    //TODO: Revisar a fondo
     public void switchPlayer(Player player){
         setPlayerAt(player.getRow(),player.getCol(), player);
-        setBlock(player.getRow(), player.getCol(), player.getNumber());
+        //setBlock(player.getRow(), player.getCol(), player.getNumber()); No aparece Monster
+        updateOldPos(player.getRow(),player.getCol());
     }
     
     /**
@@ -219,6 +221,7 @@ public class Labyrinth {
      * @param row fila en la que estaba el jugador
      * @param col columna en la que estaba el jugador
      */
+    //TODO: Revisar la creacion del fuzzyPlayer desaparece el monstruo y ya no se combate con él. 
     private void updateOldPos(int row, int col){
         if(this.posOK(row, col)){
             if(this.combatPos(row, col))
@@ -329,7 +332,6 @@ public class Labyrinth {
             if(i==rows-1){
                 for(int j=0; j<3*cols; ++j)
                     cad+="=";
-                cad += "\n";
             }
         }
         return cad;

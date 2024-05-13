@@ -8,7 +8,7 @@ import irrgarten.controller.Controller;
 
 //import java.util.ArrayList;
 
-import irrgarten.UI.TextUI;
+import irrgarten.UI.*;
 
 /**
  *
@@ -18,10 +18,10 @@ import irrgarten.UI.TextUI;
 
 public class Prueba {
     public static void main(String args[]){
-        final int NPLAYERS = 1;
+        final int NPLAYERS = 2;
         Game game = new Game(NPLAYERS); 
-        TextUI UI = new TextUI();
-        Controller control = new Controller(game,UI);
+        TextUI ui = new TextUI();
+        Controller control = new Controller(game,ui);
         control.play();
     }
 }
