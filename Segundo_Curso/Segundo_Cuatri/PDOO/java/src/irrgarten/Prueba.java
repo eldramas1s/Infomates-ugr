@@ -20,7 +20,7 @@ public class Prueba {
     public static void main(String args[]){
         final int NPLAYERS = 2;
         Game game = new Game(NPLAYERS); 
-        UI ui = new VisualUI();
+        TextUI ui = new TextUI();
         Controller control = new Controller(game,ui);
         control.play();
     }
