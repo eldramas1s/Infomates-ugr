@@ -54,6 +54,9 @@ public class Player extends LabyrinthCharacter {
         for(Shield s: other.shields){
             this.shields.add(new Shield(s));
         }
+
+        weaponDeck = new WeaponCardDeck();
+        shieldDeck = new ShieldCardDeck();
     }
 
     /**
