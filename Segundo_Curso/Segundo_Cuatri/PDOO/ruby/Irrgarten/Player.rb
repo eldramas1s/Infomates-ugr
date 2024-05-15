@@ -41,7 +41,7 @@ module Irrgarten
             @weapons = Array.new
             @shields = Array.new
             copy(other.weapons,@weapons)
-            copy(other.shields,@shields) #TODO: revisar la funcion copy
+            copy(other.shields,@shields) 
 
         end
 
@@ -65,12 +65,12 @@ module Irrgarten
         # row -> fila nueva
         # col -> columna nueva
         # @pre la posicion debe estar dentro del tablero
-        def setPos(row,col)
-            if row >= 0 && col >= 0 then
-                @row = row
-                @col = col
-            end
-        end
+        # def setPos(row,col)
+        #     if row >= 0 && col >= 0 then
+        #         @row = row
+        #         @col = col
+        #     end
+        # end
 
         # Comprueba si el jugador esta muerto
         def dead
@@ -284,7 +284,6 @@ module Irrgarten
             #         receptor[i]=emisor[i]
             #     end
             # end
-            # #TODO: quitar esto que es de debug
             # puts receptor[0].equal? emisor[0]
             # receptor
             #Con el dup duplicas el objeto en si, no la referencia

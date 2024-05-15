@@ -19,7 +19,6 @@ public class FuzzyPlayer extends Player{
         super(other);
     }
     
-    //TODO: Preguntar si es esto lo que se busca.
     /**
      * Calcula el movimiento de un FuzzyPlayer
      * @param direction Direccion preferente

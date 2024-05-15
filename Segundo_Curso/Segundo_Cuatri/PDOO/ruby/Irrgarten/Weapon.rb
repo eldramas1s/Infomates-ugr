@@ -10,10 +10,6 @@ module Irrgarten
     # @param uses Veces que se puede utilizar el arma para atacar
     class Weapon < CombatElement
 
-    #TODO: preguntar si lo de initialize en privado esta bien
-    #porque me extraña poner en todos el new en público 
-
-    #TODO:no hace falta
 	# Inicializador de la clase
 	# @param power Daño que va a tener el arma
 	# @param uses Número de veces que se podrá usar el arma

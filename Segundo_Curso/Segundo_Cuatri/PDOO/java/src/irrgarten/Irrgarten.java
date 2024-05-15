@@ -6,8 +6,6 @@ package irrgarten;
 
 import irrgarten.controller.Controller;
 
-//import java.util.ArrayList;
-
 import irrgarten.UI.*;
 
 /**
@@ -16,11 +14,11 @@ import irrgarten.UI.*;
  */
 
 
-public class Prueba {
+public class Irrgarten {
     public static void main(String args[]){
-        final int NPLAYERS = 2;
+        final int NPLAYERS = 1;
         Game game = new Game(NPLAYERS); 
-        TextUI ui = new TextUI();
+        UI ui = new VisualUI();
         Controller control = new Controller(game,ui);
         control.play();
     }

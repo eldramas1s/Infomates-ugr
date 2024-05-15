@@ -40,12 +40,4 @@ public class Shield extends CombatElement {
         return "S" + super.toString();
     }
 
-    //TODO: Preguntar si hay que sobrecargarlo pues no se dice nada de el
-    /**
-     * Decide si desechar un arma
-     * @return True si la desecha
-     */
-    //public boolean discard(){
-    //    return Dice.discardElement(uses);
-    //}
 }

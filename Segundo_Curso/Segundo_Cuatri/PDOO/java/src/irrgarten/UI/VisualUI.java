@@ -6,16 +6,14 @@ package irrgarten.UI;
 
 import irrgarten.Directions;
 import irrgarten.GameState;
-import java.util.Scanner;
 
 /**
  *
  * @author el_dramas
  */
 public class VisualUI extends javax.swing.JFrame implements UI{
-
-    //TODO: quitar esto
-    private static Scanner in = new Scanner(System.in);
+    
+    Cursors cursor;
 
     /**
      * Creates new form VisualUI
@@ -23,6 +21,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{
     public VisualUI() {
         initComponents();
         setVisible(true);
+        cursor = new Cursors(this,true);
     }
 
     @Override
@@ -30,8 +29,18 @@ public class VisualUI extends javax.swing.JFrame implements UI{
 
         labyrinth.setText(gameState.getLabyrinth());
         players.setText("Players:\n"+gameState.getPlayers());
-        currentPlayer.setText("Current Player:\n" + "Player #" + gameState.getCurrentPlayer());
+        currentPlayer.setText(gameState.getLog() + "\nCurrent Player:\n" + "Player #" + gameState.getCurrentPlayer());
         monsters.setText("Monsters:\n" + gameState.getMonsters());
+        
+        String winnerText;
+        
+        if(gameState.getWinner()){
+            winnerText = "There is a winner";
+        } else{
+            winnerText = "Just keep playing...";
+        }
+                
+        winnerLabel.setText(winnerText);
         
         labyrinth.repaint();
         players.repaint();
@@ -40,21 +49,10 @@ public class VisualUI extends javax.swing.JFrame implements UI{
         
     }
     
-
-    
-    //TODO: quitar esto
-    private char readChar() {
-        String s = in.nextLine();     
-        return s.charAt(0);
-    }
-    
-    //TODO: quitar esto
     @Override
     public Directions nextMove() {
         
-        Directions direction = Directions.DOWN;
-        
-            
+        Directions direction = cursor.getDirection();           
         return direction;
     }
     
@@ -78,11 +76,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{
         currentPlayer = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
         monsters = new javax.swing.JTextArea();
-        downButton = new java.awt.Button();
-        leftButton = new java.awt.Button();
-        rightButton = new java.awt.Button();
-        upButton = new java.awt.Button();
-        endOfGame = new javax.swing.JTextField();
+        winnerLabel = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
 
@@ -100,6 +94,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         labyrinth.setColumns(20);
+        labyrinth.setFont(new java.awt.Font("Courier", 1, 16)); // NOI18N
         labyrinth.setRows(5);
         jScrollPane1.setViewportView(labyrinth);
 
@@ -115,96 +110,42 @@ public class VisualUI extends javax.swing.JFrame implements UI{
         monsters.setRows(5);
         jScrollPane5.setViewportView(monsters);
 
-        downButton.setActionCommand("UP");
-        downButton.setLabel("DOWN");
-        downButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                downButtonActionPerformed(evt);
-            }
-        });
-
-        leftButton.setLabel("LEFT");
-        leftButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leftButtonActionPerformed(evt);
-            }
-        });
-
-        rightButton.setLabel("RIGHT");
-
-        upButton.setActionCommand("UP");
-        upButton.setLabel("UP");
-        upButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                upButtonActionPerformed(evt);
-            }
-        });
-
-        endOfGame.setText("THERE'S A WINNER");
-        endOfGame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endOfGameActionPerformed(evt);
-            }
-        });
+        winnerLabel.setText("WinnerState:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(leftButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(downButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(upButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
-                            .addComponent(endOfGame))
-                        .addGap(12, 12, 12))))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(winnerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(endOfGame))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(winnerLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(upButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(downButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(leftButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(35, 35, 35))))))
-                .addGap(6, 6, 6))
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
 
         jScrollPane1.getAccessibleContext().setAccessibleName("prompt");
@@ -212,36 +153,16 @@ public class VisualUI extends javax.swing.JFrame implements UI{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void endOfGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endOfGameActionPerformed
-       
-    }//GEN-LAST:event_endOfGameActionPerformed
-
-    private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
-        
-    }//GEN-LAST:event_upButtonActionPerformed
-
-    private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_leftButtonActionPerformed
-
-    private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_downButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea currentPlayer;
-    private java.awt.Button downButton;
-    private javax.swing.JTextField endOfGame;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea labyrinth;
-    private java.awt.Button leftButton;
     private javax.swing.JTextArea monsters;
     private javax.swing.JTextArea players;
-    private java.awt.Button rightButton;
-    private java.awt.Button upButton;
+    private javax.swing.JLabel winnerLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,7 +21,7 @@ public abstract class CardDeck<T extends CombatElement> {
     public CardDeck(){
         cardDeck = new ArrayList<>();
     }
-    
+  
     /**
      * Añade un numero determinado de cartas de forma automatica.
      */

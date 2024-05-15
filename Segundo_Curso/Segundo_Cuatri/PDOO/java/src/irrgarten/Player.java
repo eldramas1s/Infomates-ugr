@@ -54,6 +54,9 @@ public class Player extends LabyrinthCharacter {
         for(Shield s: other.shields){
             this.shields.add(new Shield(s));
         }
+
+        weaponDeck = new WeaponCardDeck();
+        shieldDeck = new ShieldCardDeck();
     }
 
     /**
@@ -282,12 +285,10 @@ public class Player extends LabyrinthCharacter {
         return lose;
     }
     
-    //TODO:
     private void resetHits(){
         this.consecutiveHits = 0;
     }
     
-    //TODO:
     private void incConsecutiveHits(){
         this.consecutiveHits++;
     }

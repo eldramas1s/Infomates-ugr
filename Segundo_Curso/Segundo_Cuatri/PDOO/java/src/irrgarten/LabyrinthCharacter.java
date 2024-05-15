@@ -32,7 +32,6 @@ public abstract class LabyrinthCharacter {
         this.strength = strength;
         this.health = health;
         
-        //TODO: Preguntar si es así.
         this.row = INVALID_POS;
         this.col = INVALID_POS; 
     }

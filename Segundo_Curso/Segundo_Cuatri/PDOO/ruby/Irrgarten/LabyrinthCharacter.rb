@@ -3,7 +3,6 @@ module Irrgarten
     @@INVALID_POS = -1
 
     def initialize(name,intelligence,strength,health)
-      #TODO: Preguntar porque es un poco raro
       setStats(name,intelligence,strength,health)
       @row = @@INVALID_POS
       @col = @@INVALID_POS
@@ -69,7 +68,7 @@ module Irrgarten
       # setter row y col
       # row -> fila nueva
       # col -> columna nueva
-      def pos=(row,col)
+      def setPos(row,col)
         if (row >= 0) && (col >= 0) then
           @row = row
           @col = col

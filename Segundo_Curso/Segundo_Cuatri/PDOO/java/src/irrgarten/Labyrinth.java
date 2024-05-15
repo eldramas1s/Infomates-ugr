@@ -175,7 +175,13 @@ public class Labyrinth {
     public void switchPlayer(Player player){
         setPlayerAt(player.getRow(),player.getCol(), player);
         //setBlock(player.getRow(), player.getCol(), player.getNumber()); No aparece Monster
-        updateOldPos(player.getRow(),player.getCol());
+        char block = getBlock(player.getRow(),player.getCol());
+        //TODO: la comparacion con monster char parece innecesaria
+        //Es equivalente con las reglas del juego a comprobar 
+        //si se está cambiando un jugador
+        if(block != COMBAT_CHAR && block != MONSTER_CHAR){
+            updateOldPos(player.getRow(),player.getCol());
+        }
     }
     
     /**
@@ -221,7 +227,6 @@ public class Labyrinth {
      * @param row fila en la que estaba el jugador
      * @param col columna en la que estaba el jugador
      */
-    //TODO: Revisar la creacion del fuzzyPlayer desaparece el monstruo y ya no se combate con él. 
     private void updateOldPos(int row, int col){
         if(this.posOK(row, col)){
             if(this.combatPos(row, col))
