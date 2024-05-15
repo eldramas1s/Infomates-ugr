@@ -144,8 +144,8 @@ module Irrgarten
 
 
       #SOLO PARA DEBUG
-      @monsters << Monster.new("DEBUG", 10000, 10000)
-      @labyrinth.addMonster(5,5,@monsters[-1])
+      #@monsters << Monster.new("DEBUG", 10000, 10000)
+      #@labyrinth.addMonster(5,5,@monsters[-1])
 
 
       #Resto de paredes

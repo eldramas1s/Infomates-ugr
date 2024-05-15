@@ -41,14 +41,6 @@ public class Weapon extends CombatElement{
     }
     
 
-    //TODO: Preguntar si hay que sobrecargarlo pues no se dice nada de el
-    /**
-     * Decide si desechar el arma según los usos que le queden
-     * @return True si decide desecharla
-     */
-    //public boolean discard(){
-    //    return Dice.discardElement(uses);  
-    //}
 }
 
 

@@ -41,7 +41,7 @@ module Irrgarten
             @weapons = Array.new
             @shields = Array.new
             copy(other.weapons,@weapons)
-            copy(other.shields,@shields) #TODO: revisar la funcion copy
+            copy(other.shields,@shields) 
 
         end
 
@@ -284,7 +284,6 @@ module Irrgarten
             #         receptor[i]=emisor[i]
             #     end
             # end
-            # #TODO: quitar esto que es de debug
             # puts receptor[0].equal? emisor[0]
             # receptor
             #Con el dup duplicas el objeto en si, no la referencia

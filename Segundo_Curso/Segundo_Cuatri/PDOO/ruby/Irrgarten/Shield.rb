@@ -10,7 +10,6 @@ module Irrgarten
     # @param uses Cantidad de usos
     class Shield < CombatElement
 
-    #TODO: No es necesario
 	# Metodo inicializador de la clase Shield
 	# @param defense Proteccion del escudo
 	# @param durability Usos del escudo

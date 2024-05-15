@@ -10,7 +10,6 @@ package irrgarten;
  */
 public class Monster extends LabyrinthCharacter {
     
-    //TODO: Consultar con Airam
     static private final int INITIAL_HEALTH = 5; 
     
     /** 
@@ -76,12 +75,4 @@ public class Monster extends LabyrinthCharacter {
         return "M"+super.toString(); 
     }
     
-    /**
-     * Maneja el daño a un monstruo
-     */
-    //TODO: ¿Hay que sobrecargarlo? Da fallo de restriccion de prioridad.
-    @Override
-    protected void gotWounded(){
-        super.gotWounded();
-    }
 }

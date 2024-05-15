@@ -160,7 +160,7 @@ public class Game {
         labyrinth.addMonster(13, 10,monsters.get(5));
 
         //? Monstruo para debug de resurrección 
-        labyrinth.addMonster(5,5,new Monster("elpapu",100,100));
+        //labyrinth.addMonster(5,5,new Monster("elpapu",100,100));
 
 
 

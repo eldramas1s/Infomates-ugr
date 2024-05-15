@@ -5,7 +5,7 @@ module Irrgarten
 	class Dice
    	#Atributos de clase
 		@@MAX_USES = 5			# Numero maximo de usos de armas y escudos
-		@@MAX_ITELLIGENCE = 10.0	# Valor maximo para la inteligencia de jugadores y monstruos
+		@@MAX_INTELLIGENCE = 10.0	# Valor maximo para la inteligencia de jugadores y monstruos
 		@@MAX_STRENGTH = 10.0		# Valor maximo para la fuerza de jugadores y monstruos
 		@@RESURRECT_PROB = 0.3		# Numero maximo de armas recibidas al ganar un combate
 		@@WEAPONS_REWARD = 2		# Probabilidad de que un jugador sea resucitado en cada turno
@@ -36,7 +36,7 @@ module Irrgarten
 		# Metodo de clase encargado de determinar un valor de inteligencia
 		# @return Valor de inteligencia
 		def self.randomIntelligence
-				(@@generator.rand(@@MAX_ITELLIGENCE))
+				(@@generator.rand(N))
 		end
 
 		# Metodo de clase encargado de determinar un valor de fuerza
@@ -110,7 +110,7 @@ module Irrgarten
 		# @param intelligence Valor de inteligencia que proporciona la probabilidad.
 		# @return Movimiento de un fuzzy player.
 		def self.nextStep(preference, validMoves,intelligence)
-			if(intelligence >= @@generator.rand(@@MAX_ITELLIGENCE)) then
+			if(intelligence >= @@generator.rand(@@MAX_INTELLIGENCE)) then 
 				result = preference
 			else
 				if validMoves.nil? then

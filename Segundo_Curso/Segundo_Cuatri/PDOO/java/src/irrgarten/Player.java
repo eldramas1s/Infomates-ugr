@@ -285,12 +285,10 @@ public class Player extends LabyrinthCharacter {
         return lose;
     }
     
-    //TODO:
     private void resetHits(){
         this.consecutiveHits = 0;
     }
     
-    //TODO:
     private void incConsecutiveHits(){
         this.consecutiveHits++;
     }

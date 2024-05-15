@@ -3,7 +3,6 @@ module Irrgarten
     @@INVALID_POS = -1
 
     def initialize(name,intelligence,strength,health)
-      #TODO: Preguntar porque es un poco raro
       setStats(name,intelligence,strength,health)
       @row = @@INVALID_POS
       @col = @@INVALID_POS
