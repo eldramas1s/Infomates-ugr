@@ -65,12 +65,12 @@ module Irrgarten
         # row -> fila nueva
         # col -> columna nueva
         # @pre la posicion debe estar dentro del tablero
-        def setPos(row,col)
-            if row >= 0 && col >= 0 then
-                @row = row
-                @col = col
-            end
-        end
+        # def setPos(row,col)
+        #     if row >= 0 && col >= 0 then
+        #         @row = row
+        #         @col = col
+        #     end
+        # end
 
         # Comprueba si el jugador esta muerto
         def dead

@@ -142,7 +142,9 @@ module Irrgarten
 
         def switchPlayer(player)
             @ptab[player.row][player.col] = player
-            @ltab[player.row][player.col] = player.number
+            unless @ltab[player.row][player.col] == @@COMBAT_CHAR
+                @ltab[player.row][player.col] = player.number
+            end
         end
 
 	private

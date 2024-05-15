@@ -69,7 +69,7 @@ module Irrgarten
       # setter row y col
       # row -> fila nueva
       # col -> columna nueva
-      def pos=(row,col)
+      def setPos(row,col)
         if (row >= 0) && (col >= 0) then
           @row = row
           @col = col

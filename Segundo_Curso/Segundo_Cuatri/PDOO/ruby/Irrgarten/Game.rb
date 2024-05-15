@@ -125,12 +125,23 @@ module Irrgarten
       end
 
       @labyrinth.addMonster(@@ROWS-2, @@COLS-2,@monsters[0]);
+      @monsters[0].setPos(@@ROWS-2, @@COLS-2);
       #Monstruos débiles
       @labyrinth.addMonster(6, @@COLS-3, @monsters[1]);
+      @monsters[1].setPos(6, @@COLS-3);
+
       @labyrinth.addMonster(1, @@COLS-3, @monsters[2]);
+      @monsters[2].setPos(1, @@COLS-3);
+
       @labyrinth.addMonster(11, 11, @monsters[3]);
+      @monsters[3].setPos(11, 11);
+
       @labyrinth.addMonster(12, 11, @monsters[4]);
+      @monsters[4].setPos(12, 11);
+
       @labyrinth.addMonster(13, 10, @monsters[5]);
+      @monsters[5].setPos(13, 10);
+
 
       #SOLO PARA DEBUG
       @monsters << Monster.new("DEBUG", 10000, 10000)
