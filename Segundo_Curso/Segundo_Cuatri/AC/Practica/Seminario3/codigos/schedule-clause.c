@@ -23,7 +23,7 @@ int main(int argc, char **argv)
         a[i] = i;
  
     #pragma omp parallel for firstprivate(suma) \
-                lastprivate(suma) schedule(static,chunk)
+                lastprivate(suma) schedule(runtime) num_threads(3)
     for (i=0; i<n; i++)
     {
         suma = suma + a[i];
