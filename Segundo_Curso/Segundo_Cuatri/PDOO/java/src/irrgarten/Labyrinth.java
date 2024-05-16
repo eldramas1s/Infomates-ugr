@@ -172,6 +172,10 @@ public class Labyrinth {
     }
 
     //TODO: Revisar a fondo
+    /**
+     * 
+     * @param player
+     */
     public void switchPlayer(Player player){
         setPlayerAt(player.getRow(),player.getCol(), player);
         //setBlock(player.getRow(), player.getCol(), player.getNumber()); No aparece Monster

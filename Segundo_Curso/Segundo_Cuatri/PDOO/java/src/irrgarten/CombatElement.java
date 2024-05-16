@@ -22,6 +22,10 @@ public abstract class CombatElement {
         uses = durability;
     }
 
+    /**
+     * Constructor de copia de CombatElement
+     * @param other Objeto a copiar
+     */
     public CombatElement(CombatElement other){
         effect = other.effect;
         uses = other.uses;
