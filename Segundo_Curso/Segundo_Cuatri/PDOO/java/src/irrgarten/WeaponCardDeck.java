@@ -9,6 +9,10 @@ package irrgarten;
  * @author el_dramas
  */
 public class WeaponCardDeck extends CardDeck<Weapon>{
+    /**
+     * Añade las cartas necesarias para el juego usando cada una de las posiciones de los
+     * arrays defensa y usos.
+     */
     @Override
     protected void addCards(){
         int ataque[] = {1,2,3,4,2,2,3,4,1,1};
