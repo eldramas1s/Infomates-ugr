@@ -171,7 +171,6 @@ public class Labyrinth {
 
     }
 
-    //TODO: Revisar a fondo
     /**
      * Pone un jugador cambiandolo por otro (esta pensado para actualizar las cosas para despues de un combate)
      * @param player jugador a intercambiar
