@@ -180,10 +180,7 @@ public class Labyrinth {
         setPlayerAt(player.getRow(),player.getCol(), player);
         //setBlock(player.getRow(), player.getCol(), player.getNumber()); No aparece Monster
         char block = getBlock(player.getRow(),player.getCol());
-        //TODO: la comparacion con monster char parece innecesaria
-        //Es equivalente con las reglas del juego a comprobar 
-        //si se está cambiando un jugador
-        if(block != COMBAT_CHAR && block != MONSTER_CHAR){
+        if(block != COMBAT_CHAR){
             updateOldPos(player.getRow(),player.getCol());
         }
     }

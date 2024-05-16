@@ -36,7 +36,7 @@ module Irrgarten
 		# Metodo de clase encargado de determinar un valor de inteligencia
 		# @return Valor de inteligencia
 		def self.randomIntelligence
-				(@@generator.rand(N))
+				(@@generator.rand(@@MAX_INTELLIGENCE))
 		end
 
 		# Metodo de clase encargado de determinar un valor de fuerza

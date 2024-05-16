@@ -6,6 +6,8 @@ module Irrgarten
   class FuzzyPlayer < Player
     @@FUZZY = "Fuzzy"
 
+    # Pseudo-constructor de copia. Como en Ruby ni se pueden
+    # sobrecargar es el único que se proporciona
     def initialize(player)
         cloner(player)
     end
