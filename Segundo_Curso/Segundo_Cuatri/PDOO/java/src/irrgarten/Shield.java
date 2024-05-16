@@ -19,6 +19,11 @@ public class Shield extends CombatElement {
         super(defense,durability);
     }
 
+    /**
+     * Constructor de copia de Shield
+     * @param other Escudo a copiar.
+     * Delega en su padre
+     */
     Shield(Shield other){
         super(other);
     }

@@ -173,8 +173,8 @@ public class Labyrinth {
 
     //TODO: Revisar a fondo
     /**
-     * 
-     * @param player
+     * Pone un jugador cambiandolo por otro (esta pensado para actualizar las cosas para despues de un combate)
+     * @param player jugador a intercambiar
      */
     public void switchPlayer(Player player){
         setPlayerAt(player.getRow(),player.getCol(), player);

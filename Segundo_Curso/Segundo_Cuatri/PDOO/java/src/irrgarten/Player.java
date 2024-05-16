@@ -41,7 +41,10 @@ public class Player extends LabyrinthCharacter {
         this.number = number;
     }
     
-    
+    /**
+     * Constructor de copia de un jugador
+     * @param other Jugador donde el que copiar
+     */
     public Player(Player other){
         super (other);
         this.consecutiveHits = other.consecutiveHits;

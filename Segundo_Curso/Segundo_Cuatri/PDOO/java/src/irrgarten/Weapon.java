@@ -19,6 +19,11 @@ public class Weapon extends CombatElement{
         super (strength,durability);
     }
 
+    /**
+     * Constructor de copia de Weapon
+     * @param other Arma a copiar
+     * Delega en su padre
+     */
     Weapon(Weapon other){
         super(other);
     }

@@ -9,6 +9,9 @@ package irrgarten;
  * @author el_dramas
  */
 public class ShieldCardDeck extends CardDeck<Shield>{
+    /**
+     * Añade una serie de cartas, todas ellas creadas con los array defensa y usos.
+     */
     @Override
     protected void addCards(){
         int defensa[] = {1,2,3,4,2,2,3,4,1,1};
