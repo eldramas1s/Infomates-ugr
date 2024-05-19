@@ -6,7 +6,7 @@ PI secuencial con integración numérica.
 #include <stdlib.h>
 #include <stdio.h>
 #include <omp.h>
-#include <math.c>
+#include <math.h>
 
 /**
  * @file  pi.c 
