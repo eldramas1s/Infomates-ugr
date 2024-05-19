@@ -19,14 +19,14 @@ module Irrgarten
     # validMoves -> array de movimientos validos
     # return -> direccion de movimiento ya calculada
     def move(direction,validMoves)
-      direction = Dice.nextStep(super,validMoves,self.intelligence)
+      direction = Dice.nextStep(super,validMoves,self.intelligence) #Da la direcciona la que se moveria un jugador normal, esa sera la preferente
       super(direction,validMoves)
     end
 
     # Ataque de un FuzzyPlayer
     # return -> valor que representa la fuerza de ataque
     def attack
-      sumWeapons + Dice.intensity(self.strength)
+      sumWeapons + Dice.intensity(self.strength)  #Ataca dependiendo del azar
     end
 
     # Concatena la informacion de un FuzzyPlayer
@@ -39,7 +39,7 @@ module Irrgarten
     # Intensidad defensiva de un FuzzyPlayer
     # return -> Valor que representa la intensidad defensiva.
     def defensiveEnergy
-      sumShields + Dice.intensity(self.intelligence)
+      sumShields + Dice.intensity(self.intelligence)  #Defiende dependiendo del azar
     end
 
   end#class

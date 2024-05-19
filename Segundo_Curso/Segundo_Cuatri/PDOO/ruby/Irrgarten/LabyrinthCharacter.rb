@@ -1,7 +1,9 @@
 module Irrgarten
   class LabyrinthCharacter
-    @@INVALID_POS = -1
+    @@INVALID_POS = -1    # Se hereda
 
+    # Inicializador de LabyrinthCharacter, no tiene numero pues los monstruos no se enumeran.
+    # Si no hacemos uso de setStats que provoca que se ejecute el código de este archivo, en un hijo se ejecutará el initialize del hijo por la ligadura dinamica.
     def initialize(name,intelligence,strength,health)
       setStats(name,intelligence,strength,health)
       @row = @@INVALID_POS
@@ -9,7 +11,7 @@ module Irrgarten
     end
 
     #Creado porque si se sobrecarga initialize no se puede usar de forma segura
-    #De esta forma podemos en el cloner delegar aqui
+    #De esta forma podemos en el cloner delegar aqui. Además evita repeticion de codigo
     def setStats(name, intelligence,strength,health)
       @name = name
       @intelligence = intelligence.to_f

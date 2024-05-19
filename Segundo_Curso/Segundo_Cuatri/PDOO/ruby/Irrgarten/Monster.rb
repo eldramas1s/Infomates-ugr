@@ -10,18 +10,17 @@ module Irrgarten
         #Vida inicial de un monstruo
         @@INITIAL_HEALTH = 5
 
+        # Inicializa los atributos de instancia de un monstruo delegando en el padre.
         def initialize(name, intelligence, strength)
             super(name,intelligence,strength,@@INITIAL_HEALTH)
         end
 
-
-        #TODO*: Revisar si todos a gusto
         #*Eliminados: dead, setPos, gotWounded
 
         #Calcula la intensidad de ataque del monstruo
         def attack
             atk=0
-            atk=Dice.intensity(@strength) unless dead
+            atk=Dice.intensity(@strength) unless dead       #Solo ataca si está vivo.
             atk
         end
 

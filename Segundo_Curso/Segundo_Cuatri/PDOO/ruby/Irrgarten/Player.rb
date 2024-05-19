@@ -22,7 +22,7 @@ module Irrgarten
         # strength -> Fuerza del jugador
         def initialize(number,intelligence,strength)
             @number = number
-            super(@@DEFAULT_NAME+number.to_s,intelligence,strength,@@INITIAL_HEALTH)
+            super(@@DEFAULT_NAME+number.to_s,intelligence,strength,@@INITIAL_HEALTH)    #Inicializa las variables segun lo haga LabyrinthCharacter
             @consecutiveHits = 0
             @weapons = Array.new        # Declara un array de objetos, tambien vale []
             @shields = Array.new
@@ -31,17 +31,17 @@ module Irrgarten
         # Constructor de copia de un Player
         # other -> jugador del que copiar
         def cloner(other)
-            super
+            super                       # Clona los elementos comunes de monster y player, es decir, los atributos de LabyrinthCharacter
             @number = other.number
             @consecutiveHits = other.consecutiveHits
 
             #Esto provoca que tengan el mismo array de elementos de combate no una copia.
             #@weapons = other.weapons
             #@shields = other.shields
-            @weapons = Array.new
+            @weapons = Array.new        #Creamos arrays nuevos
             @shields = Array.new
-            copy(other.weapons,@weapons)
-            copy(other.shields,@shields) 
+            copy(other.weapons,@weapons)#Los copiamos
+            copy(other.shields,@shields)
 
         end
 
@@ -169,7 +169,7 @@ module Irrgarten
             while i<@shields.length
                 si=@shields[i]
                 if(si.discard) then
-                    @shields.shift
+                    @shields.shift      #Retira el ¿primer? elemento del arraylist
                 else
 		            i+=1
 		    end
@@ -277,19 +277,20 @@ module Irrgarten
         # receptor -> vector que recibe la copia
         # return -> receptor, vector ya copiado
         def copy(emisor, receptor)
-                #Esta manera tambien copia las mismas armas, aunque ahora el array si es diferente
-                #Se copia la referencia de cada objeto
+            #Esta manera tambien copia las mismas armas, aunque ahora el array si es diferente
+            #Se copia la referencia de cada objeto
             # if !emisor.nil? then
             #     for i in 0...emisor.size do
-            #         receptor[i]=emisor[i]
+            #         receptor[i]=emisor[i]   #Asignamos un puntero al mismo arma
             #     end
             # end
             # puts receptor[0].equal? emisor[0]
             # receptor
             #Con el dup duplicas el objeto en si, no la referencia
             if !emisor.nil? && !receptor.nil? then
-                receptor.clear()
-                emisor.each{|e| receptor << e.dup}
+                receptor.clear()                        #Limpiamos el receptor
+                emisor.each{|e| receptor << e.dup}      #Dup duplica un elemento creando una copia "profunda" del elemento, siendo 100% independientes.
+                                                        #otra forma de hacer un for, es un iterador sobre emisor
             end
             receptor
         end

@@ -228,9 +228,9 @@ module Irrgarten
       resurrect = Dice.resurrectPlayer
       if resurrect then
         @currentPlayer.resurrect
-        @currentPlayer = FuzzyPlayer.new(@currentPlayer)
-        @players[@currentPlayerIndex] = @currentPlayer
-        @labyrinth.switchPlayer(@currentPlayer)
+        @currentPlayer = FuzzyPlayer.new(@currentPlayer)    #Cambia el jugador auxiliar por un fuzzy que es copia de el
+        @players[@currentPlayerIndex] = @currentPlayer      #Ponemos el fuzzy en la posicion del jugador actual
+        @labyrinth.switchPlayer(@currentPlayer)             #Imponemos le fuzzy en el laberinto
         logResurrected
       else
         logPlayerSkipTurn

@@ -10,14 +10,6 @@ module Irrgarten
     # @param uses Veces que se puede utilizar el arma para atacar
     class Weapon < CombatElement
 
-	# Inicializador de la clase
-	# @param power Daño que va a tener el arma
-	# @param uses Número de veces que se podrá usar el arma
-	# @pos La instancia de la clase queda inicializada
-    # def initialize(power,uses)
-    #    super
-    # end
-
 	# Metodo que simboliza el acto de ataque por parte de una entidad
 	# @return Daño causado
 	# pre -> delega en produceEffect

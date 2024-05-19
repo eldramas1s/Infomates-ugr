@@ -140,9 +140,10 @@ module Irrgarten
             output
         end
 
+        #Intercambia (mas bien impone) un jugador en su columna y fila que corresponda si puede.
         def switchPlayer(player)
             @ptab[player.row][player.col] = player
-            unless @ltab[player.row][player.col] == @@COMBAT_CHAR
+            unless @ltab[player.row][player.col] == @@COMBAT_CHAR       #Solo se pone el numero en el tablero si no es una posicion de combate
                 @ltab[player.row][player.col] = player.number
             end
         end
