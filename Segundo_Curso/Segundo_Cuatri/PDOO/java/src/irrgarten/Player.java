@@ -21,8 +21,8 @@ public class Player extends LabyrinthCharacter {
     private ArrayList<Weapon> weapons;
     private ArrayList<Shield> shields; 
 
-    private ShieldCardDeck shieldDeck;
-    private WeaponCardDeck weaponDeck;
+    private ShieldCardDeck shieldDeck;      //Baraja de escudos
+    private WeaponCardDeck weaponDeck;      //baraja de armas
     
     /**
      * Construye un jugador
@@ -35,8 +35,8 @@ public class Player extends LabyrinthCharacter {
         weapons = new ArrayList<Weapon>();
         shields = new ArrayList<Shield>();
 
-        shieldDeck = new ShieldCardDeck();
-        weaponDeck = new WeaponCardDeck();
+        shieldDeck = new ShieldCardDeck();      //No tienen cartas, caundo se pida una se llenaran
+        weaponDeck = new WeaponCardDeck();      //No tienen cartas, cuando se pida una se llenaran
 
         this.number = number;
     }
@@ -49,17 +49,18 @@ public class Player extends LabyrinthCharacter {
         super (other);
         this.consecutiveHits = other.consecutiveHits;
         this.number = other.getNumber();
-        this.weapons = new ArrayList<Weapon>();
+        this.weapons = new ArrayList<>();       //No necesita los tipos pues weapons es de Weapon y shields es de Shield
         for(Weapon w: other.weapons){
-            this.weapons.add(new Weapon(w));
+            this.weapons.add(new Weapon(w));    //Copiamos las armas con poca profundidad
         }
-        this.shields = new ArrayList<Shield>();
+        this.shields = new ArrayList<>();   
         for(Shield s: other.shields){
-            this.shields.add(new Shield(s));
+            this.shields.add(new Shield(s));    //Copiamos los escudos con poca profundidad
         }
 
-        weaponDeck = new WeaponCardDeck();
-        shieldDeck = new ShieldCardDeck();
+        //Si no se pone da fallo de ejecución pues un fuzzy player no tiene armas y hariamos calculos con objetos nulls
+        weaponDeck = new WeaponCardDeck();           //LE DAMOS UNA BARAJA DISTINTA
+        shieldDeck = new ShieldCardDeck();           //LE DAMOS UNA BARAJA DISTINTA
     }
 
     /**
@@ -123,8 +124,8 @@ public class Player extends LabyrinthCharacter {
         int sReward = Dice.shieldsReward();
         while(wReward != 0){
             wReward--;
-            Weapon wnew = newWeapon();
-            receiveWeapon(wnew);
+            Weapon wnew = newWeapon();  //Recibe un arma de la baraja
+            receiveWeapon(wnew);      //recibe el arma
         }
         while(sReward != 0){
             sReward--;

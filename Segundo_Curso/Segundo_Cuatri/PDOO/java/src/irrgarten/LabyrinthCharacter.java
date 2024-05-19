@@ -41,10 +41,10 @@ public abstract class LabyrinthCharacter {
      * @param other Instancia de LabyrinthCharacter
      */
     public LabyrinthCharacter(LabyrinthCharacter other){
-        this (other.name,other.getIntelligence(),other.getStrength(),other.getHealth());
+        this (other.name,other.getIntelligence(),other.getStrength(),other.getHealth());    //Llama al constructor de LabyrinthCharacter
         this.row = other.row;
         this.col = other.col;
-        //this.setPos(other.getRow(), other.getCol()); Da warning de overridable de setPos
+        //this.setPos(other.getRow(), other.getCol()); Da warning de overridable de setPos, es decir, si se sobreescribe no se ejecuta este metodo sino el de la ligadura dinamica
 
     }
     

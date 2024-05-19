@@ -34,7 +34,7 @@ public class Shield extends CombatElement {
      * @return El valor de la absorción de daño del escudo
      */
     public float protect(){
-        return super.produceEffect();
+        return produceEffect(); //Podemos llamarlo por ser protegido
     }
     /**
      * @brief Representa la instancia como string

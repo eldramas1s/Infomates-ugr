@@ -27,7 +27,7 @@ public class FuzzyPlayer extends Player{
      */
     @Override
     public Directions move( Directions direction, ArrayList<Directions> validMoves){
-        Directions output = super.move(direction, validMoves);
+        Directions output = super.move(direction, validMoves);      //Filtramos a direccion para no avanzar a un bloque
         return Dice.nextStep(output, validMoves, this.getIntelligence());
     }
     

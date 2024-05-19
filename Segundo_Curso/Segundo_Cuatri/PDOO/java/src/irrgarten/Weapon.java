@@ -16,7 +16,7 @@ public class Weapon extends CombatElement{
      * @param durability Número de usos del arma
      */
     Weapon(float strength, int durability){
-        super (strength,durability);
+        super (strength,durability);        //Debe estar en la primera linea por ser un constructor
     }
 
     /**
@@ -25,7 +25,7 @@ public class Weapon extends CombatElement{
      * Delega en su padre
      */
     Weapon(Weapon other){
-        super(other);
+        super(other);           //Debe estar en la primera linea por ser un constructor
     }
 
     /**
@@ -33,7 +33,7 @@ public class Weapon extends CombatElement{
      * @return El poder de ataque
      */
     public float attack(){  
-        return super.produceEffect();
+        return produceEffect(); //Podemos llamarlo por ser protegido
     }
     
     /**

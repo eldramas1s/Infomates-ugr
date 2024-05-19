@@ -8,7 +8,7 @@ package irrgarten;
  *
  * @author el_dramas
  */
-public class ShieldCardDeck extends CardDeck<Shield>{
+public class ShieldCardDeck extends CardDeck<Shield>{   //Hereda de una clase parametrica, luego "hereda" de CarDeck con T=Shield 
     /**
      * Añade una serie de cartas, todas ellas creadas con los array defensa y usos.
      */
