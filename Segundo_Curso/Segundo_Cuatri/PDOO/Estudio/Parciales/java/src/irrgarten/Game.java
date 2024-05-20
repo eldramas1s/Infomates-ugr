@@ -50,7 +50,7 @@ public class Game {
         currentPlayer = players.get(currentPlayerIndex);
         
         //Creacion de los monstruos
-        monsters = new ArrayList<Monster>(); //Tambien se puede poner new Monster[//necesitaparametro]
+        monsters = new ArrayList<Monster>(); //Tambien se puede poner new Monster[necesitaparametro]
         
         
         //Creado asi a posta
@@ -83,7 +83,7 @@ public class Game {
             if(direction != preferredDirection){
                 logPlayerNoOrders();
             }
-            Monster monster = labyrinth.putPlayer(direction, currentPlayer);
+            Monster monster = labyrinth.putPlayer(direction, currentPlayer);    //Movemos al jugador actual
             if(monster == null){
                 logNoMonster();
             } else{

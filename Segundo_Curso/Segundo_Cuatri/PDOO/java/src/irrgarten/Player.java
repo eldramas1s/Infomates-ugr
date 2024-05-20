@@ -32,8 +32,8 @@ public class Player extends LabyrinthCharacter {
      */
     public Player(char number, float intelligence, float strength){
         super (DEFAULT_NAME+number,intelligence,strength,INITIAL_HEALTH);
-        weapons = new ArrayList<Weapon>();
-        shields = new ArrayList<Shield>();
+        weapons = new ArrayList<>();
+        shields = new ArrayList<>();
 
         shieldDeck = new ShieldCardDeck();      //No tienen cartas, caundo se pida una se llenaran
         weaponDeck = new WeaponCardDeck();      //No tienen cartas, cuando se pida una se llenaran

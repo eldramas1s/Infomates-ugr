@@ -9,15 +9,16 @@ import irrgarten.Directions;
  *
  * @author airam
  */
-public class Cursors extends javax.swing.JDialog {
+public class Cursors extends javax.swing.JDialog {  //No implementa la interfaz
 
     private Directions direction;
+    //Permite traducir las acciones del boton a codigo
     /**
      * Creates new form Cursors
      */
     public Cursors(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+        super(parent, modal);   // Inicializa el coursor
+        initComponents();           //Inicializa los coponentes
     }
 
     /**
@@ -102,7 +103,7 @@ public class Cursors extends javax.swing.JDialog {
 
     private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
         direction = Directions.UP;
-        this.dispose();
+        this.dispose();             //Esconde el cuadro de dialogo
     }//GEN-LAST:event_upButtonActionPerformed
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
@@ -122,7 +123,7 @@ public class Cursors extends javax.swing.JDialog {
 
        public Directions getDirection(){
            this.setVisible(true);
-           return direction;
+           return direction;        //Es un atributo de instancia
        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

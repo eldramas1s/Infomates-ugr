@@ -11,22 +11,23 @@ import irrgarten.GameState;
  *
  * @author el_dramas
  */
-public class VisualUI extends javax.swing.JFrame implements UI{
+public class VisualUI extends javax.swing.JFrame implements UI{     //Implementa la interfaz (es decir, realmente no es la intefaz)
     
-    Cursors cursor;
+    private Cursors cursor;
 
     /**
      * Creates new form VisualUI
      */
     public VisualUI() {
-        initComponents();
-        setVisible(true);
-        cursor = new Cursors(this,true);
+        initComponents();       //Iniciar los componentes de la interfaz
+        setVisible(true);     // Hacemos visible la interfaz
+        cursor = new Cursors(this,true);    //Inicializamos un cuadro de dialogo
     }
 
     @Override
     public void showGame(GameState gameState) {   
 
+        //Mostramos estado del juego proporcionado por gameState (Controller)
         labyrinth.setText(gameState.getLabyrinth());
         players.setText("Players:\n"+gameState.getPlayers());
         currentPlayer.setText(gameState.getLog() + "\nCurrent Player:\n" + "Player #" + gameState.getCurrentPlayer());
@@ -42,6 +43,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{
                 
         winnerLabel.setText(winnerText);
         
+        //Reseteamos los componentes para el proximo turno
         labyrinth.repaint();
         players.repaint();
         currentPlayer.repaint();
@@ -52,6 +54,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{
     @Override
     public Directions nextMove() {
         
+        //Tomamos la direccion del cursor
         Directions direction = cursor.getDirection();           
         return direction;
     }

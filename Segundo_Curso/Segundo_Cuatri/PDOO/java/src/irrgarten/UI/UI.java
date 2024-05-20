@@ -10,7 +10,7 @@ import irrgarten.GameState;
  *
  * @author el_dramas
  */
-public interface UI {
+public interface UI {       //Interfaz
     public Directions nextMove();
     public void showGame(GameState gameState);
 }
