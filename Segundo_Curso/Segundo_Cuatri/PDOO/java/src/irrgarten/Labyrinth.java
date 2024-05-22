@@ -57,7 +57,7 @@ public class Labyrinth {
         if(this.posOK(exitRow, exitCol))
             setBlock(exitRow, exitCol, EXIT_CHAR);
         else
-            setBlock(0,0,EXIT_CHAR);; 
+            setBlock(0,1,EXIT_CHAR);
         
     }
     
@@ -81,6 +81,7 @@ public class Labyrinth {
         return getPlayerAt(exitRow, exitCol) != null;
     }
     
+    @Override
     public String toString(){
         String cad = "Labyrinth: \n";
         
@@ -172,7 +173,7 @@ public class Labyrinth {
     }
 
     /**
-     * Pone un jugador cambiandolo por otro (esta pensado para actualizar las cosas para despues de un combate)
+     * Pone un jugador cambiandolo por otro (esta pensado para actualizar las cosas para despues de un combate perdido)
      * @param player jugador a intercambiar
      */
     public void switchPlayer(Player player){

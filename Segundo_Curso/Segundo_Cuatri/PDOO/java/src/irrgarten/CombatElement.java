@@ -36,7 +36,7 @@ public abstract class CombatElement {
      * @return effect de elemento
      * @post Pierde un uso.
      */
-    protected float produceEffect(){
+    protected float produceEffect(){        //Es prtected para poder llamarlo desde las clases hijas
         float eff_val = 0;
         if(uses > 0){
             eff_val = effect;

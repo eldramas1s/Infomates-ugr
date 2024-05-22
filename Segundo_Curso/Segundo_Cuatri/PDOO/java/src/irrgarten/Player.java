@@ -182,7 +182,7 @@ public class Player extends LabyrinthCharacter {
      */
     private void receiveWeapon(Weapon w){
 
-        Iterator<Weapon> it = weapons.iterator(); //Iteradores en java
+        Iterator<Weapon> it = weapons.iterator(); //Iteradores en java, lo inicializa al inicio de la lista
         while(it.hasNext()){                      //Comprueba si hay otro 
             Weapon wl = it.next();                //Devuelve el siguiente
             if( wl.discard()){

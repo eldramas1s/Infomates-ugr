@@ -8,7 +8,7 @@ package irrgarten;
  *
  * @author el_dramas
  */
-public class WeaponCardDeck extends CardDeck<Weapon>{   //Hereda de una clase parametrica, luego "hereda" de CarDeck con T=Shield 
+public class WeaponCardDeck extends CardDeck<Weapon>{   //Hereda de una clase parametrica, luego "hereda" de CarDeck con T=Weapon 
     /**
      * Añade las cartas necesarias para el juego usando cada una de las posiciones de los
      * arrays defensa y usos.
