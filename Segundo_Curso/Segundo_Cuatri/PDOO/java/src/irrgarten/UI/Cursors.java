@@ -45,7 +45,6 @@ public class Cursors extends javax.swing.JDialog {  //No implementa la interfaz
         });
 
         leftButton.setText("<");
-        leftButton.setActionCommand("<");
         leftButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leftButtonActionPerformed(evt);
@@ -121,10 +120,10 @@ public class Cursors extends javax.swing.JDialog {  //No implementa la interfaz
         this.dispose();
     }//GEN-LAST:event_downButtonActionPerformed
 
-       public Directions getDirection(){
-           this.setVisible(true);
-           return direction;        //Es un atributo de instancia
-       }
+    public Directions getDirection(){
+        this.setVisible(true);
+        return direction;        //Es un atributo de instancia
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton downButton;

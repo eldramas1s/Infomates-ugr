@@ -48,6 +48,7 @@ public class VisualUI extends javax.swing.JFrame implements UI{     //Implementa
         players.repaint();
         currentPlayer.repaint();
         monsters.repaint();
+        winnerLabel.repaint();
         
     }
     
