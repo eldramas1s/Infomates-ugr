@@ -46,13 +46,33 @@ Esta directiva debe ir seguida de un bloque estructurado.
 Es la encargade de realizar lo mismo que la directiva anterior añadiendo al tarea de crear un ámbito de datos del dispositivo. Es decir, es la encargada de reservar memoria en el coprocesador para almacenar la svariables que se vayan a usar; normalemente, va seguida del mapeo de variables.
 
 Esta directiva también puede manejar el envío al host de datos de memoria del coprocesador usando la clásula map con el argumento from.
+
+Debe ir seguida de un bloque estructurado
 ### pragma omp target enter data / target exit data / target update
 
-La ~primera~ de las opciones es la encargada de realizar todo lo de las directivas anteriores pero sólo realiza la reserva de memoria
+La *primera* de las opciones es la encargada de realizar la reserva de memoria en la memoria del coprocesador para las variables de la cláusula map.
 
-## pragma omp declare target
+La *segunda* de ellas es la encargada de desmapear las variables de un ámbito de datos de coprocesador. Por tanto, requiere de que haya un ámbito previamente creado. 
 
+La *última* de ellas es la encargada de actualizar las variables entre la memoria del coprocesador y la memoria del host, haciendo que no haya fallos de coherencia de memoria entre ellos.
 
+Como se puede denotar, deben ir junto a la cláusula _map_, a excepción de la última que sólo va continuada por _to(_variables_)_ y _from(_variables_)_, y  no estan seguidas de ningún tipo de estructura de código típica de OpenMP.
+
+### pragma omp declare target
+
+Usar esta directiva implica crear una zona de declaración de varibles de manera que el coprocesador ya tendrá dichas variables en memoria antes de usar el código; por tanto, estamos continuando con la misma idea de transmitir datos entre host y coprocesador. Esta directiva es *solo* para variable globales y funciones. 
+
+Se encarga de crear versiones en el coprocesador para variables y funciones, asigna almacenamiento en el dispositivo.
+
+La forma de usarlo es la siguiente: 
+
+	    # pragma omp declare target 
+	       
+	       // Declaración de variables globales o funciones
+
+	    # pragma omp end declare target
+
+Hay maás 
 
 ## 2.2.Directivas de equipos
 
