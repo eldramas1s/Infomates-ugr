@@ -50,11 +50,11 @@ Esta directiva también puede manejar el envío al host de datos de memoria del 
 Debe ir seguida de un bloque estructurado
 ### pragma omp target enter data / target exit data / target update
 
-La *primera* de las opciones es la encargada de realizar la reserva de memoria en la memoria del coprocesador para las variables de la cláusula map.
+La **primera** de las opciones es la encargada de realizar la reserva de memoria en la memoria del coprocesador para las variables de la cláusula map.
 
-La *segunda* de ellas es la encargada de desmapear las variables de un ámbito de datos de coprocesador. Por tanto, requiere de que haya un ámbito previamente creado. 
+La **segunda** de ellas es la encargada de desmapear las variables de un ámbito de datos de coprocesador. Por tanto, requiere de que haya un ámbito previamente creado. 
 
-La *última* de ellas es la encargada de actualizar las variables entre la memoria del coprocesador y la memoria del host, haciendo que no haya fallos de coherencia de memoria entre ellos.
+La **última** de ellas es la encargada de actualizar las variables entre la memoria del coprocesador y la memoria del host, haciendo que no haya fallos de coherencia de memoria entre ellos.
 
 Como se puede denotar, deben ir junto a la cláusula _map_, a excepción de la última que sólo va continuada por _to(_variables_)_ y _from(_variables_)_, y  no estan seguidas de ningún tipo de estructura de código típica de OpenMP.
 
@@ -72,7 +72,10 @@ La forma de usarlo es la siguiente:
 
 	    # pragma omp end declare target
 
-Hay maás 
+Hay más formas de usar esta directiva:
+
+	    # pragma omp declare target (lista de variables y funciones)
+	    # pragma omp declare target clause [ [,]clause ... ]
 
 ## 2.2.Directivas de equipos
 
@@ -84,7 +87,64 @@ Provoca que se cree una liga de equipos de trabajo, en particular, crea los init
 
 Cuando imponemos esta directiva causamos el reparto de las iteraciones de un bucle entre los equipos que haya creados en la liga de equipos. Por tanto, debe estar seguida de un bucle.
 
-# 3.Cómo trabajar
+El reparto de iteraciones entre equipos será la siguiente; a la hebra i-ésima, le corresponderán las iteraciones en round-robin nthreads*k+i, donde k=id_team+nteams. Por ejemplo:
+
+	 - 32 hebras por equipo
+	 - 1 equipo
+
+Entonces a la hebra 1 del equipo 0 le corresponderán las iteraciones {1,33,65,...}.
+
+# 3.Cláusulas
+
+Se hablarán solo de las cláusulas que he llegado a usar durante la realización del trabajo. Cabe destacar que todas ellas trabajan con variables de control asociadas al elemento que modifican o consultan.
+
+## 3.1.Cláusulas de control de número de hebras
+
+### thread_limit()
+
+Esta clásula que **sólo** se puede usar con la directiva _teams_.
+
+Es la encargada de delimitar el número de hebras posibles a haber en cada equipo de la liga de eqipos, debe ser un número entero.
+
+El valor pasado por argumento debe ser un número natural menor o igual que 1056. No obstante, siempre deberá ser un número múltiplo de 32 luego, en caso de no serlo, se tomará el más cercano que cumpla la condición.De esta manera, si el argumento es menor que 32 siempre se tomará este primer valor y como máximo se tomará 1024, que coincide con el número de hebras por SM.
+
+Por defecto, este último número es el valor que toma.
+
+### num_teams()
+
+Al igual que la anterior, **sólo** se puede usar ocn la directiva _teams_.
+
+Por defecto, toma el valor 48 que coincide con el número de SIMT de la GPU. Si no se usa la directiva de creación de la liga ni la de distribución de iteraciones, se creará un único equipo con 1024 hebras y este realizará todas las iteraciones del bucle.
+
+## 3.2.Cláusulas de comparacion de datos del dispositivo
+
+## map()
+
+Esta clásula se **debe** usar con las directivas _target data_, _target exit data_ y _target enter data_ y puede o no ser usada con la directiva _target_.
+La sintáxis es la siguiente:
+
+	    # pragma omp directiva map([map_type:] list item)
+
+donde los diferentes componentes significan lo siguiente:
+   - map_type: Por defecto es _tofrom_ pero pueden ser:
+      - to: Se encarga de traer las variables pasadas como argumento a la memoria del coprocesador; normalmente suele ser una copia de las mismas, luego hay que tratar de realizar el mínimo número de cargas al coprocesador.
+      - from: Se encarga de llevar al host la información de las variables pasadas como argumento, realizando un desmapeo de las variables en el coprocesador.
+      - alloc: Reserva memoria en el coprocesador para las variables que pasemos como argumento sin traer el contenido del host, suele ser usado en las directivas _target data_. (NO se ha usado)
+      - delete: Desmapea las variables pasadas como argumento sin llevar el contenido al host.(NO se ha usado)
+   - list: Lista de variables separadas por comas
+   - list item: Pueden ser variables o secciones de vectores o matrices. En el caso de vectores la sintáxis es al siguiente:
+	       map(map_type: vector[inicio:fin])
+     si no ponemos el inicio, se toma por defecto el comienzo del vector. 
+
+# 4.Rutinas de entorno de ejecución.
+
+En este apartado se hace referencia a una serie de funciones que nos permiten conocer el valor de algunas variables de entorno:
+
+-  omp_get_tem_num(): Devuelve al thread el identificador del equipo al que pertenece.
+-  omp_get_num_teams(): Devuelve el total de equipos en una reguión de OpenMP.
+-  omp_get_num_devices(): Devuelve el número de coprocesadores disponibles en el nodo.
+
+# 5.Cómo trabajar
 
 Ahora que ya sabemos cómo funcionan las directivas y cláusulas de trabajo con los coprocesadores, estamos en disposición de iniciar nuestro trabajo. Para ello, seguiremos estas pautas.
 
