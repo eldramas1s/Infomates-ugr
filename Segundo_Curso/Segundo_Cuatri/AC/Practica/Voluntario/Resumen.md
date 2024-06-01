@@ -118,7 +118,7 @@ Por defecto, toma el valor 48 que coincide con el número de SIMT de la GPU. Si 
 
 ## 3.2.Cláusulas de comparacion de datos del dispositivo
 
-## map()
+### map()
 
 Esta clásula se **debe** usar con las directivas _target data_, _target exit data_ y _target enter data_ y puede o no ser usada con la directiva _target_.
 La sintáxis es la siguiente:
