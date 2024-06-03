@@ -151,7 +151,7 @@ Ahora que ya sabemos cómo funcionan las directivas y cláusulas de trabajo con 
    - Cada vez que queramos hacer uso del coprocesador, se lo indicaremos con la directiva tardet o sus derivadas dejando claro qué parte del código es la que debe ejecutar.
    - Mapearemos las variables que vayamos a usar con la cláusula map y haciendo uso de los argumentos to y from.
    - Creamos una liga de equipos entre los cuales dividiremos el trabajo con la directiva teams, y en caso de ejecutar un bucle, usaremos la directiva distribute para repartir el trabajo.
-   - (HIPOTESIS) Las variables no necesitan ser desmapeadas pues al terminar la ejecución del código se eliminan, lo que no sé (y si alguien lo sabe que me lo diga) es si se borran los valores o se guardan en las varibale que haya en el host. (HIPOTESIS)
+   - Desmapear las variables de trabajo, ya sea usando from junto a map si queremos que se "devuelva" el valor al host, o delete con map para que se libere esa zona de memoria del coprocesador sin llevar el dato a la memoria del host.
 
 Todo esto puede llegar a hacerse en una única directiva dando lugar a que tengamos menos control sobre lo que ocurre pues será la herramienta de programación la que realizará más trabajo a medida que juntamos más directivas en una. Por ejemplo: 
       
