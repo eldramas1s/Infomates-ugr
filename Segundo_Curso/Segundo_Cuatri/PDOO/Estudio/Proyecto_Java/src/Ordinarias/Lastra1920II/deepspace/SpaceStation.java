@@ -18,7 +18,7 @@ public class SpaceStation {
     }
     public ArrayList<Shield> getShield(){
         ArrayList <Shield>sh = new ArrayList<>();
-        ws.add(new Shield());
+        sh.add(new Shield());
         return sh;
     }
     
