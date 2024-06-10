@@ -34,4 +34,11 @@ public class Visibilidad {
         System.out.println(o.protegido);    //estoy en el mismo paquete
         //System.out.println(o.paquete);      //No estoy en el mismo paquete
     }
+    
+    public void testInstanciaMismoPaquete(visibilidadHija o){
+        System.out.println(o.publico);      //Es publico
+        //System.out.println(o.privado);      //No Estoy en el codigo de la misma clase que o
+        System.out.println(o.protegido);    //estoy en el mismo paquete
+        System.out.println(o.paquete);      //estoy en el mismo paquete
+    }
 }

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
 package Ordinarias.Lastra2122;
-import java.util.ArrayList;
 
 
 interface Doblable{

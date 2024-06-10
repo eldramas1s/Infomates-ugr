@@ -24,7 +24,7 @@ public class visibilidadHija extends Visibilidad {
     
     public static void testClaseHija(Visibilidad o){
         System.out.println(o.publico);      //Es publico
-        //(System.out.println(o.privado);     //NO estoy en el codigo de la misma clase que o
+        //System.out.println(o.privado);     //NO estoy en el codigo de la misma clase que o
         System.out.println(o.protegido);    //Estoy en el mismo paquete
         System.out.println(o.paquete);      //Estoy en el mismo paquete
         
