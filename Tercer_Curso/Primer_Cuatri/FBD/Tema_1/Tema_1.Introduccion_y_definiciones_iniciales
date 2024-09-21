@@ -1,0 +1,42 @@
+
+CONCEPTO INTUITIVO DE BASE DE DATOS
+-----------------------------------
+
+Como motivación, es importante conocer cuál es la ventaja de usar bases de datos (BD). El primero de ellos, consiste en que al tener que manejar una gran cantidad de datos dentro de una empresa, las bases de datos provocan que esto datos sean manipulados de forma más sencilla y rápida.
+
+Otro motivo importante es la accesibilidad que permiten estas estructuras, pues se podrá acceder a dichos datos desde varios dispositivos.
+
+Añadido a lo anterior, es importante ver que cualquier organización importante tiene que manejar una gran cantidad de datos luego necesitarán aplicaciones para manejarlos.
+
+Un ejemplo de organización donde se deberían usar estas estructuras es un hospital, podría haber una base de datos donde se guarden los horarios de los médicos, las citas de los pacientes, la disponibilidad de los laboratorios, las consultas ocupadas en cada instatnte de tiempo...
+
+Veamos ahora qué características deben cumplir los datos para que sean útiles:
+   · No deberán ser redundantes pues provocará que los datos no sean fáciles de manipular, es decir, un cambio en un dispositivo o estado del dato puede ser difícil de mantener. Luego, es necesario que no estén duplicados en distintos estados, me refiero a que sean entens distintos. Esto puede derivar en problemas de memoria ocupando más memoria de la disponible o necesaria.
+   · Los datos deben estar actualizados, no puede ocurrir que haya dos estados de un dato que den información contradictoria provocando una inconsistencia en el sistema de datos.
+   · Derivada de lo anterior, no habrá reutilización pues para cada instante habrá una copia, que llevará también a ocupar más memoria y problemas de actualización.
+
+Para solivientar los problemas causados se utilizarán aplicaciones de manera que no se provoque un problema de los anteriores. Es decir, para cada subparte de una organización no deberá haber una aplicación; por tanto, deberemos usar las mínimas posibles con el objetivo de globalizar los datos.
+
+Con este objetivo, salen las aplicaciones de bases de datos.
+
+Como primera solución proponemos un sistema de archivos, lo que lleva a las siguientes tareas de complejidad:
+   · Tener la necesidad de crear de forma activa los archivos de una estructura determinada, es decir, para poder manejarla deberiamos crear un archivo para cada concepto, lo que es un trabajo muy tedioso.
+   · Deberíamos hacer de forma manual la consulta y la actualización de los archivos imponiendo condicionantes; además, para la actualización de un dato que puede estar en varios archivos por necesidad sería un trabajo tedioso y complicado con conjuntos de datos de orden mayor.
+   · Como ya se ha dejado ver en el punto anterior, la modificación dinámica de la estructura frente a un pequeño cambio puede producir dolores de cabeza; en resumen, no sería escalable.
+   · Aunque no presenta un quebradero de cabeza, la seguridad de la base de datos también es un problema que resolver, con esto me refiero a que debemos proteger los datos de usuarios no autorizados. Este problema también se presentará en la solución más correcta que aparece a continuación.
+   · Por último, necesitamos permitir el acceso desde distintas aplicaciones, con distintos lenguajes y sistemas operativos.
+
+Todo esto, nos llevó a utilizar un software especial que nos permita centralizar los datos en almacenes.
+
+Definición: Una Base de datos es un fondo común de información almacenada en una computadora para que cualquier persona o programa autorizado pueda acceder a ella, independientemente del lugar de procedencia y del uso que haga la misma. Un usuario de una base de datos no necesariamente será una persona; de hecho, lo más normal es que sea una aplicación.
+Este software debe proveer de operaciones con los datos, para ello deberán gestionar datos de forma transparente (en la práctica será necesario saber bien cómo se van a representar), como insertar, obtener, modificar datos existentes o borrar datos.
+Para ello, se suele seguir CRUD (Create, Read, Update, Delete), en general, se busca determinar completamente la vida útil de los datos.
+
+SISTEMAS DE GESTION DE BASES DE DATOS
+-------------------------------------
+Es importante que no haya redundancia como ya se ha comentado; no obstante, en la vida no siempre es así, sino que a veces es necesario que esté duplicado buscando seguridad(copias de seguridad) y optimización evitando cálculos, lo que sería redundante y no permitido en esta asignatura.
+
+IMPORTANTE: En esta asignatura la redundancia será penalizada.
+
+Un SGDB(Sistema Gestor de bases de datos) debe permitir que se definan estructuras de almacenamiento, se accedan a los datos de forma eficiente y segura, se organice la actualización de los datos y el acceso multiusuario entre otras cosas.
+
