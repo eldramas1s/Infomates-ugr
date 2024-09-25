@@ -7,8 +7,7 @@ Como motivación, es importante conocer cuál es la ventaja de usar bases de dat
     · La primera de ellas consiste en que al tener que manejar una gran cantidad de datos dentro de una empresa, las bases de datos provocan que estos datos sean manipulados de forma más sencilla y rápida.
     · La segunda de ellas es la accesibilidad que permiten estas estructuras, pues se podrá accedder a los datos desde varios dispositivos. No obstante, será importante conocer que cualquier organización importante debe manejar una gran cantidad de datos necesitando de estas aplicacione spara manejarlos.
 
-*Ejemplo*
-
+*Ejemplo*:
 Un ejemplo de organización donde se deberían usar estas estructuras es un hospital, podría haber una base de datos donde se guarden los horarios de los médicos, las citas de los pacientes, la disponibilidad de los laboratorios, las consultas ocupadas en cada instatnte de tiempo...
 
 **Características de los datos para que las bases de datos sean útiles**
@@ -33,14 +32,14 @@ Como primera solución se pensó en un sistema de archivos manipulado manualment
 
 Por tanto, todo esto provocó el desarrollo de un software especial que nos permitiera guardar los datos en almacenes centralizados dando lugar a las *Bases de Datos(BD)*.
 
-*Definición*
+*Definición*:
 Una Base de Datos es un fondo común de información almacenada en una computadora para que cualquier persona o programa autorizado pueda acceder a ella, independientemente del lugar de procedencia y del uso que haga de la misma. Un usuario de una base de datos no necesariamente será una perdona; de hecho, lo más usual es que sea una aplicación.
 
 Este software debe proveer de **operaciones con los datos**, gestionándolos de forma transparente (en la practica será necesario saber bien cómo se van a representar); **inserción de datos** , **obtención de datos**, **modificación de datos** o **borrado de datos**.
 
 Un acrónimo que se suele usar es **CRUD**(*Create, Read , Update, Delete*); vemos que, en general, se busca determinar al completo la vida de un dato útil.
 
-## 1.3. Sistemas de Gestión de Bases de Datos
+## 1.3.Sistemas de Gestión de Bases de Datos
 
 Como ya se ha comentado, es importante que no haya redundacia; sin embargo, en la vida no siempre es así, sino que a veces e snecesario que haya datos duplicados o redundantes con el objetivo de proveer als sistema con una cierta seguridad. (En esta asignatura, cualquier tipo de redundancia será penalizada).
 
