@@ -29,4 +29,4 @@ Se pueden hacer algunas operaciones intuitivas con las palabras como el cálculo
 
 __Prefijos y sufijjos__
 
-Sea _u_ una palabra del alfabeto _A_, diremos que v es un prefijo de u si existe una palabra w$\in$_A*_$| vw=u$. Un prefijo sera propio si no es la palabra vacía ni la propia palabra.
+Sea _u_ una palabra del alfabeto _A_, diremos que v es un prefijo de u si existe una palabra w $\in $ _A*_ $| vw=u$. Un prefijo sera propio si no es la palabra vacía ni la propia palabra.
