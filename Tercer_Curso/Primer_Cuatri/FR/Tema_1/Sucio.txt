@@ -1,0 +1,104 @@
+Apuntes que tome
+
+
+
+
+
+Switch multicapa
+--------------------
+Cuando tengo muchas bocas del switch y todas pertenecen a la misma red obtenemos red local. Si no nos interesan lo que hacemos es asignar una red a cada grupo de bocas del switch consiguiendo varias redes. este concepto es una VLAN (Virtual LAN). Los swtich multicapa permite hacer la conmutacion entre dos VLAN's de forma interna, lo cual los diferencia de los switch atm.
+
+Un bridge es como un switch pero la diferencia es que trabaja como puente entre tecnologias con redes distintas, tienen pocas bocas.
+
+SEÑO Y ESTANDARIZACION DE REDES
+------------------------------- 
+Basicamente esto es el modelo de capas que se vio en la introducción.
+
+Nos centraremos en TCP/IP
+
+
+Aplicacion (mensajitos entre cada usuario)
+-----------------
+Transporte ----------> TCP/IP
+-------------------
+Red--->IP (L3)
+-------------------
+Enlace(L2)          |
+------------------  |----> HW
+Fisica(L1)          |
+-----------------   |
+
+Problemas::
+
+- A nivel físico, debemos ver ocmo se comparten los datos, es decir no siempre el bit será 5V. Debemos saber la codificación de canal, normalmente se le llama a añadir redundancia ayudando a mejorar la seguridad.
+
+-A nivel de enlace, s encarga de como manejarse con el medio, es decir si leo, si escucho, si limpio el medio, un ejemplo es de dos capas LLC(se encarga de comprobar que los paquetes están bien) y MAC ().
+
+-A nuvel de red, soy capaz de transmitir cosas que no tienen error; el objetivo es poder llegar al extremo, para ello debemos saber que hay direccionamiento (saber a quien mando) y el encaminamiento (si tengo varias formas de ir, debemos saber por donde ir y si es más rapido mejor).
+
+-A nivel de transporte, aqui nos encargamos de la fiabilidad, es decir, si hay congestion(acumulacion de paquetes en la llegada de paquetes) se arregla, control de flujo (como de rapido voy); ademas, se encarga de la multiplexacion de datos (en la entrada llegan paquetes con diversos servicios, luego debemos saber a que aplicacion mando los datos). A su vez, es la encargada de garantizar que todo llega bien como la entrefa ordenada de los mensajes.
+
+-A nivel de aplicacipn, es lo que quiero hacer pero hay que saber como los usuarios s evan a comunicar entre ellos, es decir, las notificaciones, los mensajes entre ellos, la interfaz...
+
+Modelos de referencia
+----------------------
+
+Es algo abstracto que nos gustaria tener pero abstraccion, el que mas nos interesa es OSI, cuando llego el modelo TCP/IP(que sí es implementacion)
+
+OSI separa la Aplicacion en Sesion, PResentacion, Aplicacion mientras que TCP/IP junta la capa de Enlace y Física em la capa de red subyacente, es decir, el HW.
+
+Cada capa (siguiendo OSI):
+
+- La capa de enlace solo se encarga del encaminamiento salto a salto, es decri, de la primera conexion
+
+- La capa de red(IP), va tmb salto a salto pero ya engloba todos los caminos entre todos los dispositivos (routers y usuarios). Cuando el paquete llega al router mira la tabla de direccionamiento y sigue al siguiente router hasta qllegar al destino.
+
+-Las demas capas solo se centrane n los dispositivos de partida y de llegada, la capa de transporte y la aplicación estan solo en los diapositivcos externos, lo demas esta en todos, incluso los intermedios.
+
+(wireshark)
+
+Nota: Cada dato tiene una cabecera y se transmiten a nivel de transporte, lo que hace este nivel es qu emete todo esto anterios lo mete en una parte de datos y le añade una cabecera de transporte, de forma recursiva se hace a niveles mas bajos, añadiendo cabeceras hasta el nivel físico teniendo muchas cabeceras que reflejan toda la informacion necesaria. A nivle físico esa cabecera se limita a mandar impulsos. este proceso se llama encapsulamiento (meter en terminologia)
+Cuando genero un daro, cuando llega al nivel de enlace se manda a nivel fisico al siguiente nodo (router, usuario), se sigue el proceso contrario hasta comprobar que el dato es correcto y miramos con la tabla de direccionamiento el siguiente salto, este proceso completo se repite hasta que el ultimo nodo recibe el dato y compruba que es correcta.
+Si nos fijamos, hay dos comunicaciones, la vertical (llamada real) y la virtual(u horizontal) por ser entre entidades de las mismas capas y solo de las mismas capas (varios niveles de distintos dispositivos relaizan una comunicacion uno a uno); si no s fijamos, la capa de transporte solo hablan entre los extremos, al igual que las aplicaciones; no obstante, debe hacer el mismo camino que los datos originales haciendo la mierda de antes. Los datos que una capa manda a otra capa dentro de la comunicacion vertical se llaman SDU, caundo le meto la cabecera se llama PDU.
+
+Entidades pares = Entidades iguales de la misma capa en nodos distintos
+
+
+Protocolo: Como hablan entidades pares (mensajes que mandan para comprenderse)
+
+Interfaz: COmo interactuan dos capas adyacentes en un mismo dispositvo, habrá SAPs que son puntos de acceso a servicio, elementos para pedirle algo a una cap ainferior. Las capas superiores son usuarios de las capas de abajo.
+
+Arquitecturas red: elementos de los que dispongo.
+
+
+Retardos
+-------------
+
+Cuando transmitimos un dato, se tarda un tiempo para poner los bits en el medio (depende de la velocidad de la tarjeta de red) que llamaremos tiempo de transmision que es T_t=L/Vt donde L es el tamaño de paquete. Además, cuando ya he mandado el paquete este tarda un poco de tiempo en que llegue al sitio destino, este tiempo llamado tiempo de propagación es T_p=d/V_t es decir es proporcional a la distancia; esto ultimo no deja de depender el medio en el cual se manda. además, cuando llega, tenemos que procesar el paquete (el nodo intermedio) y buscar donde se manda; de hecho, ese equpo intermedio tiene colas luego tendra que esperar que se terminen de mandar los paquetes de antes que llamaremos tiempo en cola y tiempo de procesamiento que no será fijo. Despues de esto mandare por un interfaz.
+
+Tipos de servicions
+----------------------
+
+En TCP/IP esta en el nivel de transporte y hay dos niveles:
+    -ORientado a conexion o no, es decri, comprobamos si se puede llegar al destino o no, de manera que si no es orientado a conexion se mandan datos aunque el destino este apagado.
+    - COnfirmado o no COnfirmado, si es el primero, se garantizan que todos los bits son correctos y todo funcionan bien y en caso de que no funcione bien la conexion se romperia. Veremos tres aspectos de la fiabilidad: control de conexion (), control de errores(transmito los dato sy si hay un error), control de congestion (se refiere a la red, significaría que los routers tienen colas y si meto muchos paquetes y saco pocos, hay muchos paquetes en las colas y se descartan paquetes, el mecanismo de solucion es que el origen manda menos datos) y el control de flujo(se refiere a que el equipo destino no sea capaz de tener memoria libre para recibir informacion y mensajes desbordando las colas) y entrega ordenada (esto significa que si mando muchos paquetes estos se ponen en orden, ocasionando que el fichero llega mal) todo esto ocasiona que el servicio sea fiable y como ejemplo esta TCP. mientras tanto, UDP no realiza nada porque busca ser rapido.
+
+
+Tecnologia y Direccionamiento
+------------------------------(Historia)
+
+Los operadors en internet se organizan en jerarquias (tiers) el Tier 3 son los mas cercanos a los usuarios y este es el ultimo. Los de nivel 1 o Tier 1 son los que componen la estructura troncal de internet y deben estar entre dos continentes. Hay dos relaciones entre Tiers, hrelaciones de transito (entre operadores y niveles superiores) y de Peering (entre los de la misma capa). Tier 2 es de interfaz entr los otros dos y son mas regionales.
+
+Nix = Puntos neutros
+
+EL nivel de direccionamiento se divide en varias capas que ethernet se dividen en : (se usan dir. MAC que son de la forma AA:BB:CC:DD...)
+    -LLC
+    -MAC 
+
+A nivel de red vamos a tener direcciones IP de la forma A.B.C.D ambas direcciones son únicas en todo el miundo(no obtante en el IP solo las publicas) y los tres primeros bytes te identifican el fabricante. SI identifico la MAC te puedo hacer seguimiento, Iphone  aleatopriza la direccion MAC para evitar colisiones y seguimientos. 
+(macchanges)
+
+A nivel de transporte el direccionamiento se hace a traes de puertos.
+A nivel de aplicacio, conocemos los nombres de dominio luego necesito un servicio DNS.
+
+Cuando yo transmito es importante saber las direcciones MAC en cada paso que doy salto a salto.
