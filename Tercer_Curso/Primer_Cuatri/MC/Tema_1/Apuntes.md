@@ -7,7 +7,7 @@ _Problema:_
 Supongamos que disponemos de un programa en un lenguaje cualquiera y nos incumbe saaber si dicho programa termina. Para ello, creamos un programa que, dado un programa y una entrada de datos nos dice en un tiempo finito si ese programa termina. Por ejemplo, llamémoslo "_Stops(P,x)_" donde _P_ es el programa y _x_ son los datos, podría ser de la siguiente forma que llamaremos "_Turing(P)_":
 
 ```
-    1  `if Stops(P,P) goto 1;
+    1  if Stops(P,P) goto 1;
 ```    
 Tomando un programa de ejemplo, si llamamos a _Turing_ consigo mismo pues no deja de ser una cadena de ceros y unos, lo cual es un conjunto de datos ocasionamos una contradicción pues:
 
@@ -23,6 +23,10 @@ Un alfabeto es un conjunto finito _A_ que contiene una serie de símbolos o letr
 
 __Palabra__ 
 
-Una palabra generada por un alfabeto no es más que una secuencia finita de combinaciones de símbolos del alfabeto. Al conjunto formado por todas las palabras, incluyendo la palabra vacía {$\epsilon$}, se le denota por _A*_, en caso de no querer la palabra vacía, escribiremos _A⁺_.
+Una palabra generada por un alfabeto no es más que una secuencia finita de combinaciones de símbolos del alfabeto. Al conjunto formado por todas las palabras, incluyendo la palabra vacía ${\epsilon}$, se le denota por _A*_, en caso de no querer la palabra vacía, escribiremos _A⁺_.
 
-Se pueden hacer algunas operaciones intuitivas con las palabras como el cálculo de la longitud denotada por |·|: A --> $\N$ que simplemente cuenta el número de letras que tiene cada palabra. Otra operación puede ser la concatenación de palabras denotada por el producto matemático, la inversión de palabras denotada por $^{-1}$.
+Se pueden hacer algunas operaciones intuitivas con las palabras como el cálculo de la longitud denotada por |·|: _A_ -> $N$ que simplemente cuenta el número de letras que tiene cada palabra. Otra operación puede ser la concatenación de palabras denotada por el producto matemático(cumple la asociativa y posee a la palabra vacía como elemento neutro), la inversión de palabras denotada por $^{-1}$ y la iteración denotada por $^n$ con n un numero natural (consiste en escribir n veces lo denotado).
+
+__Prefijos y sufijjos__
+
+Sea _u_ una palabra del alfabeto _A_, diremos que v es un prefijo de u si existe una palabra w$\in$_A*_$| vw=u$. Un prefijo sera propio si no es la palabra vacía ni la propia palabra.
