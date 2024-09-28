@@ -149,7 +149,7 @@ Hay varios tipos de servicios, los cuales se implementan en una capa según el m
 
     · Confirmado o no confirmado. En el caso del primero, se garantiza que todos los bits que se envíen lleguen en buen estado y que todo funcione bien, pues en caso de que algo falle se rompería la conexión. El primero de ellos es conocido como fiable pues gestiona el control de conexión(), el control de errores (transmite los datos y el error que haya en ellos), el control de congestión (se refiere a la red, significa que las colas de lor routers están llenas, luego si entran muchos paquetes y salen pocos comienza el descarte de los mismos desbordando las colas; el origen debería mandar menos datos), el control de flujos(el equipo destino no escapaz de tener memoria libre para recibir información) y la entrega ordenada(en caso de mandar muchos paquetes, todos llegarían en orden inverso al que se manda). Como ejemplo de servicio fiable tenemos TCP, como no fiable está UDP.
 
-##1.4.Direccionamiento
+##1.4.Direccionamiento 
 
 Los operadores en internet se organizan en jerarquías (tiers); el Tier 3 son los más cercanos a los usuarios y este es el último. Los de nivel 1 o Tier 1 son los que componen la estructura troncal de internet y deben estar entre dos continentes. 
 
