@@ -10,6 +10,8 @@ Como motivación, es importante conocer cuál es la ventaja de usar bases de dat
 *Ejemplo*:
 Un ejemplo de organización donde se deberían usar estas estructuras es un hospital, podría haber una base de datos donde se guarden los horarios de los médicos, las citas de los pacientes, la disponibilidad de los laboratorios, las consultas ocupadas en cada instatnte de tiempo...
 
+En resumen, como objetivo principal de realizar una base de datos tenemos que, sirve principalmente para consultar datos.
+
 **Características de los datos para que las bases de datos sean útiles**
 
     · No deberán ser redundantes pues provocará que los datos no sean fáciles de manipular, es decir, un cambio en un dispositivo o estado del dato puede ser difícil de mantener. Luego, es necesario que no estén duplicados en distintos estados, me refiero a que sean entens distintos. Esto puede derivar en problemas de memoria ocupando más memoria de la disponible o necesaria.
@@ -49,3 +51,55 @@ Un SGDB(*Sistema de Gestión de Bases de Datos*) debe permitir:
     · Organización de las actualizaciones de los datos.
     · Acceso multiusuario.
     ·...
+
+## 1.4.Elementos de una base de datos
+
+Como elementos de una base de datos encontramos:
+
+    · Datos: Pueden ser de dos tipos, __integrados__ y sin redundancia (esto debe cogerse con pinzas pues puede haber situaciones donde la redundancia presente una ventaja) o útiles y compartidos entre varias aplicaciones reduciendo la memoria utilizada y facilitando la comunicación entre las aplicaciones.
+
+    · Hardware: Gracias a él podemos disponer de una BD centralizada (menos útil y más local) o una BD distribuida (permite que varios usuarios tengan acceso facilitando la comunicacion y versatilidad) 
+
+    · Software: Tienen los programas que usamos para definir las estructuras.
+ 
+    · Usuarios en jerarquía de uso y desarrollo (a mas uso menos desarrolla): Usuario final - Pro    gramador de apps - Administrador (jefecillo)
+
+*Definición*:
+Un **dato operativo** es una pieza de información básica que necesita un organización para su funcionamiento; dicha organización consiste en disponer de un *item básico* o elemento sobre el que se puede pedir información, un *atributo* o característica del item básico (pueden ser varios) y una *relación* o conexión lógica entre dos o más item báscico.
+
+Cuando se determinan y clasifican de esta forma todos los datos operativos, se obtiene el esquema lógico de la base de datos, esto es aquel diseño que seguirá nuestra base de datos
+
+## 1.5.Objetivos del SGBD
+
+Cuando se dellarrola un software se persiguen unos objetivos, pero cada sistema los consigue con una profundidad distinta:
+     · **Independencia de los datos(IMPORTANTISIMO)**. Los datos no dependen de las aplicaciones.
+           -*Física*: el diseño lógico no debe depender de cómo se almacenan los datos de forma fisica. Nosotros seguiremos un modelo E/R como diseño lógico pero estarán en una memoria fisica; no nos va a importar cómo esten físicamente. De hecho, si nos importara, las bases de datos no tendrían sentido. (Ejemplo: ferreteria y organizacion, como mejora: poner lo que mas se vende cerca del mostrador)
+Es decir, buscamos que los datos más usados estén cerca y la reorganizacion sea sencilla. De hecho, esto no puede parar el funcionamiento de la base de datos. 
+Buscamos que las aplicaciones no tengan que saber dónde estan los datos almacenados físicamente pues se tendría que reprogramar la aplicación para que sepan dónde están.(Esta ultima fras es clave).
+En conclusión, aunque podamos hacer reorganizaciones físicas para que la búsqueda de los datos sea mas sencilla, debemos tener en cuenta que el diseño de la base de datos no debe depender de ello. 
+Luego, para diseñar la base de datos no pensaremos en la organización física.
+  
+           -*Logica*: no la proporciona el SGBD pero sí da herramientas para conseguirlas. Busca que cuando haya cambios en el esquema lógico, no necesariamente se tengan que reprogramar las aplicaciones.
+
+ 
+    · Que el usuario sea capaz de utilizar el SGDB de forma **sencilla** luego una mayor cantidad de personas sean capaces de usarlo. El sgdb relacional es el más utilizado para datos estructurados y lleva usándose desde finales de los 70 y se basaba en utilizar tablas.
+ 
+    · Que los datos estén **centralizados**, es decir, que los datos deban gestionarse de forma centralizada e independiente de las aplicaciones. Los usuarios tienen que percibir que hay un solo almacén en el que están todos los datos pese a que la implementación interna no sea así.
+ 
+    · **No redundancia**, recalcamos otra vez que los datos no deben estar duplicados y deberá gestionar el acceso concurrente de los usuarios (SCD).
+ 
+    · Los datos deben ser **consistentes** pues no deben haber fallos lógicos, es decir, se deben respetar las reglas definidas en la organización.
+        El sistema debe mantener las restricciones y, establecer y cumplir las reglas de mantenimiento de la integridad. Además, cuando se realice una operación que parte de un estado válido, debe acabar tras hacer la operación a otro estado válido y nunca a un estado inválido.
+ 
+    · **Fiabilidad**: Es decir, que los datos están protegidos contra cualquier catástrofe, luego tienen que proprocionar mecanismos de recuperación y relanzamiento de operaciones con los mismos, este punto esta relacionado con el siguiente pues la redundancia es usada para proporcionar fiabilidad pero tambien proporciona seguridad.
+
+    · **Seguridad**: El sistema debe ser un sistema seguro, luego los sistemas deben ser accesibles a todos los usuarios luego habrá mecanismos de gestión de usuarios y privilegios (quién accede y a qué accede, estas seguridades se dan muchas veces en las aplicacione de gestion, en oracle no ocurre esto, lo hace en la propia base de datos, solo veo lo que debo ver) y mecanismos de protección de datos (el mas burdo es la redundancia pero es el mas útil y seguro.)
+
+## 1.6.Ventajas de la utilización de un SGDB
+
+En el caso del usuario, dependerá dle tipo de usuario del que hablemos:
+    · Usuario final o cliente: Podrá acceder a los datos.
+    · Programador: Elimina problemas en el diseño físico y lógico, en la depuración de errores, y en el mantenimiento general al hacer copias de seguridad o recuperación de fallos.
+    · Administrador: Este es el encargado de tomar decisiones y de mantener la base de datos facilitando el manejo de los datos y la toma de decisiones en la empresa.
+
+En el caso del sistema, proporciona un control centralizado de los datos, la utilización de criterios de uniformización, es decir,todos los datos se tratan de la misma manera. También proporciona facilidad para generar nuevas aplicaciones así como el equilibrio entre requerimientos conflictivos.
