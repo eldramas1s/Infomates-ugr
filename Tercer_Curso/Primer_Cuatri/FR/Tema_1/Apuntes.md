@@ -136,8 +136,8 @@ ___Retardos___
 </p>
 </div>
 
-Cuando transmitimos un dato, se tarda un tiempo para poner los bits en el medio de transmisión (depende de la velocidad de la tarjeta de red) que llamaremos __tiempo de transmision__ que es $T_t=frac{L}{V_t}$ donde L es el tamaño de paquete. 
-Además, cuando ya he mandado el paquete este tarda un poco de tiempo en que llegue al sitio destino, este tiempo es llamado __tiempo de propagación__ es $\T_p=d/V_t\$, es decir, es proporcional a la distancia; esto último no deja de depender del medio en el cual se manda. 
+Cuando transmitimos un dato, se tarda un tiempo para poner los bits en el medio de transmisión (depende de la velocidad de la tarjeta de red) que llamaremos __tiempo de transmision__ que es $T_t=L/Vt$ donde L es el tamaño de paquete. 
+Además, cuando ya he mandado el paquete este tarda un poco de tiempo en que llegue al sitio destino, este tiempo es llamado __tiempo de propagación__ es $\`T_p=d/V_t\`$, es decir, es proporcional a la distancia; esto último no deja de depender del medio en el cual se manda. 
 Siguendo con lo comentado hasta ahora, cuando llega, tenemos que procesar el paquete (el nodo intermedio) y buscar a dónde se manda; de hecho, ese equipo intermedio tiene colas, donde se almacenan los paquetes a procesar luego tendrá que esperar a que se terminen de mandar los que llegaron antes,  llamémoslo __tiempo en cola__ y __tiempo de procesamiento__ que no será fijo. 
 Despues de eso se mandarán por un interfaz.
 
