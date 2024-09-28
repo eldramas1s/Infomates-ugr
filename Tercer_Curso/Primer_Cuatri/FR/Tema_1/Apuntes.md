@@ -104,7 +104,7 @@ Hagamos ahora una descripción de cada capa siguiendo el modelo OSI:
 
 ___Vida útil de un dato___
 
-(<div>
+<div>
 <p style = 'text-align:center;'>
 <img src="./imagenes/datos.png" alt="JuveYell" width="300px">
 </p>
@@ -136,8 +136,8 @@ ___Retardos___
 </p>
 </div>
 
-Cuando transmitimos un dato, se tarda un tiempo para poner los bits en el medio de transmisión (depende de la velocidad de la tarjeta de red) que llamaremos __tiempo de transmision__ que es $T_t=L/Vt$ donde L es el tamaño de paquete. 
-Además, cuando ya he mandado el paquete este tarda un poco de tiempo en que llegue al sitio destino, este tiempo es llamado __tiempo de propagación__ es $\`T_p=d/V_t\`$, es decir, es proporcional a la distancia; esto último no deja de depender del medio en el cual se manda. 
+Cuando transmitimos un dato, se tarda un tiempo para poner los bits en el medio de transmisión (depende de la velocidad de la tarjeta de red) que llamaremos __tiempo de transmision__ que es $T_t=frac{L}{V_t}$ donde L es el tamaño de paquete. 
+Además, cuando ya he mandado el paquete este tarda un poco de tiempo en que llegue al sitio destino, este tiempo es llamado __tiempo de propagación__ es $\T_p=d/V_t\$, es decir, es proporcional a la distancia; esto último no deja de depender del medio en el cual se manda. 
 Siguendo con lo comentado hasta ahora, cuando llega, tenemos que procesar el paquete (el nodo intermedio) y buscar a dónde se manda; de hecho, ese equipo intermedio tiene colas, donde se almacenan los paquetes a procesar luego tendrá que esperar a que se terminen de mandar los que llegaron antes,  llamémoslo __tiempo en cola__ y __tiempo de procesamiento__ que no será fijo. 
 Despues de eso se mandarán por un interfaz.
 
@@ -148,7 +148,6 @@ Hay varios tipos de servicios, los cuales se implementan en una capa según el m
     · Orientado a conexión o no, es decir, comprobamos si se puede llegar al destino o no; de esta manera, el orientado no mandará paquetes si el receptor no tiene conciencia de ello.
 
     · Confirmado o no confirmado. En el caso del primero, se garantiza que todos los bits que se envíen lleguen en buen estado y que todo funcione bien, pues en caso de que algo falle se rompería la conexión. El primero de ellos es conocido como fiable pues gestiona el control de conexión(), el control de errores (transmite los datos y el error que haya en ellos), el control de congestión (se refiere a la red, significa que las colas de lor routers están llenas, luego si entran muchos paquetes y salen pocos comienza el descarte de los mismos desbordando las colas; el origen debería mandar menos datos), el control de flujos(el equipo destino no escapaz de tener memoria libre para recibir información) y la entrega ordenada(en caso de mandar muchos paquetes, todos llegarían en orden inverso al que se manda). Como ejemplo de servicio fiable tenemos TCP, como no fiable está UDP.
-
 
 ##1.4.Direccionamiento
 
