@@ -1,5 +1,5 @@
 #Ignorar imagenes
-**/*.png
+#**/*.png
 
 # Ignorar archivos temporales
 **/*tmp

@@ -26,13 +26,31 @@ Los sistemas de redes suelen estructurarse según distintas __topologías__, es 
     
     · En bus: Todos los dispositivos están conectados al mismo bus luego todos ven toda la información causando problemas de privacidad; además, el congestionamiento de la red es muy común asicomo la pérdida de información por interferencias. Es la más barata y sencilla.
 
+<div>
+<p style = 'text-align:center;'>
+<img src="./imagenes/bus.png" alt="JuveYell" width="300px">
+</p>
+</div>
+
     · En anillo: Cada dispositivo se coneca a dos más de manera que, para mandarle la información a ellos, se hará de forma inmediata. Si se busca mandar información a un tercero, se deben usar los demás dispositivos como routers de manera que seguirá habiendo congestión. 
 
     · En estrella: Todos los dispositivos se conectan a un router o switch central de manera que toda la información pasa por él. No obstante, cada conexión entre dispositivos distintos es directa pues el switch tiene una boca por dispositivo impidiendo que dos dispositivos envíen información a la misma boca. Es fácil de escalar y de manejar.
 
+<div>
+<p style = 'text-align:center;'>
+<img src="./imagenes/estrella.png" alt="JuveYell" width="300px">
+</p>
+</div>
+
     · En árbol: Los dispositivos se dividen en niveles de manera que cada nivel del árbol representa un nivel de la realidad; de esta manera, dispositivos superiores reciben la información de inferiores y la redirigen a su destino. Es útil en la dirección de empresas.
 
     · Mallada: consiste en que un dispositivo esté conectado a varios de ellos dando lugar a que haya varios caminos para el mismo detino proporcionando mayor seguridad. 
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./imagenes/malla.png" alt="JuveYell" width="300px">
+</p>
+</div>
 
     · Híbrida: Consiste en identificar los puntos fuertes de cada lugar donde se pone la red y utilizar una topología u otra según dichos puntos fuertes obteniendo la mejor red posible.
 
@@ -45,3 +63,27 @@ La redes se __clasifican__ de varias formas(En comprobación):
     · Según el tipo de transferencia de datos. Simple (solo manda o solo recibe), Half-duplex (hace ambas cosas pero no de forma simultánea) o Full-duplex (permite recibir y mandar de forma simultánea).
 
 ## 1.2.Diseño y estandarización de redes
+
+Cuando nosotros diseñamos una red, buscamos solucionar los problemas por capas luego seguiremos un __Modelo de referencia__ de los cuales existen muchos como _OSI_ o _TCP/IP_, nosotros nos centraremos en este último.
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./imagenes/modelos.png " alt="JuveYell" width="250px">
+</p>
+</div>
+
+Donde los dos niveles más bajos están implementados en hardware.
+
+Debemos saber que el hecho de que esté dividido en capas debe usarse para implementar funcionalidades distinta en capas distintas asicomo para minimizar el flujo de información entre capas.
+
+Con respecto a cada capa, veamos algunos problemas que presentan:
+
+    - A nivel físico, debemos ver como se comparten los datos, es decir, no siempre el bit será 5V. Debemos saber la codificación de canal; normalmente, se suele añadir redundancia ayudando a mejorar la seguridad.
+  
+    - A nivel de enlace, se encarga de cómo manejarse con el medio, es decir, si leo, si escucho, si limpio el medio,etc. Un ejemplo es de dos capas LLC(se encarga de comprobar que los paquetes están bien y MAC (buscarlo).
+  
+    - A nivel de red, ya soy capaz de transmitir cosas que no tienen error; el objetivo es poder llegar al extremo; para ello, debemos saber el direccionamiento (saber a quien mando) y el encaminamiento (si tengo varias formas de ir, debemos saber por donde ir y si es más rapido mejor).
+  
+    - A nivel de transporte, aqui nos encargamos de la fiabilidad, es decir, si hay congestión(acumulación de paquetes en la llegada de paquetes) se arregla, control de flujo (cómo de rapido voy); además, se encarga de la multiplexación de datos (en la entrada llegan paquetes con diversos servicios, luego debemos saber a qué aplicación mando los datos). A su vez, es la encargada de garantizar que todo llega bien asicomo que la entrega de los mensajes es ordenada.
+ 
+    - A nivel de aplicación, es lo que quiero hacer visual pero hay que saber cómo los usuarios se van a comunicar entre ellos, es decir, las notificaciones, los mensajes entre ellos, la interfaz...
