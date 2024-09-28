@@ -26,7 +26,7 @@ Con este objetivo se crearon las aplicaciones de bases de datos.
 
 Como primera solución se pensó en un sistema de archivos manipulado manualmente por algún usuario; no obstante, esto ocasionaba las siguientes tareas de complejidad:
 
-· Tener la necesidad de crear de forma activa los archivos de una estructura determinada, es decir, para poder manejarla deberiamos crear un archivo para cada concepto, lo que es un trabajo muy tedioso.
+    · Tener la necesidad de crear de forma activa los archivos de una estructura determinada, es decir, para poder manejarla deberiamos crear un archivo para cada concepto, lo que es un trabajo muy tedioso.
     · Deberíamos hacer de forma manual la consulta y la actualización de los archivos imponiendo condicionantes; además, para la actualización de un dato que puede estar en varios archivos por necesidad sería un trabajo tedioso y complicado con conjuntos de datos de orden mayor.
     · Como ya se ha dejado ver en el punto anterior, la modificación dinámica de la estructura frente a un pequeño cambio puede producir dolores de cabeza; en resumen, no sería escalable.
     · Aunque no presenta un quebradero de cabeza, la seguridad de la base de datos también es un problema que resolver, con esto me refiero a que debemos proteger los datos de usuarios no autorizados. Este problema también se presentará en la solución más correcta que aparece a continuación.
@@ -56,7 +56,7 @@ Un SGDB(*Sistema de Gestión de Bases de Datos*) debe permitir:
 
 Como elementos de una base de datos encontramos:
 
-    · Datos: Pueden ser de dos tipos, __integrados__ y sin redundancia (esto debe cogerse con pinzas pues puede haber situaciones donde la redundancia presente una ventaja) o útiles y compartidos entre varias aplicaciones reduciendo la memoria utilizada y facilitando la comunicación entre las aplicaciones.
+    · Datos: Pueden ser de dos tipos, integrados y sin redundancia (esto debe cogerse con pinzas pues puede haber situaciones donde la redundancia presente una ventaja) o útiles y compartidos entre varias aplicaciones reduciendo la memoria utilizada y facilitando la comunicación entre las aplicaciones.
 
     · Hardware: Gracias a él podemos disponer de una BD centralizada (menos útil y más local) o una BD distribuida (permite que varios usuarios tengan acceso facilitando la comunicacion y versatilidad) 
 
@@ -72,8 +72,10 @@ Cuando se determinan y clasifican de esta forma todos los datos operativos, se o
 ## 1.5.Objetivos del SGBD
 
 Cuando se dellarrola un software se persiguen unos objetivos, pero cada sistema los consigue con una profundidad distinta:
-     · Independencia de los datos(IMPORTANTISIMO). Los datos no dependen de las aplicaciones.
-           -Física: el diseño lógico no debe depender de cómo se almacenan los datos de forma fisica. Nosotros seguiremos un modelo E/R como diseño lógico pero estarán en una memoria fisica; no nos va a importar cómo esten físicamente. De hecho, si nos importara, las bases de datos no tendrían sentido. (Ejemplo: ferreteria y organizacion, como mejora: poner lo que mas se vende cerca del mostrador)
+
+    · Independencia de los datos(IMPORTANTISIMO). Los datos no dependen de las aplicaciones.
+          
+        -Física: el diseño lógico no debe depender de cómo se almacenan los datos de forma fisica. Nosotros seguiremos un modelo E/R como diseño lógico pero estarán en una memoria fisica; no nos va a importar cómo esten físicamente. De hecho, si nos importara, las bases de datos no tendrían sentido. (Ejemplo: ferreteria y organizacion, como mejora: poner lo que mas se vende cerca del mostrador)
 Es decir, buscamos que los datos más usados estén cerca y la reorganizacion sea sencilla. De hecho, esto no puede parar el funcionamiento de la base de datos. 
 Buscamos que las aplicaciones no tengan que saber dónde estan los datos almacenados físicamente pues se tendría que reprogramar la aplicación para que sepan dónde están.(Esta ultima fras es clave).
 En conclusión, aunque podamos hacer reorganizaciones físicas para que la búsqueda de los datos sea mas sencilla, debemos tener en cuenta que el diseño de la base de datos no debe depender de ello. 
