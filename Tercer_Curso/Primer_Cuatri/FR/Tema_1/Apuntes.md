@@ -87,3 +87,75 @@ Con respecto a cada capa, veamos algunos problemas que presentan:
     - A nivel de transporte, aqui nos encargamos de la fiabilidad, es decir, si hay congestión(acumulación de paquetes en la llegada de paquetes) se arregla, control de flujo (cómo de rapido voy); además, se encarga de la multiplexación de datos (en la entrada llegan paquetes con diversos servicios, luego debemos saber a qué aplicación mando los datos). A su vez, es la encargada de garantizar que todo llega bien asicomo que la entrega de los mensajes es ordenada.
  
     - A nivel de aplicación, es lo que quiero hacer visual pero hay que saber cómo los usuarios se van a comunicar entre ellos, es decir, las notificaciones, los mensajes entre ellos, la interfaz...
+
+## 1.3.Terminología, conceptos y servicios
+
+Durante el desarrollo de este punto, se han hablado del concepto de modelo de referencia, sobre el cual vamos a hacer una aclaración. Es algo abstracto que todo ingeniero informático desea implementar en la realidad, el que mas nos interesa es el modelo OSI; no obstante, es el modelo TCP/IP el que nos provee de una implementación. 
+
+Tal y como se ve en la imagen anterior, el modelo OSI separa la Aplicación en Sesión, Presentación y Aplicación mientras que TCP/IP junta la capa de Enlace y Física en la capa de red subyacente, es decir, el HW.
+
+Hagamos ahora una descripción de cada capa siguiendo el modelo OSI:
+
+    - La capa de enlace solo se encarga del encaminamiento salto a salto, es decri, de la primera conexion
+  
+    - La capa de red(IP), va tmb salto a salto pero ya engloba todos los caminos entre todos los dispositivos (routers y usuarios). Cuando el paquete llega al router mira la tabla de direccionamiento y sigue al siguiente router hasta llegar al destino.
+  
+    - Las demas capas solo se centran en los dispositivos de partida y de llegada, la capa de transporte y la aplicación estan solo en los diapositivcos externos, lo demas esta en todos, incluso los intermedios.
+
+___Vida útil de un dato___
+
+(<div>
+<p style = 'text-align:center;'>
+<img src="./imagenes/Sistema_Comunicacion.png" alt="JuveYell" width="300px">
+</p>
+</div>
+
+Como se puede ver en esta imagen, cada dato está compuesto por la información relevante (dato) y por una cabecera; para realizar una comunicación de un dato que se lanza a través de la aplicación de un dispositivo es necesario que baje a la capa física. 
+Esto ocurre con cada dato a transmitir, ya se haga con una comunicación vertical (tambíen llamada real) que consiste en la transmisión de datos entre dispositivos con aplicación; o con una comunicación horizontal, que consiste en que se transmitan datos entre distintos dispositivos pero entre los mismos niveles (Transporte-Transpote, Aplicación-Aplicación, Red-Red).
+
+Cada vez que un dato pasa de un nivel a otro mas pequeño toma por parte de información el dato completo y le añade la cabecera aumentando así el tamaño del dato. Una vez que este ha llegado a la capa física, se manda a través de la red como un dato encapsulado (el proceso descrito se llama _encapsulamiento_).
+
+Una vez que el dato ha llegado al siguiente nodo (router o dispositivo), se realiza el proceso contrario hasta comprobar que el dato es correcto. Una vez aquí, si el dato __no__ ha terminado su recorrido, se calcula la dirección a donde tiene que ser mandado con la tabla de direccionamiento y se repite de nuevo el mismo proceso ya descrito.
+
+Hablando más internamente, los datos que pasan de un nivel a otro mas inferior se llaman _SDU_ y una vez que reciben la cabecera _PDU_. Diremos que dos entidades son __pares__ si son entidades iguales de la misma capa en nodos distintos.
+
+
+*Definición*(vulgar):
+Un __protocolo__ es la forma en la que hablan dos entidades pares, es decir, la forma en la que se mandan paquetes, mensajes, información sobre el traspaso...
+
+Una __interfaz__ consiste en establecer cómo interactúan dos capas adyacentes en un mismo dispositivo, habrá _SAPs_ (puntos de acceso a servicio, elementos que tiene una capa para pedirle información a una capa inferior).
+
+Una __arquitectura de red__ consta de todos los elementos de los que dispongo para establecer la estructura de la red.
+
+
+___Retardos___
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./imagenes/Sistema_Comunicacion.png" alt="JuveYell" width="300px">
+</p>
+</div>
+
+Cuando transmitimos un dato, se tarda un tiempo para poner los bits en el medio de transmisión (depende de la velocidad de la tarjeta de red) que llamaremos __tiempo de transmision__ que es $T_t=L/Vt$ donde L es el tamaño de paquete. 
+Además, cuando ya he mandado el paquete este tarda un poco de tiempo en que llegue al sitio destino, este tiempo es llamado __tiempo de propagación__ es $\`T_p=d/V_t\`$, es decir, es proporcional a la distancia; esto último no deja de depender del medio en el cual se manda. 
+Siguendo con lo comentado hasta ahora, cuando llega, tenemos que procesar el paquete (el nodo intermedio) y buscar a dónde se manda; de hecho, ese equipo intermedio tiene colas, donde se almacenan los paquetes a procesar luego tendrá que esperar a que se terminen de mandar los que llegaron antes,  llamémoslo __tiempo en cola__ y __tiempo de procesamiento__ que no será fijo. 
+Despues de eso se mandarán por un interfaz.
+
+___Tipos de servicios___
+
+Hay varios tipos de servicios, los cuales se implementan en una capa según el modelo de referencia elegido; en el caso de TCP/IP se encuentra en el nivel de transporte y hay dos noveles de clasificacion:
+
+    · Orientado a conexión o no, es decir, comprobamos si se puede llegar al destino o no; de esta manera, el orientado no mandará paquetes si el receptor no tiene conciencia de ello.
+
+    · Confirmado o no confirmado. En el caso del primero, se garantiza que todos los bits que se envíen lleguen en buen estado y que todo funcione bien, pues en caso de que algo falle se rompería la conexión. El primero de ellos es conocido como fiable pues gestiona el control de conexión(), el control de errores (transmite los datos y el error que haya en ellos), el control de congestión (se refiere a la red, significa que las colas de lor routers están llenas, luego si entran muchos paquetes y salen pocos comienza el descarte de los mismos desbordando las colas; el origen debería mandar menos datos), el control de flujos(el equipo destino no escapaz de tener memoria libre para recibir información) y la entrega ordenada(en caso de mandar muchos paquetes, todos llegarían en orden inverso al que se manda). Como ejemplo de servicio fiable tenemos TCP, como no fiable está UDP.
+
+
+##1.4. Direccionamiento
+
+Los operadors en internet se organizan en jerarquías (tiers); el Tier 3 son los más cercanos a los usuarios y este es el último. Los de nivel 1 o Tier 1 son los que componen la estructura troncal de internet y deben estar entre dos continentes. 
+
+Hay dos relaciones entre Tiers, relaciones de transito (entre operadores y niveles superiores) y de Peering (entre los de la misma capa). Tier 2 es de interfaz entre los otros dos y son más regionales.
+
+El nivel de direccionamiento se divide en varias capas que para _ethernet_ se dividen en : (se usan direcciones MAC que son de la forma AA:BB:CC:DD...)
+    -LLC
+    -MAC
