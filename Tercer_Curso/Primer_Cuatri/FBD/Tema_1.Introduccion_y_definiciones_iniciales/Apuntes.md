@@ -72,28 +72,28 @@ Cuando se determinan y clasifican de esta forma todos los datos operativos, se o
 ## 1.5.Objetivos del SGBD
 
 Cuando se dellarrola un software se persiguen unos objetivos, pero cada sistema los consigue con una profundidad distinta:
-     · **Independencia de los datos(IMPORTANTISIMO)**. Los datos no dependen de las aplicaciones.
-           -*Física*: el diseño lógico no debe depender de cómo se almacenan los datos de forma fisica. Nosotros seguiremos un modelo E/R como diseño lógico pero estarán en una memoria fisica; no nos va a importar cómo esten físicamente. De hecho, si nos importara, las bases de datos no tendrían sentido. (Ejemplo: ferreteria y organizacion, como mejora: poner lo que mas se vende cerca del mostrador)
+     · Independencia de los datos(IMPORTANTISIMO). Los datos no dependen de las aplicaciones.
+           -Física: el diseño lógico no debe depender de cómo se almacenan los datos de forma fisica. Nosotros seguiremos un modelo E/R como diseño lógico pero estarán en una memoria fisica; no nos va a importar cómo esten físicamente. De hecho, si nos importara, las bases de datos no tendrían sentido. (Ejemplo: ferreteria y organizacion, como mejora: poner lo que mas se vende cerca del mostrador)
 Es decir, buscamos que los datos más usados estén cerca y la reorganizacion sea sencilla. De hecho, esto no puede parar el funcionamiento de la base de datos. 
 Buscamos que las aplicaciones no tengan que saber dónde estan los datos almacenados físicamente pues se tendría que reprogramar la aplicación para que sepan dónde están.(Esta ultima fras es clave).
 En conclusión, aunque podamos hacer reorganizaciones físicas para que la búsqueda de los datos sea mas sencilla, debemos tener en cuenta que el diseño de la base de datos no debe depender de ello. 
 Luego, para diseñar la base de datos no pensaremos en la organización física.
   
-           -*Logica*: no la proporciona el SGBD pero sí da herramientas para conseguirlas. Busca que cuando haya cambios en el esquema lógico, no necesariamente se tengan que reprogramar las aplicaciones.
+           -Logica: no la proporciona el SGBD pero sí da herramientas para conseguirlas. Busca que cuando haya cambios en el esquema lógico, no necesariamente se tengan que reprogramar las aplicaciones.
 
  
-    · Que el usuario sea capaz de utilizar el SGDB de forma **sencilla** luego una mayor cantidad de personas sean capaces de usarlo. El sgdb relacional es el más utilizado para datos estructurados y lleva usándose desde finales de los 70 y se basaba en utilizar tablas.
+    · Que el usuario sea capaz de utilizar el SGDB de forma sencilla luego una mayor cantidad de personas sean capaces de usarlo. El sgdb relacional es el más utilizado para datos estructurados y lleva usándose desde finales de los 70 y se basaba en utilizar tablas.
  
-    · Que los datos estén **centralizados**, es decir, que los datos deban gestionarse de forma centralizada e independiente de las aplicaciones. Los usuarios tienen que percibir que hay un solo almacén en el que están todos los datos pese a que la implementación interna no sea así.
+    · Que los datos estén centralizados, es decir, que los datos deban gestionarse de forma centralizada e independiente de las aplicaciones. Los usuarios tienen que percibir que hay un solo almacén en el que están todos los datos pese a que la implementación interna no sea así.
  
-    · **No redundancia**, recalcamos otra vez que los datos no deben estar duplicados y deberá gestionar el acceso concurrente de los usuarios (SCD).
+    · No redundancia, recalcamos otra vez que los datos no deben estar duplicados y deberá gestionar el acceso concurrente de los usuarios (SCD).
  
-    · Los datos deben ser **consistentes** pues no deben haber fallos lógicos, es decir, se deben respetar las reglas definidas en la organización.
+    · Los datos deben ser consistentes pues no deben haber fallos lógicos, es decir, se deben respetar las reglas definidas en la organización.
         El sistema debe mantener las restricciones y, establecer y cumplir las reglas de mantenimiento de la integridad. Además, cuando se realice una operación que parte de un estado válido, debe acabar tras hacer la operación a otro estado válido y nunca a un estado inválido.
  
-    · **Fiabilidad**: Es decir, que los datos están protegidos contra cualquier catástrofe, luego tienen que proprocionar mecanismos de recuperación y relanzamiento de operaciones con los mismos, este punto esta relacionado con el siguiente pues la redundancia es usada para proporcionar fiabilidad pero tambien proporciona seguridad.
+    · Fiabilidad: Es decir, que los datos están protegidos contra cualquier catástrofe, luego tienen que proprocionar mecanismos de recuperación y relanzamiento de operaciones con los mismos, este punto esta relacionado con el siguiente pues la redundancia es usada para proporcionar fiabilidad pero tambien proporciona seguridad.
 
-    · **Seguridad**: El sistema debe ser un sistema seguro, luego los sistemas deben ser accesibles a todos los usuarios luego habrá mecanismos de gestión de usuarios y privilegios (quién accede y a qué accede, estas seguridades se dan muchas veces en las aplicacione de gestion, en oracle no ocurre esto, lo hace en la propia base de datos, solo veo lo que debo ver) y mecanismos de protección de datos (el mas burdo es la redundancia pero es el mas útil y seguro.)
+    · Seguridad: El sistema debe ser un sistema seguro, luego los sistemas deben ser accesibles a todos los usuarios luego habrá mecanismos de gestión de usuarios y privilegios (quién accede y a qué accede, estas seguridades se dan muchas veces en las aplicacione de gestion, en oracle no ocurre esto, lo hace en la propia base de datos, solo veo lo que debo ver) y mecanismos de protección de datos (el mas burdo es la redundancia pero es el mas útil y seguro.)
 
 ## 1.6.Ventajas de la utilización de un SGDB
 
