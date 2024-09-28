@@ -96,8 +96,11 @@ Cuando se dellarrola un software se persiguen unos objetivos, pero cada sistema 
 ## 1.6.Ventajas de la utilización de un SGDB
 
 En el caso del usuario, dependerá dle tipo de usuario del que hablemos:
+   
     · Usuario final o cliente: Podrá acceder a los datos.
+    
     · Programador: Elimina problemas en el diseño físico y lógico, en la depuración de errores, y en el mantenimiento general al hacer copias de seguridad o recuperación de fallos.
+    
     · Administrador: Este es el encargado de tomar decisiones y de mantener la base de datos facilitando el manejo de los datos y la toma de decisiones en la empresa.
 
 En el caso del sistema, proporciona un control centralizado de los datos, la utilización de criterios de uniformización, es decir,todos los datos se tratan de la misma manera. También proporciona facilidad para generar nuevas aplicaciones así como el equilibrio entre requerimientos conflictivos.
