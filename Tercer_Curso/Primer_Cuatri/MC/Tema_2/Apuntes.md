@@ -48,11 +48,11 @@ Donde repetimos los elementos que ya conocemos y $a\in A^\*$
 En caso de querer escribir que partiendo de una configuración llegamos a otra en una cantidad finita de pasos, usaremos el símbolo $\Vdash$ (en clase se usa $\vdash$ con un asterisco en la parte superior). 
 A su vez, se puede usar $\delta^\*(p,u)=q$ para representar lo ya definido. Esto útlimo tiene las propiedades:
 
-Si $q \in Q$
+Si $q \in Q$:
 
-    $\delta^\*(q,\epsilon)=q$
+$\delta^\*(q,\epsilon)=q$
 
-    $\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$
+$\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$
 
 Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
 
