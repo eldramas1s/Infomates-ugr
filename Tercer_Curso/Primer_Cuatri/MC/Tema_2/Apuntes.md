@@ -41,8 +41,7 @@ Definimos la __descripción instantánea__ como la dupla $(q,a)$ donde $a$ no es
 Definimos la __configuración incial__ como, dada una palabra cualquiera, la dupla formada por dicha palabra y el estado inicial.
 
 Definimos la __relación de paso de cálculo__ entre dos configuraciones como:
-
-                $$((q,au)\vdash(p,u)\leftrightarrow\delta(q,a)=p)$$
+                $((q,au)\vdash(p,u)\leftrightarrow\delta(q,a)=p)$
 
 Donde repetimos los elementos que ya conocemos y $a\in A^\*$
 
@@ -50,9 +49,9 @@ En caso de querer escribir que partiendo de una configuración llegamos a otra e
 A su vez, se puede usar $\delta^\*(p,u)=q$ para representar lo ya definido. Esto útlimo tiene las propiedades:
 
 Si $q \in Q$
-    · $$\delta^\*(q,\epsilon)=q$$
+    · $\delta^\*(q,\epsilon)=q$
 
-    · $$\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$$
+    · $\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$
 
 Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
 
