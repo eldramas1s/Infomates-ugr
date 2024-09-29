@@ -20,7 +20,7 @@ A partir de aqui, buscamos aplicar $\delta$ tantas veces como sea posible de man
 En ocasiones llegaremos a un estado de error; en estos casos, diremos que la palabra no pertenece al lenguaje generado por el autómata.
 
 *Definición*:
-Dado un _autómata de estados finitos determinista_, definimos el **lenguaje generado por el autómata** como el conjunto de palabras generadas por el alfabeto del autómata y que él mismo da por válidas, lo denotaremos $L(M)) donde $M$ es el autómata.
+Dado un _autómata de estados finitos determinista_, definimos el **lenguaje generado por el autómata** como el conjunto de palabras generadas por el alfabeto del autómata y que él mismo da por válidas, lo denotaremos $L(M)$) donde $M$ es el autómata.
 
 ___Diagrama de Transición___
 
@@ -41,13 +41,19 @@ Definimos la __descripción instantánea__ como la dupla $(q,a)$ donde $a$ no es
 Definimos la __configuración incial__ como, dada una palabra cualquiera, la dupla formada por dicha palabra y el estado inicial.
 
 Definimos la __relación de paso de cálculo__ entre dos configuraciones como:
+
                 $$((q,au)\vdash(p,u)\leftrightarrow\delta(q,a)=p)$$
-Donde repetimos los elementos que ya conocemos y $a\inA^\*$
+
+Donde repetimos los elementos que ya conocemos y $a\in A^\*$
 
 En caso de querer escribir que partiendo de una configuración llegamos a otra en una cantidad finita de pasos, usaremos el símbolo $\Vdash$ (en clase se usa $\vdash$ con un asterisco en la parte superior). 
 A su vez, se puede usar $\delta^\*(p,u)=q$ para representar lo ya definido. Esto útlimo tiene las propiedades:
+
 Si $q \in Q$
-$$\delta^\*(q,\epsilon)=q$$
-$$\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$$
+    · $$\delta^\*(q,\epsilon)=q$$
 
+    · $$\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$$
 
+Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
+
+$$L(M)={u \in A^\* : \delta^\*(q_0,u) \in F}$$
