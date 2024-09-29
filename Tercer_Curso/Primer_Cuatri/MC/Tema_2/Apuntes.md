@@ -13,7 +13,7 @@ Como motivación a la hora de estudiar un autómata finito, vamos a ver parte de
 Si buscamos una intuición, no es más que un "aparato" que sigue una secuencia finita de estados buscando llegar a un estado de fin. Este no tiene memoria, es decir, cumple la propiedad de __pérdida de memoria__ luego será útil en la comprobación de que una palabra pertenezca o no a un lenguaje de tipo 3. 
 
 *Definición*:
-Un autómata finito es una cuádrupla $M=(Q,A,\delta,q_0,F)$ donde $Q$ es un conjunto finito llamado _conjunto de estados_, $A$ es un alfabeto llamado _alfabeto de entrada_, $\delta$ es una aplicación que parte del conjunto $(qxA)$ donde a cada dupla le asigna otro estado, $q_0$ es un estado conocido como _inicial_ y; por último, $F$ es un subconjunto de estados llamado _estados finales_.
+Un autómata finito es una cuádrupla $M=(Q,A,\delta,q_0,F)$ donde $Q$ es un conjunto finito llamado _conjunto de estados_, $A$ es un alfabeto llamado _alfabeto de entrada_, $\delta$ es una aplicación que parte del conjunto $(QxA)$ donde a cada dupla le asigna otro estado, $q_0$ es un estado conocido como _inicial_ y; por último, $F$ es un subconjunto de estados llamado _estados finales_.
 
 De forma más intuitiva, cuando nosotros recibimos una palabra, para comprobar que pertenece al lenguaje, partimos de la palabra al completo y el estado inicial. 
 A partir de aqui, buscamos aplicar $\delta$ tantas veces como sea posible de manera que, mientras estemos en un estado válido y no estemos en un estado final, seguiremos aplicando $\delta$. 
