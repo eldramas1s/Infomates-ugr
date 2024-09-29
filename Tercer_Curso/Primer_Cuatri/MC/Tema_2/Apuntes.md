@@ -49,9 +49,10 @@ En caso de querer escribir que partiendo de una configuración llegamos a otra e
 A su vez, se puede usar $\delta^\*(p,u)=q$ para representar lo ya definido. Esto útlimo tiene las propiedades:
 
 Si $q \in Q$
-    · $\delta^\*(q,\epsilon)=q$
 
-    · $\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$
+    $\delta^\*(q,\epsilon)=q$
+
+    $\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$
 
 Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
 
