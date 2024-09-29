@@ -14,8 +14,8 @@ double f(double x){
 
 void calcular_integral_hebras_intercalado(int i, int num_hebras, vector<double>& resultados){
     double suma = 0.0;
-    for (long j = (long)i; j<m; j+=(long)num_hebras){
-        const double xj = double(j+0.5)/m;
+    for (long j = i; j<m; j+=num_hebras){
+        const double xj = (double)(j+0.5)/m;
         suma+=f(xj);
     }
     resultados[i]=suma;
@@ -33,7 +33,6 @@ int main(){
 
     for (int j = 0; j<num_hebras; ++j){
         hebras[j] = thread (calcular_integral_hebras_intercalado, j, num_hebras,ref(resultados)); 
-        cout << "hola";
     }
 
     for (int j=0; j<num_hebras; ++j){
@@ -51,4 +50,6 @@ int main(){
          << duracion_micros.count() << " microsegundos." << endl;
 
     cout << "El resultado es : " << suma << endl; 
+
+    return 0;
 }
