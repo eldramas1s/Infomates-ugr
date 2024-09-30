@@ -25,7 +25,7 @@ __Palabra__
 
 Una palabra generada por un alfabeto no es más que una secuencia finita de combinaciones de símbolos del alfabeto. Al conjunto formado por todas las palabras, incluyendo la palabra vacía ${\epsilon}$, se le denota por _A*_, en caso de no querer la palabra vacía, escribiremos _A⁺_.
 
-Se pueden hacer algunas operaciones intuitivas con las palabras como el cálculo de la longitud denotada por |·|: _A_ -> $N$ que simplemente cuenta el número de letras que tiene cada palabra. Otra operación puede ser la concatenación de palabras denotada por el producto matemático(cumple la asociativa y posee a la palabra vacía como elemento neutro), la inversión de palabras denotada por $^{-1}$ y la iteración denotada por $^n$ con n un numero natural (consiste en escribir n veces lo denotado).
+Se pueden hacer algunas operaciones intuitivas con las palabras como el cálculo de la longitud denotada por $|·|: _A_ \rightarrow \math{N}$ que simplemente cuenta el número de letras que tiene cada palabra. Otra operación puede ser la concatenación de palabras denotada por el producto matemático(cumple la asociativa y posee a la palabra vacía como elemento neutro), la inversión de palabras denotada por $^{-1}$ y la iteración denotada por $^n$ con n un numero natural (consiste en escribir n veces lo denotado).
 
 __Prefijos y sufijos__
 
@@ -46,19 +46,22 @@ Al igual que las palabras, los lenguajes soportan las misma operaciones donde la
 En el caso de la iteración, añadiendo a lo que ya se puede intuir, será el formado por las palabras que son concatenaciones finitas de palabras del lenguaje inicial.
 
 Al igual que con el alfabeto, disponemos de las notaciones _L*_ y _L⁺_ que denotan lo mismo que ya sabemos.
-Otro lenguaje resultante de una operación es el lenguaje inverso denotado por _L^{-1}_ y está formado por las palabras inversas del lenguaje original.
+Otro lenguaje resultante de una operación es el lenguaje inverso denotado por $L^{-1}$ y está formado por las palabras inversas del lenguaje original.
 Un concepto importante es la cabecera de un lenguaje, es el conjunto de palabras del alfabeto de manera que existe una palabra del alfabeto que al concatenarla con la primera genera una palabra del lenguaje; la diferencia con el prefijo es que el prefijo no necesariamente tiene que pertenecer a _A*_ además de que este concepto es un conjunto.
 
 Uno de los conceptos más importantes es el concepto de __homomorfismo__ que consiste en una aplicación entre dos conjuntos de palabras de un alfabeto de manera que se cumple:
-                                        _h(uv) = h(u)h(v)_
+                                        $h(uv) = h(u)h(v)$
+
 Como consecuencias:
-    · _h($\epsilon$) = $\epsilon$_
-    · _h(a_1...a_n) = h(a_1)...h(a_n)
+    i) $h(\epsilon) = \epsilon$
+
+    ii) $h(a_1...a_n) = h(a_1)...h(a_n)$
+
 Donde _h_ es una aplicacion que parte de _A*_ y llega a _B*_, $u,v,a_{i} \in _A*_$ 
 
 ## 1.2.Gramaticas Generativas
 
-Una gramatica generativa es una cuadrupla (V,T,P,S) en la que tenemos un alfabeto _V_ llamado alfabeto de variables, otro alfabeto _T_ llamado de símbolos terminales, una serie finita de reglas de producción _P_ y un símbolo inicial _S_ del cual derivarán todas las palabras.
+Una gramatica generativa es una cuadrupla $(V,T,P,S)$ en la que tenemos un alfabeto _V_ llamado alfabeto de variables, otro alfabeto _T_ llamado de símbolos terminales, una serie finita de reglas de producción _P_ y un símbolo inicial _S_ del cual derivarán todas las palabras.
 
 Cuando disponemos de una gramatica generativa, esta generará un lenguaje formado por las palabras que podemos obtener mediante el proceso de derivación que consiste en comenzar por el símbolo terminal y aplicar las reglas de producción hasta obtener una combinación finita de símbolos terminales. De esta manera, diremos que una combinación de símbolos terminales y de variable es derivable a partir de otra cuando podemos partir de la primera y llegar a la segunda mediante un proceso finito de derivación (si lo conseguimos en un paso diremos que es derivable en un paso).
 
@@ -69,6 +72,7 @@ Disponemos de cuatro tipos de gramáticas que generarán cuatro tipos de lenguaj
     · __Tipo 0__: Cualquier gramática, no tiene restricciones. Genera lenguajes recursivamente enumerables; de forma intuitiva, diremos que un lenguaje es de este tipo cuando para construir una palabra vamos contruyendo otras en el prodeso de derivación.
     · __Tipo 1__: Son aquellas gramáticas cuyas reglas de producción son de la forma:
                     $a_{1}_A_a_{2} \rightarrow a_{1}_B_a_{2}$
+
     donde la parte derecha es una combinación de palabras de símbolos de variable y terminales, A es un símbolo de variable y B no es la palabra vacía. A estos lenguajes se les llama lenguajes dependientes del contexto.
     · __Tipo 2__: Son aquellas gramáticas donde las reglas de producción sólo tienen una variable en la parte izquierda y cualquier combinación de variables y símbolos terminales a la derecha. generan lenguajes independientes del contexto.
     ·__Tipo 3__: Es muy parecida a la anterior diferenciándose sólo en que en la parte derecha de la regla de producción soólo pueden aparecer o una combinación de símbolos terminales o eso anterior junto a una única variable y en este orden. 
