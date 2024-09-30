@@ -25,7 +25,7 @@ __Palabra__
 
 Una palabra generada por un alfabeto no es más que una secuencia finita de combinaciones de símbolos del alfabeto. Al conjunto formado por todas las palabras, incluyendo la palabra vacía ${\epsilon}$, se le denota por _A*_, en caso de no querer la palabra vacía, escribiremos _A⁺_.
 
-Se pueden hacer algunas operaciones intuitivas con las palabras como el cálculo de la longitud denotada por $|·|: _A_ \rightarrow \math{N}$ que simplemente cuenta el número de letras que tiene cada palabra. Otra operación puede ser la concatenación de palabras denotada por el producto matemático(cumple la asociativa y posee a la palabra vacía como elemento neutro), la inversión de palabras denotada por $^{-1}$ y la iteración denotada por $^n$ con n un numero natural (consiste en escribir n veces lo denotado).
+Se pueden hacer algunas operaciones intuitivas con las palabras como el cálculo de la longitud denotada por $| |: A \rightarrow N$ que simplemente cuenta el número de letras que tiene cada palabra. Otra operación puede ser la concatenación de palabras denotada por el producto matemático(cumple la asociativa y posee a la palabra vacía como elemento neutro), la inversión de palabras denotada por $^{-1}$ y la iteración denotada por $^n$ con n un numero natural (consiste en escribir n veces lo denotado).
 
 __Prefijos y sufijos__
 
