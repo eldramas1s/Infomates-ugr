@@ -4,7 +4,9 @@
 ## 1.1.Concepto intuitivo de base de datos
 
 Como motivación, es importante conocer cuál es la ventaja de usar bases de datos (BD). 
+    
     · La primera de ellas consiste en que al tener que manejar una gran cantidad de datos dentro de una empresa, las bases de datos provocan que estos datos sean manipulados de forma más sencilla y rápida.
+    
     · La segunda de ellas es la accesibilidad que permiten estas estructuras, pues se podrá accedder a los datos desde varios dispositivos. No obstante, será importante conocer que cualquier organización importante debe manejar una gran cantidad de datos necesitando de estas aplicacione spara manejarlos.
 
 *Ejemplo*:
