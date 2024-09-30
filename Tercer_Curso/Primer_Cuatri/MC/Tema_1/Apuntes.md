@@ -31,7 +31,7 @@ __Prefijos y sufijos__
 
 Sea _u_ una palabra del alfabeto _A_, diremos que _v_ es un prefijo de _u_ si existe una palabra $w \in  A^\*  vw=u$. Un prefijo sera propio si no es la palabra vacía ni la propia palabra.
 
-Diremos que _v_ es un sufijo de _u_ si existe una palabra $W \in A^\* | wv=u$. De la misma manera será propio o no.
+Diremos que _v_ es un sufijo de _u_ si existe una palabra $w \in A^\* | wv=u$. De la misma manera será propio o no.
 
 __Lenguaje__
 
@@ -52,11 +52,11 @@ Un concepto importante es la cabecera de un lenguaje, es el conjunto de palabras
 Uno de los conceptos más importantes es el concepto de __homomorfismo__ que consiste en una aplicación entre dos conjuntos de palabras de un alfabeto de manera que se cumple:
                                         $h(uv) = h(u)h(v)$
 
-Como consecuenciasa:  
+Como consecuencias:  
     i) $h(\epsilon) = \epsilon$  
     ii) $h(a_1...a_n) = h(a_1)...h(a_n)$
 
-Donde _h_ es una aplicacion que parte de _A*_ y llega a _B*_, $u,v,a_{i} \in _A*_$ 
+Donde _h_ es una aplicacion que parte de _A*_ y llega a _B*_, $u,v,a_{i} \in A^\*$ 
 
 ## 1.2.Gramaticas Generativas
 
