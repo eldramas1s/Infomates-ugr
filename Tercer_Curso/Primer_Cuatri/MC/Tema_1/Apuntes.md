@@ -69,9 +69,8 @@ Cuando disponemos de una gramatica generativa, esta generará un lenguaje formad
 Disponemos de cuatro tipos de gramáticas que generarán cuatro tipos de lenguajes que contendrán al posterior:
 
     · __Tipo 0__: Cualquier gramática, no tiene restricciones. Genera lenguajes recursivamente enumerables; de forma intuitiva, diremos que un lenguaje es de este tipo cuando para construir una palabra vamos contruyendo otras en el prodeso de derivación.
-    · __Tipo 1__: Son aquellas gramáticas cuyas reglas de producción son de la forma:
-                    $a_{1}Aa_{2} \rightarrow a_{1}Ba_{2}$
-
+    · __Tipo 1__: Son aquellas gramáticas cuyas reglas de producción son de la forma:  
+                    $a_{1}Aa_{2} \rightarrow a_{1}Ba_{2}$  
     donde la parte derecha es una combinación de palabras de símbolos de variable y terminales, A es un símbolo de variable y B no es la palabra vacía. A estos lenguajes se les llama lenguajes dependientes del contexto.
     · __Tipo 2__: Son aquellas gramáticas donde las reglas de producción sólo tienen una variable en la parte izquierda y cualquier combinación de variables y símbolos terminales a la derecha. generan lenguajes independientes del contexto.
     ·__Tipo 3__: Es muy parecida a la anterior diferenciándose sólo en que en la parte derecha de la regla de producción soólo pueden aparecer o una combinación de símbolos terminales o eso anterior junto a una única variable y en este orden. 
