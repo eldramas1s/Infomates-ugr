@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <thread>
 #include <chrono>
@@ -6,7 +7,7 @@
 using namespace std;
 using namespace std::chrono;
 
-const long m = LONG_MAX;
+const long m = 1024*1024*1024;
 
 double f(double x){
     return 4/(1+x*x);
@@ -24,7 +25,7 @@ void calcular_integral_hebras_intercalado(int i, int num_hebras, vector<double>&
 int main(){
     int num_hebras = 8;
     const double pi = 3.14159265358978312;
-    long suma = 0;
+    double suma = 0;
     vector<double> resultados(num_hebras, 0.0);
 
     thread hebras[num_hebras];
@@ -41,6 +42,8 @@ int main(){
     for (int j = 0; j<num_hebras;++j){
         suma +=resultados[j]; 
     }
+    
+    suma = suma/m;
 
     time_point<steady_clock> instante_final = steady_clock::now();
 
@@ -49,7 +52,7 @@ int main(){
     cout << "La actividad ha tardado: "
          << duracion_micros.count() << " microsegundos." << endl;
 
-    cout << "El resultado es : " << suma << endl; 
+    cout << "El resultado es : " << setprecision(100) << suma << endl; 
 
     return 0;
 }

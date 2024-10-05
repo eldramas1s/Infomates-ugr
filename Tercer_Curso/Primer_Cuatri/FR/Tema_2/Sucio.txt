@@ -1,0 +1,144 @@
+3/10/24
+----------------------------
+
+Hablamos de la capa de red: (IMPORTANTE)
+
+Repaso:
+
+Recordando lo que vimos, tieniamo squ esi hay dos pc's con dos routers, para enviar cualquier paquete debe atravesar las capas en vertical de cada uno de los dispositivos. 
+
+Lo que no sinteresa es como pasar de la capa de Red a la capa de Enlace, necesito saber la direccion de enlace (en Ethernet se le llama direccion MAC, en WiFi tmb). Necesito un protocolo que me diga para una direccion IP cuál es su direccion MAC asociada ( lo hace ARP ).
+
+1. Funcionalidades
+----------------------------------------------------------------
+TCP/IP simplifica pues una de las fases va a transporte. Tamb incluye el direccionamiento.
+
+Otros protocolos: IP5...(habia mas)
+
+
+
+2. COnmutación
+-----------------------------------------------------------------
+Todo viene de la conmutacion de circutos que simplemente consiste en que, en centrales de conmutación, como en cada central de conmutación hay muchos cables al inicio pues habra uno por telefono; entre centralos de conmutación no será así pues no puede ses sosytenible luego dependiendo d el a entrada y de la salida trataremos de qu ese choquen ocasionando que haya la comunicacipn, luego debe hacerse un camino necesario. Ese camino se llama circuito, basicamente habia personanas cambiando entradas y salidas. Lo bueno es que cada cable en cada instante es para una comunicacion evitando que hay retrasos y esperas. Los cables iniciales con de cada uno únicos luego para ello son faciles.
+
+Problemas: cuando alguien no usa el cable no lo usa nadie mas luego esta en silencio y e s muy poco eficiente, no puede adaptarse a cambios pues si se rompe el cable no podemos rehacerlo facil.
+
+Puede entenderse como un tiro al barco donde tratamos encontrar la lllegada.
+
+
+Se llama conmutacion por que busco cambiar y conectar.
+
+La conmutacion de paquetes consiste en mandar datosm es decirm 0s y 1s. BN elos elemento sde conexion que ya no son centrales, sino touters necesito colas pues debo seguir un orden y no provocar perdidas de bloques de datos o paquetes. Tipos:
+
+        · COnmutacion de datagrama(esta es la que vamos a usar): Un datagrama es un concepro de correos, es una carta que le doy al cartero y este hara lo posible de que llego pero no puedo saber si ha llegado o no; es un mayor esfuerzo, ni siquiera sabré como ha llegado, debe haber un superior que tenga esa información. IP hace esto.
+
+Cada una de las capas tiene un nombre distinto para los paquete, si estan en la capa de enlace (paquete=trama) si capa de red (datagrama), capa de transporte (si TCP -> segmento, si UDP -> datagrama) y en caso de la capa de aplicacion (mensaje).
+
+Como no ncesito saber si ha llegado, no es necesario comprobar conexion(si no llega me la suda), cada paquete es independiente (el encaminamiento se hace apquete a paquete, luego dos paquetes distinitos pueden seguir rutas distintas y pueden llegar desordenados) y si quiero arreglarlo debe hacerlo otra capa, si neceisto fragmentar, no fragmento en cada sitio pues como cada paquete es independiete, los routers no guardan los paquetes que llegen esperando a que llegen los demás pues pueden no llegar al ser independeintes, esta division puede no hacerse inicalmente y en un router. el ensamblado solo se hace en el desitno. Es necesario que los paquetes tengan origen para el hecho de qu ehaya respuestas, no para el encaminamiento(esto solo depende del destino). 
+
+Es importante saber que el medio de transmision no es propio de cada uno sino que lo usan varios compitiendo por le medio y teniendo que hacer metodos para resolucion de esta competicion.
+
+En las diapositivas pone almacenamiento = colas que tiene cada router.
+
+    · Conmutacion de paquetes con circuitos virtuales: Consiste en reservar recursos para que cuando se mande un dato el mcamino este establecio, es decir, puedo reservar, por ejemplo, colas de los routers y usar esas colas para mí y no tener en cuenta lo demas, permitiendo que la comunicaicón sea rápida. Necesito establecer conexion, los recursos no son dedicados pero en parte si. La idea es que si tengo diferentes rutas, al reservar recursos hago que le camino se establezca antes de mandar los datos. Es virtual purque se establece en el momento. en este caso todos los fragmentos del mimso paquete sihguen el mismo camino.
+
+En ambos casos, todo lo que tiene qu ebver con recuperacion de paquetes se hace en la capa de transporte (OSI). (Supone el profesor)
+
+3.Protocolo IP
+
+No tiene muchas funcionalidades:
+    · Asignar direcciones IP y gestionarlas
+    · Encamienamiento salto a salto (llegar a los extremos)
+    · Devido al MTU (tamaño maximo de paquete en la red), fragmentamos paquetes
+Al ser un protocolo de mayor esfuerzo, intento que llegue bien pero si no lo hace no me preocupa, lo he intentado pero no puedo hacer nada, pero sí se manda un mensaje de error, lo hace a través de ICMP
+
+Versiones:
+    ·IPV4 (la que usamos): PErmite conectar redes,subredes y superredes, el encaminamiento es que cada equipo (cada tarjeta de red) tiene una dirección; no es fiable al ser vía datagrama no comprueba que lleguen los paquetes. 
+    Handshake = se sduele traducir a protocolo pero "protocole" se refiere a como dos entidades de la misma capa transmiten información. Hand shake se refiere a un intercambio de mensajes concreto. 
+
+    Tampoco hace hanshake, negociacion, conexion, comprobavion... A la PDU que mandamos se les llaman datagramas pero se pueden fragmentar y al paquete fragmentado es a lo que llamamos paquete IP.
+
+    DIRECCIONAMIENTO
+    --------------------------------
+
+    Direccion IP (32 bits) tiene notacion A.B.C.D, la mas habitual de los routers es 192.168.1.1, cada letra de la dirección IP son 4Bytes (TENERLO EN CUENTA). Los nombres de dominio (ugr, youtube) se usan en capas superiores pero realmente usamos la IP's para comunicarnos. Realmente cada dominio dispone de varios servidores luego un nombre de dominio puede tener varias IPs. 
+
+    Inicialmente las direcciones se codificaben en dos partes, la res a la izquierda y el equipo a la derecha (mirar practicas)
+    
+    Las direcciones se calsifican en clases [DEPBEMOS APRENDER RANGOS de las calses a,b,c]:
+
+    
+            - Clase A: Todas las direcciones en binario que empiezan por 0xx...x -> primera direccion 0.0.0.0/8 luego la ultima direccion será la que tenga un cero y todo unos, es decir la direccion 127.255.255.255. Cuando empezo todo se decidió que iba a tener 8 bits de máscara a 1. Luego el primer Byte define la red, lo que significa que hay 128 redes de 2^{24} , luego aproximadamente 16 millones de equipos. Como el primer bit es fijo a 0 tengo 2⁷ redes y el resto de bits (32-8) representan la cantidad de equipos que tiene cada red.
+
+
+            - Clase B: Empiezan por 10xx.....x y las mascara de red es /16 lugeo hay 16 bits que definen la parte de red, luego la red mas pwequña posible es la 128.0.0.0, en el caso contrario, es decir, la mas grade es la 191.255.255.255. entonces hay 2^{14} (pues los dos primeros están fijos) redes con 2*{16} equipos cada red, luego aproximadamente hay unos 16000 redes con 65000 equipos. 
+
+
+            - Clase C: empiezan por 110xxx...x con máscara /24 luego siguiendo la regla, los 3 primeros Bytes identifican la red. El dominio es [192.0.0.0-223.255.255.255] donde hay 2^{21} redes con 2⁸ equipos, aproximando son 2 millones de 256 equipos.
+
+
+
+            - Clase D: Aunque estar redes no estaban en el origen tenemos aquellas que empiezan 1110xx....x donde el dominio es [224.0.0.0 - 239.255.255.255]. Esta clase se usa pra multidifución y no dispone de máscara pues no se usan para redes IP; cada direccion identifica un grupo de equipos, que son ciertos grupos de redes, uin ejemplo es IGMP. suele usarse para la tele que estén suscritos (Movistar +). Luego para que el suministrador mande un paquete a todos los eqiupos primero ira al roiuter de multidifusion.
+
+
+            - Clase E: Estas serian las que quedan, es decir, empiezan por 1111xx...x y el dominio es [240.0.0.0-255.355.355.355]. tampoco dispone de mascara y es una red experimental, es decir, se usa para probar cosas y tests, a efectos practicos no se utiliza.
+
+
+En conclusión, para crear redes y asignarlas a equipos se usan las tres primeras clases.
+
+La intranet es la parte de red de la empresa que solo es accesible dentro de la empresa, el caso opuesto es la extranet. La intranet no epermite acceso al exterior.
+
+    MASCARAS
+    ------------------------------------
+
+    Se suele expresar como n bits a 1  que se expresa /n lo que quiere decir que los primeros n bits definen la red que usamos. si es a 8 tendríamos 11111111.0000......0 luego 8 bits para la red.
+
+Estas mascaras sirven para saber cual es la red asociada a una direccion IP.
+
+Ejemplo:
+        · 192.168.1.5 -(bin)--> 11000000.10101000.00000001.00000101
+        · Mascara = /24 -(dec)--> 255.255.255.0 --> 11111111.11111111.11111111.000000000
+        · Aplicamos la AND lógica, luego me quedo con los 24 bits iniciales de la izquierda.
+        · Resultado(red a la que me conecto): 11000000.10101000.00000001.00000000 --(dec)->192.168.1.0=dir.real
+
+La direccion que hemos obtenido es importtante, solo la red dispone de esa direccion haciendola unica pues no se asigna a ningún equipo y es util para encaminamiento. Tambien esta reservada aquella red de cada rango que tenga todos los bits de equipo a 1, es decir la ultima (en ej.:192.168.1.255) que es al dirección de difusión, es decir va a todos los equipos. Esta dirección se suele usar para alcarnzar un servidor que no sabemos donde esta pues el servidor reaccionar que es al dirección de difusión, es decir va a todos los equipos. Esta dirección se suele usar para alcarnzar un servidor que no sabemos donde esta pues el servidor reaccionara.
+
+Es calro que con estas asignaciones se están desperdiciando una barbaridad de direcciones. Para solucionarlo esta el direccionamiento sin clase donde los bits usados para la red pueden ser lo que uno quiera evitando muchos desperdicios pues uso tantos bist de equipos como necesite pero sólo esos y pocos mas que podrían no ser útiles al ser potencia de 2. Lo habitual ez coger una rez cualquiera y a su vez dividirla en mas partes con algun bits informativo consiguiendo subredes dentro de mi propia red que ya he reservado.
+
+NOTA: Un router se puede entender como un pc con muchas tarjetas de red(cada una dispone de una direccion ip), tantas como interfaces y redes a las que se conecte. Este dispositivo se encarga de dividir redes e interconectarlas entre sí, luego cada pata de un router es una red distinta. 
+Cabe recalcar que para que una red se conecte al router y los pc's lo usen se conectarán a un switch que es el encargado de tener la conexion de cada cable del pc son la red y otra con el router. De esta manera el router solo recibe una. 
+
+NOTA: La red inalambrica no se conecta a otra cosa sino al switch con un receptor de red inalambrica. 
+
+Como un switch funciona a nivel 2 no tienen la funcionalidad de separar redes luego tendrá la misma dirección IP; un switch no tiene el nivel IP y no permite encaminar.
+
+
+La definicion de router es que es de nivel 3 y encamina a nivel de red.
+
+Luego un router que osotros conocemos, tien la funcionalidad de red asicomo unmontod de funcionalidades mas como contener el switch.
+
+    Que son las subredes?
+    -----------------------------------------
+
+    Diap 18: Las subredes basivcamente estan determinadas por los switches, luego si dos routers comparten switch tendrán la misma red aunque los direcciones de quipo sean distintas. No dejan de ser redes pero basicamente lo que tenemos es una estructura de red en la que cada conexion de las ya explicadas son subredes.
+
+    Switches conectados entr sí determinan la misma subred, los witches no tienen direccion IP.
+
+    Hayq ue recordar que lso routers tienen tambien una direccion distintas de equipo.
+
+    Para saber lo que podemos ver en linux  usamos el comando sysctl -a y la linea de net.ipv4.ip_forward nos dice si nuestro pc es un router o no.
+    
+    
+
+    ·IPV6 (esta en auge)
+
+4.Asocioacion con la capa de enlace: Protocolo ARP
+
+
+5. Protocolo ICMP
+
+Manda información al origen para que el usuario sepa que no ha llegado bien el paquete y que el usuario haga lo que uqiera.
+
+6.Autoconfiguracion de la capa de red (DHCP)
+
+Realiza lo que se necesite para que se configure el hosts automaticamente obteniendo la informacion necesaria.
