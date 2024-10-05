@@ -20,7 +20,7 @@ A partir de aqui, buscamos aplicar $\delta$ tantas veces como sea posible de man
 En ocasiones llegaremos a un estado de error; en estos casos, diremos que la palabra no pertenece al lenguaje generado por el autómata.
 
 *Definición*:
-Dado un _autómata de estados finitos determinista_, definimos el **lenguaje generado por el autómata** como el conjunto de palabras generadas por el alfabeto del autómata y que él mismo da por válidas, lo denotaremos $L(M)$) donde $M$ es el autómata.
+Dado un _autómata de estados finitos determinista_, definimos el **lenguaje generado por el autómata** como el conjunto de palabras generadas por el alfabeto del autómata y que él mismo da por válidas, lo denotaremos $L(M)$ donde $M$ es el autómata.
 
 ___Diagrama de Transición___
 
