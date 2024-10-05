@@ -201,7 +201,7 @@ Veamos la construcción formal de un autómata determinista a partir de un autó
     
 i) Q'=P(Q)
 
-ii) $\delta'(P,a)=\delta^\*(P,a)=Cl(\cup_{q\inP}\delta(q,a))$
+ii) $\delta'(P,a)=\delta^\*(P,a)=Cl(\cup_{q\in P}\delta(q,a))$
 
 iii) $q_0'=Cl(q_0)$
 
