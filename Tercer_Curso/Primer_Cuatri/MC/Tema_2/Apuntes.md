@@ -212,6 +212,7 @@ Tenemos ahora que _M'_ acepta el mismo lenguaje que _M_.
 ## 2.5.Expresiones regulares
 
 Sea _A_ un alfabeto, una __expresión regular__ sobre este alfabeto se define de la siguiente forma:
+
     · Si el conjunto vacío es una expresión regular, este denota el lenguaje vacío.
     · La palabra vacía como expresión regular representa el lenguaje cuyo único elemento es esta palabra
     · Si un elemento del alfabeto es una expresión regular, esta denota el lenguaje cuyo único elemento es ese elemento del alfabeto.
