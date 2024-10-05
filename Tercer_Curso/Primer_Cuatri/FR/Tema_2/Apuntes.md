@@ -109,6 +109,7 @@ Siempre se interpretarán de la misma forma, una cantidad de bits de la izquierd
 Para ello usamos las __máscaras__ que suelen estar formadas por el mismo número de bits que la dirección _IP_ y no son más que una cantidad, _n_, de bits a 1 seguidos de ceros hasta completar el tamaño. De esta manera, aplicando la función lógica _AND_ entre la dirección _IP_ y la máscara se obtiene la red a la que se conecta el dispositivo.
 
 Por ejemplo:
+
     · 192.168.1.5 -(bin)--> 11000000.10101000.00000001.00000101
     · Mascara = /24 -(dec)--> 255.255.255.0 --> 11111111.11111111.11111111.000000000
     · Aplicamos la AND lógica, luego me quedo con los 24 bits iniciales de la izquierda.
