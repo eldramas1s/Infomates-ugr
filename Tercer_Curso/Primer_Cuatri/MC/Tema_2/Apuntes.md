@@ -50,9 +50,9 @@ A su vez, se puede usar $\delta^\*(p,u)=q$ para representar lo ya definido. Esto
 
 Si $q \in Q$:
 
-$\delta^\*(q,\epsilon)=q$
+i) $\delta^\*(q,\epsilon)=q$
 
-$\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$
+ii) $\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$
 
 Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
 
@@ -74,7 +74,6 @@ De forma gráfica, podemos intuir que un diagrama de estados finitos es un autó
 </p>
 </div>
 
-#TODO:img diap 18
 
 Otra característica que se ve en la imagen es que puede darse el caso en el que, a partir de una entrada y en un estado, no dispongamos de estado siguiente como ocurre con $\delta(q_2,1)$.
 
@@ -90,13 +89,11 @@ Hay ocasiones donde puede ser útil disponer de un estado de error, es decir, de
 </p>
 </div>
 
-#TODO: img abajo diap 19.
-
 ### 2.2.1.Proceso de cálculo
 
 Sea $M=(Q,A,\delta,q_0,F)$ un autómata finito no determinista, damos algunas definiciones:
 
-__Descripción instantñanea__
+__Descripción instantánea__
 
 La descripción instantánea no es más que un elemento de $QxA^\*$ denotado por $(q,u)$. Básicamente es la representación del estado en el que nos encontramos en un momento de cálculo determinado.
 
@@ -125,13 +122,13 @@ Definimos este lenguaje como el conjunto de palabras que adminten alguna sucesi�
 
 Siguiendo con el autómara _M_ definimos $\delta^\*$ de la siguiente forma:
 
-i) Si $B \subseteq Q$, $\delta^\*(B,a) = \cup_{q\inB}\delta(q,a)$; es decir la unión de todos los estados a los que podemos llegar partiendo desde cualquier estado de $B$ y la palabra $a$.
+i) Si $B \subseteq Q$, $\delta^\*(B,a) = \cup_{q\in B}\delta(q,a)$; es decir la unión de todos los estados a los que podemos llegar partiendo desde cualquier estado de $B$ y la palabra $a$.
 ii)Si $B \subseteq Q$:
     
     · La relación de cálculo de cada estado de B con la palabra vacía es el propio B pues no hemos cambiado nada.
     · La relación de cálculo de palabras concatenadas es la relación de cálculo con una de las subcadenas con la relación de cálculo de la otra subcadena con cualquier estado.
 
-iii)$\delta^\*(q,u)=\delta^\*({q},u)$
+iii) Se cumple que $\delta^\*(q,u)=\delta^\*({q},u)$
 
 De esta manera, es inmediato comprobar que $L(M)={u \in A^\* : \delta^\*(q_0,u)\cap F \neq \emptyset}$
 
@@ -143,7 +140,7 @@ Veamos la implicación hacia la derecha; es decir, que todo lenguaje aceptado po
 
 Así, si un lenguaje _L_ es aceptado por un autómata determinista es aceptador también por un autómata no determinista: aquel que tiene le mismo diagrama.
 
-Veamos ahora la otra implicación; es decir, todo lenguaje _L_ aceptado por un autómata no determinista es aceptado también por un autómata deteminista. Para probrarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0={q_0}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F={B \in P(Q) | B\capF \neq \emptyset}$.
+Veamos ahora la otra implicación; es decir, todo lenguaje _L_ aceptado por un autómata no determinista es aceptado también por un autómata deteminista. Para probrarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0={q_0}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F={B \in P(Q) | B\cap F \neq \emptyset}$.
 
 Luego la idea básica es que dado un autómata no determinista le hacemos corresponter uno determinista que recorre todos los caminso al mismo tiempo.
 
@@ -157,7 +154,6 @@ Este apartado completo se resume diciendo que añadimos una posible transición 
 </p>
 </div>
 
-#TODO: diap29
 
 Otra utilidad puede ser unir dos lenguajes luego un mismo autómata puede reconocer dos lenguajes implementando así el lenguaje unión.
 
@@ -167,18 +163,17 @@ Otra utilidad puede ser unir dos lenguajes luego un mismo autómata puede recono
 </p>
 </div>
 
-#TODO: diap32
 
 Cabe recalcar que gracias a los pasos nulo spodemos avanzar de estado, si el autómata lo permite, y seguir comprobando la misma palabra
 
 ___Lenguaje aceptado por un AFND con transiciones nulas___
 
-El lenguaje que tratamos de definir claramente contiene al definido en los _AFND_ pues viene definido de la siguiente manera: $L(M)={u \in A^\* : \existsq \in F, (q_0,u)\Vdash(q,\epsilon)}$
+El lenguaje que tratamos de definir claramente contiene al definido en los _AFND_ pues viene definido de la siguiente manera: $L(M)={u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)}$
 
 
 ### 2.4.1.Función de estados
 
-Comenzamos con una definición; dado un _AFND con transiciones nulas_, definimos la __Clausura de un estado q__ como la sucesión de estados tales que empezando por _q_ podemos volver a llegar a ellos; es decir, $Cl(q)={q: \existsp_1,...,p_n, p_1=q,p_n=p,  p_i \in \delta(p_{i-1},\epsilon) i=2,...,n}$.
+Comenzamos con una definición; dado un _AFND con transiciones nulas_, definimos la __Clausura de un estado q__ como la sucesión de estados tales que empezando por _q_ podemos volver a llegar a ellos; es decir, $Cl(q)={q: \exists p_1,...,p_n, p_1=q,p_n=p,  p_i \in \delta(p_{i-1},\epsilon) i=2,...,n}$.
 
 Definimos, ahora sí la función de estados $\delta^\* (abuso de notación) como la conocíamos en los _AFND_ tomando como imágenes las clausuras, es decir, $\delta^\*(B,a)$ será la clausura de la unión y $\delta^\*(B,\epsilon) = Cl(B)$.
 
@@ -204,10 +199,13 @@ Como ejemplo veamos esta ilustración:
 
 Veamos la construcción formal de un autómata determinista a partir de un autómata finito no determinista con transiciones nulas. Para ello, tomamos $M=(Q,A,\delta,q_0,F)$ como _AFND con transiciones nulas_ y construimos $M'=(Q',A,\delta',q_0',F')$ donde:
     
-i)Q'=P(Q)
-ii)$\delta'(P,a)=\delta^\*(P,a)=Cl(\cup_{q\inP}\delta(q,a))$
-iii)$q_0'=Cl(q_0)$
-iv)F'={P : P\cap F \neq \emptyset}$
+i) Q'=P(Q)
+
+ii) $\delta'(P,a)=\delta^\*(P,a)=Cl(\cup_{q\inP}\delta(q,a))$
+
+iii) $q_0'=Cl(q_0)$
+
+iv) $F'={P : P\cap F \neq \emptyset}$
 
 Tenemos ahora que _M'_ acepta el mismo lenguaje que _M_.
 
