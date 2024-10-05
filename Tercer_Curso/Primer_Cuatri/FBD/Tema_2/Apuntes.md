@@ -48,7 +48,7 @@ Cabe recalcar, que esto no es posible en algunas ocasiones pues si hago una modi
 
 <div>
 <p style='text-align:center;'>
-<img src="./imagenes/Correspondencias.png" alt="JuveYell" width="500px" height="500px">
+<img src="./imagenes/Correspondencias.png" alt="JuveYell" width="500px" height="400px">
 </p>
 </div>
 
