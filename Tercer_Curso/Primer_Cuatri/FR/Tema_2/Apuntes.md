@@ -149,7 +149,7 @@ Estas conexiones no dejan de ser redes, pero básicamente lo que tenemos es una 
 
 <div>
 <p style='text-align:center;'>
-<img src="./imagenes/subredes.png" alt="Error" width="400px" height="350px">
+<img src="./imagenes/subredes.png" alt="Error" width="400px" height="200px">
 </p>
 </div>
 
