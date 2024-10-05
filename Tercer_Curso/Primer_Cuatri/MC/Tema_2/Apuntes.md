@@ -52,7 +52,7 @@ Si $q \in Q$:
 
 i) $\delta^\*(q,\epsilon)=q$
 
-ii) $\delta^\*(q,au)=\delta^\*(\delta(q,a),p)$
+ii) $\delta^\*(q,au)=\delta^\*(\delta(q,a),u)$
 
 Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
 
@@ -60,7 +60,7 @@ $$L(M)={u \in A^\* : \delta^\*(q_0,u) \in F}$$
 
 ## 2.2. Autómatas finitos no deterministas
 
-Un autñomata finito no determinista(AFND) es una quíntupla $M = (Q,A,\delta,q_0,F)$ donde los elementos son los mismos que con los autómatas finitos deterministas y la única diferencia está en el codominio de \delta que en este caso es $P(Q)$.
+Un autñomata finito no determinista(AFND) es una quíntupla $M = (Q,A,\delta,q_0,F)$ donde los elementos son los mismos que con los autómatas finitos deterministas y la única diferencia está en el codominio de $\delta$ que en este caso es $P(Q)$.
 
 De forma intuitiva, son aquellos autómatas finitos donde existen pasos de cálculo cuyo estado resultante no esta determinado. Es decir, dependiendo de cómo se den los pasos posibles en un camino de decisiones del autómata, se dará un resultado u otro; de hecho, lo más normal es que haciendo dos imágenes de los mismos datos se obtengan distintos resultados. 
 
@@ -111,11 +111,11 @@ __Relación de cálculo__
 
 Una vez visto lo anterior, esto soloconsiste en generalizar y englobar todo el proceso de cálculo en una operación, pues sabemos que el proceso de cálculo no es más que una sucesión finita de pasos de cálculo.
 
-Diremos que $((q,u)\Vdash(p,v)) \leftrightarrow \exists {C_i} | C_i \in QxA^\* \land C_0=(q,u), C_n=(p,v) \forall i \leq n-1, C_i \vdash C_{i+1}$.
+Diremos que $((q,u)\Vdash(p,v)) \leftrightarrow \exists \{C_i\} | C_i \in QxA^\* \land C_0=(q,u), C_n=(p,v) \forall i \leq n-1, C_i \vdash C_{i+1}$.
 
 ___Lenguaje Aceptado por un AFND___
 
-Definimos este lenguaje como el conjunto de palabras que adminten alguna sucesión de configuraciones y pasos de cálculo que dan a la palabra como aceptada. Es decir, el lenguaje aceptado por un _AFND_ como: $L(M) = {u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)}$
+Definimos este lenguaje como el conjunto de palabras que adminten alguna sucesión de configuraciones y pasos de cálculo que dan a la palabra como aceptada. Es decir, el lenguaje aceptado por un _AFND_ como: $L(M) = \{u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)\}$
 
 
 ### 2.2.2.Función de Estado: Lenguaje Aceptado
@@ -123,14 +123,15 @@ Definimos este lenguaje como el conjunto de palabras que adminten alguna sucesi�
 Siguiendo con el autómara _M_ definimos $\delta^\*$ de la siguiente forma:
 
 i) Si $B \subseteq Q$, $\delta^\*(B,a) = \cup_{q\in B}\delta(q,a)$; es decir la unión de todos los estados a los que podemos llegar partiendo desde cualquier estado de $B$ y la palabra $a$.
+
 ii)Si $B \subseteq Q$:
     
     · La relación de cálculo de cada estado de B con la palabra vacía es el propio B pues no hemos cambiado nada.
     · La relación de cálculo de palabras concatenadas es la relación de cálculo con una de las subcadenas con la relación de cálculo de la otra subcadena con cualquier estado.
 
-iii) Se cumple que $\delta^\*(q,u)=\delta^\*({q},u)$
+iii) Se cumple que $\delta^\*(q,u)=\delta^\*(\{q\},u)$
 
-De esta manera, es inmediato comprobar que $L(M)={u \in A^\* : \delta^\*(q_0,u)\cap F \neq \emptyset}$
+De esta manera, es inmediato comprobar que $L(M)=\{u \in A^\* : \delta^\*(q_0,u)\cap F \neq \emptyset\}$
 
 ## 2.3.Equivalencia entre Deterministas y No Deterministas
 
@@ -140,7 +141,7 @@ Veamos la implicación hacia la derecha; es decir, que todo lenguaje aceptado po
 
 Así, si un lenguaje _L_ es aceptado por un autómata determinista es aceptador también por un autómata no determinista: aquel que tiene le mismo diagrama.
 
-Veamos ahora la otra implicación; es decir, todo lenguaje _L_ aceptado por un autómata no determinista es aceptado también por un autómata deteminista. Para probrarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0={q_0}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F={B \in P(Q) | B\cap F \neq \emptyset}$.
+Veamos ahora la otra implicación; es decir, todo lenguaje _L_ aceptado por un autómata no determinista es aceptado también por un autómata deteminista. Para probrarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0=\{q_0\}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F=\{B \in P(Q) | B\cap F \neq \emptyset\}$.
 
 Luego la idea básica es que dado un autómata no determinista le hacemos corresponter uno determinista que recorre todos los caminso al mismo tiempo.
 
