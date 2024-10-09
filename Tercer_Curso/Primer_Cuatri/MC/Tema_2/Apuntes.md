@@ -56,11 +56,11 @@ ii) $\delta^\*(q,au)=\delta^\*(\delta(q,a),u)$
 
 Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
 
-$$L(M)={u \in A^\* : \delta^\*(q_0,u) \in F}$$
+$$L(M)=\{u \in A^\* : \delta^\*(q_0,u) \in F\}$$
 
 ## 2.2. Autómatas finitos no deterministas
 
-Un autñomata finito no determinista(AFND) es una quíntupla $M = (Q,A,\delta,q_0,F)$ donde los elementos son los mismos que con los autómatas finitos deterministas y la única diferencia está en el codominio de $\delta$ que en este caso es $P(Q)$.
+Un autómata finito no determinista(AFND) es una quíntupla $M = (Q,A,\delta,q_0,F)$ donde los elementos son los mismos que con los autómatas finitos deterministas y la única diferencia está en el codominio de $\delta$ que en este caso es $P(Q)$.
 
 De forma intuitiva, son aquellos autómatas finitos donde existen pasos de cálculo cuyo estado resultante no esta determinado. Es decir, dependiendo de cómo se den los pasos posibles en un camino de decisiones del autómata, se dará un resultado u otro; de hecho, lo más normal es que haciendo dos imágenes de los mismos datos se obtengan distintos resultados. 
 
@@ -169,16 +169,16 @@ Cabe recalcar que gracias a los pasos nulo spodemos avanzar de estado, si el aut
 
 ___Lenguaje aceptado por un AFND con transiciones nulas___
 
-El lenguaje que tratamos de definir claramente contiene al definido en los _AFND_ pues viene definido de la siguiente manera: $L(M)={u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)}$
+El lenguaje que tratamos de definir claramente contiene al definido en los _AFND_ pues viene definido de la siguiente manera: $L(M)= \{u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)\}$
 
 
 ### 2.4.1.Función de estados
 
-Comenzamos con una definición; dado un _AFND con transiciones nulas_, definimos la __Clausura de un estado q__ como la sucesión de estados tales que empezando por _q_ podemos volver a llegar a ellos; es decir, $Cl(q)={q: \exists p_1,...,p_n, p_1=q,p_n=p,  p_i \in \delta(p_{i-1},\epsilon) i=2,...,n}$.
+Comenzamos con una definición; dado un _AFND con transiciones nulas_, definimos la __Clausura de un estado q__ como la sucesión de estados tales que empezando por _q_ podemos volver a llegar a ellos; es decir, $Cl(q)=\{p : \exists p_1,...,p_n, p_1=q,p_n=p,  p_i \in \delta(p_{i-1},\epsilon) i=2,...,n\}$.
 
 Definimos, ahora sí la función de estados $\delta^\* (abuso de notación) como la conocíamos en los _AFND_ tomando como imágenes las clausuras, es decir, $\delta^\*(B,a)$ será la clausura de la unión y $\delta^\*(B,\epsilon) = Cl(B)$.
 
-De hecho, es inmediato comprobar que el lenguaje aceptado por un _AFND con transiciones nulas_ se puede expresar como: $L(M)={u\in A^\* : \delta ^\*(q_0,u)\capF \neq \emptyset}$.
+De hecho, es inmediato comprobar que el lenguaje aceptado por un _AFND con transiciones nulas_ se puede expresar como: $L(M)=\{u\in A^\* : \delta ^\*(q_0,u)\capF \neq \emptyset\}$.
 
 Veamos ahora que todo _AFD_ es equivalente a un _AFND con transiciones nulas_. Para ello veremos promero la implicación a la derecha:
 
