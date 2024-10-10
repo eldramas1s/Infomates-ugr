@@ -229,7 +229,7 @@ Normalmente, cuando deseamos trabajar ocn expresione regulares, deseamos hacerlo
 
 <div>
 <p style='text-align:center'>
-<img src="./imagenes/properties.png" alt="JuveYell" width="600px" height="400px">
+<img src="./imagenes/properties.png" alt="JuveYell" width="600px" height="250px">
 </p>
 </div>
 
@@ -313,13 +313,13 @@ En definitiva, vemos que una palabra del lenguaje está compuesta de tres partes
 </p>
 </div>
 
-Luego, como la palabra $y_1...y_m \in (R_{kk}^{k-1})\*$; entonces la palabra completa está en
+Luego, como la palabra $y_1...y_m \in (R_{kk}^{k-1})^\*$; entonces la palabra completa está en
 
-$$R{ik}^{k-1}(R_{kk}^{k-1})\*R_{kj}^{k-1}$$
+$$R{ik}^{k-1}(R_{kk}^{k-1})^\*R_{kj}^{k-1}$$
 
 Luego uniendo las dos partes obtenemos que:
 
-$$R_{ij}^k=R_{ij}^{k-1} \cup R{ik}^{k-1}(R_{kk}^{k-1})\*R_{kj}^{k-1}$$
+$$R_{ij}^k=R_{ij}^{k-1} \cup R{ik}^{k-1}(R_{kk}^{k-1})^\*R_{kj}^{k-1}$$
 
 Necesitamos ahora determinar la __expresión regular asociada__ a $R_{ij}^k$ que denotaremos por $r_{ij}^k$. Procedemos de nuevo por inducción:
 
@@ -341,7 +341,7 @@ donde $\{a_1,...,a_l\}$ es el conjunto $\{a : \delta(q_i,a)=q_j\}$. Si este conj
 
 Veamos ahora que pasa para $k \in N$ sabiendo lo que pasa para $k-1$. La expresión regular siguietdo la expresión de los lenguajes sería:
 
-$$r{ik}^{k-1}(r_{kk}^{k-1})\*r_{kj}^{k-1}$$
+$$r{ik}^{k-1}(r_{kk}^{k-1})i^\*r_{kj}^{k-1}$$
 
 Por último determinamos la __expresión regular del lenguaje aceptado por el autómata__ que no sería otra cosa que:
 
