@@ -176,9 +176,9 @@ El lenguaje que tratamos de definir claramente contiene al definido en los _AFND
 
 Comenzamos con una definición; dado un _AFND con transiciones nulas_, definimos la __Clausura de un estado q__ como la sucesión de estados tales que empezando por _q_ podemos volver a llegar a ellos; es decir, $Cl(q)=\{p : \exists p_1,...,p_n, p_1=q,p_n=p,  p_i \in \delta(p_{i-1},\epsilon) i=2,...,n\}$.
 
-Definimos, ahora sí la función de estados $\delta^\* (abuso de notación) como la conocíamos en los _AFND_ tomando como imágenes las clausuras, es decir, $\delta^\*(B,a)$ será la clausura de la unión y $\delta^\*(B,\epsilon) = Cl(B)$.
+Definimos, ahora sí la función de estados $\delta^\*$ (abuso de notación) como la conocíamos en los _AFND_ tomando como imágenes las clausuras, es decir, $\delta^\*(B,a)$ será la clausura de la unión y $\delta^\*(B,\epsilon) = Cl(B)$.
 
-De hecho, es inmediato comprobar que el lenguaje aceptado por un _AFND con transiciones nulas_ se puede expresar como: $L(M)=\{u\in A^\* : \delta ^\*(q_0,u)\capF \neq \emptyset\}$.
+De hecho, es inmediato comprobar que el lenguaje aceptado por un _AFND con transiciones nulas_ se puede expresar como: $L(M)=\{u\in A^\* : \delta ^\*(q_0,u)\cap F \neq \emptyset\}$.
 
 Veamos ahora que todo _AFD_ es equivalente a un _AFND con transiciones nulas_. Para ello veremos promero la implicación a la derecha:
 
@@ -218,5 +218,141 @@ Sea _A_ un alfabeto, una __expresión regular__ sobre este alfabeto se define de
     · La palabra vacía como expresión regular representa el lenguaje cuyo único elemento es esta palabra
     · Si un elemento del alfabeto es una expresión regular, esta denota el lenguaje cuyo único elemento es ese elemento del alfabeto.
     · La suma de expresiones regulares que denotan un lenguaje está expresada por la operación suma y representa la unión de ambos lenguajes.
-    · La concatenación de expresiones regulares que denotan un lenguajes está expresada por la operación multiplicación y representa la unión de ambos lenguajes.
+    · La concatenación de expresiones regulares que denotan un lenguajes está expresada por la operación multiplicación y representa la concatenación de ambos lenguajes.
     · La clausura de expresiones regulares que denotan un lenguajes está expresada por la operación potencia y representa la potencia del lenguaje.
+
+Un ejemplo de expresión regular es la que denota al conjunto de palabras que empiezan por la cadena _000_ y tales que esta subcadena sólo se encuentra al principio de la palabra
+
+$$Expresión = (000)(1+10+100)\*$$
+
+Normalmente, cuando deseamos trabajar ocn expresione regulares, deseamos hacerlo con las expresiones más sencillas posibles; para ello, se utilizan las reglas de simplificación que aparecen en la imagen inferior:
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/properties.png" alt="JuveYell" width="600px" height="400px">
+</p>
+</div>
+
+En las diapositivas, aparecen algunas cuestiones de verdadero o falso que merece la pena mirar, en este caso, debido a que sería muy repetitivo no aparecen en el archivo.
+
+### 2.5.1.Equivalencia entre autómatas y expresiones regulares
+
+En este apartado vamos a probar que todo lenguaje determinado por una gramática tipo 3 es el lenguaje determinado por alguna expresión regular y que coincide con el lenguaje aceptado por un autómata.
+
+_Enunciado_: Un lenguaje es aceptado por un autómata finito determinista si y sólo si puede representarse mediante una expresión regular.
+
+_Proof_: Esto se demostrará comprobando:
+
+    · Dada una expresión regular, existe un autómata que acepta el mismo lenguaje que el representado por la expresión regular.
+    · Dado un autómata finito existe siempre una expresión reglar que represeenta el lenguaje aceptado por el autómata.
+
+La primera transformación es más útil ya que inicialmente los lenguajes se representan mediante expresiones regulares y después necesitamos algoritmos (autómatas) que reconozcan stos lenguajes.
+
+Veamos la primera implicación; para ello, bastará con construir dicho autómata, empezaremos dando las reglas para las cadenas más simples:
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/pbasico.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+Ahora, veremos cómo crear __autómatas compuestos__, dando lugar a que un mismo autómata acepte varios lenguajes:
+
+    · Unión (r+s): Simplemente consistirá en tomar transiciones nulas partiendo de un nuevo estado inicial y llegando a cada uno de los estados iniciales de los lenguajes R y S.
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/union.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+    · Concatenación (rs): Consiste en llevar, mediante transiciones nulas, cada uno de los estados finales del lenguaje R al estado inicial del lenguaje S perdiendo así la propiedad final de los estados "finales" de R.
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/concatenacion.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+    · Clausura (r*): La clausura no es más que concatenar varias veces la misma palabra, luego de forma lógica bastará con encadenar mediante transiciones nulas los estados finales del autómata con el estado inicial. No obstante, esto no es así porque estaríamos impidiendo la creación de la propia cadena vacía, elemento que debe aparecer en el lenguaje. Para ello, añadiremos un nuevo estado final que permita dicha creación.
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/clausura.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+_Nota_: Todos estos casos disponen de una representación matemática construyendo cada uno de los elementos del autómata; en este caso, dicha tarea se deja al lector (puede ver las diapositivas).
+
+Veamos ahora la implicación contraria; para ello, sea el autómata $M=(Q,A,\delta,q_1,F)$ donde $Q=\{q_1,q_2,...,q_n\}$ y $q_1$ el estado inicial. 
+
+Sea ahora $R_{ij}^k$ el conjunto de las cadenas de $A^\*$ que permiten pasar del estado $q_i$ al estado $q_j$ y no pasa por ningún estado intermedio de numeración mayor que $k$; cabe recalcar que $q_i$ y $q_j$ sí pueden tener numeración mayor que $k$.
+
+De la misma manera, diremos que una palabra $u=(a_1...a_m) \in R_{ij}^k$ si y solo si todo estado $q_{ij}=\delta^\*(q_i,a_1...a_l)$ donde $1 \leq l \leq m-1$ es tal que $i_l \leq k$.
+
+Para definir el cálculo de cada $R_{ij}^k$ realizaremos una pequeña inducción:
+
+i) Para el caso de $k=0$ vemos que el cálculo es el siquiente: 
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/R0.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+ii) VIsto para $k=0$ y suponiendo que lo sabemos para $k-1$ vamos a ver el cálculo para $k \in N$. Claramente, se ve que está compuesto de dos tipos de palabras:
+    
+    · Palabras que para ir del estado i al estado j no pasan por el estado k, luego pertenecen al conjunto de k-1.
+    · Palabras que para ir del estado i al estado j sí pasan por el estado k.
+
+En definitiva, vemos que una palabra del lenguaje está compuesta de tres partes; las palabras que van del estado _i_ al estado _k_ sin pasar por el estado _k_, es decir $x \in R_{ik}^{k-1}$, las palabras que permanecen en el estado _k_, es decir, $y \in R_{kk}^{k-1}$, y las palabras que parten del estado _k_ y llegan al estado _j_ sin pasar por el estado _k_, es decir, $z \in R_{kj}^{k-1}. 
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/descomposicion.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+Luego, como la palabra $y_1...y_m \in (R_{kk}^{k-1})\*$; entonces la palabra completa está en
+
+$$R{ik}^{k-1}(R_{kk}^{k-1})\*R_{kj}^{k-1}$$
+
+Luego uniendo las dos partes obtenemos que:
+
+$$R_{ij}^k=R_{ij}^{k-1} \cup R{ik}^{k-1}(R_{kk}^{k-1})\*R_{kj}^{k-1}$$
+
+Necesitamos ahora determinar la __expresión regular asociada__ a $R_{ij}^k$ que denotaremos por $r_{ij}^k$. Procedemos de nuevo por inducción:
+
+Para $k=0$ es inmediato:
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/r0.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+donde $\{a_1,...,a_l\}$ es el conjunto $\{a : \delta(q_i,a)=q_j\}$. Si este conjunto es vacío, la expresión regular sería:
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/r0vacia.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+Veamos ahora que pasa para $k \in N$ sabiendo lo que pasa para $k-1$. La expresión regular siguietdo la expresión de los lenguajes sería:
+
+$$r{ik}^{k-1}(r_{kk}^{k-1})\*r_{kj}^{k-1}$$
+
+Por último determinamos la __expresión regular del lenguaje aceptado por el autómata__ que no sería otra cosa que:
+
+$$L(M)=\cup_{q_j\in F}R_{1j}^n$$
+
+Por tanto, $L(M) $ viene denotado por la expresión regular $r_{1j_1}^n+...+r_{1j_k}^n$ donde $F={q_{j_1},...,q_{j_k}} y $q_1$ es el estado inicial.
+
+COmo ejemplo, dejamos al lector que obtenga las expresiones regluraes determinadas por el siguiente autómata siguiendo la fórmula descrita y las simplificaciones de expresiones regulares:
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/ejemplo.png" alt="JuveYell" width="250px">
+</p>
+</div>
