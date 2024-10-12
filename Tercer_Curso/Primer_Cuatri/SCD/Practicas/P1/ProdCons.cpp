@@ -1,7 +1,9 @@
 #include <iostream>
 #include <thread>
 #include <mutex>
+#include <chrono>
 #include "scd.h"
+
 
 using namespace std;
 using namespace scd;
@@ -12,22 +14,24 @@ const int NUM_COMP = 10;
 int valores[NUM_COMP]={0};
 
 const int desde = 0, hasta = 1000;
-int producidos=0, pos_escritura=0, pos_lectura=0;
+int producidos=0, pos_escritura=0, pos_lectura=0, dato=0;
 
 //Declaramos los semaforos de escritura y lectura
 Semaphore can_read(0);
 Semaphore can_write(NUM_COMP);//Tantos valores como veces consecutivas se pueda escribir
 
 //Cerrojos de control de escritura en pantalla, cada uno representa una función.
-mutex leer_pantalla, escribir_pantalla, main_lock;
+mutex escribir_pantalla, main_lock;
 
 //Produce un valor aleatorio entre "desde" y "hasta".
 //return entero producido
 //pos -> escribe en pantalla el valor producido
 //    -> aumenta en uno la cantidad de valores producidos
 int ProducirValor(){
+    this_thread::sleep_for(chrono::milliseconds(aleatorio<desde,hasta>()));
     producidos++;
-    int num = aleatorio<desde,hasta>();
+    int num = dato;
+    dato++;
     escribir_pantalla.lock();
     cout << "Produzco el valor " << num << endl;
     escribir_pantalla.unlock();
@@ -38,9 +42,8 @@ int ProducirValor(){
 //pos -> posicion donde consumir
 //pre -> pos debe ser positiva o 0
 void ConsumirValor(int pos){
-    leer_pantalla.lock();
-    cout << "Valor " << valores[pos] << " consumido"<<endl;
-    leer_pantalla.unlock();
+    this_thread::sleep_for(chrono::milliseconds(aleatorio<desde,hasta>())); //
+    cout << "\t\t\t\tValor " << valores[pos] << " consumido"<<endl;
 }
 
 //Lee del vector usando al funcion ConsumirValor
@@ -50,9 +53,9 @@ void leer(){
     while (producidos<100){
 
         //Escribe la situacion
-        leer_pantalla.lock();
-        cout << "Leo en posicion " << pos_lectura << endl;
-        leer_pantalla.unlock();
+        escribir_pantalla.lock();
+        cout << "\t\t\t\tLeo en posicion " << pos_lectura << endl;
+        escribir_pantalla.unlock();
 
         sem_wait(can_read); //Espera hasta que pueda leer
         if(pos_lectura >= NUM_COMP){
@@ -83,6 +86,7 @@ void escribir(){
         }
 
         //Informe de la situacion
+
         escribir_pantalla.lock();
         cout << "Valor " << producto << " escrito" << endl;
         escribir_pantalla.unlock();

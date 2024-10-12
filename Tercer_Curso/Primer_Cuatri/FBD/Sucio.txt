@@ -1,1 +1,45 @@
 
+NIVEL EXTERNO
+-------------------------
+
+Parte de la BD relevante para los usuarios o aplicaciones. SOlo se muestra lo que es de interes para ese usuario y es aqui donde se muestran los datos calculados o derivados.
+
+NIVEL CONCEPTUAL
+-------------------------
+
+Vision global e integrada de todos los datos, desde el punto de vista logico. Nosotros usaremos como modelo de datos lógico el modelo de datos relacional.
+
+Estan todos los atributos, entidades y relaciones asicomo las restricciones de integridad que podemos definir dentro del sistema gestor de BD. Nos permmite definir las vistas externas. 
+
+Lo que hacemos es crer las vista de usuario con los datos deeste nvel dandole al usuario que vrea que hay una table en la base de datos cuando nola hay
+
+NIVEL INTERBO¿¿NO
+--------------------------
+Se suelen distinguir dos partes:
+
+    - Lo que se hace en el nivel interno (hashing...)
+    - Parte delegada en el sistema operativo (nivel fisico)
+
+
+
+
+
+Oracle mezcal la programacion orientada objetos junto con el modelo relacional.
+
+
+ADMINSITRADOR DE LA BASE DE DATOS
+----------------------------------------
+Nos la miramos nosotros.
+
+EN general los conceptos de la diap 30 estan divididos en dos equipos distintos  dentro de una empresa, la parte de abajo síq ue la hace el adminsitrador.
+
+Pensando de la manera amplia si es el encargado de la diap 31 pero pro lo general se deja a otros equipos
+
+Si define e implanta la politica de seguridad(diap 32), diapositica 33 tmb.
+
+
+TIPOS DE ARQUITECTURA
+----------------------------------------
+Un SBD es un sistema que tiene un sistema de informacion, que se diferencia del SGDB en que el segundoe sta inculido en el primero.
+
+Esquema centralizado: supermaquina tiene la base de datos y el sgbd al que se conectan los dispositivos, es un sistema enorme por necesitar muchos recursos, es muy caro de coamprar, adquirir y mantener
