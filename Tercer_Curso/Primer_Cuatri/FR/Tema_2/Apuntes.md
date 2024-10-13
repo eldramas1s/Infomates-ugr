@@ -1,6 +1,6 @@
 # TEMA 2. Capa de red
 
-hciendo un recordatorio sobre lo que ya hemos visto sabemos que si hay dos ordenadores con dos routers conectados por una red, si deseamos mandar un paquete, es necesario que este paquete atraviese las capase de forma vertical hasta la capa física para enviarse al siguiente dispositivo y repetir.
+Haciendo un recordatorio sobre lo que ya hemos visto sabemos que si hay dos ordenadores con dos routers conectados por una red, si deseamos mandar un paquete, es necesario que este paquete atraviese las capase de forma vertical hasta la capa física para enviarse al siguiente dispositivo y repetir.
 
 En este tema, nos centraremos en estudiar como un paquete cualquiera viaja de la __capa de Red__ a la __capa de Enlace__ dentro de un __mismo dispositivo__(en Ethernet, al resultado se llama dirección _MAC_). 
 
@@ -137,8 +137,134 @@ Hasta ahora hemos estado hablando de direcciones _públicas_ que, como hemos pod
 
 #TODO: De la diapositiva 25 a la 28 no se ha dado
 
+Siguiendo con las direcciones _IP_ públicas podemos distinguir una dirección importante asociada al _local loop_, es decir, la dirección que representa a mi propia máquina; por tanto, si busco conectarme al _localhost_ obtendre la conexión al servidor de mi propia máquina. 
+
+Antiguamente, esta dirección era única y era _127.0.0.1_; sin embargo, hoy en día es cualquier dirección de la forma _127.x.x.x_. Esta dirección e propia de cada equipo.
+
+___Direccionamiento sin clase___
+
+Este tipo de direccionamiento consiste en solucionar el problema del desperdicio de direcciones _IP_ por parte de la clasificación en clases, ya que al ser públicas son únicas en todo el mundo. 
+
+COnsiste en utilizar una máscara diferente de las habituales dando lugar a que haya menor número de equipos por cada red pudiendo así utilizar un entorno de redes _IP_ más reducido. 
+
+Cabe denotar que, aunque la máscara no sea múltiplo de 8, se sigue usando la sintáxis de separación en bytes. Simplemente, cambia la manipulación de los rangos respentando, eso sí, que la primera direeción es la de red y la última es la de difusión.
+
+Por ejemplo, si disponemos de 50 dispositivos de uso propio:
+    
+    - 50 dispositivos --> 6 bits para su representación.
+    - 32-6 = 26 bits para la red.
+    - Luego tendremos 26 bits de máscara.
+    - Suponiendo que empecemos a trabajar en la dirección 192.0.1.64(dirección de red), acabaremos en la dirección de difusión 192.0.1.127.
+
+Luego claramente, hemos desperdiciado un menor número de direcciones _IP_ publicas.
+
+COmo hemos partido una red de clase C(en realidad da igual la clase), hemos conseguido lo que se conoce como __subred__; de forma análoga, juntando redes de otros tipos conseguimos las llamadas __superredes__, esto último se consgue quitandole un bit a la máscara duplicando el número de equipos.
+
+Realicemos un ejemplo:
+
+Supongamos que tenemos un número de euqipos y tenemos que asignar la mejor red:
+    
+    - Equipos:700
+    - Número de dirección de dispositivos: 702=equipos+direción de red+dirección de difusión
+    - Bits necesarios: 10
+    - 32-10=22 bits de máscara
+    - Rango= [192.168.0.0/22-192.168.3.255]
+
+___Direccionamiento privado___
+
+Como primera solución a la falta de direcciones públicas se ha comentado el _direccionamiento sin clase_ como primera solución; no obtante, vamos a dar otra solución más útil, el direccionamiento __privado__.
+
+Este direccionamiento consiste en utilizar un rango de direcciones concebido como __privado__ y que sólo podrá usarse en intrarredes, es decir, dentro de una empresa y sin comunicación con el exterior. 
+
+Esto es así porque se permitirá la repetición de estas direcciones _IP_ __privadas__ en redes __privadas__ distintas. Hay distintos rangos para cada clase:
+
+    - Clase A: [10.x.y.z-final]
+    - Clase B: [172.16___31.y.z-final]
+    - Clase C: [192.168.y.z-final]
+
+Estas redes no tienen conexión con la red pública de forma directa y usan la máscara que convenga en cada momento.
+
+Si desde una red privada se quiere mandar algo a una red pública es necesario disponer de algún mecanismo de traducción de redes que pase de una red pública a un privada y viceversa; este protocolo es conocido como _NAT_.
+
+Supongamos que disponemos de un PC(192.168.1.2) concectado a un router(192.168.1.1-33.33.33.33) de nuestra casa conectado con un seridor(66.66.66.66) y mandamos un paquete que seguira el camino de ida y vuelta hasta el servidor. Dicho camino se divide en cuatro pasos:
+
+    1. PC-router: Una petición http esta formada por una cabecra http y por datos. La cabecera dispone de:
+        - Dirección IP origen(source): 192.168.1.2 + 1075 (puerto origen o sport)
+        - DIrección IP destino(destination): 66.66.66.66 + 80 (puerto destino o dport)
+
+    Normalmente, cuando uso un cliente, el sistema operativo asocia un número de puerto por encima de 1024 para cualquier proceso http.
+    2. Router-dispositivo: Se modifica el paquete ligeramente con las mismas partes:
+
+        - IPs: 33.33.33.33 + 12345. El puerto cambia para que el dispositivo de destino sepa a donde devolver, necesariamente, la dirección debe ser pública.
+        - IPd: 66.66.66.66 + 80 que no cambia pues marca al servidor.
+
+    3. Dispositivo-router: El servidor no conoce que se está haciendo NAT.
+        
+        - IPs: 66.66.66.66 + 80
+        - IPd: 33.33.33.33 + 12345
+    
+    4. Router-PC: Se deshace la traducción pasando la información a la red privada:
+        
+        - Ips: 66.66.66.66 + 80
+        - IPd: 192.168.1.2 + 1075
+
+Si nos fijamos en el cambio del paso 1 al paso 2, el puerto origenha cambiado, esto se hace para poder distinguir la red pues solo conocemos la red por la máscara pero no el dispositivo al que mandamos la información. Además, la comunicación en la red pública, necesariamente debe ser mediante direcciones _IP_ públicas.
+
+Por ahora, desconocemos como se hace el cambio de dirección pública a privada. Esto se realiza mediante una tabla y hay varios procedimientos; si cambio el origen y vuelvo a este se llama _SNAP_ o _SNAPT_(cambiamos también el puerto).
+
+Para realizar esta traducción, el router dispone de una tabla que esta construida de la siguiente manera:
+
+    · Cada entrada se divide en dos columnas: IPs + sport - IPs' + sport' donde se guarda, para cada dirección privada cuál es su dirección pública más cercana.
+
+Este proceso se llama __enmascaramiento__ pues el dispositivo que esta fuera desconoce lo que hay en la red privada.
+
+Veamos alguno de los problemas de este protocolo; se ve claramente que un atacante prodría mandar un paquete a un router con conexión privada simplemente buscando uno que disponga de protocolo _SNAT_; de esta manera, sabiendo la información de traducción, se prodría introducir un paquete.
+
+COmo solucion a este problema, podemos poner la dirección de destino y el puerto de destino en una columna más de la tabla de enmascaramiento, debido a que estas dos informaciones son las que determinan un flujo de paquetes; esto provoca que la dirección _IP_ del atacante y la original no sea la misma no permitiendo el paso de paquetes al interior con otra dirección _IP_ de origen.
+
+Uno de los protocolos se llama _NAT_ __estricto__ y otro comprueba qué IP's le ablan a través de la red pública.
+
+___DNAT(Destination NAT)___
+
+El caso típico es disponer de un PC que actua como servidor en la red privada donde hay disponible un router que conecta con internet y dentro de internet un equipo que actua como cliente.
+
+Siguiendo los mismos pasos:
+        
+    1. Cliente-router: Paquete con cabecera IP y cabecera TCP (si es TCP) y sus datos:
+        
+        - IPs: 66.66.66.66 + 1050 (*SO)
+        - IPd: 33.33.33.33 + 23456 suponiendo que el servidor usa el puerto 80
+
+    2. Router-server: Cambios en la cabecera
+
+        - IPs: 66.66.66.66 + 1050
+        - IPd: Servidor privada 192.168.1.2 + 80
+
+Hemos traducido a un puerto de destino distinto pero en el inicio ha cambiado la dirección de destino como como la dirección pública del router más cercano.
+
+    3. Vuelta de camino.
+        
+        - IPs: 192.168.1.2 + 80
+        - IPd: 66.66.66.66 + 1050
+
+    4. Llegando al cliente
+        
+        - IPs: 33.33.33.33 + 23456
+        - IPd: 66.66.66.66 + 1050
+
+La tabla de enmascaramiento es completamente la misma, con distinta información pero con los mismos campos.
+
+Realmente, el problema surge de cómo decirle al router a qué servidor va el paquete pues eso no está en el propio paquete. Para solucionarlo, debemos fijar la tabla a mano en el router. _SNAT_ permite generar la tabla automáticamente, de ahí que suela venir por defecto.
+
+___Encaminamiento___
+
+Se divide en tres partes, prerouting, routing y postrouting. Básicamente consiste en, dado un paquete mandado y que llega a un router, ver cómo pasarlo a otro destino cercano.
+
 ### 2.3.2.IPv6
 
+Es otro modo de direccionamiento que aumenta el número de direcciones públicas en el mundo; a diferencia de _IPv4_, las direcciones _IP_ son de 128 bits aumentando así el numero de direcciones a 340 sextillones de direcciones disponibles. 
+
+Las direcciones vienen expresadas en __hexadecimal__ y son de la forma FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF. 
 
 
 ### 2.3.3.Subredes
