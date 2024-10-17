@@ -73,6 +73,27 @@ Disponemos de cuatro tipos de gramáticas que generarán cuatro tipos de lenguaj
                     $a_{1}Aa_{2} \rightarrow a_{1}Ba_{2}$  
     donde la parte derecha es una combinación de palabras de símbolos de variable y terminales, A es un símbolo de variable y B no es la palabra vacía. A estos lenguajes se les llama lenguajes dependientes del contexto.
     · Tipo 2: Son aquellas gramáticas donde las reglas de producción sólo tienen una variable en la parte izquierda y cualquier combinación de variables y símbolos terminales a la derecha. generan lenguajes independientes del contexto.
-    ·Tipo 3: Es muy parecida a la anterior diferenciándose sólo en que en la parte derecha de la regla de producción soólo pueden aparecer o una combinación de símbolos terminales o eso anterior junto a una única variable y en este orden. 
-Dan lugar a lo que conocemos como conjuntos regulares. Estos lenguajes son reconocibles de forma sencialla pues son programas de memoria finita leyendo de izquierda a derecha, esto quiere decir que para reconocer una palabra no necesito disponer de demasiada memoria, es decir, no debo comprobar cosas que tengan que ver con número de (algo). 
+    ·Tipo 3: Es muy parecida a la anterior diferenciándose sólo en que en la parte derecha de la regla de producción soólo pueden aparecer o una combinación de símbolos terminales o eso anterior junto a una única variable y en este orden. Dan lugar a lo que conocemos como conjuntos regulares. Estos lenguajes son reconocibles de forma sencialla pues son programas de memoria finita leyendo de izquierda a derecha, esto quiere decir que para reconocer una palabra no necesito disponer de demasiada memoria, es decir, no debo comprobar cosas que tengan que ver con número de (algo). 
 Un ejemplo es el lenguaje formado por las palabras que contienen una sucesión finita de letras del mimso tipo de la _a_ a la _d_ en ese orden; en este caso, me da igual cuantas haya, simplemente deberé comprobar que se comple el orden, luego no necesito una barbaridad de memoria.
+
+
+Normalmente, las gramáticas de tipo 3 se dividen en dos subtipos que son exclusivos frente a la condición de _linealidad_:
+
+    - Lineales por la derecha: Todas las producciones tienen como resultado la estructura uB donde u es una palabra y B es una variable no terminal o la palabra vacía.
+    - Lineales por la izquierda: Todas las producciones tienen como resultado la estructura Bu donde u es una palabra y B es una variable no terminal o la palabra vacía.
+
+Un ejemplo de ello es el siguiente lenguaje:
+
+    - S -> 0A
+    - A -> 10A
+    - A -> palabra vacía
+
+El autómata resultado es el siguiente:
+
+<div>
+<p style='text-align:center'>
+<img src=./imagenes/ejemploregular.png alt=Error>
+</p>
+</div>
+
+

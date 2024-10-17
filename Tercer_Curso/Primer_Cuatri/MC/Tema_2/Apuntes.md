@@ -349,10 +349,48 @@ $$L(M)=\cup_{q_j\in F}R_{1j}^n$$
 
 Por tanto, $L(M) $ viene denotado por la expresión regular $r_{1j_1}^n+...+r_{1j_k}^n$ donde $F={q_{j_1},...,q_{j_k}} y $q_1$ es el estado inicial.
 
-COmo ejemplo, dejamos al lector que obtenga las expresiones regluraes determinadas por el siguiente autómata siguiendo la fórmula descrita y las simplificaciones de expresiones regulares:
+Como ejemplo, dejamos al lector que obtenga las expresiones regulares determinadas por el siguiente autómata siguiendo la fórmula descrita y las simplificaciones de expresiones regulares:
 
 <div>
 <p style='text-align:center'>
 <img src="./imagenes/ejemplo.png" alt="JuveYell" width="250px">
 </p>
 </div>
+
+### 2.5.1.Método alternativo
+
+Veamos ahora un método alternativo para el mismo resultado; este método se basa en la reslución de sistemas de ecuaciones donde la idea fundamental consiste en imponer una condición por cada estado del autómata. Como cada estado será una incógnita, obtenemos que habrá tantas ecuaciones como estados disponga el autómata.
+
+___Ecuación de Expresiones Regulares___
+
+Si $r_1,...,r_n$ son variables representando expresiones regulares, una ecuación para la expreseión regular $r_i$ es una expresión de la forma:
+
+$$r_i = \alpha_i+\beta_{i1}r_1+...+\beta_{in}r_n$$
+
+donde \alpha_i, \beta_{i1}, \beta_{in} son expresiones regulares concretas.
+
+No obstante para poder aplicar __sustitución__ en el sistema de ecuaciones resultante es necesario que la expresión regular $r_i$ esté despejada en su ecuación correspondiente. Para ello, si ya lo está podemos sustituir en todas las demás y reducir el máximo posible; en caso contrario, deberemos usar el _Lema de Arden_.
+
+___Lema de Arden___
+
+Dada una ecuación de la forma  $r_i = \alpha_i+\betar_i$ donde $\alpha_i$ es la parte de la ecuación que no contiene $r_i$ y $\beta$ es el coeficiente que acompaña a la incógnita se tiene que la solución de esta ecuación viene dada por:
+
+$$r_i=\beta^\*\alpha$$
+
+Luego una vez que hayamos aplicado este lema si es necesario, podremos continuar con nuestro cometido.
+
+Cabe recalcar que, para cada estado del autómata habrá una ecuación determinada donde cada sumando será cada uno de los estados a los que puede llegar el estado inicial mediante una relación de cálculo; en caso de que el estado de partida sea final se sumará una cadena vacía, \epsilon.
+
+Como el objetivo es __determinar la expresión regular del lenguaje acaptado por un autómata__, deberemos proporcionar la expresión resultante del estado inicial del autómata pues en esta técnica realizamos una construcción a la inversa empezando por los estados más fáciles y llegando a estados más importantes y complicados.
+
+## 2.6 Expresiones Regulares en Unix
+
+Seguiremos el estándar IEEE POSIX:
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/POSIX.png" alt="JuveYell" width="250px">
+</p>
+</div>
+
+
