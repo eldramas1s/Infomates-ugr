@@ -1,4 +1,4 @@
-# TEMA 2.Arquitectura de un SGDB
+#TEMA 2.Arquitectura de un SGDB
 
 ## 2.1.Niveles generales de la aquitectura
 
