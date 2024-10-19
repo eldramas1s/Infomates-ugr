@@ -135,8 +135,6 @@ En conclusión, para crear redes y asignarlas a equipos se usan sólo las tres p
 
 Hasta ahora hemos estado hablando de direcciones _públicas_ que, como hemos podido denotar, se asignan públicamente... pero qué ocurre con las direcciones _privadas_. Solo se encuentran en intranets por lo que, en distintas intranets (redes de dominio privado) sí que se pueden repetir. En este último caso, es el usuario quien la asigna.
 
-#TODO: De la diapositiva 25 a la 28 no se ha dado
-
 Siguiendo con las direcciones _IP_ públicas podemos distinguir una dirección importante asociada al _local loop_, es decir, la dirección que representa a mi propia máquina; por tanto, si busco conectarme al _localhost_ obtendre la conexión al servidor de mi propia máquina. 
 
 Antiguamente, esta dirección era única y era _127.0.0.1_; sin embargo, hoy en día es cualquier dirección de la forma _127.x.x.x_. Esta dirección e propia de cada equipo.
@@ -259,6 +257,66 @@ Realmente, el problema surge de cómo decirle al router a qué servidor va el pa
 ___Encaminamiento___
 
 Se divide en tres partes, prerouting, routing y postrouting. Básicamente consiste en, dado un paquete mandado y que llega a un router, ver cómo pasarlo a otro destino cercano.
+
+Este proceso se basa en las llamadas __tablas de encaminamiento__; estas tablas se encuentran en todos los dispositivos que aparrecen en una nube de redes de conexión.
+
+Estas tablas estan compuestas de varias entradas donde cada una de ellas tiene varios campos (columnas). Los estudiaremos según su importancia.
+
+Los más importantes son tres:
+    
+    - Red de destino: es la encargada de determinar el destino de un paquete de manera que, si quiero mandar a ese destino elegiré la regla de la tabla de encaminamiento que disponga de esa red.Este campo dispone de un valor comodín conocido como dirección "default" que representa cualquier dirección de cualquier red; suele usarse para determinar que un paquete necesita salir de una subred, irá acompañada del router más cercano como pasarela.
+    - Máscara: es necesaria para conocer la red del dispositivo pues, en ocasiones, la red de destino puede llegar a ser una dirección IP concreta.
+    - Siguiente salto o pasarela: hace referencia a la dirección del siguiente dispositivo de conexión por el que debe pasar el paquete para llegar a su destino. Para este valor hay valores por defecto como "\*" que representa que la red de destino está directamente conectada al dispositivo.
+
+Otros campos son:
+    
+    - Interfaz: es simplemente la tarjeta gáfica dle dispositivo.
+    - Protocolo: representa el protocolo de envío y recepción de mensajes que sigue la red  (tcp).
+    - Coste: dependiendo del protocolo será un valor u otro (en RIP es el número de routers a cruzar).
+
+A su vez, cada __entrada__ o __regla__ de una tabla de encaminamiento está clasificada en tres tipos:
+
+    1. __Rutas directas__. Suponiendo que nos encontramso en una red cualquiera, por ejemplo en forma de arbol inverso como el laboratorio, estas entradas son aquellas que simbolizan las reglas que no necesitan de una pasarela para que el paquete llegue a su destino; dicho de forma directa, las direcciones que se encuentran dentro de la misma subred. En el caso del laboratorio, serán los ordenadores que se encuentren en la misma red 33.X.Y.0 donde X es la isla e Y es el grupo. 
+
+    2. __Redes indirectas__. Son las reglas que simbolizan aquellas redes, y sólo redes, a las que sabemos llegar haciendo uso del siguiete salto. Estas redes engloban todas excepto las directas y la de salida a _Internet_ pues siempre, en este caso, usaremos el siguiente salto para mandar el paquete.
+    
+    3. __Ruta de acceso a internet__. También llamada con más rigor _ruta por defecto_ que dispone de máscara /0 y cuyo siguiente salto será la dirección ip\_operador; de esta manera, si no se sabe a donde ir pues no se cumple ninguna regla, se utilizará esta última. Esta ruta por defecto tiene el nombre _default_.
+
+Las __rutas directas__ tienen la importancia de permitir que los paquetes lleguen a los dispositivos pues al eliminar alguna de ellas, impediríamos que cualquier paquete pueda entrar al dispositivo desde esa red pues se desconocería el router necesario para ello. También aparecen e este tipo la red host, es decir, la dirección _IP_ 127.0.0.1/32.
+
+Supongamos ahora una casuística muy común, en la tabla de encaminamiento de un router aparecen tres entradas con red destino para las cuales se hace cierta la comprobación de la dirección de un paquete; es decir, al realizar la operacion _AND_ de la dirección _IP_ destino del paquete con la máscara de la regla, siempre ocasiona un averificación. 
+
+En estos casos, siempre se tomará la regla que disponga de un __número de máscara mayor__, es decir, que acote en mayor número el número de dispositivos a direccionar. De esta manera, se impulsa la velocidad de transmisión en la red.
+
+Por último, vamos a ver las formas en las que se puede **rellenar** una tabla, es decir, imponer las reglas de puente(**forward**). Hay dos formas:
+    
+    · Estática: el programador introduce a mano cada uno de los tres tipos de reglas en los dispositivos que sean necesarios implementando la conexión entre los mismos.
+    · Dinámica: un protocolo se encarga de realizar dicha conexión; permite que la red pueda cambiar a lo largo de su funcionamiento.
+
+De esta forma, con la forma __estática__ estamos suponiendo que nunca cambiará la conexión entre dispositivos, lo cual es un error muy grave.
+
+___Protocolos  de intercambio de información de encaminamiento___
+
+Erróneamente también llamados "protocolos de encaminamiento", no son los encargados de encaminar los paquetes, simplementes fuerzan a los dispositivos de conexión de red a realizar un pequeño intercambio de información para poder realizar las *tablas de encaminamiento* de forma automática.
+
+Antes de estudiarlos, es necesario conocer la organización de _Internet_ partiendo de que no es un sistema centralizado sino que se compone de varios __Sistemas Autónomos__ que son redes gigantescas gestionadas por una única entidad; dentro de cada uno de estos sistemas es la entidad líder la encargada de gestionarlo. 
+
+No obstante, entre dichos _sistemas autónomos_ deben ponerse de acuerdo con el __Sistema de Pasarela Exterior__(EGP). En este caso, los _EGP_'s utilizan el protocolo _BGP_ que permitn realizar cambios de prioridades a ciertas entidades.
+
+Conociendo un poco el interior de los _Sistemas Autónomos_ de forma general, utilizan __protocolos de pasarela interior__(IGP), los cuales pueden usar en su unterior varios protocolos de los cuales estudiaremos dos:
+    
+    1. **RIP**(*Routing Information Protocole*). También conocido como *protocolo de vector distancia* debido a que toma como criterio de camino a elegir aquel que requiera un **menor** número de saltos. Entrando más en detalle, es un protocolo que opera sobre *UDP* puerto *250* en la capa de aplicación. SU método de construcción de caminos es mandar paquetes cada 30 segundos a los demás dispositivos para repartir su información. 
+
+    2. **OSPF**. También conocido como *Camino más corto antes* es un protocolo que dispone de un mecanismo de elección de camino basado en coste diferente tomando una constante de proporcionalidad. En la prática se implementa mediante el algoritmo de *Dijsktra*.
+
+El protocolo **RIP** sufre del *problema de la convergencia lenta* donde no sabe responder frente a la caída de un router, sobretodo el problema se agranda cuando el caído es el primero de todos pues no se corregirá el número de saltos de aquellos dispositivos que no estén directamente conectados con el router dañado. Como dato, no se guarda un salto mayor a 16 considerando que este valor ya es un valor infinito.
+
+Sin embargo, dispone de una solución denominada *posion reverse* donde si no se sabe llegar al destino se responde con un paquete diciendo que el salto es infinito provocando que los routers no sepan encaminar.
+
+Con respecto al protocolo **OSPF** sabemos que la constante de proporcionalidad usual viene dada por la siguiete ecuación:
+
+$$ Coste= \sqrt{1}{ancho de banda}$$
+
 
 ### 2.3.2.IPv6
 
