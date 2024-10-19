@@ -315,7 +315,7 @@ Sin embargo, dispone de una solución denominada *posion reverse* donde si no se
 
 Con respecto al protocolo **OSPF** sabemos que la constante de proporcionalidad usual viene dada por la siguiete ecuación:
 
-$$ Coste= \sqrt{1}{ancho de banda}$$
+$$ Coste= \frac{1}{ancho de banda}$$
 
 
 ### 2.3.2.IPv6
