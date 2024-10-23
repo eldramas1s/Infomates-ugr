@@ -303,15 +303,15 @@ Antes de estudiarlos, es necesario conocer la organización de _Internet_ partie
 
 No obstante, entre dichos _sistemas autónomos_ deben ponerse de acuerdo con el __Sistema de Pasarela Exterior__(EGP). En este caso, los _EGP_'s utilizan el protocolo _BGP_ que permitn realizar cambios de prioridades a ciertas entidades.
 
-Conociendo un poco el interior de los _Sistemas Autónomos_ de forma general, utilizan __protocolos de pasarela interior__(IGP), los cuales pueden usar en su unterior varios protocolos de los cuales estudiaremos dos:
+Conociendo un poco el interior de los _Sistemas Autónomos_ de forma general, utilizan __protocolos de pasarela interior__(IGP), los cuales pueden usar en su interior varios protocolos de los cuales estudiaremos dos:
     
     1. RIP(Routing Information Protocole). También conocido como "protocolo de vector distancia" debido a que toma como criterio de camino a elegir aquel que requiera un menor número de saltos. Entrando más en detalle, es un protocolo que opera sobre UDP puerto 250 en la capa de aplicación. SU método de construcción de caminos es mandar paquetes cada 30 segundos a los demás dispositivos para repartir su información. 
 
-    2. OSPF.También conocido como Camino más corto antes es un protocolo que dispone de un mecanismo de elección de camino basado en coste diferente tomando una constante de proporcionalidad. En la prática se implementa mediante el algoritmo de Dijsktra.
+    2. OSPF.También conocido como "Camino más corto antes", es un protocolo que dispone de un mecanismo de elección de camino basado en coste diferente tomando una constante de proporcionalidad. En la prática se implementa mediante el algoritmo de Dijsktra.
 
 El protocolo **RIP** sufre del *problema de la convergencia lenta* donde no sabe responder frente a la caída de un router, sobretodo el problema se agranda cuando el caído es el primero de todos pues no se corregirá el número de saltos de aquellos dispositivos que no estén directamente conectados con el router dañado. Como dato, no se guarda un salto mayor a 16 considerando que este valor ya es un valor infinito.
 
-Sin embargo, dispone de una solución denominada *posion reverse* donde si no se sabe llegar al destino se responde con un paquete diciendo que el salto es infinito provocando que los routers no sepan encaminar.
+Sin embargo, dispone de una solución denominada *poison reverse* donde si no se sabe llegar al destino se responde con un paquete diciendo que el salto es infinito provocando que los routers no sepan encaminar.
 
 Con respecto al protocolo **OSPF** sabemos que la constante de proporcionalidad usual viene dada por la siguiete ecuación:
 
