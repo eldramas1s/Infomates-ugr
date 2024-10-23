@@ -1,0 +1,67 @@
+Lema de Bombeo
+--------------------
+IMPORTANTE
+
+Basicamente nos dice que existe un natural que toda palabra que supere ese natural se puede escribir como concatenacion de tres palabras del lenguaje. De hecho existe una palabra concreta que esta elegida en los "natural" primeros de la palabra original.
+
+
+SIrve para demsotrar qu eun lenguaje no es regular.
+
+Este lema nos da una condicion necesaria para que un lenguaje sea regualr, ¡¡¡pero no es suficiente!!!!-> NO vale para demostrar que un lenguaje sea regular.
+
+Si buscamos probar que un lenguaje sí es regular -> dar la gramatica, el automata o la expresion regular
+
+Si buscamos probar que no es un leguaje regular -> buscamos usar el lema de Bombeo.
+
+
+---Demostracion---
+q_ij es el estado al que llegamos al leer el estado q_ij-1
+
+Como tenemos n estados  y la palabra tiene mayor longitud se repite al menos un simbolo luego podemos suponer que q_ik = q_il, k!=l
+
+"La única forma de obtener lenguajes infinitos es repetir un conjunto de simbolos" 
+Si la palabra no tiene una longitud mayor qu el numero de estados no tiene por qué descomponerse
+Para lenguajes finitos es trivialmente cierto pues tomando n el tamaño de la palabra mas larga obtenemos que no hay palabras con longitud mayor que n consiguiendo que sea trivialmente cierto.
+
+UN lenguaje no es regular
+-------------------------
+Para ello debemos probar que se cumple la negación de la condición del lema de bombeo. Para ello no debe verificarse tras la negacion de la condicion que no se cumpla alguna de las condiciones.
+
+Podemos arrastrar n como parametro evitando la induccion. Demostrar que existe una palabra de un lenguaje con longitud mayor o igual que n basta con elegirla.
+Desbemos elegir una palabra que al repetir cualquier cosa entre los n primero simbolos nos salimos del lemguaje.
+
+Debemos encontrar que existe un natural para el cual la descomposición se sale del lenguaje, luego debemos determinar ese natural i.
+
+n=0 no puede ser uno de los n que pueda existir pues v>=1 (diap 9)
+
+NO debemos decir que no se cumple el lema de bombeo sino que no se verifica la condicion del lema de bombeo.
+
+Debe quedar claro que es una condicion necesaria pero no suficiente. El ejemplo dado como contraejemplo en las diapositiva 11 cumple la condicion pese a no ser regular (con n=2).De hecho, en este ejemplo, es perfectamente legitimo pensar que un lenguaje es regular pero no es posible demostrarlo; el lema de bombeo puede que no nos deje contradecirlo.
+
+
+Operaciones con conjunto regulares
+-------------------------------------
+Estas operaciones son cerradas para el conjunto de los conjuntos regulares ya que cada lenguaje es regular luego tiene un automata finidto determinado y sabemos que dichas peraciones mantienen las caracteristicas del automata conseguido.
+EL mismo procedimeinto se puede hacer con una expresion regular; en ocasiones será mucho más sencillo.
+
+
+EL complementario para probarlo debe se run automata finito determinista en otro caso es falso.
+No debe confundirse este lenguaje con el inverso. No hay que darle la vuelta a las flechas ni trabajar con iniciales o finales, solo con finales.
+
+El automata producto funciona como dos automatas a la vez donde un estado sera pareja de estados, es decir, habrña tantos estados ocmo parejas de estados compatibles haya en los conjutnos producto.
+
+Para la unión, es tomar como finales aquells estados donde uno de los elementos de la pareja sea final.
+
+Para la diferencia simetrica tmb se puede pero no se como.
+
+.ra el lenguaje inverso a traves de automatas debemos copiar el automata donde los elementos de transicion son aquellos tales que al aplicarle el automata inicial (lenguaje inicial) van al estado al que señala la flecha.
+
+Cociente
+--------------------
+Este lenguaje siempre es regular independeintemente del lenguaje L por el qcual se realice el cociente. Siempre y cuando R sea regular.
+
+El automata resultado es el mismo(misma estructura) que el del lenguaje R donde solo cambian los estados finales que son aquellos a partir del cual podemos leer una palabra de L llegando a un estado final.
+
+El problema está en decir cómo leer el lenguaje L, de hecho como no podemos leerlo a ser un lenguaje cualquiera, solo podemos trabajar ocn gramaticas de tipo 0 -> no podemos obtener un algoritmo qu elo ahga tan facil. De hecho, aunque se retyrinja L al conjunto de los lenguajes recursivamente enumerables no podemos decidirlo (jimplementarlo mediante un algoritmo). En caos de que L sea regular, "está seguro" de que sí que se puede demostrar que sea regular luego decidible.
+
+
