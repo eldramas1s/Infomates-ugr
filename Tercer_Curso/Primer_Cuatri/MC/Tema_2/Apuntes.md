@@ -367,19 +367,19 @@ Si $r_1,...,r_n$ son variables representando expresiones regulares, una ecuació
 
 $$r_i = \alpha_i+\beta_{i1}r_1+...+\beta_{in}r_n$$
 
-donde \alpha_i, \beta_{i1}, \beta_{in} son expresiones regulares concretas.
+donde $\alpha_i$, $\beta_{i1}$, $\beta_{in}$ son expresiones regulares concretas.
 
 No obstante para poder aplicar __sustitución__ en el sistema de ecuaciones resultante es necesario que la expresión regular $r_i$ esté despejada en su ecuación correspondiente. Para ello, si ya lo está podemos sustituir en todas las demás y reducir el máximo posible; en caso contrario, deberemos usar el _Lema de Arden_.
 
 ___Lema de Arden___
 
-Dada una ecuación de la forma  $r_i = \alpha_i+\betar_i$ donde $\alpha_i$ es la parte de la ecuación que no contiene $r_i$ y $\beta$ es el coeficiente que acompaña a la incógnita se tiene que la solución de esta ecuación viene dada por:
+Dada una ecuación de la forma  $r_i = \alpha_i+\beta r_i$ donde $\alpha_i$ es la parte de la ecuación que no contiene $r_i$ y $\beta$ es el coeficiente que acompaña a la incógnita se tiene que la solución de esta ecuación viene dada por:
 
 $$r_i=\beta^\*\alpha$$
 
 Luego una vez que hayamos aplicado este lema si es necesario, podremos continuar con nuestro cometido.
 
-Cabe recalcar que, para cada estado del autómata habrá una ecuación determinada donde cada sumando será cada uno de los estados a los que puede llegar el estado inicial mediante una relación de cálculo; en caso de que el estado de partida sea final se sumará una cadena vacía, \epsilon.
+Cabe recalcar que, para cada estado del autómata habrá una ecuación determinada donde cada sumando será cada uno de los estados a los que puede llegar el estado inicial mediante una relación de cálculo; en caso de que el estado de partida sea final se sumará una cadena vacía, $\epsilon$.
 
 Como el objetivo es __determinar la expresión regular del lenguaje acaptado por un autómata__, deberemos proporcionar la expresión resultante del estado inicial del autómata pues en esta técnica realizamos una construcción a la inversa empezando por los estados más fáciles y llegando a estados más importantes y complicados.
 
