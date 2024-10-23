@@ -347,7 +347,7 @@ Por último determinamos la __expresión regular del lenguaje aceptado por el au
 
 $$L(M)=\cup_{q_j\in F}R_{1j}^n$$
 
-Por tanto, $L(M) $ viene denotado por la expresión regular $r_{1j_1}^n+...+r_{1j_k}^n$ donde $F={q_{j_1},...,q_{j_k}} y $q_1$ es el estado inicial.
+Por tanto, $L(M)$ viene denotado por la expresión regular $r_{1j_1}^n+...+r_{1j_k}^n$ donde $F=\{q_{j_1},...,q_{j_k}\}$ y $q_1$ es el estado inicial.
 
 Como ejemplo, dejamos al lector que obtenga las expresiones regulares determinadas por el siguiente autómata siguiendo la fórmula descrita y las simplificaciones de expresiones regulares:
 
