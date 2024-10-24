@@ -1,0 +1,174 @@
+Programar un jugeo de atrapar corazones:
+
+- 4 jugadores buscan acceder a un corazon, se pelean por ello y debe gestionarse su pelea
+- 1 npc produce el corazon y lo pone visible, en ese momento debe conocerse quin lo roba
+- Se juega por rondas y hay como mucho k rondas (en la prueba k=10).
+- Cuando un jugador toma el corazon muestra que jugador lo hace y muestra que gana 5 puntos
+- Deben usarse mecanimso de sincronizacion y hebras que se hayan visto en clase y justificar el por qué.
+- Al terminar debe de mostrarse los resultados finales con una salida especifica:
+
+NPC: Corazon aparecio
+--- Ronda i --- 
+Puntos: p1 p2 p3 p4 
+
+Ji gano 5 puntos
+
+(repetir)
+
+Salida final:
+
+Mostrar el estado final con los oputos (no me acuerdo como lo hacia) mostraba quin o quienes han ganado.
+
+Debe de:
+    · PDF  con capturas de pantalla de la rterminal(compilacion y ejecucion), justificacion del diseño, informacion personal
+
+    · Entregar tarde -0.13
+    · txt con la instruccion a ejecutar 
+    · Archivo cpp comentado
+
+Pista: Si no quieres saberlo lo no leas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sigue bajando pero prueba tu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+perro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Aqui esta la pista: si no tienes cuidado en como acabr las rondas puede que no acaben pues 3 de los 4 jugadores seguiran parados esperando acceder a la seccion critica.-> me ha pasado a mi y no se solucionarlo
+
+tardas mas en hacer las csas bonitas que en el puto codigo

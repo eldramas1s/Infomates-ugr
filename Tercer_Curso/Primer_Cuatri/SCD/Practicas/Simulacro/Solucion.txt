@@ -1,0 +1,28 @@
+Basarnos en algun ejercicio propuuesto.
+
+
+Solución a mi problema de la espera indefinida: hacer tantos signals como rondas + numero de esperando 
+
+Otra solución es usar el join para esperar a todas las hebras -> main lleva la cuenta de las rondas:
+
+
+Me parece una solución de matar moscas a cañoñazo.
+```
+int main(){
+for R 0 to 10
+    lanzar la hebra NPC y jugadores 
+    all.join()
+end
+
+}
+
+jugador() {
+wait(); lock();coger(); actualiza();unlock(); signal();
+}
+
+NPC(){
+poner();signal();(solo 1 signal)
+}
+
+debemos poner un cerrojo al corazon para uwe solo uno lo toque y acuralice
+```
