@@ -1,0 +1,15 @@
+Diapositiva 89 (gramaticas lineales por la izuierda -> automata finito determinista)
+
+COn el paso 1 solo sonseguimos escribir las palabras al reves.
+
+Para conseguir el lenguaje inverso a partir de un automata del lenguaje L solo debemos intercambiar el estado final y darle la vuelta a las flechas. (en caso de que solo haya un estado final)
+Si hay varios estados finales denemos tener cuidado pues solo dejamos un estado final imponiendo un nuevo estado final uniendo con transiciones nulas. Y luego aplicando el proceso ya descrito.
+
+Automata -> Gramatica lineal 
+-------------------------------
+
+Debe haber tantas variables como estados. Y creamos una regla de produccion para cada transicion que tenga el automata determinista.
+
+PAra conseguir un alineal por la izquierda (hemos conseguido la derecha) es invertir las flechas y cambiar el final por inicial. Obetenmos la gramatica linela por la derecha y le invertimos la reglas de produccion (solo la parte derecha) r-> 0a => r->a0
+
+

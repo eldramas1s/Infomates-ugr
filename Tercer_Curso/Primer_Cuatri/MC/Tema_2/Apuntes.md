@@ -393,4 +393,30 @@ Seguiremos el estándar IEEE POSIX:
 </p>
 </div>
 
+## 2.7.Equivalencia entre Gramáticas lineales y autómatas
+
+Para no complicar el tema, vamos a obviar la notación matemática y simplemente diremos que para demostrar que dada una gramatica lineal, existe un autómata finito determinista que acepta el lenguaje aceptado por la gramática construido a través del _AFND_ con transiciones nulas que acepta dicho lenguaje usando luego la _clausura de Kleene_ par construir el _AFD_.
+
+Para hacer el proceso inverso, es decir, a partir de un _AFD_ obtener la gramática lineal por la derecha simplemente debemos tomar como variables los estados y tomar como producciones las reglas del tipo:
+
+$$p\rightarrow aq$$
+
+Donde p y q son estados, es decir, variables y "a" es la palabra leída. En definitiva, estamos representados todas y cada una de las transiciones.
+
+Si queremos obtener la gramática lineal pro la izquierda, deberemos invertir el autómata, construir la gramática lineal por la derecha como se dice arriba e invertir __sólo__ la parte derecha de las producciones.
+
+Hasta ahora llevamos demostrado el siguiete esquema:
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/equivalencia.png" alt=Error>
+</p>
+</div>
+
+___Obtener el leguaje inverso___
+
+Esto se consigue, dado un _AFND_ que acepta el lenguaje de la gramática lineal por la derecha; simplemente debemos tratar de dejar un sólo estado final para porder determinar un sólo estado inicial intercambiándolo con el final único que hemos conseguido y, por último, invertir las transiciones.
+
+De esta manera hemos conseguido un _AFND_ que acepta el lenguaje inverso. 
+Como curiosidad, para obtener el lenguaje complementario, debemos cambiar los estados finales por no finales y viceversa.
 
