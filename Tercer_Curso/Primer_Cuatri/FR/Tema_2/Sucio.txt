@@ -1,0 +1,188 @@
+24-10-24
+---------------------------------------------------------------
+
+
+FRAGMENTACION
+----------------------------
+
+```Formato de datagrama```
+
+Un datagrama, es un paquete IP, que dispone de una cabecera y un conjunto de datos; dentro de la cabecera contiene lineas de 32 bits (20 bytes), es decir 5 líneas obligatorias y en otras ocasiones son 6 con una ultima obligatoria. Campos de la cabecera:
+
+    - V -> Version
+    - LC -> Tamaño de la cabecera
+    - TS-> Sirve para marcar los paquetes para que luego se vayan a hacer oparaciones con ellos -> si no se hace nada se modifica solo a un estado correcto
+    - Longitud total
+    - Identificacion
+    - I
+    - Desplazamiento
+    - TTL -> es el número de saltos que puede dar un paquete a la hora de estar dando vueltas en la red -> se va decrementando en cada salto -> cuando llega a 0 se descarta
+    - Protocolo -> identificador del protocolo que se usa -> estos protocolos estan contenidos por el protocolo IP
+    - COmprobacion -> es la suma complemento a 1 para comprobar que un paquete es correcto, es decir al llegar se suma el paquete con el compemento a 1 y tiene que dar todo 1 -> si esta mal el protocolo IP lo descarta pero no manda mesaje de respuesta
+    - IP origen
+    - IP destino
+    - Opciones
+    - Relleno -> el tamaño del paquete tiene que ser multiplo de 32 luego lo que falte es este relleno a 0.
+
+Después de todo esto se ponen los datos del paquete, es decir, la infrmacion que el usuario ha decidido mandar.
+
+
+```Fragmentacion```
+
+EN IPv4 -> el tamaño maximo que puede tener un paquete es brutal no obstante la red no suele permititrlo, dispone de un MTU o tamaño maximo soportado por la red en el campo de datos de niuvel de enlace (es del nivel de enlace pero lo normale s que no este en la cabecera) tiene una cabecera HIP y su propio campo de datos (este mini paquete incluido es el paquete IP). 
+
+Este campo MTU depende del estandar de la tarjeta de red.
+
+
+Ejemplo tipico de examen:
+
+Tomamos un cierto datagrama de IP (no siempre lo podremos mandar porque esto estara limitado por la MTU) a mandar por una red con un MTU de 1500 B.
+
+Datagrama :  CABECERA IP - 4180 bytes de datos
+
+SI no hay campo de opciones que es lo habitual tendremos que CABECERA IP tendra un tamaño de 20 bytes. 
+
+COmo el tamaño del paquete es mayor que la MTU debemos fragmentarlo en menos parquetes IP que son independientes con los demas -> es importante porque fragmento donde me hace falta (el router que lo ncesito) pero solo encamblo en el destino (porque paquetes distintos pueden tener rutas distintas y porque evitamos esperas innecesarias en medio de la ruta).
+
+Nota: Paqute IP = lo que mendo ; DAtagrama IP = lo que me gustaria mandar todo junto
+
+Como dispongo de 1500 Bytes como mucho y cada paquete debe tener duplicada la cabecera luego cada fragmento ya tiene ocupados 20 Bytes.
+
+El datagrama tuebe un campo de identificacion que debe ser duplicado en el paquete IP porque identifica el datagrama al que pertenece
+
+El paqeute tiene un campo "More fragments" que indica si quedan mas fragmentos del datagrama(es un bool) tras eel que disponemos luego estara a 1. Ademas dispone del campo "offset" que indica el numero de orden que sigue el paquete dentro del datagrama (el primero toma el ofset a 0)
+
+El primer fragmento quedaria:
+    CAbecera -> 20B 
+    Datos -> 1480 B
+    id -> id_datagrama
+    offset -> 0
+    MF ->1
+
+Como queda informacion por mandar (4180 - 1480) mandamos otro paquete, luego tiene la siguiente informacion:
+    Cabecera -> 20B
+    DAtos -> 1480B
+    id -> id_datagrama
+    MF -> 1
+    offset-> 1480
+
+Como sigue quedando informacion por mandar (1220B) mandamos de nuevo un último paquete:
+    Cabecera -> 20B
+    Datos -> 1220B
+    id -> id_datagrama
+    MF -> 0
+    offset -> 2960
+
+Nota: Cuando pasa un cierto tiempo sin recibir todo el paquete el paquete se descarta y otra capa del protocolo IP mandara el mensaje. El destino siempre tiene una forma de calcular si ha llegado todo el paquete. Además, si la MTU del siguiente salto es mayor que el tamaño de dos paquetes no se juntan simplemente se mandan "desperdiciando" parte del tamaño de datos posible a mandar.
+
+Supongamos ahora que en nuestra red de inicio que solo disponia de dos routers conectados tneemos otra red conectada en linea a uno de los routers despues de la que disponemos con un MTU de 1000B. Veamos el proceso que conocemos actuar con lso apqeutes p1,p2,p3 respectivamente que ya hemos formado:
+
+
++ Con p1:
+    
+    - Creamos un primer subpaquete con las siguientes caracteristicas:
+        CAbecera -> 20B
+        Datos -> 980B
+        id -> id_datagrama
+        MF -> 1
+        offset -> 1
+
+    - COmo faltan 500 B por mandar creamos otro subpaqute:
+        Cabecera -> 20B
+        Datos -> 500 B
+        id -> id_datagrama
+        MF -> 1
+        offset -> 980
+
++ Con p2:
+    - Creamos un primer subpqute:
+        Cabecera 20B
+        Datos -> 980B
+        id -> id_datagrama
+        MF -> 1
+        offset -> 1480
+
+    - Vuelven a quedar 500 B haciendo el siguietne subpaqute:
+        Cabecera -> 20B
+        Datos -> 500B
+        id -> id_datagrama
+        MF -> 1
+        offfset -> 2460
+
++ Con p3:
+    - Cremaos un primer subpaquete:
+        Cabecera -> 20B
+        Datos -> 980B
+        id -> id_datagrama
+        MF ->1* (esto el router lo sabe porque es el que hace la division y sabe que no es el mismo)
+        offset -> 2960B
+    
+    - Como quedan 240B debemos hacer otro subpaquete que sera el ultimo:
+        Cabecera -> 20B
+        Datos -> 240B
+        id -> id_datagrama
+        MF -> 0
+        offset -> 3440
+
+Es importante recalcar que la fragmentacion no suele ser equitativa pues cada paqeute es independeite del anterior.
+
+La respuesta sigue el mismo proceso si es necesario pero si pasamos de una red menor a una mayor no hay que hacer el proceso pues no se ensamblan de nuevo
+
+IPv6 integra el propio DHCP  luego si que tiene mensajes de avisos o warnings de no llegada  de paquete.
+
+
+
+ASOCIACION CON LA CAPA DE ENCLACE
+-------------------------------------------------
+```Protocolo ARP(Address resolution Protocole)(ESTRICTAMENTE NECESARIO)```
+
+Repaso: la capa de enclace se encarga de relaizar los saltos punto a punto (de un router a su siguiente) -> En ethernet tendra , el paquete, una direccion MC origen(equipo que lo manda) y una direccion MAC destino (equipo donde llega con el siguiente salto). Si hacemos otro salto al siguiente router se actualizan las direcciones MAC origen y MAC destino.
+
+En caso de pensar en el nivel de red disponemso de que la IP origen es el origen real desde donde se manda (cliente)  y la IP destino es la direccion del destino final del paquete. Esto ultimo es cierto excepto en NAT donde concetamos red publica y privada(es un caso particular). La decision del siguiente salto se toma con la tabla de encaminamiento.
+
+En el nivel de enlace al buscar qué router mandar necesitamos la direccion de enlace, es decir, su direccion MAC; no obstante, sabemos la direccion IP del router. 
+
+ARP se encarga de esto, el router manda un ARP request por difusion a nivel de enlace preguntando por la direccion MAC de la direccion IP del router (que si conocemos) luego el router correspondiente respondera con un ARP reply con su direccion MAC necesaria. 
+
+Nota: lA direccion de difusion a nivel de enlace es FFFF...FF
+
+Realizar esto cada vez que se manda un pauqete es costoso luego se guarda en una cache de manera que si no se pide la informacion de forma repetitiva se borra dicha direccion y se refresca cuando sea neccesaria.
+
+ARP es de enlace luego esta por debajo de IP. Los paquetes MAC estan formado por (diap 53) donde h -> harsware & p-> protocolo
+
+ARP tiene un protocolo asociado que antes se usaba mucho y se llama RARP que es el protoclo a la inversa, es decir, dispongo de una direccion MAC y quiero saber la dirección IP, situacion que no es habitual; pero es útil por ser el precursor de BOUT que a su vez es el precursor de DHCP.
+
+
+Ejercicio: hacer arp /release y arp /renew con wireshark tmb
+
+```ICMP```
+
+EN general sirve para avisar de que hay algun error al mandar un paquete-> IP no lo soluciona.
+
+Cuando hay una situacion de error-> manda mensaje al origen dle paquete que ha originado el problema con algunos campos:
+
+    COmprobacion
+    RIpo 
+    COdifo
+
+Es de nivel de red encapsulado en el protocolo IP. Si mezclamos NAT con ICMP el mensaje se queda en el router.
+
+Algunos tipos de mensaje son los de ping -> echo_request + echo_reply.
+Por lo general, cuando se informa de un error acompaña al paquete los 64 primeros Bytes del paquete que ha originado el problema -> cabecera IP 20B mas 44B de datos -> sirve para comprobacion. Luego tiene una cabecera ICMP y dentro la repeticion de la cabecera del paquete IP pero con la información del paquete que ha ocasionado el problema.
+
+```DHCP(NECESARIO EN LA PRACTICA)```
+
+DHCP es un protocolo a nivel de aplicacion
+
+Es un protocolo de configuracion de host dinamico; para llegar a una red necesitamos  IP, la mascara, el siguiente router(pasarela) y la DNS. Cuando entramos en una red no tenemos direccion IP es decri es la 0.0.0.0 luego necesitamos saber si hay qlgun servidor de red que me diga la direccion de red que dispongo -> hacemos un DHCP Discover a la dirección de difusión. Luego el servidor responde don los mensajes:
+    
+    - DHCP offer: manda la ip del servidor y te ofrece la direccon IP posible -> no es definitiva, solo una oferta
+
+El cliente manda un peticion queriendo imponer una direccion IP con un mensaje de DHCP request pero no tiene por qué cumplirse el deseo.
+EL servidor responde con un mensaje DHCP ACK donde se acepta una direccio IP, si no puede complacer al cliente, este ultimo se aguanta y se le asigna otra.
+
+Todo este proceso se realiza en difusion, no obstante, esto no siempre es así a partir de conocer la ip del servidor. EL puerto del servidor es 67 y el del cliente es 68. EL paqute DHCP que se manda dispone de un Identificador de transaccion para comprobar si la respuesta es la mía o no.
+
+DHCP es un protocolo de alquiler, es decir, un protocolo "leasing" luego cuanod pedimos una drireccion IP me la alquilan por un tiempo (determinado por la red) para poder evitar errores y liberar las direcciones y poder volver a utilizarlas.
+
+Windows : view network connections

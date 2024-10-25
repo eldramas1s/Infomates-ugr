@@ -182,6 +182,8 @@ Esto es así porque se permitirá la repetición de estas direcciones _IP_ __pri
 
 Estas redes no tienen conexión con la red pública de forma directa y usan la máscara que convenga en cada momento.
 
+___NAT___
+
 Si desde una red privada se quiere mandar algo a una red pública es necesario disponer de algún mecanismo de traducción de redes que pase de una red pública a un privada y viceversa; este protocolo es conocido como _NAT_.
 
 Supongamos que disponemos de un PC(192.168.1.2) concectado a un router(192.168.1.1-33.33.33.33) de nuestra casa conectado con un seridor(66.66.66.66) y mandamos un paquete que seguira el camino de ida y vuelta hasta el servidor. Dicho camino se divide en cuatro pasos:
@@ -266,7 +268,7 @@ Los más importantes son tres:
     
     - Red de destino: es la encargada de determinar el destino de un paquete de manera que, si quiero mandar a ese destino elegiré la regla de la tabla de encaminamiento que disponga de esa red.Este campo dispone de un valor comodín conocido como dirección "default" que representa cualquier dirección de cualquier red; suele usarse para determinar que un paquete necesita salir de una subred, irá acompañada del router más cercano como pasarela.
     - Máscara: es necesaria para conocer la red del dispositivo pues, en ocasiones, la red de destino puede llegar a ser una dirección IP concreta.
-    - Siguiente salto o pasarela: hace referencia a la dirección del siguiente dispositivo de conexión por el que debe pasar el paquete para llegar a su destino. Para este valor hay valores por defecto como "*" que representa que la red de destino está directamente conectada al dispositivo.
+    - Siguiente salto o pasarela: hace referencia a la dirección del siguiente dispositivo de conexión por el que debe pasar el paquete para llegar a su destino. Para este valor hay valores por defecto como "\*" que representa que la red de destino está directamente conectada al dispositivo.
 
 Otros campos son:
     
@@ -317,6 +319,137 @@ Con respecto al protocolo **OSPF** sabemos que la constante de proporcionalidad 
 
 $$ Coste= \frac{1}{ancho de banda}$$
 
+___Fragmentación___
+
+Recordemos un poco la definición de __datagrama__; es un paquete _IP_ que duspone de una cabecera y un conjunto de datos; dentro de la cabecera, contiene 5 líneas de 32 bits (20Bytes) obligatorias. Hay situaciones poco comunes donde se añade una nueva línea aumentando el tamaño del datagrama. 
+
+En la cabecera aparecen una serie de campos, de los cuales los más importantes son:
+    
+    + Versión(V)
+    + Tamaño de la cabecera(LC)
+    + TS: es el campo encargado de marcar los datagramas para que, una vez lleguen al destino se sepa que se debe hacer una operación con ellos; en caso de que no se haga nada el campo pasa a tomar un valor correcto de forma automática.
+    + Longitud total del datagrama
+    + Identificador para conocer, en caso de fragmentación, qué paquetes son de qué datagrama y poder recomponerlo.
+    + Desplazamiento(offset)
+    + TTL: es el número de saltos máximo que puede dar un paquete en la red para evitar paquetes navegando en la red de forma indefinida. En cada salto, este campo se reduce en una unidad, si llega a cero, el paquete se descarta.
+    + Protocolo: contiene un identificar de algún protocolo que se usa en ese datagrama; normalmente, estos protocolos están contenidos en el protocolo IP.
+    + COmprobación: es un campo donde aparece el complemento a 1 del datagrama de manera que al llegar al destino se realizará la suma, luego si el resultado es todo a 1 el paqeute será correcto; en otro caso, se descarta.(El protocolo IP lo descarta pero no produce ningún mensaje de aviso a nivel de red, esto lo suele hacer ICMP si está implementado).
+    + Dirección IP origen del datagrama, es decir, quién lo manda.
+    + Dirección IP destino del datagrama, es decir, a quién se manda.
+    + Opciones.
+    + Relleno; este campo esta compuesto de tantos ceros como sea necesario para que el paquete tenga un tamaño múltiplo de 32.
+
+Después de tener lista la cabecera, que en ocasiones no tendrá campos rellenos pues será una petición y el destino los rellenará antes de contestar, podemos acoplar los datos que queremos mandar.
+
+En ocasiones, al mandar un datagrama por una red, este supera el tamaño máximo de información que puede soportar la red (__MTU__, dependiente de la tarjeta de red de los dispositivos conectados), luego debemos fragmentarlo para poder mandar dicha información. Cabe recalcar, que una vez fragmentado, cada uno de los fragmentos, llamados __paquetes__, son independientes entre sí. 
+
+Esto es de fácil entendimiento pues no todos los paquetes deberán seguir la __misma__ ruta dentro de la red, cada uno puede ir por un camino distinto. Lo que sí conservan es el identificador de datagrama para que, una vez en el destino, se puedan recomponer. De hecho, si pasado un cierto tiempo no se ha recibido todo el paquete en el destino, la parte que se haya recibido es descartada y será otra capa del modelo OSI la encargada de mandar un mebnsaje de aviso.
+
+En lugar de explicar el proceso, plantearemos una casuística de examen que más adelante complicaremos, ya que todos los datagramas siguen este proceso de la misma manera:
+
+*Ejercicio*
+
+Supongamos que disponemos de un cierto datagrama _IP_ a mandar por una red con _MTU_ de 1500B. Sabemos que el datagrama _IP_ está compuesto por una cabecera de 20 Bytes y un cuerpo de datos de 4180 Bytes. Resuelva la fragmentación del datagrama que pasa de un dispositivo A a un dispositivo B por dicha red.
+
+*Solución*
+
+Como el tamaño del paquete es mayor que la _MTU_ debemos fragmentarl en menos paquetes _IP_ que dispondrán de una cabecera _IP_ y su cuerpo de datos de, como mucho, 1480 Bytes (1500B - 20B de la cabecera). Como en este caso la fragmentación se realiza en el dispositivo A esto puede llegar a causar la mala idea de que se realiza en el principio del camino; esto no es así, la fragmaentación se realiza en el punto en el que se necesite y no se recompone el paquete hasta llegar al destino.
+
+El paquete fragmentado contiene una serie de campos que debemos conocer como:
+    
+    + Identificador: contiene el identificador del datagrama del que proviene con intención de que, una vez llegado al destino, este conozac qué fragmentos se deben unir con el paquete que acaba de llegar.
+    + More fragments: contiene un 1 si hay mas fragmentos del datagrama después de él o 0 si es el útlimo.
+    + Offset: contiene el Byte del datagrama por el que comienza el paquete, permitiendo así que haya un orden a la hora de montar de nuevo el datagrama a través de los fragmentos.
+
+Volviendo al problema, el primer fragmento quedaría:
+    
+    - Cabecera -> 20B
+    - Datos -> 1480B
+    - id -> id_datagrama
+    - Offset -> 0
+    - MF -> 1
+
+Como no hemos mandado aún todo el paquete, quedan 2700 B, mandamos otro fragmento:
+
+    - Cabecera -> 20B
+    - Datos -> 1480B
+    - id -> id_datagrama
+    - Offset -> 1480
+    - MF -> 1
+
+De nuevo, siguen faltando 1220B por mandar, asique hacemos otro fragmento, ya el último:
+    
+    - Cabecera -> 20B
+    - Datos -> 1220B
+    - id -> id_datagrama
+    - Offset -> 2960
+    - MF -> 0
+
+*Complicación*
+
+Supongamos ahora que, nuestros fragmentos deben ser enviados a un nuevo dispositivo C a través de una red con _MTU_ de 1000B con la intención de obtener todo el datagrama en este último dispositivo.
+
+*Solución*
+
+Con motivo de facilitar la comprensión, se usará $pi$ para cada paquete ya fragmentado en el orden en el que se ha fragmetado:
+    
+    + Con p1:
+        
+        - Creamos un primer subpaquete con las siguientes características:
+           
+           · Cabecera -> 20B
+           · Datos -> 980B
+           · id -> id_datagrama
+           · MF -> 1
+           · Offset -> 1
+        
+        - Como faltan 500B de p1 por mandar, creamos otro subpaquete:
+           
+           · Cabecera -> 20B
+           · Datos -> 500B
+           · id -> id_datagrama
+           · MF -> 1
+           · Offset -> 1
+
+    + Con p2:
+        
+        - Cremos el primer subpaquete:
+            
+            · Cabecera -> 20B
+            · Datos -> 980B
+            · id -> id_datagrama
+            · MF -> 1
+            · Offset -> 1480
+
+        - Vuelven a quedar 500B luego hacemos otro subpaquete.
+
+            · Cabecera -> 20B
+            · Datos -> 500B
+            · id -> id_datagrama
+            · MF -> 1
+            · Offset -> 2460
+
+    + Con p3:
+
+        - Creamos el primer subpaquete sabiendo que MF debe aparecer a 1, pues el elemento que fragmenta sabe que quedan mas fragmentos del datagrama original:
+            
+            · Cabecera -> 20B
+            · Datos -> 980B
+            · id -> id_datagrama
+            · MF -> 1*(esto el router lo sabe porque es él quien hace la división)
+            · Offset -> 2960
+
+        - Como quedan 240B debemos hacer otro subpaquete que será, ahora sí, el último del datagrama:
+            
+            · Cabecera -> 20B
+            · Datos -> 240B
+            · id -> id_datagrama
+            · MF -> 0
+            · Offset -> 3940
+
+
+Es importante recalcar que la fragmentación no suele ser equitativa pues cada paquete es independiente del anterior. La respuesta, en caso de que se nos pida sigue el mismo proceso; pero, si pasamos de una red con menor _MTU_ a una con mayor _MTU_ no será necesaria la fragmentación y menos la unión de paqutes pues ya sabemos que esto no se realiza en este protocolo(esto es cierto también para la pregunta).
+
 
 ### 2.3.2.IPv6
 
@@ -337,3 +470,55 @@ Estas conexiones no dejan de ser redes, pero básicamente lo que tenemos es una 
 </p>
 </div>
 
+## 2.4.Asociación con la capa de enlace
+
+En este apartado conoceremos algunos de los protocolos que ayudan al protocolo _IP_ en distintos niveles: enlace, aplicación, red.
+
+Haremos un breve repaso de la __capa de enlace__, es la encargada de realizar lo saltos punto a punto, es decir, de un router a su siguiente sin tener en cuenta el destino final del paquete. Pensando mas concretamente en _Ethernet_, cada paquete dispondrá de una dirección __MAC origen__(router que manda) y una dirección __MAC destino__(router, siguiente salto, que recibe). Si realizamos otro salto, las direcciones citadas se actualizan.
+
+### 2.4.1.Protocolo ARP
+
+También llamado " Address Resolution Protocole", es un protocolo estrictamente necesario para el protocolo _IP_ pues se nos presenta el siguiente problema; en el nivel de enlace, cuando debemos buscar a qué router mandar el paquete necesitamso la dirección de enlace, es decir, la dirección __MAC__ y sólo disponemos de la dirección _IP_ de dicho router destino.
+
+Este problema lo soluciona este protocolo mandando un _ARP request_ por difución a nivel de enlace(FFFF...FF) pregutnando por la dirección __MAC__ de la dirección _IP_ que conocemos; de esta manera, el router se dará por aludido y responderá a través de la misma red de difusión proporcionando la dirección __MAC__ asociada(_ARP reply_). Realmente, la respuesta suele hacerse de forma directa a la dirección __MAC origen__, pero para nosotros, se hará por difusión.
+
+Realizar este proceso en cada paquete que pasa por el router sería un coste inimaginable, entonces los routers disponen de una caché a nivel de enlace que guarda dichas _MAC_ que más se usan. Pasado un tiempo, si no se ha utilizado la dirección _MAC_ esta se borra y deja paso a otras direcciones.
+
+Los paquetes _ARP_ están formados por los siguientes componentes:
+    
+<div>
+<p style='text-align:center'>
+<img src=./imagenes/paqueteARP.png alt=Error>
+</p>
+</div>
+
+ARP tiene un protocolo asociado que antes se usaba mucho y se llama RARP que es el protoclo a la inversa, es decir, dispongo de una direccion MAC y quiero saber la dirección IP, situacion que no es habitual; pero es útil por ser el precursor de BOUT que a su vez es el precursor de DHCP.
+
+
+### 2.4.2.Protocolo ICMP
+
+Este protocolo es el encargado de avisar cuando un paquete, dentro del protocolo _IP_, no llega al destino o no lo hace correctamente. 
+
+Cuando hay una situación de error, _ICMP_ manda un mensaje al origen del paquete con el motivo por el cual se ha ocasionado el problema; este paquete dispone de algunos campos:
+    
+    - Comprobación; sigue la misma dinámica que en la cabecera de un datagrama.
+    - Tipo; es  el tipo de error que se ha producido.
+    - Códido; es el código asociado al error que se ha producido.
+
+Este protocolo actúa a nivel de __red__ y está encapsulado en el protocolo _IP_. Como curiosidad añadida a la anterior, si nos encontramos en una situación de uso de _NAT_, el paquete no entra en la red privada luego se queda en el router que hace la traducción.
+
+Por lo general, cuando se informa de un error, acompañan al paquete los 64 primero bytes del paquete que ha originado el problema, es decir, 20B de la cabecera _IP_ junto con 44B de datos que sirven en la comprobación. De esta manera, el paquete que manda _ICMP_ contiene su cabecera _ICMP_ junto con la repetición de la cabecera _IP_ del paquete problemático y parte del paquete que ha ocasionado el problema.
+
+### 2.4.3.Protocolo DHCP
+
+Este protocolo que actúa a nivel de aplicación es un protocolo de configuración de host __dinámico__; para llegar a unoa red cualquiera necesitamos tener asociada una dirección _IP_ dentro de esa red, la máscara de la red, el siguiente router y el _DNS_. 
+
+La situación es la siguiente; supongamos que llegamos a una red nuevo, no disponemos de dirección _IP_ luego nuestra dirección _IP_ es la dirección 0.0.0.0. Normalmente, habrá un servidor de red que sea el encargado de alquiilarme una dirección _IP_ por un tiempo renovable.
+
+Para obtener la dirección _IP_, el protocolo manda desde nuestro PC un mensaje de _DHCP Discover_ a la dirección de difusión con el objetivo de que dicho servidor nos conteste con un mensaje _DHCP offer_ donde aparecen, la dirección _IP_ del servidor que es necesaria para la comunicación, y la dirección _IP_ que nos ofrece el servidor y __no__ es definitiva.
+
+Tras esto,iente manda una petición con la dirección _IP_ que le gustaría tener (suele ser una que ya se usó en otro momento) con un mensaje _DHCP request_ a lo que el servidor responderá con un mensaje _DHCP ACK_ aceptando la dirección propuesta si no hay otro dispositivo que la tenga o imponiendo una dirección _IP_ distinta si la pedida esta ocupada.
+
+Todo este proceso se realiza en difusión; noobstante, eso no siempre es así, pues a partir de conocer la _IP_ del servidor tras el paquete _DHCP offer_ la comunicación puede hacerse de forma particular. Cada paqeute _DHCP_ que se manda por la red dispone de un __identificador__ apra conocer si el mesaje va para mi dispositivo o no ya que el protocolo asigna uno a cada comunicación establecida.
+
+Como ya se ha dejado entrever, _DHCP_ es un protocolo de alquiler o "leasing", es decir, cuando pedimos una dirección _IP_, el servidor de la red me la alquila por un tiempo (determinado por la red) para poder evitar que la dirección _IP_ ocupada permanezca ocupada debido a errores de desconexión del equipo. Si pasado ese tiempo no se ha vuelto a hacer una petición de permanencia en la red, el equipo conectado pierde su dirección _IP_, y por tanto, su conexión con la red.
