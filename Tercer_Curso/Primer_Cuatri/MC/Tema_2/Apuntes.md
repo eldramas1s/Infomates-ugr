@@ -373,7 +373,7 @@ No obstante para poder aplicar __sustitución__ en el sistema de ecuaciones resu
 
 ___Lema de Arden___
 
-Dada una ecuación de la forma  $r_i = \alpha_i+\beta r_i$ donde $\alpha_i$ es la parte de la ecuación que no contiene $r_i$ y $\beta$ es el coeficiente que acompaña a la incógnita se tiene que la solución de esta ecuación viene dada por:
+Dada una ecuación de la forma  $r_i = \alpha_i+\beta r_i$ donde $\alpha_i$ es la parte de la ecuación que no contiene $r_i$ y $\beta$ es el coeficiente que acompaña a la incógnita, que no debe contener la cadena vacía, se tiene que la solución de esta ecuación viene dada por:
 
 $$r_i=\beta^\*\alpha$$
 
