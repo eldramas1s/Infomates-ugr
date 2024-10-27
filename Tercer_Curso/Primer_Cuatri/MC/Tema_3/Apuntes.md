@@ -9,7 +9,9 @@ Como añadido, el __conjunto vacío__ se considera conjunto regular.
 Sea $L$ un conjunto regular, entonces _existe_ un $n \in N$ tal que $\forall z \in L$, si $|z| \geq n$, entonces $z$ se puede expresar de la forma $z = uvw$ donde:
 
 i) $|uv|\leq n$
+
 ii) $|v| \geq 1$
+
 iii) $uv^iw \in L \forall i \geq 0$
 
 además $n$ puede ser el número de estados de cualquier autómata que acepte el lenguaje.
@@ -76,7 +78,7 @@ Hablemos un poco más del lenguaje cociente con un teorema:
 
 _Teorema_
 
-Si $R$ es un conjunto regular y $L$ es un lenguaje cualquiera, entonces el cociente de lenguajes $R/L=$\{ $u\in A^\* : \exists v \in L \land uv \in R $ \} es un conjunto regular.
+Si $R$ es un conjunto regular y $L$ es un lenguaje cualquiera, entonces el cociente de lenguajes $R/L=\{u\in A^\* : \exists v \in L \land uv \in R \}$ es un conjunto regular.
 
 _Fin Teorema_
 
