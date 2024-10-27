@@ -30,7 +30,7 @@ Entonces, la descomposición de $z$ se haría en las siguientes componentes:
 
 $$u=a_1a_2...a_k, v=a_{k+1}...a_l, w=a_{l+1}...a_m$$
 
-Donde claramente, al pasar por $v$ estamos repitiendo $l-k+1$ veces el mismo estado obteniendo un _ciclo_; como $M$ acepta $L$ tenemos que al acabar de leer $z$ también deberá acabar de leer la palabra $uv^iw$; y por tanto, $uv^iw$ \in L$.
+Donde claramente, al pasar por $v$ estamos repitiendo $l-k+1$ veces el mismo estado obteniendo un _ciclo_; como $M$ acepta $L$ tenemos que al acabar de leer $z$ también deberá acabar de leer la palabra $uv^iw$; y por tanto, $uv^iw \in L$.
 
 _Fin demostración_
 
