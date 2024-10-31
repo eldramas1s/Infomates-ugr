@@ -208,9 +208,9 @@ Equivalentemente:
 
 $$\delta'^{\*}(q_0',uz) \in F' \Longleftrightarrow \delta'^{\*}(q_0',vz) \in F'$$ 
 
-Como $\delta'^{\*}(q_0',uz) = (\delta')^{\*}((\delta')^{\*}(q_0',u),z)=(\delta')^{\*}(q_i',z)$ y  $(\delta')^{\*}(q_0',vz) = (\delta')^{\*}((\delta')^\*(q_0',v),z)=(\delta')^{\*}(q_j',z)$, entonces:
+Como $\delta'^{\*}(q_0',uz) = \delta'^{\*}(\delta'^{\*}(q_0',u),z)=\delta'^{\*}(q_i',z)$ y  $\delta'^{\*}(q_0',vz) = \delta'^{\*}(\delta'^\*(q_0',v),z)=\delta'^{\*}(q_j',z)$, entonces:
 
-$$(\delta')^\*(q_i',z)\in F' \Longleftrightarrow (\delta')^\*(q_j',z) \in F'$$
+$$\delta'^{\*}(q_i',z)\in F' \Longleftrightarrow \delta'^{\*}(q_j',z) \in F'$$
 
 y por definición, $q_i'$ y $q_j'$ son indistinguibles.
 
@@ -224,11 +224,11 @@ _Demostración_
 
 Se realizará por contrarrecíproco.
 
-\[$\leftarrow$\]: Si el autómata $M$ dispone de dos estados distintos indistinguibles, como el autómata $M'$ no dispone de estados indistinguibles y acepta el mismo lenguaje que $M$, tendrá menos estados que $M$ consiguiendo así que $M$ no sea minimal.
+$\[\leftarrow\]$: Si el autómata $M$ dispone de dos estados distintos indistinguibles, como el autómata $M'$ no dispone de estados indistinguibles y acepta el mismo lenguaje que $M$, tendrá menos estados que $M$ consiguiendo así que $M$ no sea minimal.
 
-\[$\rightarrow$\]: Si $M$ no es minimal entonces existirá otro, $M'$, con menos estados que acepta el mismo lenguaje. 
+$\[\rightarrow\]$: Si $M$ no es minimal entonces existirá otro, $M'$, con menos estados que acepta el mismo lenguaje. 
 
-Supongamos ahora que para cada estado $q_i$ hay una palabra $u_i$ tal que $\delta^\*(q_0,u_i)=q_i$; como $M'$ dispone de menos estados entonces habrá dos palabras $u_i,u_j$ que cumplen $(\delta')^\*(q_0,u_i)=(\delta')^\*(q_0,u_j)$. Entonces, por el resultado anterior, $q_i$ y $q_j$ son indistinguibles.
+Supongamos ahora que para cada estado $q_i$ hay una palabra $u_i$ tal que $\delta^\*(q_0,u_i)=q_i$; como $M'$ dispone de menos estados entonces habrá dos palabras $u_i,u_j$ que cumplen $\delta'^\*(q_0,u_i)=\delta'^\*(q_0,u_j)$. Entonces, por el resultado anterior, $q_i$ y $q_j$ son indistinguibles.
 
 _Fin demostración_
 
