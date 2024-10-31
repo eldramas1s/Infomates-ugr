@@ -107,7 +107,7 @@ Siguiendo la lógica de conjuntos, sabemos que la igualdad entre conjuntos se pu
 
 Esto se consigue haciendo el autómata que acepta el lenguaje dado por el conjunto
 
-$$(L_1\\L_2) \cup (L_2 \\ L_1)$$
+$$(L_1-L_2) \cup (L_2-L_1)$$
 
 y donde tomamos aquellas palabras que están en $L_1$ pero no en $L_2$ y las que complen la propiedad contraria.
 
@@ -124,13 +124,13 @@ Para que unautómata sea minimal debe cumplir las siguientes condiciones:
     
     - No tener estados inaccesibles.
     - No tener estados indistinguibles.
-    - Aceptar el lenguaje del cual buscamos probar que es minimal
+    - Aceptar el lenguaje del cual buscamos probar que es minimal.
 
 ### 3.4.1.Estados indistinguibles
 
 Hablando sobre las condiciones ha aparecido el concepto de __indistinguibilidad__ entre estados de un autómata; esto no es más que ver que dos estados de un mismo autómata representan el mimso papel. 
 
-De forma más formal, sean _p_ y _q_ dos estados de un autómata finito determinista, diremos que _p_ y _q_ son indistinguibles cuando $\forall u \in A^\* \delta^\*(p,u) \in F \Longleftrightarrow \delta^\*(q,u) \in F$.
+De forma más formal, sean _p_ y _q_ dos estados de un autómata finito determinista, diremos que _p_ y _q_ son indistinguibles cuando $\forall u \in A^\*$,$\delta^\*(p,u) \in F \Longleftrightarrow \delta^\*(q,u) \in F$.
 
 Es decir, cuando dada una palabra del alfabeto, llegar a un estado final desde un estado equivale a llegar a un estado final desde el otro estado y viceversa.
 
@@ -140,7 +140,7 @@ Diremos por otro lado que dos estados de un autómata son __distinguibles__ cuan
 
 $$\exists u \in A^\* | \delta^\*(p,u) \in F \lor \delta^\*(q,u) \in F$$
 
-Donde la expresión lógica "$\lor$" representa una relación exclusiva.
+Donde la expresión lógica " $\lor$ " representa una relación exclusiva.
 
 ___Relación de indistinguibilidad___
 
@@ -181,7 +181,7 @@ Este autómata cumple las siguientes propiedades:
 
 _Demostración de la segunda propiedad_
 
-Usando que $\delta^\*(\[p\],u)=\[\delta^\*(p,u)\]$ podemos deducir que despues de leer $u \in A^\*$ desde $q_0$, el autómata inicial llegará a $\delta^\*(q_0,u)$ mientras que si el autómata sin estados indistinguibles hace los mismo con clases de quivalencia llegamos a \[$\delta^\*(q_0,u)$\]. 
+Usando que $\delta^\*(\[p\],u)=\[\delta^\*(p,u)\]$ podemos deducir que despues de leer $u \in A^\*$ desde $q_0$, el autómata inicial llegará a $\delta^\*(q_0,u)$ mientras que si el autómata sin estados indistinguibles hace los mismo con clases de quivalencia llegamos a $\[\delta^\*(q_0,u)\]$. 
 
 De esta manera, $\[\delta^\*(q_0,u)\] \in F_m \Longleftrightarrow \delta^\*(q_0,u)\in F$ de donde se deduce que aceptan el mismo lenguaje.
 
@@ -190,7 +190,7 @@ De esta manera, $\[\delta^\*(q_0,u)\] \in F_m \Longleftrightarrow \delta^\*(q_0,
 
 ___Teorema___
 
-Si $M(Q,A,\delta,q_0,F)$ y $M'(Q',A',\delta',q_0',F')$ aceptan el mismo lenguaje y $u,v\in A^\*$ son tales que $\delta^\*(q_o,u)=\delta^\*(q_o,v)$ entonces q_i'=\delta^\*(q_0',u)$ y $q_j'=\delta^\*(q_0,v)$ son estados indistinguibles en $M'$.
+Si $M(Q,A,\delta,q_0,F)$ y $M'(Q',A',\delta',q_0',F')$ aceptan el mismo lenguaje y $u,v\in A^\*$ son tales que $\delta^\*(q_o,u)=\delta^\*(q_o,v)$ entonces q_i'=\delta'\*(q_0',u)$ y $q_j'=\delta'^\*(q_0,v)$ son estados indistinguibles en $M'$.
 
 _Demostración_
 
