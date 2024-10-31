@@ -190,7 +190,7 @@ De esta manera, $\[\delta^\*(q_0,u)\] \in F_m \Longleftrightarrow \delta^\*(q_0,
 
 ___Teorema___
 
-Si $M(Q,A,\delta,q_0,F)$ y $M'(Q',A',\delta',q_0',F')$ aceptan el mismo lenguaje y $u,v\in A^\*$ son tales que $\delta^\*(q_o,u)=\delta^\*(q_o,v)$ entonces q_i'=\delta'\*(q_0',u)$ y $q_j'=\delta'^\*(q_0,v)$ son estados indistinguibles en $M'$.
+Si $M(Q,A,\delta,q_0,F)$ y $M'(Q',A',\delta',q_0',F')$ aceptan el mismo lenguaje y $u,v\in A^\*$ son tales que $\delta^\*(q_o,u)=\delta^\*(q_o,v)$ entonces q_i'=(\delta')^\*(q_0',u)$ y $q_j'=(\delta')^\*(q_0,v)$ son estados indistinguibles en $M'$.
 
 _Demostración_
 
@@ -206,11 +206,11 @@ Por tanto, $uz \in L(M) \Longleftrightarrow vz \in L(M)$ y como $L(M)=L(M')$ ent
  
 Equivalentemente:
 
-$$\delta^\*'(q_0',uz) \in F' \Longleftrightarrow \delta^\*'(q_0',vz) \in F'$$ 
+$$(\delta')^\*(q_0',uz) \in F' \Longleftrightarrow (\delta')^\*(q_0',vz) \in F'$$ 
 
-Como $\delta^\*'(q_0',uz) = \delta^\*'(\delta^\*'(q_0',u),z)=\delta^\*'(q_i',z)'$ y  $\delta^\*'(q_0',vz) = \delta^\*'(\delta^\*'(q_0',v),z)=\delta^\*'(q_j',z)'$, entonces:
+Como $\delta^\*'(q_0',uz) = (\delta')^\*(\delta^\*'(q_0',u),z)=(\delta')^\*(q_i',z)$ y  $(\delta')^\*(q_0',vz) = (\delta')^\*(\delta^\*'(q_0',v),z)=(\delta')^\*(q_j',z)$, entonces:
 
-$$\delta^\*'(q_i',z)\in F' \Longleftrightarrow \delta^\*'(q_j',z) \in F'$$
+$$(\delta')^\*(q_i',z)\in F' \Longleftrightarrow (\delta')^\*(q_j',z) \in F'$$
 
 y por definición, $q_i'$ y $q_j'$ son indistinguibles.
 
@@ -228,7 +228,7 @@ Se realizará por contrarrecíproco.
 
 \[$\rightarrow$\]: Si $M$ no es minimal entonces existirá otro, $M'$, con menos estados que acepta el mismo lenguaje. 
 
-Supongamos ahora que para cada estado $q_i$ hay una palabra $u_i$ tal que $\delta^\*(q_0,u_i)=q_i$; como $M'$ dispone de menos estados entonces habrá dos palabras $u_i,u_j$ que cumplen $\delta^\*'(q_0,u_i)=\delta^\*'(q_0,u_j)$. Entonces, por el resultado anterior, $q_i$ y $q_j$ son indistinguibles.
+Supongamos ahora que para cada estado $q_i$ hay una palabra $u_i$ tal que $\delta^\*(q_0,u_i)=q_i$; como $M'$ dispone de menos estados entonces habrá dos palabras $u_i,u_j$ que cumplen $(\delta')^\*(q_0,u_i)=(\delta')^\*(q_0,u_j)$. Entonces, por el resultado anterior, $q_i$ y $q_j$ son indistinguibles.
 
 _Fin demostración_
 
@@ -238,7 +238,7 @@ Si $M(Q,A,\delta,q_0,F)$ y $M'(Q',A,\delta',q_0',F')$ son dos autómatas minimal
 
 i) $f(q_0)=q_0'$
 
-ii) Si $\delta(p,u)=q \Longrightarrow \delta(f(p),u)=f(q)$
+ii) Si $\delta(p,u)=q \Longrightarrow \delta'(f(p),u)=f(q)$
 
 iii) f(F) = F'
 
