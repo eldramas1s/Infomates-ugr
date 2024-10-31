@@ -208,7 +208,7 @@ Equivalentemente:
 
 $$\delta'^{\*}(q_0',uz) \in F' \Longleftrightarrow \delta'^{\*}(q_0',vz) \in F'$$ 
 
-Como $\delta^\*'(q_0',uz) = (\delta')^\*((\delta')^\*(q_0',u),z)=(\delta')^\*(q_i',z)$ y  $(\delta')^\*(q_0',vz) = (\delta')^\*((\delta')^\*(q_0',v),z)=(\delta')^\*(q_j',z)$, entonces:
+Como $\delta'^{\*}(q_0',uz) = (\delta')^{\*}((\delta')^{\*}(q_0',u),z)=(\delta')^{\*}(q_i',z)$ y  $(\delta')^{\*}(q_0',vz) = (\delta')^{\*}((\delta')^\*(q_0',v),z)=(\delta')^{\*}(q_j',z)$, entonces:
 
 $$(\delta')^\*(q_i',z)\in F' \Longleftrightarrow (\delta')^\*(q_j',z) \in F'$$
 
