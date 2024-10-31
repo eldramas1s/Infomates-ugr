@@ -1,0 +1,53 @@
+Como obtener el automata minimal:
+
+    - Eliminar los estados inaccesibles (a partir de ahora supondremos esto de forma implicita con todos los automatas)
+
+Buscamos identificar que estados representan el mismo papel (que sean indistinguibles) y tratar de pegarlos. Que dos estados sean indistinguibles significa que el estado al que lleguemos al aplicar la relacion de calculo es el mismo para cada uno de los estados que queremos distinguir.
+
+Esto presenta un problema y es que hay que probar con todas las palabras que podamos coger, que pueden ser infinitas.
+
+
+Propiedades:
+    
+    - Un final != no final 
+    - (grafo en diapositivas no imprimir)
+
+Automatas que apgrupa estados indistinguibles
+
+Consiste tomar como estados las clases de equivalencia, con estados finales las clases de equivalencia en la que al menos un estado es final (por la propiedad 1 todos son finales), el paso de calculo de una clase es la clase del paso de calculo de su representante y el estado inicial es la clase de equivalencia del estado inicial.
+
+De esta forma, ya no hay estados indistinguible spues si los hubieran, tendrian las clases de equivalencia identicas. (demostracion en diapositivas no imprimir)
+
+COn respecto a la identidad de lenguajes, ambos aceptan el mismo lenguaje
+
+Minimizacion d eautomatas (saberse demo):
+    Un automata sin estados inaccesibles es minimal si y solo si tiene una pareja de estados disstintes indistinguibles:
+    <= trivial
+    => Si M no es minimal => hay otro con menos estados que acepta el mismo automata => para cada estado habra una palabra que lleva el automata desde el inicio hasta un estado q_i (en el automata inicial)=> habrá al menos dos palabras que llevan al mismo estado  que en el inicial tiene distintos estados al llegar luego esos dos estados deben ser indistinguibles por el resultado anterior.
+
+Unicidad del automata minimal
+
+No es que sean unicos sino que hay vario sque son isomorfos (cambiar el nombre de los estados).
+
+Demostracion ----------
+
+Determinamos cada palabra del estado inicial al estado q_i, sabiendo que hay un numero finito de estados (es minimal) => cojo q_0' y a acada palabra que ya habia determinado y a ese estado le aplico f(q_i) consiguiendo la relacion. Estos estados no dependen de la palabra elegida pues conseguimos asi el mismo estado(pensar como clases de equivalencias).
+
+    F es inyectiva por que trabajamos con clases de equivalencia y porque aceptan el mismo lenguaje. COmo la imagen es finita F es biyectiva.
+
+Seguir por las diapositivas tratando de razonarlo todo
+
+
+¿Como identificar los estados indistinguibles?
+
+Distinguibles de nivel 0 -> aquellos tal que al aplicarle la palabra vacía obtenemos un estado final y otro no final como pareja.
+
+Para ver que dos estados son distinguibles bastaría con encontrar un natural para el cual sean distinguibles de ese nivel.
+
+Cada pareja (p,q) no ordenada dispone de una variable booleana que determina si es distinguible y una lista de parejas que haremos disntinguibles cuando la inicial (p,q) sea distinguible.
+
+Las casillas que no esten marcadas seran estados indistinguibles.
+Si la relacion no es transitiva => nos hemos equivocado, es decir si a=e y e=b pero a!=b entonces nos hemos equivocado.
+
+
+
