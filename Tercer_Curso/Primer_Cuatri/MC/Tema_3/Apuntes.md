@@ -190,7 +190,7 @@ De esta manera, $\[\delta^\*(q_0,u)\] \in F_m \Longleftrightarrow \delta^\*(q_0,
 
 ___Teorema___
 
-Si $M(Q,A,\delta,q_0,F)$ y $M'(Q',A',\delta',q_0',F')$ aceptan el mismo lenguaje y $u,v\in A^\*$ son tales que $\delta^\*(q_o,u)=\delta^\*(q_o,v)$ entonces q_i'=(\delta')^\*(q_0',u)$ y $q_j'=(\delta')^\*(q_0,v)$ son estados indistinguibles en $M'$.
+Si $M(Q,A,\delta,q_0,F)$ y $M'(Q',A',\delta',q_0',F')$ aceptan el mismo lenguaje y $u,v\in A^\*$ son tales que $\delta^\*(q_o,u)=\delta^\*(q_o,v)$ entonces $q_i'=(\delta')^\*(q_0',u)$ y $q_j'=(\delta')^\*(q_0,v)$ son estados indistinguibles en $M'$.
 
 _Demostración_
 
