@@ -130,7 +130,7 @@ Para que unautómata sea minimal debe cumplir las siguientes condiciones:
 
 Hablando sobre las condiciones ha aparecido el concepto de __indistinguibilidad__ entre estados de un autómata; esto no es más que ver que dos estados de un mismo autómata representan el mimso papel. 
 
-De forma más formal, sean _p_ y _q_ dos estados de un autómata finito determinista, diremos que _p_ y _q_ son indistinguibles cuando $\forall u \in A^\* \delta^\*(p,u) \in F \longrightleftarrow \delta^\*(q,u) \in F$.
+De forma más formal, sean _p_ y _q_ dos estados de un autómata finito determinista, diremos que _p_ y _q_ son indistinguibles cuando $\forall u \in A^\* \delta^\*(p,u) \in F \Longleftrightarrow \delta^\*(q,u) \in F$.
 
 Es decir, cuando dada una palabra del alfabeto, llegar a un estado final desde un estado equivale a llegar a un estado final desde el otro estado y viceversa.
 
@@ -183,7 +183,7 @@ _Demostración de la segunda propiedad_
 
 Usando que $\delta^\*(\[p\],u)=\[\delta^\*(p,u)\]$ podemos deducir que despues de leer $u \in A^\*$ desde $q_0$, el autómata inicial llegará a $\delta^\*(q_0,u)$ mientras que si el autómata sin estados indistinguibles hace los mismo con clases de quivalencia llegamos a \[$\delta^\*(q_0,u)$\]. 
 
-De esta manera, $\[\delta^\*(q_0,u)\] \in F_m \longrightleftarrow \delta^\*(q_0,u)\in F$ de donde se deduce que aceptan el mismo lenguaje.
+De esta manera, $\[\delta^\*(q_0,u)\] \in F_m \Longleftrightarrow \delta^\*(q_0,u)\in F$ de donde se deduce que aceptan el mismo lenguaje.
 
 
 ### 3.4.3.Minimización de autómatas
@@ -202,15 +202,15 @@ Sea $z\in A^\*$ entonces:
 
 $$\delta^\*(q_0,uz)=\delta^\*(delta^\*(q_0,u),z)=\delta^\*(\delta^\*(q_0,v),z)=\delta^\*(q_0,vz)$$
 
-Por tanto, $uz \in L(M) \longrightleftarrow vz \in L(M)$ y como $L(M)=L(M')$ entonces $uz \in L(M') \longrightleftarrow vz \in L(M')$.
-
+Por tanto, $uz \in L(M) \Longleftrightarrow vz \in L(M)$ y como $L(M)=L(M')$ entonces $uz \in L(M')  \Longleftrightarrow vz \in L(M')$.
+ 
 Equivalentemente:
 
-$$\delta^\*'(q_0',uz) \in F' \longrightleftarrow \delta^\*'(q_0',vz) \in F'$$ 
+$$\delta^\*'(q_0',uz) \in F' \Longleftrightarrow \delta^\*'(q_0',vz) \in F'$$ 
 
 Como $\delta^\*'(q_0',uz) = \delta^\*'(\delta^\*'(q_0',u),z)=\delta^\*'(q_i',z)'$ y  $\delta^\*'(q_0',vz) = \delta^\*'(\delta^\*'(q_0',v),z)=\delta^\*'(q_j',z)'$, entonces:
 
-$$\delta^\*'(q_i',z)\in F' \longrightleftarrow \delta^\*'(q_j',z) \in F'$$
+$$\delta^\*'(q_i',z)\in F' \Longleftrightarrow \delta^\*'(q_j',z) \in F'$$
 
 y por definición, $q_i'$ y $q_j'$ son indistinguibles.
 
@@ -238,7 +238,7 @@ Si $M(Q,A,\delta,q_0,F)$ y $M'(Q',A,\delta',q_0',F')$ son dos autómatas minimal
 
 i) $f(q_0)=q_0'$
 
-ii) Si $\delta(p,u)=q \longrightarrow \delta(f(p),u)=f(q)$
+ii) Si $\delta(p,u)=q \Longrightarrow \delta(f(p),u)=f(q)$
 
 iii) f(F) = F'
 
