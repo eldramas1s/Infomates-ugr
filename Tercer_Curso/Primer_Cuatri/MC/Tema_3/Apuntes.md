@@ -251,6 +251,7 @@ Sea $q \in Q$ un estado accesible cualquiera; definimos $u_q \in A^\*$ como la p
 Veamos que esta aplicación no depende de $u_q \in A^\* | \delta^\*(q_0,u_q)=q$; para ello, nos vale con determinar que si hubiera otra de manera que $\delta^\*(q_0,u_q)=q=\delta^\*(q_0,v_q)$ , $v_q \in Q$ y que $\delta'^{\*}(q_0',u_q)\neq \delta'^{\*}(q_0',v_q)$ obtendríamos que el autómata $M$ no es minimal pues $\delta'^{\*}(q_0',u_q)$ y $\delta'^{\*}(q_0',v_q)$ serían indistinguibles. 
 
 Ahora, vamos a ver que $f:M\leftarrow M'$ es biyectiva:
+
     - Inyectividad: supongamos que hay dos estados con la misma imagen, es decir f(q)=f(p) entonces existen p' y q' estados de M que llegan a p y q por la relacion de paso de cálculo. Aplicando la propiedad ii) obtenemos que f(p') y f(q') llegan a f(p)=f(q) luego p' y q' serían indistinguibles deduciendo de aquí que p=q.
 
     - Sobreyectividad: como f es inyectiva y la imagen de f es M' que tiene un conjunto de estados finito. Ayudándonos de que M' es minimal y acepta el mismo lenguaje que M tenemos que es sobreyectiva.
