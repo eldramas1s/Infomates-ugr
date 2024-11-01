@@ -288,7 +288,7 @@ Para este objetivo hay dos métodos posibles que se basan en la teoría ya comen
 
 _Método 1_
 
-El conjunto de los estados distinguibles $\mathlab{D}$ se calcula aplicando el siguiente algoritmo:
+El conjunto de los estados distinguibles $D$ se calcula aplicando el siguiente algoritmo:
     
     1. Introducir las parejas de estados que sean distinguibles a nivel 0, es decir, las parejas {estado_final, estado_inicial}.
     2. Aplicar la siguiente distintiva:
@@ -299,7 +299,9 @@ El conjunto de los estados distinguibles $\mathlab{D}$ se calcula aplicando el s
 Este método es mucho más inefectivo que el siguiente; que, además, dispone de un método gráfico que ayuda al cálculo.
 
 _Método 2_
+
 Consta de los siguientes elementos de utilidad:
+
     - Variable booleana: para cada pareja de estados (que serán accesibles) indica si son distinguibles o no.
     - Lista de relacionados: cada pareja de estados dispone de una lista de los cuales, si la pareja inicial se marca como distinguible entonces todos los de la lista y sus listas asociadas serán marcados como distinguibles.
 
@@ -310,6 +312,7 @@ Este método se divide en los siguientes pasos:
         
         a. Si son distinguibles de nivel 0, es decir, uno es final y otro inicial ponemos la variable booleana a 'true'.
     3. Una vez determinadas las parejas de nivel 0; para cada pareja de estados accesibles:
+    
         a. Para cada símbolo del alfabeto de entrada:
             
             i) Calcular el paso de cálculo al leer el símbolo.
