@@ -242,11 +242,30 @@ ii) Si $\delta(p,u)=q \Longrightarrow \delta'(f(p),u)=f(q)$
 
 iii) f(F) = F'
 
-A los autómatas se les dice __isomorfos__
+A los autómatas se les dice __isomorfos__.
 
 _Demostración_
 
-#TODO: Estudiar demostracion
+Sea $q \in Q$ un estado accesible cualquiera; definimos $u_q \in A^\*$ como la palabra que cumple que $\delta(q_0,u_q)=q$. Entonces, sabemos por definicion de isomorfismo que $f(q)=\delta'^{\*}(f(q_0),u_q) por aceptar el mismo lenguje.
+
+Veamos que esta aplicación no depende de $u_q \in A^\* | \delta^\*(q_0,u_q)=q$; para ello, nos vale con determinar que si hubiera otra de manera que $\delta^\*(q_0,u_q)=q=\delta^\*(q_0,v_q)$ , $v_q \in Q$ y que $\delta'^{\*}(q_0',u_q)\neq \delta'^{\*}(q_0',v_q)$ obtendríamos que el autómata $M$ no es minimal pues $\delta'^{\*}(q_0',u_q)$ y $\delta'^{\*}(q_0',v_q)$ serían indistinguibles. 
+
+Ahora, vamos a ver que $f:M\leftarrow M'$ es biyectiva:
+    - Inyectividad: supongamos que hay dos estados con la misma imagen, es decir f(q)=f(p) entonces existen p' y q' estados de M que llegan a p y q por la relacion de paso de cálculo. Aplicando la propiedad ii) obtenemos que f(p') y f(q') llegan a f(p)=f(q) luego p' y q' serían indistinguibles deduciendo de aquí que p=q.
+
+    - Sobreyectividad: como f es inyectiva y la imagen de f es M' que tiene un conjunto de estados finito. Ayudándonos de que M' es minimal y acepta el mismo lenguaje que M tenemos que es sobreyectiva.
+
+Por tanto, hemos demostrado que f es biyectiva.
+
+Vamos ahora con la demostración de las propiedades:
+
+$\[i)\]$: tomando $u_{q_0}=\epsilon$ obtenemos que $f(q_0)=\delta'^{\*}(q_0',\epsilon)=q_0'$ ya que f es isomorfismo, en particular, homomorfismo.
+
+$\[ii)\]$: Supongamos que $\delta(q,a)=p$, entonces tomando $u_q\in Q | q=\delta^\*(q_0,u_q)$ obtenemos que $p=\delta^\*(q_0,u_qa)$. Luego como $f(q)=\delta'^{\*}(q_0',u_q)$ obtenemos que 
+
+$$f(p)=\delta'^{\*}(q_0',u_qa)=\delta'(\delta'^{\*}(q_0,u_q),a)=\delta'(f(q),a)$$
+
+$\[iii)\]$: Esto es consecuencia de que ambos autómatas acepten el mismo lenguaje; ya que si $q \notin F$ y $f(q) \in F'$ entonces $u_q\in A^\*$ sería aceptada en un lenguaje y no en el otro.
 
 _Fin demostración_
 
@@ -258,8 +277,74 @@ Diremos que dos estados $p$ y $q$ son __distinguibles de nivel $n$__ si y sólo 
 
 De esta manera deducimos que una pareja de estados es __distinguible__ si es _distinguible de nivel n_ para algún $n\in N$.
 
-De forma trivial, las parejas distinguibles a nivel 0 son aquellas formadas por un estado final y otro no final.
+De forma trivial, las parejas distinguibles de nivel 0 son aquellas formadas por un estado final y otro no final.
 
-#TODO: distinguible a nivel n+1
+Como propiedad de construcción de parejas distinguibles, el conjunto de las parejas distinguibles a nivel $n+1$ está formado por el conjunto de parejas distinguibles a nivle $n$ añadiendo aquellas tales que tomando otro símbolo terminal la pareja de estados $(\delta(q,a),\delta(p,a))$ sean distinguibles a nivel $n$; donde $(q,p)$ es la pareja de la cual queremos conocer si es distinguible a nivel $n+1$. 
 
+___Cálculo de parejas de estados distinguibles___
+
+Para este objetivo hay dos métodos posibles que se basan en la teoría ya comentada:
+
+_Método 1_
+
+El conjunto de los estados distinguibles $\mathlab{D}$ se calcula aplicando el siguiente algoritmo:
+    
+    1. Introducir las parejas de estados que sean distinguibles a nivel 0, es decir, las parejas {estado_final, estado_inicial}.
+    2. Aplicar la siguiente distintiva:
+      
+        - Si tengo dos estados cuya pareja al aplicarle la relación de calculo con algún simbolo terminal es distinguible; entonces, los dos estados de partida son distinguibles.
+    3. A parte de las parejas iniciales sólo se añaden las parejas que cumplen la propiedad (2.).
+
+Este método es mucho más inefectivo que el siguiente; que, además, dispone de un método gráfico que ayuda al cálculo.
+
+_Método 2_
+Consta de los siguientes elementos de utilidad:
+    - Variable booleana: para cada pareja de estados (que serán accesibles) indica si son distinguibles o no.
+    - Lista de relacionados: cada pareja de estados dispone de una lista de los cuales, si la pareja inicial se marca como distinguible entonces todos los de la lista y sus listas asociadas serán marcados como distinguibles.
+
+Este método se divide en los siguientes pasos:
+    
+    1. Eliminar los estados inaccesibles.
+    2. Para cada pareja de estados accesibles (los que nos deberían quedar):
+        
+        a. Si son distinguibles de nivel 0, es decir, uno es final y otro inicial ponemos la variable booleana a 'true'.
+    3. Una vez determinadas las parejas de nivel 0; para cada pareja de estados accesibles:
+        a. Para cada símbolo del alfabeto de entrada:
+            
+            i) Calcular el paso de cálculo al leer el símbolo.
+            ii) Si surgen estados distintos:
+                
+                - Si la pareja de estados resultante no esta marcada se añade la pareja de estados inicial (3.) a la lista lista de la pareja de estados resultante.
+                - Si la pareja de estados resultante está marcada, entonces se marca la pareja inicial (3.) y todas las parejas de la lista asociada a (3.).
+
+De esta manera, una vez terminado el proceso y vistas todas las parejas, aquellos estados que permanezcan sin marcar serán estados indistinguibles.
+
+Veamos un ejemplo gráfico donde ya se han eliminado los estados inaccesibles:
+
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/algoritmo.png" alt=Error>
+</p>
+</div>
+
+### 3.4.4.Construcción formal del autómata minimal
+
+El autómata minimal genérico viene dado por la construcción a partir del autómata general $M=(Q,A,\delta,q_0,F) donde R es la relación de equivalencia de indistinguibilidad entre estados y $\[q\]$ es la clase de equivalencia del estado $q \in Q$ que engloba a todos los indistinguibles con él.
+
+El nuevo autómata viene dado por $M_m=(Q_m,A,\delta_m,q_0^{m},F_m)$ donde:
+
+   - El conjunto de estados es el conjunto de las clases de equivalencia resultantes al aplicar la relación de equivalencia R.
+   - El conjunto de estadso finales es el conjunto de las clases de equivalencia tales que, al menos, uno de los elementos de la clase es final (ya hemos visto que todos deberán serlo).
+   - La relación de cálculo vendrá dada por la siguiente frase: "La imagen de la clase de equivalencia es la clase de equivalencia de la imagen" donde se usa el mismo símbolo del alfabeto en ambos casos.
+   - El estado inicial viene dado por la clase de equivalencia del estado inicial de M.
+
+Además, está asegurado que este autómata es el autómata minimal que acepta el mismo lenguaje que $M$.
+
+Siguiendo con el ejemplo de antes, obtenemos el siguiente autómata como minimal:
+    
+<div>
+<p style='text-align:center'>
+<img src="./imagenes/minimal.png" alt=Error>
+</p>
+</div>
 
