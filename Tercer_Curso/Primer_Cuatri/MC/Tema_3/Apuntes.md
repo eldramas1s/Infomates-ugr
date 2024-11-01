@@ -333,7 +333,7 @@ Veamos un ejemplo gráfico donde ya se han eliminado los estados inaccesibles:
 
 ### 3.4.4.Construcción formal del autómata minimal
 
-El autómata minimal genérico viene dado por la construcción a partir del autómata general $M=(Q,A,\delta,q_0,F) donde R es la relación de equivalencia de indistinguibilidad entre estados y $\[q\]$ es la clase de equivalencia del estado $q \in Q$ que engloba a todos los indistinguibles con él.
+El autómata minimal genérico viene dado por la construcción a partir del autómata general $M=(Q,A,\delta,q_0,F)$ donde R es la relación de equivalencia de indistinguibilidad entre estados y $\[q\]$ es la clase de equivalencia del estado $q \in Q$ que engloba a todos los indistinguibles con él.
 
 El nuevo autómata viene dado por $M_m=(Q_m,A,\delta_m,q_0^{m},F_m)$ donde:
 
