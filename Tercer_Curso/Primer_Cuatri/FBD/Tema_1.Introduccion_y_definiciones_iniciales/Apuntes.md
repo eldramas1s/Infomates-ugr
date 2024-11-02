@@ -65,12 +65,12 @@ Como elementos de una base de datos encontramos:
 
     · Software: Tienen los programas que usamos para definir las estructuras.
  
-    · Usuarios en jerarquía de uso y desarrollo (a mas uso menos desarrolla): Usuario final - Pro    gramador de apps - Administrador (jefecillo)
+    · Usuarios en jerarquía de uso y desarrollo (a mas uso menos desarrolla): Usuario final - Programador de apps - Administrador (jefecillo)
 
 *Definición*:
 Un **dato operativo** es una pieza de información básica que necesita un organización para su funcionamiento; dicha organización consiste en disponer de un *item básico* o elemento sobre el que se puede pedir información, un *atributo* o característica del item básico (pueden ser varios) y una *relación* o conexión lógica entre dos o más item báscico.
 
-Cuando se determinan y clasifican de esta forma todos los datos operativos, se obtiene el esquema lógico de la base de datos, esto es aquel diseño que seguirá nuestra base de datos
+Cuando se determinan y clasifican de esta forma todos los datos operativos, se obtiene el esquema lógico de la base de datos, esto es aquel diseño que seguirá nuestra base de datos.
 
 ## 1.5.Objetivos del SGBD
 
@@ -106,4 +106,10 @@ En el caso del usuario, dependerá dle tipo de usuario del que hablemos:
     
     · Administrador: Este es el encargado de tomar decisiones y de mantener la base de datos facilitando el manejo de los datos y la toma de decisiones en la empresa.
 
-En el caso del sistema, proporciona un control centralizado de los datos, la utilización de criterios de uniformización, es decir,todos los datos se tratan de la misma manera. También proporciona facilidad para generar nuevas aplicaciones así como el equilibrio entre requerimientos conflictivos.
+En el caso del sistema:
+
+    - Proporcionar un control centralizado(fiabilidad, consistencia, seguridad).
+    - Criterios de uniformación ¿?
+    - Generación de nuevas aplicaciones.
+    - Equilibrio entre requerimientos conflictivos.
+
