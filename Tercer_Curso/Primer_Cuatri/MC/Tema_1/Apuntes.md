@@ -62,7 +62,9 @@ Donde _h_ es una aplicacion que parte de  un subconjunto de _A*_ y llega a un su
 
 Una gramatica generativa es una cuadrupla $(V,T,P,S)$ en la que tenemos un alfabeto _V_ llamado alfabeto de variables, otro alfabeto _T_ llamado de símbolos terminales, una serie finita de reglas de producción _P_ y un símbolo inicial _S_ del cual derivarán todas las palabras.
 
-Cuando disponemos de una gramatica generativa, esta generará un lenguaje formado por las palabras que podemos obtener mediante el proceso de derivación que consiste en comenzar por el símbolo terminal y aplicar las reglas de producción hasta obtener una combinación finita de símbolos terminales. De esta manera, diremos que una combinación de símbolos terminales y de variable es derivable a partir de otra cuando podemos partir de la primera y llegar a la segunda mediante un proceso finito de derivación (si lo conseguimos en un paso diremos que es derivable en un paso).
+Cuando disponemos de una gramatica generativa, esta generará un lenguaje formado por las palabras que podemos obtener mediante el proceso de derivación que consiste en comenzar por el símbolo inicial y aplicar las reglas de producción hasta obtener una combinación finita de símbolos terminales.
+
+De esta manera, diremos que una combinación de símbolos terminales y de variable es derivable a partir de otra cuando podemos partir de la primera y llegar a la segunda mediante un proceso finito de derivación (si lo conseguimos en un paso diremos que es derivable en un paso).
 
 ## 1.3.Jerarquía de Chomsky
 
