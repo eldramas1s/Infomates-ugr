@@ -37,7 +37,7 @@ Como primera solución se pensó en un sistema de archivos manipulado manualment
 Por tanto, todo esto provocó el desarrollo de un software especial que nos permitiera guardar los datos en almacenes centralizados dando lugar a las *Bases de Datos(BD)*.
 
 *Definición*:
-Una Base de Datos es un fondo común de información almacenada en una computadora para que cualquier persona o programa autorizado pueda acceder a ella, independientemente del lugar de procedencia y del uso que haga de la misma. Un usuario de una base de datos no necesariamente será una perdona; de hecho, lo más usual es que sea una aplicación.
+Una Base de Datos es un fondo común de información almacenada en una computadora para que cualquier persona o programa autorizado pueda acceder a ella, independientemente del lugar de procedencia y del uso que haga de la misma. Un usuario de una base de datos no necesariamente será una persona; de hecho, lo más usual es que sea una aplicación.
 
 Este software debe proveer de **operaciones con los datos**, gestionándolos de forma transparente (en la practica será necesario saber bien cómo se van a representar); **inserción de datos** , **obtención de datos**, **modificación de datos** o **borrado de datos**.
 
@@ -45,14 +45,15 @@ Un acrónimo que se suele usar es **CRUD**(*Create, Read , Update, Delete*); vem
 
 ## 1.3.Sistemas de Gestión de Bases de Datos
 
-Como ya se ha comentado, es importante que no haya redundacia; sin embargo, en la vida no siempre es así, sino que a veces e snecesario que haya datos duplicados o redundantes con el objetivo de proveer als sistema con una cierta seguridad. (En esta asignatura, cualquier tipo de redundancia será penalizada).
+Como ya se ha comentado, es importante que no haya redundacia; sin embargo, en la vida no siempre es así, sino que a veces es necesario que haya datos duplicados o redundantes con el objetivo de proveer al sistema de una cierta seguridad. (En esta asignatura, cualquier tipo de redundancia será penalizada).
 
-Un SGDB(*Sistema de Gestión de Bases de Datos*) debe permitir:
-    · Definción de estructuras de almacenamiento.
-    · Acceso eficiente y seguro a los datos.
-    · Organización de las actualizaciones de los datos.
-    · Acceso multiusuario.
-    ·...
+Un SGDB(*Sistema de Gestión de Bases de Datos*) es un conjunto de elementos __software__ que debe tener capacidad para:
+    
+    - Definir
+    - Mantener
+    - Utilizar
+
+una base de datos con el objetivo de que se cumplan siempre las tres caráctirísticas de los datos con la mayor seguridad y consistencia posible.
 
 ## 1.4.Elementos de una base de datos
 
