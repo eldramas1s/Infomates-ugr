@@ -448,3 +448,18 @@ Esto se consigue, dado un _AFND_ que acepta el lenguaje, simplemente debemos tra
 De esta manera hemos conseguido un _AFND_ que acepta el lenguaje inverso. 
 Como curiosidad, para obtener el lenguaje complementario, debemos cambiar los estados finales por no finales y viceversa.
 
+___Consejo práctico___
+
+Si nos dan una gramática lineal por la derecha y nos piden obtener el _AFND_ asociado; deberemos seguir los siguientes pasos:
+    
+    1. Invertir la parte derecha de las producciones.
+    2. Construir el autómara con transiciones nulas.
+    3. Para cada estado, pensar en lo que lee el autómata desde el principio.
+
+<div>
+<p style='text-align:center' width=250px>
+<img src=./imagenes/afndgrammar.png alt=Error>
+</p>
+</div>
+
+Si nos dan directamente la gramática lineal por la izquierda pasamos directamente al paso 2.
