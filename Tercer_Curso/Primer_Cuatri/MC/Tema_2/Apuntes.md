@@ -450,7 +450,7 @@ Como curiosidad, para obtener el lenguaje complementario, debemos cambiar los es
 
 ___Consejo práctico___
 
-Si nos dan una gramática lineal por la derecha y nos piden obtener el _AFND_ asociado; deberemos seguir los siguientes pasos:
+Si nos dan una gramática lineal por la izquierda y nos piden obtener el _AFND_ asociado; deberemos seguir los siguientes pasos:
     
     1. Invertir la parte derecha de las producciones.
     2. Construir el autómara con transiciones nulas.
@@ -462,4 +462,4 @@ Si nos dan una gramática lineal por la derecha y nos piden obtener el _AFND_ as
 </p>
 </div>
 
-Si nos dan directamente la gramática lineal por la izquierda pasamos directamente al paso 2.
+Si nos dan directamente la gramática lineal por la derecha pasamos directamente al paso 2.
