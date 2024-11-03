@@ -3,7 +3,7 @@
 Como motivación a la hora de estudiar un autómata finito, vamos a ver parte de su importacia:
 
     · Es útil como software de diseño y verficación de circuitos digitales.
-    · Tiene un papel importante en la construcción de analizadores léxicos de compiladores; como veremos pueden usarse en la comprobación léxica de palabras de un lnguaje.
+    · Tiene un papel importante en la construcción de analizadores léxicos de compiladores; como veremos pueden usarse en la comprobación léxica de palabras de un lenguaje.
     · Añadido a lo anterior, se usa como software de análisis de grandes conjuntos de textos con el fin de buscar palabras, estructuras...
     · En la corrección de sistemas con un número finito de estados diferentes juegan un papel importante.
 
@@ -58,6 +58,8 @@ Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje
 
 $$L(M)=\{u \in A^\* : \delta^\*(q_0,u) \in F\}$$
 
+Como añadido, para facilitar la comprensión, diremos que el autómata finito es __determinista__ si y sólo si, para cada estado del grafo están determinados todos los pasos de cálculo.
+
 ## 2.2. Autómatas finitos no deterministas
 
 Un autómata finito no determinista(AFND) es una quíntupla $M = (Q,A,\delta,q_0,F)$ donde los elementos son los mismos que con los autómatas finitos deterministas y la única diferencia está en el codominio de $\delta$ que en este caso es $P(Q)$.
@@ -109,7 +111,7 @@ Donde cabe recalcar que dada una configuración cualquiera, $\delta(q,v) \in P(Q
 
 __Relación de cálculo__
 
-Una vez visto lo anterior, esto soloconsiste en generalizar y englobar todo el proceso de cálculo en una operación, pues sabemos que el proceso de cálculo no es más que una sucesión finita de pasos de cálculo.
+Una vez visto lo anterior, esto solo consiste en generalizar y englobar todo el proceso de cálculo en una operación, pues sabemos que el proceso de cálculo no es más que una sucesión finita de pasos de cálculo.
 
 Diremos que $((q,u)\Vdash(p,v)) \leftrightarrow \exists \{C_i\} | C_i \in QxA^\* \land C_0=(q,u), C_n=(p,v) \forall i \leq n-1, C_i \vdash C_{i+1}$.
 
@@ -137,13 +139,15 @@ De esta manera, es inmediato comprobar que $L(M)=\{u \in A^\* : \delta^\*(q_0,u)
 
 La enquivalencia en sí consiste en que un lenguaje _L_ puede ser aceptado por una autómata finito determinista si y sólo si _L_ puede ser aceptado por un autómata finito no determinista.
 
-Veamos la implicación hacia la derecha; es decir, que todo lenguaje aceptado por un autómata determinista es aceptado por un autómata no determinista. Esto tiene fácil comprobación pues considerando que todos los autómatas deterministas son también autómatas no deterministas, en lo que $\delta(q,a)$ tiene siempre un sólo estado posible. Ambos autómatas tienen el mismo cálculo asociado y aceptan el mismo lenguaje; además, tienen el mismo diagrama de transición asocioado.
+Veamos la implicación hacia la derecha; es decir, que todo lenguaje aceptado por un autómata determinista es aceptado por un autómata no determinista. Esto tiene fácil comprobación pues considerando que todos los autómatas deterministas son también autómatas no deterministas, en los que $\delta(q,a)$ tiene siempre un sólo estado posible. Ambos autómatas tienen el mismo cálculo asociado y aceptan el mismo lenguaje; además, tienen el mismo diagrama de transición asocioado.
 
-Así, si un lenguaje _L_ es aceptado por un autómata determinista es aceptador también por un autómata no determinista: aquel que tiene le mismo diagrama.
+Así, si un lenguaje _L_ es aceptado por un autómata determinista es aceptado también por un autómata no determinista: aquel que tiene le mismo diagrama.
 
-Veamos ahora la otra implicación; es decir, todo lenguaje _L_ aceptado por un autómata no determinista es aceptado también por un autómata deteminista. Para probrarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0=\{q_0\}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F=\{B \in P(Q) | B\cap F \neq \emptyset\}$.
+Veamos ahora la otra implicación; es decir, todo lenguaje _L_ aceptado por un autómata no determinista es aceptado también por un autómata deteminista. 
 
-Luego la idea básica es que dado un autómata no determinista le hacemos corresponter uno determinista que recorre todos los caminso al mismo tiempo.
+Para probarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0=\{q_0\}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F=\{B \in P(Q) | B\cap F \neq \emptyset\}$.
+
+Luego la idea básica es que dado un autómata no determinista le hacemos corresponder uno determinista que recorre todos los caminos al mismo tiempo.
 
 ## 2.4.Autómatas finitos no deterministas con transiciones nulas
 
@@ -165,7 +169,7 @@ Otra utilidad puede ser unir dos lenguajes luego un mismo autómata puede recono
 </div>
 
 
-Cabe recalcar que gracias a los pasos nulo spodemos avanzar de estado, si el autómata lo permite, y seguir comprobando la misma palabra
+Cabe recalcar que gracias a los pasos nulos podemos avanzar de estado, si el autómata lo permite, y seguir comprobando la misma palabra
 
 ___Lenguaje aceptado por un AFND con transiciones nulas___
 
@@ -186,9 +190,9 @@ Buscamos probar ahora que, dado un autómata finito determinista _M_, existe un 
 
 _Proof_: Es inmediato pues _M'_ sería un autómata en el que para cada símbolo del alfabeto de entrada hay siempre una opción y para cada estado $\delta(q,\epsilon)=\emptyset$.
 
-Veamos ahora la otra implicación, es decir, que dado un autómata finito no determinista con transiciones nulas _M_, exixte otro determinista _M'_ que acepta el mismo lenguaje.
+Veamos ahora la otra implicación, es decir, que dado un autómata finito no determinista con transiciones nulas _M_, existe otro determinista _M'_ que acepta el mismo lenguaje.
 
-_Proof_: Para esto, la idea intuitiva se basa en construir _M'_ como en el caso de la construcción de un autómata determinista a partir de uno no determinista donde los estados de _M'_ son subconjuntos del conjunto _Q_ de estados de _M_ y un esta $P \subset Q$ de _M'_ representa todos los estados en los que puede estar el autómata no determinista con tranisiones nulas _M_.
+_Proof_: Para esto, la idea intuitiva se basa en construir _M'_ como en el caso de la construcción de un autómata determinista a partir de uno no determinista donde los estados de _M'_ son subconjuntos del conjunto _Q_ de estados de _M_ y un estado $P \subset Q$ de _M'_ representa todos los estados a los que se puede llegar del autómata no determinista con transiciones nulas _M_.
 
 Como ejemplo veamos esta ilustración:
 
@@ -198,6 +202,9 @@ Como ejemplo veamos esta ilustración:
 </p>
 </div>
 
+Realizando un comentario sobre el ejemplo, el estaado inicial no es $[q_0]$ (se usarían llaves pero md no deja), sino $Cl(q_0)$; es decir, todos los estados a los que se puede llegar usando transiciones nulas.
+
+Tras esto, actuamos de la misma manera que con un _AFND_ generando los estados restantes, teniendo en cuenta las transiciones nulas que podamos usar.
 Veamos la construcción formal de un autómata determinista a partir de un autómata finito no determinista con transiciones nulas. Para ello, tomamos $M=(Q,A,\delta,q_0,F)$ como _AFND con transiciones nulas_ y construimos $M'=(Q',A,\delta',q_0',F')$ donde:
     
 i) Q'=P(Q)
@@ -223,7 +230,7 @@ Sea _A_ un alfabeto, una __expresión regular__ sobre este alfabeto se define de
 
 Un ejemplo de expresión regular es la que denota al conjunto de palabras que empiezan por la cadena _000_ y tales que esta subcadena sólo se encuentra al principio de la palabra
 
-$$Expresión = (000)(1+10+100)\*$$
+$$Expresión = (000)(1+10+100)^\*$$
 
 Normalmente, cuando deseamos trabajar ocn expresione regulares, deseamos hacerlo con las expresiones más sencillas posibles; para ello, se utilizan las reglas de simplificación que aparecen en la imagen inferior:
 
@@ -244,7 +251,7 @@ _Enunciado_: Un lenguaje es aceptado por un autómata finito determinista si y s
 _Proof_: Esto se demostrará comprobando:
 
     · Dada una expresión regular, existe un autómata que acepta el mismo lenguaje que el representado por la expresión regular.
-    · Dado un autómata finito existe siempre una expresión reglar que represeenta el lenguaje aceptado por el autómata.
+    · Dado un autómata finito existe siempre una expresión regular que represeenta el lenguaje aceptado por el autómata.
 
 La primera transformación es más útil ya que inicialmente los lenguajes se representan mediante expresiones regulares y después necesitamos algoritmos (autómatas) que reconozcan stos lenguajes.
 
@@ -375,13 +382,13 @@ ___Lema de Arden___
 
 Dada una ecuación de la forma  $r_i = \alpha_i+\beta r_i$ donde $\alpha_i$ es la parte de la ecuación que no contiene $r_i$ y $\beta$ es el coeficiente que acompaña a la incógnita, que no debe contener la cadena vacía, se tiene que la solución de esta ecuación viene dada por:
 
-$$r_i=\beta^\*\alpha$$
+$$r_i=\beta^\*\alpha_i$$
 
 Luego una vez que hayamos aplicado este lema si es necesario, podremos continuar con nuestro cometido.
 
 Cabe recalcar que, para cada estado del autómata habrá una ecuación determinada donde cada sumando será cada uno de los estados a los que puede llegar el estado inicial mediante una relación de cálculo; en caso de que el estado de partida sea final se sumará una cadena vacía, $\epsilon$.
 
-Como el objetivo es __determinar la expresión regular del lenguaje acaptado por un autómata__, deberemos proporcionar la expresión resultante del estado inicial del autómata pues en esta técnica realizamos una construcción a la inversa empezando por los estados más fáciles y llegando a estados más importantes y complicados.
+Como el objetivo es __determinar la expresión regular del lenguaje aceptado por un autómata__, deberemos proporcionar la expresión resultante del estado inicial del autómata pues en esta técnica realizamos una construcción a la inversa empezando por los estados más fáciles y llegando a estados más importantes y complicados.
 
 ## 2.6 Expresiones Regulares en Unix
 
@@ -395,7 +402,7 @@ Seguiremos el estándar IEEE POSIX:
 
 ## 2.7.Equivalencia entre Gramáticas lineales y autómatas
 
-Para no complicar el tema, vamos a obviar la notación matemática y simplemente diremos que para demostrar que dada una gramatica lineal, existe un autómata finito determinista que acepta el lenguaje aceptado por la gramática construido a través del _AFND_ con transiciones nulas que acepta dicho lenguaje usando luego la _clausura de Kleene_ par construir el _AFD_.
+Para no complicar el tema, vamos a obviar la notación matemática y simplemente diremos que, para demostrar que dada una gramatica lineal existe un autómata finito determinista que acepta el lenguaje aceptado por la gramática; que será construido a través del _AFND_ con transiciones nulas que acepta dicho lenguaje usando luego la _clausura de Kleene_ para construir el _AFD_.
 
 Para hacer el proceso inverso, es decir, a partir de un _AFD_ obtener la gramática lineal por la derecha simplemente debemos tomar como variables los estados y tomar como producciones las reglas del tipo:
 
@@ -403,9 +410,15 @@ $$p\rightarrow aq$$
 
 Donde p y q son estados, es decir, variables y "a" es la palabra leída. En definitiva, estamos representados todas y cada una de las transiciones.
 
-Si queremos obtener la gramática lineal pro la izquierda, deberemos invertir el autómata, construir la gramática lineal por la derecha como se dice arriba e invertir __sólo__ la parte derecha de las producciones.
+Si queremos obtener la gramática lineal a la izquierda, deberemos invertir el autómata, construir la gramática lineal por la derecha como se dice arriba e invertir __sólo__ la parte derecha de las producciones.
 
-Hasta ahora llevamos demostrado el siguiete esquema:
+___Pero... ¿qué es invertir?___
+
+Invertir un autómata en el grafo del mismo consiste en convertir revertir estados finales e iniciales y revertir el sentido de las flechas.
+
+De esta manera, comenzamos a leer por atrás construyendo las palabras desde el final. De ahí viene la lógica de que el estado inicial pase a ser el final y el final a ser el inicial, pues cuando lleguemos al antiguo estado inicial habremos creado toda la palabra.
+
+Hasta ahora llevamos demostrado el siguiente esquema:
 
 <div>
 <p style='text-align:center'>
@@ -413,9 +426,9 @@ Hasta ahora llevamos demostrado el siguiete esquema:
 </p>
 </div>
 
-___Obtener el leguaje inverso___
+___Obtener el lenguaje inverso___
 
-Esto se consigue, dado un _AFND_ que acepta el lenguaje de la gramática lineal por la derecha; simplemente debemos tratar de dejar un sólo estado final para porder determinar un sólo estado inicial intercambiándolo con el final único que hemos conseguido y, por último, invertir las transiciones.
+Esto se consigue, dado un _AFND_ que acepta el lenguaje, simplemente debemos tratar de dejar un sólo estado final para poder determinar un sólo estado inicial intercambiándolo con el final único que hemos conseguido y, por último, invertir las transiciones.
 
 De esta manera hemos conseguido un _AFND_ que acepta el lenguaje inverso. 
 Como curiosidad, para obtener el lenguaje complementario, debemos cambiar los estados finales por no finales y viceversa.
