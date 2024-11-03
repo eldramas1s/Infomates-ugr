@@ -390,6 +390,8 @@ Cabe recalcar que, para cada estado del autómata habrá una ecuación determina
 
 Como el objetivo es __determinar la expresión regular del lenguaje aceptado por un autómata__, deberemos proporcionar la expresión resultante del estado inicial del autómata pues en esta técnica realizamos una construcción a la inversa empezando por los estados más fáciles y llegando a estados más importantes y complicados.
 
+Es importante denotar que no es necesario disponer de un _AFD_ para poder aplizar este método de obtención de expresiones regulares; simplemente, esposible con un _AFND_ siempre y cuando no sea un _AFND_ con transiciones nulas. El único inconveniente será que habrá más de una solución.
+
 ## 2.6 Expresiones Regulares en Unix
 
 Seguiremos el estándar IEEE POSIX:
