@@ -414,9 +414,24 @@ Si queremos obtener la gramática lineal a la izquierda, deberemos invertir el a
 
 ___Pero... ¿qué es invertir?___
 
-Invertir un autómata en el grafo del mismo consiste en convertir revertir estados finales e iniciales y revertir el sentido de las flechas.
+Invertir un autómata en el grafo del mismo consiste en revertir estado final e inicial (el estado final deberá ser único) y revertir el sentido de las flechas.
 
 De esta manera, comenzamos a leer por atrás construyendo las palabras desde el final. De ahí viene la lógica de que el estado inicial pase a ser el final y el final a ser el inicial, pues cuando lleguemos al antiguo estado inicial habremos creado toda la palabra.
+
+___Proceso de inversión___
+
+Los pasos son los siguientes:
+    
+    1. Si disponemos del autómata:
+        
+        - Invertimos el autómata.
+        - Obtenemos la gramatica lineal por la derecha.
+        - Invertimos la parte derecha de las producciones.
+
+    2. Si disponemos de la gramatica lineal por la derecha
+
+        - Obtenemos el autómata.
+        - Volvemos al paso 1.
 
 Hasta ahora llevamos demostrado el siguiente esquema:
 
