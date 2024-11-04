@@ -1,4 +1,4 @@
-#TEMA 2.Arquitectura de un SGDB
+# TEMA 2.Arquitectura de un SGDB
 
 ## 2.1.Niveles generales de la aquitectura
 
@@ -61,11 +61,11 @@ Otra transformación para conseguir esta independencia es la transformación _ex
 
 Esta independencia puede llegar a conseguirse o no, pero en el caso positivo, deberemos saber que cualquier cambio en el esquema subyacente ocasionará un cambio en la correspondencia y no variará el esquema externo dependiente.
 
-### 2.2.3.Lenguajes de una Base de Datos
+## 2.2.Lenguajes de una Base de Datos
 
 Veamos primero la recomendación ANSI/SPARC.
 
-Se nos recomienda disponer de un lenguaje específico orientado a los datos, que permita definir,controlar y manipular datos. Además, se nos recomienda usar un _DSL_(_Domain Specific Language_) que no es más que no usar un estándar de manera que distintos SGDB no podrán leer algunas instrucciones de las que usemos; cada _DSL_ está compuesto por tres partes: _DDL_(_Data Definition Language_),_DML_(Data Manipulation Language) y _DCL_(_Data Control Language_).
+Se nos recomienda disponer de un lenguaje específico orientado a los datos, que permita definir,controlar y manipular datos. Además, se nos recomienda usar un _DSL_(_Domain Specific Language_) que no es más que no usar un estándar de manera que distintos SGDB no puedan leer algunas instrucciones de las que usemos; cada _DSL_ está compuesto por tres partes: _DDL_(_Data Definition Language_),_DML_(Data Manipulation Language) y _DCL_(_Data Control Language_).
 
     · DDL: Proporciona la definición de estructuras de datos y esquemas de la BD.
     · DML: Proporciona mecanismos para la introducción de datos, modificación, eliminación y consulta de los mismos. Además, proporciona consultas a los esquemas definidos en la BD.
@@ -79,7 +79,7 @@ ___Lenguajes anfitriones___
 
 Dentro de una base de datos encontramos siempre un lenguaje anfitrión, es decir, un lenguaje sobre el cual se programan la mayor parte de las operaciones a realizar en la base de datos. 
 
-Este lenguaje es el encergado del desarrollo de aplicaciones en el sistema operativo que trabajen sobre la base de datos. Es decir, las aplicaciones que van a interactuar con la base de datos estarán programadas en este lenguaje.
+Este lenguaje es el encargado del desarrollo de aplicaciones en el sistema operativo que trabajen sobre la base de datos. Es decir, las aplicaciones que van a interactuar con la base de datos estarán programadas en este lenguaje.
 
 Tienen dos características importantes:
 
@@ -99,7 +99,7 @@ Para esta comunación entre el lenguaje anfitrión y la base de datos usaremos _
 
     - Débil(API's): son aquellos lenguajes que para hacer uso del estándar SQL necesitan de algun plug-in, biblioteca o algo del estilo, provocando que dichas sentencias de acceso se diferencien al completo del lenguaje anfitrión. 
 
-Podemos ya denotar que el acoplamento __débil__ proporciona una solución de menos peso y trabaja con menos movimiento de datos haciendo siempre alusión a bibliotecas que puede que, ni siquiera, estñen cargadas en la máquina que use nuestra base de datos.
+Podemos ya denotar que el acoplamento __débil__ proporciona una solución de menos peso y trabaja con menos movimiento de datos haciendo siempre alusión a bibliotecas que puede que, ni siquiera, estén cargadas en la máquina que use nuestra base de datos.
 
 Como ejemplo más elaborado del __acoplamiento débil__, vamos a desarrollar el uso de _DSL inmerso_ en el código fuente del lenguaje anfitrión.
 
