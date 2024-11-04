@@ -50,7 +50,7 @@ Formalemente, lo que buscatemos probar es lo siguiente: $\forall n \in N$, exist
 
 $$\exists i\in N | uv^iw \notin L$$
 
-Debe quedar muy claro que el __Lema de Bombeo__ es una condición necesaria pero no suficiente; para ello, tomamos como contraejemplo $L=\{a^lb^jc^k : (l=0)\lor (j=k)\}$ que verifica la condición del lema para $n=2$ tomando $l=0$ ó $j=k$ ($u=\epsilon$,$v=$primer símbolo de z y $w=$ resto palabra).
+Debe quedar muy claro que el __Lema de Bombeo__ es una condición necesaria pero no suficiente; para ello, tomamos como contraejemplo $L=\{a^lb^jc^k : (l=0)\lor (j=k)\}$ que verifica la condición del lema para $n=2$ tomando $l=0$ ó $j=k$ ($u=\epsilon$, $v=$ primer símbolo de z y $w=$ resto palabra).
 
 ### 3.2.Operaciones de los conjuntos regulares
 
