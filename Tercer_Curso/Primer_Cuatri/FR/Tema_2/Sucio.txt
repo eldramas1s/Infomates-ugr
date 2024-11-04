@@ -1,0 +1,18 @@
+La intención de UDP no es ser fiable, sino es ser rápido -> una de las cuestiones es que el ddato se manda aunque el destino no este conectado, incluso si no esta encendido -> herramienta util para ver la eficiencia de redes (iperf3 -u)
+
+En el caso de uso de cables asegurar que se mandaan correctamente puede resultar estúpido pero puede haber congestión; de hecho, TCP asignará la congestion como justificacion del error.
+
+En UDP, la velocidad de transmisión suele ser proporcional a la velocidad del coder, la generacion de paquetes depende de la velocidad con la que manda la aplicacion. Nosotros buscamos que la velociadad de mandar paquetes sea la mayor posible, como TCP no conoce la velocidad del canal de la red comienza lento y va aumentando de forma exponencial hasta llegar al punto donde se congestione la red para bajar la velocidad de golpe y empezar de nuevo este ciclo.
+
+
+Cuando llega un paquete por varios puertos lo que se hace es demultiplexar los paquetes y mandar los fragmentos de cada aplicacion a la aplicacion correspondiente. Cuando hay que mandar varios paqeutes se multiplexan al llegar al puerto ¿?
+--------------------------------------------------------------------------------------
+Que UDP no sea fiable no provoca que todas las aplicaciones sean no fiable, lo que significa es que otras capas deben ser las encargadas de solucionar los problemas que tiene UDP en la capa de transporte.
+
+Ejercicio diap 22: un MSS es el tamaño maximo de segmento, es decir, determina el tamaño que puede ocupar la parte de datos de tcp al crear un paquete(recordamos que hay encapsulamiento-> al mandar un paquete IP hay una parte de cabecer y uan de datos IP con 1480B donde se encuentra el paquete TCP con una cabecera de 20 Bytes junto a la parte de datos, es decir, MSS será de 1460B)
+
+
+Controld e errores
+--------------------------
+
+ejemplo diap 25 no se generan los ack's como aparece

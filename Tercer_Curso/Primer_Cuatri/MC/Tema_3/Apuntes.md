@@ -46,7 +46,7 @@ Es fácil ver que, si el lenguaje es finito, la condición del lema es trivialme
 
 La idea que perseguimos para demostrar que un lenguaje no es regular, es tratar de encontrar una palabra del lenguaje que, tras repetir un número de veces una subcadena que se encuentra en los $n$ primeros símbolos, la palabra deja de pertenecer al lenguaje.
 
-Formalemente, lo que buscatemos probar es lo siguiente: $\forall n \in N$, existe una palabra $z \in L | |z|\geq n$ cumpliendo que para toda composición $z=uvw$; si se verifican i) y ii) entonces
+Formalemente, lo que buscaremos probar es lo siguiente: $\forall n \in N$, existe una palabra $z \in L | |z|\geq n$ cumpliendo que si $z=uvw$ y se verifican i) y ii) entonces
 
 $$\exists i\in N | uv^iw \notin L$$
 
@@ -54,7 +54,7 @@ Debe quedar muy claro que el __Lema de Bombeo__ es una condición necesaria pero
 
 ### 3.2.Operaciones de los conjuntos regulares
 
-Las operaciones con conjuntos de las que hablaremos son cerradas para el conjunto de los conjuntos regulares, es decir, el lenguaje resultante de la operación es también un lenguaje tegular; estas operaciones son la __unión__, la __concatenación__, la __clausura de Kleene__, la __diferencia simétrica__(y por consecuencia la __intersección__), el __lenguaje inverso__ y el __cociente__ entre otras. 
+Las operaciones con conjuntos de las que hablaremos son cerradas para el conjunto de los conjuntos regulares, es decir, el lenguaje resultante de la operación es también un lenguaje regular; estas operaciones son la __unión__, la __concatenación__, la __clausura de Kleene__, la __diferencia simétrica__(y por consecuencia la __intersección__), el __lenguaje inverso__ y el __cociente__ entre otras. 
 
 Para probar que son cerradas puede hacerse mediante dos algoritmos; el primero de ellos consiste en trabajar con _AFD_ y realizar las operaciones que se vieron en el tema anterior ya que se mantendrá el autçomata finito determinista. El segundo algoritmo consistirá en trabajar con las _expresiones regulares_ de cada lenguaje y aplicarle las operaciones extrapoladas a dichas expresiones.
 
@@ -64,7 +64,7 @@ En definitiva, basta con codificar la expresión regular para obtener que la ima
 
 Esta última propiedad puede usarse para probar que un lenguaje es, o no, regular pues aplicando un homomorfismo podemos llevar nuestro lenguaje a otro lenguaje conocido que sea, o no, regular pues la inversa de un homomorfismo es un homomorfismo.
 
-Para deducir como obtener el lenguaje imagen del homomorfismo inverso dejo por aquí un ejemplo, que simplemente consiste en copiar el autómata del lenguaje imagen, poniendo en cada transición  uno de los elementos que se consiguen al aplicar el autómata del lemguaje imagen a la codificación:
+Para deducir como obtener el lenguaje imagen del homomorfismo inverso dejo por aquí un ejemplo, que simplemente consiste en copiar el autómata del lenguaje imagen, poniendo en cada transición  uno de los elementos que se consiguen al aplicar el autómata del lenguaje imagen a la codificación:
 
 <div>
 <p style='text-align:center'>
@@ -82,9 +82,9 @@ Si $R$ es un conjunto regular y $L$ es un lenguaje cualquiera, entonces el cocie
 
 _Fin Teorema_
 
-El autómata resultados del cociente es aquel con la misma estructura que $R$ con la ligera diferencia de que los estados finales son aquellos a partir de los cuales podemos leer una palabra de $L$ llegando a un estado final.
+El autómata resultado del cociente es aquel con la misma estructura que $R$ con la ligera diferencia de que los estados finales son aquellos a partir de los cuales podemos leer una palabra de $L$ llegando a un estado final.
 
-El problema real reside en definir cómo leer el lenguaje $L$ pues es un lenguaje cualquiera, de forma general sólo podemos trabajar con graáticas tipo 0 luego no podemos encentrar un algoritmo que haga este cometido tan fácil. 
+El problema real reside en definir cómo leer el lenguaje $L$ pues es un lenguaje cualquiera, de forma general sólo podemos trabajar con gramáticas tipo 0 luego no podemos encentrar un algoritmo que haga este cometido tan fácil. 
 
 De hecho, aunque se restrinja $L$ al conjunto de los lenguajes recursivamente enumerables no podemos decidirlo (implementarlo con un algoritmo).
 
@@ -116,7 +116,7 @@ Para construir el autómata que acepta este lenguaje, es mucho más fácil parti
 
 ## 3.4.Autómata minimal
 
-De forma intuitiva, conocemos que un conjunto de elementos que cumple una propiedad es __minimal__ si es el más pequeño de todos los que cumplen esa pripiedad y se verifica que cumple esa propiedad.
+De forma intuitiva, conocemos que un conjunto de elementos que cumple una propiedad es __minimal__ si es el más pequeño de todos los que cumplen esa propiedad y se verifica que cumple esa propiedad.
 
 Extrapolando esto a autómatas, diremos que un autómata es el __autómata minimal__ que acepta un lenguaje cuando no exista otro con menor número de estados y que acepte el lenguaje.
 
@@ -130,7 +130,7 @@ Para que unautómata sea minimal debe cumplir las siguientes condiciones:
 
 Hablando sobre las condiciones ha aparecido el concepto de __indistinguibilidad__ entre estados de un autómata; esto no es más que ver que dos estados de un mismo autómata representan el mimso papel. 
 
-De forma más formal, sean _p_ y _q_ dos estados de un autómata finito determinista, diremos que _p_ y _q_ son indistinguibles cuando $\forall u \in A^\*$,$\delta^\*(p,u) \in F \Longleftrightarrow \delta^\*(q,u) \in F$.
+De forma más formal, sean _p_ y _q_ dos estados de un autómata finito determinista, diremos que _p_ y _q_ son indistinguibles cuando $\forall u \in A^\*$, $\delta^\*(p,u) \in F \Longleftrightarrow \delta^\*(q,u) \in F$.
 
 Es decir, cuando dada una palabra del alfabeto, llegar a un estado final desde un estado equivale a llegar a un estado final desde el otro estado y viceversa.
 
@@ -270,7 +270,7 @@ $\[iii)\]$: Esto es consecuencia de que ambos autómatas acepten el mismo lengua
 
 _Fin demostración_
 
-### 3.4.4.Identificación de estados indistinguibles
+### 3.4.5.Identificación de estados indistinguibles
 
 ___Definiciones___
 

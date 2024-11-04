@@ -108,7 +108,7 @@ class ProdConsSU1 : public HoareMonitor
    buffer[num_celdas_total],//   buffer de tamaño fijo, con los datos
    primera_libre ,          //   indice de celda de la próxima inserción ( 0 <=  número de celdas ocupadas <num_celdas_total )
    primera_ocupada,         //   indice de celda de la proxima lectura ( 0<=primera_ocupada < num_celdas_total )   
-   n_libres;                //   numero de celdas libres( == num_celdas_total-|primera_ocupada-primera_libre| )
+   n_ocupadas;                //   numero de celdas libres( == num_celdas_total-|primera_ocupada-primera_libre| )
 
  CondVar                    // colas condicion:
    ocupadas,                //  cola donde espera el consumidor (n>0)
@@ -118,7 +118,7 @@ class ProdConsSU1 : public HoareMonitor
    ProdConsSU1() ;             // constructor
    int  leer();                // extraer un valor (sentencia L) (consumidor)
    void escribir( int valor ); // insertar un valor (sentencia E) (productor)
-   void incrementar(int valor);// incrementar un entero modulo num_celdas_total
+   void incrementar(int & valor);// incrementar un entero modulo num_celdas_total
 } ;
 // -----------------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ ProdConsSU1::ProdConsSU1(  )
 {
    primera_libre = 0 ;
    primera_ocupada = 0;
-   n_libres = num_celdas_total;
+   n_ocupadas = 0;
    ocupadas      = newCondVar();
    libres        = newCondVar();
 }
@@ -136,14 +136,15 @@ ProdConsSU1::ProdConsSU1(  )
 int ProdConsSU1::leer(  )
 {
    // esperar bloqueado hasta que 0 < primera_libre
-   if ( primera_libre == primera_ocupada || n_libres==num_celdas_total )
+   if ( n_ocupadas==0 )
       ocupadas.wait();
-    /* cout << "n_libres=" << n_libres << endl; */
-    /* assert(n_libres > num_celdas_total || n_libres < 0); */
+    /* cout << "n_ocupadas=" << n_libres << endl; */
+    assert(n_ocupadas > 0) ;
    // hacer la operación de lectura, actualizando estado del monitor
    const int valor = buffer[primera_ocupada] ;
-   incrementar(primera_ocupada) ;
-   n_libres++;
+   /* incrementar(primera_ocupada) ; */
+   primera_ocupada=(primera_ocupada+1)%num_celdas_total;
+   n_ocupadas--;
    
    // señalar al productor que hay un hueco libre, por si está esperando
    libres.signal();
@@ -156,16 +157,17 @@ int ProdConsSU1::leer(  )
 void ProdConsSU1::escribir( int valor )
 {
    // esperar bloqueado hasta que primera_libre < num_celdas_total
-   if ( n_libres == 0 || primera_libre == primera_ocupada-1)
+   if ( n_ocupadas == num_celdas_total)
       libres.wait();
-   /* cout << "n_libres=" << n_libres << endl; */
-    /* assert(n_libres > num_celdas_total || n_libres < 0); */
+   /* cout << "n_ocupadas=" << n_libres << endl; */
+    assert(n_ocupadas < num_celdas_total);
 
     
    // hacer la operación de inserción, actualizando estado del monitor
    buffer[primera_libre] = valor ;
-   incrementar(primera_libre) ;
-   n_libres--;
+   /* incrementar(primera_libre) ; */
+   primera_libre=(primera_libre+1)%num_celdas_total;
+   n_ocupadas++;
    // señalar al consumidor que ya hay una celda ocupada (por si esta esperando)
    ocupadas.signal();
 }
@@ -173,7 +175,7 @@ void ProdConsSU1::escribir( int valor )
 // -------------------------------------------------------------------------------
 // funcion de incrementar las variables permanentes 
 
-void ProdConsSU1::incrementar(int valor){
+void ProdConsSU1::incrementar(int & valor){
     valor = valor++;
     valor = valor % num_celdas_total;
 }
@@ -203,7 +205,7 @@ void funcion_hebra_consumidora( MRef<ProdConsSU1>  monitor )
 int main()
 {
    cout << "--------------------------------------------------------------------" << endl
-        << "Problema del productor-consumidor únicos (Monitor SU, buffer FIFO). " << endl
+        << "Problema del productor-consumidor únicos (Monitor SU, buffer LIFO). " << endl
         << "--------------------------------------------------------------------" << endl
         << flush ;
 
