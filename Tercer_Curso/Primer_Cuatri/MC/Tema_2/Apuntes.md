@@ -448,7 +448,10 @@ ___Obtener el lenguaje inverso___
 Esto se consigue, dado un _AFND_ que acepta el lenguaje, simplemente debemos tratar de dejar un sólo estado final para poder determinar un sólo estado inicial intercambiándolo con el final único que hemos conseguido y, por último, invertir las transiciones.
 
 De esta manera hemos conseguido un _AFND_ que acepta el lenguaje inverso. 
-Como curiosidad, para obtener el lenguaje complementario, debemos cambiar los estados finales por no finales y viceversa.
+
+___Obtener el lenguaje complementario___
+
+Como curiosidad, para obtener el lenguaje complementario, debemos cambiar los estados finales por no finales y viceversa. Pero no invertir el autómata; haciendo este proceso habrá ocasiones donde nos saldrá el estado de error, es algo natural pues estaremos impidiendo que se acepten las palabras del lenguaje de partida.
 
 ___Consejo práctico___
 
