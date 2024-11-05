@@ -107,28 +107,30 @@ En este caso, el programador escribe un código híbrido mezclando sentencias de
 
 Una vez que el código se ha vuelto un poco más homogéneo se _compila_ y _enlaza_ con la biblioteca de acceso a la base de datos.
 
-## 2.3.Nivel interno
+## 2.3.Descripción de los niveles
 
-Pese a que en el temario se dedica un apartado a cada nivel, sólo se comenta lo que hay descrito en el apartado del esquema ANSI/SPARC; no obstante, hablaremos un poco de cada nivel profundizando un poco más en el nivel __interno__
+Pese a que en el temario se dedica un apartado a cada nivel, sólo se comenta lo que hay descrito en el apartado del esquema ANSI/SPARC; no obstante, hablaremos un poco de cada nivel profundizando un poco más en el nivel __interno__.
 
-COn respecto al nivel __externo__ debemos notar que es la parte de la BD relevante para los usuarios o aplicaciones que harán las consultas. 
+Con respecto al nivel __externo__, debemos notar que es la parte de la BD relevante para los usuarios o aplicaciones que harán las consultas. 
 
-Para cada usuario, sólo recibirá una visión de los estrictamente necesario de la base de datos pues el resto de información que no le sea de interés no tendrá ninguna utilidad que no sea vulnerar la seguridad de los datos. 
+Cada usuario, sólo recibirá una visión de lo estrictamente necesario de la base de datos pues el resto de información que no le sea de interés no tendrá ninguna utilidad que no sea vulnerar la seguridad de los datos. 
 
-Es solo en este nivel donde se muestran los datos __derivados__ de otros.
+Es solo en este nivel donde se muestran los datos __derivados__ de otros y donde se trabaja con el lenguaje anfitrión.
 
-Centrándonos ahora en el nivel __conceptual__, proporciona una visión global e integrada de todoslos datos desde el punto de vista lógico. Para ello suele usarse un modelo de datos lógico, que en nuestro caso, será el model de datos relacional. 
+Centrándonos ahora en el nivel __conceptual__, proporciona una estructura global e integrada de todos los datos desde el punto de vista lógico. Para ello, suele usarse un modelo de datos lógico, que en nuestro caso, será el modelo de datos relacional. 
 
-En este nivel se encuentra el grosso de los que conocemos como contenedores, relaciones, atributos... Todo está programado en este nivel.
+En este nivel se encuentra el grosso de lo que conocemos como contenedores, relaciones, atributos... Es en este nivel donde se trabajan las operaciones sobre la base de datos.
 
 Además, contiene las restricciones de los datos asicomo su información semántica, de seguridad y de integridad(dominios).
 
-Pasamos ahora al niel __interno__, como ya se comentó; es la representación física de la BD en el ordenador, es decir, cómo se almacenan en la memoria del ordenador. Es la encargada de buscar el rendimiento óptimo del sistema representando las estructuras de datos, las organizaciones con ficheros, las comunicaciones con el so para gestionar la memoria...
+Pasamos ahora al nivel __interno__, que es la representación física de la BD en el computador, es decir, cómo se almacenan en la memoria física. 
+
+Es el encargado de buscar el rendimiento óptimo del sistema representando las estructuras de datos, las organizaciones con ficheros, las comunicaciones con el _SO_ para gestionar la memoria de la forma más eficiente para ganar velocidad en las consultas.
 
 Este nivel tiene la peculiaridad de que parte de las responsabilidades son delegadas en el _SO_ teniendo dos niveles:
 
     - El nivel físico que es realmente el que se delega en el sistema operativo.
-    - La organzación del nivel interno, es decir, lo que se hace a nivel hardware, puede usarse hashing...
+    - La organzación del nivel interno, es decir, lo que se hace a nivel hardware, puede usarse hashing... Con esto nos referimos a qué estructura de dato sse utiliza para localizar los datos, es decir, la correspondencia entre el nivel físico y conceptual.
 
 #TODO: Preguntar por cada subparte
 
@@ -148,11 +150,11 @@ Pese a que en las transparencias aparecen muchas funcionalidades, hoy en día di
 
     - Monitorizar el SGBD realizando un seguimiento continuo de la actividad del sistema auditando, en caso de que sea necesario, el acceso de los usuarios a los diversos recursos de la BD; comprobando los niveles de uso de los sistemas de almacenamiento y evaluando la eficiencia con que se realizan las operaciones.
 
-AHagamos una parada para hablar un poco de las __auditorías__, este concepto consiste en, en cada acceso, en cada operación, en cada utilización de la base de datos guardar un registro de cada uno de los pasos que el usuario ha realizado en su consulta. Esta praxis puede ser perjudicail en algunos casos ya que requiere un gran uso de la memoria, pero también muy útil en otros previendo que pueda haber un mal uso de la base de datos.
+Hagamos una parada para hablar un poco de las __auditorías__, este concepto consiste en, en cada acceso, en cada operación, en cada utilización de la base de datos guardar un registro de cada uno de los pasos que el usuario ha realizado en su consulta. Esta práxis puede ser perjudicial en algunos casos ya que requiere un gran uso de la memoria, pero también muy útil en otros previendo que pueda haber un mal uso de la base de datos.
 
 Por ejemplo, en los datos fiscales de una persona no es deseable que haya manipulaciones de los mismo o usurpaciones de identidades.
 
-Veamos ahora las demás funciones que son asociadas, en la acutalidad (antes las hacía el _DBA_), a distintos grupos dentro de una empresa:
+Veamos ahora las demás funciones que son asociadas, en la actualidad (antes las hacía el _DBA_), a distintos grupos dentro de una empresa:
     
     - Elaboración del esquema conceptual realizando análisis de las necesidades de la empresa, identificando los datos operativos, elaborando el esquema lógico e implantando el esquema conceptual.
     - Gestionar la conexión con los usuarios mediante análisis de requerimientos, diseño lógico y codificaciones dle esquema externo mediante las correspondencias entre el nivel _externo_ y _conceptual_.
