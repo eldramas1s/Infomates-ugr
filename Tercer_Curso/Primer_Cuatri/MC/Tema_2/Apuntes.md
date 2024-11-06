@@ -117,7 +117,7 @@ Diremos que $((q,u)\Vdash(p,v)) \leftrightarrow \exists \{C_i\} | C_i \in QxA^\*
 
 ___Lenguaje Aceptado por un AFND___
 
-Definimos este lenguaje como el conjunto de palabras que adminten alguna sucesión de configuraciones y pasos de cálculo que dan a la palabra como aceptada. Es decir, el lenguaje aceptado por un _AFND_ como: $L(M) = \{u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)\}$
+Definimos este lenguaje como el conjunto de palabras que adminten alguna sucesión de configuraciones y pasos de cálculo que dan a la palabra como aceptada. Es decir, el lenguaje aceptado por un _AFND_ como: $L(M) =$ \{ $u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)$ \}.
 
 
 ### 2.2.2.Función de Estado: Lenguaje Aceptado
