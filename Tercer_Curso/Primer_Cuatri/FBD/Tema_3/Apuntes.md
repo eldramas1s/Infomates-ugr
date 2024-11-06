@@ -1,15 +1,15 @@
 # 3.Modelo de Datos. El modelo de datos relacional
 
-Hasta ahora, hemos trabajado las fases de estudio de los datos sobre una organización contrera y hemos modelado de forma gráfica nuestra base de datos. 
+Hasta ahora, hemos trabajado las fases de estudio de los datos sobre una organización concreta y hemos modelado de forma gráfica nuestra base de datos. 
 
-En este tema vamos a centrarno en modelos de datos que son implementables; concretamente, nos centraremso en el modelo de datos relacional impuesto por Edgar F. Codd.
+En este tema vamos a centrarnos en modelos de datos que son implementables; concretamente, nos centraremos en el modelo de datos relacional impuesto por [Edgar F. Codd](https://es.wikipedia.org/wiki/Edgar_Frank_Codd).
 
 Este modelo, para representar cualquier relación o entidad, usará tablas; de hecho, funciona tan bien porque se asemeja a la organización que realizaría un ser humano para consultar elementos.
 
 
 ## 3.1.Definición de modelo de datos.
 
-Un modelo lógico de la base de datos es un esquema conceptual retocado de manera que peuda llegar a ser implementado en un _SGBD_; es decir, el administrador de la base de datos sólo tiene que proponer el método por el cual se traslada del esquema conceptual al esquema lógico de implementación.
+Un modelo lógico de la base de datos es un esquema conceptual retocado de manera que pueda llegar a ser implementado en un _SGBD_; es decir, el administrador de la base de datos sólo tiene que proponer el método por el cual se traslada del esquema conceptual al esquema lógico de implementación.
 
 Está bastante claro que, para implementarlo debemos usar el _DSL_ y la sintáxis que este disponga.
 
@@ -48,9 +48,9 @@ COmo restricción, cada relación debe disponer de un único nombre; de esta man
 
 El modelo de datos relacional abarca tres ámbitos distintos de los datos:
     
-    - Las estructuras para almacenarlos dondel el usuario percibe información de la base de datos estructurada en tablas.
-    - La integridad donde las tablas deben satisfacer ciertas condiciones que preservan la integridad y coherencia de la información que contienen.
-    - COnsulta y manipulación donde se definen operadores que permiten hacer consultas mediante la definición matemática de los mismos basada en algebra relacional. Las consultas no serán más que operaciones que proporcionan tablas como resultado de composición de tablas obtenidas mediante dichos operadores.
+    - Estructuras para almacenarlos: el usuario percibe información de la base de datos estructurada en tablas.
+    - Integridad: las tablas deben satisfacer ciertas condiciones que preservan la integridad y coherencia de la información que contienen.
+    - Consulta y manipulación: se definen operadores que permiten hacer consultas mediante la definición matemática de los mismos basada en algebra relacional. Las consultas no serán más que operaciones que proporcionan tablas como resultado de composición de tablas obtenidas mediante dichos operadores.
 
 Siguiendo un poco el concepto de álgebra relacional, cabe destacar que _SQL_ está muy ligado a este disponiendo, como aditivo, de otras herramientas. Como curiosidad, Codd vio que le cálculo de predicados de primer orden era equivalente a formalizar las tablas mediante el cálculo relacional.
 
