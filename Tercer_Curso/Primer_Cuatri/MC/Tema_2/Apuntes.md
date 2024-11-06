@@ -56,7 +56,7 @@ ii) $\delta^\*(q,au)=\delta^\*(\delta(q,a),u)$
 
 Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
 
-$$L(M)=\{u \in A^\* : \delta^\*(q_0,u) \in F\}$$
+$L(M)=$ \{ $u \in A^\* : \delta^\*(q_0,u) \in F$ \}
 
 Como añadido, para facilitar la comprensión, diremos que el autómata finito es __determinista__ si y sólo si, para cada estado del grafo están determinados todos los pasos de cálculo.
 
@@ -113,7 +113,7 @@ __Relación de cálculo__
 
 Una vez visto lo anterior, esto solo consiste en generalizar y englobar todo el proceso de cálculo en una operación, pues sabemos que el proceso de cálculo no es más que una sucesión finita de pasos de cálculo.
 
-Diremos que $((q,u)\Vdash(p,v)) \leftrightarrow \exists \{C_i\} | C_i \in QxA^\* \land C_0=(q,u), C_n=(p,v) \forall i \leq n-1, C_i \vdash C_{i+1}$.
+Diremos que $((q,u)\Vdash(p,v)) \leftrightarrow \exists$ \{ $C_i$ \} $| C_i \in QxA^\* \land C_0=(q,u), C_n=(p,v) \forall i \leq n-1, C_i \vdash C_{i+1}$.
 
 ___Lenguaje Aceptado por un AFND___
 
@@ -133,7 +133,7 @@ ii)Si $B \subseteq Q$:
 
 iii) Se cumple que $\delta^\*(q,u)=\delta^\*($ \{ $q$ \} $,u)$
 
-De esta manera, es inmediato comprobar que $L(M)=\{u \in A^\* : \delta^\*(q_0,u)\cap F \neq \emptyset\}$
+De esta manera, es inmediato comprobar que $L(M)=$ \{ $u \in A^\* : \delta^\*(q_0,u)\cap F \neq \emptyset$ \}.
 
 ## 2.3.Equivalencia entre Deterministas y No Deterministas
 
@@ -145,7 +145,7 @@ Así, si un lenguaje _L_ es aceptado por un autómata determinista es aceptado t
 
 Veamos ahora la otra implicación; es decir, todo lenguaje _L_ aceptado por un autómata no determinista es aceptado también por un autómata deteminista. 
 
-Para probarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0=\{q_0\}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F=$ \{ $B \in P(Q) | B\cap F \neq \emptyset$ \}.
+Para probarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0=$ \{ $q_0$ \}, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F=$ \{ $B \in P(Q) | B\cap F \neq \emptyset$ \}.
 
 Luego la idea básica es que dado un autómata no determinista le hacemos corresponder uno determinista que recorre todos los caminos al mismo tiempo.
 
@@ -173,16 +173,16 @@ Cabe recalcar que gracias a los pasos nulos podemos avanzar de estado, si el aut
 
 ___Lenguaje aceptado por un AFND con transiciones nulas___
 
-El lenguaje que tratamos de definir claramente contiene al definido en los _AFND_ pues viene definido de la siguiente manera: $L(M)= \{u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)\}$
+El lenguaje que tratamos de definir claramente contiene al definido en los _AFND_ pues viene definido de la siguiente manera: $L(M)=$ \{ $u \in A^\* : \exists q \in F, (q_0,u)\Vdash(q,\epsilon)$ \}.
 
 
 ### 2.4.1.Función de estados
 
-Comenzamos con una definición; dado un _AFND con transiciones nulas_, definimos la __Clausura de un estado q__ como la sucesión de estados tales que empezando por _q_ podemos volver a llegar a ellos; es decir, $Cl(q)=\{p : \exists p_1,...,p_n, p_1=q,p_n=p,  p_i \in \delta(p_{i-1},\epsilon) i=2,...,n\}$.
+Comenzamos con una definición; dado un _AFND con transiciones nulas_, definimos la __Clausura de un estado q__ como la sucesión de estados tales que empezando por _q_ podemos volver a llegar a ellos; es decir, $Cl(q)=$ \{ $p : \exists p_1,...,p_n, p_1=q,p_n=p,  p_i \in \delta(p_{i-1},\epsilon) i=2,...,n$ \}.
 
 Definimos, ahora sí la función de estados $\delta^\*$ (abuso de notación) como la conocíamos en los _AFND_ tomando como imágenes las clausuras, es decir, $\delta^\*(B,a)$ será la clausura de la unión y $\delta^\*(B,\epsilon) = Cl(B)$.
 
-De hecho, es inmediato comprobar que el lenguaje aceptado por un _AFND con transiciones nulas_ se puede expresar como: $L(M)=\{u\in A^\* : \delta ^\*(q_0,u)\cap F \neq \emptyset\}$.
+De hecho, es inmediato comprobar que el lenguaje aceptado por un _AFND con transiciones nulas_ se puede expresar como: $L(M)=$ \{ $u\in A^\* : \delta ^\*(q_0,u)\cap F \neq \emptyset$ \}.
 
 Veamos ahora que todo _AFD_ es equivalente a un _AFND con transiciones nulas_. Para ello veremos promero la implicación a la derecha:
 
@@ -202,7 +202,7 @@ Como ejemplo veamos esta ilustración:
 </p>
 </div>
 
-Realizando un comentario sobre el ejemplo, el estaado inicial no es $[q_0]$ (se usarían llaves pero md no deja), sino $Cl(q_0)$; es decir, todos los estados a los que se puede llegar usando transiciones nulas.
+Realizando un comentario sobre el ejemplo, el estaado inicial no es \{ $q_0$ \}, sino $Cl(q_0)$; es decir, todos los estados a los que se puede llegar usando transiciones nulas.
 
 Tras esto, actuamos de la misma manera que con un _AFND_ generando los estados restantes, teniendo en cuenta las transiciones nulas que podamos usar.
 Veamos la construcción formal de un autómata determinista a partir de un autómata finito no determinista con transiciones nulas. Para ello, tomamos $M=(Q,A,\delta,q_0,F)$ como _AFND con transiciones nulas_ y construimos $M'=(Q',A,\delta',q_0',F')$ donde:
@@ -213,7 +213,7 @@ ii) $\delta'(P,a)=\delta^\*(P,a)=Cl(\cup_{q\in P}\delta(q,a))$
 
 iii) $q_0'=Cl(q_0)$
 
-iv) $F'={P : P\cap F \neq \emptyset}$
+iv) $F'=$ \{ $P : P\cap F \neq \emptyset$ \}
 
 Tenemos ahora que _M'_ acepta el mismo lenguaje que _M_.
 
@@ -291,7 +291,7 @@ Ahora, veremos cómo crear __autómatas compuestos__, dando lugar a que un mismo
 
 _Nota_: Todos estos casos disponen de una representación matemática construyendo cada uno de los elementos del autómata; en este caso, dicha tarea se deja al lector (puede ver las diapositivas).
 
-Veamos ahora la implicación contraria; para ello, sea el autómata $M=(Q,A,\delta,q_1,F)$ donde $Q=\{q_1,q_2,...,q_n\}$ y $q_1$ el estado inicial. 
+Veamos ahora la implicación contraria; para ello, sea el autómata $M=(Q,A,\delta,q_1,F)$ donde $Q=$ \{ $q_1,q_2,...,q_n$ \} y $q_1$ el estado inicial. 
 
 Sea ahora $R_{ij}^k$ el conjunto de las cadenas de $A^\*$ que permiten pasar del estado $q_i$ al estado $q_j$ y no pasa por ningún estado intermedio de numeración mayor que $k$; cabe recalcar que $q_i$ y $q_j$ sí pueden tener numeración mayor que $k$.
 
@@ -338,7 +338,7 @@ Para $k=0$ es inmediato:
 </p>
 </div>
 
-donde $\{a_1,...,a_l\}$ es el conjunto $\{a : \delta(q_i,a)=q_j\}$. Si este conjunto es vacío, la expresión regular sería:
+donde \{ $a_1,...,a_l$ \} es el conjunto \{ $a : \delta(q_i,a)=q_j$ \}. Si este conjunto es vacío, la expresión regular sería:
 
 <div>
 <p style='text-align:center'>
@@ -354,7 +354,7 @@ Por último determinamos la __expresión regular del lenguaje aceptado por el au
 
 $$L(M)=\cup_{q_j\in F}R_{1j}^n$$
 
-Por tanto, $L(M)$ viene denotado por la expresión regular $r_{1j_1}^n+...+r_{1j_k}^n$ donde $F=\{q_{j_1},...,q_{j_k}\}$ y $q_1$ es el estado inicial.
+Por tanto, $L(M)$ viene denotado por la expresión regular $r_{1j_1}^n+...+r_{1j_k}^n$ donde $F=$ \{ $q_{j_1},...,q_{j_k}$ \} y $q_1$ es el estado inicial.
 
 Como ejemplo, dejamos al lector que obtenga las expresiones regulares determinadas por el siguiente autómata siguiendo la fórmula descrita y las simplificaciones de expresiones regulares:
 
