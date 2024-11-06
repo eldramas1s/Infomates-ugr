@@ -131,7 +131,7 @@ ii)Si $B \subseteq Q$:
     · La relación de cálculo de cada estado de B con la palabra vacía es el propio B pues no hemos cambiado nada.
     · La relación de cálculo de palabras concatenadas es la relación de cálculo con una de las subcadenas con la relación de cálculo de la otra subcadena con cualquier estado.
 
-iii) Se cumple que $\delta^\*(q,u)=\delta^\*(\{q\},u)$
+iii) Se cumple que $\delta^\*(q,u)=\delta^\*($ \{ $q$ \} $,u)$
 
 De esta manera, es inmediato comprobar que $L(M)=\{u \in A^\* : \delta^\*(q_0,u)\cap F \neq \emptyset\}$
 
