@@ -145,7 +145,7 @@ Así, si un lenguaje _L_ es aceptado por un autómata determinista es aceptado t
 
 Veamos ahora la otra implicación; es decir, todo lenguaje _L_ aceptado por un autómata no determinista es aceptado también por un autómata deteminista. 
 
-Para probarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0=\{q_0\}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F=\{B \in P(Q) | B\cap F \neq \emptyset\}$.
+Para probarlo simplemente definimos el autómata determinista asociado tomando por $Q=P(Q)$, $q_0=\{q_0\}$, $\delta(B,a)=\delta^\*(B,a)$ (la unión de todos los posibles estados resultantes al aplicar delta a un estado de _B_) y $F=$ \{ $B \in P(Q) | B\cap F \neq \emptyset$ \}.
 
 Luego la idea básica es que dado un autómata no determinista le hacemos corresponder uno determinista que recorre todos los caminos al mismo tiempo.
 
