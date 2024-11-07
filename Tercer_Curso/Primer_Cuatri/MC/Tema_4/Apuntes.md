@@ -165,6 +165,7 @@ En ocasiones, podremos incluso determinar que el lenguaje generado por una gram�
     
 $$S -> S$$
 
+<a id="formas_normales"></a>
 ## 4.4.Formas normales
 
 Estas formas se encargan de definir una serie de características que deben verificar todas y cada una de las reglas de producción de una gramática para pertenecer a esa forma normal.
@@ -214,6 +215,7 @@ Por tanto, el algoritmo seguirá dos partes en este orden:
     1. Obtención de variables anulables.
     2. Eliminación de producciones nulas.
 
+<a id="etiqueta1"></a>
 ### 4.4.2.Algoritmo
 
 Lo dividiremos en dos partes, una primera que consistirá en el [paso (1.)](#algoritmo). Y otra segunda que consistirña en el [paso (2.)](#algoritmo).
@@ -260,7 +262,7 @@ Además, se nos presenta otro problema, si una producción $B \rightarrow \alpha
 
 ### 4.4.4.Algoritmo
 
-Para aplicar este algoritmo es necesario que no haya transiciones nulas, es decir, que se haya aplicado el [algoritmo de eliminación de transiciones nulas y variables anulables](### 4.4.2.Algoritmo).
+Para aplicar este algoritmo es necesario que no haya transiciones nulas, es decir, que se haya aplicado el [algoritmo de eliminación de transiciones nulas y variables anulables](#etiqueta1).
 
 Definimos por $H$ al conjunto formado por las parejas $(A,B)$ tales que $B$ deriva de $A$, o lo que es lo mismo, existe la regla de producción $A \rightarrow B$.
 
@@ -281,7 +283,7 @@ Se ha usado la letra ſ para denotar la parte derecha de una regla de producció
 
 ### 4.4.5.Respuesta a la pregunta planteada
 
-Al inicio del [apartado 4.4](# 4.4.Formas normales) se planteó la siguiente pregunta:
+Al inicio del [apartado 4.4](#formas_normales) se planteó la siguiente pregunta:
 "dada una gramática independiente del contexto y una palabra $u$, ¿ $u\in L(G)$ ?"
 
 Ya dimos la respuesta para el caso de que la palabra __sí__ fuera generada y consistía en que al tomar todas las posibilidades se abarcaría la palabra que se busca en un momento dado.
