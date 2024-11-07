@@ -260,7 +260,7 @@ Además, se nos presenta otro problema, si una producción $B \rightarrow \alpha
 
 ### 4.4.4.Algoritmo
 
-Para aplicar este algoritmo es necesario que no haya transiciones nulas, es decir, que se haya aplicado el [algoritmo de eliminación de transiciones nulas y variables anulables](###4.4.2.Algoritmo).
+Para aplicar este algoritmo es necesario que no haya transiciones nulas, es decir, que se haya aplicado el [algoritmo de eliminación de transiciones nulas y variables anulables](### 4.4.2.Algoritmo).
 
 Definimos por $H$ al conjunto formado por las parejas $(A,B)$ tales que $B$ deriva de $A$, o lo que es lo mismo, existe la regla de producción $A \rightarrow B$.
 
@@ -282,8 +282,7 @@ Se ha usado la letra ſ para denotar la parte derecha de una regla de producció
 ### 4.4.5.Respuesta a la pregunta planteada
 
 Al inicio del [apartado 4.4](# 4.4.Formas normales) se planteó la siguiente pregunta:
-
-    "dada una gramática independiente del contexto y una palabra $u$, ¿ $u\in L(G)$ ?"
+"dada una gramática independiente del contexto y una palabra $u$, ¿ $u\in L(G)$ ?"
 
 Ya dimos la respuesta para el caso de que la palabra __sí__ fuera generada y consistía en que al tomar todas las posibilidades se abarcaría la palabra que se busca en un momento dado.
 
@@ -333,9 +332,11 @@ El algoritmo se basa en dos pasos bien diferenciados:
 Para realizar ambos pasos se deberá "jugar" con la creación de nuevas variables y la agrupación de raglas de producción.
 
 ![Ejemplo de primer paso](./imagenes/chomsky1.png)
+
 *Ejemplo de aplicación del primer paso*
 
 ![Ejemplo de segundo paso](./imagenes/chomsky2.png)
+
 *Ejemplo de aplicación del segundo paso*
 
 Cabe recalcar que para conseguir el segundo paso hay varias formas. No obstante, el algoritmo consta de lso siguientes pasos.
