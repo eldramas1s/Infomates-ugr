@@ -192,7 +192,7 @@ De la eliminación de producciones nulas surge el siguiente concepto: las __vari
 
 Una casuística típica es la siguiente:
     
-$$C \right arrow AB , A \rightarrow \epsilon, B\rightarrow \epsilon$$
+$$C \rightarrow AB , A \rightarrow \epsilon, B\rightarrow \epsilon$$
 
 donde eliminaríamos las producciones nulas teniendo que añadir las siguientes reglas de producción apra no perder información:
 
