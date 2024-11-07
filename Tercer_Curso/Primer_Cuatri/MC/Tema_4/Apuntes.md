@@ -19,6 +19,7 @@ Como resultado deberemos obtener (3.) leyendo de izquierda a derecha los valores
 Este concepto es muy importante en la compilación de programas, ya que para conocer si una palabra está correctamente escrita se genera su _árbol de derivación_.
 
 ![Árbol de derivacion](./imagenes/arbolder.png)
+*Árbol de derivación de la palabra aabbaa*
 
 Algunas __propiedades__ de los _árboles de derivación_ son:
     
@@ -30,6 +31,7 @@ Algunas __propiedades__ de los _árboles de derivación_ son:
 Relacionado con los tipos de derivación, hay casos donde podemos realizar la misma cantidad de sustituciones, incluso de los mismos contenidos, y conseguir la misma palabra. Con esto me refiero, con ordenes distintos de derivación podemos conseguir la misma palabra con el mismo número de sustituciones.
 
 ![Invarianza respecto al orden](./imagenes/invarianza.png)
+*Otro árbol de derivación de aabbaa*
 
 ## 4.2.Gramáticas ambiguas y lenguajes inherentemente ambiguos
 
@@ -38,6 +40,7 @@ Relacionado con los tipos de derivación, hay casos donde podemos realizar la mi
 Diremos que una gramática es __ambigua__ cuando una misma palabra aceptada por el lenguaje generado por la gramática dispone de más de un _árbol de dervición_.
 
 ![Gramática ambigua](./imagenes/grambigua.png)
+*Ejemplo de gramática ambigua*
 
 ___Problema___
 
@@ -51,12 +54,14 @@ Este problema introduce el concepto de problema __semidecidible__, esto es cuand
 En ocasiones, podremos eliminar una serie de reglas de producción que producen la ambigüedad. Estas reglas de producción no sabemos, por ahora, cómo encontrarlas pero, eliminandolas conseguiremos una gramática que no será ambigua.
 
 ![Corrección de ambigüedad](./imagenes/correccion_gram.png)
+*Ejemplo de eliminación de ambigüedad*
 
 ### 4.2.2.Lenguajes inherentemente ambiguos
 
 Del concepto de _gramática ambigua_ pasamos al de __lenguaje inherentemente ambiguo__. Diremos que un lenguaje de __tipo 2__ es __inherentemente ambiguo__ si toda la gramática que lo genera es _ambigua_.
 
 ![Lenguaje no inherentemente ambiguo](./imagenes/lambiguont.png)
+*Ejemplo de lenguaje no inherentemente ambiguo*
 
 ___Problema___
 
@@ -69,6 +74,7 @@ Una propiedad que debe quedar clara es que __ningún lenguaje regular__ es __inh
 No obstante, ya vimos una forma de la cual se peude conocer que un lenguaje __no__ es ambiguo usando la [corrección de ambigüedad](#corrección); pues, si al aplicarla conseguimos una gramática __no__ ambigua sabemos ya que el lenguaje dado no sería inherentemente ambiguo.
 
 ![Lenguaje inherenetemente ambiguo](./imagenes/lambiguo.png)
+*Ejemplo de lenguaje inherentemente ambiguo*
 
 Con el ejemplo podemos deducir que los problemas se localizan en la __intersección__ de ambo lenguajes, es decir, las palabras que pertenecen a ambos. 
 
@@ -275,7 +281,7 @@ Se ha usado la letra ſ para denotar la parte derecha de una regla de producció
 
 ### 4.4.5.Respuesta a la pregunta planteada
 
-Al inicio del apartado [4.4](#4.4.Formas normales) se planteó la siguiente pregunta:
+Al inicio del [apartado 4.4](# 4.4.Formas normales) se planteó la siguiente pregunta:
 
     "dada una gramática independiente del contexto y una palabra $u$, ¿ $u\in L(G)$ ?"
 
@@ -327,7 +333,10 @@ El algoritmo se basa en dos pasos bien diferenciados:
 Para realizar ambos pasos se deberá "jugar" con la creación de nuevas variables y la agrupación de raglas de producción.
 
 ![Ejemplo de primer paso](./imagenes/chomsky1.png)
-![Ejemplo de segundo paso](./imagenes/comsky2.png)
+*Ejemplo de aplicación del primer paso*
+
+![Ejemplo de segundo paso](./imagenes/chomsky2.png)
+*Ejemplo de aplicación del segundo paso*
 
 Cabe recalcar que para conseguir el segundo paso hay varias formas. No obstante, el algoritmo consta de lso siguientes pasos.
 
