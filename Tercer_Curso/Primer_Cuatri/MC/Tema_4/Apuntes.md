@@ -233,3 +233,120 @@ Consiste en eliminar las porducciones nulas y añadir producciones para no perde
             
             - ßi=ſi si ſi no pertenece a H.
             - (ßi=ſi) ó (ßi=palabra vacía) si ſi pertenece a H y no todos los ßi son pueden ser nulos al mismo tiempo.
+
+### 4.4.3.Producciones unitarias
+
+Las __producciones unitarias__ son las de la forma:
+    
+$$A \rightarrow B$$
+
+donde tanto $A$ como $B$ son variables; estas producciones simplemente representan un cambio de nombre, es escribir B donde estaba A, luego podemos eliminar esa produccion y corregir para no perder posibilidades de derivación.
+
+La casuística típica es perder la posibilidad de aplicar la siguiente derivación:
+    
+$$A \longrightarrow B \longrightarrow \alpha$$
+
+El motivo es claro, si hemos eliminado la producción $A \rightarrow B$ no podremos llegar desde $A$ a $B$ para poder aplicar la regla de producción $B \rightarrow \alpha$.
+
+Para evitar este problema, una vez que eliminemos $A \rightarrow B$ añadimos a la gramática las producciones de la forma $A \rightarrow \alpha$ donde $B \rightarrow \alpha$ es una producción.
+
+Además, se nos presenta otro problema, si una producción $B \rightarrow \alpha$ toma como valor $\alpha = C$ vuelve a generarse una producción unitaria $A \rightarrow C$; donde tendríamos que aplicar de nuevo los pasos descritos. Por tanto, el algoritmo completo se basará en ir calculando el conjunto de todas las parejas de variables $(A,B)$ tales que $B$ es derivable a partir de $A$.
+
+### 4.4.4.Algoritmo
+
+Para aplicar este algoritmo es necesario que no haya transiciones nulas, es decir, que se haya aplicado el [algoritmo de eliminación de transiciones nulas y variables anulables](###4.4.2.Algoritmo).
+
+Definimos por $H$ al conjunto formado por las parejas $(A,B)$ tales que $B$ deriva de $A$, o lo que es lo mismo, existe la regla de producción $A \rightarrow B$.
+
+Se basa en los siguientes pasos:
+    
+    1. H={}
+    2. Para toda producción de la forma A->B, la pareja (A,B) se introduce en H.
+    3. Mientras H cambie:
+        
+        · Para cada dos parejas (A,B) y (B,C) de H añadimos también (A,C) por transitividad, si no está ya incluida.
+
+    4. Se eliminan las producciones unitarias.
+    5. Para cada pareja (A,B) de H
+        
+        a. Para cada producción B->ſ se añade una produccion A -> ſ
+
+Se ha usado la letra ſ para denotar la parte derecha de una regla de producción, es decir, $ſ \in (V \cup T)^\*$
+
+### 4.4.5.Respuesta a la pregunta planteada
+
+Al inicio del apartado [4.4](#4.4.Formas normales) se planteó la siguiente pregunta:
+
+    "dada una gramática independiente del contexto y una palabra $u$, ¿ $u\in L(G)$ ?"
+
+Ya dimos la respuesta para el caso de que la palabra __sí__ fuera generada y consistía en que al tomar todas las posibilidades se abarcaría la palabra que se busca en un momento dado.
+
+En el caso negativo, nos guiaremos por la longitud de la palabra, sea $n \in N$ la longitud de nuestra palabra y $G$ una gramática sin producciones nulas ni unitarias.
+
+En ese caso tan hipotético, cada vez que aplicamos una regla de producción la longitud de la palabra que se va generando nunca decrece (no hay producciones nulas); de la misma manera, la longitud de la palabra no aumenta(sustitución de una variable por un símbolo terminal) o la longitud aumenta (introduce más símbolos terminales o variables).
+
+Como empezamos con una longitud de 1, en cada paso:
+    
+    1. Si sacamos un nuevo símbolo terminal.
+    2. Si aumentamos la longitud.
+
+Realizando todos los posibles casos, vemos que deberemos comprobar hasta el paso $2n-1$ pues como casos extremos tenemos:
+
+    1. Sustituir una variable por un símbolo terminal en cada paso (n).
+    2. Aumentar el numero de variables hasta la longitud de la palabra para despues sustituirlas todas (n)(n-1).
+
+Por tanto, como máximo podríamos encontrar la palabra aplicando $n$ pasos de derivación y como mínimo deberemos comprobar hasta la longitud $2n-1$, donde si no ha aparecido ya la palabra buscada podemos asegurar que no es generada.
+
+### 4.4.6.Forma normal de Chomsky
+
+El creador de esta forma normal es [Noam Chomsky](https://es.wikipedia.org/wiki/Noam_Chomsky) y definió su forma normal como sigue.
+
+Para Chomsky una gramática está en __forma normal de Chomsky__ si todas sus producciones son de la forma:
+
+$$A \rightarrow BC, A \rightarrow a$$
+
+donde $A,B,C \in V$ y $a \in T$.
+
+___Teorema___
+
+Toda gramática libre de contexto es equivalente a una gramática libre de contexto en __forma normal de Chomsky__. Además, esta equivalencia es algorítmicamente computable.
+
+_Fin Teorema_
+
+No veremos la demostración pero sí el algoritmo por el cual se consigue esta transformación.
+
+Antes de eso, diremos que dos conjuntos de reglas de producción son __equivalentes__ si y sólo si generan las mismas cadenas de símbolos una vez aplicadas.
+
+### 4.4.7.Algoritmo
+
+El algoritmo se basa en dos pasos bien diferenciados:
+
+    1. Eliminar las producciones que no sean de la forma A->a.
+    2. Transformar las producciones con más de dos variables en la parte derecha en conjuntos de porducciones equivalente de la forma A->BC.
+
+Para realizar ambos pasos se deberá "jugar" con la creación de nuevas variables y la agrupación de raglas de producción.
+
+![Ejemplo de primer paso](./imagenes/chomsky1.png)
+![Ejemplo de segundo paso](./imagenes/comsky2.png)
+
+Cabe recalcar que para conseguir el segundo paso hay varias formas. No obstante, el algoritmo consta de lso siguientes pasos.
+
+    1. Para cada producción P=A->ſ1...ſn, ſi cadena de símbolos de variable y terminales, n>1:
+        a. Para cada ſi, si ſi es terminal:
+            
+            · Se añade la producción Ci -> ſi.
+            · Se cambia ſi por Ci en P.
+
+    2. Para cada producción de la forma P'=A->ŋi...ŋm, m>2:
+        
+        a. Se añaden (m-2) variables nuevas ß, una para cada producción.
+        b. La producción P' se reemplada por las producciones:
+            
+            · A->ŋ1ß1, ß1->ŋ2ß2, ... , ß{m-2} -> ß{m-1}ßm
+
+
+___Ejemplo___
+
+![Ejemplo_1](./imagenes/ej1.png)
+![Ejemplo_2](./imagenes/ej2.png)
+![Ejemplo_3](./imagenes/ej3.png)
