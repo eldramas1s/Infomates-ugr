@@ -158,3 +158,78 @@ De esta manera hemos obtenido esa gramática no ambigua a partir de la que nos d
 En ocasiones, podremos incluso determinar que el lenguaje generado por una gramática es el __vacío__, esto se detecta cuando resulta que la variable inicial es inútil aplicando el algoritmo. En ese caso, se puedene eliminar todas las producciones, pero por definición de gramática __no__ podemos eliminar el símbolo inicial. dejaríamos la siguiente regla de producción únicamente:
     
 $$S -> S$$
+
+## 4.4.Formas normales
+
+Estas formas se encargan de definir una serie de características que deben verificar todas y cada una de las reglas de producción de una gramática para pertenecer a esa forma normal.
+
+___Motivación___
+
+Nos surge el siguiente problema, dada una gramática independiente del contexto y una palabra $u$, ¿ $u\in L(G)$ ?
+
+Como primera solución, podríamos generar un árbol de derivación con todas las posibles aplicaciones de las reglas de producción, lo cual nos resolvería la parte positiva de la pregunta; pero si la palabra no es generada por la gramática... ¿hasta qué profundidad tenemos que generar para convencernos de que no se puede?
+
+### 4.4.1.Producciones nulas
+
+Una regla de producción decimos que es una __producción nula__ cuando es de la forma:
+    
+$$A\rightarrow \epsilon$$
+
+Estas producciones entorpecen nuestro algoritmo y no nos permite determinar con facilidad la solución al problema pues cada vez que apliquemos una _producción nula_ reduciremos en una unidad la longitud de nuestra palabra.
+
+Para eliminarlas aplicaremos un algoritmo de manera que $L(G_n)=L(G)\setminus$ \{ $\epsilon$ \}. Donde $G_n$ es la gramática generada por el algoritmo.
+
+Cade destacar que este algoritmo provoca la pérdida de la palabra vacía siempre y cuando $\epsilon \in L(G)$. No obstante, el algoritmo nos permite conocer en qué momento se pierde.
+
+Como solución a esto sólo deberemos realizar el siguiente cambio:
+
+$$S' \rightarrow S$$
+$$S' \rightarrow \epsilon$$
+
+donde hemos creado un nuevo símbolo inicial que parchea este problema.
+
+De la eliminación de producciones nulas surge el siguiente concepto: las __variables anulables__.
+
+Una casuística típica es la siguiente:
+    
+$$C \right arrow AB , A \rightarrow \epsilon, B\rightarrow \epsilon$$
+
+donde eliminaríamos las producciones nulas teniendo que añadir las siguientes reglas de producción apra no perder información:
+
+$$C \rightarrow A, C\rightarrow B, C \rightarrow \epsilon$$
+
+para después volver a aplicar el algoritmo.
+
+Para evitar este ciclo, vamos a calcular desde le pricipio todas las variables que en algún momento llegarían a ser producción nulas. A estas variables les llamaremos __variables anulables__.
+
+<a id="algoritmo"></a>
+Por tanto, el algoritmo seguirá dos partes en este orden:
+
+    1. Obtención de variables anulables.
+    2. Eliminación de producciones nulas.
+
+### 4.4.2.Algoritmo
+
+Lo dividiremos en dos partes, una primera que consistirá en el [paso (1.)](#algoritmo). Y otra segunda que consistirña en el [paso (2.)](#algoritmo).
+
+___Paso (1.)___
+
+El algoritmo se basa en calcular el conjunto de variables anulables $H$:
+
+    1. H={}
+    2. Para cada producción nula, añadimos la variable a H.
+    3. Mientras H cambie:
+        
+        · Para cada producción `B->{An}` donde Ai pertenece a H para todo i, se añade B a H.
+
+___Paso (2.)___
+
+Consiste en eliminar las porducciones nulas y añadir producciones para no perder palabras del lenguaje:
+    
+    1. Se eliminan todas las producciones nulas de la gramática.
+    2. Para cada producciñon de la gramática de la forma `A->{ſn}` donde ſi es una variable o un símbolo terminal:
+        
+        · Se añaden todas las producciones de la forma A->{ßn} donde:
+            
+            - ßi=ſi si ſi no pertenece a H.
+            - (ßi=ſi) ó (ßi=palabra vacía) si ſi pertenece a H y no todos los ßi son pueden ser nulos al mismo tiempo.
