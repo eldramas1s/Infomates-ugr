@@ -50,7 +50,7 @@ Este problema introduce el concepto de problema __semidecidible__, esto es cuand
 <a id="corrección"></a>
 En ocasiones, podremos eliminar una serie de reglas de producción que producen la ambigüedad. Estas reglas de producción no sabemos, por ahora, cómo encontrarlas pero, eliminandolas conseguiremos una gramática que no será ambigua.
 
-![Corrección de ambigüedad](./imagenes/correcion_gram.png)
+![Corrección de ambigüedad](./imagenes/correccion_gram.png)
 
 ### 4.2.2.Lenguajes inherentemente ambiguos
 
