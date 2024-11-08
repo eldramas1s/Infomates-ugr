@@ -258,3 +258,193 @@ _Casuísticas_
 Por útlimo, hablaremos del concepto de __tamaño máximo de segmento__ o _MSS_, que es útil para determinar cuánto puede ocupar la parte de datos de _TCP_ al crear un paquete, pues al haber encapsulamiento, al mandar un paquete _IP_ hay una parte de cabecera y una parte de datos _IP_ donde está englobado todo el segmento _TCP_. Como la parte de datos _IP_ es de 1480 Bytes y la cabecera _TCP_ son 20 Bytes, obtenemos que el _MSS_ será de 1460B.
 
 #### 3.3.1.2.Control de errores.
+
+Acompañado del control de flujo mejoraran el rendimiento.
+
+La idea general del control de errores es utilizar un buffer en el receptor de los mensajes para garantizar la entrega ordenada y ayudarse de los __números de secuencia__ para poder establecer este control de errores.
+
+Este control se basa en usar los __numeros de secuencia__ para insertar cada paquete que llega en su situación correspondiente en el buffer.
+
+___Funcionamiento del buffer___
+
+Este objeto es manupulado por dos entidades:
+    
+    1. Aplicación: esta entidad lo único que hace es tomar los paquetes que ya hayan llegado al buffer en orden, es decir, de la parte confirmada de la cola. Posteriormente, el paquete se procesa en la aplicación y se generará la respuesta.
+    2. Receptor: se encarga de ir añadiendo los paquetes en orden y de generar los paquetes de respuesta(_ACK's_). Cada vez que llega un paquete se almacena en el buffer como si fuera una cola _FIFO_ mejorada para poder mantener el orden.
+
+Si nos damos cuenta, el buffer no es más que una ventana deslizante donde en cada deslizamiento se ha procesado un paquete por la aplicación o se ha añadido un paquete por el receptor.
+
+Este buffer es único de cada conexion _TCP_; no obstante, hemos visto que la conexión por _TCP_ es punto a punto, luego no hay problema.
+
+
+Volviendo al control de errores, sigue un esquema _ARQ_, es decir, se responde a los paquetes antes de que se pida, para ello hay una serie de eventos a tener en cuenta. 
+
+Llegamos ya a la parte importante del __control de errores__, cuando se manda un paquete _TCP_ a un receptor ya hemos visto que se inicia un contador o _timeout_ que se encarga de determinar cuando _retransmitir_ un paquete por suposición de que se haya perdido. 
+
+Esto último es muy importante pues, el __control de errores__ se basa en dos partes:
+
+1. Generación de ACK's positivos y acumulativos (generación de paquetes de respuesta y confirmación).
+2. Timeout adaptable
+
+##### 3.3.1.2.1.Generación de ACK's(Tahoe)
+
+La generación de ACK's no es más que la generación de paquetes de respuesta que dependerá de una serie de eventos producidos en la comunicación. Presenta dos características:
+    
+    1. ACK's acumulativos: con cada ACK estamos determinando hasta qué byte de la comunicación hemos recibido correctamente, esto se hace con el número de acuse. Por tanto, el emisor, que recibe la respuesta, entenderá que hemos recibido correctamente hasta ese byte y procederá a mandar el siguiente.
+    2. ACK's positivos: con cada ACK estamos determinando hasta qué byte hemos recibido correctamente pero nunca qué bytes han llegado dañados o no han llegado, de hay que sean positivos.
+
+Siguiendo en la estructura _ARQ_ y trabajando de nuevo sobre el buffer del receptor de responde de una manera o de otra dependiendo de una serie de eventos:
+    
+    (Etiqueta)
+    · Evento 1: supongamos que el receptor recibe un paquete y que ese paquete es consecutivo a lo que ya sabemos que está bien; para eitar hacer una comunicación "pregunta-respuesta" retrasamos el ACK iniciando un temporizador de 500 ms donde tomados varias casuísticas:
+        · Si nos llega el paquete consecutivo hacemos Evento 2.
+        · Si nos llega un paquete no consecutivo realizamos Evento 3.
+        · Si se acaba el temporizador mandamos el ACK del único paquete que nos ha llegado.
+
+    (Etiqueta)
+    · Evento 2: supongamos que tras el Evento 1, dentro del temporizador nos ha llegado un paquete consecutivo, entonces mandamos un ACK acumulativo confirmando que han llegado bien ambos paquetes.
+
+Hasta ahora todos los eventos son positivos y fáciles de resolver, veamos algunos eventos más:
+
+    · Evento 3: supongamos que dentro del temporizador o fuera del mismo recibimos un paquete desordenado, es decir, no es consecutivo a lo que ya tenemos en el buffer, entonces procedemos como sigue:
+        
+            0. Obviamos el temporizador de 500 ms.
+            1. Insertamos el paquete en el buffer en el lugar correspondiente con su número de secuencia.
+            2. Generamos un ACK inmediatamente con el número de acuse confirmando hasta donde el buffer mantiene el orden, es decir, el primer byte del primer hueco.
+    
+    Cabe destacar que en el evento 3 se acumulan tantos ACK's en la misma posición como paquetes desordenados se reciban.
+
+    · Evento 4: Si recibimos un paquete que cubre un heco haciendo que el buffer vuelva a ser continuo, se manda un ACK inmediatamente con la posición final del tramo continuo.
+
+    · Evento 5: cuando pasamos de una ventana deslizante de 0 bytes disponibles, es decir, el buffer está lleno y debemos esperar a que la aplicación procese paquetes; a una ventana positiva, se manda un paquete ACK inmediatamente.
+
+En definitiva, el ACK siempre se manda con el __número de acuse__ igual al primer byte del primer hueco del buffer.
+
+Por último, cabe recalcar que la __duplicación de ACK's__ no consiste en mandar dos ACK's seguidos sino que se mandan varios ACK's con un mismo _número de acuse_.
+
+#### 3.3.1.2.2.Timeouts
+
+Los __timeouts__ son elementos muy importantes dentro de la comunicación _TCP_ y son temporizadores que regulan cuándo la comunicación fluye de manera correcta y cuándo la comunicación puede tener algún fallo.
+
+Cuando se agota el temporizador impuesto por el __emisor__ en una pregunta y respuesta, es decir, se ha preguntado pero la respuesta no se ha recibido en ese tiempo; entonces y sólo entonces, el __emisor__ retransmitirá de nuevo la pregunta.
+
+Por tanto, si definimos por _RTT_(__Round Trip Time__) como el tiempo que tarda una pregunta-respuesta; lo más favorable es que el _timeout_ tome el valor del _RTT_; no obstante, el _RTT_ no es fijo.
+
+Veamos el por qué de esta asociación:
+    
+    · Si el temporizador es menor que el RTT, entonces se retransmitirán la mayoría de los paquetes impidiendo una comunicación fluida y en ocasiones provocando el reinicio de la conexión.
+    · Si el temporizador es mucho mayor que le RTT, entonces un paquete perdido no será notificado hasta que pase un gran tiempo haciendo que la comunicación sea muy lenta y haya pérdida de recursos.
+
+__Cálculo y deducción del timeout__
+
+Partiendo de una comunicación cualquiera disponemos de varios conceptos que nos van a determinar el _RTT_:
+
+    · Tiempo de transmisión: tiempo que se tarda en poner el paquete en la red, depende de la velocidad de transmisión(Vt) de la tarjeta de red y se calcula con la expresión:
+
+$$T_t=frac{T}{Vt}, T=tamaño$$
+
+    · Tiempo de propagación: tiempo que tarda un paquete en llegar al siguiente salto, depende del medio de transmisión y de l alongitud del calble.
+    · Tiempo de procesado: tiempo que tarda un paquete dentro de una cola de un router en ser procesado por el mismo, depende de los routers y de la carga de red.
+
+Todo esto debe repetirse desde cada transmisión salto a salto hasta lllegar al destino. Además, en un _RTT_ se tiene en cuenta también la vuelta. 
+
+Añadido a esto, como todos los elementos son variables, se deduce que el _RTT_ no es fijo.
+
+![Gráfica RTT](./imagenes/RTT.png)
+
+Por tanto, hemos llegado a la siguiente conclusión:
+    
+    · El timeout debe ser ligeramente mayor que el RTT.
+
+Además, en la práctica, no se usa el $RTT_{medido}$, es decir, el _RTT_ real; sino que se usa un $RTT_{filtrado}$.
+
+$$RTT_{filtrado}=\alpha RTT_{viejo} + (1-\alpha)RTT_{medido}, \alpha \in  \[0,1\]$$
+
+Pasamos ahora al cálculo del __timeout__ que usará el concepto de derivación que tambíen estará filtrada:
+    
+$$Desviacion_{filtrada}=(1-x)Desviacion_{vieja}+x|RTT_{medido}-RTT_{filtrado}|, x\in \[0,1\]$$
+
+Donde llegamos, ya sí, a la fórmula del cálculo del __timeout__:
+
+$$Timeout=RTT_{filtrado}+4Desviacion_{filtrada}$$
+
+Por último un comentario sobre el _Algoritmo de Karn_, simplemente se basa en duplicar el __timeout__ cada vez que este expira.
+
+#### 3.3.1.3.Control de flujo.
+
+El __control de flujo__ es un mecanismo de __atrás hacia delante__ donde el receptor es el que le dice al emisor la cantidad de datos que se pueden mandar:
+    
+    · Si el buffer del receptor está muy vacío, se manda un mensaje de aumento de paquetes enviados.
+    · Si el buffer del receptor está muy lleno, se manda un mensaje de disminución de paquetes enviados.
+
+En caso de que esta regulación no se haga, podría darse el caso en el que se llene el buffer y se descarten paquetes para no congestionar la red; entonces, estaríamos perdiendo información.
+
+Este sistema es lo que se conoce como __esquema crediticio__. 
+
+__Gestión del mecanismo__
+
+Esta gestión se realiza mediante un campo de ventana de la cabecera _TCP_, un campo de 16 bits donde se dicen cuántos bytes hay libres haciendo uso de la base 2. Por tanto, cada número en binario _n_, representa $2^n$ bytes libres.
+
+Es en este caso donde se resuelve el Evento 5 y donde se puede producir; cuando se llena el buffer, se manda un ACK con una ventana de libres valor 0; ante esta situación, el emisor debe dejar de mandar paquetes y esperar a que se reciba el paquete de _ACK_ del evento 5.
+
+No obstante, recibir este paquete puede llegar a ser muy oprimista, luego cuando se recibe el _ACK_ de buffer lleno, el emisor inicia un temporizador de espera(__temporizador de persistencia__); si este se termina, mandará un byte de datos esperando recibir un _ACK_ de respuesta como en una comunicación normal. 
+
+Si es así se reestablece la conexión y se había perdido el _ACK_ de ventana libre; si no se recibe el _ACK_ significa que el receptor no está listo para trabajar paquetes.
+
+Cambiando de tercio, en ocasiones se mandan mucho paquetes de forma consecutiva, tras su procesamiento se irán recibiendo los _ACK's_ correspondientes. Entre dos _ACK's_ consecutivos ya se han leído varios paquetes pero puede que no hayan llegado algunos que están en transmisión.
+
+En estos casos, la __ventana ofertada__ no podrá ser la ventana del campo de la cabecera _TCP_ sino la siguiente:
+    
+$$V_{real}=V_o-b , b=Bytes_{tránsito}$$
+
+Por ahora, hemos tomado un valor teórico, pero ya sabemos que suele ser matizado en la práctica pues hemos considerado un caso extremo; en la prácita, se toma un valor intermedio de manera que todo funcione más o menos bien y no perdamos mucha calidad.
+
+#### 3.3.1.4.Control de congestión
+
+El __control de congestión__ es un problema del tipo __adelante-atrás__ causado por la __insuficiencia de recursos__ durante la transmisión de un paquete; es decir, cuando alguno de los buffers de los routers está completamente lleno y descartamos paquetes.
+
+Podemos ya intuir, que la velocidad de _TCP_ depende de este control, asicomo que es el emisor quien decide cómo transmitir.
+
+En la versión "Tahoe" se manifiesta mediante la __pérdida de ACK's__ donde la solución que se propone es limiter de forma adaptable el tráfico generado.
+
+___Proceso TCP___
+
+Para explicar cómo _TCP_ actúa frente a estas cosas vamos a utilizar un ejemplo. Sabienso que el emisor dispone de dos ventanas:
+    
+    · Ventana del Receptor -> usada en el control de flujo, con tamaño variable según el campo ventana recibido.
+    · Ventana de Congestión -> es inicializada a 1 (número de segmentos), aunque realmente toma los Bytes que ocupa cada paquete TCP.
+
+El proceso de comunicación _TCP_ tiene tres fases desde el punto de vista de la congestión una vez que ya se ha iniciado el intercambio de paquetes:
+
+    1. Inicio lento: En un inicio, se mandan tantos apquetes como nos permita la ventana y se establece el intercambio como se ha visto. Además, la ventana de congestión(CW) se actualiza a CW+(bytes confirmados). Esto es así hasta que sobrepasamos un umbral determinado por el protocolo.
+
+    2. Prevención de congestión: En cada ráfaga de envío de paquetes se mandan tantos Bytes como haya en la ventana de congestión; por cada confirmación la ventana aumenta de la siguietne forma: 
+
+$$CW=CW+frac{1}{CW}$$
+   
+    De esta manera, conseguimos que cada CW bytes mandados y confirmados, la ventana aumente sólo en una unidad. Por último, en esta fase puede ocurrir una excedencia de timeout, en ese caso volvemos a la fase 1 y reducimos el umbral a la mitad.
+
+![Transimision TCP](./imagenes/tranmsisiontcp.png)
+*Gráfica comparativa del aumento de CW con respecto al número de transmisiones*
+
+Para calcular la velocidad de transimisión de _TCP_ bastará con deducir que se mandan $frac{CW}{T}$ paquetes donde $T$ es el tamaño de un paquete _TCP_ por cada _RTT_ luego el rendimiento o velocidad será:
+
+$$throughput=frac{CW}{RTT}$$
+
+### 3.3.2.Extensiones TCP
+
+Por ahora, hemos estado hablando de la versión _Tahoe_ que presenta algunoas incompletitudes, muchas de ellas causadas por el inicio lento; de aquñi surgieron los sabores de _TCP_:
+
+    · Reno: distingue entre fallo por exceder un timeout o la duplicacion de ACK's masiva:
+        - Si hay excedencia de timeout -> mismo proceso que Tahoe.
+        - Si hay duplicación masiva de ACK's -> el valor de la ventana ofertada apsa a la mitad en la fase de prevención prolongando dicha fase.
+
+    · newReno: distingue más situaciones y se adapta mejor a las necesidades de la ransmisión.
+    · Vegas: en lugar de tener en cuenta los ACK's tieene en cuenta el RTT:
+        
+        - Si el RTT aumenta -> reduce la ventana.
+        - Si el RTT disminuye -> aumenta la ventana.
+
+    · Cubic: dispone de dos ventanas para la congestión, una dependeinte de los ACK's y otra dependiente de los RTT y hace una mezcla de ambas.
+
+Por ahora, estamos suponiendo que todos los errores que se dan son por congestión, pero esto no tiene por qué ser así en redes inhalámbricas, redes donde el porcentaje de error es un 10%; la versión _Westwood_ es la encargada de adaptarse a estas redes.

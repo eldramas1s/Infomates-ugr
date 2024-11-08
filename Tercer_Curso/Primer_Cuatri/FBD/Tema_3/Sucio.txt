@@ -1,60 +1,12 @@
-25-10-24
-------------------------------
+Preguntas
+--------------------------------------------
 
-SUperclaves y claves
-------------------------------------------
+- Lenguajes anfitrioens(PL, ejemplo) -> para construir la aplicacion de gestion (trabaja con la base de datos para gestionar las operaciones)necesito algo mas que el DSL(SQL), pero necesito interfaces y toda esa pesca.
 
-SUperclave: conjunto de atributos que determina univca,emnte a cada tupla de una relacion .> en el caso de que sea minimal, es decir, que si le quito un atributo pierde dicha unicidad será una clave.
+        Accoplamientos -> como se distingue el DSL en el lenguaje anfitrion.
 
-Que un conjunto de atributos sea una clave no pierde que sea una superclave, es decir, superclaves c claves
+- Correspondencias -> son reglas que a partir del nivel inferior se definen las cosas del nivel superior -> así si hay cambios sabemos como se consiguien de todas formas.
 
-Dentro de las clasbes candidattas (todas son claves) hay que elegir una que se tomara como clave primaria -> cuanto mas pequela mehor, que sea facil de recordar.
-
-Al seleccionar una clave priamria obligamos al usuario a que siempre rellene ese dato, en el lado opuesto, no es necesario que se rellene una clave candidata.
-
-Clave externa:  establece una relacion entre los conjuntos de valores que se dan en dos tablas -> el valor que aparezca en el conjunto docn la clave externa debe pertenecer al dominio de la clave primaria y debe estar existiendo en la tabla.
-
-Sominio activo -> conjunto de valores que ya aparecen en la tabla -> subconjunto del dominio completo.
-
-COn respecto a la clave externa quiere decir qu eel dominio activo de la clave externa debe ser un subconjunto del dominio ativo de la clave de la que es externa.
-
-
-COndiciones de intergridad: reglas que se ponen que ayudan a lo que entra en la base de datos sea consistente con lo que hay en la realidad.
-
-Integridad generica: depende
-    
-    - Metarregla de integridad de entidad -> no debe faltar el valor de ninguna clave primaria en la base de datos, no permite valore snulos. En una candidata se controla la unicidad pero si no se quiere puede tomar valor nulo.
-    - Metarregla de integridfad referencial -> provoca que todos los valores no nulos de una clave externa referencien valores reales de la clave referenciada en la otra relacion.
-
-
-EN un SGBD deben mantenerse las restricciones:
-
-    - La unicidad de la clave primaria y de las clabes candidatas: que no se metan valores duplicados frente a actualizacions o a inserciones.
-
-    - La integridad de la identidad:
-        Entidad -> no se pongan valores nulos en claves priarias
-        Referencial -> que no se pongan valores en la clave externa que no este en el dominio activo de la calve primaria.8
-
-
-
-Otrosd modelos de datos
------------------
-Todos los vistos aqui son estructurados
-
-Modelo Jerárquico: Se diseño pensando en el lenguaje de programación Cobol. Permitia crear arboles con un registro maestro y varios registros secundarios.
-
-el lenguaje de programacion proveia de un metodo de creacio y movimiento por ficheros.
-
-El problema viene de las relaciones de muchos a muchso necesitamos duplicar arboles de forma simetrico, haciendo redundante la memoria.
-
-Los DML son mucho mas dificiles de implementar y uisar, admeas, la dependencia existencial ocurre siempre al tener registros maestros y secunadarios.
-
-Modelo en red: SIguiendo el concepto de model en arbol tomamos grafos obteniendo el modelo de datos en red.
-
-Se corrige el problema de las relaciones muchos a muchos, implementdan directamente estas relaciones.
-
-Tiene dos tipos de nodos, conectores y registros corrientes donde los conectores sirven para establecer las relaciones.
-
-Ventajas: estuctura mas homogenea y permite insertar nuevas entidades de forma independiente, creo el registro y en gancharlo mas tarde con lo que corresponda.
-
-Problema: La complejidad de los arboles se aumenta al trabajar con grafos, hay una dependeencia bastante grande del DDL y el  ___ .
+        Correspondencia lógica -> evitar que cambios en el nivel conceptual !-> cambios en los progamas de aplicacion.
+        Los cambios que sean necesarios en las correspondencias para garantizar la independencia -> los hace el SGBD.
+        Correspondenca externa-externa -> establece como se consiguen unas vistas de usuario a traves de otras vistas de usuario. Un usuario se suele referir a un tipo de usuario.

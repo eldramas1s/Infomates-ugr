@@ -171,4 +171,71 @@ Como inconvenientes:
     + La complejidad de los árboles se aumenta al trabajar con grafos, es imposible controlar los punteros.
     + La existencia de enlaces entre los registros hace que las operaciones del DDL y DML sigan siendo difíciles de implementar.
 
-[TODO:diapositiva 45 en adelante]
+### 3.3.3.Comparativa
+
+En este apartado simplemente se va a realizar una comparativa de los distintos modelos ; como el modelo en __red__ no es más que una generalización más útil del modelo __jerárquico__, usaremos el primero para comparar.
+
+|Aspecto|Modelo de red|Modelo de relacional|
+|:-----:|:------------|:-------------------|
+|Representación|· Identidad por posición | · Un único elemento para la representación. · Conexiones lógicas. · Simetría n:m. · Identidad por valor  |
+|Consulta| Obtención de la consulta como resultado global a partir de lenguajes declarativos y procedimentales | Mecanismo de navegación por punteros a partir de lenguajes procedimentales|
+
+[ TODO: comentar y entender diapositiva 45 ]
+
+### 3.3.4.Modelo orientado a objetos
+
+Como su nombre indica se basa en la orientación a objetos, es decir, en tratar cada entidad como un objeto. Si pensamos en _Java_, crearíamos una clase por entidad donde los datos miembro serían los atributos.
+
+Con estos modelos seríamos capaces de suplir algunas de las debilidades del __modelo de datos relacional__:
+    
+- Dispone de una representación muy pobre de las entidades del mundo real.
+- Produce una sobrecarga semántica de la estructura de la relación, todo son tablas.
+- La estructura relacional es muy estricta:
+    
+    · Todas las tuplas deben tener los mismos atributos.
+    · Los valores de un atributo dentro de una instancia deben pertenecer todos al mismo dominio.
+    · Los atributos deben tener un valor atómico.
+
+- SQL actuando de forma puramente relacional permite sólo un conjunto de operaciones limitadas, por ejemplo nos limita el modelaje del comportamiento de objetos del mundo real.
+- Object-relational impedance mismatch: consiste en los problemas que pueden surgir a la hora de trabajar sistemas gestores de bases de datos relacionals desde aplicaciones que usan un modelo de datos orientado a objetos.
+
+La filosofía de estos modelos es clara, consiste en tratar de abstraer una parte del mundo real mediante una serie de objetos que realizan acciones entre sí simbolizando las relaciones que hay entre ellos.
+
+Como resultado final, viendo que tanto el _modelo de datos relacional_ como el _modelo de datos orientado a objetos_ disponían de las soluciones a los problemas del modelo opuesto, se buscó el __modelo de datos objeto-relacional__; no obstante, el _modelo de datos relacional_ continúa usándose en mayor medida en solitario.
+
+### 3.3.5.Sistemas multidimensionales
+
+Hasta ahora, sabemos tratar una cantidad de datos inmensa de forma que las relaciones entre esos datos son poco visibles, solución que proporcionan los sistemas multidimensionales.
+
+Un sistema multidimensional se basa en la representacíon de los hechos de la vida cotidiana que se buscan estudiar en un hipercubo de dimensión tantos hechos como se estén estudiando. Hay de dos tipos:
+
+· Operacionales: son encargados de proporcionar información a la empresa de forma diaria.
+    - Utiliza el procesamiento de datos en línea u OLTP necesitando de aplicaciones para dar soporte a operaciones diarias.
+    - Requieren de datos actualizados al máximo nivel y detallados lo más posible.
+    - Las operaciones realizadas necesariamente afectarán a pocos registros y se hacen mediante claves primarias.
+    - Requiere que haya gran consistencia y que los sistemas sean fiables.
+    - Para que el redimiento del sistema sea óptimo se debe optimizar la gestión de transacciones, es decir, las consultas que se hagan a la base de datos.
+
+· Analíticas, son sistemas de información creados para responder preguntas de asesoramiento para la evolución y toma de decisiones de una empresa.
+    
+    - Utiliza procesamiento de datos en línea u OLAP necesitando aplicaciones orientadas al soporte de decisiones.
+    - Son sistemas donde debemos pensar en que los usuarios son de otro tipo al habitual, se responderán preguntas como "¿qué elemento es el que me produce más beneficio?".
+    - Requieren que los datos que estén en la base de datos estén consolidados, resumitos y sean, en su mayoría, de tipo histórico.
+    - Están creados para resolver consultas complejas, poco previsibles y que involucrean a grandes cantidades de registros.
+
+___Modelo de datos multidimensional___
+
+Cada una de las caras representará un hecho; de manera que si de una compra buscamos guardar la fecha, el precio y el producto, dispondremos de un cubo. 
+
+La ventaja de estos sistemas revoca en poder aplicar _zoom_ durante la búsqueda de información pues en cada nivel del cubo podremos detercar una mayor profundidad en alguno de los atributos.
+
+Por ejemplo, para entenderlo de forma intuitiva, si queremos guardar:
+
+    · La fecha: podremos hacerlo en mayor o menor profundidad luego cada celda de una cara representará mayor o menor profundidad.
+    · El precio: podremos hacerlo con más o menos detalle, incluso guardando el método de pago, esto se consigue de la misma manera que la fecha.
+    · El producto: podremos hacerlo en mayor o menos profundidad, guardando, incluso, el código de barras del producto para saber qué producto concretamente se compra, esto de nuevo se consigue de la misma manera que la fecha.
+
+Con este _zoom_ que le permitimos hacer al usuario, le estamos dando tanta información como él necesite. 
+
+Lo más cotidiano es que estos tipos de modelos se usen en el _nivel empresarial_ donde los usuarios son analistas y buscan el mayor rendimiento de la empresa.
+
