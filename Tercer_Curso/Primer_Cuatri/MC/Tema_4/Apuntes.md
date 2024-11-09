@@ -124,8 +124,8 @@ El algoritmo busca calcular todo $V_t$ para obtener $V \setminus V_t$ y sigue lo
 1. Vt es vacío.
 2. Para cada producción `A->w`, A se introduce en Vt.
 3. Mientras Vt cambie:       
- - Para cada producción `B->ſ`
-  + Si todas las variables de ſ pertenecen a Vt, B se introduce en Vt.
+    - Para cada producción `B->ſ`
+        + Si todas las variables de ſ pertenecen a Vt, B se introduce en Vt.
 4. Eliminar las variables que estén en V y no en Vt.
 5. Eliminar todas las producciones donde aparezca una variable de V\Vt.
 
@@ -143,11 +143,10 @@ Seguiremos los siguientes pasos:
 
 1. J={S}, Vs={S},Ts={}
 2. Mientras J!={}:       
- - Extraer un elemento de J -> J=J\{A}
- - Para cada producción `A->ſ`   
-  + Si B no está en Vs añadir B a J y a Vs.
- -  Poner todos los símbolos terminales de ſ en Ts.
-
+    - Extraer un elemento de J -> J=J\{A}
+    - Para cada producción `A->ſ`   
+        + Si B no está en Vs añadir B a J y a Vs.
+    -  Poner todos los símbolos terminales de ſ en Ts.
 3. Eliminar todas las variables que no estén en Ts.
 4. Eliminar todas las producciones donde aparezca un símbolo o variable eliminados en el paso anterior.
 
