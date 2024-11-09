@@ -11,8 +11,8 @@ Supongamos que disponemos de un programa en un lenguaje cualquiera y nos incumbe
 ```    
 Tomando un programa de ejemplo, si llamamos a _Turing_ consigo mismo pues no deja de ser una cadena de ceros y unos, lo cual es un conjunto de datos ocasionamos una contradicción pues:
 
-    · Si _Stops(Turing,Turing)_ acabara, el programa origen no acabaría ocasionando la contradicción.
-    · En caso contrario, el programa acabaría ocasionando de nuevo contradicción.
+- Si _Stops(Turing,Turing)_ acabara, el programa origen no acabaría ocasionando la contradicción.
+- En caso contrario, el programa acabaría ocasionando de nuevo contradicción.
 En conclusión, este programa no puede existir.
 
 ## 1.1.Algunas definiciones
@@ -39,9 +39,9 @@ Un lenguaje sobre un alfabeto _A_ es un subconjuto de _A*_. Cabe recalcar que el
 
 Al igual que las palabras, los lenguajes soportan las misma operaciones donde la concatenación de lenguajes consiste en el lenguaje cuyas palabras se forman concatenando palabras de ambos lenguajes. Como curiosidad, si en ambos lenguajes se encuentra la palabra vacía, la unión de los lenguajes estará contenida en la concatenación. Esta operación cumple las siguientes características:
 
-    · La concatenación de un lenguaje con el conjunto vacío no es más que el conjunto vacío.
-    · Posee elemento neutro y es la palabra vacía.
-    · Cumple la propiedad asociativa.
+- La concatenación de un lenguaje con el conjunto vacío no es más que el conjunto vacío.
+- Posee elemento neutro y es la palabra vacía.
+- Cumple la propiedad asociativa.
 
 En el caso de la iteración, añadiendo a lo que ya se puede intuir, será el formado por las palabras que son concatenaciones finitas de palabras del lenguaje inicial.
 
@@ -53,8 +53,8 @@ Uno de los conceptos más importantes es el concepto de __homomorfismo__ que con
                                         $h(uv) = h(u)h(v)$
 
 Como consecuencias:  
-    i) $h(\epsilon) = \epsilon$  
-    ii) $h(a_1...a_n) = h(a_1)...h(a_n)$
+- $h(\epsilon) = \epsilon$  
+- $h(a_1...a_n) = h(a_1)...h(a_n)$
 
 Donde _h_ es una aplicacion que parte de  un subconjunto de _A*_ y llega a un subconjunto de  _B*_, $u,v,a_{i} \in A^\*$ 
 
@@ -70,25 +70,26 @@ De esta manera, diremos que una combinación de símbolos terminales y de variab
 
 Disponemos de cuatro tipos de gramáticas que generarán cuatro tipos de lenguajes que contendrán al posterior:
 
-    · Tipo 0: Cualquier gramática, no tiene restricciones. Genera lenguajes recursivamente enumerables; de forma intuitiva, diremos que un lenguaje es de este tipo cuando para construir una palabra vamos contruyendo otras en el prodeso de derivación.
-    · Tipo 1: Son aquellas gramáticas cuyas reglas de producción son de la forma:  
+- Tipo 0: Cualquier gramática, no tiene restricciones. Genera lenguajes recursivamente enumerables; de forma intuitiva, diremos que un lenguaje es de este tipo cuando para construir una palabra vamos contruyendo otras en el prodeso de derivación.
+- Tipo 1: Son aquellas gramáticas cuyas reglas de producción son de la forma:  
                     $a_{1}Aa_{2} \rightarrow a_{1}Ba_{2}$  
     donde la parte derecha es una combinación de palabras de símbolos de variable y terminales, A es un símbolo de variable y B no es la palabra vacía. A estos lenguajes se les llama lenguajes dependientes del contexto.
-    · Tipo 2: Son aquellas gramáticas donde las reglas de producción sólo tienen una variable en la parte izquierda y cualquier combinación de variables y símbolos terminales a la derecha. generan lenguajes independientes del contexto.
-    ·Tipo 3: Es muy parecida a la anterior diferenciándose sólo en que en la parte derecha de la regla de producción soólo pueden aparecer o una combinación de símbolos terminales o eso anterior junto a una única variable y en este orden. Dan lugar a lo que conocemos como conjuntos regulares. Estos lenguajes son reconocibles de forma sencialla pues son programas de memoria finita leyendo de izquierda a derecha, esto quiere decir que para reconocer una palabra no necesito disponer de demasiada memoria, es decir, no debo comprobar cosas que tengan que ver con número de (algo). 
+- Tipo 2: Son aquellas gramáticas donde las reglas de producción sólo tienen una variable en la parte izquierda y cualquier combinación de variables y símbolos terminales a la derecha. generan lenguajes independientes del contexto.
+-Tipo 3: Es muy parecida a la anterior diferenciándose sólo en que en la parte derecha de la regla de producción soólo pueden aparecer o una combinación de símbolos terminales o eso anterior junto a una única variable y en este orden. Dan lugar a lo que conocemos como conjuntos regulares. Estos lenguajes son reconocibles de forma sencialla pues son programas de memoria finita leyendo de izquierda a derecha, esto quiere decir que para reconocer una palabra no necesito disponer de demasiada memoria, es decir, no debo comprobar cosas que tengan que ver con número de (algo). 
+
 Un ejemplo es el lenguaje formado por las palabras que contienen una sucesión finita de letras del mimso tipo de la _a_ a la _d_ en ese orden; en este caso, me da igual cuantas haya, simplemente deberé comprobar que se comple el orden, luego no necesito una barbaridad de memoria.
 
 
 Normalmente, las gramáticas de tipo 3 se dividen en dos subtipos que son exclusivos frente a la condición de _linealidad_:
 
-    - Lineales por la derecha: Todas las producciones tienen como resultado la estructura uB donde u es una palabra y B es una variable no terminal o la palabra vacía.
-    - Lineales por la izquierda: Todas las producciones tienen como resultado la estructura Bu donde u es una palabra y B es una variable no terminal o la palabra vacía.
+- Lineales por la derecha: Todas las producciones tienen como resultado la estructura uB donde u es una palabra y B es una variable no terminal o la palabra vacía.
+- Lineales por la izquierda: Todas las producciones tienen como resultado la estructura Bu donde u es una palabra y B es una variable no terminal o la palabra vacía.
 
 Un ejemplo de ello es el siguiente lenguaje:
 
-    - S -> 0A
-    - A -> 10A
-    - A -> palabra vacía
+- S -> 0A
+- A -> 10A
+- A -> $\epsilon$
 
 El autómata resultado es el siguiente:
 
