@@ -4,9 +4,9 @@
 
 Hay una serie de motivos por los cuales es interesante organizar el sistema gestor en niveles y son las siguientes:
     
-    · Los usuarios pueden acceder a los mismos datos desde distintas perspecticas, es decir, cada usuario tendrá una visión distinta de la base de datos. De esta forma, el usuario soro verá la punta del iceberg de todo el pedrusco.
-    · La organización global de los datos puede cambiarse sin afectar a los usuarios proporcionando, en ocasiones, independencia lógica. Estableciendo mecanismos de comunicación entre los distintos niveles conseguiremos esta independencia.
-    · Los usuarios no tienen por qué gestionar los aspectos relaticos a la representación física de los datos. Esto quiere decir que el administrador de la base de datos puede cambiar la forma de representar los datos sin influir en los usuarios, esto se hará con mecanismos de conversión entre los niveles.
+- Los usuarios pueden acceder a los mismos datos desde distintas perspecticas, es decir, cada usuario tendrá una visión distinta de la base de datos. De esta forma, el usuario soro verá la punta del iceberg de todo el pedrusco.
+- La organización global de los datos puede cambiarse sin afectar a los usuarios proporcionando, en ocasiones, independencia lógica. Estableciendo mecanismos de comunicación entre los distintos niveles conseguiremos esta independencia.
+- Los usuarios no tienen por qué gestionar los aspectos relaticos a la representación física de los datos. Esto quiere decir que el administrador de la base de datos puede cambiar la forma de representar los datos sin influir en los usuarios, esto se hará con mecanismos de conversión entre los niveles.
 
 En definitiva, lo que se busca con estos niveles es que se usen mecanismos que obliguen a que se verifique la independencia de los datos.
 
@@ -14,10 +14,10 @@ En definitiva, lo que se busca con estos niveles es que se usen mecanismos que o
 
 Esta arquitectura se organiza en tres niveles bien diferenciados:
 
-    · Nivel interno: se encuentra a más bajo nivel y es el más cercano a la infraestructura física. Básicamente contiene las estructuras de datos sobre las que se sustentan los niveles superiores.
-    · Nivel Conceptual: En este nivel se encuentra la versión lógica global de los datos usando modelos de datos para representarlos (en oracle suele haber un conjunto de tablas que serán una abstracción de lo que hay por debajo , que son ficheros que se relacionan entre sí).
+- Nivel interno: se encuentra a más bajo nivel y es el más cercano a la infraestructura física. Básicamente contiene las estructuras de datos sobre las que se sustentan los niveles superiores.
+- Nivel Conceptual: En este nivel se encuentra la versión lógica global de los datos usando modelos de datos para representarlos (en oracle suele haber un conjunto de tablas que serán una abstracción de lo que hay por debajo , que son ficheros que se relacionan entre sí).
 
-    · Nivel externo: es el único nivel no desarrollado por el Administrador y sí por los programadores pues serán aplicaciones que: para cada tipo de usuario, se dispone de una visión distinta. Cuando hablamos de visión, nos referimos a qué parte de la base de datos es la que puede visualizar el usuario.
+- Nivel externo: es el único nivel no desarrollado por el Administrador y sí por los programadores pues serán aplicaciones que: para cada tipo de usuario, se dispone de una visión distinta. Cuando hablamos de visión, nos referimos a qué parte de la base de datos es la que puede visualizar el usuario.
 
 Todo esto surgió a través de un precedente de dos niveles conocido como DDGT-CODASYL.
 
@@ -67,9 +67,9 @@ Veamos primero la recomendación ANSI/SPARC.
 
 Se nos recomienda disponer de un lenguaje específico orientado a los datos, que permita definir,controlar y manipular datos. Además, se nos recomienda usar un _DSL_(_Domain Specific Language_) que no es más que no usar un estándar de manera que distintos SGDB no puedan leer algunas instrucciones de las que usemos; cada _DSL_ está compuesto por tres partes: _DDL_(_Data Definition Language_),_DML_(Data Manipulation Language) y _DCL_(_Data Control Language_).
 
-    · DDL: Proporciona la definición de estructuras de datos y esquemas de la BD.
-    · DML: Proporciona mecanismos para la introducción de datos, modificación, eliminación y consulta de los mismos. Además, proporciona consultas a los esquemas definidos en la BD.
-    · DCL: Gestiona los requisitos de acceso a los datos y otras tareas de administración de la BD.
+- DDL: Proporciona la definición de estructuras de datos y esquemas de la BD.
+- DML: Proporciona mecanismos para la introducción de datos, modificación, eliminación y consulta de los mismos. Además, proporciona consultas a los esquemas definidos en la BD.
+- DCL: Gestiona los requisitos de acceso a los datos y otras tareas de administración de la BD.
 
 En resumen, entre niveles encontramos las tablas de correspondencias, que contienen la ubicación de los datos en un nivel superior dentro del nivel inferior.
 
@@ -83,21 +83,21 @@ Este lenguaje es el encargado del desarrollo de aplicaciones en el sistema opera
 
 Tienen dos características importantes:
 
-    - Casi cualquier lenguaje de propósito general nos puede servir de lenguaje anfitrión.
-    - Dispone de herramientas específicas como _Developer Oracle_...
+- Casi cualquier lenguaje de propósito general nos puede servir de lenguaje anfitrión.
+- Dispone de herramientas específicas como _Developer Oracle_...
 
 A su vez, proporciona dos aspectos bastante importantes:
 
-    - Procesamiento avanzado de datos; un ejemplo de esto puede ser utilizar operaciones que engloben otras u operaciones que trabajen con varios datos de forma conjunta.
-    - Gestion de la interfaz de usuario; es decir, son las encargadas de proveer la visión en el nivel externo de la base de datos.
+- Procesamiento avanzado de datos; un ejemplo de esto puede ser utilizar operaciones que engloben otras u operaciones que trabajen con varios datos de forma conjunta.
+- Gestion de la interfaz de usuario; es decir, son las encargadas de proveer la visión en el nivel externo de la base de datos.
 
 Para poder trasladar de la base de datos al entorno de procesamiento de la aplicación es necesario de disponer de un mecanismo que defina correctamente las __estructuras de datos__ y las __operaciones__ con todo lo relacionado con los datos.
 
 Para esta comunación entre el lenguaje anfitrión y la base de datos usaremos __instrucciones__ que deben __convivir__ con el lenguaje anfitrión; lo cual dependerá del __acoplamiento__, hay dos tipos:
 
-    - Fuerte(PL/SQL): son aquellos lenguajes donde el estándar SQL está tan integrado con el resto del lenguaje que dichas sentencias de acceso a la base de datos no llegan a distinguirse.
+- Fuerte(PL/SQL): son aquellos lenguajes donde el estándar SQL está tan integrado con el resto del lenguaje que dichas sentencias de acceso a la base de datos no llegan a distinguirse.
 
-    - Débil(API's): son aquellos lenguajes que para hacer uso del estándar SQL necesitan de algun plug-in, biblioteca o algo del estilo, provocando que dichas sentencias de acceso se diferencien al completo del lenguaje anfitrión. 
+- Débil(API's): son aquellos lenguajes que para hacer uso del estándar SQL necesitan de algun plug-in, biblioteca o algo del estilo, provocando que dichas sentencias de acceso se diferencien al completo del lenguaje anfitrión. 
 
 Podemos ya denotar que el acoplamento __débil__ proporciona una solución de menos peso y trabaja con menos movimiento de datos haciendo siempre alusión a bibliotecas que puede que, ni siquiera, estén cargadas en la máquina que use nuestra base de datos.
 
@@ -129,8 +129,8 @@ Es el encargado de buscar el rendimiento óptimo del sistema representando las e
 
 Este nivel tiene la peculiaridad de que parte de las responsabilidades son delegadas en el _SO_ teniendo dos niveles:
 
-    - El nivel físico que es realmente el que se delega en el sistema operativo.
-    - La organzación del nivel interno, es decir, lo que se hace a nivel hardware, puede usarse hashing... Con esto nos referimos a qué estructura de dato sse utiliza para localizar los datos, es decir, la correspondencia entre el nivel físico y conceptual.
+- El nivel físico que es realmente el que se delega en el sistema operativo.
+- La organzación del nivel interno, es decir, lo que se hace a nivel hardware, puede usarse hashing... Con esto nos referimos a qué estructura de dato sse utiliza para localizar los datos, es decir, la correspondencia entre el nivel físico y conceptual.
 
 #TODO: Preguntar por cada subparte
 
@@ -142,13 +142,13 @@ Con este símil ha debido quedar claro que el _DBA_(_Data Base Administrator_) e
 
 Pese a que en las transparencias aparecen muchas funcionalidades, hoy en día dichas funcionalidades están repartidas en varios grupos asique las funciones que realmente hace el _DBA_ son las de vital importancia:
 
-    - Decide la estructura de almacenamiento en el nivel interno proporcionando el esquema interno y la correspondencia entre el nivel conceptual y el interno; elementos sin los cuales la BD no podría funcionar de forma correcta.
+- Decide la estructura de almacenamiento en el nivel interno proporcionando el esquema interno y la correspondencia entre el nivel conceptual y el interno; elementos sin los cuales la BD no podría funcionar de forma correcta.
 
-    - Define e implanta la política de seguridad que vaya a usarse, es decir, la gestión de usuarios o gestión de acceso y la gestión de privilegios(quien entra a que).
+- Define e implanta la política de seguridad que vaya a usarse, es decir, la gestión de usuarios o gestión de acceso y la gestión de privilegios(quien entra a que).
 
-    - Proporciona técnicas de optimización del rendimiento como liberar el espacion no utilizado, reorganizar las operaciones para que sean más veloces, determinar la necesidad de nuevos recursos hardware y establecer las prioridades en el uso de los recursos.
+- Proporciona técnicas de optimización del rendimiento como liberar el espacion no utilizado, reorganizar las operaciones para que sean más veloces, determinar la necesidad de nuevos recursos hardware y establecer las prioridades en el uso de los recursos.
 
-    - Monitorizar el SGBD realizando un seguimiento continuo de la actividad del sistema auditando, en caso de que sea necesario, el acceso de los usuarios a los diversos recursos de la BD; comprobando los niveles de uso de los sistemas de almacenamiento y evaluando la eficiencia con que se realizan las operaciones.
+- Monitorizar el SGBD realizando un seguimiento continuo de la actividad del sistema auditando, en caso de que sea necesario, el acceso de los usuarios a los diversos recursos de la BD; comprobando los niveles de uso de los sistemas de almacenamiento y evaluando la eficiencia con que se realizan las operaciones.
 
 Hagamos una parada para hablar un poco de las __auditorías__, este concepto consiste en, en cada acceso, en cada operación, en cada utilización de la base de datos guardar un registro de cada uno de los pasos que el usuario ha realizado en su consulta. Esta práxis puede ser perjudicial en algunos casos ya que requiere un gran uso de la memoria, pero también muy útil en otros previendo que pueda haber un mal uso de la base de datos.
 
@@ -156,12 +156,12 @@ Por ejemplo, en los datos fiscales de una persona no es deseable que haya manipu
 
 Veamos ahora las demás funciones que son asociadas, en la actualidad (antes las hacía el _DBA_), a distintos grupos dentro de una empresa:
     
-    - Elaboración del esquema conceptual realizando análisis de las necesidades de la empresa, identificando los datos operativos, elaborando el esquema lógico e implantando el esquema conceptual.
-    - Gestionar la conexión con los usuarios mediante análisis de requerimientos, diseño lógico y codificaciones dle esquema externo mediante las correspondencias entre el nivel _externo_ y _conceptual_.
+- Elaboración del esquema conceptual realizando análisis de las necesidades de la empresa, identificando los datos operativos, elaborando el esquema lógico e implantando el esquema conceptual.
+- Gestionar la conexión con los usuarios mediante análisis de requerimientos, diseño lógico y codificaciones dle esquema externo mediante las correspondencias entre el nivel _externo_ y _conceptual_.
 
-    - Definir las restricciones de integridad mediante el establecimeinto de reglas e incluyendo dicha integridad en el esquema conceptual.
+- Definir las restricciones de integridad mediante el establecimeinto de reglas e incluyendo dicha integridad en el esquema conceptual.
 
-    - Definir e implantar la estrategia de recuperación frente a fallos que suelen utilizar las facilidades proporcionadas por los SO's y SGDB's(redundancia, arrays de redundancias...). Además, se deben realizar copias de seguridad e implementar políticas de gestión de transacciones.
+- Definir e implantar la estrategia de recuperación frente a fallos que suelen utilizar las facilidades proporcionadas por los SO's y SGDB's(redundancia, arrays de redundancias...). Además, se deben realizar copias de seguridad e implementar políticas de gestión de transacciones.
 
 En resumen, este apartado está para recalcar la importancia de la figura del _DBA_ en el mundo de las Base de Datos, dando mucha importancia a que es una figura muy cotizada y muy valorada.
 
@@ -181,11 +181,11 @@ En un princio¡pio, se usaba un __esquema centralizado__ de los datos que consis
 
 Viendo los problemas que esto causaba se busco implementar algo basado en el esquema __cliente-servidor__; no obstante, esto también presentaba serios problemas llegando así a tener una _BD_ __distribuida__ y programas de aplicación en arquitectura de tres capas:
     
-    - Nivel de servidor de datos: contiene las bases de datos necesarias y los servidores de datos donde se encuentra el SGDB organizando la información de la empresa como una BD global y se realiza la traducción(transparente) de las peticiones de datos en peticiones en las sedes donde se encuentran estos datos.
+- Nivel de servidor de datos: contiene las bases de datos necesarias y los servidores de datos donde se encuentra el SGDB organizando la información de la empresa como una BD global y se realiza la traducción(transparente) de las peticiones de datos en peticiones en las sedes donde se encuentran estos datos.
 
-    - Nivel de servidor de aplicaciones: contiene los sevidores de aplicaciones y los programas de aplicación que se ejecutarán visualmente en el nivel siguiente. Son los encargados pro trabajar con protocolos de red asicomo con los estándares... Es lo más comparable con el nivel conceptual.
+- Nivel de servidor de aplicaciones: contiene los sevidores de aplicaciones y los programas de aplicación que se ejecutarán visualmente en el nivel siguiente. Son los encargados pro trabajar con protocolos de red asicomo con los estándares... Es lo más comparable con el nivel conceptual.
 
-    - Nivel de cliente: son computadoras ligeras dotadas de configuraciones basadas en estándares abierto. En muchos casos, se pueden ejecutar las aplicaciones desplegadas en un navegador web con soporte de ejecución avanzado. 
+- Nivel de cliente: son computadoras ligeras dotadas de configuraciones basadas en estándares abierto. En muchos casos, se pueden ejecutar las aplicaciones desplegadas en un navegador web con soporte de ejecución avanzado. 
 
 Esquema de la BD _cliente-servidor_:
 
@@ -206,9 +206,9 @@ Esquema de la una BD _distribuida_:
 
 Como ventajas proporciona:
     
-    - Reducción significativa del mantenimietno de los clientes.
-    - Mayor facilidad y flexibilidad para el usuario.
+- Reducción significativa del mantenimietno de los clientes.
+- Mayor facilidad y flexibilidad para el usuario.
 
 Como inconvenientes:
     
-    - Mayor complejidad en configuración y administración de servidores junto al desarrollo de las aplicaciones conforme a este modelo distribuido.
+- Mayor complejidad en configuración y administración de servidores junto al desarrollo de las aplicaciones conforme a este modelo distribuido.
