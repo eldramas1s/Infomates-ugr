@@ -226,9 +226,9 @@ Consiste en eliminar las porducciones nulas y añadir producciones para no perde
     
 1. Se eliminan todas las producciones nulas de la gramática.
 2. Para cada producciñon de la gramática de la forma `A->{ſn}` donde ſi es una variable o un símbolo terminal:        
-  - Se añaden todas las producciones de la forma A->{ßn} donde:
-    + ßi=ſi si ſi no pertenece a H.
-    + (ßi=ſi) ó (ßi=palabra vacía) si ſi pertenece a H y no todos los ßi son pueden ser nulos al mismo tiempo.
+    - Se añaden todas las producciones de la forma A->{ßn} donde:
+        + ßi=ſi si ſi no pertenece a H.
+        + (ßi=ſi) ó (ßi=palabra vacía) si ſi pertenece a H y no todos los ßi son pueden ser nulos al mismo tiempo.
 
 ### 4.4.3.Producciones unitarias
 
@@ -330,13 +330,13 @@ Para realizar ambos pasos se deberá "jugar" con la creación de nuevas variable
 Cabe recalcar que para conseguir el segundo paso hay varias formas. No obstante, el algoritmo consta de lso siguientes pasos.
 
 1. Para cada producción P=A->ſ1...ſn, ſi cadena de símbolos de variable y terminales, n>1:
-  - Para cada ſi, si ſi es terminal:       
-    + Se añade la producción Ci -> ſi.
-    + Se cambia ſi por Ci en P.
+    - Para cada ſi, si ſi es terminal:       
+        + Se añade la producción Ci -> ſi.
+        + Se cambia ſi por Ci en P.
 2. Para cada producción de la forma P'=A->ŋi...ŋm, m>2:     
-  - Se añaden (m-2) variables nuevas ß, una para cada producción.
-  - La producción P' se reemplada por las producciones:
-    + A->ŋ1ß1, ß1->ŋ2ß2, ... , ß{m-2} -> ß{m-1}ßm
+    - Se añaden (m-2) variables nuevas ß, una para cada producción.
+    - La producción P' se reemplada por las producciones:
+        + A->ŋ1ß1, ß1->ŋ2ß2, ... , ß{m-2} -> ß{m-1}ßm
 
 
 ___Ejemplo___

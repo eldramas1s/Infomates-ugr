@@ -12,7 +12,7 @@ Sea $L$ un conjunto regular, entonces _existe_ un $n \in N$ tal que $\forall z \
 
 2. $|v| \geq 1$
 
-3.  $uv^iw \in L \forall i \geq 0$
+3. $uv^iw \in L \forall i \geq 0$
 
 además $n$ puede ser el número de estados de cualquier autómata que acepte el lenguaje.
 
@@ -310,9 +310,9 @@ Este método se divide en los siguientes pasos:
         
     - Si son distinguibles de nivel 0, es decir, uno es final y otro inicial ponemos la variable booleana a 'true'.
 3. Una vez determinadas las parejas de nivel 0; para cada pareja de estados accesibles:    
-- Para cada símbolo del alfabeto de entrada:        
- +  Calcular el paso de cálculo al leer el símbolo.
- +  Si surgen estados distintos:
+    - Para cada símbolo del alfabeto de entrada:        
+        + Calcular el paso de cálculo al leer el símbolo.
+        + Si surgen estados distintos:
    - Si la pareja de estados resultante no esta marcada se añade la pareja de estados inicial (3.) a la lista lista de la pareja de estados resultante.
    - Si la pareja de estados resultante está marcada, entonces se marca la pareja inicial (3.) y todas las parejas de la lista asociada a (3.).
 
