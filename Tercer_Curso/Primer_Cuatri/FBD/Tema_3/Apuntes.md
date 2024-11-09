@@ -192,9 +192,9 @@ Con estos modelos seríamos capaces de suplir algunas de las debilidades del __m
 - Produce una sobrecarga semántica de la estructura de la relación, todo son tablas.
 - La estructura relacional es muy estricta:
     
-    · Todas las tuplas deben tener los mismos atributos.
-    · Los valores de un atributo dentro de una instancia deben pertenecer todos al mismo dominio.
-    · Los atributos deben tener un valor atómico.
+    + Todas las tuplas deben tener los mismos atributos.
+    + Los valores de un atributo dentro de una instancia deben pertenecer todos al mismo dominio.
+    + Los atributos deben tener un valor atómico.
 
 - SQL actuando de forma puramente relacional permite sólo un conjunto de operaciones limitadas, por ejemplo nos limita el modelaje del comportamiento de objetos del mundo real.
 - Object-relational impedance mismatch: consiste en los problemas que pueden surgir a la hora de trabajar sistemas gestores de bases de datos relacionals desde aplicaciones que usan un modelo de datos orientado a objetos.
