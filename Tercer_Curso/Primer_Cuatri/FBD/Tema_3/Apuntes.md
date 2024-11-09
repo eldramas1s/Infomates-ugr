@@ -209,14 +209,14 @@ Hasta ahora, sabemos tratar una cantidad de datos inmensa de forma que las relac
 
 Un sistema multidimensional se basa en la representacíon de los hechos de la vida cotidiana que se buscan estudiar en un hipercubo de dimensión tantos hechos como se estén estudiando. Hay de dos tipos:
 
-· Operacionales: son encargados de proporcionar información a la empresa de forma diaria.
++ Operacionales: son encargados de proporcionar información a la empresa de forma diaria.
     - Utiliza el procesamiento de datos en línea u OLTP necesitando de aplicaciones para dar soporte a operaciones diarias.
     - Requieren de datos actualizados al máximo nivel y detallados lo más posible.
     - Las operaciones realizadas necesariamente afectarán a pocos registros y se hacen mediante claves primarias.
     - Requiere que haya gran consistencia y que los sistemas sean fiables.
     - Para que el redimiento del sistema sea óptimo se debe optimizar la gestión de transacciones, es decir, las consultas que se hagan a la base de datos.
 
-· Analíticas, son sistemas de información creados para responder preguntas de asesoramiento para la evolución y toma de decisiones de una empresa.
++ Analíticas, son sistemas de información creados para responder preguntas de asesoramiento para la evolución y toma de decisiones de una empresa.
     
     - Utiliza procesamiento de datos en línea u OLAP necesitando aplicaciones orientadas al soporte de decisiones.
     - Son sistemas donde debemos pensar en que los usuarios son de otro tipo al habitual, se responderán preguntas como "¿qué elemento es el que me produce más beneficio?".
