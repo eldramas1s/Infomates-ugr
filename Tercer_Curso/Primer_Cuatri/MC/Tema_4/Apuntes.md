@@ -4,13 +4,11 @@
 
 Definimos el __árbol de derivación__ como un árbol dirigido donde, dada una palabra $u \in A^\*$ donde $A^\*$ es la clausura de un alfabeto, se construye la palabra aplicando las reglas de derivación siguiendo los siguientes pasos:
     
-    1. Comenzamos con el símbolo inicial siendo el nodo raíz del árbol.
-    2. Cada vez que apliquemos una regla de derivación:
-        
-        - Creamos un nodo hijo por cada variable que aparezca en la regla.
-        - Si quedan símbolos de variable volvemos a 2.
-    
-    3. Hemos conseguido la palabra buscada.
+1. Comenzamos con el símbolo inicial siendo el nodo raíz del árbol.
+2. Cada vez que apliquemos una regla de derivación:
+    - Creamos un nodo hijo por cada variable que aparezca en la regla.
+    - Si quedan símbolos de variable volvemos a 2.
+3. Hemos conseguido la palabra buscada.
 
 En el caso de que exista una regla de producción de la forma $A \rightarrow \epsilon$ tal que $A \in V$ sólo se crea un hijo con el valor $\epsilon$.
 
@@ -23,10 +21,10 @@ Este concepto es muy importante en la compilación de programas, ya que para con
 
 Algunas __propiedades__ de los _árboles de derivación_ son:
     
-    · Dos procesos de derivación distintos pueden originar el mismo árbol de derivación.
-    · Cuando al realizar el proceso de derivación aplicamos primero las reglas a la variable que aparece más a la izquierda, derivamos por la izquierda.
+- Dos procesos de derivación distintos pueden originar el mismo árbol de derivación.
+- Cuando al realizar el proceso de derivación aplicamos primero las reglas a la variable que aparece más a la izquierda, derivamos por la izquierda.
 
-    · Cuando al realizar el proceso de derivación aplicamos primero las reglas sobre la variable que aparece más a la derecha, derivamos por la derecha.
+- Cuando al realizar el proceso de derivación aplicamos primero las reglas sobre la variable que aparece más a la derecha, derivamos por la derecha.
 
 Relacionado con los tipos de derivación, hay casos donde podemos realizar la misma cantidad de sustituciones, incluso de los mismos contenidos, y conseguir la misma palabra. Con esto me refiero, con ordenes distintos de derivación podemos conseguir la misma palabra con el mismo número de sustituciones.
 
@@ -97,8 +95,8 @@ Lo que haremos para trabajar de forma más cómoda buscando que una gramática d
 <a id="paso-2"></a>
 Por otra parte, debe quedar claro que para detectar símbolos inútiles hay dos pasos que pueden dar interferencias:
     
-    1. Encontrar y eliminar los símbolos que no son accesibles desde el estado inicial.
-    2. Encontrar y eliminar los símbolos que no pueden acabar en una palabra del lenguaje, es decir, no se pueden eliminar una vez aparecen.
+1. Encontrar y eliminar los símbolos que no son accesibles desde el estado inicial.
+2. Encontrar y eliminar los símbolos que no pueden acabar en una palabra del lenguaje, es decir, no se pueden eliminar una vez aparecen.
 
 Es importante aplicar los pasos en el orden (2.,1.) pues podría haber ocasiones donde se den pasos en vano.
 
@@ -118,21 +116,18 @@ _Fin demostración_
 
 El algoritmo a aplicar dispone de las siguientes condiciones denotando por $V_t$ al conjunto de las variables que __sí__ se pueden dustituir por símbolos terminales:
     
-    · Condición básica: Si una variable se sustituye directamente por un símbolo terminal, esa variable pertenece a Vt.
-    · Condición recursiva: si una variable deriva en una concatenación de símbolos terminales y variables de Vt, entonces esa variable pertenece a Vt.
+- Condición básica: Si una variable se sustituye directamente por un símbolo terminal, esa variable pertenece a Vt.
+- Condición recursiva: si una variable deriva en una concatenación de símbolos terminales y variables de Vt, entonces esa variable pertenece a Vt.
 
 El algoritmo busca calcular todo $V_t$ para obtener $V \setminus V_t$ y sigue los siguientes pasos:
     
-    1. Vt es vacío.
-    2. Para cada producción `A->w`, A se introduce en Vt.
-    3. Mientras Vt cambie:
-        
-        a. Para cada producción `B->ſ`
-            
-            · Si todas las variables de ſ pertenecen a Vt, B se introduce en Vt.
-
-    4. Eliminar las variables que estén en V y no en Vt.
-    5. Eliminar todas las producciones donde aparezca una variable de V\Vt.
+1. Vt es vacío.
+2. Para cada producción `A->w`, A se introduce en Vt.
+3. Mientras Vt cambie:       
+ - Para cada producción `B->ſ`
+  + Si todas las variables de ſ pertenecen a Vt, B se introduce en Vt.
+4. Eliminar las variables que estén en V y no en Vt.
+5. Eliminar todas las producciones donde aparezca una variable de V\Vt.
 
 Una vez aplicado esto y conseguido, hemos determinado una gramatica que podría seguir siendo ambigua pues nos queda por aplicar el [paso 1](#paso-2). En este paso inicial, hemos eliminado todas las producciones ocn variables inútiles.
 
@@ -146,18 +141,15 @@ $$J \rightarrow variables-por-analizar$$
 
 Seguiremos los siguientes pasos:
 
-    1. J={S}, Vs={S},Ts={}
-    2. Mientras J!={}:
-        
-        a. Extraer un elemento de J -> J=J\{A}
-        b. Para cada producción `A->ſ`
-            
-            · Si B no está en Vs añadir B a J y a Vs.
-        
-        c. Poner todos los símbolos terminales de ſ en Ts.
+1. J={S}, Vs={S},Ts={}
+2. Mientras J!={}:       
+ - Extraer un elemento de J -> J=J\{A}
+ - Para cada producción `A->ſ`   
+  + Si B no está en Vs añadir B a J y a Vs.
+ -  Poner todos los símbolos terminales de ſ en Ts.
 
-    3. Eliminar todas las variables que no estén en Ts.
-    4. Eliminar todas las producciones donde aparezca un símbolo o variable eliminados en el paso anterior.
+3. Eliminar todas las variables que no estén en Ts.
+4. Eliminar todas las producciones donde aparezca un símbolo o variable eliminados en el paso anterior.
 
 De esta manera hemos obtenido esa gramática no ambigua a partir de la que nos dieron de partida, que sí sabíamos que era ambigua.
 
@@ -212,8 +204,8 @@ Para evitar este ciclo, vamos a calcular desde le pricipio todas las variables q
 <a id="algoritmo"></a>
 Por tanto, el algoritmo seguirá dos partes en este orden:
 
-    1. Obtención de variables anulables.
-    2. Eliminación de producciones nulas.
+1. Obtención de variables anulables.
+2. Eliminación de producciones nulas.
 
 <a id="etiqueta1"></a>
 ### 4.4.2.Algoritmo
@@ -224,23 +216,20 @@ ___Paso (1.)___
 
 El algoritmo se basa en calcular el conjunto de variables anulables $H$:
 
-    1. H={}
-    2. Para cada producción nula, añadimos la variable a H.
-    3. Mientras H cambie:
-        
-        · Para cada producción `B->{An}` donde Ai pertenece a H para todo i, se añade B a H.
+1. H={}
+2. Para cada producción nula, añadimos la variable a H.
+3. Mientras H cambie:
+    - Para cada producción `B->{An}` donde Ai pertenece a H para todo i, se añade B a H.
 
 ___Paso (2.)___
 
 Consiste en eliminar las porducciones nulas y añadir producciones para no perder palabras del lenguaje:
     
-    1. Se eliminan todas las producciones nulas de la gramática.
-    2. Para cada producciñon de la gramática de la forma `A->{ſn}` donde ſi es una variable o un símbolo terminal:
-        
-        · Se añaden todas las producciones de la forma A->{ßn} donde:
-            
-            - ßi=ſi si ſi no pertenece a H.
-            - (ßi=ſi) ó (ßi=palabra vacía) si ſi pertenece a H y no todos los ßi son pueden ser nulos al mismo tiempo.
+1. Se eliminan todas las producciones nulas de la gramática.
+2. Para cada producciñon de la gramática de la forma `A->{ſn}` donde ſi es una variable o un símbolo terminal:        
+  - Se añaden todas las producciones de la forma A->{ßn} donde:
+    + ßi=ſi si ſi no pertenece a H.
+    + (ßi=ſi) ó (ßi=palabra vacía) si ſi pertenece a H y no todos los ßi son pueden ser nulos al mismo tiempo.
 
 ### 4.4.3.Producciones unitarias
 
@@ -268,16 +257,14 @@ Definimos por $H$ al conjunto formado por las parejas $(A,B)$ tales que $B$ deri
 
 Se basa en los siguientes pasos:
     
-    1. H={}
-    2. Para toda producción de la forma A->B, la pareja (A,B) se introduce en H.
-    3. Mientras H cambie:
-        
-        · Para cada dos parejas (A,B) y (B,C) de H añadimos también (A,C) por transitividad, si no está ya incluida.
+1. H={}
+2. Para toda producción de la forma A->B, la pareja (A,B) se introduce en H.
+3. Mientras H cambie:
+    - Para cada dos parejas (A,B) y (B,C) de H añadimos también (A,C) por transitividad, si no está ya incluida.
 
-    4. Se eliminan las producciones unitarias.
-    5. Para cada pareja (A,B) de H
-        
-        a. Para cada producción B->ſ se añade una produccion A -> ſ
+4. Se eliminan las producciones unitarias.
+5. Para cada pareja (A,B) de H
+    - Para cada producción B->ſ se añade una produccion A -> ſ
 
 Se ha usado la letra ſ para denotar la parte derecha de una regla de producción, es decir, $ſ \in (V \cup T)^\*$
 
@@ -294,13 +281,13 @@ En ese caso tan hipotético, cada vez que aplicamos una regla de producción la 
 
 Como empezamos con una longitud de 1, en cada paso:
     
-    1. Si sacamos un nuevo símbolo terminal.
-    2. Si aumentamos la longitud.
+1. Si sacamos un nuevo símbolo terminal.
+2. Si aumentamos la longitud.
 
 Realizando todos los posibles casos, vemos que deberemos comprobar hasta el paso $2n-1$ pues como casos extremos tenemos:
 
-    1. Sustituir una variable por un símbolo terminal en cada paso (n).
-    2. Aumentar el numero de variables hasta la longitud de la palabra para despues sustituirlas todas (n)(n-1).
+1. Sustituir una variable por un símbolo terminal en cada paso (n).
+2. Aumentar el numero de variables hasta la longitud de la palabra para despues sustituirlas todas (n)(n-1).
 
 Por tanto, como máximo podríamos encontrar la palabra aplicando $n$ pasos de derivación y como mínimo deberemos comprobar hasta la longitud $2n-1$, donde si no ha aparecido ya la palabra buscada podemos asegurar que no es generada.
 
@@ -328,8 +315,8 @@ Antes de eso, diremos que dos conjuntos de reglas de producción son __equivalen
 
 El algoritmo se basa en dos pasos bien diferenciados:
 
-    1. Eliminar las producciones que no sean de la forma A->a.
-    2. Transformar las producciones con más de dos variables en la parte derecha en conjuntos de porducciones equivalente de la forma A->BC.
+1. Eliminar las producciones que no sean de la forma A->a.
+2. Transformar las producciones con más de dos variables en la parte derecha en conjuntos de porducciones equivalente de la forma A->BC.
 
 Para realizar ambos pasos se deberá "jugar" con la creación de nuevas variables y la agrupación de raglas de producción.
 
@@ -343,18 +330,14 @@ Para realizar ambos pasos se deberá "jugar" con la creación de nuevas variable
 
 Cabe recalcar que para conseguir el segundo paso hay varias formas. No obstante, el algoritmo consta de lso siguientes pasos.
 
-    1. Para cada producción P=A->ſ1...ſn, ſi cadena de símbolos de variable y terminales, n>1:
-        a. Para cada ſi, si ſi es terminal:
-            
-            · Se añade la producción Ci -> ſi.
-            · Se cambia ſi por Ci en P.
-
-    2. Para cada producción de la forma P'=A->ŋi...ŋm, m>2:
-        
-        a. Se añaden (m-2) variables nuevas ß, una para cada producción.
-        b. La producción P' se reemplada por las producciones:
-            
-            · A->ŋ1ß1, ß1->ŋ2ß2, ... , ß{m-2} -> ß{m-1}ßm
+1. Para cada producción P=A->ſ1...ſn, ſi cadena de símbolos de variable y terminales, n>1:
+  - Para cada ſi, si ſi es terminal:       
+    + Se añade la producción Ci -> ſi.
+    + Se cambia ſi por Ci en P.
+2. Para cada producción de la forma P'=A->ŋi...ŋm, m>2:     
+  - Se añaden (m-2) variables nuevas ß, una para cada producción.
+  - La producción P' se reemplada por las producciones:
+    + A->ŋ1ß1, ß1->ŋ2ß2, ... , ß{m-2} -> ß{m-1}ßm
 
 
 ___Ejemplo___

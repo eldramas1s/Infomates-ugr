@@ -2,10 +2,10 @@
 
 Como motivación a la hora de estudiar un autómata finito, vamos a ver parte de su importacia:
 
-    · Es útil como software de diseño y verficación de circuitos digitales.
-    · Tiene un papel importante en la construcción de analizadores léxicos de compiladores; como veremos pueden usarse en la comprobación léxica de palabras de un lenguaje.
-    · Añadido a lo anterior, se usa como software de análisis de grandes conjuntos de textos con el fin de buscar palabras, estructuras...
-    · En la corrección de sistemas con un número finito de estados diferentes juegan un papel importante.
+- Es útil como software de diseño y verficación de circuitos digitales.
+- Tiene un papel importante en la construcción de analizadores léxicos de compiladores; como veremos pueden usarse en la comprobación léxica de palabras de un lenguaje.
+- Añadido a lo anterior, se usa como software de análisis de grandes conjuntos de textos con el fin de buscar palabras, estructuras...
+- En la corrección de sistemas con un número finito de estados diferentes juegan un papel importante.
 
 
 ## 2.1.Autómata finito determinista.
@@ -41,7 +41,7 @@ Definimos la __descripción instantánea__ como la dupla $(q,a)$ donde $a$ no es
 Definimos la __configuración incial__ como, dada una palabra cualquiera, la dupla formada por dicha palabra y el estado inicial.
 
 Definimos la __relación de paso de cálculo__ entre dos configuraciones como:
-                $((q,au)\vdash(p,u)\leftrightarrow\delta(q,a)=p)$
+                $$((q,au)\vdash(p,u)\leftrightarrow\delta(q,a)=p)$$
 
 Donde repetimos los elementos que ya conocemos y $a\in A^\*$
 
@@ -50,9 +50,9 @@ A su vez, se puede usar $\delta^\*(p,u)=q$ para representar lo ya definido. Esto
 
 Si $q \in Q$:
 
-i) $\delta^\*(q,\epsilon)=q$
+- $\delta^\*(q,\epsilon)=q$
 
-ii) $\delta^\*(q,au)=\delta^\*(\delta(q,a),u)$
+- $\delta^\*(q,au)=\delta^\*(\delta(q,a),u)$
 
 Gracias a esto último, ya podemos dar una definición alternativa de __lenguaje aceptado por un autómata__ como:
 
@@ -124,14 +124,14 @@ Definimos este lenguaje como el conjunto de palabras que adminten alguna sucesi�
 
 Siguiendo con el autómara _M_ definimos $\delta^\*$ de la siguiente forma:
 
-i) Si $B \subseteq Q$, $\delta^\*(B,a) = \cup_{q\in B}\delta(q,a)$; es decir la unión de todos los estados a los que podemos llegar partiendo desde cualquier estado de $B$ y la palabra $a$.
+- Si $B \subseteq Q$, $\delta^\*(B,a) = \cup_{q\in B}\delta(q,a)$; es decir la unión de todos los estados a los que podemos llegar partiendo desde cualquier estado de $B$ y la palabra $a$.
 
-ii)Si $B \subseteq Q$:
+- Si $B \subseteq Q$:
     
-    · La relación de cálculo de cada estado de B con la palabra vacía es el propio B pues no hemos cambiado nada.
-    · La relación de cálculo de palabras concatenadas es la relación de cálculo con una de las subcadenas con la relación de cálculo de la otra subcadena con cualquier estado.
+    + La relación de cálculo de cada estado de B con la palabra vacía es el propio B pues no hemos cambiado nada.
+    + La relación de cálculo de palabras concatenadas es la relación de cálculo con una de las subcadenas con la relación de cálculo de la otra subcadena con cualquier estado.
 
-iii) Se cumple que $\delta^\*(q,u)=\delta^\*($ \{ $q$ \} $,u)$
+- Se cumple que $\delta^\*(q,u)=\delta^\*($ \{ $q$ \} $,u)$
 
 De esta manera, es inmediato comprobar que $L(M)=$ \{ $u \in A^\* : \delta^\*(q_0,u)\cap F \neq \emptyset$ \}.
 
@@ -207,13 +207,13 @@ Realizando un comentario sobre el ejemplo, el estaado inicial no es \{ $q_0$ \},
 Tras esto, actuamos de la misma manera que con un _AFND_ generando los estados restantes, teniendo en cuenta las transiciones nulas que podamos usar.
 Veamos la construcción formal de un autómata determinista a partir de un autómata finito no determinista con transiciones nulas. Para ello, tomamos $M=(Q,A,\delta,q_0,F)$ como _AFND con transiciones nulas_ y construimos $M'=(Q',A,\delta',q_0',F')$ donde:
     
-i) Q'=P(Q)
+- Q'=P(Q)
 
-ii) $\delta'(P,a)=\delta^\*(P,a)=Cl(\cup_{q\in P}\delta(q,a))$
+- $\delta'(P,a)=\delta^\*(P,a)=Cl(\cup_{q\in P}\delta(q,a))$
 
-iii) $q_0'=Cl(q_0)$
+- $q_0'=Cl(q_0)$
 
-iv) $F'=$ \{ $P : P\cap F \neq \emptyset$ \}
+- $F'=$ \{ $P : P\cap F \neq \emptyset$ \}
 
 Tenemos ahora que _M'_ acepta el mismo lenguaje que _M_.
 
@@ -221,12 +221,12 @@ Tenemos ahora que _M'_ acepta el mismo lenguaje que _M_.
 
 Sea _A_ un alfabeto, una __expresión regular__ sobre este alfabeto se define de la siguiente forma:
 
-    · Si el conjunto vacío es una expresión regular, este denota el lenguaje vacío.
-    · La palabra vacía como expresión regular representa el lenguaje cuyo único elemento es esta palabra
-    · Si un elemento del alfabeto es una expresión regular, esta denota el lenguaje cuyo único elemento es ese elemento del alfabeto.
-    · La suma de expresiones regulares que denotan un lenguaje está expresada por la operación suma y representa la unión de ambos lenguajes.
-    · La concatenación de expresiones regulares que denotan un lenguajes está expresada por la operación multiplicación y representa la concatenación de ambos lenguajes.
-    · La clausura de expresiones regulares que denotan un lenguajes está expresada por la operación potencia y representa la potencia del lenguaje.
+- Si el conjunto vacío es una expresión regular, este denota el lenguaje vacío.
+- La palabra vacía como expresión regular representa el lenguaje cuyo único elemento es esta palabra
+- Si un elemento del alfabeto es una expresión regular, esta denota el lenguaje cuyo único elemento es ese elemento del alfabeto.
+- La suma de expresiones regulares que denotan un lenguaje está expresada por la operación suma y representa la unión de ambos lenguajes.
+- La concatenación de expresiones regulares que denotan un lenguajes está expresada por la operación multiplicación y representa la concatenación de ambos lenguajes.
+- La clausura de expresiones regulares que denotan un lenguajes está expresada por la operación potencia y representa la potencia del lenguaje.
 
 Un ejemplo de expresión regular es la que denota al conjunto de palabras que empiezan por la cadena _000_ y tales que esta subcadena sólo se encuentra al principio de la palabra
 
@@ -250,8 +250,8 @@ _Enunciado_: Un lenguaje es aceptado por un autómata finito determinista si y s
 
 _Proof_: Esto se demostrará comprobando:
 
-    · Dada una expresión regular, existe un autómata que acepta el mismo lenguaje que el representado por la expresión regular.
-    · Dado un autómata finito existe siempre una expresión regular que represeenta el lenguaje aceptado por el autómata.
+- Dada una expresión regular, existe un autómata que acepta el mismo lenguaje que el representado por la expresión regular.
+- Dado un autómata finito existe siempre una expresión regular que represeenta el lenguaje aceptado por el autómata.
 
 La primera transformación es más útil ya que inicialmente los lenguajes se representan mediante expresiones regulares y después necesitamos algoritmos (autómatas) que reconozcan stos lenguajes.
 
@@ -265,7 +265,7 @@ Veamos la primera implicación; para ello, bastará con construir dicho autómat
 
 Ahora, veremos cómo crear __autómatas compuestos__, dando lugar a que un mismo autómata acepte varios lenguajes:
 
-    · Unión (r+s): Simplemente consistirá en tomar transiciones nulas partiendo de un nuevo estado inicial y llegando a cada uno de los estados iniciales de los lenguajes R y S.
+- Unión (r+s): Simplemente consistirá en tomar transiciones nulas partiendo de un nuevo estado inicial y llegando a cada uno de los estados iniciales de los lenguajes R y S.
 
 <div>
 <p style='text-align:center'>
@@ -273,7 +273,7 @@ Ahora, veremos cómo crear __autómatas compuestos__, dando lugar a que un mismo
 </p>
 </div>
 
-    · Concatenación (rs): Consiste en llevar, mediante transiciones nulas, cada uno de los estados finales del lenguaje R al estado inicial del lenguaje S perdiendo así la propiedad final de los estados "finales" de R.
+- Concatenación (rs): Consiste en llevar, mediante transiciones nulas, cada uno de los estados finales del lenguaje R al estado inicial del lenguaje S perdiendo así la propiedad final de los estados "finales" de R.
 
 <div>
 <p style='text-align:center'>
@@ -281,7 +281,7 @@ Ahora, veremos cómo crear __autómatas compuestos__, dando lugar a que un mismo
 </p>
 </div>
 
-    · Clausura (r*): La clausura no es más que concatenar varias veces la misma palabra, luego de forma lógica bastará con encadenar mediante transiciones nulas los estados finales del autómata con el estado inicial. No obstante, esto no es así porque estaríamos impidiendo la creación de la propia cadena vacía, elemento que debe aparecer en el lenguaje. Para ello, añadiremos un nuevo estado final que permita dicha creación.
+- Clausura (r*): La clausura no es más que concatenar varias veces la misma palabra, luego de forma lógica bastará con encadenar mediante transiciones nulas los estados finales del autómata con el estado inicial. No obstante, esto no es así porque estaríamos impidiendo la creación de la propia cadena vacía, elemento que debe aparecer en el lenguaje. Para ello, añadiremos un nuevo estado final que permita dicha creación.
 
 <div>
 <p style='text-align:center'>
@@ -299,7 +299,8 @@ De la misma manera, diremos que una palabra $u=(a_1...a_m) \in R_{ij}^k$ si y so
 
 Para definir el cálculo de cada $R_{ij}^k$ realizaremos una pequeña inducción:
 
-i) Para el caso de $k=0$ vemos que el cálculo es el siquiente: 
+1. Para el caso de $k=0$ vemos que el cálculo es el siquiente: 
+
 
 <div>
 <p style='text-align:center'>
@@ -307,10 +308,10 @@ i) Para el caso de $k=0$ vemos que el cálculo es el siquiente:
 </p>
 </div>
 
-ii) VIsto para $k=0$ y suponiendo que lo sabemos para $k-1$ vamos a ver el cálculo para $k \in N$. Claramente, se ve que está compuesto de dos tipos de palabras:
+2. VIsto para $k=0$ y suponiendo que lo sabemos para $k-1$ vamos a ver el cálculo para $k \in N$. Claramente, se ve que está compuesto de dos tipos de palabras:
     
-    · Palabras que para ir del estado i al estado j no pasan por el estado k, luego pertenecen al conjunto de k-1.
-    · Palabras que para ir del estado i al estado j sí pasan por el estado k.
+    - Palabras que para ir del estado i al estado j no pasan por el estado k, luego pertenecen al conjunto de k-1.
+    - Palabras que para ir del estado i al estado j sí pasan por el estado k.
 
 En definitiva, vemos que una palabra del lenguaje está compuesta de tres partes; las palabras que van del estado _i_ al estado _k_ sin pasar por el estado _k_, es decir $x \in R_{ik}^{k-1}$, las palabras que permanecen en el estado _k_, es decir, $y \in R_{kk}^{k-1}$, y las palabras que parten del estado _k_ y llegan al estado _j_ sin pasar por el estado _k_, es decir, $z \in R_{kj}^{k-1}. 
 
@@ -424,16 +425,16 @@ ___Proceso de inversión___
 
 Los pasos son los siguientes:
     
-    1. Si disponemos del autómata:
+1. Si disponemos del autómata:
         
-        - Invertimos el autómata.
-        - Obtenemos la gramatica lineal por la derecha.
-        - Invertimos la parte derecha de las producciones.
+    - Invertimos el autómata.
+    - Obtenemos la gramatica lineal por la derecha.
+    - Invertimos la parte derecha de las producciones.
 
-    2. Si disponemos de la gramatica lineal por la derecha
+2. Si disponemos de la gramatica lineal por la derecha
 
-        - Obtenemos el autómata.
-        - Volvemos al paso 1.
+    - Obtenemos el autómata.
+    - Volvemos al paso 1.
 
 Hasta ahora llevamos demostrado el siguiente esquema:
 
@@ -457,9 +458,9 @@ ___Consejo práctico___
 
 Si nos dan una gramática lineal por la izquierda y nos piden obtener el _AFND_ asociado; deberemos seguir los siguientes pasos:
     
-    1. Invertir la parte derecha de las producciones.
-    2. Construir el autómara con transiciones nulas.
-    3. Para cada estado, pensar en lo que lee el autómata desde el principio.
+1. Invertir la parte derecha de las producciones.
+2. Construir el autómara con transiciones nulas.
+3. Para cada estado, pensar en lo que lee el autómata desde el principio.
 
 <div>
 <p style='text-align:center'> 
