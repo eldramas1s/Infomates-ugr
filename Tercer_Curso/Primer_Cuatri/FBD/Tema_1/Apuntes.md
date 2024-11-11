@@ -59,9 +59,13 @@ una base de datos con el objetivo de que se cumplan siempre las tres caráctirí
 
 Como elementos de una base de datos encontramos:
 
-- Datos: Pueden ser de dos tipos, integrados y sin redundancia (esto debe cogerse con pinzas pues puede haber situaciones donde la redundancia presente una ventaja) o útiles y compartidos entre varias aplicaciones reduciendo la memoria utilizada y facilitando la comunicación entre las aplicaciones.
+- Datos: Pueden ser de dos tipos:
+    + Inetgrados y sin redundancia: en ocasiones la redundancia será beneficiosa.
+    + Útiles y compartidos: datos disponibles para varias aplicaciones reduciendo la memoria utilizada y facilitando la comunicacion entre ellos
 
-- Hardware: Gracias a él podemos disponer de una BD centralizada (menos útil y más local) o una BD distribuida (permite que varios usuarios tengan acceso facilitando la comunicacion y versatilidad) 
+- Hardware: Gracias a él podemos disponer de:
+    + BD centralizada: menos útil y más local.
+    + BD distribuida: permite que varios usuarios tengan acceso facilitando la comunicacion y versatilidad. 
 
 - Software: Tienen los programas que usamos para definir las estructuras.
  
