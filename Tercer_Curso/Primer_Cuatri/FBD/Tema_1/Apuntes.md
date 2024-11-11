@@ -67,7 +67,7 @@ Como elementos de una base de datos encontramos:
     + BD centralizada: menos útil y más local.
     + BD distribuida: permite que varios usuarios tengan acceso facilitando la comunicacion y versatilidad. 
 
-- Software: Tienen los programas que usamos para definir las estructuras.
+- Software: Tienen los programas que usamos para definir las estructuras y gestionar la información de la BD.
  
 - Usuarios en jerarquía de uso y desarrollo (a mas uso menos desarrolla): Usuario final - Programador de apps - Administrador (jefecillo)
 
