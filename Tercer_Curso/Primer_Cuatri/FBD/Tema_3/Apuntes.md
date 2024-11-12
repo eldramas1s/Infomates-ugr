@@ -231,9 +231,9 @@ La ventaja de estos sistemas revoca en poder aplicar _zoom_ durante la búsqueda
 
 Por ejemplo, para entenderlo de forma intuitiva, si queremos guardar:
 
-    · La fecha: podremos hacerlo en mayor o menor profundidad luego cada celda de una cara representará mayor o menor profundidad.
-    · El precio: podremos hacerlo con más o menos detalle, incluso guardando el método de pago, esto se consigue de la misma manera que la fecha.
-    · El producto: podremos hacerlo en mayor o menos profundidad, guardando, incluso, el código de barras del producto para saber qué producto concretamente se compra, esto de nuevo se consigue de la misma manera que la fecha.
+- La fecha: podremos hacerlo en mayor o menor profundidad luego cada celda de una cara representará mayor o menor profundidad.
+- El precio: podremos hacerlo con más o menos detalle, incluso guardando el método de pago, esto se consigue de la misma manera que la fecha.
+- El producto: podremos hacerlo en mayor o menos profundidad, guardando, incluso, el código de barras del producto para saber qué producto concretamente se compra, esto de nuevo se consigue de la misma manera que la fecha.
 
 Con este _zoom_ que le permitimos hacer al usuario, le estamos dando tanta información como él necesite. 
 
