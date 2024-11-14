@@ -127,8 +127,8 @@ Es el encargado de buscar el rendimiento óptimo del sistema representando las e
 
 Este nivel tiene la peculiaridad de que parte de las responsabilidades son delegadas en el _SO_ teniendo dos niveles:
 
-- El nivel físico que es realmente el que se delega en el sistema operativo.
-- La organzación del nivel interno, es decir, lo que se hace a nivel hardware, puede usarse hashing... Con esto nos referimos a qué estructura de dato sse utiliza para localizar los datos, es decir, la correspondencia entre el nivel físico y conceptual.
+- El nivel físico: llamadas al sistema operativo para acceder a los datos en memoria y cuestiones del estilo; en definitiva, todo aquello que requiera de acceder a la memoria.
+- La organzación del nivel interno, es decir, lo que se hace a nivel hardware, puede usarse hashing... Con esto nos referimos a qué estructura de datos se utiliza para localizar los datos, es decir, la correspondencia entre el nivel físico y conceptual.
 
 #TODO: Preguntar por cada subparte
 
