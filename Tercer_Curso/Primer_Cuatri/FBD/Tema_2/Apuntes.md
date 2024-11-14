@@ -130,8 +130,6 @@ Este nivel tiene la peculiaridad de que parte de las responsabilidades son deleg
 - El nivel físico: llamadas al sistema operativo para acceder a los datos en memoria y cuestiones del estilo; en definitiva, todo aquello que requiera de acceder a la memoria.
 - La organzación del nivel interno, es decir, lo que se hace a nivel hardware, puede usarse hashing... Con esto nos referimos a qué estructura de datos se utiliza para localizar los datos, es decir, la correspondencia entre el nivel físico y conceptual.
 
-#TODO: Preguntar por cada subparte
-
 ## 2.4.Administrador de la Base de Datos
 
 Este personaje se puede entender, dentro de la base de datos, como el creador de todo, es decir, "Dios en minúsculas".
