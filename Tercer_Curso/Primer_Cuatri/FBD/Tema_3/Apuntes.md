@@ -177,7 +177,7 @@ En este apartado simplemente se va a realizar una comparativa de los distintos m
 
 |Aspecto|Modelo de red|Modelo de relacional|
 |:-----:|:------------|:-------------------|
-|Representación|· Identidad por posición | · Un único elemento para la representación. · Conexiones lógicas. · Simetría n:m. · Identidad por valor  |
+|Representación|· Identidad por posición | · Un único elemento para la representación.<br> · Conexiones lógicas. <br>· Simetría n:m.<br> · Identidad por valor  |
 |Consulta| Obtención de la consulta como resultado global a partir de lenguajes declarativos y procedimentales | Mecanismo de navegación por punteros a partir de lenguajes procedimentales|
 
 [ TODO: comentar y entender diapositiva 45 ]
