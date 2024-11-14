@@ -1,0 +1,65 @@
+Extensiones TCP
+-----------------------------------
+
+Hasta ahora heos visto como control de congestion es Tahoe, pero TCP para mejorar errores y mejorar el rendimiento así como el aprovechamiento de los datos posibles a mandar se crearon una serie de versiones que se llaman "sabores".
+
+Estos sabores no afectan a la interoperabilidad entre los extremos.
+
+
+No es mas que una adaptacion de TCP a redes actuales y se modifican una serie de conceptos que se suelen imponer en el campo opcional de la cabecera:
+
+- Ventana escalada -> La ventana de control de cogestión no se manda en la cabecera pues es privaad del emisor; pero sí se manda la ventana de control de congestión -> como mucho se pueden usar 65535B.
+
+Considerando que el throughtput =  5.2428e7 = 52 Mbps sabemos que un flujo no puede transmitir a más velocidad que eso (suponiendo 100ms de RTT) cosa qe no es muy razonable hoy en día.
+
+EL arregloe s esta ventana y permite multiplicar los 65535 bytes por 2 elevado a la escala que como mucho será 14. Es sumplemente permitir la posibilidad de aumentar la ventana de control de congestión
+
+
+Tema 4
+----------------
+
+Los aspectos de seguridad que veremos son:
+    
+- Confidencialidad: consiste en que cuando se transmite algo sólo el receptor querido ve el paquete; no obstante se puede ver que se manda el paquete con otras herramientas pero no se vería el contenido sin cifrar -> cifrado
+
+- Autenticación: no permitir que alguien sin permiso acceda a algo que no le ocrresponde
+
+- Integridad: Asegurar que los datos que se han mandado no se han manipulado por terceros durante la transmisión del paquete -> como solución tenemos los hash y los conpendios
+
+- No repudio: Evita que un participante niegue una transacción y no haya pruebas legales( que ante un juez no haya forma de refutarlo ) de la misma -> se consigue con la firma digital.
+
+- Disponibilidad: no lo veremos en la asignatura pero consiste en que los recursos que se vayana a usar cumpliendo todo lo anterior estén disponibles de los usuarios la mayoría del tiempo posible.
+
+- COntrol de accesos
+
+Una firma digital es algo para conseguir algo, el certificado es una herramienta que nos permite conseguir las cosas pero hay que usarlo y bien.
+
+Un afirma digital equivale a firmar un contrato
+
+
+Introducción
+-------------------
+
+HTTPS es http seguro usando ssl para cifrar -> cuando empezó a usarse https se podía poner un servidor en medio con el que se habría un certificado y haciía de intermediario conociendo  loq ue se mandaba.
+
+
+
+Intercambio de Diffie-Heññ,am -> consiste en intercambiar las claves cosa que no es trivial y puede no ser segura -> con los certificados digitales tuvimos que ir a firmar.
+
+
+
+Cifrado
+----------------------------
+
+Cuando hablmos de cifrado sobre un texto plano, lo que queremos transmitir, lo cifraremos haciendo uso de una función que encripta el texto y el resultado es lo que mandaremos al extremo -> para poder ver los datos, el receptor debe desencriptar con una clave y de nuevo tener el texto plano.
+
+Hay dos tipos:
+
+- Los que usar la misma funcion de encriptado y desencriptadon pero clave distinta
+
+- Simétrico -> Los que usan la mmsma clave y distintas funciones.Por tanto, será de clave secreta, es decir, la compraten los dos, emisor y receptor. El algoritmo DES se basa en,(mirar la diap 11). La idea es que debemos desordenar y hacer XOR, es decir, podemos implementarlo en HW cosa que es muy importante pues se va haciendo en tiempo real.
+
+    Uno de los problemas
+
+
+
