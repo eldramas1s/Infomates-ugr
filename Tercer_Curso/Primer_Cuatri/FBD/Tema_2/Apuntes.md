@@ -43,9 +43,7 @@ ___Conseguir la independencia lógica de los datos___
 
 Para ello, deberemos establecer una transformación (comunicación en la introducción) entre los niveles _conceptual_ y _externo_ pues ya sabemos que buscamos que un cambio en el esquema lógico no produzca la reporgramación de toda una aplicación.
 
-#TODO: PReguntar por funciomaniento.
-
-El funcionamiento consiste en describir cada visión interna en terminos del esquema conceptual global que hay en el nivel conceptual. Luego, cualquier cambio producido en dicho nivel solo deberá provocar la modificación de la tabla de correspondencia.
+El funcionamiento consiste en describir cada visión externa en terminos del esquema conceptual global que hay en el nivel conceptual. Luego, cualquier cambio producido en dicho nivel solo deberá provocar la modificación de la tabla de correspondencia.
 
 Cabe recalcar, que esto no es posible en algunas ocasiones pues si hago una modificación lo suficientemente sustanciosa puede ocurrir que deba reimplementar parte de la aplicación.
 
@@ -57,7 +55,7 @@ Cabe recalcar, que esto no es posible en algunas ocasiones pues si hago una modi
 
 Por ejemplo; si en una base de datos representamos a una persona por su nombre (nombre y apellidos todo junto) y dado un tiempo necesitamos separar esto, crearíamos dos entidades más como _Apellido 1_ y _Apellido 2_. Entonces, si ya disponíamos de independencia lógica la principio, sólo deberemos añadir la regla a la tabla de corresponcencias como _nombre completo = nombre + apellido1 + apellido2_ y continuaremos teniendo dicha independencia.
 
-Otra transformación para conseguir esta independencia es la transformación _externa-externa_ donde intentamos describir esquemas externos en términos de otros sistemas externos. 
+Otra transformación para conseguir esta independencia es la transformación _externa-externa_ donde intentamos describir esquemas externos(visiones) en términos de otros esquemas externos. 
 
 Esta independencia puede llegar a conseguirse o no, pero en el caso positivo, deberemos saber que cualquier cambio en el esquema subyacente ocasionará un cambio en la correspondencia y no variará el esquema externo dependiente.
 
