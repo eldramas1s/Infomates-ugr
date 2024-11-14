@@ -112,7 +112,7 @@ En el caso del usuario, dependerá dle tipo de usuario del que hablemos:
 En el caso del sistema:
 
 - Proporcionar un control centralizado(fiabilidad, consistencia, seguridad).
-- Criterios de uniformación ¿?
+- Criterios de uniformización: todas las partes del diseño del esquema lógico y d elas aplicaciones se rigen por los mismos criterios provocando que no se usen distintas clasificaciones en los datos.
 - Generación de nuevas aplicaciones.
 - Equilibrio entre requerimientos conflictivos.
 
