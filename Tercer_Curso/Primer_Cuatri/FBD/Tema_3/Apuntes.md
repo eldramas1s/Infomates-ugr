@@ -178,7 +178,7 @@ En este apartado simplemente se va a realizar una comparativa de los distintos m
 |Aspecto|Modelo de red|Modelo de relacional|
 |:-----:|:------------|:-------------------|
 |Representación|· Dos elementos para la representación (nodo y puntero). <br> · Conexiones en el modelo físico subyacente. <br> · Representación de relaciones n:m imposibles o difíciles. <br>· Identidad por posición | · Un único elemento para la representación(tabla).<br> · Conexiones lógicas. <br>· Simetría n:m.<br> · Identidad por valor  |
-|Consulta| · Obtención de la consulta como resultado global. <br> · Admite lenguajes declarativos y procedimentales.  | · Mecanismo de navegación por punteros. <br> · Sólo admite lenguajes procedimentales.| 
+|Consulta|  · Mecanismo de navegación por punteros. <br> · Sólo admite lenguajes procedimentales. | · Obtención de la consulta como resultado global. <br> · Admite lenguajes declarativos y procedimentales. | 
 
 ### 3.3.4.Modelo orientado a objetos
 
