@@ -4,12 +4,12 @@
 
 En este tema donde se estudiará la capa de __transporte__ se tiene como objetivos los siguientes puntos:
 
-    1. Servicio de multiplexación y demultiplexación.
-    2. Servicio orientado a conexión frente a servicio no orientado a conexión
-    3. Transferencias de datos fiables.
-    4. Control de flujo.
-    5. Control de congestión.
-    6. Implementación en Internet.
+1. Servicio de multiplexación y demultiplexación.
+2. Servicio orientado a conexión frente a servicio no orientado a conexión
+3. Transferencias de datos fiables.
+4. Control de flujo.
+5. Control de congestión.
+6. Implementación en Internet.
 
 Además, se realizará un estudio detallado de los protocolos de transporte conocidos como __UDP__(_User Datagram Protocole_) y __TCP__(_Transimition Control Protocole_).
 
@@ -23,10 +23,10 @@ En este tema veremos cómo se realiza la comunicación _extremo a extremo_ sin p
 
 Para recordar un poco la terminología, cada paquete del encapsulamiento recibe un nombre:
     
-    - Enlace: frame.
-    - Red: datagrama.
-    - Transporte: datagrama(UDP) ó segmento(TCP).
-    - Aplicación: mensaje.
+- Enlace: frame.
+- Red: datagrama.
+- Transporte: datagrama(UDP) ó segmento(TCP).
+- Aplicación: mensaje.
 
 Refiriendonos con pinceladas al protocolo __UDP__, debemos denotar que se encarga de la transmisión a nivel de transporte al igual que __TCP__ con la diferencia de que __UDP__ no tiene como principio la fiabilidad de la transmisión, es decir, es un protocolo que no garantiza que los paquetes lleguen correctamente; sino que, busca que la comunicación sea lo más veloz posible. De hecho, __UDP__ mandará los paquetes aunque el dispositivo esté apagado, no realiza ningún protocolo de 'hand-shaking'.
 
@@ -58,10 +58,10 @@ Por su parte el hecho de que no haya _control de congestión_ viene de que _UDP_
 
 En resumen, las características de _UDP_ son, sabiendo que es _best-effort_:
     
-    1. No es fiable.
-    2. No es orientado a conexión.
-    3. No asegura entrega ordendad.
-    4. No proporciona control de congestión.
+1. No es fiable.
+2. No es orientado a conexión.
+3. No asegura entrega ordendad.
+4. No proporciona control de congestión.
 
 ___Paquetes UDP(datagramas)___
 
@@ -69,15 +69,14 @@ Los paquetes se dividen en _cabecera_ y _datos_.
 
 En el caso de _UDP_ cada paquete está compuesto por una _cabecera_ de 8 Bytes repartidos de la siguiente manera:
     
-    - Puerto origen (2 Bytes): determina el puerto desde el cual se manda el datagrama UDP. Permite que el receptor, en caso de recibirlo, pueda realizar su respuesta. Como mucho podrá haber 65535 puertos, de los cuales algunos están reservados para servicios importantes.
-    - Puerto destino (2 Bytes): determina el puerto hasta el cual debe llegar el datagrama una vez enviado. Como mucho podrá haber 65535 puertos, de los cuales algunos están reservados para servicios importantes.
-    - Longitud UDP (2 Bytes): determina el número de bytes que ocupa el datagrama, concretamente, la cabecera junto con los datos.
-    - Comprobación (2 Bytes): contiene un 'checksum' para saber si el paquete mandado es el que debe recibir el dispositivo, es decir, no sirve para comprobar que el paquete esté correcto. Dentro de este campo se encuentra la cabecera y la pseudocabecera (la cabecera IP), donde encontramos los siguientes campos:
-        
-        + IP origen: dirección IP del dispositivo que manda el datagrama.
-        + IP destino: dirección IP a la que debe llegar el datagrama.
-        + Protocolo que se usa, por ejemplo, ICMP.
-        + Longitud UDP, para conocer si se ha recibido todo el paquete.
+- Puerto origen (2 Bytes): determina el puerto desde el cual se manda el datagrama UDP. Permite que el receptor, en caso de recibirlo, pueda realizar su respuesta. Como mucho podrá haber 65535 puertos, de los cuales algunos están reservados para servicios importantes.
+- Puerto destino (2 Bytes): determina el puerto hasta el cual debe llegar el datagrama una vez enviado. Como mucho podrá haber 65535 puertos, de los cuales algunos están reservados para servicios importantes.
+- Longitud UDP (2 Bytes): determina el número de bytes que ocupa el datagrama, concretamente, la cabecera junto con los datos.
+- Comprobación (2 Bytes): contiene un 'checksum' para saber si el paquete mandado es el que debe recibir el dispositivo, es decir, no sirve para comprobar que el paquete esté correcto. Dentro de este campo se encuentra la cabecera y la pseudocabecera (la cabecera IP), donde encontramos los siguientes campos:    
+    + IP origen: dirección IP del dispositivo que manda el datagrama.
+    + IP destino: dirección IP a la que debe llegar el datagrama.
+    + Protocolo que se usa, por ejemplo, ICMP.
+    + Longitud UDP, para conocer si se ha recibido todo el paquete.
 
 De este último campo, se puede deducir que cada datagrama _UDP_ está encapsulado en un datagrama _IP_.
 
@@ -85,13 +84,13 @@ _Datagrama UDP_
 
 <div>
 <p style='text-align:center'>
-<img src=./imagenes/datagramudp.png alt=Error>
+<img src=./imagenes/datagramaudp.png alt=Error>
 </p>
 </div>
 
 Con respecto a los __puertos UDP__, se dividen en dos rangos:
     
-    - [0-1024]: guardados para protocolos importantes donde el usuario que lo usa tiene privilegios de administrador.
+- [0-1024]: guardados para protocolos importantes donde el usuario que lo usa tiene privilegios de administrador.
 
 <div>
 <p style=text-align:center>
@@ -99,7 +98,7 @@ Con respecto a los __puertos UDP__, se dividen en dos rangos:
 </p>
 </div>
     
-    - [1024 - 65535]: destinados para el uso común de usuarios.
+- [1024 - 65535]: destinados para el uso común de usuarios.
 
 ## 3.3.TCP
 
@@ -113,35 +112,35 @@ Y por último, es un mecanismo __full-duplex__, es decir, permite recibir y mand
 
 En resumen, las características de _TCP_ son:
 
-    1. Es fiable
-    2. Es orientado a conexión.
-    3. Comunicación punto a punto.
-    4. No es un servicio multicast.
-    5. Proporciona entrega ordenada.
-    6. Dispone de mecanismos de detección de errores y recuperación.
-    7. Realiza piggybacking.
-    8. Es full-duplex.
+1. Es fiable
+2. Es orientado a conexión.
+3. Comunicación punto a punto.
+4. No es un servicio multicast.
+5. Proporciona entrega ordenada.
+6. Dispone de mecanismos de detección de errores y recuperación.
+7. Realiza piggybacking.
+8. Es full-duplex.
 
 Al igual que _UDP_, _TCP_ dispone de __segmentos__, similar a los _datagramas UDP_ donde aparece una cabecera _TCP_ de 20 Bytes seguida de los datos a mandar.
 
 La __cabecera__ se divide en los siguientes campos:
 
-    - Puerto origen: determina quién manda el paquete para poder facilitar la respuesta. Como mucho hay 65535 puertos, hay alguno de ellos reservados para protocolos importantes.
-    - Puerto destino: determina a qué dispositivo debe llegar el segmento. Como mucho hay 65535 puertos, dentro de los cuales hay algunos reservados para protocolos importantes.
-    - Número de secuencia: uno de los campos más importantes encargado de la comprobación del orden de llegada de los segmentos; además, determina el byte inicial del segmento que se ha decidido dentro del buffer del dispositivo de llegada. Tomará un papel importante en la sincronización de la conexión.
-    - Número 'acuse': es útil en la comprobación del estaod del paquete, pues refleja hasta que bit se espera recibir correctamente, una vez cumplido esto, se asume que todo lo recibido hasta ese byte será correcto, de ahí que sean acumulativos.
-    - Hlen: determina el tamaño de la cabecera TCP.
-    - Reservado: es un mecanismo de protección del protocolo a futuro, ya que si se añadieran campos se haría ahí.
-    - UAPRSF: son una serie de bits útiles para la comunicación que sirven como flags de estado:
-            + U o bit de urgente: su utilidad es para hacer que un segmento no cumpla el orden del buffer (FIFO) y se procese antes que todos. Suele usarse en caso de que haya que solventar algún problema en la conexión.
-            + A o bit de ACK: (preguntar al profesor)
-            + P o bit de push: sirve para evitar la espera debido a que el segmento no esté lo más lleno posible, pues un segmento no se manda hasta que esté lleno.
-            + R o bit de reset: se usa para que uno de los dispositivos de la conexión fuerce al otro a resetear la conexión si se ha detectado algún fallo.
-            + S o bit de sincronización: determina que los paquetes mandados tienen el objetivo de realizar la sincronización de la conexión.
-            + F o bit de fin: determina que ese paquete con el bit encendido es el último de la conexión.
-    - Ventana de receptor: se encarga del control de flujo, es decir, la ventana de control de flujo máxima es de 65535 bits; básicamente, determina la velocidad mácxima a la que se puede trabajar.
-    - Comprobación: contiene un 'checksum' del paquete, en este caso sí que es una comprobación de corrección de todo el paquete.
-    - Puntero de datos urgentes: determina el Byte a partir del cual se encuentran los datos urgentes.
+- Puerto origen: determina quién manda el paquete para poder facilitar la respuesta. Como mucho hay 65535 puertos, hay alguno de ellos reservados para protocolos importantes.
+- Puerto destino: determina a qué dispositivo debe llegar el segmento. Como mucho hay 65535 puertos, dentro de los cuales hay algunos reservados para protocolos importantes.
+- Número de secuencia: uno de los campos más importantes encargado de la comprobación del orden de llegada de los segmentos; además, determina el byte inicial del segmento que se ha decidido dentro del buffer del dispositivo de llegada. Tomará un papel importante en la sincronización de la conexión.
+- Número 'acuse': es útil en la comprobación del estaod del paquete, pues refleja hasta que bit se espera recibir correctamente, una vez cumplido esto, se asume que todo lo recibido hasta ese byte será correcto, de ahí que sean acumulativos.
+- Hlen: determina el tamaño de la cabecera TCP.
+- Reservado: es un mecanismo de protección del protocolo a futuro, ya que si se añadieran campos se haría ahí.
+- UAPRSF: son una serie de bits útiles para la comunicación que sirven como flags de estado:
+    + U o bit de urgente: su utilidad es para hacer que un segmento no cumpla el orden del buffer (FIFO) y se procese antes que todos. Suele usarse en caso de que haya que solventar algún problema en la conexión.
+    + A o bit de ACK: (preguntar al profesor)
+    + P o bit de push: sirve para evitar la espera debido a que el segmento no esté lo más lleno posible, pues un segmento no se manda hasta que esté lleno.
+    + R o bit de reset: se usa para que uno de los dispositivos de la conexión fuerce al otro a resetear la conexión si se ha detectado algún fallo.
+    + S o bit de sincronización: determina que los paquetes mandados tienen el objetivo de realizar la sincronización de la conexión.
+    + F o bit de fin: determina que ese paquete con el bit encendido es el último de la conexión.
+ - Ventana de receptor: se encarga del control de flujo, es decir, la ventana de control de flujo máxima es de 65535 bits; básicamente, determina la velocidad mácxima a la que se puede trabajar.
+ - Comprobación: contiene un 'checksum' del paquete, en este caso sí que es una comprobación de corrección de todo el paquete.
+ - Puntero de datos urgentes: determina el Byte a partir del cual se encuentran los datos urgentes.
 
 Después de todo esto se encuentra un campo opcional y los datos.
 
@@ -155,7 +154,7 @@ ___Segmento TCP___
 
 Con respecto a los __puertos TCP__, se dividen en dos rangos:
     
-    - [0-1024]: guardados para protocolos importantes donde el usuario que lo usa tiene privilegios de administrador.
+- [0-1024]: guardados para protocolos importantes donde el usuario que lo usa tiene privilegios de administrador.
 
 <div>
 <p style=text-align:center>
@@ -163,7 +162,7 @@ Con respecto a los __puertos TCP__, se dividen en dos rangos:
 </p>
 </div>
     
-    - [1024 - 65535]: destinados para el uso común de usuarios.
+- [1024 - 65535]: destinados para el uso común de usuarios.
 
 Por último, una conexión _TCP_ se determina por las parejas (puerto,_IP_) origen y destino.
 
@@ -175,17 +174,17 @@ A lo largo de este apartado se discutirán las funcionalidades que sí provee _T
 
 Una conexión _TCP_ se basa en tres partes donde __no se puede determinar que sean fiables las fases extremo__ ya que están basadas en el protocolo _IP_:
 
-    1. Establecimiento de la conexión o apertura.
-    2. Intercambio de datos.
-    3. Cierre de la conexión.
+1. Establecimiento de la conexión o apertura.
+2. Intercambio de datos.
+3. Cierre de la conexión.
 
 ___Establecimiento de la conexión___
 
 Esta parte es un proceso llamado _three-ways handshake_ donde se siguen los siguientes pasos:
     
-    1. El cliente siempre empieza la conexxión con la apertura activa, donde se manda un paquete de solicitud con el bit SYN(1) y numero de secuencia(x), por ahora, aleatorio.
-    2. El servidor que recibe la solicitud realiza la apertura pasiva respondiendo con un paquete ACK, con número 'acuse'(x+1) especificando que ya sabe hasta que bit espera recibir, y aprovechando el 'piggybacking' manda el sincronismo opuesto con bit de SYN(1) y número de secuencia(y).
-    3. El cliente devuelte un ACK confirmando la sincronización de los números de secuencia con número de 'acuse'(y+1).
+1. El cliente siempre empieza la conexxión con la apertura activa, donde se manda un paquete de solicitud con el bit SYN(1) y numero de secuencia(x), por ahora, aleatorio.
+2. El servidor que recibe la solicitud realiza la apertura pasiva respondiendo con un paquete ACK, con número 'acuse'(x+1) especificando que ya sabe hasta que bit espera recibir, y aprovechando el 'piggybacking' manda el sincronismo opuesto con bit de SYN(1) y número de secuencia(y).
+3. El cliente devuelte un ACK confirmando la sincronización de los números de secuencia con número de 'acuse'(y+1).
 
 _Proceso de apertura_
 
@@ -199,8 +198,8 @@ Como no se puede asegurar que este intercambio sea fiable al estar basado en el 
 
 Debido a esto disponemos de varias casuísticas:
     
-    1. Casuística normal.
-    2. Caso de intento de apertura simultánea: es un caso poco habitual pues no se da ccuando la conexión es cliente-servidor, sino cuando es cliente-cliente. Se resuelve simplemente mandando cada uno la respuesta ACK con el 'acuse' correspondiente.
+1. Casuística normal.
+2. Caso de intento de apertura simultánea: es un caso poco habitual pues no se da ccuando la conexión es cliente-servidor, sino cuando es cliente-cliente. Se resuelve simplemente mandando cada uno la respuesta ACK con el 'acuse' correspondiente.
 
 <div>
 <p style=text-align:center>
@@ -208,7 +207,7 @@ Debido a esto disponemos de varias casuísticas:
 </p>
 </div>
     
-    3. Caso de sincronismo con retraso: este caso es más habitual y ocurre cuando hay un retraso en la red provocando que se descarte un segmento de apertura cuando sí que se ha mandado y ha llegado; esto es ocasionado por el 'timeout'. La solución es de nuevo no tener en cuenta la respuesta del servidor y mandar otra apertura activa para iniciar de nuevo la conexión.
+3. Caso de sincronismo con retraso: este caso es más habitual y ocurre cuando hay un retraso en la red provocando que se descarte un segmento de apertura cuando sí que se ha mandado y ha llegado; esto es ocasionado por el 'timeout'. La solución es de nuevo no tener en cuenta la respuesta del servidor y mandar otra apertura activa para iniciar de nuevo la conexión.
 
 <div>
 <p style=text-align:center>
@@ -233,9 +232,9 @@ ___Cierre de la conexión___
 
 Esta parte también se basa en un proceso _three-ways handshake_ que sigue los siguientes pasos:
     
-    1. Alguno de los dispositivos de la conexión realiza el cierre activo mandando un paquete de sincronización con bit de FIN(1) y un numero de secuencia(x).
-    2. El otro dispositivo, haciendo el cierre pasivo, responde con un segmento ACK con numero de 'acuse'(x+1) y aprovecha el 'piggybacking' para mandar un segmento con número de secuencia(y) y bit de FIN(1).
-    3. El dispositivo que inició el cierre responde con un segmento con número de 'acuse'(y+1).
+1. Alguno de los dispositivos de la conexión realiza el cierre activo mandando un paquete de sincronización con bit de FIN(1) y un numero de secuencia(x).
+2. El otro dispositivo, haciendo el cierre pasivo, responde con un segmento ACK con numero de 'acuse'(x+1) y aprovecha el 'piggybacking' para mandar un segmento con número de secuencia(y) y bit de FIN(1).
+3. El dispositivo que inició el cierre responde con un segmento con número de 'acuse'(y+1).
 
 El primero paso puede ser dado por el servidor o el cliente, esto dependerá de la implementación de la aplicación bajo la que se trabaja.
 
@@ -243,9 +242,9 @@ Asimismo, si una conexión dura menos que un tiempo conocido como (nombre¿?), l
 
 Al igual que en la apertura, el hecho de que se usen __timeouts__(_MSL_ o _Maximun Segment Lifetime_) para descartar intentos que han tardado bastante ocasiona que haya casuísticas problemáticas:
 
-    1. Caso normal.
-    2. Caso de intento de cierre simultáneo: es un caso poco común análogo a la apertura con intento simultáneo; de hecho, tiene la misma solución extrapolada a los cierres.
-    3. Caso de sincronismo con retraso: se ocasiona cuando durante el cierre activo se avisa del fin de la conexión, ocasionando que si hay un retraso en la red, el dispositivo del cierre pasivo continúe mandando información. Esto se soluciona de forma similar a la apertura con sincronismo con retraso. (preguntar al profesor)
+1. Caso normal.
+2. Caso de intento de cierre simultáneo: es un caso poco común análogo a la apertura con intento simultáneo; de hecho, tiene la misma solución extrapolada a los cierres.
+3. Caso de sincronismo con retraso: se ocasiona cuando durante el cierre activo se avisa del fin de la conexión, ocasionando que si hay un retraso en la red, el dispositivo del cierre pasivo continúe mandando información. Esto se soluciona de forma similar a la apertura con sincronismo con retraso. (preguntar al profesor)
 
 _Casuísticas_
 
@@ -269,8 +268,8 @@ ___Funcionamiento del buffer___
 
 Este objeto es manupulado por dos entidades:
     
-    1. Aplicación: esta entidad lo único que hace es tomar los paquetes que ya hayan llegado al buffer en orden, es decir, de la parte confirmada de la cola. Posteriormente, el paquete se procesa en la aplicación y se generará la respuesta.
-    2. Receptor: se encarga de ir añadiendo los paquetes en orden y de generar los paquetes de respuesta(_ACK's_). Cada vez que llega un paquete se almacena en el buffer como si fuera una cola _FIFO_ mejorada para poder mantener el orden.
+1. Aplicación: esta entidad lo único que hace es tomar los paquetes que ya hayan llegado al buffer en orden, es decir, de la parte confirmada de la cola. Posteriormente, el paquete se procesa en la aplicación y se generará la respuesta.
+2. Receptor: se encarga de ir añadiendo los paquetes en orden y de generar los paquetes de respuesta(_ACK's_). Cada vez que llega un paquete se almacena en el buffer como si fuera una cola _FIFO_ mejorada para poder mantener el orden.
 
 Si nos damos cuenta, el buffer no es más que una ventana deslizante donde en cada deslizamiento se ha procesado un paquete por la aplicación o se ha añadido un paquete por el receptor.
 
@@ -290,33 +289,33 @@ Esto último es muy importante pues, el __control de errores__ se basa en dos pa
 
 La generación de ACK's no es más que la generación de paquetes de respuesta que dependerá de una serie de eventos producidos en la comunicación. Presenta dos características:
     
-    1. ACK's acumulativos: con cada ACK estamos determinando hasta qué byte de la comunicación hemos recibido correctamente, esto se hace con el número de acuse. Por tanto, el emisor, que recibe la respuesta, entenderá que hemos recibido correctamente hasta ese byte y procederá a mandar el siguiente.
-    2. ACK's positivos: con cada ACK estamos determinando hasta qué byte hemos recibido correctamente pero nunca qué bytes han llegado dañados o no han llegado, de hay que sean positivos.
+1. ACK's acumulativos: con cada ACK estamos determinando hasta qué byte de la comunicación hemos recibido correctamente, esto se hace con el número de acuse. Por tanto, el emisor, que recibe la respuesta, entenderá que hemos recibido correctamente hasta ese byte y procederá a mandar el siguiente.
+2. ACK's positivos: con cada ACK estamos determinando hasta qué byte hemos recibido correctamente pero nunca qué bytes han llegado dañados o no han llegado, de hay que sean positivos.
 
 Siguiendo en la estructura _ARQ_ y trabajando de nuevo sobre el buffer del receptor de responde de una manera o de otra dependiendo de una serie de eventos:
     
     (Etiqueta)
-    · Evento 1: supongamos que el receptor recibe un paquete y que ese paquete es consecutivo a lo que ya sabemos que está bien; para eitar hacer una comunicación "pregunta-respuesta" retrasamos el ACK iniciando un temporizador de 500 ms donde tomados varias casuísticas:
-        · Si nos llega el paquete consecutivo hacemos Evento 2.
-        · Si nos llega un paquete no consecutivo realizamos Evento 3.
-        · Si se acaba el temporizador mandamos el ACK del único paquete que nos ha llegado.
+- Evento 1: supongamos que el receptor recibe un paquete y que ese paquete es consecutivo a lo que ya sabemos que está bien; para eitar hacer una comunicación "pregunta-respuesta" retrasamos el ACK iniciando un temporizador de 500 ms donde tomados varias casuísticas:
+    + Si nos llega el paquete consecutivo hacemos Evento 2.
+    + Si nos llega un paquete no consecutivo realizamos Evento 3.
+    + Si se acaba el temporizador mandamos el ACK del único paquete que nos ha llegado.
 
     (Etiqueta)
-    · Evento 2: supongamos que tras el Evento 1, dentro del temporizador nos ha llegado un paquete consecutivo, entonces mandamos un ACK acumulativo confirmando que han llegado bien ambos paquetes.
+- Evento 2: supongamos que tras el Evento 1, dentro del temporizador nos ha llegado un paquete consecutivo, entonces mandamos un ACK acumulativo confirmando que han llegado bien ambos paquetes.
 
 Hasta ahora todos los eventos son positivos y fáciles de resolver, veamos algunos eventos más:
 
-    · Evento 3: supongamos que dentro del temporizador o fuera del mismo recibimos un paquete desordenado, es decir, no es consecutivo a lo que ya tenemos en el buffer, entonces procedemos como sigue:
+- Evento 3: supongamos que dentro del temporizador o fuera del mismo recibimos un paquete desordenado, es decir, no es consecutivo a lo que ya tenemos en el buffer, entonces procedemos como sigue:
         
-            0. Obviamos el temporizador de 500 ms.
-            1. Insertamos el paquete en el buffer en el lugar correspondiente con su número de secuencia.
-            2. Generamos un ACK inmediatamente con el número de acuse confirmando hasta donde el buffer mantiene el orden, es decir, el primer byte del primer hueco.
+    0. Obviamos el temporizador de 500 ms.
+    1. Insertamos el paquete en el buffer en el lugar correspondiente con su número de secuencia.
+    2. Generamos un ACK inmediatamente con el número de acuse confirmando hasta donde el buffer mantiene el orden, es decir, el primer byte del primer hueco.
     
     Cabe destacar que en el evento 3 se acumulan tantos ACK's en la misma posición como paquetes desordenados se reciban.
 
-    · Evento 4: Si recibimos un paquete que cubre un heco haciendo que el buffer vuelva a ser continuo, se manda un ACK inmediatamente con la posición final del tramo continuo.
+ - Evento 4: Si recibimos un paquete que cubre un heco haciendo que el buffer vuelva a ser continuo, se manda un ACK inmediatamente con la posición final del tramo continuo.
 
-    · Evento 5: cuando pasamos de una ventana deslizante de 0 bytes disponibles, es decir, el buffer está lleno y debemos esperar a que la aplicación procese paquetes; a una ventana positiva, se manda un paquete ACK inmediatamente.
+ - Evento 5: cuando pasamos de una ventana deslizante de 0 bytes disponibles, es decir, el buffer está lleno y debemos esperar a que la aplicación procese paquetes; a una ventana positiva, se manda un paquete ACK inmediatamente.
 
 En definitiva, el ACK siempre se manda con el __número de acuse__ igual al primer byte del primer hueco del buffer.
 
@@ -332,19 +331,19 @@ Por tanto, si definimos por _RTT_(__Round Trip Time__) como el tiempo que tarda 
 
 Veamos el por qué de esta asociación:
     
-    · Si el temporizador es menor que el RTT, entonces se retransmitirán la mayoría de los paquetes impidiendo una comunicación fluida y en ocasiones provocando el reinicio de la conexión.
-    · Si el temporizador es mucho mayor que le RTT, entonces un paquete perdido no será notificado hasta que pase un gran tiempo haciendo que la comunicación sea muy lenta y haya pérdida de recursos.
+ - Si el temporizador es menor que el RTT, entonces se retransmitirán la mayoría de los paquetes impidiendo una comunicación fluida y en ocasiones provocando el reinicio de la conexión.
+ - Si el temporizador es mucho mayor que le RTT, entonces un paquete perdido no será notificado hasta que pase un gran tiempo haciendo que la comunicación sea muy lenta y haya pérdida de recursos.
 
 __Cálculo y deducción del timeout__
 
 Partiendo de una comunicación cualquiera disponemos de varios conceptos que nos van a determinar el _RTT_:
 
-    · Tiempo de transmisión: tiempo que se tarda en poner el paquete en la red, depende de la velocidad de transmisión(Vt) de la tarjeta de red y se calcula con la expresión:
+ - Tiempo de transmisión: tiempo que se tarda en poner el paquete en la red, depende de la velocidad de transmisión(Vt) de la tarjeta de red y se calcula con la expresión:
 
 $$T_t=frac{T}{Vt}, T=tamaño$$
 
-    · Tiempo de propagación: tiempo que tarda un paquete en llegar al siguiente salto, depende del medio de transmisión y de l alongitud del calble.
-    · Tiempo de procesado: tiempo que tarda un paquete dentro de una cola de un router en ser procesado por el mismo, depende de los routers y de la carga de red.
+- Tiempo de propagación: tiempo que tarda un paquete en llegar al siguiente salto, depende del medio de transmisión y de l alongitud del calble.
+- Tiempo de procesado: tiempo que tarda un paquete dentro de una cola de un router en ser procesado por el mismo, depende de los routers y de la carga de red.
 
 Todo esto debe repetirse desde cada transmisión salto a salto hasta lllegar al destino. Además, en un _RTT_ se tiene en cuenta también la vuelta. 
 
@@ -354,7 +353,7 @@ Añadido a esto, como todos los elementos son variables, se deduce que el _RTT_ 
 
 Por tanto, hemos llegado a la siguiente conclusión:
     
-    · El timeout debe ser ligeramente mayor que el RTT.
+- El timeout debe ser ligeramente mayor que el RTT.
 
 Además, en la práctica, no se usa el $RTT_{medido}$, es decir, el _RTT_ real; sino que se usa un $RTT_{filtrado}$.
 
@@ -374,8 +373,8 @@ Por último un comentario sobre el _Algoritmo de Karn_, simplemente se basa en d
 
 El __control de flujo__ es un mecanismo de __atrás hacia delante__ donde el receptor es el que le dice al emisor la cantidad de datos que se pueden mandar:
     
-    · Si el buffer del receptor está muy vacío, se manda un mensaje de aumento de paquetes enviados.
-    · Si el buffer del receptor está muy lleno, se manda un mensaje de disminución de paquetes enviados.
+- Si el buffer del receptor está muy vacío, se manda un mensaje de aumento de paquetes enviados.
+- Si el buffer del receptor está muy lleno, se manda un mensaje de disminución de paquetes enviados.
 
 En caso de que esta regulación no se haga, podría darse el caso en el que se llene el buffer y se descarten paquetes para no congestionar la red; entonces, estaríamos perdiendo información.
 
@@ -411,14 +410,14 @@ ___Proceso TCP___
 
 Para explicar cómo _TCP_ actúa frente a estas cosas vamos a utilizar un ejemplo. Sabienso que el emisor dispone de dos ventanas:
     
-    · Ventana del Receptor -> usada en el control de flujo, con tamaño variable según el campo ventana recibido.
-    · Ventana de Congestión -> es inicializada a 1 (número de segmentos), aunque realmente toma los Bytes que ocupa cada paquete TCP.
+- Ventana del Receptor -> usada en el control de flujo, con tamaño variable según el campo ventana recibido.
+- Ventana de Congestión -> es inicializada a 1 (número de segmentos), aunque realmente toma los Bytes que ocupa cada paquete TCP.
 
 El proceso de comunicación _TCP_ tiene tres fases desde el punto de vista de la congestión una vez que ya se ha iniciado el intercambio de paquetes:
 
-    1. Inicio lento: En un inicio, se mandan tantos apquetes como nos permita la ventana y se establece el intercambio como se ha visto. Además, la ventana de congestión(CW) se actualiza a CW+(bytes confirmados). Esto es así hasta que sobrepasamos un umbral determinado por el protocolo.
+1. Inicio lento: En un inicio, se mandan tantos apquetes como nos permita la ventana y se establece el intercambio como se ha visto. Además, la ventana de congestión(CW) se actualiza a CW+(bytes confirmados). Esto es así hasta que sobrepasamos un umbral determinado por el protocolo.
 
-    2. Prevención de congestión: En cada ráfaga de envío de paquetes se mandan tantos Bytes como haya en la ventana de congestión; por cada confirmación la ventana aumenta de la siguietne forma: 
+2. Prevención de congestión: En cada ráfaga de envío de paquetes se mandan tantos Bytes como haya en la ventana de congestión; por cada confirmación la ventana aumenta de la siguietne forma: 
 
 $$CW=CW+frac{1}{CW}$$
    
