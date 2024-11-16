@@ -294,13 +294,13 @@ La generación de ACK's no es más que la generación de paquetes de respuesta q
 
 Siguiendo en la estructura _ARQ_ y trabajando de nuevo sobre el buffer del receptor de responde de una manera o de otra dependiendo de una serie de eventos:
     
-    (Etiqueta)
+<a id="evento 1"></a>
 - Evento 1: supongamos que el receptor recibe un paquete y que ese paquete es consecutivo a lo que ya sabemos que está bien; para eitar hacer una comunicación "pregunta-respuesta" retrasamos el ACK iniciando un temporizador de 500 ms donde tomados varias casuísticas:
     + Si nos llega el paquete consecutivo hacemos Evento 2.
     + Si nos llega un paquete no consecutivo realizamos Evento 3.
     + Si se acaba el temporizador mandamos el ACK del único paquete que nos ha llegado.
 
-    (Etiqueta)
+<a id="evento 2"> </a>
 - Evento 2: supongamos que tras el Evento 1, dentro del temporizador nos ha llegado un paquete consecutivo, entonces mandamos un ACK acumulativo confirmando que han llegado bien ambos paquetes.
 
 Hasta ahora todos los eventos son positivos y fáciles de resolver, veamos algunos eventos más:
