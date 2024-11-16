@@ -433,18 +433,23 @@ $$throughput=frac{CW}{RTT}$$
 
 ### 3.3.2.Extensiones TCP
 
-Por ahora, hemos estado hablando de la versión _Tahoe_ que presenta algunoas incompletitudes, muchas de ellas causadas por el inicio lento; de aquñi surgieron los sabores de _TCP_:
+Por ahora, hemos estado hablando de la versión _Tahoe_ que presenta algunas incompletitudes, muchas de ellas causadas por el inicio lento; de aquí surgieron los sabores de _TCP_:
 
-    · Reno: distingue entre fallo por exceder un timeout o la duplicacion de ACK's masiva:
-        - Si hay excedencia de timeout -> mismo proceso que Tahoe.
-        - Si hay duplicación masiva de ACK's -> el valor de la ventana ofertada apsa a la mitad en la fase de prevención prolongando dicha fase.
+- Reno: distingue entre fallo por exceder un timeout o la duplicacion de ACK's masiva:
+    + Si hay excedencia de timeout -> mismo proceso que Tahoe.
+    + Si hay duplicación masiva de ACK's -> el valor de la ventana ofertada apsa a la mitad en la fase de prevención prolongando dicha fase.
+- newReno: distingue más situaciones y se adapta mejor a las necesidades de la ransmisión.
+- Vegas: en lugar de tener en cuenta los ACK's tieene en cuenta el RTT:
+    + Si el RTT aumenta -> reduce la ventana.
+    + Si el RTT disminuye -> aumenta la ventana.
+- Cubic: dispone de dos ventanas para la congestión, una dependeinte de los ACK's y otra dependiente de los RTT y hace una mezcla de ambas.
 
-    · newReno: distingue más situaciones y se adapta mejor a las necesidades de la ransmisión.
-    · Vegas: en lugar de tener en cuenta los ACK's tieene en cuenta el RTT:
-        
-        - Si el RTT aumenta -> reduce la ventana.
-        - Si el RTT disminuye -> aumenta la ventana.
+Por ahora, estamos suponiendo que todos los errores que se dan son por congestión, pero esto no tiene por qué ser así en redes inalámbricas, redes donde el porcentaje de error es un 10%; la versión _Westwood_ es la encargada de adaptarse a estas redes.
 
-    · Cubic: dispone de dos ventanas para la congestión, una dependeinte de los ACK's y otra dependiente de los RTT y hace una mezcla de ambas.
+Esta última versión no es más que una adaptación de *TCP* a las redes actuales, que son __inalámbricas__. Para ello, se modifican una serie de conceptos que se suelen imponer en el campo _condicional_ de la _cabecera TCP_:
 
-Por ahora, estamos suponiendo que todos los errores que se dan son por congestión, pero esto no tiene por qué ser así en redes inhalámbricas, redes donde el porcentaje de error es un 10%; la versión _Westwood_ es la encargada de adaptarse a estas redes.
+- **Ventana escalada**: es el más imporatane, consiste en que la ventana de control de congestión que sí es emitida en los mensajes hacia el emisor puede multiplicarse por un factor haciéndola más grande aumentando así la eficiencia de la transmisión.
+
+    Como el campo opcional sólo dispone de 14 bits podremos aumentar el tamaño tantas veces como $2^{bits a 1}$ de ese campo.
+- **Estimación del RTT**: no se le ha dado mucha importancia en clase y consiste en disponer de una opción _TCP_ de sello de tiempo, en todos los segmentos.
+- **PAWS** o _Protect Against Wrapped Sequence Number_: permite imponer un sello de tiempo y dispone de un rechazo de segmentos duplicados, medida de seguridad muy usada en transmisiones inalámbricas.
