@@ -361,7 +361,7 @@ $$RTT_{filtrado}=\alpha RTT_{viejo} + (1-\alpha)RTT_{medido}, \alpha \in  \[0,1\
 
 Pasamos ahora al cálculo del __timeout__ que usará el concepto de derivación que tambíen estará filtrada:
     
-$$Desviacion_{filtrada}=(1-x)Desviacion_{vieja}+x|RTT_{medido}-RTT_{filtrado}|, x\in \[0,1\]$$
+$$Desviacion_{filtrada}=(1-x)Desviacion_{vieja}+x|(RTT_{medido}-RTT_{filtrado})|, x\in \[0,1\]$$
 
 Donde llegamos, ya sí, a la fórmula del cálculo del __timeout__:
 
