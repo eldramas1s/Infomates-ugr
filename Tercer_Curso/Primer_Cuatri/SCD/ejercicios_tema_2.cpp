@@ -12,7 +12,7 @@ using namespace scd;
 
 int ejercicio;
 int n_hebras_a[8]={5,3,6,1,10,6,1,5};
-int n_hebras_b[8]={0,2,2,1,0,0,1,0};
+int n_hebras_b[8]={0,2,2,7,0,0,1,0};
 
 mutex mtx;
 
@@ -152,86 +152,193 @@ void process_1(MRef<Monitor>monitor){
             monitor->liberar_recurso(tipo);
 }
 
-/*********************************************************************************/
-/* funcines de las hebras */
-/*********************************************************************************/
-void hebra_a_procedure(){
+//EJERCICIO___2 -> Practica 2 lectores
+//EJERCICIO___3
+
+class Puente : public HoareMonitor
+{
+    private:
+        int umbral;
+        int coches_N, coches_S,N_pueden,S_pueden;
+        CondVar cola_n, cola_s;
+
+    public:
+        Puente(int umb);
+        void EntrarCocheNorte();
+        void SalirCocheNorte();
+        void EntrarCocheSur();
+        void SalirCocheSur();
+};
+
+Puente::Puente(int umb){
+    coches_N=0;
+    coches_S=0;
+    umbral = umb;
+    N_pueden=umbral;
+    S_pueden=umbral;
+
+    cola_n = newCondVar();
+    cola_s = newCondVar();
+}
+
+void Puente::EntrarCocheNorte(){
+    if(coches_S>0 || N_pueden==0){
+        cola_n.wait();
+    }
+
+    mtx.lock();
+    cout << "Norte entrando" << endl;
+    mtx.unlock();
+
+    coches_N++;
+
+    if(!cola_s.empty()) N_pueden--;
+
+    if(!cola_n.empty() && N_pueden>0){
+        cola_n.signal();
+    }
+}
+
+void Puente::EntrarCocheSur(){
+    if(coches_N>0 || S_pueden == 0)
+        cola_s.wait();
+
+    coches_S++;
+    mtx.lock();
+    cout << "Sur entrando" << endl;
+    mtx.unlock();
+
+    if(!cola_n.empty()) S_pueden--;
+
+    if(!cola_s.empty()&&S_pueden>0)
+        cola_s.signal();
+}
+
+void Puente::SalirCocheNorte(){
+    coches_N--;
+    mtx.lock();
+    cout << "Norte saliendo " << endl;
+    mtx.unlock();
+
+    if(coches_N==0){
+        cola_s.signal();
+        N_pueden=umbral;
+    }
+}
+
+void Puente::SalirCocheSur(){
+    coches_S--;
     
-    MRef <Monitor> monitor = Create<Monitor>();
+    mtx.lock();
+    cout << "Sur saliendo" << endl;
+    mtx.unlock();
 
-    switch(ejercicio){
-        case 1:
-            process_1(monitor);
-            
-        break;
-        case 2:
-            ;
-        break;
-        case 3:
-            ;
-        break;
-        case 4:
-            ;
-        break;   
-        case 5:
-            ;
-        break;
-        case 6:
-            ;
-        break;
-        case 7:
-            ;
-        break;
-        case 8:
-            ;
-        break;
-    }
-}
-
-void hebra_b_procedure(){
-    switch(ejercicio){
-        case 1:
-            mtx.lock();
-            cout << "No se requiere mi trabajo, soy hebra B" << endl;
-            mtx.unlock();
-        break;
-        case 2:
-
-        break;
-        case 3:
-
-        break;
-        case 4:
-
-        break;   
-        case 5:
-            mtx.lock();
-            cout << "No se requiere mi trabajo, soy hebra B" << endl;
-            mtx.unlock();
-        break;
-        case 6:
-            mtx.lock();
-            cout << "No se requiere mi trabajo, soy hebra B" << endl;
-            mtx.unlock();
-        break;
-        case 7:
-
-        break;
-        case 8:
-            mtx.lock();
-            cout << "No se requiere mi trabajo, soy hebra B" << endl;
-            mtx.unlock();
-        break;
+    if(coches_S==0){
+        cola_n.signal();
+        S_pueden=umbral;
     }
 }
 
 
+//Funciones auxiliares
+void cocheNorte(MRef <Puente> puente){
+    while(true){
+        puente->EntrarCocheNorte();
+        trabajar();
+        puente->SalirCocheNorte();
+        trabajar();
+    }
+}
+
+void cocheSur(MRef <Puente> puente){
+    while(true){
+        puente->EntrarCocheSur();
+        trabajar();
+        puente->SalirCocheSur();
+        trabajar();
+    }
+}
+
+//EJERCICIO___4
+
+class Olla : public HoareMonitor
+{
+    private:
+        int misioneros, umbral;
+        CondVar salvajes, cocinero;
+
+    public:
+
+        Olla(int umb);
+        void Servirse_Misionero();
+        void Dormir();
+        void Rellenar_Olla();
+};
+
+Olla::Olla(int umb){
+    umbral=umb;
+    misioneros=0;
+    
+    salvajes=newCondVar();
+    cocinero=newCondVar();
+}
+
+void Olla::Servirse_Misionero(){
+    if(misioneros <= 0 ){
+        salvajes.wait();
+        cocinero.signal();
+    }
+
+    misioneros--;
+
+    mtx.lock();
+    cout << " Misionero servido " << endl;
+    mtx.unlock();
+
+    if(misioneros > 0 && !salvajes.empty()){
+    /* if(misioneros > 0){ */ //Produce interbloqueo 
+        salvajes.signal();
+    }
+    else{                   //Quitarlo produce interbloqueo
+        cocinero.signal();  
+    }
+}
+
+void Olla::Dormir(){
+    if(misioneros>0) cocinero.wait();
+    mtx.lock();
+    cout << "Cocinero durmiendo" << endl;
+    mtx.unlock();
+}
+
+void Olla::Rellenar_Olla(){
+    misioneros=umbral;
+
+    mtx.lock();
+    cout << "Olla rellena" << endl;
+    mtx.unlock();
+
+    if(!salvajes.empty()){
+        salvajes.signal();
+    }
+}
 
 
+//Funciones auxiliares
 
+void Salvaje(MRef<Olla> monitor){
+    while(true){
+        monitor->Servirse_Misionero();
+        trabajar();
+    }
+}
 
-
-
+void Cocinero(MRef<Olla> monitor){
+    while(true){
+        monitor->Dormir();
+        monitor->Rellenar_Olla();
+    }
+}
 
 /*********************************************************************************/
 /* función principal */
@@ -245,19 +352,57 @@ int main(){
     thread hebras_a[n_hebras_a[ejercicio-1]];
     thread hebras_b[n_hebras_b[ejercicio-1]];
 
-    for (int i=0; i<n_hebras_a[ejercicio] && n_hebras_a[ejercicio]!=0;i++){
-        hebras_a[i] = thread(hebra_a_procedure);
-    }
+    //MONITORES A USAR
+    MRef <Puente> monitor3 = Create<Puente>(10);
+    MRef <Olla> monitor4 = Create<Olla>(3);
+    switch(ejercicio){
+        case 1:
 
-    for (int i=0; i<n_hebras_b[ejercicio] && n_hebras_b[ejercicio]!=0; i++){
-        hebras_b[i] = thread(hebra_b_procedure);
-    }
+        break;
+        case 2:
 
-    for(int i=0; i<n_hebras_a[ejercicio] && n_hebras_a[ejercicio]!=0; i++){
-        hebras_a[i].join();
+        break;
+        case 3:
+            for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                hebras_a[i] = thread(cocheNorte, monitor3);
+            }
+
+            for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                hebras_b[i] = thread(cocheSur,monitor3);
+            }
+            
+
+            for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                hebras_a[i].join();
+            }
+
+            for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                hebras_b[i].join();
+            }
+
+        break;
+        case 4:
+            for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                hebras_a[i] = thread(Cocinero, monitor4);
+            }
+
+            for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                hebras_b[i] = thread(Salvaje,monitor4);
+            }
+            
+
+            for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                hebras_a[i].join();
+            }
+
+            for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                hebras_b[i].join();
+            }
+        break;
+
+        default:
+            cerr << "No existe ese ejercicio" << endl;
+        break;
     }
-    
-    for(int i=0; i<n_hebras_b[ejercicio] && n_hebras_b[ejercicio]!=0; i++){
-        hebras_b[i].join();
-    }
+   
 }

@@ -24,11 +24,11 @@ using namespace std::this_thread ;
 using namespace std::chrono ;
 
 const int
-   num_prod          = 4 ,
-   id_buffer             = 4 ,
+   num_prod          = 5 ,
+   id_buffer             = 5 ,
    num_cons         = 5 ,
-   num_procesos_esperado         = 10, 
-   num_items             = 20,
+   num_procesos_esperado         = 11, 
+   num_items             = 50,
    tam_vector            = 10,
    etiq_P                = 1,
    etiq_C                = 2;
@@ -56,29 +56,29 @@ int producir(int orden, int num_vals)
    static int contador = orden*num_vals ;
    sleep_for( milliseconds( aleatorio<10,100>()) );
    contador++ ;
-   cout << "Productor ha producido valor " << contador << endl << flush;
+   cout << "Productor " << orden << " ha producido valor " << contador << endl << flush;
    return contador ;
 }
 // ---------------------------------------------------------------------
 
-void funcion_productor(int orden, int num_vals)
+void funcion_productor(int orden)
 {
-   for ( unsigned int i= 0 ; i < num_vals ; i++ )
+   for ( unsigned int i= 0 ; i < num_items/num_prod ; i++ )
    {
       // producir valor
-      int valor_prod = producir(orden);
+      int valor_prod = producir(orden, num_items/num_prod);
       // enviar valor
-      cout << "Productor va a enviar valor " << valor_prod << endl << flush;
+      cout << "Productor " << orden << " va a enviar valor " << valor_prod << endl << flush;
       MPI_Ssend( &valor_prod, 1, MPI_INT, id_buffer, etiq_P, MPI_COMM_WORLD );
    }
 }
 // ---------------------------------------------------------------------
 
-void consumir( int valor_cons )
+void consumir( int valor_cons, int orden )
 {
    // espera bloqueada
    sleep_for( milliseconds( aleatorio<110,200>()) );
-   cout << "Consumidor ha consumido valor " << valor_cons << endl << flush ;
+   cout << "\t\t\tConsumidor " << orden <<  " ha consumido valor " << valor_cons << endl << flush ;
 }
 // ---------------------------------------------------------------------
 
@@ -92,8 +92,8 @@ void funcion_consumidor(int orden)
    {
       MPI_Ssend( &peticion,  1, MPI_INT, id_buffer, etiq_C, MPI_COMM_WORLD);
       MPI_Recv ( &valor_rec, 1, MPI_INT, id_buffer, 0, MPI_COMM_WORLD,&estado );
-      cout << "Consumidor ha recibido valor " << valor_rec << endl << flush ;
-      consumir( valor_rec );
+      cout << "\t\t\tConsumidor " << orden << " ha recibido valor " << valor_rec << endl << flush ;
+      consumir( valor_rec, orden );
    }
 }
 // ---------------------------------------------------------------------
@@ -147,7 +147,7 @@ void funcion_buffer()
          buffer[primera_libre] = valor ;
             primera_libre = (primera_libre+1) % tam_vector ;
             num_celdas_ocupadas++ ;
-            cout << "Buffer ha recibido valor " << valor << endl ;
+            cout << "\t   Buffer ha recibido valor " << valor << endl ;
       
         
       }
@@ -155,7 +155,7 @@ void funcion_buffer()
          valor = buffer[primera_ocupada] ;
          primera_ocupada = (primera_ocupada+1) % tam_vector ;
          num_celdas_ocupadas-- ;
-         cout << "Buffer va a enviar valor " << valor << endl ;
+         cout << "\t   Buffer va a enviar valor " << valor << endl ;
          MPI_Ssend( &valor, 1, MPI_INT, estado.MPI_SOURCE, 0, MPI_COMM_WORLD);
       }
    }
@@ -169,7 +169,6 @@ int main( int argc, char *argv[] )
     //¿Como controlo el orden?
 
    int id_propio, num_procesos_actual;
-   int num_vals = num_items/num_prod;
    // inicializar MPI, leer identif. de proceso y número de procesos
    MPI_Init( &argc, &argv );
    MPI_Comm_rank( MPI_COMM_WORLD, &id_propio );
@@ -180,11 +179,11 @@ int main( int argc, char *argv[] )
       // ejecutar la operación apropiada a 'id_propio'
       // Cómo controlo el orden dentro de cada rol?
       if ( id_propio>=0 && id_propio < num_prod  )
-         funcion_productor((num_procesos_esperado-num_cons+id_propio-1)%num_prod,num_vals);
+         funcion_productor((num_procesos_esperado-num_cons+id_propio-1)%num_prod);
       else if ( id_propio == id_buffer )
-         funcion_buffer((num_procesos_esperado-num_prod+id_propio-1)%num_cons);
+         funcion_buffer();
       else
-         funcion_consumidor(1);
+         funcion_consumidor((num_procesos_esperado-num_prod+id_propio-1)%num_cons);
    }
    else
    {
