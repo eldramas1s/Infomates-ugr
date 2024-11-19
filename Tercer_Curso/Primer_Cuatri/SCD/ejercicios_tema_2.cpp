@@ -11,13 +11,17 @@ using namespace std;
 using namespace scd;
 
 int ejercicio;
-int n_hebras_a[8]={5,3,6,1,10,6,1,5};
-int n_hebras_b[8]={0,2,2,7,0,0,1,0};
+int n_hebras_a[8]={5,3,6,1,3,6,1,5};
+int n_hebras_b[8]={0,2,2,7,2,0,1,0};
 
 mutex mtx;
 
 void trabajar(){
     this_thread::sleep_for(chrono::milliseconds(aleatorio<0,1000>()));
+}
+
+int generador(){
+    return aleatorio<0,100>();
 }
 /*********************************************************************************/
 /* Monitores*/
@@ -139,6 +143,12 @@ void Monitor::pedir_recurso(int tipo){
     }
 }
 
+void Proceso(MRef <Monitor> monitor){
+    int tipo = aleatorio <0,2>();
+    monitor->pedir_recurso(tipo);
+    trabajar();
+    monitor->liberar_recurso(tipo);
+}
 //Funciones auxiliares
 
 int selectorTipo(){
@@ -340,14 +350,132 @@ void Cocinero(MRef<Olla> monitor){
     }
 }
 
+//EJERCICIO___5
+
+class Cuenta : public HoareMonitor
+{
+    private:
+        int saldo;
+        CondVar retiro;
+
+    public:
+        Cuenta(int s);
+        void depositar(int c);
+        void retirar(int c);
+};
+
+Cuenta::Cuenta(int s){
+    if(s>0) saldo=s;
+    else saldo =0;
+
+    retiro=newCondVar();
+}
+
+void Cuenta::depositar(int c){
+    saldo+=c;
+    
+    mtx.lock();
+    cout << "Saldo[" << c <<  "] depositado" << endl;
+    mtx.unlock();
+    if(!retiro.empty()){
+        retiro.signal();
+    }
+}
+
+void Cuenta::retirar(int c){
+    while(saldo<c){
+        retiro.wait();
+        retiro.signal();
+    }
+
+    saldo -= c;
+    mtx.lock();
+    cout << "Saldo[" << c <<  "] retirado" << endl;
+    mtx.unlock();
+    if(!retiro.empty()){
+        retiro.signal();
+    }
+}
+
+//Funciones auxiliares
+
+void Depositor(MRef <Cuenta> monitor){
+    while(true){
+        int x = generador();
+        monitor->depositar(x);
+        trabajar();
+    }
+}
+
+void Retirador(MRef <Cuenta> monitor){
+    while (true){
+        int x = generador();
+        monitor->retirar(x);
+        trabajar();
+    }
+}
+
+//EJERCICIO___6
+
+class Caja : public HoareMonitor
+{
+    private:
+        bool libre;
+        CondVar cola;
+    public:
+        Caja();
+        void Pedir(int priority);
+        void Liberar();
+};
+
+Caja::Caja(){
+    libre=true;
+    cola = newCondVar();
+}
+
+void Caja::Pedir(int priority){
+    if(!libre) cola.wait();
+
+    //NO podemos actuar con prioridad con hoare, sería cola.wait(priority)
+    
+    libre = false;
+    mtx.lock();
+    cout << "Recurso ocupado" << endl;
+    mtx.unlock();
+}
+
+void Caja::Liberar(){
+    libre = true;
+
+    mtx.lock();
+    cout << "Recurso libre" << endl;
+    mtx.unlock();
+
+    if (!cola.empty()){
+        cola.signal();
+    }    
+}
+
+//Funciones Auxiliares
+
+void Process(int p, MRef <Caja> monitor){
+    int priority;
+    if(p<=0) priority=10;
+    else priority=p;
+
+    while(true){
+        monitor->Pedir(priority);
+        trabajar();
+        monitor->Liberar();
+
+    }
+    
+}
 /*********************************************************************************/
 /* función principal */
 /*********************************************************************************/
 int main(){
-    cin >> ejercicio;
-    while(ejercicio < 1 && ejercicio >8){
-        cin >> ejercicio;
-    }
+    
 
     thread hebras_a[n_hebras_a[ejercicio-1]];
     thread hebras_b[n_hebras_b[ejercicio-1]];
@@ -355,54 +483,97 @@ int main(){
     //MONITORES A USAR
     MRef <Puente> monitor3 = Create<Puente>(10);
     MRef <Olla> monitor4 = Create<Olla>(3);
-    switch(ejercicio){
-        case 1:
-
-        break;
-        case 2:
-
-        break;
-        case 3:
-            for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
-                hebras_a[i] = thread(cocheNorte, monitor3);
-            }
-
-            for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
-                hebras_b[i] = thread(cocheSur,monitor3);
-            }
-            
-
-            for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
-                hebras_a[i].join();
-            }
-
-            for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
-                hebras_b[i].join();
-            }
-
-        break;
-        case 4:
-            for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
-                hebras_a[i] = thread(Cocinero, monitor4);
-            }
-
-            for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
-                hebras_b[i] = thread(Salvaje,monitor4);
-            }
-            
-
-            for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
-                hebras_a[i].join();
-            }
-
-            for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
-                hebras_b[i].join();
-            }
-        break;
-
-        default:
-            cerr << "No existe ese ejercicio" << endl;
-        break;
+    MRef <Cuenta> monitor5 = Create<Cuenta>(15);
+    MRef <Caja> monitor6 = Create<Caja>();
+    cin >> ejercicio;
+    while(ejercicio < 1 && ejercicio >8){
+        cin >> ejercicio;
     }
-   
+        switch(ejercicio){
+            case 1: 
+                /* for(int i=0; i<n_hebras_a[ejercicio-1]; i++){ */
+                /*     hebras_a[i] = thread(Proceso, monitor1); */
+                /* } */
+
+                /* for(int i=0; i<n_hebras_a[ejercicio-1]; i++){ */
+                /*     hebras_a[i].join(); */
+                /* } */ 
+            break;
+            case 2:
+                cout << "Mira la practica 2";
+            break;
+            case 3:
+                for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                    hebras_a[i] = thread(cocheNorte, monitor3);
+                }
+
+                for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                    hebras_b[i] = thread(cocheSur,monitor3);
+                }
+            
+
+                for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                    hebras_a[i].join();
+                }
+
+                for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                    hebras_b[i].join();
+                }
+
+            break;
+            case 4:
+                for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                    hebras_a[i] = thread(Cocinero, monitor4);
+                }
+
+                for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                    hebras_b[i] = thread(Salvaje,monitor4);
+                }
+            
+
+                for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                    hebras_a[i].join();
+                }
+
+                for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                    hebras_b[i].join();
+                }
+            break;
+            case 5:
+                for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                    hebras_a[i] = thread(Depositor, monitor5);
+                }
+
+                for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                    hebras_b[i] = thread(Retirador,monitor5);
+                }
+            
+
+                for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                    hebras_a[i].join();
+                }
+
+                for(int i=0; i<n_hebras_b[ejercicio-1]; i++){
+                    hebras_b[i].join();
+                }
+            break;
+            case 6:
+                for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                    hebras_a[i] = thread(Process,i, monitor6);
+                }
+
+                for(int i=0; i<n_hebras_a[ejercicio-1]; i++){
+                    hebras_a[i].join();
+                }
+
+            break;
+            case 7:
+                cout << "No tiene sentido hacerlo a pc" << endl;
+            break;
+            case 8:
+                cout << "No puede hacerse en codigo pues no sabemos hacer arrays de condiciones" << endl;
+            default:
+                cerr << "No existe ese ejercicio" << endl;
+            break;
+        }
 }
