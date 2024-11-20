@@ -344,3 +344,9 @@ ___Ejemplo___
 ![Ejemplo_1](./imagenes/ej1.png)
 ![Ejemplo_2](./imagenes/ej2.png)
 ![Ejemplo_3](./imagenes/ej3.png)
+
+### 4.4.7.Forma Normal de Greibach
+
+Esta forma normal fue desarrollada por la informática teórica [Sheila Adele Greibach](https://en.wikipedia.org/wiki/Sheila_Greibach), donde todas las producciones tienen la forma:
+
+$$A \rightarrow a\alpha | a\in T, \alpha \in V^\*$$
