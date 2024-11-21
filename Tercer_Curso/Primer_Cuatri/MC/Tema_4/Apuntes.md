@@ -350,3 +350,98 @@ ___Ejemplo___
 Esta forma normal fue desarrollada por la informática teórica [Sheila Adele Greibach](https://en.wikipedia.org/wiki/Sheila_Greibach), donde todas las producciones tienen la forma:
 
 $$A \rightarrow a\alpha | a\in T, \alpha \in V^\*$$
+
+En este apartado estudiaremos un algoritmo que permite convertir cuaquier gramática en una gramática en __forma normal de Greibach__ con el objetivo de poder determinar con facilidad si una palabra pertenece o no al lenguaje.
+
+Para poder aplicar el algoritmo hay dos __condiciones__ clave basadas en las formas de las producciones y consiste en que todas las producciones deben ser de la forma:
+
+- $A \rightarrow a\alpha$ , $a \in T, \alpha \in V^\*$ donde estas producciones no las modificaremos por estar ya en __forma normal de Greibach__.
+- $A \rightarrow \alpha$ , $\alpha \in V^\*$, $|alpha| \geq 2$, producciones que cambiaremos.
+
+Como curiosidad, todas estas condiciones ya se cumplirían si nuestra gramática se encuentra en _forma normal de Chomsky_; no obstante, no es necesario obtener la gramática en dicha forma para aplicar el algoritmo.
+
+#### Operaciones básicas del algoritmo
+
+El algoritmo se basa en dos operaciones básicas que se aplicarán en forma de bucle hasta conseguir lo deseado:
+
+1. $Elimina_1(A\rightarrow B\alpha)$ donde buscamos eliminar todas las producciones del tipo $B\rightarrow\beta_i$ sustituyendo la $B$ por cada una de las $\beta_i$ posibles.A este paso le daremos el nombre de $f()$ para facilitar su escritura.
+2. $Elimina_2(A)$; sirve para eliinar producciones de la forma $A\rightarrow A\alpha$, es decir, eliminar las priducciones que añaden su misma variable con otra cadena de símbolos cualesquiera, y en ese orden concretamente.
+    Este paso surgió de la consecuencia de aplicar el paso $Elimina_1$ a estas producciones, se vió que no producía otro efecto que no fuera añadir el mismo problema.
+    Por comodidad llamaremos $g()$ a este paso.
+
+___Operación 1___ 
+
+Dada una producción de la forma $A\rightarrow B\alpha$ aplicamos los siguientes pasos:
+
+$f(A\rightarrow B\alpha)$:
+
+1. Eliminar la producción evaluada.
+2. Para cada producción $B\rightarrow \beta$ añadir una producción $A\rightarrow \beta \alpha$.
+
+COn esta operación podemos obtener más producciones que no están en _forma normal de Greibach_ pero no tendrán el problema que queríamos eliminar
+
+___Operación 2___
+
+Dada una producción de la forma $A\rightarrow A\alpha$ aplicamos los siguientes pasos:
+
+$g(A)$:
+
+1. Añadir una nueva variable $B_A$.
+2. Para cada producción $A \rightarrow A\alpha$:
+    1. Añadir $B_A \rightarrow \alpha$ y $B_A \rightarrow \alpha B_A$
+    2. Eliminar $A \rightarrow A\alpha$.
+3. Para cada producción $A \rightarrow \beta$ tal que $\beta$ no empieza por $A$:
+    1. Añadir $A\rightarrow \beta B_A$
+
+Con esto lo que estamos haciendo es añadir una nueva variable generando una gramática equivalente a la que teníamos evitando que se generen alguno de los problemas que ya hemos resuelto.
+
+#### Algoritmo
+
+El algoritmo presenta unos objetivos que hay que cumplir para terminar de aplicarlo, y son referentes a la forma de las producciones pues todas deben ser:
+
+- $A \rightarrow a\alpha$, $a \in T$, $\alpha \in V^\*$.
+- $A_i \rightarrow A_j \alpha$, $j > i$, $\alpha \in V^\*$.
+- $B_j \rightarrow A_i \alpha$, $\alpha \in V^\*$.
+
+Siendo $B_k$ la variable que se añade al eliminar $A_k$ con $g()$.
+
+Si al aplicar el algoritmo encontramos alguna producción de esta forma, no la tocaremos hasta la segunda parte, es evidente que el primer tipo nunca se tocará.
+
+Además, una vez dispongamos de la gramática para obtener su _forma normal de Greibach_ lo que haremos será enumerar las variables para aplicar el algoritmo en el orden correspondiente; esta enumeración no condicionará el resultado pero sí el tiempo en obtenerlo.
+___Primera parte___
+
+Aplicaremos el algoritmo en orden ascendente de los índices de las variables de la parte izquierda de las producciones. 
+Dentro de ese criterio, se aplica en orden ascendiente del índice de la primera variable de la segunda parte de la producción.
+
+1. Para cada $k=1,...,m$
+    1. Para cada  $j=1,....,k-1$
+    - Para cada producción $A_k \rightarrow A_j \alpha$ aplicamos $f(A_k \rightarrow A_j \alpha)$.
+2. Si existe alguna producción de la forma $A_k \rightarrow A_k \alpha$:
+    1. $g(A_k)$.
+
+___Segunda parte___
+
+En esta parte sólo aplicaremos $f()$, se encarga de eliminar las producciones que no estén ya en _forma normal de Greibach_.
+
+Ahora comenzamos a aplicarlo en orden descendente del índice de la parte izquierda de las producciones sabiendo que la de índice mayor tenemos garantizado que está en _forma normal de Greibach_.
+
+Por último continuearemos con las variables $B_k$ en orden ascendente de la primera variable de la parte derecha de las producciones.
+
+1. Para cada $i=m-1,...,1$:
+2. Para cada producción de la forma $A_i \rightarrow A_j\alpha$, $j>i$:
+    - f($A_i \rightarrow A_j\alpha$, $j>i$).
+3. Para cada $i=1,2,...,m$:
+4. Para cada producción de la forma $B_j \rightarrow A_i \alpha$:
+    - f($B_j \rightarrow A_i \alpha$).
+
+Donde hay que recalcar la importancia de los subíndices.
+
+#### Problema de la pertenencia
+
+Para conocer si una palabra es generada por la gramática deberemos conseguir el árbol de derivación de tomando todas las posibles trazas de aplicación de las reglas de producción sabiendo que:
+
+- Si obtenemos más variables que símbolo terminales nos quedan por determinar podemos __podar__ la rama del árbol.
+
+En caso de que se cumpla esa __condición de poda__ en todas las ramas del árbol de derivación podremos concluir que la palabra __no__ pertenece al lenguaje.
+
+Todo esto se consigue porque no disminuye la longitud de la palabra al derivar una variable.
