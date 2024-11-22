@@ -1,5 +1,5 @@
 # Tema 4. Seguridad en redes
-
+---
 ## Índice
 
 1. Introducción
@@ -8,14 +8,17 @@
 2. Cifrado
     1. Tipos de cifrado.
     2. Algoritmos de cifrado.
-3. Autenticación
+3. Distribución de claves secretas
+    1. Intercambio de Diffie-Hellman
 
-4. Funciones Hash
+4. Autenticación
 
-5. Firma Digital y Certificados Digitales
+5. Funciones Hash
 
-6. Protocolos Seguros
+6. Firma Digital y Certificados Digitales
 
+7. Protocolos Seguros
+---
 
 ## 4.1.Introducción
 
@@ -75,6 +78,8 @@ Algunos mecanismos de seguridad los veremos más adelante y son:
 
 ## 4.2.Cifrado
 
+__NOTA__: En esta sección supondremos que todos y cada uno de los algoritmos de criptografía funcionan y estudiaremos si bajo esa condición los distintos protocolos que usan esa criptografía funcionan.
+
 Sabemos que el termino cifrado se entiende como una transformación realizada a una serie de datos para que __solo__ aquel que dispone de la forma de descifrarlo conozca el contenido, a esto lo llamamos __cifrado de datos__.
 
 El _cifrado de datos_ se basa en la existencia de un algoritmo de cifrado/descifrado que puede ser, o no, el mismo que es conocido por los extremos y solo por ellos. Realmente, la dificultad de vulnerabilidad de este mecanismo reside en __cómo de compleja es la clave de cifrado/descifrado que se use__, que, de nuevo, pueden no ser la misma.
@@ -93,3 +98,200 @@ A la hora de cifrar los datos hay dos posibilidades:
 ![Ejemplo cifsim](./imagenes/cifsim.png)
 *Ejemplo de algoritmo simétrico con resultado por sustitución*
 
+#### Algoritmos
+
+Con respecto al _cifrado simétrico_ hay dos tipos de algoritmos de los cuales desarrollaremsos sus características:
+
++ __DES__: no es más que un esquema de sustitución monoalfabético que usa palabras de 56 bits como claves elevando la posibilidad de violación del protocolo a $2^{56}$ combinaciones posibles de la clave. 
+    Como es un algoritmo de sustitución, dada una entrada fija, la salida está siempre determinada, y es la misma.
+
+    Para arreglar la posibilidad de descifrado, se utiliza un esquema reentrante, es decir, la salida de aplicar una transformación se involucra en la creación del difrado de la siguiente palabra a cifrar(como ya sabemos se cifran palabras de 64 bits en palabras de 64 bits).
+
+    De esta forma el extremo que recibe el mensaje codificado simplemente tendrá que conocer la última entrada usada para codificar y aplicar el proceso inverso.
+    
+![des](./imagenes/des.png)
+    
++ __DES doble__ y __3DES__: no son nuevos algoritmos sino que son versiones del anterior que proporcionan robustez al algoritmo. Proponen el uso de dos funciones de cifrado distintas de manera que una es la inversa de la otra aplicándolas según el [esquema](#desdoble) y manteniendo la funcionalidad original.
+
+<a id="desdoble"></a>
+![DEsdoble](./imagenes/desdoble.png)
+
++ __IDEA__: es un algoritmo que sigue la misma idea, a ojos de usuario, que __DES__ donde dada una palabra de 64 bits se codifica produciendo una salida de 64 bits; la clave que se usa para codificar es una palabra de 128 bits aumentando la complejidad de violación del protocolo en $2^{56}$ combinaciones de símbolos.
+
+![idea](./imagenes/idea.png)
+
+- __cifrado asimétrico__: consiste en disponer de dos claves por usuario:
+    + Pública ($K_{pub_{usr}}$): que es conocida por todos los usuarios.
+    + Privada ($K_{priv_{usr}}$): que sólo es conocida por el usuario(_usr_).
+La correspondencia entre la clave pública y la privada es biyectiva, es decir, para una clave pública sólo hay una clave privada y viceversa.
+
+La regla para cifrar y descifrar es la siguiente:
+> Si ciframos con una(pública o privada) los mensajes, el destinatario deberá descifrarlos con la otra(si pública entonces privada y viceversa).
+
+Con estos tipos de cifrado, si un usuario cifra con su clave privada estará otorgando autenticación a la transacción; no obstante, el receptor no puede aportar esa autenticación en esta situación.
+
+#### Algoritmos
+
+El único algoritmo que hemos estudiado aquí es el algoritmo __RSA__ para el que se necesitan los siguientes materiales:
+
+- Dos números primos $p$, $q$ de gran tamaño.
+- $n=p\cdot q$
+- $z=(p-1)(q-1)$
+- $d \in N$ que sea primo relativo de $z$.
+- Calculamos $e\in N$ tal que $ed mod(z)=1$
+
+Con esto tomamos:
+
+- $K_{pub}=(e,n)$
+- $K_{priv}=(d,n)$
+- Cifrado: $C=P^e mod(n)$
+- Descifrado: $P=C^d mod(n)$
+
+![rsa](./imagenes/rsa.png)
+
+## 4.3.Intercambio de claves secretas, algoritmo de Diffie-Hellman
+
+Para establecer una conversación privada mediante cifrado, es necesario que haya una distribución de claves secretas de manera que ambas entidades dispongan de la misma y puedan cifrar y descifrar para ellos solos, con este motivo se creó el algoritmo de __Diffie-Hellman__.
+
+### Algoritmo
+
+Sean A y B dos entidades que se quieren comunicar de forma cifrada, el algoritmo se basa en unos pasos:
+
+1. A elige números $x,n,g$.
+2. A manda la tripla $(n,g,g^xmod(n))$
+3. Cuando B recibe la tripla anterior, elige un número $y$.
+4. Tras esto B manda un mesaje a A con el contenido $g^ymod(n)$.
+
+Ahora la clave que van a tomar cada uno de ellos es:
+$$(g^{xy}mod(n))=(g^xmod(n))^y=(g^ymod(n))^x$$
+
+
+![Diffie](./imagenes/diffie.png)
+
+Este algoritmo es susceptible de ataque por __man-in-the-middle__ que se limitara a establecer esta conexión con cada uno de los extremos con un nuevo número $z$ haciendo que la comunicaciń funcione perfectamente y ninguno de los extremos perciba su existencia.
+
+![Ataque diffie](./imagenes/atackdiffie.png)
+
+## 4.4.Autenticación
+
+Cuando hablamos de __autenticación__ nos referimos en poder determinar al receptor que el emisor es el que se supone que es.
+
+La forma más sencilla para identificar un usuario es guardar en la base de datos del servidor las claves de cada uno de los usuarios; de esta manera, para autenticar a un usuario, este debería mandar el usuario y la clave.
+
+Aunque sea muy vulnerable a espías es un protocolo que se usa en muchos servicios y que con el tiempo se ha ido mejorando, una mejora es el envío de información por túneles cifrados.
+
+### Algoritmos
+
+Vamos a tratar de proporcionar autenticación sin necesidad de mandar la clave del usuario, el algoritmo que veremos será el esquema __reto-respuesta__:
+
+Dados dos usuarios, A que quieren autenticarse en B:
+1. A manda un mensaje con su identificador de usuario.
+2. B recibe la petición y manda a A un __reto__, un número aleatorio.
+3. A calcula algo con ese reto y su clave para posteriormente mandarlo a B.
+4. B recibe la respuesta y, como B tiene la clave de A, puede calcular lo mismo; si coinciden tenemos la autenticación.
+5. Si no coincide se ha producido una violación de autenticación.
+6. De la misma manera que B autentica A, A autentica B(se repite el proceso al revés).
+
+![retorespuesta](./imagenes/rr.png)
+
+No obstante, este algoritmo tiene dos __problemas__:
+
+- Ataques por repetición: supongamos que durante el proceso descrito un espía intercepta la señal y toma el reto y el resultado producido. Repitiendo esto muchas veces dispondrña de solución a la mayoría de los retos de B. 
+
+    De esta manera, si el espía pide acceso a B, como tiene la solución al reto, suplantando la identidad del usuario que espiaba, contesta correstamente al reto y puede acceder.
+
+- Ataques por reflexión: el mismo espía de antes, dado un reto que ha mandado B al espía, este responde mandando el mismo reto adelantando el paso (6.) del proceso para recibir la respuesta del reto que le preguntaron y así poder acceder al servicio.
+
+Ambos ataque disponen de la misma __solución__, todo el problema está causado por la repetición del dominio del reto de A y del reto de B; entonces, bastará con tomar dominios que no se intersequen, es decir, aplicar el principio de __nonce__.
+
+## 4.5.Funciones Hash
+
+Las funciones hash son herramientas que se utilizan para proporcionar __integridad__; de hecho, sirven mucho para comprobar que los datos de un paquete no han sido modificados.
+
+Gracias a que son unidireccioneales, es decir, no son inyectivas es imposible conocer el mensaje del cual se ha obtenido el resumen o imagen hash, dicho resumen tiene un tamaño fijo.
+
+Cabe recalcar, que un resumen no es más que una reducción de información sobre algo de mayor tamaño, luego si a mensajes de gran tamaño obtenemos un resumen muy pequeño estamos perdiendo información; no obstante, ese resumen nos valdrá para asegurar la corrección de los datos mandados.
+
+Otra propiedad de las funciones hash es que proporcionan invulnerabilidad frente a ataques de colisión, pues dado un mensaje M y otro $M' \neq M$ no puede cumplirse que su resumen sea el mismo.
+
+### Casuística
+
+Supongamos que mandamos algo cifrado y además le sumamos al mensaje su resumen; esto es vulnerable simplemente podemos suplantar el mensaje con otro y poner el resumen de ese otro. 
+
+[TODO]:preguntar la vulnerabilidad
+
+Luego para que esto no pase lo que haremos será mandar el mensaje y el resumen de la clave privada entre las dos entidades concatenado con el mensaje. De esta manera usando la unicidad de la clave privada podemos corroborar que el mensaje será el adecuado.
+
+El resumen que hemos citado se llama ___HMAC___.
+
+### Funciones hash típicas
+
+Hay dos funciones hash típicas:
+
+- __MD5__: dado un mensaje $P$ de $K$ dígitos, siendo la longitud del mensaje múltiplo de 512(en caso contrario rellenamos con ceros hasta que lo sea). Seguimos unos pasos:
+    1. Dividimos el mensaje en submensajes de 512 bits.
+    2. Aplicamos la función hash al primero de ellos haciendo uso de un mensaje de inicialización como randomizador.
+    3. Para aplicar la función hash al siguiente submensaje tomamos la salida del submensaje anterior como randomizador y aplicamos las función hash. Esto se repite hasta que se acabe el mensaje.
+
+![MD5](./imagenes/md5.png)
+Como resultado final conseguimos un resumen de 128 bits; de hecho, cada aplicación de la función hash es un resumen de 128 bits.
+[TODO]:pregutar por el nombre del randomizador, explicar protocolo en general.
+
+- __SHA-1__: Sigue la misma idea que __MD5__ sólo que en este caso el resultado final es de 160 bits asicomo cada aplicación de la función hash da un rasultado de 160 bits.
+
+
+La diferencia entre ambos radica en la función hash interior, que, como informáticos, no nos interesa.
+
+
+## 4.6.Firma digital y certificados digitales
+
+### Firma digital
+
+Una __firma digital__  intenta ser un sustituto de una firma escrita para poder garantizar el __no repudio__ en nuestras acciones dentro de un sistema.
+
+Con las firmas digitales conseguimos:
+- Autenticación por parte del receptor de la identidad del emisor.
+- No haya repudio por parte del firmante.
+- El emisor obtenga la garantía de no falsificación.
+
+El __no repudio__ se puede conseguir de dos formas:
+
+#### Firma con clave secreta o __Big Brother__(_BB_)
+
+El protocolo se basa en usar una entidad en la que todos los usuarios confían y vigilará las transacciones de todos los usuarios. 
+
+Se puede entender como un buen _man-in-the-middle_ donde si, A y B son dos entidades tales que A quiere mandar un mensaje a B, el _BB_ formará parte de la comunicación siendo un puente entre ellos que guardará cada una de las transacciones realizadas.
+
+Realmente, el _BB_ es un servidor que almacena las calves compartidas de él con los usarios; de manera que, si A quiere mandar un mensaje a B, A cifra su mensaje y lo manda a _BB_ quien lo descifra, registra y vuelve a cifrar con la clave de B para mandarlo al destinatario junto con alguna información más que será la firma digital del _BB_ que autenticará el proceso.
+
+- A manda $(A,K_A(B,R_A,y,P))$:
+    + Identificador (A)
+    + Cifrar con la clave $K_A$
+    + B, es el destino
+    + $R_A$ resumen para dar la integridad
+    + t, instante de tiempo
+    + P, texto plano    
+- Esto es recibido por el _BB_ quien reenvía el mensaje a B cifrado con la clave de B $K_B(A,R_A,t,p),K_BB(A,t,P)$
+    + $K_BB$ es una clave que sólo tiene el _BB_ y es un método de seguridad pues todo lo cifrado con dicha clave es la firma digital para que quede constancia de quién ha hecho la tansacción
+
+#### Firma digital con clave asimétrica o __Doble Cifrado con certificados digitales__
+
+Si queremos entender cómo funciona esto deberemos expicar lo que es un certificado digital; no es mas que un conjutno de datos entre los que se encuentran:
+    - Identidad del usuario que lo usa.
+    - Clave pública del usuario que lo utiliza.
+    - Período de validez.
+    - Datos.
+Todo esto permanece firmado por la __autoridad de certificación__, de la cual conocemos la clave pública al actualizar los programas que usan certificados digitales.
+
+Cabe recalcar que un certificado digital __no__ proporciona nada por sí solo; no obstante, puede llegar a proporcionar todo los aspectos que queramos a excepción de la integridad siempre y cuando lo usemos.
+
+> El certificado digital es una herramienta.
+
+Voviendo al doble cifrado con certificados digitales, supongamos que una entidad A quiere mandar un mensaje a B:
+- Si A cifra con su clave privada, entonces todo el mundo puede descifrarlo pero conseguimos autenticación.
+- Si A cifra con la clave pública de B, entonces solo B puede descifrar el mensaje consiguiendo confidencialidad.
+- Si A cifra con su clave pública, entonces solo A puede descifrar lo cual no sirve para nada.
+
+Siguiendo este esquema queda ya claro que lo que haremos es conseguir autenticación y confidencialidad, independientemente del orden de cifrado. Entonces, cifraremos usando la clave privada de A y la clave pública de B. 
+
+No obstante, esta conposición de cifrados no siempre funciona pues debe cumplirse el requisito de que A y B sean dueños de las claves correspondientes que se están usando. Es aquí donde entra en juego el __certificado digital__ y el __autoridad de certificación__.
