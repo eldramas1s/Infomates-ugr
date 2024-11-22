@@ -130,3 +130,11 @@ Es un componente del _SGBD_ que se encarga de:
 - Realizar la comunicación con el _SO_ sobre los bloques que se quieren pedir, es decir, traduce la página solicirtada en el bloque del _SO_ pedido.
 - [Organiza los datos](#organizacion) de manera que s eminimice el tiempo de recuperación, es decir, minimizar las E/S.
 
+Como funciones básicas implementa:
+
+- Creación de archivos almacenados asociándoles un conjunto de páginas o bloques de la _BD_.
+- Eliminar archiivos almacenados.
+- Recuperar registros almacenosdos de un archivo almacenado; para ello, el _sGBD_ propiciona el _RID_ del registro de manera que solo hay que obtener en memoria la página que contiene el registro para extraerlo.
+- Añadir un nuevo registro almacenado a un archivo almacenado. Para ello hay que localizar la página de la _BD_ más apropiada de las pertenecientes al archivo almacenado. En caso de qu eno se pudiera, se solicita una nueva página y se devuelve al _SGBD_ el _RID_ nuevo.
+- Eliminar un registro de un archivo almacenado; donde es necesario recuperar la página de la _BD_ que contiene ducho registro y marcar el espacio ocupado por el registro en dicha página ocmo disponibel.
+- Actualizar un registro en un archivo almacenado; para ello, se debe recuperar la página de la _BD_ que contiene le registro que se desea actualizar. A continuación, se intenta sustituir la información y si no se puede intenta ubicar el contenido en otra página.
