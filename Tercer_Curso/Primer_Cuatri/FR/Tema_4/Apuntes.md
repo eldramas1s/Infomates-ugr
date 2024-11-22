@@ -235,7 +235,9 @@ Hay dos funciones hash típicas:
     3. Para aplicar la función hash al siguiente submensaje tomamos la salida del submensaje anterior como randomizador y aplicamos las función hash. Esto se repite hasta que se acabe el mensaje.
 
 ![MD5](./imagenes/md5.png)
+
 Como resultado final conseguimos un resumen de 128 bits; de hecho, cada aplicación de la función hash es un resumen de 128 bits.
+
 [TODO]:pregutar por el nombre del randomizador, explicar protocolo en general.
 
 - __SHA-1__: Sigue la misma idea que __MD5__ sólo que en este caso el resultado final es de 160 bits asicomo cada aplicación de la función hash da un rasultado de 160 bits.
