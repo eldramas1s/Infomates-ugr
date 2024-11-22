@@ -163,7 +163,8 @@ Sean A y B dos entidades que se quieren comunicar de forma cifrada, el algoritmo
 4. Tras esto B manda un mesaje a A con el contenido $g^ymod(n)$.
 
 Ahora la clave que van a tomar cada uno de ellos es:
-$$(g^{xy}mod(n))=(g^xmod(n))^y=(g^ymod(n))^x$$
+
+    $$(g^{xy}mod(n))=(g^xmod(n))^y=(g^ymod(n))^x$$
 
 
 ![Diffie](./imagenes/diffie.png)
