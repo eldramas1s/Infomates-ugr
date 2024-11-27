@@ -6,7 +6,7 @@
 <a id="APND"></a>
 ## 5.1.Autómatas con Pila
 
-Un __autñomata con pila no determinista__ (_APND_) es una septupla $(Q,A,B,\delta,q_0,Z_0,F)$ en la que:
+Un __autómata con pila no determinista__ (_APND_) es una septupla $(Q,A,B,\delta,q_0,Z_0,F)$ en la que:
 
 - $Q$ es un conjunto finito de estados.
 - $A$ es un alfabeto de entrada.
