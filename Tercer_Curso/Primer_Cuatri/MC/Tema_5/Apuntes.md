@@ -11,9 +11,7 @@ Un __autómata con pila no determinista__ (_APND_) es una septupla $(Q,A,B,\delt
 - $Q$ es un conjunto finito de estados.
 - $A$ es un alfabeto de entrada.
 - $B$ es un alfabeto para la pila, consta de los símbolos que podremos almacenar en la pila.
-- $\delta$ es la función de transición dada por:
-    
-$\delta : Q \times (A \cap$ \{ $\epsilon$ \} $) \times B \longrightarrow \wp (Q\times B^\*)$
+- $\delta$ es la función de transición dada por: $\delta : Q \times (A \cap$ \{ $\epsilon$ \} $) \times B \longrightarrow \wp (Q\times B^\*)$
 
 - $q_0$ es el estado inicial.
 - $Z_0$ es el símbolo inicial de la pila, pese a que no es necesario, nosotros supondremos que siempre está ese símbolo en el fondo de la pila.
