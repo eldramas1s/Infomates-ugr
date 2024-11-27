@@ -60,7 +60,7 @@ Se dice que, de la configuración $(q,au,Z\alpha)$ se puede llegar mediante un _
 
 ___Sucesión de pasos de cálculo___
 
-Si $C_1,C_2$ son dos configuraciones, se dice que se puede llegar de $C_1$ a $C_2$ mediante una __sucesión de pasos de cálculo___ y se escribe $C_1 \Vdash C_2$ si y solo si $\exists $ \{ $T_n$ \} $| C_1=T_1 \vdash T_2\vdash ... \vdash T_{n-1} \vdash T_n = C_2$.
+Si $C_1,C_2$ son dos configuraciones, se dice que se puede llegar de $C_1$ a $C_2$ mediante una __sucesión de pasos de cálculo___ y se escribe $C_1 \Vdash C_2$ si y solo si $\exists$ \{ $T_n$ \} $| C_1=T_1 \vdash T_2\vdash ... \vdash T_{n-1} \vdash T_n = C_2$.
 
 ___Configuración inicial___
 
