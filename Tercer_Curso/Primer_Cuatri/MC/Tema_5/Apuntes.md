@@ -70,5 +70,5 @@ Sean $M$ es un _APND_ y $u \in A$ se llema __configuración inicial__ correspond
 
 Haciendo uso de cómo podemos [aceptar una palabra](#formas) determinamos los dos __lenguajes aceptados__ por el autómata con pila:
 
-- Por __estados finales__: $L(M)=$\{ $w \in A^\* : (q_0,w,Z_0) \Vdash (p,\epsilon,\gamma),p\in F, \gamma\in B^\*$ \}.
+- Por __estados finales__: $L(M)=$\{ $w \in A^\* : (q_0,w,Z_0) \Vdash (p,\epsilon,\gamma),p\in F,\gamma\in B^\*$ \}.
 - Por __pila vacía__: $N(M)=$\{ $w \in A^\* : (q_0,w,Z_0) \Vdash (p,\epsilon,\epsilon), p\in Q$ \}.
