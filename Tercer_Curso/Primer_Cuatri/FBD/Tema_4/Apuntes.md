@@ -138,3 +138,22 @@ Como funciones básicas implementa:
 - Añadir un nuevo registro almacenado a un archivo almacenado. Para ello hay que localizar la página de la _BD_ más apropiada de las pertenecientes al archivo almacenado. En caso de qu eno se pudiera, se solicita una nueva página y se devuelve al _SGBD_ el _RID_ nuevo.
 - Eliminar un registro de un archivo almacenado; donde es necesario recuperar la página de la _BD_ que contiene ducho registro y marcar el espacio ocupado por el registro en dicha página ocmo disponibel.
 - Actualizar un registro en un archivo almacenado; para ello, se debe recuperar la página de la _BD_ que contiene le registro que se desea actualizar. A continuación, se intenta sustituir la información y si no se puede intenta ubicar el contenido en otra página.
+
+## 4.3.Representación de la _BD_ a nivel interno
+
+Realmente, la _BD_ se representa de diferentes formas dependiendo del nive de la arquitectura del _SGBD_ en el que nos encontremos:
+
+En el __nivel interno__ que es el que nos concierne, no tiene por qué conicidir esta representación con la del _nivel conceptual_; de hecho, cada conjunto de registros no tiene por qué ser un fichero.
+
+Todo esto se consigue gracias a la correspondencia de la que hablábamos en el tema de la _arquitectura ANSI/SPARC_, es decir, el nivel interno debe traducir las estructuras del nivel conceptual a otras estructuras intermedias más cercanas al almacenamiento real de los datos, es decir, el __nivel físico__.
+
+Hay dos formas de agrupar los archivos, pues ya sabemos que la _BD_ a nivel interno se entiende como un conjunto de páginas en las que se van ubicando los registro:
+
+- __Intra-Archivo__: consiste en agrupar en una misma página los registros del mismo tipo, es decir, los conjuntos de tuplas de la misma relación. Es el método más usado.
+
+- __Inter-Archivo__: consiste en agrupar en una página registros de distinto tipo, es decir, registros que no están en la misma relación con el objetivo de fomentar la velocidad de operaciones específicas que serán las que más se usen en la _BD_. Para poder implementarlo, las tuplas guardadas deben tener una relación _fuerte-débil_.
+
+> La organización descrita es un ejemplo general. Cada _SGBD_ comercial usa su variante concreta, aunque la idea subyacente es la misma.
+
+> No existe relación directa _fichero-almacenado/fichero-físico_, ya que todos los conjuntos de páginas irán almacenados, con toda probabilidad, en uno o varios ficheros físicos.
+
