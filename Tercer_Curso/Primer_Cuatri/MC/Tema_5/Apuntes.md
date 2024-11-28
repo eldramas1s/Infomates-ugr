@@ -94,7 +94,7 @@ Pasando a la _construcción_ del autómata $M_f$, se construirá a partir de $M$
 - Se añade un nuevo símbolo a $B$ que será el nuevo símbolo inicial de la pila, será $Z_0^n$.
 - Añadimos a las transiciones de $M$ las siguientes:
     + $\delta(q_0^n, \epsilon, Z_0^n)=$ \{ $(q_0,Z_0Z_0^n)$ \}
-    + $\delta(q,\epsilon,Z_0^n)=$ \{ $(q_f,Z_0^n)$ \} $ \forall q \in Q
+    + $\delta(q,\epsilon,Z_0^n)=$ \{ $(q_f,Z_0^n)$ \} $\forall q \in Q
 
 \[ $2.$ \]:
 
@@ -106,8 +106,8 @@ Pasando a la _construcción_ del autómata $M_n$, se construirá a partir de $M$
 - Se añade un símbolo a $B$ que será el nuevo símbolo inicial de la pila, será $Z_0^n$.
 - Se añaden las siguientes transiciones a las que ya tenía $M$:
     + $\delta(q_0^n, \epsilon, Z_0^n)=$ \{ $(q_0,Z_0Z_0^n)$ \}
-    + \delta(q,\epsilon,H)=$ \{ $(q_s,H)$ \} $\forall q\in F, H \in B \cup$ \{ $Z_0^n$ \}
-    + \delta(q_s,\epsilon,H)=$ \{ $(q_s,\epsilon)$ \} $\forall H \in B \cup$ \{ $Z_0^n$ \}
+    + $\delta(q,\epsilon,H)=$ \{ $(q_s,H)$ \} $\forall q\in F, H \in B \cup$ \{ $Z_0^n$ \}
+    + $\delta(q_s,\epsilon,H)=$ \{ $(q_s,\epsilon)$ \} $\forall H \in B \cup$ \{ $Z_0^n$ \}
 
 _Fin demostración_
 
@@ -155,7 +155,7 @@ Un lenguaje puede ser aceptado por un autómata con pila determinista por el _cr
 
 En resumen, la distinción entre los dos criterios aplicados a lenguajes deterministas no es sustancial pues; si un lenguaje $L$ es determinista y __no__ cumple la _propiedad prefijo_, una sencialla tranformación lo convertiría en un lenguaje que sí cumple la propiedad; y por tanto, sería acpetado por un autómata determinista por el _criterio de pila vacía_.
 
-La transformación de la que se habla consiste en añadir un nuevo símbolo que no esté en el alfabeto para añadirlo al final de todas las palabras. De esta manera, si $\ghi \notin A$ entonces consideramos $L$ \{ $u\ghi : u \in L$ \}.
+La transformación de la que se habla consiste en añadir un nuevo símbolo que no esté en el alfabeto para añadirlo al final de todas las palabras. De esta manera, si $\xi \notin A$ entonces consideramos $L$ \{ $u\xi : u \in L$ \}.
 
 <a id='EAG'></a>
 ## 5.4.Equivalencia entre Autómatas y Gramáticas
@@ -173,19 +173,19 @@ _Demostración_
 El autómata vendrá dado por:
 - $Q=$ \{ $q$ \}
 - $A=T$
-- $B=V \cap T$
+- $B=V \cup T$
 - $q_0 = q$
 - $Z_0=S$
 - $F=\emptyset$
-- \delta viene determinada por las siguientes relaciones:
+- $\delta$ viene determinada por las siguientes relaciones:
     + $\delta(q,\epsilon,B)=$ \{ $(q,\alpha):B\rightarrow \alpha \in P$ \}
-    + \delta(q,a,a)=$ \{ $(q,\epsilon)$ \}
+    + $\delta(q,a,a)=$ \{ $(q,\epsilon)$ \}
 
 Este autómata acepta el mismo lenguajes por el _criterio de pila vacía_.
 
 \[ $\Longleftarrow$ \]:
 
-Sea $M=(Q,A,B,\delta,q_0,Z_0,\emptyset)$ un autómata con pila que acepta $L$ por el _criterio de pila vacía_, la idea básica será construir la grmática a partir de la variable $S$ y todas las variables de la forma \[ $q,X,p$ \] donde $p,q\inQ, X\inB$.
+Sea $M=(Q,A,B,\delta,q_0,Z_0,\emptyset)$ un autómata con pila que acepta $L$ por el _criterio de pila vacía_, la idea básica será construir la grmática a partir de la variable $S$ y todas las variables de la forma \[ $q,X,p$ \] donde $p,q\in Q, X \in B$.
 
 Donde la variable \[ $q,X,p$ \] debe generar aquellas palabras que son capaces de poder leerse de forma completa llevando el autómata con pila desde el estad $q$ al estado $p$, quitando la $X$ de la pila.
 
