@@ -17,6 +17,7 @@
 #include <thread> // this_thread::sleep_for
 #include <random> // dispositivos, generadores y distribuciones aleatorias
 #include <chrono> // duraciones (duration), unidades de tiempo
+#include <atomic>
 #include <mpi.h>
 
 using namespace std;
@@ -33,8 +34,6 @@ const int
    etiq_P                = 1,
    etiq_C                = 2;
 
-
-//TODO: determinar los k
 
 //**********************************************************************
 // plantilla de función para generar un entero aleatorio uniformemente
@@ -71,6 +70,7 @@ void funcion_productor(int orden)
       cout << "Productor " << orden << " va a enviar valor " << valor_prod << endl << flush;
       MPI_Ssend( &valor_prod, 1, MPI_INT, id_buffer, etiq_P, MPI_COMM_WORLD );
    }
+   cout << "Soy Productor"<< orden << "y he terminado" << endl;
 }
 // ---------------------------------------------------------------------
 
@@ -85,16 +85,20 @@ void consumir( int valor_cons, int orden )
 void funcion_consumidor(int orden)
 {
    int         peticion,
-               valor_rec = 1 ;
+               valor_rec;
    MPI_Status  estado ;
 
    for( unsigned int i=0 ; i < num_items/num_cons; i++ )
    {
+       cout << "Soy el consumidor [" << orden << "] voy a pedir dato i " << i <<  endl;
       MPI_Ssend( &peticion,  1, MPI_INT, id_buffer, etiq_C, MPI_COMM_WORLD);
+       cout << "Soy el consumidor [" << orden << "] voy a recibir dato i " << i << endl;
+
       MPI_Recv ( &valor_rec, 1, MPI_INT, id_buffer, 0, MPI_COMM_WORLD,&estado );
       cout << "\t\t\tConsumidor " << orden << " ha recibido valor " << valor_rec << endl << flush ;
       consumir( valor_rec, orden );
    }
+   cout << "Soy Consumidor "<< orden << "y he terminado" << endl;
 }
 // ---------------------------------------------------------------------
 
@@ -118,7 +122,7 @@ void funcion_buffer()
          tag_aceptable = etiq_C ;      // $~~~$ solo cons.
       else                                          // si no vacío ni lleno
          tag_aceptable = MPI_ANY_TAG ;     // $~~~$ cualquiera
-
+    cout << "Soy el buffer y la etiqueta que acepto es " << tag_aceptable << endl;
       // 2. recibir un mensaje del emisor o emisores aceptables
 
       MPI_Recv( &valor, 1, MPI_INT,MPI_ANY_SOURCE, tag_aceptable, MPI_COMM_WORLD, &estado );
@@ -155,10 +159,11 @@ void funcion_buffer()
          valor = buffer[primera_ocupada] ;
          primera_ocupada = (primera_ocupada+1) % tam_vector ;
          num_celdas_ocupadas-- ;
-         cout << "\t   Buffer va a enviar valor " << valor << endl ;
+         cout << "\t   Buffer va a enviar valor " << valor << "a " << estado.MPI_SOURCE<< endl ;
          MPI_Ssend( &valor, 1, MPI_INT, estado.MPI_SOURCE, 0, MPI_COMM_WORLD);
       }
    }
+   cout << "Soy buffer y he terminado" << endl;
 }
 
 // ---------------------------------------------------------------------
@@ -180,8 +185,11 @@ int main( int argc, char *argv[] )
       // Cómo controlo el orden dentro de cada rol?
       if ( id_propio>=0 && id_propio < num_prod  )
          funcion_productor((num_procesos_esperado-num_cons+id_propio-1)%num_prod);
-      else if ( id_propio == id_buffer )
-         funcion_buffer();
+      else if ( id_propio == id_buffer ){
+         cout<< "VOy a ser buffer["<<id_propio<< "]" << endl;
+          funcion_buffer();
+
+        }
       else
          funcion_consumidor((num_procesos_esperado-num_prod+id_propio-1)%num_cons);
    }
