@@ -94,7 +94,7 @@ Pasando a la _construcción_ del autómata $M_f$, se construirá a partir de $M$
 - Se añade un nuevo símbolo a $B$ que será el nuevo símbolo inicial de la pila, será $Z_0^n$.
 - Añadimos a las transiciones de $M$ las siguientes:
     + $\delta(q_0^n, \epsilon, Z_0^n)=$ \{ $(q_0,Z_0Z_0^n)$ \}
-    + $\delta(q,\epsilon,Z_0^n)=$ \{ $(q_f,Z_0^n)$ \} $\forall q \in Q
+    + $\delta(q,\epsilon,Z_0^n)=$ \{ $(q_f,Z_0^n)$ \} $\forall q \in Q$
 
 \[ $2.$ \]:
 
