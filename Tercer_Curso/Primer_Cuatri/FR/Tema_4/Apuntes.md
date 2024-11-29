@@ -298,3 +298,70 @@ Voviendo al doble cifrado con certificados digitales, supongamos que una entidad
 Siguiendo este esquema queda ya claro que lo que haremos es conseguir autenticación y confidencialidad, independientemente del orden de cifrado. Entonces, cifraremos usando la clave privada de A y la clave pública de B. 
 
 No obstante, esta conposición de cifrados no siempre funciona pues debe cumplirse el requisito de que A y B sean dueños de las claves correspondientes que se están usando. Es aquí donde entra en juego el __certificado digital__ y el __autoridad de certificación__.
+
+## 4.7.Protocolos seguros
+
+La __seguridad__ se divide realmente en dos tipo:
+
+- __Perimetral__: consiste en el uso de _firewalls_,_sistemas de detección de intrusiones_ o _sistemas de respuesta_.
+- __Seguridad en protocolos__: consiste en usar protocolos para garantizar esa seguridad:
+    + Capa de aplicación disponemos de _PGP_ o _SSH_.
+    + Capa de sesión (entre aplicación y transporte) disponemos de _TSL_, _TLS_...
+    + Capa de red disponemos de _IPSec_ para la conexión por _VPN_.
+
+### 4.7.1.Pretty Good Privacy
+
+Sea $P$ el texto plano, seguiremos los siguientes pasos:
+1. Generar un compendio mediante _MD5_, que llamaremos $R=MD5(P)$, usando la _firma digital_ $FD=K_{priv_A}(R).
+2. Comprimir la información, no tiene mayor utilidad que reducir la cantidad de datos mandados, que llamaremos $Z$.
+3. Ciframos $Z$ mediante _IDEA_ añadiendo la clave de _sesión_ cifrada con la clave publica del emisor(_B_), es decir, $C=IDEA_K(Z)+K_{pub_B}(K)$.
+4. Mandamos este mensaje $C$ codificado con _B64_ que es una codificación, no un cifrado, es decir, $M=B64(C)$.
+
+De esta manera haciendo el proceso inverso con los materiales y claves correspondientes, el receptor será capaz de obtener toda la información.
+
+Este protoclos nos otorga:
+- Confidencialidad al cifrar con la clave pública del receptor.
+- Integridad.
+- Autenticación al cifrar con la clave privada del emisor.
+- Podría conseguirse no repudio en caso de usar un certificado digital mediante alguna de las técnicas que ya hemos visto.
+
+![PGP](./imagenes/pgp.png)
+
+### 4.7.2.Transport security Layer
+
+Estudiaremos _SSL_ pese a que ambos protocolos tienden a ser lo mismo, uno de ellos es la implementación de una empresa y otro es el que se ha estandarizado. De hecho, aunque pueden usarse para lo mismo, sus códigos no son compatibles.
+
+En realidad, _SSL_ no es un protocolo sino una familia de protocolos:
+1. __Handshake Protocol__: se encarga de negociar el algoritmo de cifrado, la función hash que se va a usar para la integridad, autenticar el servidor de autenticación con su certificado digital... Cabe recalcar que el cliente no se autentica y que a partir de esto el cliente genera la clave de sesión y habitualmente se usa _Diffie-Hellman_ para ello, pero tambíen pueden generarse aleatoriamente y pasarlas al servidor cifradas con la clave pública del mismo.
+2. __Record Protocol__: se encarga de encapsular los protocolos y ofrece un canal seguro para la transimisión con privacidad, autenticación e integridad. Es un protocolo de registro(nombre que reciben los mensajes enviados por este protocolo) luego es el que permite mandar las cosas.
+3. __Change Cipher Spec Protocol__: se encarga de notificar cambios en el cifrado.
+4. __Assert Protocol__: informa sobre errores en la sesión.
+
+![Esquema SSl](./imagenes/esquemassl.png)
+
+En este protocolo no hay debilidad frente a _man-in-the-middle_ pues mediante el certificado digital se autentican las claves mandadas por _Diffie-Hellman_ luego si un mensaje no viene autenticado el mensaje será rechazado.
+
+### 4.7.3.IPSec
+
+El objetivo de este protocolo es __garantizar autenticación, integridad y privacidad__ a nivel _IP_.
+
+Este protocolo consiste en crear túneles unidireccionales donde los datos circulan cifrados. Con esto nos referimos a una conexión cerrada extremo a extremo donde solo los extremos pueden conocer la información mediante cifrado. Además, por si fuera poco, estos paquetes son encapsulados en otro paquete _IP_ para evitar la vulnerabilidad, es decir, podría asemejarse a meter un sobre dentro de otro sobre, al primero de todos se le puede tocar pero al interior no.
+
+El hecho de que sean unidireccionales provoca que cuando se quiera conseguir una comunicación _pregunta-respuesta_ sean necesarios dos túneles; luego, es poco escalable.
+
+A este problema se le añade el descontento de los más fieles a _IP_ con respecto al establecimiento previo de conexión con el extremo, ya que _IP_ no lo realiza e _IPSec_ requiere del mismo para poder implementarse.
+
+Para este protocolo se usan tres procedimientos:
+1. __Asociación de seguridad__: consiste en establecer una clave secreta mediante _Diffie-Hellman_ y _autenticación_ por certificados digitales. La identificación de los extremos se realiza mediante la _IP origen_ del mensaje y unparámetro de seguridad de 32 bits que llamaremos _Security Parameter Index_.
+2. __Garantía de autenticación e integridad__: haciendo uso de _Cabeceras de autenticación_.
+3. __Garantía de autenticación e integridad y privacidad__: haciendo uso de los protocolos de _Encapsulado de seguridad de la carga_.
+
+Como se puede preveer, sólo se usará uno de dos útlimos procedimientos pue susarlos los dos sería redundante.
+
+Independientemente de cual de los dos se use, _IPSec_ tiene dos modos de operación:
+1. __Modo Transporte__: consiste en estableces una asociación _extremo-extremo_ entre el origen y el destino ya sea con seguridad o sin ella. Es decir, un túnel seguro o no seguro.
+2. __Modo túnel__: consiste en delegar el _túnel_ entre dos servidores que dan acceso a redes locales cada uno; de esta manera, los clientes se comunican mediante los servidores para llegar a los clientes de la otra red.
+
+Una desventaja del __modo túnel__ es que, aunque los servidores establezcan una comunicación segura, una vez que el paquete semueve por la red local vuelve a ser vulnerable a ataques.
+
+![Modos IPSec](./imagenes/modosipsec.png)
