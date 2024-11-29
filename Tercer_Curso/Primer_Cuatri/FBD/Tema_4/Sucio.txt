@@ -1,0 +1,63 @@
+En el primer bloque del seistema operativo se guardan los datos iniciales.
+
+Es mas importante conocer la idea general y entender como funciona la correspondencia interno-conceptual.
+
+Cada registro no tiene por qué ser una tupla, depende del agrupamiento
+
+El facotr de bloqueo me dice la cantidad de registros que puedoe meter en cada bloque para no desperdiciar paseos a disco ni espacio de memoria.
+
+
+Segunda parte
+-------------------
+
+NO hay un mejior metodo, sino que cada uno tiene sus ventajas e inconvenietes paara lo que usaresmo criterios:
+- ¿QUé acelero?
+- ¿Necesitan algo mas para oder acelerar y merece la pena?
+
+Organización secuencial:
+    - POdemos hacerlo de forma secuencial pura
+    - Podemos hacerlo con ordenacion de alguno ede sus campos -> es habitual y se llama clave fisica.
+Inconveniete:
+    - Barrer todo el disco para una busqueda, hay tantos pases a disco como bloques.
+        + Si no estn ordenados entonces recorrer todo el disco
+        + Si estaan ordenadao si paso la clave fisica sé que ya no esta.
+No sirve practicamente para nada.
+En cada operacion de insertar o borrar debemos buscar.
+
+
+Para mejorar esdto:
+    - MEter una estructura adicional que ayude -> indices
+    - buscar una trecnica que acceda directamtne -> hash
+
+Indexacion:
+
+Intentamos ir menos a disco ara localizar a disco -> nueva estructuraa(fichero secuencial) con registros mas pequenños donde esta la clave de busqueda y un puntero al bloque de disco donde se encuentra (paginacion).
+
+La ventaja es que en cada bloque que haya en memoria habra mas claves de busqueda luego en un viaje a disco recibira muchos mas registros.
+
+A diap 18 se le llama indice primario porque clave fisica = clave de busqueda
+
+El secundario es cuando no se da la igualdad anterior.
+
+Las consultas se recuelven igual pero las busquedas se hacen en el fichero de indices.
+
+Cuando hagmos una operacion en ocasiones tendremos que actualizar tanto los bloques de la informacion como los bloques de indexacion. 
+Ademas aumenta la memoria necesaria para la estructura.
+
+Sobre una estructura de indices debe haber varios indices de los cuales solo uno sera el primario y muchos secundarios, lo mas eficiente con respecto a tiempo es tener tantos indices como campos pero es muy ineficiente con respecto a espacio.
+
+Indexacion no densos: Tener un indice por cada bloque reduciendo el fichero de indices, los paseos a disco son menos para este ficher. COn claves secundarias no se puede hacer.
+
+Indexacion jerárquica: hacer un ideice sobre lso indices acelerando la busqueda -> divide y venceras -> se van haciendo ramas de un arbol.
+
+Los indices deben ser no densos se puede reptir tanto como el indice de primer último sea de 1 bloque.
+
+El indice de primer nivel pude ser no denso solo si es primario
+
+La desventaja es la catidad de memoria.
+
+Arboles B+:
+
+Consiste en un arbol equilibrado donde se define el orden maximo de punteros a los hijos puede tener un nodo.
+
+Como en las hojas los nodos van enganchados unos conotros.  
