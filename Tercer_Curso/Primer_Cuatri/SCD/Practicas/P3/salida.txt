@@ -1,454 +1,173 @@
 Soy el consumidor [3] voy a pedir dato i 0
-VOy a ser buffer[5]
-SOy el buffer y la etiqueta que acepto es 1
-Soy el consumidor [2] voy a pedir dato i 0
 Soy el consumidor [0] voy a pedir dato i 0
+VOy a ser buffer[5]
+Soy el buffer y la etiqueta que acepto es 1
 Soy el consumidor [1] voy a pedir dato i 0
+Soy el consumidor [2] voy a pedir dato i 0
 Soy el consumidor [4] voy a pedir dato i 0
-Productor 2 ha producido valor 21
-Productor 2 va a enviar valor 21
-	   Buffer ha recibido valor 21
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer va a enviar valor 21a 6
-SOy el buffer y la etiqueta que acepto es 1
-Soy el consumidor [1] voy a recibir dato i 0
-			Consumidor 1 ha recibido valor 21
-Productor 2 ha producido valor 22
-Productor 2 va a enviar valor 22
-	   Buffer ha recibido valor 22
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer va a enviar valor 22a 7
-SOy el buffer y la etiqueta que acepto es 1
-Soy el consumidor [2] voy a recibir dato i 0
-			Consumidor 2 ha recibido valor 22
 Productor 3 ha producido valor 31
 Productor 3 va a enviar valor 31
-Productor 0 ha producido valor 1
-Productor 0 va a enviar valor 1
-	   Buffer ha recibido valor 1
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer va a enviar valor 1a 8
+Buffer ha recibido valor 31
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Soy el consumidor [1] voy a recibir dato i 0
+Soy el consumidor [2] voy a recibir dato i 0
 Soy el consumidor [3] voy a recibir dato i 0
-			Consumidor 3 ha recibido valor 1
-SOy el buffer y la etiqueta que acepto es 1
-	   Buffer ha recibido valor 31
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer va a enviar valor 31a 9
 Soy el consumidor [4] voy a recibir dato i 0
-			Consumidor 4 ha recibido valor 31
-SOy el buffer y la etiqueta que acepto es 1
-Productor 4 ha producido valor 41
-Productor 4 va a enviar valor 41
 Soy el consumidor [0] voy a recibir dato i 0
-	   Buffer ha recibido valor 41
-SOy el buffer y la etiqueta que acepto es -1
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 11
-SOy el buffer y la etiqueta que acepto es -1
-Productor 1 ha producido valor 11
-Productor 1 va a enviar valor 11
-	   Buffer ha recibido valor 2
-SOy el buffer y la etiqueta que acepto es -1
-Productor 0 ha producido valor 2
-Productor 0 va a enviar valor 2
-	   Buffer ha recibido valor 23
-SOy el buffer y la etiqueta que acepto es -1
-Productor 2 ha producido valor 23
-Productor 2 va a enviar valor 23
-	   Buffer ha recibido valor 24
-SOy el buffer y la etiqueta que acepto es -1
-Productor 2 ha producido valor 24
-Productor 2 va a enviar valor 24
-	   Buffer ha recibido valor 32
-SOy el buffer y la etiqueta que acepto es -1
 Productor 3 ha producido valor 32
 Productor 3 va a enviar valor 32
-Productor 1 ha producido valor 12
-Productor 1 va a enviar valor 12
-	   Buffer ha recibido valor 12
-SOy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 4 ha producido valor 41
+Productor 4 va a enviar valor 41
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 21
+Productor 2 va a enviar valor 21
+Soy el buffer y la etiqueta que acepto es -1
 Productor 4 ha producido valor 42
 Productor 4 va a enviar valor 42
-	   Buffer ha recibido valor 42
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer va a enviar valor 41a 6
-SOy el buffer y la etiqueta que acepto es -1
-			Consumidor 1 ha consumido valor 21
-Soy el consumidor [1] voy a pedir dato i 1
-Soy el consumidor [1] voy a recibir dato i 1
-			Consumidor 1 ha recibido valor 41
-	   Buffer ha recibido valor 33
-SOy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 0 ha producido valor 1
+Productor 0 va a enviar valor 1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 1 ha producido valor 11
+Productor 1 va a enviar valor 11
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 22
+Productor 2 va a enviar valor 22
+Soy el buffer y la etiqueta que acepto es -1
 Productor 3 ha producido valor 33
 Productor 3 va a enviar valor 33
-Productor 1 ha producido valor 13
-Productor 1 va a enviar valor 13
-	   Buffer ha recibido valor 13
-SOy el buffer y la etiqueta que acepto es -1
-			Consumidor 4 ha consumido valor 31
-Soy el consumidor [4] voy a pedir dato i 1
-Soy el consumidor [4] voy a recibir dato i 1
-			Consumidor 4 ha recibido valor 11
-	   Buffer va a enviar valor 11a 9
-SOy el buffer y la etiqueta que acepto es -1
-Productor 0 ha producido valor 3
-Productor 0 va a enviar valor 3
-	   Buffer ha recibido valor 3
-SOy el buffer y la etiqueta que acepto es -1
-			Consumidor 3 ha consumido valor 1
-Soy el consumidor [3] voy a pedir dato i 1
-Soy el consumidor [3] voy a recibir dato i 1
-			Consumidor 3 ha recibido valor 2
-	   Buffer va a enviar valor 2a 8
-SOy el buffer y la etiqueta que acepto es -1
-			Consumidor 2 ha consumido valor 22
-Soy el consumidor [2] voy a pedir dato i 1
-Soy el consumidor [2] voy a recibir dato i 1
-			Consumidor 2 ha recibido valor 23
-	   Buffer va a enviar valor 23a 7
-SOy el buffer y la etiqueta que acepto es -1
-Productor 3 ha producido valor 34
-Productor 3 va a enviar valor 34
-	   Buffer ha recibido valor 34
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 14
-SOy el buffer y la etiqueta que acepto es -1
-Productor 1 ha producido valor 14
-Productor 1 va a enviar valor 14
-	   Buffer ha recibido valor 25
-SOy el buffer y la etiqueta que acepto es 2
-Productor 2 ha producido valor 25
-Productor 2 va a enviar valor 25
+Soy el buffer y la etiqueta que acepto es -1
 Productor 4 ha producido valor 43
 Productor 4 va a enviar valor 43
-Productor 0 ha producido valor 4
-Productor 0 va a enviar valor 4
-Productor 3 ha producido valor 35
-Productor 3 va a enviar valor 35
-Productor 2 ha producido valor 26
-Productor 2 va a enviar valor 26
-			Consumidor 3 ha consumido valor 2
-Soy el consumidor [3] voy a pedir dato i 2
-Soy el consumidor [3] voy a recibir dato i 2
-			Consumidor 3 ha recibido valor 24
-	   Buffer va a enviar valor 24a 8
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 4
-SOy el buffer y la etiqueta que acepto es 2
-Productor 1 ha producido valor 15
-Productor 1 va a enviar valor 15
-Productor 0 ha producido valor 5
-Productor 0 va a enviar valor 5
-	   Buffer va a enviar valor 32a 9
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 15
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 4 ha consumido valor 11
-Soy el consumidor [4] voy a pedir dato i 2
-Soy el consumidor [4] voy a recibir dato i 2
-			Consumidor 4 ha recibido valor 32
-			Consumidor 1 ha consumido valor 41
-Soy el consumidor [1] voy a pedir dato i 2
-	   Buffer va a enviar valor 12a 6
-Soy el consumidor [1] voy a recibir dato i 2
-			Consumidor 1 ha recibido valor 12
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 26
-SOy el buffer y la etiqueta que acepto es 2
-Productor 1 ha producido valor 16
-Productor 1 va a enviar valor 16
-	   Buffer va a enviar valor 42a 7
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 35
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 2 ha consumido valor 23
-Soy el consumidor [2] voy a pedir dato i 2
-Soy el consumidor [2] voy a recibir dato i 2
-			Consumidor 2 ha recibido valor 42
-Productor 3 ha producido valor 36
-Productor 3 va a enviar valor 36
-Productor 2 ha producido valor 27
-Productor 2 va a enviar valor 27
-	   Buffer va a enviar valor 33a 8
-			Consumidor 3 ha consumido valor 24
-Soy el consumidor [3] voy a pedir dato i 3
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 43
-SOy el buffer y la etiqueta que acepto es 2
-Soy el consumidor [3] voy a recibir dato i 3
-			Consumidor 3 ha recibido valor 33
-			   Buffer va a enviar valor 13a 9
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 5
-SOy el buffer y la etiqueta que acepto es 2
-	Consumidor 4 ha consumido valor 32
-Soy el consumidor [4] voy a pedir dato i 3
-Soy el consumidor [4] voy a recibir dato i 3
-			Consumidor 4 ha recibido valor 13
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 23
+Productor 2 va a enviar valor 23
+Soy el buffer y la etiqueta que acepto es -1
+Productor 1 ha producido valor 12
+Productor 1 va a enviar valor 12
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 0 ha producido valor 2
+Productor 0 va a enviar valor 2
+Productor 3 ha producido valor 34
+Productor 3 va a enviar valor 34
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 24
+Productor 2 va a enviar valor 24
+Productor 1 ha producido valor 13
+Productor 1 va a enviar valor 13
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
 Productor 4 ha producido valor 44
 Productor 4 va a enviar valor 44
-	   Buffer va a enviar valor 3a 6
-			Consumidor 1 ha consumido valor 12
-Soy el consumidor [1] voy a pedir dato i 3
-Soy el consumidor [1] voy a recibir dato i 3
-			Consumidor 1 ha recibido valor 3
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 16
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 2 ha consumido valor 42
-Soy el consumidor [2] voy a pedir dato i 3
-	   Buffer va a enviar valor 34a 7
-Soy el consumidor [2] voy a recibir dato i 3
-			Consumidor 2 ha recibido valor 34
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 27
-SOy el buffer y la etiqueta que acepto es 2
-Productor 0 ha producido valor 6
-Productor 0 va a enviar valor 6
-Productor 1 ha producido valor 17
-Productor 1 va a enviar valor 17
-Productor 2 ha producido valor 28
-Productor 2 va a enviar valor 28
-			Consumidor 3 ha consumido valor 33
-Soy el consumidor [3] voy a pedir dato i 4
-Soy el consumidor [3] voy a recibir dato i 4
-			Consumidor 3 ha recibido valor 14
-	   Buffer va a enviar valor 14a 8
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 36
-SOy el buffer y la etiqueta que acepto es 2
-			   Buffer va a enviar valor 25a 9
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 44
-SOy el buffer y la etiqueta que acepto es 2
-	Consumidor 4 ha consumido valor 13
-Soy el consumidor [4] voy a pedir dato i 4
-Soy el consumidor [4] voy a recibir dato i 4
-			Consumidor 4 ha recibido valor 25
+Productor 0 ha producido valor 3
+Productor 0 va a enviar valor 3
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 25
+Productor 2 va a enviar valor 25
+Soy el buffer y la etiqueta que acepto es -1
 Productor 4 ha producido valor 45
 Productor 4 va a enviar valor 45
-			Consumidor 1 ha consumido valor 3
-Soy el consumidor [1] voy a pedir dato i 4
-	   Buffer va a enviar valor 4a 6
-Soy el consumidor [1] voy a recibir dato i 4
-			Consumidor 1 ha recibido valor 4
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 6
-SOy el buffer y la etiqueta que acepto es 2
-Productor 3 ha producido valor 37
-Productor 3 va a enviar valor 37
-Productor 0 ha producido valor 7
-Productor 0 va a enviar valor 7
-	   Buffer va a enviar valor 15a 7
-			Consumidor 2 ha consumido valor 34
-Soy el consumidor [2] voy a pedir dato i 4
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 17
-SOy el buffer y la etiqueta que acepto es 2
-Soy el consumidor [2] voy a recibir dato i 4
-			Consumidor 2 ha recibido valor 15
-			Consumidor 3 ha consumido valor 14
-Soy el consumidor [3] voy a pedir dato i 5
-	   Buffer va a enviar valor 26a 8
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 28
-SOy el buffer y la etiqueta que acepto es 2
-Soy el consumidor [3] voy a recibir dato i 5
-			Consumidor 3 ha recibido valor 26
-Productor 1 ha producido valor 18
-Productor 1 va a enviar valor 18
-			Consumidor 4 ha consumido valor 25
-Soy el consumidor [4] voy a pedir dato i 5
-Soy el consumidor [4] voy a recibir dato i 5
-			Consumidor 4 ha recibido valor 35
-	   Buffer va a enviar valor 35a 9
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 37
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 1 ha consumido valor 4
-Soy el consumidor [1] voy a pedir dato i 5
-Soy el consumidor [1] voy a recibir dato i 5
-			Consumidor 1 ha recibido valor 43
-	   Buffer va a enviar valor 43a 6
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 45
-SOy el buffer y la etiqueta que acepto es 2
-Productor 2 ha producido valor 29
-Productor 2 va a enviar valor 29
-	   Buffer va a enviar valor 5a 7
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 7
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 2 ha consumido valor 15
-Soy el consumidor [2] voy a pedir dato i 5
-Soy el consumidor [2] voy a recibir dato i 5
-			Consumidor 2 ha recibido valor 5
-Productor 3 ha producido valor 38
-Productor 3 va a enviar valor 38
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 0 ha producido valor 4
+Productor 0 va a enviar valor 4
+Productor 1 ha producido valor 14
+Productor 1 va a enviar valor 14
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 3 ha producido valor 35
+Productor 3 va a enviar valor 35
+Soy el buffer y la etiqueta que acepto es -1
 Productor 4 ha producido valor 46
 Productor 4 va a enviar valor 46
-Productor 0 ha producido valor 8
-Productor 0 va a enviar valor 8
-	   Buffer va a enviar valor 16a 8
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 18
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 3 ha consumido valor 26
-Soy el consumidor [3] voy a pedir dato i 6
-Soy el consumidor [3] voy a recibir dato i 6
-			Consumidor 3 ha recibido valor 16
-Productor 1 ha producido valor 19
-Productor 1 va a enviar valor 19
-	   Buffer va a enviar valor 27a 9
-			Consumidor 4 ha consumido valor 35
-Soy el consumidor [4] voy a pedir dato i 6
-Soy el consumidor [4] voy a recibir dato i 6
-			Consumidor 4 ha recibido valor 27
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 29
-SOy el buffer y la etiqueta que acepto es 2
-Productor 2 ha producido valor 30
-Productor 2 va a enviar valor 30
-	   Buffer va a enviar valor 36a 6
-			Consumidor 1 ha consumido valor 43
-Soy el consumidor [1] voy a pedir dato i 6
-Soy el consumidor [1] voy a recibir dato i 6
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 38
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 1 ha recibido valor 36
-	   Buffer va a enviar valor 44a 7
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 46
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 2 ha consumido valor 5
-Soy el consumidor [2] voy a pedir dato i 6
-Soy el consumidor [2] voy a recibir dato i 6
-			Consumidor 2 ha recibido valor 44
-			Consumidor 3 ha consumido valor 16
-Soy el consumidor [3] voy a pedir dato i 7
-Soy el consumidor [3] voy a recibir dato i 7
-	   Buffer va a enviar valor 6a 8
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 8
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 3 ha recibido valor 6
-Productor 0 ha producido valor 9
-Productor 0 va a enviar valor 9
-Productor 3 ha producido valor 39
-Productor 3 va a enviar valor 39
+Productor 0 ha producido valor 5
+Productor 0 va a enviar valor 5
+Soy el buffer y la etiqueta que acepto es -1
+Productor 1 ha producido valor 15
+Productor 1 va a enviar valor 15
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 26
+Productor 2 va a enviar valor 26
+Productor 3 ha producido valor 36
+Productor 3 va a enviar valor 36
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 0 ha producido valor 6
+Productor 0 va a enviar valor 6
+Productor 1 ha producido valor 16
+Productor 1 va a enviar valor 16
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
 Productor 4 ha producido valor 47
 Productor 4 va a enviar valor 47
-			Consumidor 4 ha consumido valor 27
-Soy el consumidor [4] voy a pedir dato i 7
-	   Buffer va a enviar valor 17a 9
-Soy el consumidor [4] voy a recibir dato i 7
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 19
-	SOy el buffer y la etiqueta que acepto es 2
-		Consumidor 4 ha recibido valor 17
-			   Buffer va a enviar valor 28a 6
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 30
-SOy el buffer y la etiqueta que acepto es 2
-Soy Productor2y he terminado
-	Consumidor 1 ha consumido valor 36
-Soy el consumidor [1] voy a pedir dato i 7
-Soy el consumidor [1] voy a recibir dato i 7
-			Consumidor 1 ha recibido valor 28
-Productor 1 ha producido valor 20
-Productor 1 va a enviar valor 20
-			Consumidor 3 ha consumido valor 6
-Soy el consumidor [3] voy a pedir dato i 8
-	   Buffer va a enviar valor 37a 8
-Soy el consumidor [3] voy a recibir dato i 8
-	SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 39
-SOy el buffer y la etiqueta que acepto es 2
-		Consumidor 3 ha recibido valor 37
-Productor 3 ha producido valor 40
-Productor 3 va a enviar valor 40
-	   Buffer va a enviar valor 45a 7
-			Consumidor 2 ha consumido valor 44
-Soy el consumidor [2] voy a pedir dato i 7
-Soy el consumidor [2] voy a recibir dato i 7
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 47
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 2 ha recibido valor 45
-	   Buffer va a enviar valor 7a 9
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 9
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 4 ha consumido valor 17
-Soy el consumidor [4] voy a pedir dato i 8
-Soy el consumidor [4] voy a recibir dato i 8
-			Consumidor 4 ha recibido valor 7
-			Consumidor 1 ha consumido valor 28
-Soy el consumidor [1] voy a pedir dato i 8
-	   Buffer va a enviar valor 18a 6
-Soy el consumidor [1] voy a recibir dato i 8
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 20
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 1 ha recibido valor 18
-Soy Productor1y he terminado
-Productor 0 ha producido valor 10
-Productor 0 va a enviar valor 10
+Productor 2 ha producido valor 27
+Productor 2 va a enviar valor 27
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 0 ha producido valor 7
+Productor 0 va a enviar valor 7
+Productor 3 ha producido valor 37
+Productor 3 va a enviar valor 37
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 28
+Productor 2 va a enviar valor 28
 Productor 4 ha producido valor 48
 Productor 4 va a enviar valor 48
-			Consumidor 3 ha consumido valor 37
-Soy el consumidor [3] voy a pedir dato i 9
-	   Buffer va a enviar valor 29a 8
-Soy el consumidor [3] voy a recibir dato i 9
-			Consumidor 3 ha recibido valor 29
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 40
-SOy el buffer y la etiqueta que acepto es 2
-Soy Productor3y he terminado
-	   Buffer va a enviar valor 38a 7
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 48
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 2 ha consumido valor 45
-Soy el consumidor [2] voy a pedir dato i 8
-Soy el consumidor [2] voy a recibir dato i 8
-			Consumidor 2 ha recibido valor 38
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 29
+Productor 2 va a enviar valor 29
+Productor 1 ha producido valor 17
+Productor 1 va a enviar valor 17
+Soy el buffer y la etiqueta que acepto es -1
+Productor 3 ha producido valor 38
+Productor 3 va a enviar valor 38
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 0 ha producido valor 8
+Productor 0 va a enviar valor 8
 Productor 4 ha producido valor 49
 Productor 4 va a enviar valor 49
-			Consumidor 1 ha consumido valor 18
-Soy el consumidor [1] voy a pedir dato i 9
-Soy el consumidor [1] voy a recibir dato i 9
-	   Buffer va a enviar valor 46a 6
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 10
-SOy el buffer y la etiqueta que acepto es 2
-			Consumidor 1 ha recibido valor 46
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
+Productor 1 ha producido valor 18
+Productor 1 va a enviar valor 18
+Productor 0 ha producido valor 9
+Productor 0 va a enviar valor 9
+Soy el buffer y la etiqueta que acepto es -1
+Productor 2 ha producido valor 30
+Productor 2 va a enviar valor 30
+Soy Productor2y he terminado
+Soy el buffer y la etiqueta que acepto es -1
+Productor 3 ha producido valor 39
+Productor 3 va a enviar valor 39
+Soy el buffer y la etiqueta que acepto es -1
+Productor 1 ha producido valor 19
+Productor 1 va a enviar valor 19
+Soy el buffer y la etiqueta que acepto es -1
+Productor 0 ha producido valor 10
+Productor 0 va a enviar valor 10
 Soy Productor0y he terminado
-			Consumidor 4 ha consumido valor 7
-Soy el consumidor [4] voy a pedir dato i 9
-	   Buffer va a enviar valor 8a 9
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 49
-SOy el buffer y la etiqueta que acepto es 2
-Soy el consumidor [4] voy a recibir dato i 9
-			Consumidor 4 ha recibido valor 8
+Soy el buffer y la etiqueta que acepto es -1
+Soy el buffer y la etiqueta que acepto es -1
 Productor 4 ha producido valor 50
 Productor 4 va a enviar valor 50
-			Consumidor 2 ha consumido valor 38
-Soy el consumidor [2] voy a pedir dato i 9
-Soy el consumidor [2] voy a recibir dato i 9
-			Consumidor 2 ha recibido valor 19
-	   Buffer va a enviar valor 19a 7
-SOy el buffer y la etiqueta que acepto es -1
-	   Buffer ha recibido valor 50
-SOy el buffer y la etiqueta que acepto es 2
 Soy Productor4y he terminado
-			Consumidor 3 ha consumido valor 29
-Soy Consumidor 3y he terminado
-			Consumidor 1 ha consumido valor 46
-Soy Consumidor 1y he terminado
-			Consumidor 4 ha consumido valor 8
-Soy Consumidor 4y he terminado
-			Consumidor 2 ha consumido valor 19
-Soy Consumidor 2y he terminado
+Productor 1 ha producido valor 20
+Productor 1 va a enviar valor 20
+Soy Productor1y he terminado
+Soy el buffer y la etiqueta que acepto es -1
+Productor 3 ha producido valor 40
+Productor 3 va a enviar valor 40
+Soy Productor3y he terminado
+Soy el buffer y la etiqueta que acepto es -1
