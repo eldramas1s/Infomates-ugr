@@ -1,0 +1,1 @@
+g++ -std=c++11 -pthread parcial1extra.cpp scd.cpp -o exeparcialextra

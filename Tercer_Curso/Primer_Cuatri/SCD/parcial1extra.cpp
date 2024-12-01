@@ -18,11 +18,12 @@ int shared_vector[nc]={0};
 
 atomic <int> entradas(0);
 
-Semaphore sem_players(0), sem_npc(1);
+Semaphore s[np]={0,0,0};
+Semaphore sem_npc(0);
 
 mutex mtx,em;
 
-int genera_posicion(){
+int generar_posicion(){
     return aleatorio<0,nc-1>();
 }
 
@@ -40,84 +41,104 @@ int imprime_puntuacion(){
             pos_max=i;
         }
     }
+    cout << "]" << endl<< endl;
     mtx.unlock();
     
-    return pos_max;;
+    return pos_max;
 }
 
 //Vacía el vector compartido, basicamente el mostrador.
 void empty_shared_vector(){
+    em.lock();
     for (int i=0; i<np;i++){
         shared_vector[i]=0;
     }
+    em.unlock();
 }
 
 /* Funcion de los jugadores */
 void funcion_jugadores(int i){
-    int pos_acceso;
+    int pos;
 
-    for( int j=0; j<num_rondas; j++ ){
+    for(int j=0; j<num_rondas; j++){
+        pos=generar_posicion();
 
-        pos_acceso = genera_posicion();
+        sem_wait(s[i]);
+
+        //Entramos en seccion critica
         
         em.lock();
-        if(shared_vector[pos_acceso]==0) puntos[i]+=2;
-        else{
-            puntos[i]+=shared_vector[pos_acceso];
-            if(shared_vector[pos_acceso]==corazon) shared_vector[pos_acceso]-=2;
-            if(shared_vector[pos_acceso]==3) shared_vector[pos_acceso]=0;
+        puntos[i]+=shared_vector[pos];
+        switch (shared_vector[pos])
+        {
+            case 5:
+                shared_vector[pos]-=2;
+            break;
+            case 3:
+                shared_vector[pos]=0;
+            break;
         }
-        entradas=entradas+1;
-        em.unlock();
-    }
 
+        em.unlock();
+
+        entradas = entradas+1;
+        
+        if(entradas = np){
+            sem_signal(sem_npc);
+            entradas=0;
+        }
+    }
 }
 
 
 
 /* Funcion del NPC */
 void funcion_npc(){
-    int pos_insercion;
+    int pos;
 
-    for (int i=0; i<num_rondas; i++){
-        
-        //Genero posicion para el corazón
-        pos_insercion=genera_posicion();
+    for(int i=0; i<num_rondas; i++){
+       
 
-        //Garantizo exclusión mutua gracias a la inicializacion de los semaforos
-        
-        shared_vector[pos_insercion]=corazon;  
-
+        //Numero de ronda
         mtx.lock();
-        cout << "Corazon colocado" << endl;
+        cout << "_____________________________"<<endl<<endl;
+        cout << "Ronda " << i+1 << endl;
+        cout << "------------------------------" <<endl<<endl;
         mtx.unlock();
+
+        pos = generar_posicion();
         
-        for(int i=0; i<np; i++){
-            sem_signal(sem_players);
-        }
-
-        while(entradas != np-1){}
-
-        sem_wait(sem_players);
+        //Esperamos que acabe la ronda anterior
 
         em.lock();
-        empty_shared_vector();
+        shared_vector[pos]=corazon;
         em.unlock();
 
         mtx.lock();
-        imprime_puntuacion();
+        cout << "\t\tCorazon puesto" << endl;
+        cout << "\t\t¡Que comience la caza!" << endl;
         mtx.unlock();
 
 
-    } 
+        for (int j=0; j<np;j++){
+            sem_signal(s[j]);
+        }
+        
+        sem_wait(sem_npc);
 
+        imprime_puntuacion();
+
+        empty_shared_vector();
+    }
 }
 
 
 
 
 int main(){
-
+    
+    //Inicialización de los semáforos
+    
     thread players[np];
     thread npc = thread(funcion_npc);
 
@@ -132,7 +153,10 @@ int main(){
     }
 
     //Imprimimos las puntuaciones finales
-    
+   
+    cout << "=============================================" << endl << endl;
+    cout << "FIN DE LA PARTIDA" << endl;
+
     int ganador=imprime_puntuacion();
 
     cout << "El ganador es P[ "<< ganador << " ] con " << puntos[ganador] << " puntos" << endl;
