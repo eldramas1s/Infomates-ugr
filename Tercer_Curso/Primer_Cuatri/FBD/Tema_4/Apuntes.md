@@ -83,7 +83,17 @@ Como idea general, se usan los siguientes elementos:
 
 ![Esquema de correspondencia](./imagenes/esqcorr.png)
 
-Las técnicas de corespondencia entre los loques de _SO_ y los bloques de almacenamiento pueden ser desde paginación, hasta técnicas mucho más avanzadas.
+___Anotación___
+
+En el primer bloque del sistema operativo suelen guardarse los datos iniciales como:
+- Dirección a la primera paginal libre.
+- Direccion a la primera pñagina de cada entidad o relacion.
+
+Además, para controlar que no nos pasemos de tamaño ocupado existe un __factor de bloqueo__ que simplemente almacena la cantidad de registros que pueden ser almacenados en cada bloque para evitar desperdiciar paseos a disco.
+
+_Fin anotación_
+
+Las técnicas de correspondencia entre los bloques de _SO_ y los bloques de almacenamiento pueden ser desde paginación, hasta técnicas mucho más avanzadas.
 
 Todo el acceso está dividido en dos partes:
 1. Realizada por el _SGBD_:
@@ -156,4 +166,105 @@ Hay dos formas de agrupar los archivos, pues ya sabemos que la _BD_ a nivel inte
 > La organización descrita es un ejemplo general. Cada _SGBD_ comercial usa su variante concreta, aunque la idea subyacente es la misma.
 
 > No existe relación directa _fichero-almacenado/fichero-físico_, ya que todos los conjuntos de páginas irán almacenados, con toda probabilidad, en uno o varios ficheros físicos.
+
+## 4.4.Organización y métodos de acceso
+
+Nuestro objetivo será minimizar el número de accesos a disco, es decir, minimizar la cantidad de páginas de _BD_ involucradas en una operacion de _BD_.
+
+Antes de empezar debemos aclarar ciertas cosas:
+- Ninguno de los métodos que se describirán a continuación es considerado como el mejor de todos pues todos tendrán ventajas e inconvenientes.
+- Mediremos la calidad de la organización siguiendo los siguientes criterios:
+    + Tiempo de acceso  a los datos requeridos.
+    + Porcentaje de memoria ocupada por los datos requeridos con respecto a las páginas de la _BD_ que contienen.
+- Trabajaremos a dos niveles:
+    + Organización de los registros de datos a nivel de almancenamiento.
+    + Adición de estructuras complementarias para acelerar el acceso a dichos registros.
+    + En definitiva: "¿Qué acelero?" y "¿Necesito algo adicional para poder acelerar y merece la pena?".
+
+### 4.4.1.Organización secuencial
+
+Este tipo de organización consiste en utilizar un fichero como un array donde en cada posición guardamos un registro; el amacenaje de los registros se realiza de forma secuencial.
+
+Puede implementarse de dos formas:
+- Sin ordenación; donde la búsqueda es _O(n)_, es decir, obligartoriamente debo recorrer todo el fichero para buscar algún registro.
+- Con ordenación por alguno de sus campos(clave física), permitiendo que si encontramos un valor de la clave de ordenación superior al buscado podemos parar.
+
+Ya hemos visto la búsqueda de un registro, veamos ahora la __inserción__. Para ello debemos seguir los siguientes pasos:
+1. Buscar el bloque que le corresponde.
+    - Si hay sistio, se inserta.
+    - Si no hay sitio; o se crea un nuevo bloque o se crea un bloque de desbordamiento.
+
+Si deseamos __borrar__ un bloque, a parte de necesitar buscar el bloque en cuestión deberemos realizar una reorganización local de los registros del bloque.
+
+![OrgSec](./imagenes/secuencial.png)
+
+Pese a que parece una mala forma de organizar los registros, se presta muy bien a soluciones sencillas y de fácil uso. Alguna de ellas nos permitirán:
+- Acelerar la localización de los datos.
+- Disminuir el número de bloques de disco tranferidos.
+
+Dichas soluciones son:
+- Indexación.
+- Acceso directo.
+
+### 4.4.2. Indexación.
+
+Con esta técnica seremos capaces de reducir el tiempo de acceos a los datos buscando por una clave de búsqueda.
+
+___Ficheros indexados___
+
+Partiremos de un fichero secuencial sobrel el que disponemos de una estructura adicional que llamamos _fichero índice_. Este fichero contiene una lista de dónde se encuentran los registros en el fichero secuencial usando dos campos:
+- Campo __clave__(¿Quién?).
+- Campo de __referencia__(¿Dónde?): es un puntero que apunta a la posición del fichero donde se encuentra la _clave_.
+
+Como ventaja de estos ficheros encontramos que son más pequeños que los _ficheros secuenciales_ pero contiene tantos registros como haya en el _fichero secuencial_.
+
+![fsec](./imagenes/fsec.png)
+
+Podremos tener tantos _ficheros indexados_ como índices deseemos tener donde tendremos de dos tipos:
+- Primario: donde la clave de búsqueda es el mismo campo por el que está ordenado el dichero secuencial de datos, es decir, la clave física. Sólo habrá uno.
+- Secundarios: son construidos sobre los otros campos que no sean la clave física del _fichero secuencial_. De estos, habrá tantos como se deseen.
+
+![IPIS](./imagenes/ipis.png)
+
+Para __consultar__, lo haremos mediante el fichero indexado pues en un paseo a disco nos traeremos más claves donde mirar. No obstante, el proceso es el mismo que con los _ficheros secuenciales_ solo que sobre un fichero de índices.
+
+Con respecto a la __inserción__ y el __borrado__, la idea es similar a la operación en el fichero secuencial, auqneu determinados procesos de búsqueda se ayudan en el índice. El único inconveniente es que, cada inserción y borrado implicarán modificaciones en el fichero de índices.
+
+Por último recalcar que los índices no tienen por qué estar hechos sobre un solo campo sino que pueden albergar varios considerando la concatenación de los mismos.
+
+Por ejemplo, si consideramos el índice (p1||p2) donde || es la concatenación, será útil para búsquedas por valores de:
+- p1 solo.
+- p1||p2
+
+Pero no lo será para búsquedas por valor de p2.
+
+___Índices no densos___
+
+Viendo que disponer de un fichero con tantas entradas como registros haya en el fichero secuencial no nos produce una gran ventaja, se desarrolla el concepto de __índice no denso__.
+
+La idea es la misma solo que, cada índice apuntará al registro inicial de cada bloque, es decir, consiste en implementar un índice de bloque.
+
+Cabe aclarar que, para que haya una ventaj, es necesario que el fichero secuencial se mmantenga ordenado.
+
+Con esta solución eliminamos el problema del aumento de memoria ocupada.
+
+![ind](./imagenes/ind.png)
+
+Presenta algunas diferencias:
+- En la búsqueda, una vez encontrado el bloque debemos realizar una búsqueda secuencial sobrel el bloque para buscar el registro.
+- No disponemos de garantía alguna de encontrar el registro deseado hasta consultar el bloque de datos leído.
+
+Como ventaja, la manutención de estos índices es menos costosa.
+
+___Índices jerárquicos___
+
+Se basan en la misma idea que los índices no densos. Es decir, en construir índices queengloben la información de otro fichero. En este caso, construiremos índices sobre los índices acotando así la búsqueda cada ves que disminuimos un nivel.
+
+Como dato importante, debemos determinar el tamaño de los bloques de manera que se optimicen cada una de las operaciones de acceso a disco físico.
+
+Como desventaja frente a las muchas ya comentadas, se complica demasiado la manutención de los ficheros de índices.
+
+Una curiosidad que contradice al hecho de que siempre los índices deben ser primarios es que, si el índice de primer nivel se corresponde con el índice primario no tien por qué ser denso.
+
+![ij](./imagenes/ij.png)
 
