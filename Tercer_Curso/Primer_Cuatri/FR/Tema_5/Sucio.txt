@@ -1,0 +1,8 @@
+Servicio de Nombres de Dominio
+-------------------------------------------
+
+
+Siempre hay un dominio raiz (.) y despues un dominio que se le llama TLD(es)(top level domain) y subdominios(ugr), va de derecha a izquierda y luego ya se llega al recurso que es un amaquina (email)
+email|.|ugr|.|es|
+
+USA controla el dominio raiz con la ICANN.
