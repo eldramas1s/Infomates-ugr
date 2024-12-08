@@ -78,7 +78,7 @@ Hablemos un poco más del lenguaje cociente con un teorema:
 
 _Teorema_
 
-Si $R$ es un conjunto regular y $L$ es un lenguaje cualquiera, entonces el cociente de lenguajes $R/L=\{u\in A^\* : \exists v \in L \land uv \in R \}$ es un conjunto regular.
+Si $R$ es un conjunto regular y $L$ es un lenguaje cualquiera, entonces el cociente de lenguajes $R/L=$ \{ $u\in A^\* : \exists v \in L \land uv \in R$ \} es un conjunto regular.
 
 _Fin Teorema_
 
