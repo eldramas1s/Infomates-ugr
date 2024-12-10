@@ -310,6 +310,8 @@ No veremos la demostración pero sí el algoritmo por el cual se consigue esta t
 
 Antes de eso, diremos que dos conjuntos de reglas de producción son __equivalentes__ si y sólo si generan las mismas cadenas de símbolos una vez aplicadas.
 
+Además, para que el algoritmo produzca el resultado que esperamos, es necesario que no haya _producciones nulas_ ni _producciones unitarias_. Por último, sería deseable que no hubiera producciones inútiles.
+
 ### 4.4.7.Algoritmo
 
 El algoritmo se basa en dos pasos bien diferenciados:
