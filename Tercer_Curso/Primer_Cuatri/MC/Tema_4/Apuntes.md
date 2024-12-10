@@ -408,6 +408,7 @@ Siendo $B_k$ la variable que se añade al eliminar $A_k$ con $g()$.
 Si al aplicar el algoritmo encontramos alguna producción de esta forma, no la tocaremos hasta la segunda parte, es evidente que el primer tipo nunca se tocará.
 
 Además, una vez dispongamos de la gramática para obtener su _forma normal de Greibach_ lo que haremos será enumerar las variables para aplicar el algoritmo en el orden correspondiente; esta enumeración no condicionará el resultado pero sí el tiempo en obtenerlo.
+
 ___Primera parte___
 
 Aplicaremos el algoritmo en orden ascendente de los índices de las variables de la parte izquierda de las producciones. 
