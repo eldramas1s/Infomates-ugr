@@ -6,6 +6,10 @@
 2. [Operaciones con lenguajes Independientes del Contexto](#ops)
     1. Complementario de un lenguaje independiente del contexto.
     2. Intersección de un lenguaje independiente del contexto y un lenguaje regular.
+3. [Algoritmos](#Alg)
+    1. Algoritmo de Cocke-Younger-Kasami
+    2. Algoritmo de Early
+4. [Problemas indecidibles](#PI)
 ---
 
 <a id='LDB'> </a>
@@ -109,4 +113,20 @@ Este autómata acepta $L\cap R$ y por tanto es independiente del contexto.
 
 _Fin demostración_
 
+<a id='Alg'> </a>
+## 6.3.Algoritmos
 
+
+
+### 6.3.1.Algoritmo de Cocke-Younger-Kasami
+
+
+
+### 6.3.2.Algoritmo de Early
+
+
+
+
+
+<a id='PI'></a>
+## 6.4.Problemas indecidibles
