@@ -116,17 +116,72 @@ _Fin demostración_
 <a id='Alg'> </a>
 ## 6.3.Algoritmos
 
+Ya vimos en temas anteriores algoritmos para determinar si un lenguaje generado por una gramática es vacío asi como algoritmos para determinar si el lenguaje generado por una gramática independiente del contexto es inifinito.
 
+Por repasar, este último puede basarse en eliminar los símbolos y producciones inútiles y las producciones nulas y unitarias. De esta manera, quitando los estados inaccesibles, si el autómata resultado de la gramática dispone de ciclos será infinito.
+
+En este tema, nos volveremos a centrar en el problema de la **pertenencia** de una palabra a un cierto lenguaje, lo cual se puede reducir a estudiar si una gramática tipo 2 genera cierta palabra.
 
 ### 6.3.1.Algoritmo de Cocke-Younger-Kasami
 
+Este algoritmod e complejidad $O(n³)$ donde $n$ es la longitud de la palabra se basa en estudiar el problema de la pertenecia para gramáticas en forma normal de __Chomsky__.
 
+La idea es, dada la subcadena $u_{ij}$ que comienza en la posición $i$ y tiene longitud $j$, buscaremos calcular el conjunto $V_{ij}$, es decir, el conjunto de variables que generan $u_{ij}$.
+
+Dispone de dos condiciones:
+- Condición básica: Si el i-ésimo símbolo de $u$ es $a$ y tenemos la producción $A\rightarrow a$ entonces $A \in V_{ij}$.
+- Condición recursiva ($j > 1$): Si $A \rightarrow BC$ es una producción y $B \in V_{ik}$, $C \in V_{i+k,j-k}$ entonces $A \in V_{ij}$. Pues la palabra completa se genera como concatenación de palabras generadas por $B$ y $C$.
+
+___Algoritmo___
+1. Para $i=1$ hasta $n$:
+    - Calcular $V_{i1}=$ \{ $A \mid A \rightarrow a$ es una producción y el símbolo i-ésimo de $u$ es $a$ \}.
+2. Para $j=2$ hasta $n$ 
+    1. Para $i=1$ hasta $n-j+1$
+    + $V_{ij} = \emptyset$
+    + Para $k=1$ hasta $j-1$ $V_{ij}=V_{ij} \cup $ \{ $A \rightarrow BC$ es una producción y $B \in V_{ik}$, $C \in V_{i+k,j-k}$ \}
+
+Para ver un ejemplo de uso se recomienda buscar las diapositivas o en las relaciones de ejercicios como exámenes.
 
 ### 6.3.2.Algoritmo de Early
 
+Pasamos al algortimo de pertenencia más sofisticado, basado en programación dinámica, que conocemos, es útil para toda gramática sin producciones nulas ni unitarias. Es de complejidad $O(n³)$ en general, pero en ocasiones puede llegar a ser $O(n)$ siendo $n$ el tamaño de la palabra.
 
+Para entenderlo debemos introducir la siguiente notación:
+- $u[i..j]$ será la subcadena de $u$ que va desde la posicion $i$ a la posición $j$.
+- $(i,j,A,\alpha,\beta)$ donde $i,j$ son enteros y $A\rightarrow \alpha \beta$ es una producción de la gramática; serán registros que indicarán un hecho ya conseguido y un objetivo:
+    + Hecho: $u[i+1..j]$ es derivable a partir de $\alpha$.
+    + Objetivo: entontrar todos los $k$ tales que $\beta$ deriva a $u[j+1..k]$.
 
+- $Registros[j]$ contendrá todos los registros existentes de la forma $(i,j,A,\alpha,\beta)$ para $j$.
 
+___Algoritmo___
+
+Se basa en varios pasos de bastante complejidad:
+
+1. __Inicialización__. Las variables iniciales serán las siguientes con los siguientes valores:
+    + $Registros[0]=$ \{ $(0,0,S,\epsilon,\beta) : S\rightarrow B$ es una producción \}.
+    + $Registros[j]=\emptyset$ para $j=1,2,...,n$.
+2. __Clausura__. Para cada registro $(i,j,A,\alpha,B \gamma)$ en $Registros[j]$ y cada producción $B \rightarrow \delta$, crear el registro $(j,j,B,\epsilon,\delta)$ e insertarlo en $Registros[j]$. Repetir la operación recursivamente para los nuevos registros insertados hasta hacerlos todos.
+3. __Avance__. Para cada registro $(i,j,A,\alpha,c\gamma)$ en $Registros[j]$, donde $c$ es un símbolo terminal que aparece en la posición $j+1$ de $u$, crear $(i,j+1,A,\alphac,\gamma)$ e insertarlo en $Registros[j+1]$.
+    * En este punto hacer $j=j+1$.
+4. __Terminación__. Para cada registro $(i,j,A,\alpha,\epsilon)$ que llamaremos _completo_ en $Registros[j]$, buscar los registros de la forma $(h,i,B,\gamma,A\delta)$ en $Registros[i]$ y para cada uno de ellos crear el nuevo registro $(h,j,B,\gamma A, \delta)$ e insertarlo en $Registros[j]$.
+5. Si $j < n$ ir a __Clausura__.
+6. Si en $Registros[n]$ hay un registro de la forma $(0,n,S,\alpha,\epsilon)$, entonces $u$ es generada. En caso contrario no es generada.
+
+Para ver un ejemplo de uso consultar exámenes o ejercicios de la relación.
 
 <a id='PI'></a>
 ## 6.4.Problemas indecidibles
+
+Simplemente, por curiosidad, se dejan por aquí algunos problemas que son indecidibles, es decir, resolubles mediante algoritmos.
+
+Suponemos $G,G_1$ y $G_2$ gramáticas independientes del contexto y $R$ un lenguaje regular. Son indecidibles:
+
+- Saber si $L(G_1) \cap L(G_2) = \emptyset$.
+- Determinar si $L(G)=T^\*$, donde $T$ es el conjunto de símbolos terminales.
+- Comprobar que $L(G_1) = L(G_2)$ asicomo las inclusiones respectivas.
+- Determinar si $L(G)=R$.
+- Determinar si $L(G)$ es regular.
+- Determinar si $G$ es ambigua.
+- Conocer si $L(G)$ es inherentemente ambiguo.
+- Comprobar si $L(G)$ es determinista.
