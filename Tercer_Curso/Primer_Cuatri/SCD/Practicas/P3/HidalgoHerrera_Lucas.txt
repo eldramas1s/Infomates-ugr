@@ -1,0 +1,8 @@
+Compilacion:
+
+mpicxx -std=c++11 prog.cpp -o ejecutable
+
+
+Ejecucion:
+
+mpirun -np n -oversubscribe ejecutable
