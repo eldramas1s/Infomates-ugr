@@ -6,3 +6,152 @@ Siempre hay un dominio raiz (.) y despues un dominio que se le llama TLD(es)(top
 email|.|ugr|.|es|
 
 USA controla el dominio raiz con la ICANN.
+
+Dia original
+____________
+
+Realmente el dominio raiz aparece a la derecha del todo pero no se suele poner.
+En el caso de los dominois el recurso es un fichero, pero en el caso de los dns este recurso será una maquina. Por ejemplo en mail.ugr.es.
+
+mail-> maquina
+ugr -> subdominio
+es -> TLD
+. -> dominio raiz.
+
+En la diap 42 hay mas dominios hoy en dia
+
+Cuando hacemos una solicitud a un DNS, lo que hace nuestra maquina es usar una transformacion del dns a la IP usando un resolutor local; en caso de que el resolutaor local no disponga de la solucion se usa rl resolver, que pedira la solucion a la transformacion a un servidor dns (ejemplo google 8.8.8.8 o 8.8.4.4, mucha gente los usan pero pueden estar muy lejos lo que ralentiza la comunicación).
+
+SOlicitud de DNS desde un ordenador
+-----------
+
+Las zonas son dominios consecutivos que se le asignan a un DNS, una de las categorias son:
+    - Soy autoridad
+    - No soy autoridad
+
+Dentro de las zonas hay dos posbles roles:
+    - Primario. tengo los datos de todas las IP's y traducciones
+    - Secundario, cuando arranca le pide al priamrio toda la base de datos.
+
+Los dominios realmente se organizan en zonas. Supongamos que un pc realiza la solicitud a un subdoinio sobre un DNS, en caso de que un servidor tenga la solucion de la traducción, se responde al pc. En caso de que ese servidor del subdominio mas cercando no tenga la respuesta, pregunta a otro servidor que dispone de la solucion, normalmente puede ser el directorio raiz que sabra en quin delegar y se hara una cadena para llegar a el y volver.
+
+Desarrollar ejemplo diap 43.
+
+Hay dos tipos de resolucion:
+- Iterativa: (cree que no esta bien el dibujo) Realmente pregunto a un servidor, al que delega al responsabilidad entonces es el servidor DNS 1 el que hace todas las preguntas de la misma manera que el dibujo pensando que DNS 1 es host
+
+- Rescursiva: el orden de los recursivo el orden es yo pregunto al mio, este pregunta al raiz, el raiz va preguntando hacia abajo y vuelve.
+
+En cada pregunta, cuando recibe la información, la guarda en la cache durante un cierto tiempo.
+
+BAse de datos dns
+---------------------
+
+En general se le llama BIND.
+
+Tiene una serie de registros que tienen 5 campos:
+- Tips de registro:
+    - Soa -> tal equipo es la autoridad
+    - Name Server -> un SOa siempre sera un NS pero no al contrario
+    - A -> tal nombre y tiene tal IP
+    - MX -> Define que un nombre de dominio de correo electronico tiene un servidor de dominio
+    - CNAME -> simpelemnte un alias
+    - HINFO -> pregutna por informacion de la maquina
+    - TXT -> preguntar informacion sobre un dominio
+
+COnsulta inversa -> pregunto cual es el dns de una ip.
+
+Los 4 ultimos campos de diap 50 dependen de la comunicacion y de la solicitud.
+
+Uno de las preguntas tipicas es -> dada una topologia queremos preguntar por un dns y conocer los campos
+
+Con UDP basta con hacer hasyta el DNS response para iniciar la conexion, si TCP hay que poner apertura y cierre.
+
+COn recursivo se tarda menos que ocn el iterativo
+
+Navegacion web
+----------------
+
+Inicialmente HTML era solo texto, posteriormente se metio la posibilidad de meter otros tipos de elementos; para trabajar alguna HTTP o HTML en general se usa el esquema diap 53.
+
+El esquema habitaualmente sera https o html.
+
+La parte de solicitud contiene las variables=valores que quiero enviar separados por &.
+
+#fragment -> para ir a trozos de determinada pagina
+
+HTTP va por TCP siguiendo el model cliente-servidor
+
+las paginas web peuden ser:
+    - estaticas -> hay un archivo html que se manda talcual -> inicio es www (es decir no uedo tener javascript, php...)
+    - dinamicas -> se van cambiando los archivos -> inicio es wpd (permite bases de datos y todos esos).  Las dinamicas permitan ejercutar programas que cambien las base s de datos; permite ejecutar scripts(hay algunos que se ejecutan en servidor(suele usarse php-> con php podemos ejecutar algo en el servidor y sustituye el php por un texto luego no se ve el php que se ha ejecutado) y otros en cliente(cosas que se ejecutan en mi ordenador))
+
+Lo que se suele hacer es tener una estatica y hacer una redireccion a la dinamica. 
+
+Caracterisitacas de HTTP:
+    - Va sobre TCP
+    - APlicacion sin estado -> esto significa que no hay un diagrama de estados porque cuando pido una url devuelve siempre lo mismo (idea original); no obstante, se permite a dia de hoy que se guarden algunos destados -> lo hacen a traves de las coockies que permiten guardar estados.
+
+    Una cookie loq ue permite es que se modifiquen ciertos ficheros en un sitio muy concreto para guardar algo de informacion -> cuando nos conectamos a un servidor se manda ese archivo para que se "guarde un log" por ekemplo en dos conexiones conseutivas.
+
+    - Persistente o no persistente -> afecta al rendimiento. La primerar version era no persistente(HTTP/1.0) y las superiores a esta son persistentes.
+        + Persistente -> usa la misma conexion para todos los objetos
+        + No persistente -> usa distinta conexion para cada objeto
+
+    Los objetos .jpg,.png... tengo que solicitarlos entonces ser no persistente implica que haya muhco tiempo perdido para establecer conexiones nuevas.
+
+A las peticiones se les suelen llamar metodos:
+    - Peticion get -> recurso, protocolo, hos, navegador que dispone el cliente, estado de la conexion, lenguaje aceptado normalemtne en españa es es.
+    - Peticion de respuesta -> codigo de 3 cifras, codio explicativo(1xx o 2xx exito, 4xx o 5xx error, 3xx transaccion incompleta en curso), estado conexion, fecha de solicitud, sercvidor que me lo da, ultima modificacion, ongitud del contenido, tipo de contenido.
+
+Mesajes mas habituales:
+    - Get -> pide una pagina y la recibe
+    - Head -> pide una pagina y duvueve la cabecera.
+    - POst -> solicitud para formularios y eso
+    - Put -> sobreescribir una pagina en le servidor
+    - Delete -> borrar una url
+PUT y DELETE no suelen permitirse porque puede ocasionar probelma de seguridad.
+
+MIME -> Multipurpose-Intenet-Mail-Extension -> surgen para poder mandar cosas que no sean texto.
+
+Servidores cache
+-------------
+
+Servidores que se ponen en medio que guarda paginas que ya se han buscado.
+Algo  muy tipico es usar los ICP(o algo asi). La ventaja de esto es evitar RTT muy grandes.
+Diap 66 -> Proxy es serv cache.
+
+TODO hasta diap 72
+
+DIAP 72 -> error 401 sino estoy autenticado
+
+
+Correo Electronico
+----------------------
+
+MUA -> mail user agent -> es el cleinte
+MS o MTA -> Mail server o Mail transfer Agent -> es el sevidor del cleinte 
+
+
+Unc liente solo habla con sus servidor, no con el del destinatario. Cuando se manda u mensaje siempre se usa el SMTP y para descargarlo se usan protocolos como (POP o IMAP).
+
+POP esta pensado para descargar los correos al ordenador y borrarlos del servidor
+    Ventaja -> no hay probelam de memoria, si estoy en mi pc no hay problema alguno.
+IMAP trabaja con los correos en el servidor
+    Ventaja -> da igual desde donde me conecte(dispositovo de conexion)
+    PRoblema -> cuota, cantidad de datos a disponer
+
+Los clientes no tienen por qué estar encendidos a la vez para hacer la conexion, cada cliente tiene su servidor luego se comunicarña el emisor con su servidor y se manda al servidor dns haciendo una pticion MX para saber cual es el MTA del receptor para mandar el correo -> la conexion entre servidores es con SMTP.
+
+SMTP
+-------
+
+Son protocolos en modo texto -> es parecido a http porque manda codigos de tres cifras.
+
+SMPT;POP;IMAP fucnionan con Tcp porque queiro que todo se asegure que este bien.
+
+Saber diap 76
+
+En la parte de cabecera de GMAIL tiene quien manda realmente el correo
+
+EN calse se vio hasta 83
