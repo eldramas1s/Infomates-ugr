@@ -37,9 +37,6 @@ select * from ventas;
 
 commit;
 
-insert into pieza values (000,'tx1', 'plata', 00000.30, 'Granada');
-insert into pieza values (001,'tx1', 'oro', 00000.10, 'Granada');
-
 select peso,codpie from pieza;
 
 delete from pieza where codpie=0;
@@ -134,7 +131,7 @@ select codpro,codpie, to_char(fecha, '"Dia" day, dd/mm/yy') from ventas;
 -- Guardar
 COMMIT;
 
-rollback;
+--rollback;
 
 --Capítulo 3
 
@@ -180,15 +177,22 @@ select table_name from ALL_TABLES where table_name like upper('%ventas');
 select * from proveedor;
 select * from pieza;
 
-select distinct ciudad from proveedor where status > 2
+select  ciudad from proveedor where status >= 2
 minus 
-select distinct ciudad from pieza where codpie = 'P1';
+select  ciudad from pieza where codpie like 'P1';
 
-select distinct ciudad from proveedor where status > 2 
-intersect
-select distinct ciudad from pieza where codpie != 'P1';
+select distinct ciudad from proveedor where status > 2 and
+ciudad not in (select distinct ciudad from proveedor where status > 2 intersect select distinct ciudad from pieza where codpie = 'P1');
 
---??
+-- Otra forma
+
+select proveedor.ciudad
+from proveedor
+where proveedor.status>2 
+intersect 
+select proveedor.ciudad
+from proveedor,pieza 
+where pieza.codpie = 'P1' and pieza.ciudad != proveedor.ciudad;
 
 -- Ejercicio 3.8
 
@@ -224,19 +228,20 @@ commit;
 -- 217 tuplas
 
 -- Ejercicio 3.12
+with tmp as (select * from ventas where cantidad>30) 
+select * from tmp;                                      -- NO HACER
 
-select codpie,ciudad from pieza p1;
-select codpj,ciudad from proyecto p2;
-select codpro,ciudad from proveedor p3;
+select ventas.codpie,ventas.codpj,ventas.codpro,p1.ciudad 
+from ventas,(select codpie,ciudad from pieza) p1,(select codpj,ciudad from proyecto)p2,
+(select codpro,ciudad from proveedor)p3 where (ventas.codpie=p1.codpie
+and ventas.codpj=p2.codpj and ventas.codpro=p3.codpro and p1.ciudad=p2.ciudad and p2.ciudad=p3.ciudad);
 
-select codpie,codpj,codpro from ventas,p1,p2,p3 where ventas.codpie=p1.codpie
-and ventas.codpj=p2.codpj and ventas.codpro=p3.codpro ;
+--select * from ventas,(select ciudad from proveedor);
 
--- ??
 
 -- Ejercicio 3.13
 
-select s.codpro,p.codpro from proveedor s, proveedor p where s.ciudad=p.ciudad;
+select s.codpro,p.codpro from proveedor s, proveedor p where s.ciudad>p.ciudad;
 
 -- Ejercicio 3.14
 
@@ -252,7 +257,7 @@ select s.codpie from ventas s natural join(select codpro from proveedor where ci
 
 -- Ejercicio 3.16
 
---??
+-- TODO
 
 -- Ejercicio 3.17
 
@@ -304,4 +309,128 @@ select codpie from ventas where (proyecto.codpj=ventas.codpj and proyecto.ciudad
 select * from ventas where codpj in (select codpj from proyecto where ciudad='Londres');
 
 select codpj from proyecto where ciudad='Londres';
+
+-- Ejercicio 3.26
+
+select count(distinct codpie) from ventas where cantidad > 1000;
+
+-- Ejercicio 3.27
+
+select max(peso) from pieza;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Ejercicio 3.28
+SELECT * FROM pieza;
+
+SELECT * 
+FROM pieza
+WHERE peso = (SELECT MAX(peso) from pieza);
+
+-- Otra forma
+
+SELECT * 
+FROM pieza
+WHERE peso IN (SELECT MAX(peso) 
+                FROM pieza);
+
+-- Otra forma
+SELECT p1.*
+FROM pieza p1
+MINUS
+SELECT p2.*
+FROM pieza p2,pieza p3 
+WHERE (p2.peso < p3.peso);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Ejercicio 3.29 
+
+SELECT codpie, MAX(peso) FROM pieza;
+
+
+
+
+
+
+
+
+SELECT codpie, SUM(cantidad)
+FROM ventas
+GROUP BY codpie;
+
+-- Ejercicio 3.36
+
+SELECT codpie, SUM(cantidad)
+FROM ventas
+GROUP BY codpie
+HAVING SUM(cantidad) = (SELECT MAX(SUM(ventas_a.cantidad))
+                        FROM ventas ventas_a
+                        GROUP BY ventas_a.codpie);
+
+-- Otra forma
+
+SELECT codpie, SUM(cantidad)
+FROM ventas
+GROUP BY codpie
+HAVING SUM(cantidad) IN (SELECT MAX(SUM(ventas_a.cantidad))
+                        FROM ventas ventas_a
+                        GROUP BY ventas_a.codpie);
+
+
+
+
+
+
+
+
+
+-- Ejercicio 5.2 
+
+create table acceso (testigo NUMBER);
+
+insert into acceso values(1);
+insert into acceso values(2);
+
+grant select on acceso to x0976938;
+
+revoke select on acceso from x0976938;
+
+grant select on acceso to x0976938 with grant option;
+
+
 
