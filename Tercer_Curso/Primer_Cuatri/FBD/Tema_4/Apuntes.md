@@ -1,5 +1,16 @@
 # 4.Nivel interno
+---
+## Índice
+1. [Introducción](#Intro)
+2. [Métodos de acceso a la base de datos](#MABD)
+3. [Representación de la base de datos a nivel interno](#Repre)
+4. [Organización y métodos de acceso](#Org)
+5. [Métodos de acceso directo](#MAD)
 
+
+---
+
+<a id='Intro'></a>
 ## 4.1.Introducción
 
 Nosotros hasta ahora hemos visto que una Base de Datos sirve para almacenar datos con un motivo concreto como motivo princial: la __consulta__ de la información que hemos almacenado.
@@ -69,6 +80,7 @@ Dicho tiempo se conoce con el nombre de __tiempo de acceso__ que es el tiempo me
 
 En ocasiones, el acceso podrá ser erróneo añadiendo a este tiempo el __tiempo medio de fallo__.
 
+<a id='MABD'></a>
 ## 4.2.Método de acceso a la _BD_
 
 Los _SGBD_ montan una forma para hacer el trabajo con los dispositivos de almacenamiento, cada uno su forma, luego no está generalizada; no obstante, tomaremos una idea general.
@@ -126,6 +138,8 @@ A la hora de hacer un acceos debemos tener en cuenta una serie de información:
 
 Este elemento dentro de la comunicación entre el _SGBD_ y la _BD_ es el encargado de realizar presicsamente el puente entre estas dos estructuras de gran importancia:
 
+
+
 - Organiza los datos en arvchivos, que realemtne son conjutnos de bloques, de _SO_.
 - NO necesariamente debe haber un único Gestor de Disco por base de datos.
 - Es el encargado de gestionar el espacio libre.
@@ -149,6 +163,7 @@ Como funciones básicas implementa:
 - Eliminar un registro de un archivo almacenado; donde es necesario recuperar la página de la _BD_ que contiene ducho registro y marcar el espacio ocupado por el registro en dicha página ocmo disponibel.
 - Actualizar un registro en un archivo almacenado; para ello, se debe recuperar la página de la _BD_ que contiene le registro que se desea actualizar. A continuación, se intenta sustituir la información y si no se puede intenta ubicar el contenido en otra página.
 
+<a id='Repre'></a>
 ## 4.3.Representación de la _BD_ a nivel interno
 
 Realmente, la _BD_ se representa de diferentes formas dependiendo del nive de la arquitectura del _SGBD_ en el que nos encontremos:
@@ -167,6 +182,7 @@ Hay dos formas de agrupar los archivos, pues ya sabemos que la _BD_ a nivel inte
 
 > No existe relación directa _fichero-almacenado/fichero-físico_, ya que todos los conjuntos de páginas irán almacenados, con toda probabilidad, en uno o varios ficheros físicos.
 
+<a id='Org'></a>
 ## 4.4.Organización y métodos de acceso
 
 Nuestro objetivo será minimizar el número de accesos a disco, es decir, minimizar la cantidad de páginas de _BD_ involucradas en una operacion de _BD_.
@@ -266,5 +282,130 @@ Como desventaja frente a las muchas ya comentadas, se complica demasiado la manu
 
 Una curiosidad que contradice al hecho de que siempre los índices deben ser primarios es que, si el índice de primer nivel se corresponde con el índice primario no tien por qué ser denso.
 
-![ij](./imagenes/ij.png)
+[ij](./imagenes/ij.png)
 
+___Índices de clave invertida___
+
+La idea será permutar, de alguna manera, el orden de los bytes de una clave que nos sirva para identificar un registro. En ocasiones, las permutaciones se realizan sobre otra unidad de memoria.
+
+Como ventajas:
+    - Puede interesar en alguna operación frecuente que dos valores de clave consecutivos no estén realmente consecutivos.
+
+Un ejemplo de esta utilidad es cuando se espera acceder a dos elementos consecutivos por índice, se hace esto para agilizar el problema pues puede coincidir que tengamos que tomar dos bloques distintos sin necesitar alguno de ellos.
+
+___Índices de mapa de bits o BITMAP___
+
+La idea es montar para cada valor de un atributo un mapeo de las tuplas donde aparece dicho valor, es decir, si en la tupla _i-ésima_ se toma dicho valor, el bit de dicha posición aparecerá a 1.
+
+Está claro que esto es útil cuando el valor se repite mucho y poco útil si el valor es único, luego no se usará con claves primarias.
+
+### 4.4.3.Árboles B+
+
+Son una generalización de los árboles binarios balanceados en la que los nodos pueden tener más de dos hijos; para cada nodo suele definirse un orden máximo que será el número máximo de hijos que tendrá un nodo.
+
+Como idea importante, cabe recalcar que, en un árbol de este estilo, los nodos hoja se encuentran todos en el mismo nivel. Además, las claves de cada nodo están dentro de un rango entre la clave del padre y la clave del hermano de la derecha del padre.
+
+Asociándonos más a la gestión y al almacenamiento de la _BD_, en los nodos hoja se guardarán las parejas \{clave-RID\} donde se encuentra el puntero asociado al bloque de disco que queremos buscar. 
+
+Unido a esto, se suele buscar que el orden de cada nodo sea un múltiplo del tamaño de bloque de datos.
+
+Como ventajas se presentan:
+    - La búsqueda por intervalos es muy sencilla concatenando los nodos hoja pues se consigue una lista secuencial de todos los bloques de disco.
+    - La búsqueda de un bloque en específico también es bastante rápida acotando el rango de búsqueda en cada decisión en profundidad del árbol.
+    - En el caso particular de cómo se implementan en bases de datos, la recuperación de los nodos es mucho más sencialla, pues gracias a que permanecen entrelazados los nodos hoja, podemos implementar recuperación por búsqueda secuencial.
+
+Como desventaja:
+- La inserción y el borrado debe garantizar que el árbol permanezca equilibrado, luego deberán usarse algoritmos para ello que consumirán tiempo.
+
+___Caso particular___
+
+Los árboles _B_ o _bin-tree_ funcionan de manera similar sin tener la obligación almacenar todos los valores de la clave en los nodos hoja, sino que algunos valores se van almacenando en lso nodos intermedios conforme se crea el árbol.
+
+#### Tablas Organizadas por Índice(IOT)
+
+En ocasiones, puede interesar almacenar directamente el valor de las tuplas en los nodos hoja. Esto se suele hacer usando __tablas organizadas por índice__ que estarán organizadas por una clave, normalmente la primaria. Aun así se pueden definir nuevos bajo nuevos índices.
+
+### Comparación bintree y bitmap
+
+| B-tree | Bitmap |
+| :----- | :----- |
+| - Columnas que tomen muchos valores | - Columnas que tomen pocos valores |
+| - No cuesta mucho actualizar | - Cuesta mucho actualizar |
+| Ineficiente para consultas con _OR_ | - Eficiente para consultas con _OR_ |
+
+
+<a id='MAD'> </a>
+## 4.5. Métodos de acceso directo
+
+El objetivo de este punto es conseguir encontrar una forma de acceder a la base de datos sustituyendo los índices por un algoritmo que sea capaz de decirnos dónde se encuentra tal registro.
+
+Como condición inicial impondremos que el campo por el cual se haga la búsqueda sea unívoco. Además, una vez aplicado el algoritmo, el orden de los registros no será el que se tuvo en un inicio, esta medida perjudicará las consultas por intervalos.
+
+Como principal problema, las colisiones; esto surge cuando dos registros obtienen el mismo valor de clave por el cual serán accedidos. Este problema tendrá fácil solución que será costosa en memoria; los __desbordamientos__, consiste en usar una estructura donde se almacenarán todos aquellos registros menos uno de los que han producido la colisión. La aplicación de los _desbordamientos_ se tratará de retrasar todo lo posible.
+
+Realmente hay una granvariedad de algoritmos de __hashing__, alguno son:
+- Dependientes del tipo de clave:
+    * Si el alfanumérica, deberemos tranformarla en números antes de determinar su _hash_.
+- Suelen estar basados en un mecanimso de generación de números _pseudoaleatorios_:
+    * Cuadrados centrales: consiste en elevar al cuadrado el número y tomar una subsecuencia de números centrales del resultado.
+    * Congruencias: siendo el más usado consiste en utilizar la aplicación _módulo M_ donde _M_ es un número cualquiera que suele ser primo(es una convención y no cambia la enficiencia) 
+    * Desplazamiento: consiste en superponer los dígitos binarios de la clave y luego sumarlos.
+    * Conversion de base: consiste en cambiar la base de numeración y suprimir algunos de los dígitos resultantes.
+
+Otro de los problemas que deberemos solucionar son los __huecos__, son partes de la memoria que quedan libres tras aplicar la transformación o el algoritmo; en ocasiones se producen porque el algoritmo no las contempla o porque no se dan claves para que den esas direcciones de memoria.
+
+### 4.5.1.Hashing básico
+
+Consiste en utilizar cubos como posible imágenes del algoritmo, de manera que, cuando se crea un acolisión ambos elementos pueden tomar el valor que les corresponde. Esot solo retrasa la aparición del desbordamiento; además, con un mal estudio del mismo puede que surjan huecos.
+
+Una de las cosas mas importantes a tener en cuenta de este algoritmo es que se debe tener en cuenta la distribución de la clave según rangos para evitar que unos cubos se llenen demasiado y otros queden casi vacíos.
+
+___Algoritmo de inserción___
+
+Dispone de los siguientes pasos:
+1. Transformar la clave.
+2. Localizar el cubo correspondiente:
+    * Si hay sisito se inserta y hemos terminado.
+    * Si no hay sistio se sitúa le registro en un cubo de desbordamiento conectándolo con el cubo que realmente le corresponde mediante punteros.
+
+___Algoritmo de borrado___
+
+Dispone de los siguientes pasos:
+1. Transformar la clave.
+2. Localizar el cubo correspondiente.
+3. Realizar la búsqueda secuencial dentro del cubo:
+    * Si hemos encontrado el registro, el proceso termina.
+    * En caso contrario, se barren todos los cubos de desbordamiento asociados a esa clave en búsqueda secuencial hasta encontrar el registro buscado.
+
+### 4.5.2.Hashing dinámico
+
+Surge como idea de solución al problema del hashing básico que consiste en que es necesario conocer la distribución de los datos para poder estudiar la distribución de la cantidad de cubos.
+
+La solución consiste en iniciar el proceso de _hashing_ con una configuración uniforme de pocos cubos de manrea que, sólo de los cubos que lo vayan necesitando, se realizará una expansión de los mismos.
+
+Todo se basará en utilizar una tabla de redirección dinámica, es decir, cuando se toma un valor y su clave hash, esta clave dirigirá a una tabla que a su vez redirigirá a un cubo donde se encuentra el registro.
+
+___Algoritmo de Hashing Dinámico___
+
+Antes de nada definimos dos conceptos:
+- Profundidad global: será el número de bits que definen cuántas entradas tiene una tabla de redireccionamiento.
+- Profundidad local: será el número de bits que definen el número de registros almacenable po rcada cubeta, suele ser múltiplo del tamaño del bloque de memoria.
+
+Como datos de partida tenemos:
+- $k$, clave para direccionar.
+- $k'=h(k)$, será el resultado de aplicar la función hash.
+- $n$, número de bits que tiene $k'$ en binario.
+- $d \leq n$, los $d$ primero (o últimos) dígitos de $k'$ serán los qu eseleccionan el cubo al que irá el registro con la clave $k$. Se llama _pseudollave_ y representa la profundidad __global__ de la tabla.
+- $b< d \leq n$, inicialmente hay $2^b$ cubos y como máximo habrá $2^d$.
+
+Los pasos son los siguientes:
+1. Se considera una tabla índice en memoria con $2^d$ filas.
+    * Primera columna: todos los posibles valores que pueda tomar $d$.
+    * Segunda columna: puntero al cubo de capacidad $2^b$ donde $b$ es la profundidad local.
+2. En un inicio, todas las entradas cuyos $b$ primeros(o últimos o los que sean) dígitos son iguales apuntan al mismo cubo.
+    * Aquí se almacenan los registros cuyo valor de $k'$ tiene esos $b$ primero dígitos.
+3. Si se llena un cubo:
+    * Se divide en dos, poniendo en uno de ellos los registros con el dígito $b+1$ a 0 y en otro los que lo tienen igual a 1. Eso aumenta la profundidad local que no podrá superar la profundidad global de la tabla, en caso de que se llene al completo y no se puda aumentar la profundidad local se comenzará con los cubes de desbordamiento.
+
+El hasihng dinámico soluciona algunos problemas pero causa otros:
+- Usar una tabla índice adicional aumenta la memoria necesaria, además esta puede ir aumentando necesitando de algoritmos que la modifiquen.
