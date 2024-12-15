@@ -4,6 +4,8 @@
 ## Índice
 
 1. [Introducción a las aplicaciones de red](#p1)
+2. [Servicio de Nombres de Dominio](#DNS)
+3. [Navegación WEB](#NWEB)
 
 ---
 
@@ -217,3 +219,179 @@ Se usan distintos protocolos:
 
 Por último, diremos que una aplicación no es elástica si la velocidad de transmisión es aproximadamente estable en un valor constante.
 
+Como broche final de este punto, hablaremos un poco sobre las características de las aplicaciones:
+- Tolerancia a pérdidas de datos: algunas lo pueden permitir, otras necesitan una tranferencia 100% fiable.
+- Exigencia de requisitos temporales: Las aplicaciones que no sean elásticas requieren retardo acotado para que sean efectivas.
+- Demanda de ancho de banda: algunas aplicaciones requieren un envío de datos a una tasa determinada, otras no.
+- Nivel de seguridad: los requisitos de seguridad para las distintas aplicaciones son muy variables.
+
+<a id='DNS'> </a>
+## 5.2.Servicios de Nombres de Dominio
+
+Un nombre de dominio no es más que un direccionamiento en la red sobre dominios y subdominios para llegar a una máquina.
+
+Siendo "." el directorio raíz que nunca se suele poner pues se conoce y está gestionado por la _ICANN_, se impone la siguiente estructura para los _DNS_:
+
+$$Machine.D_n.D_{n-1}.___.D_1.$$
+
+Donde $D_i$ es el dominio de nivel $i$ cumpliendo que $D_{i+1} \subset D_i$. Además, al dominio $D_1$ se le suele llamar _TLD_ o __dominio genérico__. 
+
+### Dominios conocidos inicialmente
+
+- .com: organizaciones comerciales
+- .edu: instituciones educativas
+- .gov: instituciones gubernamentales
+- .mil: grupos militares
+- .net: proveedores de Internet
+- .org: organizaciones diversas diferentes a las anteriores
+- .arpa: propósitos exclusivos de infraestructura de INternet
+- .int: organizaciones establecidad por tratados internacionales entre gobiernos
+- .xy: indicativos de la zona geográfica
+
+### DNS es un protocolo
+
+Realmente el srvicio _DNS_ es un protocolo de localización de servidores que realiza la traducción $IP \rightleftarrow DNS$ con el objetivo de facilitar las comunicaciones entre máquinas.
+
+Para explicar el protocolo usaremos 3 niveles de servidores:
+- Servidores raíz que hay 13 por todo el mundo y representan la parte inicial de Internet y pueden comunicarse con todos los demás servidores de bajos niveles al tener "Internet" una estructura de árbol de zonas.
+- Servidores de dominio o _TLD_, son servidores que se encuentran en las zonas y comunican el servidor raíz y los servidores locales. En ocasiones, disponen de cachés donde guardan algunas traducciones para agilizar el proceso.
+- Servidores locales, comunican las máquinas con los demás servidores, realmente toda la misión de conocer la traducción se delega en estos que realizarán todo lo posible por conocer dicha información.
+
+Hemos citado las __zonas__, esto son dominios consecutivos que se le asignan a un servidor de _DNS_, se dividen en dos categorias:
+- Servidor de autoridad (duda)
+- Servidor de no autoridad; estos son aquellos que deben contener toda la información de su zona, no necesariamente cacheada.
+
+Además, hay dos posibles roles:
+- Servidor primario, conoce todas las _IP's_ y su traducciones.
+- Servidor secundario, no es capaz de almacenar las traducciones pero cuando se pone en marcha, solicita todas ellas al servidor primario.
+
+___Pasos del protocolo___
+
+Cuando un _PC_ local realiza una petición sobre un _DNS_, esta petición se intenta resolver dentro del propio ordenador con un __resolutor local__; en caso de que no se conozca la traducción, y solo en ese caso, se delegará la solicitud al servidor local asociado al _PC_.
+
+Una vez que ya se ha delegado en el servidor local, esta resolución puede hacerse de dos formas; pero siempre comenzarán solicitando la información al servidor raíz:
+- __Iterativa__: con esta respuesta, el servidor local carga con todo el trabajo; cuando el servidor raíz da la respuesto sobre a quién tiene que redirigir la solicitud(pues el servior raíz conoce quién sabe qué cosas) el servidor local preguntará, hay dos opciones:
+    + El servidor preguntado conoce la traducción, en cuyo caso hemos acabado.
+    + El servidor preguntado conoce quién puede conocer la traducción, en cuyo caso se debe volver a preguntar.
+
+Como podemos ver, este tipo de resolución es mucho más costoso para el servidor local pero mucho más ligero para el servidor raíz, que es el que maneja todo el flujo de la red.
+
+![iter](./imagenes/iter.png)
+
+- __Recursivo__: en este caso el servidor raíz no da la respuesta sobre quién hay que preguntar sino que devuelve la traducción directamente; cuando el servidor raíz recibe la petición, ocurre lo siguiente:
+    + Localiza a quién de sus hijos(pensando en árboles) tiene que preguntar por la traducción.
+    + La traducción queda relegada a dicho hijo que, si conoce la traducción la devuelve y si no la pide al hijo que puede conocerla. Esto se repite hasta que se sabe y todo vuelve al raíz.
+    + Una vez que el raíz conoce la solución, la devuelve al solicitante.
+
+Es claro que, este proceso es poco utilizado por la gran carga que provoca en el servidor raíz.
+
+![recur](./imagenes/recur.png)
+
+POr útlimo, cuando el servidor local tiene la traducción, se la envía a la máquina que la ha solicitado terminando el protocolo.
+
+### Gestión de la base de datos DNS
+
+Hasta ahora, hemos pensado que toda la información la tiene el servidor raíz, pero normalmente no es así sino que la base de datos está distribuida en una serie de servidores cooperativos que almacenan una parte de la misma; los llmaremos __BIND__.
+
+De esta manera, cada _BIND_ es el encargado de una zona de la red, dicha zona contendrá una serie de nombres de dominio consecutivos de los que el _BIND_ contendrá toda la información.
+
+Siguiendo con las características se cumple que:
+- Debe haber, al menos, un servidor de autoridad por cada zona.
+- En cada zona hay servidores primarios o secundarios.
+- En cada solicitud pueden ocurrir las siguientes cosas:
+    + Respuesta con autoridad, es decir, el servidor que responde a la solicitud tiene autoriada sobre la zona en la que se encuentra el nombre solicitado y devuelve la _IP_.
+    + Respuesta sin autoridad, es decir, el servidor que responde no tiene autoridad sobre la zona en la que se encuentra el nombre solicitado, pero lo tiene en la caché.
+    + No conoce respuesta, el servidor preguntará a otros servidores de alguna de las dos formas.
+- Todo dominio de la red está asociado a, al menos, un registro __Resource Record__ que contiene una tupla con 5 campos:
+    + Nombre del dominio: nombre del dominio al que se refiere el RR.
+    + Tiempo de vida: tiempo de validez de un registro, está asociado a la caché.
+    + Clase: en internet siempre toma el valor _IN_.
+    + Tipo: denota ciertas características como si tiene autoridad(_SOA_), contiene un servidor de nombres(_NS_), define una dirección _IPv4_(_A_), define un servidor de correo electrónico(_MX_), define un "alias" para el _DNS_(_CNAME_), contiene información del tipo de máquina y sistema operativo(_HINFO_) o contiene información del dominio(_TXT_).
+    + Valor: contenido que dependerá del valor del tipo.
+
+### Mensajes DNS
+
+![MDNS](./imagenes/mdns.png)
+
+
+<a id='NWEB'></a>
+## 5.3.Navegación WEB
+
+Una página web se define como un fichero _HTML_ formado por una serie de objetos como otrso ficheros(enlaces), imágenes, Java applets, ficheros de audio... Donde cada objeto se direcciona por una URL que tiene la siguiente estructura:
+
+$$\[//\[user\[:password\]@\]dominio\[:puerto\]\[/path\]\[/recurso\]\[?solicitud\]\[#fragment\]\]$$
+
+Dichas páginas webs se rigen por le protocolo _HTTP_ mediante el modelo cliente servidor donde el cliente solicita, recibe y muestra los objetos en la red y el servidor se encarga de enviar los objetos web en respuesta a las peticiones.
+
+### Clasificación
+
+Las páginas webs se clasifican en dos tipos:
+- Estáticas que son aquellas donde hay un archivo _HTML_ que se manda tal cual con un contenido invariable y tiene como inicio de _URL_ la subcadena "www".
+- Dinámicas, que se pueden camuflar como estáticas usando redirección a estas mediante _URLs_ estáticas. Estas sí que pueden proporcionar contenido variable y tiene como inicio de _URL_ la subcadena "wpd". Este tipo de págians webs permiten:
+    + Ejecutar scripts que cambien el contenido de la base de datos.
+    + Permite usar lenguajes que cambien la página web según una entrada u otra
+    + ...
+
+Dichos scripts podrán ejecutarse en el servidor o en el cliente siendo más eficiente esta última pues retira carga del servidor.
+
+### Características de HTTP
+
+Aparecen enumeradas debajo:
+- Usa los servicios de _TCP_ en el puerto 80.
+- Es un servicio _stateless_ aunque veremos que se servirá de uso de _cookies_ para conseguir una simulación de los estados.
+- Hay dos tipos d e servidores:
+    + Persistentes: Permiten enviar múltiples objetos sobre una única conexión _TCP_ demanera que no se pierde tanto tiempo en establecer conexiones.
+    + No persistentes: Para mandar cada objeto es necesario establecer una nueva conexión.
+
+___Peticiones HTTP___
+
+Normalmente reciben el nombre de métodos:
+- _Request o get_, solitita un recurso(diap 58).
+- _Response_, incluye un código de tres cifras aclarando el estado de la respuesta, la fecha de solitidu, el sevidor que responde, la última modificación, longitud del contenido(diap 59)... El código se rige por lo siguiente:
+    + 1xx: significa que el mensaje es meramente informativo.
+    + 2xx: significa _OK_.
+    + \{4,5\}xx: significa _ERROR_.
+    + 3xx: significa _EN CURSO_.
+
+Los métodos más comunes son:
+- _Options_: solicita información sobre las opciones disponibles.
+- _Get_: se encarga de pedir una página y recibirla.
+- _Head_: se encarga de pedir una página y devuelve la cabecera de la solicitud.
+- _Post_: es una solicitud al servidor para que acepte y subordine a la _URL_ especificada, los datos incluidos en la solicitud.
+- _Put_: solicita al servidor poder sobreescribir una página web.
+- _Delete_: solicita al servidor borrar una _URL_ de la página web.
+
+Estas dos últimas opciones no suelen permitirse.
+
+___Cabeceras del protocolo___
+
+Hay tres tipos que no se desarollarán en detalle, para ello, consultar las diapositivas:
+- Atributos comunes para peticiones y respuestas:
+    + Tipo de contenido: descripción MIME de la información contenida.
+    + Tamaño del contenido (bytes).
+    + Codificación del contenido.
+    + fecha de la operación.
+- Atributos específicos para peticiones del cliente:
+    + Accept: lista de tipos MIME(recursos distintos a texto) que acepta el cliente.
+    + Authorization: clave de acceso de un cliente para poder acceder a un recurso protegido.
+    + From: opcional y contiene la dirección de correo electrónico del usuario.
+    + If-Modified-Since: permite modificaciones condicionales.
+    + Referer: URL del documento de ese enlace.
+    + User-agent: tipo y versión del cliente.
+- Atributos específicos de la respuesta del servidor _HTTP_:
+    + Allow: lista de comandos opcionales que se pueden realizar.
+    + Expires: fecha de expiración del objeto mandado.
+    + Last-modified: decha local de modificación del objeto devuelto.
+
+
+___Pasos del protocolo___
+
+1. El cliente _HTTP_ solicita un objeto identificado por su _URL_.
+2. EL cliente consulta al resolver el _DNS_ por la dirección _IP_ del recurso.
+3. El _DNS_ contesta la _IP_ del servicio.
+4. El ciente abre una conexión _TCP_ al puerto 80 de dicha _IP_.
+5. El cliente manda una operación _GET_ junto con más información necesaria.
+6. EL servidor responde mandando el fichero por la misma conexión _TCP_.
+7. Si es persistente, se pueden seguir soliciando objetos.
+8. Se cierra la conexión _TCP_ y se liberan lo srecursos del servidor.
+9. El cliente es capaz de visualizar el contenido.
