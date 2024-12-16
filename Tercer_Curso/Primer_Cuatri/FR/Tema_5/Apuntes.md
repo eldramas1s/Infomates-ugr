@@ -395,3 +395,28 @@ ___Pasos del protocolo___
 7. Si es persistente, se pueden seguir soliciando objetos.
 8. Se cierra la conexión _TCP_ y se liberan lo srecursos del servidor.
 9. El cliente es capaz de visualizar el contenido.
+
+### Servidores caché
+
+Los servidores caché son aquellos que se interponen en las conexiones, normalmente por zonas, que contiene un almacenamiento dinámico sobre aquellas páginas que ya se han buscado dentro de esta zona. 
+
+De esta manera, si se pide otra vez alguna de las conocidas el servidor caché la enviará como respuesta.
+
+En caso de que alguno de los objetos que contiene le servidor caché esté desactualizado no mandará  la respuesta al cliente (duda sobre qué hará).
+
+### Cookies
+
+Las __cookies__ son pequeños ficheros de texto que se intercambian los clientes y lso sevidores _HTTP_; realmente es un parche a los protocolos _stateless_ que les permiten guardar algunso estados.
+
+Estos archivos son almacenados dentro de los clientes en lugares "remotos" que "solo" conoce el protocolo.
+
+Siguen el siguiente proceso:
+- Si es la primera vez que el usuario accede a un determinado documento de un servidor, el servidor proporciona una cookie que contiene datos que relacionarán posteriores operaciones.
+- El cliente almacena la cookie en su sistema para usarla después. En los futuros accesos a este servido, el navegador podrá proprocionar la cookie original, que servirá de nexo entre este acceso y los anteriores.
+- Todo este procesos se realiza aytomáticamente sin intervención del usuario.
+
+Una de las aplicaciones más comunes son los __sistemas de compra electrónica___.
+
+Todos estos campos de los que se ha hablado por los cuales se conserva dicho estado en una cookie se encian en una cabecera _Set-Cookie_ de manera que cuando se accede a una _URL_ que verifica el par dominio/path registrado, el cliente enciará automáticamente la información de los diferentes campos de la cookie con la nueva cabecera _HTTP Cookie_.
+
+Es útil para restringir el acceso a recursos, no obstante no debemos olvidar que _HTTP_ no es un protocolo seguro; ya que es vulnerable a ataques por repetición.

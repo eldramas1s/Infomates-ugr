@@ -1,17 +1,3 @@
-    Una cookie loq ue permite es que se modifiquen ciertos ficheros en un sitio muy concreto para guardar algo de informacion -> cuando nos conectamos a un servidor se manda ese archivo para que se "guarde un log" por ekemplo en dos conexiones conseutivas.
-
-    Servidores cache
--------------
-
-Servidores que se ponen en medio que guarda paginas que ya se han buscado.
-Algo  muy tipico es usar los ICP(o algo asi). La ventaja de esto es evitar RTT muy grandes.
-Diap 66 -> Proxy es serv cache.
-
-TODO hasta diap 72
-
-DIAP 72 -> error 401 sino estoy autenticado
-
-
 Correo Electronico
 ----------------------
 
