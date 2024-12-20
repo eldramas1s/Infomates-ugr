@@ -6,6 +6,8 @@
 1. [Introducción a las aplicaciones de red](#p1)
 2. [Servicio de Nombres de Dominio](#DNS)
 3. [Navegación WEB](#NWEB)
+4. [El correo electrónico](#CE)
+5. [Aplicaciones multimedia](#AM)
 
 ---
 
@@ -420,3 +422,194 @@ Una de las aplicaciones más comunes son los __sistemas de compra electrónica__
 Todos estos campos de los que se ha hablado por los cuales se conserva dicho estado en una cookie se encian en una cabecera _Set-Cookie_ de manera que cuando se accede a una _URL_ que verifica el par dominio/path registrado, el cliente enciará automáticamente la información de los diferentes campos de la cookie con la nueva cabecera _HTTP Cookie_.
 
 Es útil para restringir el acceso a recursos, no obstante no debemos olvidar que _HTTP_ no es un protocolo seguro; ya que es vulnerable a ataques por repetición.
+
+<a id='CE'></a>
+## 5.4.El correo electrónico
+
+El correo electrónico es un servicio que todos conocemos y la mayoría usamos, consta de los siguientes elementos:
+- _Mail User Agent_ o correo electrónico del cliente.
+- _Mail Server_ o servidor de correo electrónico.
+- Protocolo de envío que será _SMTP_ o _Simple mail Transfer Protocole_.
+- Protocolos de descarga, como pueden ser _POP3_, _IMAP_ o _HTTP_.
+
+El agente de usuario o _MUA_ es el encargado de componer, editar y leer mensajes de corro del buzón. Este solo se comunicará con su servidor _MS_ asociado, no con el destinatario. 
+
+Mientras tanto, el _MS_ se encarga de reenviar los mensajes de los clientes y almacena los mesajes que debe de recibir su cliente.
+
+___SMTP___
+
+Este protocolo se basa en la ejecución de dos programas que están ambos incluidos en cada _MS_:
+- __Cliente SMTP__: se ejecuta en el _MS_ que está enviando el correo.
+- __Servidor SMTP__: se ejecuta en el _MS_ que está recibiendo el correo.
+
+En definitiva todo el protocolo se basa en relegar en los _MS_; de manera que, cuando un cliente necesite mandar un correo, lo enviará a su _MS_ correspondiente con el objetivo de que este lo reenvíe al _MS_ del computador destino.
+
+Una vez que un servidor recibe un correo, lo almacena hasta que su cliente asociado pide acceder a él, y es entonces y solo entonces cuando el _MS_ manda el mensaje al cliente.
+
+Algunas otras características de _SMTP_ son:
+- Se rige bajo _TCP_ en el puerto 25.
+- Es un protocolo orientado a texto.
+- Es un protocolo orientado a conexión, _in-band_ y _state-full_ implicando tres fases:
+    + _Handshaking_.
+    + _Transferencia de mensajes_.
+    + Cierre.
+- La interacción entre el cliente _SMTP_ y el servidor _SMTP_ se realiza mediante comandos(texto ASCII) o respuestas(código de estado y frases explicativas).
+- Dispone de códigos de 3 cifras al igual que _HTTP_ para indicar el estado del mensaje o la transacción por al que se pregunte.
+
+___Pasos del protocolo___
+
+1. El usuario origen compone el mensaje dirigido a una dirección de correo con su _MUA_.
+2. Se envía con _SMTP_ el mensaje al servidor _MUA_ del usuario origen que lo sitúa en la cola de mensajes salientes.
+3. El cliente _SMTP_ abre una conexión _TCP_ con el servidor de correo _MTA_ del usuario destino.
+4. El cliente envía el mensaje sobre la conexión _TCP_.
+5. EL servidor de correo electrónico del usuario destino ubica el mensaje en el _mailbox_ del usuario destino.
+6. El usuario destino, cuando esté activo pues no es necesario para iniciar la transacción, invoca su _MUA_ para leer el mensaje usando alguno de los protocolos(_POP3,IMAP o HTTP_).
+
+![mail](./imagenes/mail.png)
+
+__Nota__: Para ver algunos comandos de _SMTP_ podemos ver las diapositivas 78 y 79.
+
+### Extensiones MIME
+
+Las _MIME_ o _Multipurpose Internet Mail Protocol Extensions_ no cambian nada respecto a la arquitectura de correo anterior, sino que van encaminadas a que los correos puedan soportar:
+- Texto en conjuntos de caracteres distintos de _US-ASCII_.
+- Adjuntos que no son de tipo texto.
+- Cuerpos de mensajes con múltiples partes.
+- Información de encabezados con conjuntos de caracteres distintos de _ASCII_.
+
+Es importante no confundir los mensajes del protocoloc onel formato de almacenamiento y para ello se proporciona la siguiente imagen sobre el formato de un correo:
+
+![Mmail](./imagenes/mmail.png)
+
+Las extensiones _MIME_ proporcionan una serie de cabeceras en las que se encuentran los siguientes elementos:
+- Versión de MIME: identifica la version de _MIME_ y si no existe se considera que el mensaje es texto normal en inglés.
+- Descripción del contenido: es una cadena de texto que describe el contenido del mensaje, es necesaria para que el destinatario sepa si desea descodificar y leer el mensaje o no.
+- _ID_ del contenido: es un identificador único que usa el mismo formato que la cabecera estándar _Message-ID_.
+- _Content-Transfer-Encoding_: indica la manera en que está encuelto el cuerpo del mensaje para su transmisión, ya que podría haber porblemas con la mayoría de los caracteres distintos de texto. Hay 5 tipos de codificación.
+- Tipo de contenido: especifica la naturaleza del cuerpo del mensaje. Muchos de los tipos de datos aparecen en la siguiente tabla:
+
+![Ttipos](./imagenes/ttipos.png)
+
+Además de tipos de datos, se guarda el tipo de aplicación que es un tipo general para los formatos que requieren procesamiento externo no cubierto por ninguno de los otros tipos. No obstante, dentro de ellos hay subtipos, concretamente:
++ _Octet-stream_: es simplemente una secuencia de bytes no interpretacos, tal que a su recepción, un agente usuario debería presentarla en pantalla sugiriendo al usuario que se copien en un archivo y solicitando un nombre de archivo.
++ _Postscript_: se refiere a un lenguaje de _scritpting_. 
+
+Otro tipo imporatante es el tipo de mensaje que permite qu eun mensaje esté encapsulado por completo dentro de otro. Este esquema es útil para reenviar correo electrónico. Hay tres subtipos:
++ _rfc822_: se usa para encapsular un mensaje _RFC 822_ completo en un mensaje exterior.
++ _partial_: permite dividir un mensaje encapsulado en pedazos y enviarlos por separado. Los parámetros hacen posible ensamblar correctamente todas las partes en el destino.
++ _external-body_: se usa para mensajes muy grandes donde simplemente se da una dirección de _FTP_ y el agente receptor puede obtenerlo de la red cuando quiera.
+
+Otro tipo es el tipo _multipart_ que permite que un mensaje contenga más de una parte, con el comienzo y el din de cada parte bien delimitados. Como ya venía pasando, vemos los subtipos:
++ _mixed_. permite que cada parte sea diferente.
++ _alternative_: indica que cada parte contiene el mismo mensaje expresado en un medio o codificación diferente.
++ _parallel_: cuando todas las partes deben "verse" simutáneamente.
++ _digest_: es util cuando sejuntan muchos mensjaes en un mensaje compuesto.
+
+### Protocolos de acceso
+
+Como ya vimos anteriormente hay varios protocolos de acceso, de los cuales veremos algunos.
+
+___POP3___
+
+Es un protocolo que está pensado para trabajar en __local__, se encarga de descargar correos.
+
+Cuando descarga un correo, lo almacena en un fichero del cliente y borra el correo dle servidor; básicamente, delega la responsabilidad de no perderlo en el cliente.
+
+Dispone de tres fases de protocolo:
+- __Autorización__: aquí el cliente se autentica con el _MUA_ para poder acceder al correo; en caso de que las credenciales sean correctas se devolverá `+OK` y en otro caso `-ERR`.
+- __Transacción__: en esta fase, el clietne selecciona los mensajes que quiere obtener y los que quiere borrar con los comandos `retr id` y `dele id`. Lo habitual es cada vez que se coge un correo, este se elimina.
+- __Actualización__: se realiza después de la desconexión del cliente.
+
+__Nota__: algunos de los comandos aparecen en la diapositiva 89, no obstante, el más importante es _NOOP_ pues muchos protocolos lo usan para mantener la conexión viva, ya que si pasa cierto tiempo _TCP_ cierra la conexión.
+
+___IMAP4___
+
+Es un protocolo que pese a trabajar con el correo como si fuese __local__ está pensado para trabajar en __remoto__.
+
+Dispone de una serie de estados y dependiendo del estado en el que no s encontremos a nivel de aplicación podremos hacer unas cosas u otras.
+
+![EIMAP](./imagenes/eimap.png)
+
+1. Inicialemente, no sencontramos en el estado de _no autenticado_, en este estado podremos autenticarno o desconectarnos. Los comandos que podemos usar son:
+    + LOGIN
+    + AUTHENTICATE
+2. Si nos hemos autenticado nos encontraremos en _autenticado_ donde podremos elegir un buzón y pasar a _seleccionado_ o desconectarnos. Los comandos que podemos usar son:
+    + SELECT
+    + CREATE
+    + DELETE
+    + LIST
+    + ...
+3. Si hemos pasado a _seleccionado_, podremos mandar una serie de mensajes u otros como por ejemplo _Capability, Noop o Logout_ que se pueden enviar siemrpe. Para pasar entre estados hay que mandar un cierto mensaje. Los comando que se pueden usar son:
+    + CHECK
+    + CLOSE
+    + SEARCH
+    + ...
+
+Una forma muy útil de autenticar si el que ha recibido el correo es quien debe hacerlo podremos mirar si el campo _X-Original-To_ coincide cone l campo _Delivered-To_, es decir, el campo para el que se mandó en origen coincide con el campo que guarda quién lo ha conseguido.
+
+Una desvetaja clara de _IMAP_ es que hay una cuota en el servidor referente al espacio máximo ocupado. Lo normal es qu elos correos no se borren inmediatamente, sino que se marcan con un flag de borrado y el servidor es el enecargado de borrarlos cuando quiere.
+
+Ventajas de _IMAP_:
+- Permite la organización en carpetas en ele lados dle servidor _MTA_.
+- Mantiene información entre sesiones asociando flags a los mensajes.
+- PErmite la descarga de partes de los mensajes.
+- Permite acceder con varios clientes, esto tambień lo permite _POP_ pero no en modo descargar y guardar.
+
+### WebMail
+
+Consiste en cuando un cliente se conecta a un servidor web de correo. De manera que cuando el clietne se conecta, la parte intermedia de la conexión puede ser como nosotros queramos, incluso se puede enviar la información con _JSON_.
+
+Preguntar funcionamiento.
+
+Ventajas de _Web MAIL_:
+- Dispone de una organización total en el servidor, es accesible desde cualquier cliente con _HTTP_.
+- COn respecto a la seguridad, dispone de un uso extendido de _HTTPs_.
+
+__Nota__: en la diapositiva 95 aparecen una serie de puertos importantes que debemos saber.
+
+<a id='AM'></a>
+## 5.5.Aplicaciones multimedia
+
+En un inicio, trabajaban sobre _UDP_ por motivos de velocidad, pero ahora, como hay tanto ancho de banda pueden permitirse el uso de otros protocolos.
+
+En cualquier caos, todolo lo que sea multimedia tiene asociado la __calidad de servicio__ que no es más que el hecho de que los datos tengan ciertos requisistos de retardo.
+
+Realmente, _IP_ no estaba pensado para calidad de servicio (ni en su origen ni en la actualidad), ya que es un protocolo de __máximo esfuerzo__, es decir, intenta que todo llegue bien pero no lo garantiza.
+
+Existen aplicaiones conversacionales, son aquellas que tienen unos requisitos de retardo estrictos, para que no sufra la conversación, es decir, pasado un tiempo si no ha llegado el mensaje puede que incluso se corte la conversación. No obstante las aplicaciones se dividen en tres tipos:
+- De flujo de audio y vídeo almacenado, como las plataformas de _streaming_.
+- De flujo de audio y vídeo en vivo, como twitch.
+- De audio y vídeo interactivo, como Skype.
+
+Las características fundamentales son:
+- Disponen de un elevado ancho de banda.
+- Son relativamente tolerantes ante pérdidas de datos, excepto las aplicaciones conversacionales como ya hemos dicho.
+- Exigen _Delay_ acotado, en ocasiones este _delay_ es estricto.
+- Exigen _Jitter_, es decir, fluctuación del retardo, acotado.
+- Se pueden beneficiar del _multicast_ es decir, de realizar digfusiones, de hecho en eso están basadas las aplicaciones como twitch. Cabe recalcar que el _multicast_ solo se puede implementar por _UDP_ pues como _TCP_ es orientado a conexión debe conocer cuál es el destino.
+
+Para entender el problema del _Jitter_, vamos a pensar en una comunicación con un retardo de 10 segundos cada vez que se manda un mensaje; este retardo se va acumulando lo que ocasiona que haya parones en la reproducción, por ejemplo cuando un vídeo se queda cargando. Estos parones es a lo que se conoce como _Jitter_.
+
+### Calidad de servicio
+
+Con respecto a la __calidad de servicio__(_QoS_), cuando disponemos de ella en un router, seremos capaces de establecer prioridades sobre unos paquetes sobre otros.
+
+Un ejemplo de router que soporta calidad de servicio es el siguiente:
+
+![Qos](./imagenes/qos.png)
+
+Dichos routers se componen de los siguientes elementos:
+- Boca de entrada: es el puerto por el que llegan los mensajes.
+- Control de admisión: sirve para dar garantías de calidad de servicio y no dejar pasar más flujo a partir de un momento dado.
+- Central de conmutación: es útil para deciir por qué puerto se realiza rl encaminamiento, esto se encuentra en todos los routers. También está presente en los _switch_, donde el hardware es más rápido.
+- Gestor de colas y planificador: es la única manera de que se garantice el retardo, es decir, es necesario que el ancho de banda llegue de alguna forma, básicamente que el flujo siga una estructura. Para ello se siguen los sigueintes conceptos:
+    + Colas de prioridad: consisten en meter el tráfico en la cola que le corresponda para permitir esa prioridad entre paquetes. Normalmente, se usan prioridades estrictas impidiendo colisiones.
+- Condormador de tráfico: garantiza que le flujo no agote todos los recursos.
+
+Por ahora, solo sabemos tratar de impedir el retardo, pero en caso de que se produzca, cómo gestionamos que no ocurra _Jitter_. Para ello se usa el gestor de colas y planificaión donde si la cola se empueza a llenar, el retardo aumentará y se comenzarán a descartar paquetes. En definitiva se sigue la lógica de descartar aquellos paquetes que tengan un retardo superior a la cota establecida.
+
+Veamos ahora el funcionamiento de la planificaión, es decir, si un flujo va a una cola u a otra. Para ello, se usa el campo _TOS_(_Type of Service_), es un campo de la cabecera _IP_; de manera que, cuando se tranmite un flujo hay alguien que dice que a ciertos flujos hay que darle un valor de _TOS_ para indicar que un paquete es de cierto tipo.
+
+Realmente, los routers comunes no miran los _TOS_; pero, si hay algún router que use _QoS_, puede que permita estos campos.
+
+Como añadido, hay algunos routers que dispnen de _WMM_ que tiene 4 tipos de prioridades: conversacional, vídeo, interactivo, best effort. COn esto podemos configurar nuestro router para que unos flujos tengan más prioridad que otros, pero es necesario identificar dichos flujos. Para ello, debe haber alguien que los marque, con lo que usamos el _TOS_ para marcar los paquetes.
