@@ -4,7 +4,7 @@
 
 const int MAX=128;
 const int MIN=33;
-const int KMAX=93;
+const int KMAX=128;
 const int KMIN=0;
 using namespace std;
 
@@ -27,7 +27,7 @@ string To_cesar(string cad,int k){
 
 string From_cesar(string cad, int k){
     for(int i=0; i<cad.length();i++){
-        cad[i]=(cad[i]-k)%MAX+MIN;
+        cad[i]=((cad[i]-k)%KMAX)+MIN;
     }
     return cad;
 }
@@ -38,9 +38,7 @@ bool Cadena_correcta(string cad){
     bool correcta=true;
     int i=0;
     while (correcta && i<cad.length()){
-        cout << cad[i] << endl;
-        correcta=(MIN>=cad[i] && cad[i]<=MAX);
-        cout << correcta << endl;
+        correcta=(cad[i]>=MIN && cad[i]<=MAX);
         i++;
     }
     return correcta;
@@ -50,9 +48,10 @@ bool Cadena_correcta(string cad){
 int main(int argc, char**argv){
     string cad;
     do{
+        cout << "Introduzca una cadena: " ;
         cin>>cad;
-        cout << "La cadena no es correcta" << endl;
     }while(!Cadena_correcta(cad)||cad.length()<=0);
+
 
 
     int k=(int)aleatorio<KMIN,KMAX>();
