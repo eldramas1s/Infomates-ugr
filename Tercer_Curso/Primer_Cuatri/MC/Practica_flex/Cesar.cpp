@@ -2,9 +2,9 @@
 #include <string>
 #include <random>
 
-const int MAX=128;
+const int MAX=126;
 const int MIN=33;
-const int KMAX=128;
+const int KMAX=93;
 const int KMIN=0;
 using namespace std;
 
@@ -18,18 +18,25 @@ template< int min, int max > int aleatorio()
 }
 /*-------------------------------*/
 //Funciones de cifrado y descifrado.
-string To_cesar(string cad,int k){
+void To_cesar(string & cad,int k){
+    int cif;
     for(int i=0; i<cad.length();i++){
-        cad[i]=(cad[i]+k)%MAX+MIN;
+        cout << cad[i] << endl;
+        cif=cad[i]+k;
+        if(cif< MIN)
+            cad[i]=toascii(cif%MAX+MIN);
+        else 
+            cad[i]=toascii(cif%MAX);
     }
-    return cad;
 }
 
-string From_cesar(string cad, int k){
+void From_cesar(string & cad, int k){
     for(int i=0; i<cad.length();i++){
-        cad[i]=((cad[i]-k)%KMAX)+MIN;
+        if(cad[i]-k<MIN)
+            cad[i]=toascii((cad[i]-k)%MAX+MAX);
+        else 
+            cad[i]=toascii((cad[i]-k)%MAX+MIN);
     }
-    return cad;
 }
 
 /*-------------------------------*/
@@ -58,7 +65,9 @@ int main(int argc, char**argv){
 
     cout << "Constante de traslación: " << k << endl;
     cout << "Cadena introducida: " << cad << endl;
-    cout << "Cadena cifrada: " << To_cesar(cad,k) << endl;
-    cout << "Cadena descifrada: " << From_cesar(cad,k) << endl;
+    To_cesar(cad,k);
+    cout << "Cadena cifrada: " << cad << endl;
+    From_cesar(cad,k);
+    cout << "Cadena descifrada: " << cad << endl;
     return 0;
 }

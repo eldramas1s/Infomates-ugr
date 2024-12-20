@@ -8,8 +8,12 @@
 %{
 #include <iostream>
 #include <fstream>
+#include <random>
 
 using namespace std;
+
+const int MAX=128;
+const int MIN=33;
 
 ifstream fichero1;
 ofstream fichero2;
@@ -33,6 +37,7 @@ char * passwd;
 
 void cifrar ();
 void descifrar ();
+template <int min, int max> int aleatorio();
 %}
 
 %%
@@ -86,11 +91,35 @@ flujo.yylex();
 
 }
 
-void cifrar ()
+template <int min, int max>aleatorio()
 {
-	
+    static default_random_engine generador((random_device())());
+    static uniform_int_distribution<int> distribucion_uniforme(min,max);
+    return distribucion_uniforme(generador);
 }
-void descifrar ()
+
+void cifrar (char* cad, int k, int cadl)
 {
-	
+    int cif;
+    for (int i=0; i<cadl; i++)
+    {
+        cif=(cad[i]+k);
+        if(cif < MIN)
+            cad[i]=toascii(cif%MAX+MIN);
+        else 
+            cad[i]=toascii(cif%MAX);
+    }
+}
+void descifrar (char * cad, int k, int cadl)
+{
+	int dcif;
+
+    for (int i=0; i<cadl; i++)
+    {
+        dcif=cad[i]-k;
+        if(dcif<MIN)
+            cad[i]=toascii(dcif%MAX+MAX);
+        else
+            cad[i]=toascii(dcif%MAX+MIN);
+    }
 }
