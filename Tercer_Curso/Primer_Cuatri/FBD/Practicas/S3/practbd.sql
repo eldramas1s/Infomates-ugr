@@ -412,13 +412,6 @@ HAVING SUM(cantidad) IN (SELECT MAX(SUM(ventas_a.cantidad))
                         GROUP BY ventas_a.codpie);
 
 
-
-
-
-
-
-
-
 -- Ejercicio 5.2 
 
 create table acceso (testigo NUMBER);
