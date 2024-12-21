@@ -289,7 +289,7 @@ ___Índices de clave invertida___
 La idea será permutar, de alguna manera, el orden de los bytes de una clave que nos sirva para identificar un registro. En ocasiones, las permutaciones se realizan sobre otra unidad de memoria.
 
 Como ventajas:
-    - Puede interesar en alguna operación frecuente que dos valores de clave consecutivos no estén realmente consecutivos.
+- Puede interesar en alguna operación frecuente que dos valores de clave consecutivos no estén realmente consecutivos.
 
 Un ejemplo de esta utilidad es cuando se espera acceder a dos elementos consecutivos por índice, se hace esto para agilizar el problema pues puede coincidir que tengamos que tomar dos bloques distintos sin necesitar alguno de ellos.
 
@@ -310,9 +310,9 @@ Asociándonos más a la gestión y al almacenamiento de la _BD_, en los nodos ho
 Unido a esto, se suele buscar que el orden de cada nodo sea un múltiplo del tamaño de bloque de datos.
 
 Como ventajas se presentan:
-    - La búsqueda por intervalos es muy sencilla concatenando los nodos hoja pues se consigue una lista secuencial de todos los bloques de disco.
-    - La búsqueda de un bloque en específico también es bastante rápida acotando el rango de búsqueda en cada decisión en profundidad del árbol.
-    - En el caso particular de cómo se implementan en bases de datos, la recuperación de los nodos es mucho más sencialla, pues gracias a que permanecen entrelazados los nodos hoja, podemos implementar recuperación por búsqueda secuencial.
+- La búsqueda por intervalos es muy sencilla concatenando los nodos hoja pues se consigue una lista secuencial de todos los bloques de disco.
+- La búsqueda de un bloque en específico también es bastante rápida acotando el rango de búsqueda en cada decisión en profundidad del árbol.
+- En el caso particular de cómo se implementan en bases de datos, la recuperación de los nodos es mucho más sencialla, pues gracias a que permanecen entrelazados los nodos hoja, podemos implementar recuperación por búsqueda secuencial.
 
 Como desventaja:
 - La inserción y el borrado debe garantizar que el árbol permanezca equilibrado, luego deberán usarse algoritmos para ello que consumirán tiempo.
