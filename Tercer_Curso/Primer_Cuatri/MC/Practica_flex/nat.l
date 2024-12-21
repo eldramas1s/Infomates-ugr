@@ -9,11 +9,17 @@
 #include <iostream>
 #include <fstream>
 #include <random>
+#include <cstring>
+#include <cstdlib>
 
 using namespace std;
 
-const int MAX=128;
-const int MIN=33;
+const int MAX=128;      //Codigo ASCII máximo aceptable
+const int MIN=33;       //Codigo ASCII minimo aceptable
+const int KMIN=1;       //Minimo valor de desplazamiento
+const int KMAX=94;      //Maximo valor de desplazamiento
+const int Ip_min=0;     //Minimo valor de segmento de IP
+const int IP_max=255;   //Máximo valor de segmento de IP
 
 ifstream fichero1;
 ofstream fichero2;
@@ -35,9 +41,10 @@ int cont_ip=0;
 char * user;
 char * passwd;
 
-void cifrar ();
-void descifrar ();
+void cifrar (char * cad, int k);
+void descifrar (char * cad, int k);
 template <int min, int max> int aleatorio();
+bool isValidIP(const char * ip);
 %}
 
 %%
@@ -98,28 +105,62 @@ template <int min, int max>aleatorio()
     return distribucion_uniforme(generador);
 }
 
-void cifrar (char* cad, int k, int cadl)
+void cifrar (char* cad, int k)
 {
-    int cif;
-    for (int i=0; i<cadl; i++)
-    {
-        cif=(cad[i]+k);
-        if(cif < MIN)
-            cad[i]=toascii(cif%MAX+MIN);
-        else 
-            cad[i]=toascii(cif%MAX);
-    }
+   static int rango = MAX-MIN-1;
+   int cadl = strlen(cad);
+   for(int i=0;i<cadl; i++)
+   {
+        if(cad[i]>=MIN && cad[i]<=MAX)
+            cad[i]=((cad[i]-MIN+k)%rango)+MIN;
+   }
 }
-void descifrar (char * cad, int k, int cadl)
+
+void descifrar (char * cad, int k)
 {
-	int dcif;
+    static int rango = MAX-MIN-1;
+    int cadl=strlen(cad);
 
     for (int i=0; i<cadl; i++)
     {
-        dcif=cad[i]-k;
-        if(dcif<MIN)
-            cad[i]=toascii(dcif%MAX+MAX);
-        else
-            cad[i]=toascii(dcif%MAX+MIN);
+        if(cad[i]>=MIN && cad[i]<=MAX)
+            cad[i]=((cad[i]-MIN-k+rango)%rango)+MIN;
     }
+}
+
+bool isValidIP(const char * ip)
+{
+    int ipl = strlen(ip);
+    if(ipl == 0 || ipl>15) return false;
+
+    int num_segments = 0;
+    char segment[4];
+    int segIndex = 0;
+
+    for( int i=0; i<=ipl; i++ )
+    {
+        if(ip[i] == '.' || ip[i]=='\0')
+        {
+            if(segIndex==0) return false;
+            
+            segment[segIndex] = '\0';
+            int num = atoi(segment);
+            if(num<0 || num>255) return false;
+
+            ++num_segments;
+            segIndex=0;
+
+            if(num_segments>4) return false;
+        } 
+        else if(ip[i]>='0'&&ip[i]<='9')
+        {
+            if(segIndex>=3)return false;
+            segment[segIndex++] = ip[i];
+        }
+        else
+        {
+            return false;
+        }
+    }
+    return num_segments == 4;
 }
