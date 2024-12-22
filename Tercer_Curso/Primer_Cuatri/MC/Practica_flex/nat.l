@@ -38,13 +38,17 @@ const char * ip_src="12.1.1.1";
 int cont_ip=0;
 
 // Para las credenciales
-char * user;
-char * passwd;
+char * credencial;
 
 void cifrar (char * cad, int k);
 void descifrar (char * cad, int k);
 template <int min, int max> int aleatorio();
 bool isValidIP(const char * ip);
+
+// Valor de k, variable para el cifrado:
+const int k=2;        // valor prefijado
+// poner la opción de k aleatorio
+
 %}
 
 %%
@@ -54,10 +58,29 @@ bool isValidIP(const char * ip);
 IN:                  {in=true; fichero2 << YYText() << endl;}
 OUT:                 {in=false; fichero2 << YYText() << endl;}
 
-[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}   {fichero2 << ip_src << endl;} // comprobar que sea menor que 255, pensar mejor
+[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3} {if(in==false) {
+							if(cont_ip==0) fichero2 << ip_src << endl;
+							else fichero2 << YYText() << endl;
+							cont_ip++;
+					         }else{
+					         	if(cont_ip==0) fichero2 << YYText() << endl;
+							else fichero2 << ip_dst << endl;
+							cont_ip++;
+					         }}
 
-U:([0-9]|[a-z]|[A-Z])*       {fichero2 << YYText() << endl;} // primera aproximación
-P:([0-9]|[a-z]|[A-Z])*       {fichero2 << YYText() << endl;}
+(U:|P:)([!-~])*       		      {credencial= (char * )YYText();  // para salir las credenciales irán precedidas de U: y P:
+				       if(in == false){	        // verificamos que efectivamente es saliente
+					 cifrar(credencial , k);
+					 fichero2 << credencial << endl; 
+					}else{	        		// en caso de que k=0
+					 descifrar(credencial , k);
+					 fichero2 << credencial << endl; 
+				        }} 
+
+([!-~])*       		      {credencial= (char * )YYText();  // para entrar va cifrado
+						
+					 descifrar(credencial , k);
+					 fichero2 << credencial << endl; } 
 
 
 
@@ -98,12 +121,12 @@ flujo.yylex();
 
 }
 
-template <int min, int max>aleatorio()
-{
-    static default_random_engine generador((random_device())());
-    static uniform_int_distribution<int> distribucion_uniforme(min,max);
-    return distribucion_uniforme(generador);
-}
+//template <int min, int max>aleatorio()    ERROR: nat.l:125:38: error: ISO C++ forbids declaration of ‘aleatorio’ with no type [-fpermissive]
+//{
+//   static default_random_engine generador((random_device())());
+//    static uniform_int_distribution<int> distribucion_uniforme(min,max);
+//    return distribucion_uniforme(generador);
+//}
 
 void cifrar (char* cad, int k)
 {
