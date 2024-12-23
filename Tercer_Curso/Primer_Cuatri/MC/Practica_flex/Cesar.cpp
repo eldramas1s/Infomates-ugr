@@ -11,11 +11,11 @@ using namespace std;
 
 /*-------------------------------*/
 //Funcion de obtencion de k
-template< int min, int max > int aleatorio()
+int aleatorio(int min, int max)
 {
   static default_random_engine generador( (random_device())() );
   static uniform_int_distribution<int> distribucion_uniforme( min, max ) ;
-  return distribucion_uniforme( generador );
+  return (int)distribucion_uniforme( generador );
 }
 /*-------------------------------*/
 //Funciones de cifrado y descifrado.
@@ -66,7 +66,7 @@ int main(int argc, char**argv){
 
 
 
-    int k=(int)aleatorio<KMIN,KMAX>();
+    int k=aleatorio(KMIN,KMAX);
 
     cout << "Constante de traslación: " << k << endl;
     cout << "Cadena introducida: " << cad << endl;
