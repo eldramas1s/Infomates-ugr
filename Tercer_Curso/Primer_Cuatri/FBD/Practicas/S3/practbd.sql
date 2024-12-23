@@ -297,18 +297,13 @@ select * from ventas;
 select * from user_tables;
 
 
--- Ejercicio 3.24
+-- Ejercicio 3.24(division)
 
-select distinct codpie
-from ventas
-where not exists (
-select codpj from proyecto
-minus
-select codpie from ventas where (proyecto.codpj=ventas.codpj and proyecto.ciudad='Londres'));
 
-select * from ventas where codpj in (select codpj from proyecto where ciudad='Londres');
 
-select codpj from proyecto where ciudad='Londres';
+-- Ejercicio 3.25(division)
+
+
 
 -- Ejercicio 3.26
 
@@ -317,21 +312,6 @@ select count(distinct codpie) from ventas where cantidad > 1000;
 -- Ejercicio 3.27
 
 select max(peso) from pieza;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 -- Ejercicio 3.28
 SELECT * FROM pieza;
@@ -355,43 +335,76 @@ SELECT p2.*
 FROM pieza p2,pieza p3 
 WHERE (p2.peso < p3.peso);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- Ejercicio 3.29 
 
 SELECT codpie, MAX(peso) FROM pieza;
 
-
-
-
-
-
-
-
 SELECT codpie, SUM(cantidad)
 FROM ventas
 GROUP BY codpie;
+
+
+-- Ejercicio 3.30
+
+select distinct v2.codpro
+from ventas v2,ventas v3, ventas v4
+where (v2.codpro=v3.codpro) and (v3.codpro = v4.codpro) 
+      and (v2.codpie!=v3.codpie or v2.codpj != v3.codpj)
+      and (v3.codpie != v4.codpie or v3.codpj != v4.codpj)
+      and (v3.codpie != v4.codpie or v2.codpj != v4.codpj); -- Deberia extenderse para 4 o mas pero es un toston
+      
+describe ventas;
+select * from ventas;
+
+
+select codpro 
+from (select codpro, count(cantidad) a
+      from ventas
+      group by codpro)
+where a>3;
+
+select codpro, count(cantidad) a
+      from ventas
+      group by codpro
+      having a>3;   -- Esto no nos deja
+
+-- Ejercicio 3.31
+
+select codpie,nompie,avg(cantidad)
+from ventas natural join (select codpie, nompie from pieza)
+group by codpie,nompie
+order by codpie;
+
+SELECT nompro, cantidad
+FROM proveedor NATURAL JOIN (SELECT * FROM ventas WHERE cantidad>800);
+-- Ejercicio 3.32
+
+select codpro, avg(cantidad)
+from ventas 
+where codpie like 'P1'
+group by codpro;
+
+-- Ejercicio 3.33
+
+select codpie,codpro, sum(cantidad)
+from ventas
+group by codpie,codpro;
+
+-- Ejercicio 3.34
+
+select v.codpro, v.codpj , j.nompj, avg(cantidad)
+from ventas v, proyecto j
+where v.codpj=j.codpj
+group by v.codpj, j.nompj, v.codpro;
+
+-- Ejercicio 3.35
+
+describe proveedor;
+
+select nompro,sum(cantidad)
+from ventas natural join (select codpro,nompro from proveedor)
+group by codpro,nompro
+having sum(cantidad)>1000;
 
 -- Ejercicio 3.36
 
@@ -411,7 +424,56 @@ HAVING SUM(cantidad) IN (SELECT MAX(SUM(ventas_a.cantidad))
                         FROM ventas ventas_a
                         GROUP BY ventas_a.codpie);
 
+-- Ejercicio 3.37 
 
+SELECT *
+FROM ventas
+WHERE fecha BETWEEN TO_DATE('01/01/2002', 'DD/MM/YYYY')
+AND TO_DATE('31/12/2004', 'DD/MM/YYYY')
+order by fecha;
+
+SELECT *
+FROM ventas
+WHERE fecha BETWEEN to_char(fecha, 'DD/MM/YYYY')
+AND to_char(fecha, 'DD/MM/YYYY');
+
+
+-- Ejercicio 3.38
+select to_char(fecha, 'mm'), avg(cantidad) 
+from ventas
+group by to_char(fecha, 'mm')
+order by to_char(fecha,'mm');
+
+-- Ejercicio 3.39
+
+-- Ejercicio 3.40
+
+-- Ejercicio 3.41
+
+-- Ejercicio 3.42
+select sum(cantidad) from ventas where codpro like 'S1';
+
+select codpro,sum(cantidad)
+from ventas v 
+group by codpro
+having sum(cantidad) > (select sum(cantidad) from ventas b where b.codpro like 'S1');
+
+-- Ejercicio 3.43
+
+-- Ejercicio 3.44
+
+-- Ejercicio 3.45
+
+select codpro, count (*)
+from ventas 
+group by codpro 
+having count(codpro)>=10;
+
+-- Ejercicio 3.46
+
+-- Hasta 3.59 posible division
+
+commit;
 -- Ejercicio 5.2 
 
 create table acceso (testigo NUMBER);

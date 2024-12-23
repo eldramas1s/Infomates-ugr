@@ -1,4 +1,4 @@
-2024-355-15:00:01-19149
+2024-358-16:45:50-30979
 PULL:
-From github.com:eldramas1s/Segundo-Curso
-   99da7a9..2e50143  main       -> origin/main
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
