@@ -37,19 +37,31 @@ const char * ip_src="12.1.1.1";
 // Para saber si se trata de la primera IP, es decir, origen o el destino
 int cont_ip=0;
 
+// Para saber si se trata de la primera credencial, usuario, o la contraseña
+int cont_cred=0;
+
 // Para las credenciales
 char * credencial;
+const char * user="U:";
+const char * passwd="P:";
 
+// Función para recortar U: y P: antes de cifrar
+void recortar(char * cad, int ini);
+
+// Funciones de cifrado y descifrado
 void cifrar (char * cad, int k);
 void descifrar (char * cad, int k);
+
 int aleatorio(int min, int max);
 bool isValidIP(const char * ip);
 
 // Valor de k, variable para el cifrado:
-const int k=2;        // valor prefijado
-// poner la opción de k aleatorio
+//const int k=2;        // valor prefijado
+const int k=aleatorio(KMIN, KMAX); //opción de k aleatorio
 
 %}
+
+IP_SEGMENT	([0-9]{1,2})|(1[0-9]{1,2})|(2[0-4][0-9])|(25[0-5])
 
 %%
 
@@ -58,31 +70,36 @@ const int k=2;        // valor prefijado
 IN:                  {in=true; fichero2 << YYText() << endl;}
 OUT:                 {in=false; fichero2 << YYText() << endl;}
 
-[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3} {if(in==false) {
-							if(cont_ip==0) fichero2 << ip_src << endl;
-							else fichero2 << YYText() << endl;
-							cont_ip++;
-					         }else{
-					         	if(cont_ip==0) fichero2 << YYText() << endl;
-							else fichero2 << ip_dst << endl;
-							cont_ip++;
-					         }}
+{IP_SEGMENT}\.{IP_SEGMENT}\.{IP_SEGMENT}\.{IP_SEGMENT} {if(in==false) {
+								if(cont_ip==0) fichero2 << ip_src << endl;
+								else fichero2 << YYText() << endl;
+								cont_ip++;
+							 }else{
+							 	if(cont_ip==0) fichero2 << YYText() << endl;
+								else fichero2 << ip_dst << endl;
+								cont_ip++;
+							 }}
 
-(U:|P:)([!-~])*       		      {credencial= (char * )YYText();  // para salir las credenciales irán precedidas de U: y P:
-				       if(in == false){	        // verificamos que efectivamente es saliente
-					 cifrar(credencial , k);
-					 fichero2 << credencial << endl; 
-					}else{	        		// en caso de que k=0
-					 descifrar(credencial , k);
-					 fichero2 << credencial << endl; 
-				        }} 
-
-([!-~])*       		      {credencial= (char * )YYText();  // para entrar va cifrado
-						
-					 descifrar(credencial , k);
-					 fichero2 << credencial << endl; } 
-
-
+([!-~])*       		      {credencial= (char * )YYText();  
+				       if(in == false){
+						 if(cont_cred==0) recortar(credencial, strlen(user));
+						 else recortar(credencial, strlen(passwd));	
+						 cont_cred++;        
+						 cifrar(credencial , k);
+						 fichero2 << credencial << endl; 
+					}else{	        		
+						 descifrar(credencial , k);
+						 char aux[strlen(user)+strlen(credencial)]={'\0'};
+						 
+						 if(cont_cred==0) strcat(aux, user);
+						 else strcat(aux, passwd);
+						 
+						 strcat(aux, credencial);
+						 credencial=aux;
+						 fichero2 << credencial << endl; 
+						 cont_cred++; 
+				        }
+				      } 
 
 %%
 
@@ -107,7 +124,7 @@ int main (int argc, char *argv[])
 	}
 	else{
 		cout << "Se necesitan un fichero de lectura y otro de escritura:" << endl;
-		cout << "./nat fichero1 fichero2" << endl;
+		cout << "./nat fichero1 fichero1_nat" << endl;
 		exit(1);
 		
 	} 
@@ -127,6 +144,7 @@ int aleatorio(int min, int max)
     static uniform_int_distribution<int> distribucion_uniforme(min,max);
     return (int)distribucion_uniforme(generador);
 }
+
 
 void cifrar (char* cad, int k)
 {
@@ -187,3 +205,18 @@ bool isValidIP(const char * ip)
     }
     return num_segments == 4;
 }
+
+void recortar(char * cad, int ini){
+   int cadl = strlen(cad);
+   char aux[cadl-ini-1];
+   int i=0;
+   
+   while(i+ini < cadl ){
+   	aux[i]=cad[i+ini];
+   	i++;
+   }
+   aux[i]='\0';
+   strcpy(cad, aux);
+}
+
+
