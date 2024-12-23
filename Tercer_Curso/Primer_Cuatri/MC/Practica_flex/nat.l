@@ -42,7 +42,7 @@ char * credencial;
 
 void cifrar (char * cad, int k);
 void descifrar (char * cad, int k);
-template <int min, int max> int aleatorio();
+int aleatorio(int min, int max);
 bool isValidIP(const char * ip);
 
 // Valor de k, variable para el cifrado:
@@ -121,12 +121,12 @@ flujo.yylex();
 
 }
 
-//template <int min, int max>aleatorio()    ERROR: nat.l:125:38: error: ISO C++ forbids declaration of ‘aleatorio’ with no type [-fpermissive]
-//{
-//   static default_random_engine generador((random_device())());
-//    static uniform_int_distribution<int> distribucion_uniforme(min,max);
-//    return distribucion_uniforme(generador);
-//}
+int aleatorio(int min, int max)    
+{
+   static default_random_engine generador((random_device())());
+    static uniform_int_distribution<int> distribucion_uniforme(min,max);
+    return (int)distribucion_uniforme(generador);
+}
 
 void cifrar (char* cad, int k)
 {
