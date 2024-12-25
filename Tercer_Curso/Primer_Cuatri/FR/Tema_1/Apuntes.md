@@ -24,7 +24,7 @@ Centrandonos un poco más en los __medios de transmisión__ haremos un barrido d
 
 Los sistemas de redes suelen estructurarse según distintas __topologías__, es decir, siguen un patrón diferente entre sus nodos, encontramos la física y la lógica:
     
-    · En bus: Todos los dispositivos están conectados al mismo bus luego todos ven toda la información causando problemas de privacidad; además, el congestionamiento de la red es muy común asicomo la pérdida de información por interferencias. Es la más barata y sencilla.
+- En bus: Todos los dispositivos están conectados al mismo bus luego todos ven toda la información causando problemas de privacidad; además, el congestionamiento de la red es muy común asicomo la pérdida de información por interferencias. Es la más barata y sencilla.
 
 <div>
 <p style = 'text-align:center;'>
@@ -32,9 +32,9 @@ Los sistemas de redes suelen estructurarse según distintas __topologías__, es 
 </p>
 </div>
 
-    · En anillo: Cada dispositivo se coneca a dos más de manera que, para mandarle la información a ellos, se hará de forma inmediata. Si se busca mandar información a un tercero, se deben usar los demás dispositivos como routers de manera que seguirá habiendo congestión. 
+- En anillo: Cada dispositivo se coneca a dos más de manera que, para mandarle la información a ellos, se hará de forma inmediata. Si se busca mandar información a un tercero, se deben usar los demás dispositivos como routers de manera que seguirá habiendo congestión. 
 
-    · En estrella: Todos los dispositivos se conectan a un router o switch central de manera que toda la información pasa por él. No obstante, cada conexión entre dispositivos distintos es directa pues el switch tiene una boca por dispositivo impidiendo que dos dispositivos envíen información a la misma boca. Es fácil de escalar y de manejar.
+- En estrella: Todos los dispositivos se conectan a un router o switch central de manera que toda la información pasa por él. No obstante, cada conexión entre dispositivos distintos es directa pues el switch tiene una boca por dispositivo impidiendo que dos dispositivos envíen información a la misma boca. Es fácil de escalar y de manejar.
 
 <div>
 <p style = 'text-align:center;'>
@@ -42,9 +42,9 @@ Los sistemas de redes suelen estructurarse según distintas __topologías__, es 
 </p>
 </div>
 
-    · En árbol: Los dispositivos se dividen en niveles de manera que cada nivel del árbol representa un nivel de la realidad; de esta manera, dispositivos superiores reciben la información de inferiores y la redirigen a su destino. Es útil en la dirección de empresas.
+- En árbol: Los dispositivos se dividen en niveles de manera que cada nivel del árbol representa un nivel de la realidad; de esta manera, dispositivos superiores reciben la información de inferiores y la redirigen a su destino. Es útil en la dirección de empresas.
 
-    · Mallada: consiste en que un dispositivo esté conectado a varios de ellos dando lugar a que haya varios caminos para el mismo detino proporcionando mayor seguridad. 
+- Mallada: consiste en que un dispositivo esté conectado a varios de ellos dando lugar a que haya varios caminos para el mismo detino proporcionando mayor seguridad. 
 
 <div>
 <p style = 'text-align:center;'>
@@ -52,15 +52,15 @@ Los sistemas de redes suelen estructurarse según distintas __topologías__, es 
 </p>
 </div>
 
-    · Híbrida: Consiste en identificar los puntos fuertes de cada lugar donde se pone la red y utilizar una topología u otra según dichos puntos fuertes obteniendo la mejor red posible.
+- Híbrida: Consiste en identificar los puntos fuertes de cada lugar donde se pone la red y utilizar una topología u otra según dichos puntos fuertes obteniendo la mejor red posible.
 
 La redes se __clasifican__ de varias formas(En comprobación):
 
-    · Según el tamaño y la extensión. PAN (carácter personal, engloba bluetooth, móvil,  ordenado...), LAN (Local) , MAN(Metropolitana como en una ciudad) y WAN (World como en un país o continente).
+- Según el tamaño y la extensión. PAN (carácter personal, engloba bluetooth, móvil,  ordenado...), LAN (Local) , MAN(Metropolitana como en una ciudad) y WAN (World como en un país o continente).
 
-    · según la tecnología de tranmisión; puede usarse Difusión (todos mandan y todos reciben todo lo que pasa por la red) o Punto a Punto (la comunicación es entre dos dispositivos solamente).
+- según la tecnología de tranmisión; puede usarse Difusión (todos mandan y todos reciben todo lo que pasa por la red) o Punto a Punto (la comunicación es entre dos dispositivos solamente).
 
-    · Según el tipo de transferencia de datos. Simple (solo manda o solo recibe), Half-duplex (hace ambas cosas pero no de forma simultánea) o Full-duplex (permite recibir y mandar de forma simultánea).
+- Según el tipo de transferencia de datos. Simple (solo manda o solo recibe), Half-duplex (hace ambas cosas pero no de forma simultánea) o Full-duplex (permite recibir y mandar de forma simultánea).
 
 ## 1.2.Diseño y estandarización de redes
 
@@ -78,15 +78,15 @@ Debemos saber que el hecho de que esté dividido en capas debe usarse para imple
 
 Con respecto a cada capa, veamos algunos problemas que presentan:
 
-    - A nivel físico, debemos ver como se comparten los datos, es decir, no siempre el bit será 5V. Debemos saber la codificación de canal; normalmente, se suele añadir redundancia ayudando a mejorar la seguridad.
+- A nivel físico, debemos ver como se comparten los datos, es decir, no siempre el bit será 5V. Debemos saber la codificación de canal; normalmente, se suele añadir redundancia ayudando a mejorar la seguridad.
   
-    - A nivel de enlace, se encarga de cómo manejarse con el medio, es decir, si leo, si escucho, si limpio el medio,etc. Un ejemplo es de dos capas LLC(se encarga de comprobar que los paquetes están bien y MAC (buscarlo).
+- A nivel de enlace, se encarga de cómo manejarse con el medio, es decir, si leo, si escucho, si limpio el medio,etc. Un ejemplo es de dos capas LLC(se encarga de comprobar que los paquetes están bien y MAC (buscarlo).
   
-    - A nivel de red, ya soy capaz de transmitir cosas que no tienen error; el objetivo es poder llegar al extremo; para ello, debemos saber el direccionamiento (saber a quien mando) y el encaminamiento (si tengo varias formas de ir, debemos saber por donde ir y si es más rapido mejor).
+- A nivel de red, ya soy capaz de transmitir cosas que no tienen error; el objetivo es poder llegar al extremo; para ello, debemos saber el direccionamiento (saber a quien mando) y el encaminamiento (si tengo varias formas de ir, debemos saber por donde ir y si es más rapido mejor).
   
-    - A nivel de transporte, aqui nos encargamos de la fiabilidad, es decir, si hay congestión(acumulación de paquetes en la llegada de paquetes) se arregla, control de flujo (cómo de rapido voy); además, se encarga de la multiplexación de datos (en la entrada llegan paquetes con diversos servicios, luego debemos saber a qué aplicación mando los datos). A su vez, es la encargada de garantizar que todo llega bien asicomo que la entrega de los mensajes es ordenada.
+- A nivel de transporte, aqui nos encargamos de la fiabilidad, es decir, si hay congestión(acumulación de paquetes en la llegada de paquetes) se arregla, control de flujo (cómo de rapido voy); además, se encarga de la multiplexación de datos (en la entrada llegan paquetes con diversos servicios, luego debemos saber a qué aplicación mando los datos). A su vez, es la encargada de garantizar que todo llega bien asicomo que la entrega de los mensajes es ordenada.
  
-    - A nivel de aplicación, es lo que quiero hacer visual pero hay que saber cómo los usuarios se van a comunicar entre ellos, es decir, las notificaciones, los mensajes entre ellos, la interfaz...
+- A nivel de aplicación, es lo que quiero hacer visual pero hay que saber cómo los usuarios se van a comunicar entre ellos, es decir, las notificaciones, los mensajes entre ellos, la interfaz...
 
 ## 1.3.Terminología, conceptos y servicios
 
@@ -96,11 +96,11 @@ Tal y como se ve en la imagen anterior, el modelo OSI separa la Aplicación en S
 
 Hagamos ahora una descripción de cada capa siguiendo el modelo OSI:
 
-    - La capa de enlace solo se encarga del encaminamiento salto a salto, es decri, de la primera conexion
+- La capa de enlace solo se encarga del encaminamiento salto a salto, es decri, de la primera conexion
   
-    - La capa de red(IP), va tmb salto a salto pero ya engloba todos los caminos entre todos los dispositivos (routers y usuarios). Cuando el paquete llega al router mira la tabla de direccionamiento y sigue al siguiente router hasta llegar al destino.
+- La capa de red(IP), va tmb salto a salto pero ya engloba todos los caminos entre todos los dispositivos (routers y usuarios). Cuando el paquete llega al router mira la tabla de direccionamiento y sigue al siguiente router hasta llegar al destino.
   
-    - Las demas capas solo se centran en los dispositivos de partida y de llegada, la capa de transporte y la aplicación estan solo en los diapositivcos externos, lo demas esta en todos, incluso los intermedios.
+- Las demas capas solo se centran en los dispositivos de partida y de llegada, la capa de transporte y la aplicación estan solo en los diapositivcos externos, lo demas esta en todos, incluso los intermedios.
 
 ___Vida útil de un dato___
 
@@ -145,9 +145,9 @@ ___Tipos de servicios___
 
 Hay varios tipos de servicios, los cuales se implementan en una capa según el modelo de referencia elegido; en el caso de TCP/IP se encuentra en el nivel de transporte y hay dos noveles de clasificacion:
 
-    · Orientado a conexión o no, es decir, comprobamos si se puede llegar al destino o no; de esta manera, el orientado no mandará paquetes si el receptor no tiene conciencia de ello.
+- Orientado a conexión o no, es decir, comprobamos si se puede llegar al destino o no; de esta manera, el orientado no mandará paquetes si el receptor no tiene conciencia de ello.
 
-    · Confirmado o no confirmado. En el caso del primero, se garantiza que todos los bits que se envíen lleguen en buen estado y que todo funcione bien, pues en caso de que algo falle se rompería la conexión. El primero de ellos es conocido como fiable pues gestiona el control de conexión(), el control de errores (transmite los datos y el error que haya en ellos), el control de congestión (se refiere a la red, significa que las colas de lor routers están llenas, luego si entran muchos paquetes y salen pocos comienza el descarte de los mismos desbordando las colas; el origen debería mandar menos datos), el control de flujos(el equipo destino no escapaz de tener memoria libre para recibir información) y la entrega ordenada(en caso de mandar muchos paquetes, todos llegarían en orden inverso al que se manda). Como ejemplo de servicio fiable tenemos TCP, como no fiable está UDP.
+- Confirmado o no confirmado. En el caso del primero, se garantiza que todos los bits que se envíen lleguen en buen estado y que todo funcione bien, pues en caso de que algo falle se rompería la conexión. El primero de ellos es conocido como fiable pues gestiona el control de conexión(), el control de errores (transmite los datos y el error que haya en ellos), el control de congestión (se refiere a la red, significa que las colas de lor routers están llenas, luego si entran muchos paquetes y salen pocos comienza el descarte de los mismos desbordando las colas; el origen debería mandar menos datos), el control de flujos(el equipo destino no escapaz de tener memoria libre para recibir información) y la entrega ordenada(en caso de mandar muchos paquetes, todos llegarían en orden inverso al que se manda). Como ejemplo de servicio fiable tenemos TCP, como no fiable está UDP.
 
 ## 1.4.Direccionamiento 
 
@@ -157,5 +157,5 @@ Hay dos relaciones entre Tiers, relaciones de transito (entre operadores y nivel
 
 El nivel de direccionamiento se divide en varias capas que para _ethernet_ se dividen en : (se usan direcciones MAC que son de la forma AA:BB:CC:DD...)
     
-    - LLC
-    - MAC
+- LLC
+- MAC
