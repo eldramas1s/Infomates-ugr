@@ -45,7 +45,7 @@ $$S \rightarrow S_1, S \rightarrow S_2$$
 
 - Concatenación: la idea es similar a la anterior solo que permitiendo generar las dos palabras una seguida de la otra:
 
-$$S \rightarrow S-1S_2$$
+$$S \rightarrow S_1S_2$$
 
 - Clausura: no deja de ser una concatenación de un lenguaje consigo mismo infinitas veces, luego se consigue así:
 
