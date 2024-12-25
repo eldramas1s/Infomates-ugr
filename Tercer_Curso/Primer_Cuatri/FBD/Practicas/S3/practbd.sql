@@ -108,6 +108,39 @@ insert into ventas values('S7', 'P1', 'J1', '340', to_date('10/02/2006', 'dd/mm/
 insert into ventas values('S7', 'P1', 'J2', '340', to_date('10/02/2006', 'dd/mm/yyyy'));
 insert into ventas values('S7', 'P1', 'J3', '340', to_date('10/02/2006', 'dd/mm/yyyy'));
 insert into ventas values('S7', 'P1', 'J4', '340', to_date('10/02/2006', 'dd/mm/yyyy'));
+
+
+--------------------------------------------------------------------------------
+-- Ejercicio 1.1 adaptado
+describe ventas;
+
+-- Ejercicio 1.4
+create table acceso (testigo NUMBER);
+drop table acceso;
+delete table acceso;
+describe acceso;
+
+-- Ejercicio 1.5
+
+alter table acceso add (fechabaja date);
+describe acceso;
+
+-- Ejercicio 1.6 
+
+describe ventas;
+
+--------------------------------------------------------------------------------
+
+-- Ejercicio 2.1 adaptado
+
+select table_name from user_tables where table_name like 'VENTAS';
+
+-- Ejercicio 2.2 comentado
+-- update plantilla set nombre='Luis' where dni='12345678':
+
+-- Ejercicio 2.3 comentado
+-- delete from plantilla no se el por que
+
 -- Ejercicio 2.4.
 
 insert into ventas values ('S3', 'P1', 'J1', 150, to_date('24/12/05','dd/mm/yy')); -- falla por formato de fecha y por ruptura de condicion de clave externa.
@@ -133,6 +166,9 @@ COMMIT;
 
 --rollback;
 
+-- Ejercicio 2.6
+select codpro, codpie, to_char(fecha,'"Dia: " day, dd/mm/yyyy') from ventas;
+
 --Capítulo 3
 
 
@@ -148,21 +184,40 @@ select codpro, nompro, status, ciudad from proveedor;
 --Ejemplo 3.3
 select codpro from ventas where codpj='J1';
 
+-- Ejemplo 3.5
+sELECT cantidad/12, round(cantidad/12,3), trunc(cantidad/12,3),
+floor(cantidad/12), ceil(cantidad/12)
+FROM ventas
+WHERE (cantidad/12)>10;
+
+-- floor -> toma la parte entera
+-- ceil -> toma la parte entera superior
+
 --Ejercicio 3.1
--- Resultado: Granada dos veces.
+-- Resultado: Londres dos veces.
+select ciudad from proyecto; -- ->
+select distinct ciudad from proyecto;
 
 --Ejercicio 3.2
-select codpro,codpie,codpj from ventas;
-select distinct codpro,codpie,codpj from ventas;
+select count(*) from (select codpro,codpie,codpj from ventas);
+select count(*) from (select distinct codpro,codpie,codpj from ventas);
+-- No es necesario porque lo que estamos proyectando son claves primarias que el conjunto debe ser unico.
 
 -- Ejercicio 3.3
-select * from pieza where ciudad = 'Madrid';
-select * from pieza where color = 'Rojo' or color = 'Gris';
+
 select * from pieza where (ciudad='Madrid' and (color='Rojo' or color='Gris'));
+
+-- Otra forma mas rebuscada
+
+select * from pieza where ciudad like 'Madrid'
+intersect
+(select * from pieza where color like '_ojo'
+union 
+select * from pieza where color like '_ris');
 
 --Ejercicio 3.4
 
-select * from ventas where cantidad between 200 and 300;
+select * from ventas where cantidad between 200 and 300 order by cantidad desc;
 
 -- Ejercicio 3.5
 
@@ -170,20 +225,21 @@ select * from pieza where nompie like '_ornillo';
 
 -- Ejercicio 3.6
 
-select table_name from ALL_TABLES where table_name like upper('%ventas');
+select distinct table_name from ALL_TABLES where table_name like upper('ventas');
 
 -- Ejercicio 3.7 
 
-select * from proveedor;
-select * from pieza;
-
 select  ciudad from proveedor where status >= 2
 minus 
-select  ciudad from pieza where codpie like 'P1';
+select  ciudad from pieza where codpie like 'P1'; -- No es necesario usar distinct pues es una consulta algebraica
 
 select distinct ciudad from proveedor where status > 2 and
 ciudad not in (select distinct ciudad from proveedor where status > 2 intersect select distinct ciudad from pieza where codpie = 'P1');
 
+-- Otra forma 
+
+select distinct ciudad from proveedor where status > 2 and
+not exists (select distinct ciudad from proveedor where status > 2 intersect select distinct ciudad from pieza where codpie = 'P1');
 -- Otra forma
 
 select proveedor.ciudad
@@ -200,6 +256,7 @@ select codpj from ventas where codpro = 'S1'
 minus 
 select codpj from ventas where codpro != 'S1';
 
+select codpj from ventas where codpro like 'S1' and not exists (select * from ventas where codpro != 'S1');
 
 select *from ventas;
 
@@ -236,8 +293,6 @@ from ventas,(select codpie,ciudad from pieza) p1,(select codpj,ciudad from proye
 (select codpro,ciudad from proveedor)p3 where (ventas.codpie=p1.codpie
 and ventas.codpj=p2.codpj and ventas.codpro=p3.codpro and p1.ciudad=p2.ciudad and p2.ciudad=p3.ciudad);
 
---select * from ventas,(select ciudad from proveedor);
-
 
 -- Ejercicio 3.13
 
@@ -249,7 +304,9 @@ select codpie,peso from pieza
 minus
 select a.codpie,a.peso from pieza a,pieza b where a.peso<b.peso;
 
-
+select codpie, peso from pieza where peso = (select max(peso) from pieza);
+select codpie, peso from pieza where peso >= all (select peso from pieza);
+select codpie, peso from pieza where peso in (select max(peso) from pieza);
 -- Ejercicio 3.15
 
 select s.codpie from ventas s join (select codpro from proveedor where ciudad='Madrid') v on (s.codpro=v.codpro); 
@@ -257,7 +314,9 @@ select s.codpie from ventas s natural join(select codpro from proveedor where ci
 
 -- Ejercicio 3.16
 
--- TODO
+select ciudad, codpie from (ventas natural join( select codpj, ciudad from proyecto)) natural join (select ciudad, codpro from proveedor);
+select ciudad, codpie from ventas natural join ( select codpj,codpro,ciudad from proyecto natural join (select ciudad,codpro from proveedor));
+select r.ciudad, ventas.codpie from ventas join (select p.codpj,q.codpro,ciudad from proyecto p join (select codpro,ciudad from proveedor) q on (p.ciudad = q.ciudad)) r on ( ventas.codpro=r.codpro and ventas.codpj = r.codpj);
 
 -- Ejercicio 3.17
 
@@ -266,7 +325,7 @@ select nompro from proveedor; --order by nompro;
 
 --Ejercicio 3.18
 
-select * from ventas order by cantidad , fecha desc;
+select * from ventas order by cantidad , fecha desc, codpro asc;
 
 
 -- Ejercicio 3.19
@@ -285,6 +344,7 @@ select codpj from proyecto minus select codpj from ventas where codpie in (selec
 -- Ejercicio 3.22
 
 select codpie from pieza where peso > ANY (select peso from pieza where nompie='tornillo');
+select codpie from pieza p where not exists (select peso from pieza q where nompie = 'tornillo' and p.peso <= q.peso);
 
 -- Ejercicio 3.23
 
@@ -299,15 +359,63 @@ select * from user_tables;
 
 -- Ejercicio 3.24(division)
 
+select codpie 
+from pieza
+where not exists( select codpj from proyecto where ciudad like 'Londres'
+                  minus 
+                  select codpj from ventas where ventas.codpie = pieza.codpie);
+                  
+select codpie 
+from pieza 
+where not exists( select codpj 
+                  from proyecto 
+                  where ciudad like 'Londres' and not exists (select * 
+                                                             from ventas 
+                                                             where ventas.codpie=pieza.codpie and ventas.codpj = proyecto.codpj));
 
+select codpie
+from pieza
+minus
+select codpie 
+from (select s.codpie,p.codpj 
+      from (select codpie 
+            from pieza) s, (select codpj 
+                            from proyecto 
+                            where ciudad like 'Londres') p
+      minus
+      select codpie,codpj 
+      from ventas);
+      
+select * from ventas;
 
 -- Ejercicio 3.25(division)
 
+select codpro 
+from proveedor
+where not exists(select codpie from pieza where pieza.ciudad in (select ciudad from proyecto)
+                 minus 
+                 select codpie from ventas where ventas.codpro=proveedor.codpro);
+                 
+select codpro
+from proveedor 
+where not exists( select codpie 
+                  from pieza 
+                  where pieza.ciudad in (select ciudad from proyecto) 
+                  and not exists(select * 
+                                 from ventas 
+                                 where ventas.codpie=pieza.codpie
+                                 and proveedor.codpro=ventas.codpro));
 
-
+select codpro
+from proveedor
+minus 
+select codpro from (select s.codpro,p.codpie from (select codpro from proveedor)s, (select codpie from pieza where pieza.ciudad in (select ciudad from proyecto))p
+                    minus
+                    select codpro,codpie from ventas);
+                    
 -- Ejercicio 3.26
 
-select count(distinct codpie) from ventas where cantidad > 1000;
+select count(distinct codpie) from ventas where cantidad > 1000; -- Sin el distinct considera dos veces la misma pieza
 
 -- Ejercicio 3.27
 
@@ -444,6 +552,7 @@ from ventas
 group by to_char(fecha, 'mm')
 order by to_char(fecha,'mm');
 
+describe dictionary;
 -- Ejercicio 3.39
 
 -- Ejercicio 3.40
@@ -459,9 +568,30 @@ group by codpro
 having sum(cantidad) > (select sum(cantidad) from ventas b where b.codpro like 'S1');
 
 -- Ejercicio 3.43
+select codpro, sum(cantidad) 
+from ventas 
+group by codpro
+having sum(cantidad)= (select max(sum(v1.cantidad)) from ventas v1 group by v1.codpro);
 
 -- Ejercicio 3.44
+                  
+select codpro
+from proveedor
+where not exists (select ciudad
+                  from proyecto
+                  where codpj='S3'
+                  minus
+                  select distinct ciudad 
+                  from ventas natural join (select * from proyecto)
+                  where codpj='S3' and ventas.codpro = proveedor.codpro); 
 
+select codpro
+from proveedor 
+where not exists(select ciudad 
+                 from proyecto
+                 where codpj='S3' and not exists (select * 
+                                                  from (ventas natural join (select * from proyecto)p
+                                                   where p.ciudad=proyecto.ciudad and p.codpro = proveedor.codpro));   
 -- Ejercicio 3.45
 
 select codpro, count (*)
@@ -471,9 +601,159 @@ having count(codpro)>=10;
 
 -- Ejercicio 3.46
 
--- Hasta 3.59 posible division
+select codpro 
+from proveedor
+where not exists( select codpie
+                  from ventas
+                  where codpro ='S1'
+                  minus 
+                  select codpie 
+                  from ventas v 
+                  where v.codpro=proveedor.codpro);
+
+select codpro
+from proveedor
+where not exists( select codpie 
+                  from ventas b
+                  where codpro = 'S1' and not exists( select *
+                                                      from ventas v
+                                                      where v.codpie=b.codpie and v.codpro = proveedor.codpro));
+                                                
+select codpro 
+from proveedor
+minus
+select codpro 
+from (select p.codpro, q.codpie 
+      from proveedor p, (select * from ventas where codpro = 'S1') q
+      minus
+      select codpro, codpie from ventas v where p.codpro=v.codpro and q.codpie=v.codpie);
+
+-- Ejercciio 3.47
+select codpro, sum(cantidad)
+from ventas a
+where codpro in (select codpro 
+                 from proveedor
+                 where not exists(select codpie
+                                  from ventas v
+                                  where v.codpro = 'S1' and not exists(select * 
+                                                                       from ventas b
+                                                                       where a.codpro = b.codpro and v.codpie=b.codpie)))
+group by codpro;
+
+-- Ejercicio 3.48
+
+select codpj 
+from proyecto 
+where not exists( select codpro
+                  from ventas b
+                  where b.codpie='P3' and not exists(select * 
+                                                     from ventas v
+                                                     where v.codpj = proyecto.codpj and b.codpro =v.codpro));
+
+-- Ejercicio 3.49
+select codpro, avg(cantidad)
+from ventas
+where codpie like '_3'
+group by codpro;
+
+-- Ejercicio 3.50
+
+-- Ejercicio 3.51
+
+-- Ejercicio 3.52
+select codpro, avg(cantidad)
+from proveedor natural join ventas
+group by codpro;                -- SI hay un proveedor que no suministra nada no lo obtiene
+
+-- Ejercicio 3.53
+
+select distinct codpro
+from ventas
+where codpie in (select codpie from pieza where color like 'Rojo');
+
+-- Ejercicio 3.54
+
+select codpro
+from proveedor
+where not exists( select codpie 
+                  from pieza 
+                  where color like 'Rojo' and not exists (select * 
+                                                          from ventas
+                                                          where ventas.codpro = proveedor.codpro and ventas.codpie=pieza.codpie));
+
+-- Ejercicio 3.55
+
+select distinct codpro
+from ventas b
+where not exists ( select  * from ventas v where v.codpie in (select codpie from pieza where color!='Rojo') and v.codpro=b.codpro)
+order by codpro asc;
+
+-- Ejercicio 3.56
+select codpro, count(codpie)
+from(select codpro,codpie
+    from ventas 
+    where codpie in (select codpie from pieza where color like 'Rojo'))
+group by codpro 
+having count(codpie)>1;
+
+-- Ejercicio 3.57
+
+select distinct codpro, v.cantidad from ventas v natural join (select codpro
+from proveedor
+where not exists( select codpie 
+                  from pieza
+                  where color='Rojo' and not exists( select * 
+                                                     from ventas b
+                                                     where b.codpie=pieza.codpie and b.codpro=proveedor.codpro)))
+where cantidad > 10
+order by codpro;
+
+-- Ejercicio 3.58
+
+update proveedor
+    set status=1
+    where proveedor.codpro in (select codpro from ventas where not exists (select * from ventas where codpie != 'P1'));
+
+-- Ejercicio 3.59
+-- DA pereza hacerlo
 
 commit;
+
+--------------------------------------------------------------------------------
+
+-- Ejercicio 4.1
+create view ProveedorLondres as 
+select * from proveedor
+where ciudad = 'Londres';
+
+insert into ProveedorLondres values('S8', 'Jose Suarez', 3, 'Granada');
+
+select * from ProveedorLondres;
+
+-- Si que se inserta en proveedor pero no en la vista creada
+
+-- Ejercicio 4.2
+create view SimpleView as 
+select nompro,ciudad from proveedor;
+
+-- La existencia de duplicados por no haber clave primaria no se sabria de que proveedor es acda tupla, asique actualizar seria muy engorroso.
+
+-- Ejercicio 4.3
+create view Comview as 
+select codpro, nompro, codpj 
+from (ventas natural join proveedor)   
+where codpie in (select codpie from pieza where color like 'Gris');  
+
+select * from Comview;
+
+-- Insertar aqui es ambiguo pues no se sabe en que tabla hay que insertar asicomo la pieza que se vende en ventas luego la clave primaria incumpliria la metarregla de integridad.
+
+--------------------------------------------------------------------------------í
+
+-- Ejercicio 5.1
+
+describe user_tables;
+
 -- Ejercicio 5.2 
 
 create table acceso (testigo NUMBER);
