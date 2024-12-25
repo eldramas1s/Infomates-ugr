@@ -53,7 +53,6 @@ void cifrar (char * cad, int k);
 void descifrar (char * cad, int k);
 
 int aleatorio(int min, int max);
-bool isValidIP(const char * ip);
 
 // Valor de k, variable para el cifrado:
 //const int k=2;        // valor prefijado
@@ -167,43 +166,6 @@ void descifrar (char * cad, int k)
         if(cad[i]>=MIN && cad[i]<=MAX)
             cad[i]=((cad[i]-MIN-k+rango)%rango)+MIN;
     }
-}
-
-bool isValidIP(const char * ip)
-{
-    int ipl = strlen(ip);
-    if(ipl == 0 || ipl>15) return false;
-
-    int num_segments = 0;
-    char segment[4];
-    int segIndex = 0;
-
-    for( int i=0; i<=ipl; i++ )
-    {
-        if(ip[i] == '.' || ip[i]=='\0')
-        {
-            if(segIndex==0) return false;
-            
-            segment[segIndex] = '\0';
-            int num = atoi(segment);
-            if(num<0 || num>255) return false;
-
-            ++num_segments;
-            segIndex=0;
-
-            if(num_segments>4) return false;
-        } 
-        else if(ip[i]>='0'&&ip[i]<='9')
-        {
-            if(segIndex>=3)return false;
-            segment[segIndex++] = ip[i];
-        }
-        else
-        {
-            return false;
-        }
-    }
-    return num_segments == 4;
 }
 
 void recortar(char * cad, int ini){
