@@ -11,10 +11,10 @@ Para realizar este cometido necesitamos un __protocolo__ que me diga, dada una d
 
 Según el protocolo TCP/IP:
     
-    · Proporcionar el encaminamiento.
-    · Determinar cómo va a producirse la conmutación.
-    · Da pinceladas sobre los mecanismos de interconexión de redes.
-    · Siguiendo la abstracción OSI, debería proporcionar control de congestión
+- Proporcionar el encaminamiento.
+- Determinar cómo va a producirse la conmutación.
+- Da pinceladas sobre los mecanismos de interconexión de redes.
+- Siguiendo la abstracción OSI, debería proporcionar control de congestión
 
 Un ejemplo de protocolo de red es _IP_.
 
@@ -46,10 +46,10 @@ Hablemos ahora de la conmutación de paquetes por __datagrama__ partiendo de que
 
 Normalmente, cada una de las capas recibe un nombre distinto para los paquetes divididos de la siguiente forma:
     
-    · Enlace -> trapa
-    · Red -> datagrama
-    · Transporte -> En TCP "segmento" - En UDP "datagrama"
-    · Aplicación -> mensaje
+- Enlace -> trapa
+- Red -> datagrama
+- Transporte -> En TCP "segmento" - En UDP "datagrama"
+- Aplicación -> mensaje
 
 Como según la estrategia del _mayor esfuerzo_ no necesito saber si el paquete ha llegado, ni siquiera necesito comprobar si se ha realizado la conexión con el destino. Además, cada paquete es independiente de los demás luego, al realizar el _encaminamiento_ __paquete a paquete__ dos paquetes consecutivos pueden no tener el mismo camino y, de hecho, no llegar en el orden de lanzamiento.
 
@@ -77,17 +77,17 @@ En ambos casos, todo lo que tiene que ver con recuperacion de paquetes se hace e
 
 Este protocolo no dispone de muchas funcionalidades:
     
-    · Asignar direcciones IP y gestionarlas.
-    · Dirigir el encaminamiento salto a salto asegurando que se llega a los extremos.
-    · Proporcionar mecanismos de fragmentación de paquetes devido al MTU(máximo tamano de paquete ne la red).
+- Asignar direcciones IP y gestionarlas.
+- Dirigir el encaminamiento salto a salto asegurando que se llega a los extremos.
+- Proporcionar mecanismos de fragmentación de paquetes devido al MTU(máximo tamano de paquete ne la red).
 
 Al se un protocolo de mayor esfuerzo, los paquetes se mandan y se trata que lleguen a su destino pero si esto último no ocurre, no se provee de ningún mecanismo de recuperación; no osbtante, el protocolo sí manda un mensaje de error a través del protocolo _ICMP_.
 
 Antes de meternos de lleno en las versiones, vemos a definir algunos términos como:
 
-    · Handshake: hace referencia a un intercambio de mensajes concreto entre dos entidades.
-    · Protocolo: hace referencia a cómo dos entidades de la misma capa se transmiten información.
-    · Router: se puede entender como un ordenador que dispone de una cantidad de tarjetas de red donde cada una de ellas dispone de una dirección _IP_. Estas direcciones _IP_ simplemente son interfaces de redes a las que se conecta. Además, se encarga de dividir redes e interconectarlas entre sí, luego cada "pata" del router es una red distinta; en ocasiones dispondrá de redes inalámbricas.
+- Handshake: hace referencia a un intercambio de mensajes concreto entre dos entidades.
+- Protocolo: hace referencia a cómo dos entidades de la misma capa se transmiten información.
+- Router: se puede entender como un ordenador que dispone de una cantidad de tarjetas de red donde cada una de ellas dispone de una dirección _IP_. Estas direcciones _IP_ simplemente son interfaces de redes a las que se conecta. Además, se encarga de dividir redes e interconectarlas entre sí, luego cada "pata" del router es una red distinta; en ocasiones dispondrá de redes inalámbricas.
 
 
 ### 2.3.1.IPv4
@@ -110,10 +110,10 @@ Para ello usamos las __máscaras__ que suelen estar formadas por el mismo númer
 
 Por ejemplo:
 
-    · 192.168.1.5 -(bin)--> 11000000.10101000.00000001.00000101
-    · Mascara = /24 -(dec)--> 255.255.255.0 --> 11111111.11111111.11111111.000000000
-    · Aplicamos la AND lógica, luego me quedo con los 24 bits iniciales de la izquierda.
-    · Resultado(red a la que me conecto): 11000000.10101000.00000001.00000000 --(dec)->192.168.1.0=dir.real
+- 192.168.1.5 -(bin)--> 11000000.10101000.00000001.00000101
+- Mascara = /24 -(dec)--> 255.255.255.0 --> 11111111.11111111.11111111.000000000
+- Aplicamos la AND lógica, luego me quedo con los 24 bits iniciales de la izquierda.
+- Resultado(red a la que me conecto): 11000000.10101000.00000001.00000000 --(dec)->192.168.1.0=dir.real
 
 La dirección que hemos obtenido en el ejemplo es importante, pues sólo la red dispone de esa dirección haciéndola única ya que no se asigna ningún equipo y es útil para encaminamiento. De la misma manera, la dirección 192.168.1.255 esta reservada como dirección de difusión, es decir, cualquier equipo la vería. Esto es útil para saber la localización de un servidor, pues la reacción del servidor ante un paquete delatará su posición.
 
@@ -121,15 +121,14 @@ Volviendo al tema del direccionamiento y habiendo entendido ya las máscaras, va
 
 Se dividen en clases:
     
-    · Clase A: disponen de cabecera 0xxxxxxx.___x con rango [0.0.0.0/8 - 127.255.255.255/8]. Donde la máscara son 8 bits dando lugar a que haya $2^{7} redes con $2^{24}$ equipos por red.
+- Clase A: disponen de cabecera 0xxxxxxx.\_\_\_x con rango [0.0.0.0/8 - 127.255.255.255/8]. Donde la máscara son 8 bits dando lugar a que haya $2^{7} redes con $2^{24}$ equipos por red.
+- Clase B: disponen de la cabecera 10xxxxxx.\_\_\_x con rango [128.0.0.0/16 - 191.255.255.255/16]. Donde la máscara son 16 bits dando lugar a que haya $2^{14}$ redes con $2^{16} equipos cada una.
 
-    · Clase B: disponen de la cabecera 10xxxxxx.___x con rango [128.0.0.0/16 - 191.255.255.255/16]. Donde la máscara son 16 bits dando lugar a que haya $2^{14}$ redes con $2^{16} equipos cada una.
+- Clase C: disponen de la cabecera 110xxxxx.\_\_\_x con rango [192.0.0.0/24 - 223.255.255.255/24]. Donde la máscara son 24 bits dando lugar a $2^{21}$ redes con $2^{8}$ equipos por red.
 
-    · Clase C: disponen de la cabecera 110xxxxx.___x con rango [192.0.0.0/24 - 223.255.255.255/24]. Donde la máscara son 24 bits dando lugar a $2^{21}$ redes con $2^{8}$ equipos por red.
+- Clase D: Aunque estas redes no estaban en el origen son las que disponen de la cabecera 1110xxxx.\_\_\_x con rango [224.0.0.0 - 239.255.255.255]. Esta clase suele usarse para mutidifusión y no dispone de una máscara pues no se usan para redes IP; cada dirección identifica un grupo de equipos, que son ciertos grupos de redes, un ejemplo el IGMP. Suele usarse para la televisión por suscripción como Movistar+. Luego para que le suministrador mande un paquete a todos los equipos primero iral al router de multidifución.
 
-    · Clase D: Aunque estas redes no estaban en el origen son las que disponen de la cabecera 1110xxxx.___x con rango [224.0.0.0 - 239.255.255.255]. Esta clase suele usarse para mutidifusión y no dispone de una máscara pues no se usan para redes IP; cada dirección identifica un grupo de equipos, que son ciertos grupos de redes, un ejemplo el IGMP. Suele usarse para la televisión por suscripción como Movistar+. Luego para que le suministrador mande un paquete a todos los equipos primero iral al router de multidifución.
-
-    · Clase E: Estas serían las que quedan, es decir, disponen de una cabera 11110xxx.___x con rango [240.0.0.0 - 255.255.255.255]. Tampoco disponen de máscara y es una red experimental, es decir, se usa para probar proyectos; a efectos prácticos, no se utiliza.
+- Clase E: Estas serían las que quedan, es decir, disponen de una cabera 11110xxx.\_\_\_x con rango [240.0.0.0 - 255.255.255.255]. Tampoco disponen de máscara y es una red experimental, es decir, se usa para probar proyectos; a efectos prácticos, no se utiliza.
 
 En conclusión, para crear redes y asignarlas a equipos se usan sólo las tres primeras clases.
 
@@ -149,10 +148,10 @@ Cabe denotar que, aunque la máscara no sea múltiplo de 8, se sigue usando la s
 
 Por ejemplo, si disponemos de 50 dispositivos de uso propio:
     
-    - 50 dispositivos --> 6 bits para su representación.
-    - 32-6 = 26 bits para la red.
-    - Luego tendremos 26 bits de máscara.
-    - Suponiendo que empecemos a trabajar en la dirección 192.0.1.64(dirección de red), acabaremos en la dirección de difusión 192.0.1.127.
+- 50 dispositivos --> 6 bits para su representación.
+- 32-6 = 26 bits para la red.
+- Luego tendremos 26 bits de máscara.
+- Suponiendo que empecemos a trabajar en la dirección 192.0.1.64(dirección de red), acabaremos en la dirección de difusión 192.0.1.127.
 
 Luego claramente, hemos desperdiciado un menor número de direcciones _IP_ publicas.
 
@@ -162,11 +161,11 @@ Realicemos un ejemplo:
 
 Supongamos que tenemos un número de euqipos y tenemos que asignar la mejor red:
     
-    - Equipos:700
-    - Número de dirección de dispositivos: 702=equipos+direción de red+dirección de difusión
-    - Bits necesarios: 10
-    - 32-10=22 bits de máscara
-    - Rango= [192.168.0.0/22-192.168.3.255]
+- Equipos:700
+- Número de dirección de dispositivos: 702=equipos+direción de red+dirección de difusión
+- Bits necesarios: 10
+- 32-10=22 bits de máscara
+- Rango= [192.168.0.0/22-192.168.3.255]
 
 ___Direccionamiento privado___
 
@@ -176,9 +175,9 @@ Este direccionamiento consiste en utilizar un rango de direcciones concebido com
 
 Esto es así porque se permitirá la repetición de estas direcciones _IP_ __privadas__ en redes __privadas__ distintas. Hay distintos rangos para cada clase:
 
-    - Clase A: [10.x.y.z-final]
-    - Clase B: [172.16___31.y.z-final]
-    - Clase C: [192.168.y.z-final]
+- Clase A: [10.x.y.z-final]
+- Clase B: [172.16\_\_\_31.y.z-final]
+- Clase C: [192.168.y.z-final]
 
 Estas redes no tienen conexión con la red pública de forma directa y usan la máscara que convenga en cada momento.
 
@@ -188,25 +187,22 @@ Si desde una red privada se quiere mandar algo a una red pública es necesario d
 
 Supongamos que disponemos de un PC(192.168.1.2) concectado a un router(192.168.1.1-33.33.33.33) de nuestra casa conectado con un seridor(66.66.66.66) y mandamos un paquete que seguira el camino de ida y vuelta hasta el servidor. Dicho camino se divide en cuatro pasos:
 
-    1. PC-router: Una petición http esta formada por una cabecra http y por datos. La cabecera dispone de:
-        - Dirección IP origen(source): 192.168.1.2 + 1075 (puerto origen o sport)
-        - DIrección IP destino(destination): 66.66.66.66 + 80 (puerto destino o dport)
+1. PC-router: Una petición http esta formada por una cabecra http y por datos. La cabecera dispone de:
+    - Dirección IP origen(source): 192.168.1.2 + 1075 (puerto origen o sport)
+    - DIrección IP destino(destination): 66.66.66.66 + 80 (puerto destino o dport)
 
     Normalmente, cuando uso un cliente, el sistema operativo asocia un número de puerto por encima de 1024 para cualquier proceso http.
-    2. Router-dispositivo: Se modifica el paquete ligeramente con las mismas partes:
+2. Router-dispositivo: Se modifica el paquete ligeramente con las mismas partes:
+    - IPs: 33.33.33.33 + 12345. El puerto cambia para que el dispositivo de destino sepa a donde devolver, necesariamente, la dirección debe ser pública.
+    - IPd: 66.66.66.66 + 80 que no cambia pues marca al servidor.
 
-        - IPs: 33.33.33.33 + 12345. El puerto cambia para que el dispositivo de destino sepa a donde devolver, necesariamente, la dirección debe ser pública.
-        - IPd: 66.66.66.66 + 80 que no cambia pues marca al servidor.
-
-    3. Dispositivo-router: El servidor no conoce que se está haciendo NAT.
-        
-        - IPs: 66.66.66.66 + 80
-        - IPd: 33.33.33.33 + 12345
+3. Dispositivo-router: El servidor no conoce que se está haciendo NAT.      
+    - IPs: 66.66.66.66 + 80
+    - IPd: 33.33.33.33 + 12345
     
-    4. Router-PC: Se deshace la traducción pasando la información a la red privada:
-        
-        - Ips: 66.66.66.66 + 80
-        - IPd: 192.168.1.2 + 1075
+4. Router-PC: Se deshace la traducción pasando la información a la red privada:    
+    - Ips: 66.66.66.66 + 80
+    - IPd: 192.168.1.2 + 1075
 
 Si nos fijamos en el cambio del paso 1 al paso 2, el puerto origenha cambiado, esto se hace para poder distinguir la red pues solo conocemos la red por la máscara pero no el dispositivo al que mandamos la información. Además, la comunicación en la red pública, necesariamente debe ser mediante direcciones _IP_ públicas.
 
@@ -214,7 +210,7 @@ Por ahora, desconocemos como se hace el cambio de dirección pública a privada.
 
 Para realizar esta traducción, el router dispone de una tabla que esta construida de la siguiente manera:
 
-    · Cada entrada se divide en dos columnas: IPs + sport - IPs' + sport' donde se guarda, para cada dirección privada cuál es su dirección pública más cercana.
+- Cada entrada se divide en dos columnas: IPs + sport - IPs' + sport' donde se guarda, para cada dirección privada cuál es su dirección pública más cercana.
 
 Este proceso se llama __enmascaramiento__ pues el dispositivo que esta fuera desconoce lo que hay en la red privada.
 
@@ -230,27 +226,21 @@ El caso típico es disponer de un PC que actua como servidor en la red privada d
 
 Siguiendo los mismos pasos:
         
-    1. Cliente-router: Paquete con cabecera IP y cabecera TCP (si es TCP) y sus datos:
-        
-        - IPs: 66.66.66.66 + 1050 (*SO)
-        - IPd: 33.33.33.33 + 23456 suponiendo que el servidor usa el puerto 80
-
-    2. Router-server: Cambios en la cabecera
-
-        - IPs: 66.66.66.66 + 1050
-        - IPd: Servidor privada 192.168.1.2 + 80
+1. Cliente-router: Paquete con cabecera IP y cabecera TCP (si es TCP) y sus datos:
+    - IPs: 66.66.66.66 + 1050 (*SO)
+    - IPd: 33.33.33.33 + 23456 suponiendo que el servidor usa el puerto 80
+2. Router-server: Cambios en la cabecera
+    - IPs: 66.66.66.66 + 1050
+    - IPd: Servidor privada 192.168.1.2 + 80
 
 Hemos traducido a un puerto de destino distinto pero en el inicio ha cambiado la dirección de destino como como la dirección pública del router más cercano.
 
-    3. Vuelta de camino.
-        
-        - IPs: 192.168.1.2 + 80
-        - IPd: 66.66.66.66 + 1050
-
-    4. Llegando al cliente
-        
-        - IPs: 33.33.33.33 + 23456
-        - IPd: 66.66.66.66 + 1050
+3. Vuelta de camino.      
+    - IPs: 192.168.1.2 + 80
+    - IPd: 66.66.66.66 + 1050
+4. Llegando al cliente
+    - IPs: 33.33.33.33 + 23456
+    - IPd: 66.66.66.66 + 1050
 
 La tabla de enmascaramiento es completamente la misma, con distinta información pero con los mismos campos.
 
@@ -266,23 +256,23 @@ Estas tablas estan compuestas de varias entradas donde cada una de ellas tiene v
 
 Los más importantes son tres:
     
-    - Red de destino: es la encargada de determinar el destino de un paquete de manera que, si quiero mandar a ese destino elegiré la regla de la tabla de encaminamiento que disponga de esa red.Este campo dispone de un valor comodín conocido como dirección "default" que representa cualquier dirección de cualquier red; suele usarse para determinar que un paquete necesita salir de una subred, irá acompañada del router más cercano como pasarela.
-    - Máscara: es necesaria para conocer la red del dispositivo pues, en ocasiones, la red de destino puede llegar a ser una dirección IP concreta.
-    - Siguiente salto o pasarela: hace referencia a la dirección del siguiente dispositivo de conexión por el que debe pasar el paquete para llegar a su destino. Para este valor hay valores por defecto como "\*" que representa que la red de destino está directamente conectada al dispositivo.
+- Red de destino: es la encargada de determinar el destino de un paquete de manera que, si quiero mandar a ese destino elegiré la regla de la tabla de encaminamiento que disponga de esa red.Este campo dispone de un valor comodín conocido como dirección "default" que representa cualquier dirección de cualquier red; suele usarse para determinar que un paquete necesita salir de una subred, irá acompañada del router más cercano como pasarela.
+- Máscara: es necesaria para conocer la red del dispositivo pues, en ocasiones, la red de destino puede llegar a ser una dirección IP concreta.
+- Siguiente salto o pasarela: hace referencia a la dirección del siguiente dispositivo de conexión por el que debe pasar el paquete para llegar a su destino. Para este valor hay valores por defecto como "\*" que representa que la red de destino está directamente conectada al dispositivo.
 
 Otros campos son:
     
-    - Interfaz: es simplemente la tarjeta gáfica dle dispositivo.
-    - Protocolo: representa el protocolo de envío y recepción de mensajes que sigue la red  (tcp).
-    - Coste: dependiendo del protocolo será un valor u otro (en RIP es el número de routers a cruzar).
+- Interfaz: es simplemente la tarjeta gáfica dle dispositivo.
+- Protocolo: representa el protocolo de envío y recepción de mensajes que sigue la red  (tcp).
+- Coste: dependiendo del protocolo será un valor u otro (en RIP es el número de routers a cruzar).
 
 A su vez, cada __entrada__ o __regla__ de una tabla de encaminamiento está clasificada en tres tipos:
 
-    1. Rutas directas. Suponiendo que nos encontramso en una red cualquiera, por ejemplo en forma de arbol inverso como el laboratorio, estas entradas son aquellas que simbolizan las reglas que no necesitan de una pasarela para que el paquete llegue a su destino; dicho de forma directa, las direcciones que se encuentran dentro de la misma subred. En el caso del laboratorio, serán los ordenadores que se encuentren en la misma red 33.X.Y.0 donde X es la isla e Y es el grupo. 
+1. Rutas directas. Suponiendo que nos encontramso en una red cualquiera, por ejemplo en forma de arbol inverso como el laboratorio, estas entradas son aquellas que simbolizan las reglas que no necesitan de una pasarela para que el paquete llegue a su destino; dicho de forma directa, las direcciones que se encuentran dentro de la misma subred. En el caso del laboratorio, serán los ordenadores que se encuentren en la misma red 33.X.Y.0 donde X es la isla e Y es el grupo. 
 
-    2. Redes indirectas. Son las reglas que simbolizan aquellas redes, y sólo redes, a las que sabemos llegar haciendo uso del siguiete salto. Estas redes engloban todas excepto las directas y la de salida a Internet pues siempre, en este caso, usaremos el siguiente salto para mandar el paquete.
+2. Redes indirectas. Son las reglas que simbolizan aquellas redes, y sólo redes, a las que sabemos llegar haciendo uso del siguiete salto. Estas redes engloban todas excepto las directas y la de salida a Internet pues siempre, en este caso, usaremos el siguiente salto para mandar el paquete.
     
-    3. Ruta de acceso a internet. También llamada con más rigor ruta por defecto que dispone de máscara /0 y cuyo siguiente salto será la dirección ip_operador; de esta manera, si no se sabe a donde ir pues no se cumple ninguna regla, se utilizará esta última. Esta ruta por defecto tiene el nombre default.
+3. Ruta de acceso a internet. También llamada con más rigor ruta por defecto que dispone de máscara /0 y cuyo siguiente salto será la dirección ip_operador; de esta manera, si no se sabe a donde ir pues no se cumple ninguna regla, se utilizará esta última. Esta ruta por defecto tiene el nombre default.
 
 Las __rutas directas__ tienen la importancia de permitir que los paquetes lleguen a los dispositivos pues al eliminar alguna de ellas, impediríamos que cualquier paquete pueda entrar al dispositivo desde esa red pues se desconocería el router necesario para ello. También aparecen e este tipo la red host, es decir, la dirección _IP_ 127.0.0.1/32.
 
@@ -292,8 +282,8 @@ En estos casos, siempre se tomará la regla que disponga de un __número de más
 
 Por último, vamos a ver las formas en las que se puede **rellenar** una tabla, es decir, imponer las reglas de puente(**forward**). Hay dos formas:
     
-    · Estática: el programador introduce a mano cada uno de los tres tipos de reglas en los dispositivos que sean necesarios implementando la conexión entre los mismos.
-    · Dinámica: un protocolo se encarga de realizar dicha conexión; permite que la red pueda cambiar a lo largo de su funcionamiento.
+- Estática: el programador introduce a mano cada uno de los tres tipos de reglas en los dispositivos que sean necesarios implementando la conexión entre los mismos.
+- Dinámica: un protocolo se encarga de realizar dicha conexión; permite que la red pueda cambiar a lo largo de su funcionamiento.
 
 De esta forma, con la forma __estática__ estamos suponiendo que nunca cambiará la conexión entre dispositivos, lo cual es un error muy grave.
 
@@ -307,9 +297,9 @@ No obstante, entre dichos _sistemas autónomos_ deben ponerse de acuerdo con el 
 
 Conociendo un poco el interior de los _Sistemas Autónomos_ de forma general, utilizan __protocolos de pasarela interior__(IGP), los cuales pueden usar en su interior varios protocolos de los cuales estudiaremos dos:
     
-    1. RIP(Routing Information Protocole). También conocido como "protocolo de vector distancia" debido a que toma como criterio de camino a elegir aquel que requiera un menor número de saltos. Entrando más en detalle, es un protocolo que opera sobre UDP puerto 250 en la capa de aplicación. SU método de construcción de caminos es mandar paquetes cada 30 segundos a los demás dispositivos para repartir su información. 
+1. RIP(Routing Information Protocole). También conocido como "protocolo de vector distancia" debido a que toma como criterio de camino a elegir aquel que requiera un menor número de saltos. Entrando más en detalle, es un protocolo que opera sobre UDP puerto 250 en la capa de aplicación. SU método de construcción de caminos es mandar paquetes cada 30 segundos a los demás dispositivos para repartir su información. 
 
-    2. OSPF.También conocido como "Camino más corto antes", es un protocolo que dispone de un mecanismo de elección de camino basado en coste diferente tomando una constante de proporcionalidad. En la prática se implementa mediante el algoritmo de Dijsktra.
+2. OSPF.También conocido como "Camino más corto antes", es un protocolo que dispone de un mecanismo de elección de camino basado en coste diferente tomando una constante de proporcionalidad. En la prática se implementa mediante el algoritmo de Dijsktra.
 
 El protocolo **RIP** sufre del *problema de la convergencia lenta* donde no sabe responder frente a la caída de un router, sobretodo el problema se agranda cuando el caído es el primero de todos pues no se corregirá el número de saltos de aquellos dispositivos que no estén directamente conectados con el router dañado. Como dato, no se guarda un salto mayor a 16 considerando que este valor ya es un valor infinito.
 
@@ -325,19 +315,19 @@ Recordemos un poco la definición de __datagrama__; es un paquete _IP_ que duspo
 
 En la cabecera aparecen una serie de campos, de los cuales los más importantes son:
     
-    + Versión(V)
-    + Tamaño de la cabecera(LC)
-    + TS: es el campo encargado de marcar los datagramas para que, una vez lleguen al destino se sepa que se debe hacer una operación con ellos; en caso de que no se haga nada el campo pasa a tomar un valor correcto de forma automática.
-    + Longitud total del datagrama
-    + Identificador para conocer, en caso de fragmentación, qué paquetes son de qué datagrama y poder recomponerlo.
-    + Desplazamiento(offset)
-    + TTL: es el número de saltos máximo que puede dar un paquete en la red para evitar paquetes navegando en la red de forma indefinida. En cada salto, este campo se reduce en una unidad, si llega a cero, el paquete se descarta.
-    + Protocolo: contiene un identificar de algún protocolo que se usa en ese datagrama; normalmente, estos protocolos están contenidos en el protocolo IP.
-    + COmprobación: es un campo donde aparece el complemento a 1 del datagrama de manera que al llegar al destino se realizará la suma, luego si el resultado es todo a 1 el paqeute será correcto; en otro caso, se descarta.(El protocolo IP lo descarta pero no produce ningún mensaje de aviso a nivel de red, esto lo suele hacer ICMP si está implementado).
-    + Dirección IP origen del datagrama, es decir, quién lo manda.
-    + Dirección IP destino del datagrama, es decir, a quién se manda.
-    + Opciones.
-    + Relleno; este campo esta compuesto de tantos ceros como sea necesario para que el paquete tenga un tamaño múltiplo de 32.
++ Versión(V)
++ Tamaño de la cabecera(LC)
++ TS: es el campo encargado de marcar los datagramas para que, una vez lleguen al destino se sepa que se debe hacer una operación con ellos; en caso de que no se haga nada el campo pasa a tomar un valor correcto de forma automática.
++ Longitud total del datagrama
++ Identificador para conocer, en caso de fragmentación, qué paquetes son de qué datagrama y poder recomponerlo.
++ Desplazamiento(offset)
++ TTL: es el número de saltos máximo que puede dar un paquete en la red para evitar paquetes navegando en la red de forma indefinida. En cada salto, este campo se reduce en una unidad, si llega a cero, el paquete se descarta.
++ Protocolo: contiene un identificar de algún protocolo que se usa en ese datagrama; normalmente, estos protocolos están contenidos en el protocolo IP.
++ COmprobación: es un campo donde aparece el complemento a 1 del datagrama de manera que al llegar al destino se realizará la suma, luego si el resultado es todo a 1 el paqeute será correcto; en otro caso, se descarta.(El protocolo IP lo descarta pero no produce ningún mensaje de aviso a nivel de red, esto lo suele hacer ICMP si está implementado).
++ Dirección IP origen del datagrama, es decir, quién lo manda.
++ Dirección IP destino del datagrama, es decir, a quién se manda.
++ Opciones.
++ Relleno; este campo esta compuesto de tantos ceros como sea necesario para que el paquete tenga un tamaño múltiplo de 32.
 
 Después de tener lista la cabecera, que en ocasiones no tendrá campos rellenos pues será una petición y el destino los rellenará antes de contestar, podemos acoplar los datos que queremos mandar.
 
@@ -357,33 +347,33 @@ Como el tamaño del paquete es mayor que la _MTU_ debemos fragmentarl en menos p
 
 El paquete fragmentado contiene una serie de campos que debemos conocer como:
     
-    + Identificador: contiene el identificador del datagrama del que proviene con intención de que, una vez llegado al destino, este conozac qué fragmentos se deben unir con el paquete que acaba de llegar.
-    + More fragments: contiene un 1 si hay mas fragmentos del datagrama después de él o 0 si es el útlimo.
-    + Offset: contiene el Byte del datagrama por el que comienza el paquete, permitiendo así que haya un orden a la hora de montar de nuevo el datagrama a través de los fragmentos.
++ Identificador: contiene el identificador del datagrama del que proviene con intención de que, una vez llegado al destino, este conozac qué fragmentos se deben unir con el paquete que acaba de llegar.
++ More fragments: contiene un 1 si hay mas fragmentos del datagrama después de él o 0 si es el útlimo.
++ Offset: contiene el Byte del datagrama por el que comienza el paquete, permitiendo así que haya un orden a la hora de montar de nuevo el datagrama a través de los fragmentos.
 
 Volviendo al problema, el primer fragmento quedaría:
     
-    - Cabecera -> 20B
-    - Datos -> 1480B
-    - id -> id_datagrama
-    - Offset -> 0
-    - MF -> 1
+- Cabecera -> 20B
+- Datos -> 1480B
+- id -> id\_datagrama
+- Offset -> 0
+- MF -> 1
 
 Como no hemos mandado aún todo el paquete, quedan 2700 B, mandamos otro fragmento:
 
-    - Cabecera -> 20B
-    - Datos -> 1480B
-    - id -> id_datagrama
-    - Offset -> 1480
-    - MF -> 1
+- Cabecera -> 20B
+- Datos -> 1480B
+- id -> id\_datagrama
+- Offset -> 1480
+- MF -> 1
 
 De nuevo, siguen faltando 1220B por mandar, asique hacemos otro fragmento, ya el último:
     
-    - Cabecera -> 20B
-    - Datos -> 1220B
-    - id -> id_datagrama
-    - Offset -> 2960
-    - MF -> 0
+- Cabecera -> 20B
+- Datos -> 1220B
+- id -> id\_datagrama
+- Offset -> 2960
+- MF -> 0
 
 *Complicación*
 
@@ -393,57 +383,45 @@ Supongamos ahora que, nuestros fragmentos deben ser enviados a un nuevo disposit
 
 Con motivo de facilitar la comprensión, se usará $pi$ para cada paquete ya fragmentado en el orden en el que se ha fragmetado:
     
-    + Con p1:
++ Con p1:        
+    - Creamos un primer subpaquete con las siguientes características:
+        · Cabecera -> 20B
+        · Datos -> 980B
+        · id -> id_datagrama
+        · MF -> 1
+        · Offset -> 1
         
-        - Creamos un primer subpaquete con las siguientes características:
-           
-           · Cabecera -> 20B
-           · Datos -> 980B
-           · id -> id_datagrama
-           · MF -> 1
-           · Offset -> 1
-        
-        - Como faltan 500B de p1 por mandar, creamos otro subpaquete:
-           
-           · Cabecera -> 20B
-           · Datos -> 500B
-           · id -> id_datagrama
-           · MF -> 1
-           · Offset -> 1
+    - Como faltan 500B de p1 por mandar, creamos otro subpaquete:
+        · Cabecera -> 20B
+        · Datos -> 500B
+        · id -> id_datagrama
+        · MF -> 1
+        · Offset -> 1
 
-    + Con p2:
-        
-        - Cremos el primer subpaquete:
-            
-            · Cabecera -> 20B
-            · Datos -> 980B
-            · id -> id_datagrama
-            · MF -> 1
-            · Offset -> 1480
-
-        - Vuelven a quedar 500B luego hacemos otro subpaquete.
-
-            · Cabecera -> 20B
-            · Datos -> 500B
-            · id -> id_datagrama
-            · MF -> 1
-            · Offset -> 2460
-
-    + Con p3:
-
-        - Creamos el primer subpaquete sabiendo que MF debe aparecer a 1, pues el elemento que fragmenta sabe que quedan mas fragmentos del datagrama original:
-            
-            · Cabecera -> 20B
-            · Datos -> 980B
-            · id -> id_datagrama
-            · MF -> 1*(esto el router lo sabe porque es él quien hace la división)
-            · Offset -> 2960
-
-        - Como quedan 240B debemos hacer otro subpaquete que será, ahora sí, el último del datagrama:
-            
++ Con p2:
+    - Cremos el primer subpaquete:  
+        · Cabecera -> 20B
+        · Datos -> 980B
+        · id -> id_datagrama
+        · MF -> 1
+        · Offset -> 1480
+    - Vuelven a quedar 500B luego hacemos otro subpaquete.
+        · Cabecera -> 20B
+        · Datos -> 500B
+        · id -> id\_datagrama
+        · MF -> 1
+        · Offset -> 2460
++ Con p3:
+    - Creamos el primer subpaquete sabiendo que MF debe aparecer a 1, pues el elemento que fragmenta sabe que quedan mas fragmentos del datagrama original:
+        · Cabecera -> 20B
+        · Datos -> 980B
+        · id -> id\_datagrama
+        · MF -> 1\*(esto el router lo sabe porque es él quien hace la división)
+        · Offset -> 2960
+    - Como quedan 240B debemos hacer otro subpaquete que será, ahora sí, el último del datagrama:
             · Cabecera -> 20B
             · Datos -> 240B
-            · id -> id_datagrama
+            · id -> id\_datagrama
             · MF -> 0
             · Offset -> 3940
 
@@ -501,9 +479,9 @@ Este protocolo es el encargado de avisar cuando un paquete, dentro del protocolo
 
 Cuando hay una situación de error, _ICMP_ manda un mensaje al origen del paquete con el motivo por el cual se ha ocasionado el problema; este paquete dispone de algunos campos:
     
-    - Comprobación; sigue la misma dinámica que en la cabecera de un datagrama.
-    - Tipo; es  el tipo de error que se ha producido.
-    - Códido; es el código asociado al error que se ha producido.
+- Comprobación; sigue la misma dinámica que en la cabecera de un datagrama.
+- Tipo; es  el tipo de error que se ha producido.
+- Código; es el código asociado al error que se ha producido.
 
 Este protocolo actúa a nivel de __red__ y está encapsulado en el protocolo _IP_. Como curiosidad añadida a la anterior, si nos encontramos en una situación de uso de _NAT_, el paquete no entra en la red privada luego se queda en el router que hace la traducción.
 
