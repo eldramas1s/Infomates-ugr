@@ -32,7 +32,7 @@ _Demostración del lema de bombeo_
 
 [TODO]:Hacer demostración
 
-Al igual que el uso real del lema de Bombeo para lenguajes regulares consistía en probar que no era regular porque no cumplía la condición necesaria, en este caso la aplicación es la misma; es decir, mediante el incumplimiento de la condición necesaria, el lenguaje que no la cumple no será independiente del contexto. 
+Al igual que el uso real del lema de Bombeo para lenguajes regulares consistía en probar que no era regular porque no cumplía la condición necesaria, en este caso la aplicación es la misma; es decir, mediante el incumplimiento de la condición necesaria, dicho lenguaje no será independiente del contexto. 
 
 <a id='ops'> </a>
 
