@@ -43,7 +43,9 @@ Hasta ahora sabemos:
 De esta manera, hemos encontrado un posible ciclo de las partes $v$ o $x$ de la palabra, esto es así porque siempre que aparezca una $A$, podremos sustituir dicha variable por la parte del árbol que hay hasta la próxima $A$ ocasionando así que esto sea tan prolongado como se quiera.siempre que aparezca una $A$, podremos sustituir dicha variable por la parte del árbol que hay hasta la próxima $A$ ocasionando así que esto sea tan prolongado como se quiera.
 
 ![demobb](./imagenes/dbb.png)
+
 _Fin demostración_
+
 Al igual que el uso real del lema de Bombeo para lenguajes regulares consistía en probar que no era regular porque no cumplía la condición necesaria, en este caso la aplicación es la misma; es decir, mediante el incumplimiento de la condición necesaria, dicho lenguaje no será independiente del contexto. 
 
 <a id='ops'> </a>
