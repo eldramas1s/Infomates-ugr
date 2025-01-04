@@ -30,8 +30,20 @@ Para la demostración del mismo necesitaremos la siguiente propiedad:
 
 _Demostración del lema de bombeo_
 
-[TODO]:Hacer demostración
+Realmente, daremos una idea intuitiva de por qué se verifica el teorema.
 
+Todo consiste en la posibilidad de suponer que $L$ se puede expresar mediante una gramática en forma normal de _Chomsky_ para simplificar la idea. Sea $p \in N$ el número de variables que contiene la gramática y definimos $n=2^p$. Se ahora $u\in L$ tal que $|u|\geq n$ eso quiere decir que, en un árbol de derivación cualquiera, el camino más largo de la raíz a las hojas debe contener una repetición, ya que dicho camino debe contener al menos $p+1$ variables. 
+
+En este paso hemos usado que la gramática está en forma normal de _Chomsky_. Supongamos que $A \in V$ la variable del árbol de derivación que se repite.
+
+Hasta ahora sabemos:
+- $|vx| \geq 1$ pues la gramática no dispone de producciones nulas ni unitarias.
+- $|vwx| \leq n$ pues la longitud del camino más largo que parte de la $A$ más cercana a la raíz es menor o iugal a $p+1$.
+
+De esta manera, hemos encontrado un posible ciclo de las partes $v$ o $x$ de la palabra, esto es así porque siempre que aparezca una $A$, podremos sustituir dicha variable por la parte del árbol que hay hasta la próxima $A$ ocasionando así que esto sea tan prolongado como se quiera.siempre que aparezca una $A$, podremos sustituir dicha variable por la parte del árbol que hay hasta la próxima $A$ ocasionando así que esto sea tan prolongado como se quiera.
+
+![demobb](./imagenes/dbb.png)
+_Fin demostración_
 Al igual que el uso real del lema de Bombeo para lenguajes regulares consistía en probar que no era regular porque no cumplía la condición necesaria, en este caso la aplicación es la misma; es decir, mediante el incumplimiento de la condición necesaria, dicho lenguaje no será independiente del contexto. 
 
 <a id='ops'> </a>
