@@ -280,6 +280,7 @@ Realmente, el _BB_ es un servidor que almacena las calves compartidas de él con
 #### Firma digital con clave asimétrica o __Doble Cifrado con certificados digitales__
 
 Si queremos entender cómo funciona esto deberemos expicar lo que es un certificado digital; no es mas que un conjutno de datos entre los que se encuentran:
+
     - Identidad del usuario que lo usa.
     - Clave pública del usuario que lo utiliza.
     - Período de validez.
