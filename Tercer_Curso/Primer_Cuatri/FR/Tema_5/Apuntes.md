@@ -233,8 +233,7 @@ Como broche final de este punto, hablaremos un poco sobre las características d
 Un nombre de dominio no es más que un direccionamiento en la red sobre dominios y subdominios para llegar a una máquina.
 
 Siendo "." el directorio raíz que nunca se suele poner pues se conoce y está gestionado por la _ICANN_, se impone la siguiente estructura para los _DNS_:
-
-$$Machine.D_n.D_{n-1}.\_\_\_.D_1.$$
+$$Machine.D_n.D_{n-1}.\ldots.D_1.$$
 
 Donde $D_i$ es el dominio de nivel $i$ cumpliendo que $D_{i+1} \subset D_i$. Además, al dominio $D_1$ se le suele llamar _TLD_ o __dominio genérico__. 
 
