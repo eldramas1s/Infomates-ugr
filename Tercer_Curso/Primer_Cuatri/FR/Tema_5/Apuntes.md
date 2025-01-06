@@ -189,7 +189,7 @@ Como ventaja más importante, el superservidor no ejecuta los procesos, luego no
 
 Para ello, usaremos la teoría de colas mediante un modelo $M/M/1...$ donde un retardo vendrá dado  por la sguiente expresión:
 
-$$R=\fraq{\lambda T_s²}{1-\lambda T_s}$$
+$$R=\frac{\lambda T_s²}{1-\lambda T_s}$$
 
 donde $T_s$ es el tiempo de servicio que sigue un distribución exponencial y $\lambda$ representa el ratio de llegada de solicitudes.
 
