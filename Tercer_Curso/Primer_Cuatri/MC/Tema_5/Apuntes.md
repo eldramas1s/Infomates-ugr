@@ -147,6 +147,10 @@ ___Definición___
 
 Diremos que un lenguaje $L$ tiene la __propiedad prefijo__ si y solo si para cada palabra de $x\in L$ nungún prefijo de $x$ distinto de él está en $L$.
 
+Traduciendo esto al mundo de los autómatas con pila deterministas, simplemente consiste en que si una palabra es aceptada por el lenguaje por estados finales(hemos llegado a un estado final del autómata) no exista otro camino a partir de este estado final que nos lleve a otro, o al mismo. 
+
+Pues en caso de que esto ocurriera, la palabra de partida sería un prefijo de la nueva palabra aceptada rompiendo la propiedad prefijo.
+
 De esta propiedad surge un resultado bastante interesante.
 
 ___Teorema___
@@ -156,6 +160,8 @@ Un lenguaje puede ser aceptado por un autómata con pila determinista por el _cr
 En resumen, la distinción entre los dos criterios aplicados a lenguajes deterministas no es sustancial pues; si un lenguaje $L$ es determinista y __no__ cumple la _propiedad prefijo_, una sencialla tranformación lo convertiría en un lenguaje que sí cumple la propiedad; y por tanto, sería acpetado por un autómata determinista por el _criterio de pila vacía_.
 
 La transformación de la que se habla consiste en añadir un nuevo símbolo que no esté en el alfabeto para añadirlo al final de todas las palabras. De esta manera, si $\xi \notin A$ entonces consideramos $L$ \{ $u\xi : u \in L$ \}.
+
+El objetivo de esta transformación es provocar que se acepten las misma palabras con un nuevo elemento al final, esto ocasiona que la palabra que se aceptaba en el lenguaje inicial ya no se acepte pues debe contener ese elemento final que no lo contendría.
 
 <a id='EAG'></a>
 ## 5.4.Equivalencia entre Autómatas y Gramáticas
