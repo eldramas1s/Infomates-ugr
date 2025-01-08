@@ -121,8 +121,8 @@ Volviendo al tema del direccionamiento y habiendo entendido ya las máscaras, va
 
 Se dividen en clases:
     
-- Clase A: disponen de cabecera 0xxxxxxx.\_\_\_x con rango [0.0.0.0/8 - 127.255.255.255/8]. Donde la máscara son 8 bits dando lugar a que haya $2^{7} redes con $2^{24}$ equipos por red.
-- Clase B: disponen de la cabecera 10xxxxxx.\_\_\_x con rango [128.0.0.0/16 - 191.255.255.255/16]. Donde la máscara son 16 bits dando lugar a que haya $2^{14}$ redes con $2^{16} equipos cada una.
+- Clase A: disponen de cabecera 0xxxxxxx.\_\_\_x con rango [0.0.0.0/8 - 127.255.255.255/8]. Donde la máscara son 8 bits dando lugar a que haya $2^{7}$ redes con $2^{24}$ equipos por red.
+- Clase B: disponen de la cabecera 10xxxxxx.\_\_\_x con rango [128.0.0.0/16 - 191.255.255.255/16]. Donde la máscara son 16 bits dando lugar a que haya $2^{14}$ redes con $2^{16}$ equipos cada una.
 
 - Clase C: disponen de la cabecera 110xxxxx.\_\_\_x con rango [192.0.0.0/24 - 223.255.255.255/24]. Donde la máscara son 24 bits dando lugar a $2^{21}$ redes con $2^{8}$ equipos por red.
 
