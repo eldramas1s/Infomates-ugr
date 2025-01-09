@@ -260,7 +260,7 @@ Viendo que disponer de un fichero con tantas entradas como registros haya en el 
 
 La idea es la misma solo que, cada índice apuntará al registro inicial de cada bloque, es decir, consiste en implementar un índice de bloque.
 
-Cabe aclarar que, para que haya una ventaj, es necesario que el fichero secuencial se mmantenga ordenado.
+Cabe aclarar que, para que haya una ventaj, es necesario que el fichero secuencial se mmantenga ordenado. Además, **sólo** se pueden montar sobre la clave física, es decir, es un índice primario.
 
 Con esta solución eliminamos el problema del aumento de memoria ocupada.
 
