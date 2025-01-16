@@ -459,8 +459,8 @@ Algunas otras características de _SMTP_ son:
 ___Pasos del protocolo___
 
 1. El usuario origen compone el mensaje dirigido a una dirección de correo con su _MUA_.
-2. Se envía con _SMTP_ el mensaje al servidor _MUA_ del usuario origen que lo sitúa en la cola de mensajes salientes.
-3. El cliente _SMTP_ abre una conexión _TCP_ con el servidor de correo _MTA_ del usuario destino.
+2. Se envía con _SMTP_ el mensaje al servidor _MS_ del usuario origen que lo sitúa en la cola de mensajes salientes.
+3. El cliente _SMTP_ abre una conexión _TCP_ con el servidor de correo _MS_ del usuario destino.
 4. El cliente envía el mensaje sobre la conexión _TCP_.
 5. EL servidor de correo electrónico del usuario destino ubica el mensaje en el _mailbox_ del usuario destino.
 6. El usuario destino, cuando esté activo pues no es necesario para iniciar la transacción, invoca su _MUA_ para leer el mensaje usando alguno de los protocolos(_POP3,IMAP o HTTP_).
