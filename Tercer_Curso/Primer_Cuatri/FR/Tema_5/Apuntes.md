@@ -516,7 +516,7 @@ Es un protocolo que está pensado para trabajar en __local__, se encarga de desc
 Cuando descarga un correo, lo almacena en un fichero del cliente y borra el correo dle servidor; básicamente, delega la responsabilidad de no perderlo en el cliente.
 
 Dispone de tres fases de protocolo:
-- __Autorización__: aquí el cliente se autentica con el _MUA_ para poder acceder al correo; en caso de que las credenciales sean correctas se devolverá `+OK` y en otro caso `-ERR`.
+- __Autorización__: aquí el cliente se autentica con el _MS_ para poder acceder al correo; en caso de que las credenciales sean correctas se devolverá `+OK` y en otro caso `-ERR`.
 - __Transacción__: en esta fase, el clietne selecciona los mensajes que quiere obtener y los que quiere borrar con los comandos `retr id` y `dele id`. Lo habitual es cada vez que se coge un correo, este se elimina.
 - __Actualización__: se realiza después de la desconexión del cliente.
 
