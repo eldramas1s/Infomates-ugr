@@ -252,7 +252,7 @@ Donde $D_i$ es el dominio de nivel $i$ cumpliendo que $D_{i+1} \subset D_i$. Ade
 
 ### DNS es un protocolo
 
-Realmente el srvicio _DNS_ es un protocolo de localización de servidores que realiza la traducción $IP \rightleftarrow DNS$ con el objetivo de facilitar las comunicaciones entre máquinas.
+Realmente el srvicio _DNS_ es un protocolo de localización de servidores que realiza la traducción $IP \leftrightarrow DNS$ con el objetivo de facilitar las comunicaciones entre máquinas.
 
 Para explicar el protocolo usaremos 3 niveles de servidores:
 - Servidores raíz que hay 13 por todo el mundo y representan la parte inicial de Internet y pueden comunicarse con todos los demás servidores de bajos niveles al tener "Internet" una estructura de árbol de zonas.
