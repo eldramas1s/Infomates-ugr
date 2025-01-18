@@ -219,7 +219,7 @@ Otra propiedad de las funciones hash es que proporcionan invulnerabilidad frente
 
 Supongamos que mandamos algo cifrado y además le sumamos al mensaje su resumen; esto es vulnerable simplemente podemos suplantar el mensaje con otro y poner el resumen de ese otro. 
 
-[TODO]:preguntar la vulnerabilidad
+Básicamente, si mandamos $M+MD5(M)$, al atacante le bastaría con cambiar $M$ por $M'$ para realizar el ataque.
 
 Luego para que esto no pase lo que haremos será mandar el mensaje y el resumen de la clave privada entre las dos entidades concatenado con el mensaje. De esta manera usando la unicidad de la clave privada podemos corroborar que el mensaje será el adecuado.
 
