@@ -342,7 +342,9 @@ Partiendo de una comunicación cualquiera disponemos de varios conceptos que nos
 
  - Tiempo de transmisión: tiempo que se tarda en poner el paquete en la red, depende de la velocidad de transmisión(Vt) de la tarjeta de red y se calcula con la expresión:
 
-$$T_t=fraq{T}{Vt}, T=tamaño$$
+$$T_t=frac{T}{Vt}$$
+
+Donde $T$ es el tamaño del paquete.
 
 - Tiempo de propagación: tiempo que tarda un paquete en llegar al siguiente salto, depende del medio de transmisión y de l alongitud del calble.
 - Tiempo de procesado: tiempo que tarda un paquete dentro de una cola de un router en ser procesado por el mismo, depende de los routers y de la carga de red.
