@@ -127,13 +127,14 @@ La __cabecera__ se divide en los siguientes campos:
 
 - Puerto origen: determina quién manda el paquete para poder facilitar la respuesta. Como mucho hay 65535 puertos, hay alguno de ellos reservados para protocolos importantes.
 - Puerto destino: determina a qué dispositivo debe llegar el segmento. Como mucho hay 65535 puertos, dentro de los cuales hay algunos reservados para protocolos importantes.
-- Número de secuencia: uno de los campos más importantes encargado de la comprobación del orden de llegada de los segmentos; además, determina el byte inicial del segmento que se ha decidido dentro del buffer del dispositivo de llegada. Tomará un papel importante en la sincronización de la conexión.
+- Número de secuencia: uno de los campos más importantes encargado de la comprobación del orden de llegada de los segmentos; además, determina el byte inicial del segmento que se ha decidido dentro del buffer del dispositivo de llegada. Tomará un papel importante en la sincronización de la conexión. 
+Además, este dato es elegido por la maquina al principio de la comunicación _TCP_ mediante el _ISN_(_Initial Sequence Number_) que es un número siempre creciente y circular hasta $2^{32}-1$ que se va incrementando cada 4 microsegundos.
 - Número 'acuse': es útil en la comprobación del estaod del paquete, pues refleja hasta que bit se espera recibir correctamente, una vez cumplido esto, se asume que todo lo recibido hasta ese byte será correcto, de ahí que sean acumulativos.
 - Hlen: determina el tamaño de la cabecera TCP.
 - Reservado: es un mecanismo de protección del protocolo a futuro, ya que si se añadieran campos se haría ahí.
 - UAPRSF: son una serie de bits útiles para la comunicación que sirven como flags de estado:
     + U o bit de urgente: su utilidad es para hacer que un segmento no cumpla el orden del buffer (FIFO) y se procese antes que todos. Suele usarse en caso de que haya que solventar algún problema en la conexión.
-    + A o bit de ACK: (preguntar al profesor)
+    + A o bit de ACK: simplemente se encarga de discriminar los paquetes que son de información, ya sea de error, congestión, aceptación...
     + P o bit de push: sirve para evitar la espera debido a que el segmento no esté lo más lleno posible, pues un segmento no se manda hasta que esté lleno.
     + R o bit de reset: se usa para que uno de los dispositivos de la conexión fuerce al otro a resetear la conexión si se ha detectado algún fallo.
     + S o bit de sincronización: determina que los paquetes mandados tienen el objetivo de realizar la sincronización de la conexión.
@@ -244,7 +245,8 @@ Al igual que en la apertura, el hecho de que se usen __timeouts__(_MSL_ o _Maxim
 
 1. Caso normal.
 2. Caso de intento de cierre simultáneo: es un caso poco común análogo a la apertura con intento simultáneo; de hecho, tiene la misma solución extrapolada a los cierres.
-3. Caso de sincronismo con retraso: se ocasiona cuando durante el cierre activo se avisa del fin de la conexión, ocasionando que si hay un retraso en la red, el dispositivo del cierre pasivo continúe mandando información. Esto se soluciona de forma similar a la apertura con sincronismo con retraso. (preguntar al profesor)
+3. Caso de sincronismo con retraso: se ocasiona cuando durante el cierre activo se avisa del fin de la conexión, ocasionando que si hay un retraso en la red, el dispositivo del cierre pasivo continúe mandando información. Esto se soluciona de forma similar a la apertura con sincronismo con retraso. 
+Este caso es uno d elos más habituales pues consiste en que uno de los participantes cierra la conexión mientras el otro todavía necesita mandar datos. En este caso, el que sigue mandado datos simplemente acepta el fin del contrario pero no manda su fin pudiendo así mandar más datos. Cuando acabe mandará su paquete con _FIN=1_ y el receptor cerrará la conexión de forma definitiva con el _ACK_ correspondiente.
 
 _Casuísticas_
 
@@ -340,7 +342,7 @@ Partiendo de una comunicación cualquiera disponemos de varios conceptos que nos
 
  - Tiempo de transmisión: tiempo que se tarda en poner el paquete en la red, depende de la velocidad de transmisión(Vt) de la tarjeta de red y se calcula con la expresión:
 
-$$T_t=frac{T}{Vt}, T=tamaño$$
+$$T_t=fraq{T}{Vt}, T=tamaño$$
 
 - Tiempo de propagación: tiempo que tarda un paquete en llegar al siguiente salto, depende del medio de transmisión y de l alongitud del calble.
 - Tiempo de procesado: tiempo que tarda un paquete dentro de una cola de un router en ser procesado por el mismo, depende de los routers y de la carga de red.
