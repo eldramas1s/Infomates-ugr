@@ -570,7 +570,9 @@ having sum(cantidad) > (select sum(cantidad) from ventas b where b.codpro like '
 -- Ejercicio 3.43
 select codpro, sum(cantidad) 
 from ventas 
-group by codpro
+group by codproselect codpie from pieza 
+where not exists( select codpj from proyecto 
+                  where ciudad='Paris' and not exists (select * from ventas where ventas.codpie = pieza.codpie and ventas.codpj=proyecto.codpj));
 having sum(cantidad)= (select max(sum(v1.cantidad)) from ventas v1 group by v1.codpro);
 
 -- Ejercicio 3.44
@@ -657,8 +659,12 @@ where codpie like '_3'
 group by codpro;
 
 -- Ejercicio 3.50
+describe user_indexes;
 
+select index_name, table_name, table_owner from user_indexes;
 -- Ejercicio 3.51
+
+
 
 -- Ejercicio 3.52
 select codpro, avg(cantidad)
@@ -768,4 +774,161 @@ revoke select on acceso from x0976938;
 grant select on acceso to x0976938 with grant option;
 
 
+--------------------------------------------------------------------------------
 
+-- Consultas sobre el catalogo
+
+select * from all_users;
+describe all_users;
+
+describe dictionary;
+select * from dictionary where table_name like upper('%index%');
+select * from dictionary;
+
+describe all_views;
+select view_name from all_views;
+
+select * from user_constraints;
+select * from user_cons_columns;
+
+--------------------------------------------------------------------------------
+
+-- Relacion AR 2
+
+-- Ejercicio 1
+
+select distinct c.ciudad, d.ciudad 
+from proveedor c ,proyecto d
+where exists ( select * 
+               from ventas 
+               where ventas.codpro=c.codpro and ventas.codpj=d.codpj);
+               
+-- Ejercicio 2
+
+select codpie 
+from ventas v
+where exists (select * from ((ventas natural join proveedor natural join proyecto) d where d.codpie = v.codpie));
+
+-- Ejercicio 3
+
+select codpj
+from proyecto 
+where exists (select codpro from proveedor where proveedor.ciudad = proyecto.ciudad);
+
+-- Ejercicio 4
+
+select distinct c.ciudad, d.ciudad from pieza c,proyecto d;
+
+select ciudad from pieza 
+union 
+select ciudad from proyecto;
+
+-- Ejercicio 5
+
+select distinct ciudad from proveedor
+where not exists (select ciudad from proyecto where proveedor.ciudad = proyecto.ciudad);
+
+-- Ejercicio 6
+
+select ciudad from proveedor 
+where exists ( select ciudad from pieza where pieza.ciudad = proveedor.ciudad);
+
+-- Ejercicio 7
+
+select distinct codpj from ventas where codpie in ( select codpie from ventas where codpro like 'S1');
+
+-- Ejercicio 8
+
+select min(cantidad) from ventas;
+
+select cantidad from ventas where cantidad <= ALL (select cantidad from ventas);
+
+select cantidad from ventas 
+minus
+select a.cantidad from ventas a, ventas b where a.cantidad > b.cantidad;
+
+select cantidad from ventas 
+minus
+select a.cantidad from ventas a join ventas b on (a.cantidad > b.cantidad);
+
+-- Ejercicio 9
+
+select distinct codpj from ventas
+where codpie not in (select codpie from pieza where color like 'rojo') and codpro not in( select codpro from proveedor where ciudad like 'Londres');
+
+-- Ejercicio 10
+
+select codpj from proyecto 
+where not exists(select * from ventas where ventas.codpj = proyecto.codpj and ventas.codpro!='S1');
+
+select codpj from ventas 
+where codpro = 'S1'
+minus 
+select codpj from ventas 
+where codpro != 'S1';
+
+-- Ejercicio 11
+
+select codpie from pieza 
+where not exists( select codpj from proyecto 
+                  where ciudad='Paris' and not exists (select * from ventas where ventas.codpie = pieza.codpie and ventas.codpj=proyecto.codpj));
+                  
+select codpie from pieza 
+where not exists( select codpj from proyecto p where ciudad='Paris' 
+                  minus 
+                  select codpj from ventas where p.codpj=ventas.codpj and ventas.codpie=pieza.codpie);
+                  
+select codpie from pieza 
+minus 
+select codpie from (select codpie,codpj from pieza,proyecto where proyecto.ciudad='Paris'
+                    minus
+                    select codpie,codpj from ventas);
+                    
+-- Ejercicio 12
+
+select codpro from proveedor
+minus 
+select v.codpro from ventas v join ventas b on b.codpie!=v.codpie;
+
+-- Ejercicio 13
+
+select codpj from proyecto b
+where  not exists ( select codpie from pieza where not exists (select * from ventas v where v.codpie = pieza.codpie and v.codpj=b.codpj and codpro='S1'));
+
+select codpj from ventas b
+where not exists(select codpie from pieza minus select codpie from ventas v where v.codpie = pieza.codpie and v.codpj = b.codpj);
+
+-- Ejercicio 14
+
+select codpro from proveedor p
+where not exists(select codpie,codpj from pieza a, proyecto c where not exists (select codpie,codpj from ventas v where (a.codpie=v.codpie and c.codpj=v.codpj and p.codpro=v.codpro)));
+
+-- Ejercicio 15
+select codpie,peso from pieza where peso in (select max(peso) from pieza having max(peso)<100 );
+
+-- Ejerccio 16
+
+select codpj from ventas where codpj in (select codpj from proyecto where ciudad like 'Jaen') and codpie in (select codpie from pieza where peso >= ALL(select peso from pieza));
+
+-- Ejercicio 17
+
+select codpj from ventas 
+group by codpj 
+having count(codpie)>=2;
+
+-- Ejercicio 18
+
+select codpj from ventas 
+group by codpj 
+having count(codpie)=2;
+
+-- Ejercicio 19
+
+select codpro from ventas 
+group by codpro
+having count(*) between 1 and 2;
+
+-- Ejercicio 20
+
+select codpro from proveedor
+where not exists (select codpie from pieza where color='rojo' or ciudad='Granada' and not exists( select * from ventas where ventas.codpie=pieza.codpie and ventas.codpro=proveedor.codpro));
