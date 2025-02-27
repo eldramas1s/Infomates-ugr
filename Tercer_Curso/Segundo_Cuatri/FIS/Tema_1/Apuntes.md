@@ -18,12 +18,12 @@ El software es una abstracción que dispone de una naturaleza dual, es decir, de
 - Vehículo: se puede encargar de distribuir un producto software; donde encontramos tres posibilidades:
     + Sistema Operativo: actúa como base para el control de la computadora.
     + Redes: actúa como una base para la comunicación de información.
-    + Herramientas y ambientes de software:
+    + Herramientas y ambientes de software: actúa como base para la creación y control de otros programas.
 
-
-Obviando todo esto, hay que tener una idea muy clara, esta idea consiste en tener en mente que el software se encarga de manejar y distriubuir información, el producto más importante de nuestro tiempo.
+Obviando todo esto, hay que tener una idea muy clara, esta idea consiste en tener en mente que el software se encarga de manejar y distriubuir información, el producto más importante de nuestros tiempos.
 
 ### Definición de Software
+
 Para nosotros, una buena definición de software es un conjunto de instrucciones que cuando se ejecutan proporcionan las funciones y características buscadas, un conjunto de estructuras de datos que permiten a los programas manipular la información adecuandamente, y un conjunto de información en papel o en forma virtual(conocido como documentación) que describe la operación y uso de los programas.
 
 Todo esto se basa en que un programa no puede trabajar sin ninguna de las demás cosas, requiere de unos datos de entrada y de un conjunto de normas que le digan como actuar. Por tanto, cualquier tipo de definición que no contenga a los tres conjuntos no estará completa.
@@ -35,7 +35,11 @@ Cabe aclarar que la documentación no es solo lo que contiene el uso y operació
 Las características son:
 - Es un producto lógico, no es un producto tangible, no es algo que podamos tocar, ver o sentir. Se puede entender como un elemento abstracto; como no es tangible, no se puede fabricar sino que se desarrolla. De la misma forma, como no es tangible no se estropaa, sino que se deteriora
 
-[Insertar imagenes sobre diap 6]
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/deterioro.png alt="Error" width=500px>
+</p>
+</div>
 
 Con respecto a la imagen del HArdware el índice de fallo desciende brutalmente desde su inicio de fabricación, es algo lógico pues es cuando el hardware está en buen estado o incluse recién vendido. No obstante, cuando aumentamos el tiempo, llegará un instante en el que el índice de fallos aumenta exponencial.
 
@@ -56,8 +60,9 @@ Haremos una clasificación u otra dependiendo del parámetro que estudiemos; seg
     + Software de aplicación: son aquellos que resuelven una necesidad específica de negocios.
     + Software de ingeniería y ciencias: implementa algoritmos "devoradores" de mundos.
     + Software empotrado: ya los conocemos, encajados en sistemas del día a día, es decir, residen dentro de un producto o sistema e implementa y controla características y funciones para el usuario final y para el sistema en sí.
-
-[todo: terminar diap 7]
+    + Software de gestión: proporciona una capacidad específica para el uso de muchos consumidores diferentes.
+    + Aplicaciones Web: es un software centrado en redes que agrupa una amplica gama de aplicaciones.
+    + Software de Inteligencia artificial: implementa algoritmos no numéricos para resolver problemas complejos de tratar computacionalmente o con análisis directo.
 
 - Estudiando el destinatario:
     + Para distribución o también llamados genéricos: son sistemas autónomos producidos por una organización de desarrollo y vendido en el mercado abierto a cualquier cleitne que pueda comprarlo.
@@ -71,7 +76,11 @@ Haremos una clasificación u otra dependiendo del parámetro que estudiemos; seg
 ### Proceso de producción
 El proceso de producción se rige según el siguiente esquema:
 
-[Imagen diap 9]
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/pproduccion.png alt="Error" width=500px>
+</p>
+</div>
 
 Dispone de tres grandes fases:
 1. Fase de definición: tiene como principal objetico definit qué se desarolla y como principales tares tiene:
@@ -104,7 +113,14 @@ Durante el proceso de producción pueden surgir una serie de problemas que puede
 Dentro de este apartado veremos aspectos como la historia, algunas definiciones, terminología y principios generales de esta ingeniería.
 
 ### Historia y necesidad de la ingeniería del software
-(TODO desarrollar diap 14)
+
+Como tal, el concepto de ingeniería del software es un concepto muy reciente, surge del remplazo de muchos calculadores de la NASA para obtener resultados mucho más precisos a través de "programas". 
+Fue propuesto en 1968 para discutir la crisis del software a consecuencia de un nuevo hardware lo que llevo a los siguientes problemas:
+- Software muy complejo
+- Grandes proyectos con años de retraso
+- Coste del software mucho más de lo previsto
+- Software poco viable, difícil de manejar y de pobre ejecución
+En esa discusión se concluyó que se debía entender el problema antes de desarrollar una aplicación, que el diseño era una actividad crucial, el software debía de tener alta calidad y debía ser fácil de mantener.
 
 ### Definición de Ingeniería del Software
 Algunas de las definiciones usadas para referirse a esta rama de la ingeniería informática son:
@@ -118,11 +134,19 @@ Daremos una serie de términos que no deben confundirse, pues son totalmente dif
 - Sistema: un sistema es un conjunto de elementos relacionados entre sí y con el medio, que forma una unidad o un todo organizativo.
 - Sistema basado en computadora: es un sistema cuyos elementos están organizados para cumplir una meta predefinida al procesar información. La diferencia con el sistema es el hecho de procesar información. Un sistema basado en computadora está formado con la siguiente estructura que tiene asocida una documentación y unos procedimientos.
 
-(todo poner imagen diap 16)
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/scomputadora.png alt="Error" width=500px>
+</p>
+</div>
 
 - Sistema software: es un sistema que forma parte de un sistema basado en computadora y está formado por elementos software relacionados entre sí y organizados en subsistemas.
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/ssoftware.png alt="Error" width=500px>
+</p>
+</div>
 
-(todo poner imagen diap 17)
 - Modelo: es una representación de un sistema en un determinado lenguaje; cabe recalcar que de un mismo sistema se pueden construir muchos modelos. En definitiva, es una abstracción de una parte de la realidad en un sistema mediante un lenguaje de programación.
 - Principio: es un conjunto de elementos adquiridos mediante el conocimiento, que definen las características que deben poseer un modelo para ser una representación adecuada de un sistema.
 - Herramienta: cada uno de los instrumentos que nos permiten la representación de modelos es una herramienta. Por ejemplo, el propio lenguaje de programación es una herramienta.
@@ -131,14 +155,25 @@ Daremos una serie de términos que no deben confundirse, pues son totalmente dif
 - Proceso: estructura que debe establecerse para la obtención eficaz de un producto de ingeniería. Establece el contexto sobre el cual vamos a aplicar las técnicas y las herramientas.
 - Métodos: secuencia de actividades para la obtención de un producto(modelo), que describen cómo usar las herramientas y las heurísticas.
 
-(todo poner imagen diap 20)
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/resumen.png alt="Error" width=500px>
+</p>
+</div>
 
 Junto a todo esto, se proporciona una definición de ingeniería del software, que será el estudio de principios, metodologías y herramientas que forman parte de un número finito de procesos para facilitar el desarrollo y mantenimiento de sistemas software de calidad.
 
 Es importante conocer adecuadamente cada uno de los conceptos pues de ello dependerá la calidad de la documentación generada; si se usa bien, realizará una buena tarea de guía para la fase de mantenimiento.
 
 ### Principios generales
-(todo diseñar las diaps 21 y 22)
+A la hora de diseñar un sistema software debemos tener en cuenta en todo momento los siguientes aspectos:
+1. Un software solo existe para aportar valor a sus usuarios, es decir, si no aporta ningún valor no debemos hacerlo.
+2. Debe primarse la smplicidad del diseño siempre y cuando no se pierda calidad.
+3. Conserva la integridad conceptual durante todo momento, es decir, si disponemos de un objetivo para ese software, debemo sevitar distracciones y cumplirlo.
+4. Lo que hacemos, debe ser entendible por los usuarios que lo vayan a usar y mantener.
+5. Debemos diseñar sistemas adaptanles, listos para cambios y escalables.
+6. Diseña pensando en componentes que sean o puedan ser reutilizables.
+7. Reflexiona para lograr mejores resultados y aprender de los errores, es decir, cuando nos encontremos frente a un problema no debemos de abordarlo sin antes dedicar un tiempo a entenderlo.
 
 <a id='13'></a>
 ## 1.3.El proceso de desarrollo del software
