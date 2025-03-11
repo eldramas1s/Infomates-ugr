@@ -190,8 +190,11 @@ Veremos algunas definiciones:
 
 ### Modelo de proceso
 Hay dos tipos de modelo de proceso:
-- Modelo genérico; se divide en varias partes:
-    + Estructura del proceso: la estructura del proceso está formada por cada una de las atividades, acciones y tareas que forman parte de un proceso, reside dentro de un marco de trabajo que define su relación con el proceso entre sí. No obstante, hay que tener en cuenta que se pueden desarrollar actividades sombrilla en cada parte del proceso.
+#### Modelo genérico
+Se divide en varias partes:
+- Estructura del proceso: la estructura del proceso está formada por cada una de las atividades, acciones y tareas que forman parte de un proceso, reside dentro de un marco de trabajo que define su relación con el proceso entre sí. 
+
+No obstante, hay que tener en cuenta que se pueden desarrollar actividades sombrilla en cada parte del proceso.
 
  <div>
 <p style='text_align:center;'>
@@ -200,39 +203,64 @@ Hay dos tipos de modelo de proceso:
 </div>
 
 Además, cada actividad del marco de trabajo está formada por un conjunto de acciones de ingeniería. Donde cada acción de ingeniería del software está definida por un conjunto de tareas
-    + Flujo del proceso; este aspecto describe la forma en que se organizan las actividades estructurales, además de las tareas y acciones que ocurren dentro de cada actividad estructural con respecto a la secuencia de uso; los más usuales son:
+- Flujo del proceso; este aspecto describe la forma en que se organizan las actividades estructurales, además de las tareas y acciones que ocurren dentro de cada actividad estructural con respecto a la secuencia de uso; los más usuales son:
 <div>
 <p style='text_align:center;'>
 <img src=./imagenes/flujos.png alt="Error" width=500px>
 </p>
 </div>
-    Dentro de estas imágenes, cada flecha determina un paso posible a dar, cuando se toma una flecha se da por terminada, por ahora aunque dependerá del flujo usado, la etapa dejada atrás.
-    La idea de esto es que dentro de una actividad realmente podemos dar muchas vueltas , no solo en cada etapa del flujo sino en cada una de las actividades de la etapa.
-    + Acciones y tareas de actividades estructurales; las hay de varios tipos: **obtención de requisitos** (indagar para obtener información sobre qué es lo que debe realizar el software; es una acción fundamental pues es aquella que nos permite conocer el problema), **estimación y planificación del proyecto** (estimar el tiempo y los costes de desarrollo software), **análisis de requisitos** (analizar el problema a resolber, documentar qué debe hacer el sistema software; también es una etapa fundamental pues permitirá a los usuarios o compañeros conocer qué es lo que hay que conseguir), **diseño** (en esta fase buscaremos la solución al problema describiendo los componentes, relaciones y funciones que dan la solución al problema), **implementación** (crear el código), **prueba del software** (debemos validar el producto, es decir, que haga lo que se ha pedido; y por otro lado, revisar o verificar el producto, lo cual consiste en comprobar que algo funciona correctamente), **evaluación y aceptación** ( evualuar el producto y conseguir la aceptación por parte de los interesados del producto ) y **entrga y asistencia** (sistema operando y asistencia para su funcionamiento correcto).
 
-- Modelo prescriptivo; es un modelo específico que cumple las características del modelo genérico y definen un conjunto predefinido de elementos del proceso y un flujo de trabajo que será predecible. Además, buscan la estructura y el orden en el desarrollo de software. Por último, las actividades y tareas ocurren de manera secuencial con lineamientos definidos para el proceso.
+Dentro de estas imágenes, cada flecha determina un paso posible a dar, cuando se toma una flecha se da por terminada, por ahora aunque dependerá del flujo usado, la etapa dejada atrás.
+
+La idea de esto es que dentro de una actividad realmente podemos dar muchas vueltas , no solo en cada etapa del flujo sino en cada una de las actividades de la etapa.
+- Acciones y tareas de actividades estructurales; las hay de varios tipos: 
+    + **obtención de requisitos**: indagar para obtener información sobre qué es lo que debe realizar el software; es una acción fundamental pues es aquella que nos permite conocer el problema.
+    + **estimación y planificación del proyecto**: estimar el tiempo y los costes de desarrollo software.
+    + **análisis de requisitos**: analizar el problema a resolver, documentar qué debe hacer el sistema software; también es una etapa fundamental pues permitirá a los usuarios o compañeros conocer qué es lo que hay que conseguir.
+    + **diseño**: en esta fase buscaremos la solución al problema describiendo los componentes, relaciones y funciones que dan la solución al problema.
+    + **implementación**: crear el código. 
+    + **prueba del software**: debemos validar el producto, es decir, que haga lo que se ha pedido; y por otro lado, revisar o verificar el producto, lo cual consiste en comprobar que algo funciona correctamente.
+    + **evaluación y aceptación**: evualuar el producto y conseguir la aceptación por parte de los interesados del producto.
+    + **entrga y asistencia**: sistema operando y asistencia para su funcionamiento correcto.
+
+#### Modelo prescriptivo
+Es un modelo específico que cumple las características del modelo genérico y definen un conjunto predefinido de elementos del proceso y un flujo de trabajo que será predecible. 
+
+Además, buscan la estructura y el orden en el desarrollo de software. Por último, las actividades y tareas ocurren de manera secuencial con alineamientos definidos para el proceso.
+
 Hay algunos aspectos de estos modelos que no son determinísticos pues dependiendo del producto a desarrollar serán apropiados para cambios.
-    + Modelo en cascada(o ciclo de vida clásico)
+
+- Modelo en cascada(o ciclo de vida clásico)
  <div>
 <p style='text_align:center;'>
 <img src=./imagenes/modcas.png alt="Error" width=500px>
 </p>
 </div>
-    Dispone de una estructura secuencial y flujo de proceso lineal. No obstante, presenta una serie de problemas como la falta de adaptación de proyectos reales al flujo secuencial, la dificultad de indicar todos los requisitos de forma explícita al principio de un proyecto, la no disposición de una versión funcional de los programas hasta etapas avanzadas del proyecto o la poca detección de errores hasta que se revise el programa funcional. 
-    + Modelo de prototipos; como su nombre indica trabajamos con prototipos; donde un prototipo es una representación limitada de un producto, se usa para probar opciones de diseño y entender mejor el problema y sus posibles soluciones. Siguen el siguiente esquema:
+Dispone de una estructura secuencial y flujo de proceso lineal. No obstante, presenta una serie de problemas como la falta de adaptación de proyectos reales al flujo secuencial, la dificultad de indicar todos los requisitos de forma explícita al principio de un proyecto, la no disposición de una versión funcional de los programas hasta etapas avanzadas del proyecto o la poca detección de errores hasta que se revise el programa funcional.
+
+- Modelo de prototipos: como su nombre indica trabajamos con prototipos; donde un prototipo es una representación limitada de un producto, se usa para probar opciones de diseño y entender mejor el problema y sus posibles soluciones. 
+
+Siguen el siguiente esquema:
 <div>
 <p style='text_align:center;'>
 <img src=./imagenes/modpro.png alt="Error" width=500px>
 </p>
 </div>
-    Cabe recalcar que un prototipo no contiene todos los requisitos del usuario, o no suele hacerlo. Por tanto, es claro que dispone de un funcionamiento limitado en cuanto a su capacidad, confiabilidad o eficiencia.
-    Realmente el prototipo nos va a servir para recabar los requisitos del usuario, algo rápido que no sea muy perfeccionado ni perfectamente diseña. Es una especie de esbozo del proyecto que nos servirá para recaudar información por parte del usuario que probará este prototipo y nos dará su evaluación.
-    Este modelo se usa para facilitar la obtención y validadción de requisitos, estudios de viabilidad, propuestas de soluciones o diseños alternativ@s y en casos muy concretos nos servirán como producto final, pero cabe recalcar que el prototipo no debe ser el producto final. Además, su uso vendrá determinado por el tipo y complejaidad de la aplicación, características del cliente o disponibilidad de herramientas para su construcción.
-    No obstante, tiene una serie de inconvenientes como crear falsas expectativas por parte del cliente e incluir decisiones del diseño del prototipo pasen a formar parte del producto final  por falta de tiempo, por ejemplo.
-    + Modelos evolutivos, son muchos y todos son iterativos y surgen debido a la existencia de tiempo de entrega muy limitado, la necesidad de facilitar la incorporación de cambios o la necesidad de satisfacer al usuario. 
-    En definitiva, estos modelos se basan en crear versiones que vayan mejorándose, nosotros a las versiones las llamaremos incrementos. No obstante, cada versión es un producto terminado y operativo.
+Cabe recalcar que un prototipo no contiene todos los requisitos del usuario, o no suele hacerlo. Por tanto, es claro que dispone de un funcionamiento limitado en cuanto a su capacidad, confiabilidad o eficiencia.
+    
+Realmente el prototipo nos va a servir para recabar los requisitos del usuario, algo rápido que no sea muy perfeccionado ni perfectamente diseña. Es una especie de esbozo del proyecto que nos servirá para recaudar información por parte del usuario que probará este prototipo y nos dará su evaluación.
+    
+Este modelo se usa para facilitar la obtención y validadción de requisitos, estudios de viabilidad, propuestas de soluciones o diseños alternativ@s y en casos muy concretos nos servirán como producto final, pero cabe recalcar que el prototipo no debe ser el producto final. 
 
-    Son modelos que afrontan los riesgos lo antes posible (en la siguiente versión), retroalimentan al usuario de forma constante con mejoras (lo cual lo satisface), permite un mayor manejo de la complejidad pues se dan pasos cortos y sencillos, permiten que una mejora dentro de una versión se use en las siguientes (incluso se pueden eliminar) y, por último, involucran continuamente al usuario pues el usuario valida el producto en cada versión.
+Además, su uso vendrá determinado por el tipo y complejaidad de la aplicación, características del cliente o disponibilidad de herramientas para su construcción.
+    
+No obstante, tiene una serie de inconvenientes como crear falsas expectativas por parte del cliente e incluir decisiones del diseño del prototipo pasen a formar parte del producto final  por falta de tiempo, por ejemplo.
+
+- Modelos evolutivos, son muchos y todos son iterativos y surgen debido a la existencia de tiempo de entrega muy limitado, la necesidad de facilitar la incorporación de cambios o la necesidad de satisfacer al usuario. 
+    
+En definitiva, estos modelos se basan en crear versiones que vayan mejorándose, nosotros a las versiones las llamaremos incrementos. No obstante, cada versión es un producto terminado y operativo.
+
+Son modelos que afrontan los riesgos lo antes posible (en la siguiente versión), retroalimentan al usuario de forma constante con mejoras (lo cual lo satisface), permite un mayor manejo de la complejidad pues se dan pasos cortos y sencillos, permiten que una mejora dentro de una versión se use en las siguientes (incluso se pueden eliminar) y, por último, involucran continuamente al usuario pues el usuario valida el producto en cada versión.
 
 Un ejemplo de modelo es el **Modelo de Boehm**:
 
@@ -242,9 +270,11 @@ Un ejemplo de modelo es el **Modelo de Boehm**:
 </p>
 </div>
 
-    En este ejemplo, hay que entender que el tiempo dedicado aumenta en cada fase segúnnos alejamos del inicio.
-    Como mayores características de estos modelos, nos encontramos que está centrado en el análisis de riesgos haciendo uso de su construcción de prototipos para su estudio, la espiral puede continuar una vez finalizado todo el proceso y entregado el producto, es un enfoque adecuado para el desarrollo de sistemas a gran escala.
-    Por otro lado, también dispone de inconvenientes como la falta de adaptabilidad a la complejidad o al tipo de sistema; así como el requerimiento de un equipo de desarrollo con gran experiencia en el análisis de riesgos.
+En este ejemplo, hay que entender que el tiempo dedicado aumenta en cada fase segúnnos alejamos del inicio.
+
+Como mayores características de estos modelos, nos encontramos que está centrado en el análisis de riesgos haciendo uso de su construcción de prototipos para su estudio, la espiral puede continuar una vez finalizado todo el proceso y entregado el producto, es un enfoque adecuado para el desarrollo de sistemas a gran escala.
+
+Por otro lado, también dispone de inconvenientes como la falta de adaptabilidad a la complejidad o al tipo de sistema; así como el requerimiento de un equipo de desarrollo con gran experiencia en el análisis de riesgos.
 
 ### Proceso unificado
 
