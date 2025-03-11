@@ -177,14 +177,14 @@ A la hora de diseñar un sistema software debemos tener en cuenta en todo moment
 
 <a id='13'></a>
 ## 1.3.El proceso de desarrollo del software
-En este apartado veremos varioas aspectos relacionados con las distintas etapas que recorre el producto hasta ser un producto disponible a la venta.
+En este apartado veremos varios aspectos relacionados con las distintas etapas que recorre el producto hasta ser un producto disponible a la venta.
 
 ### Concepto de proceso de desarrollo
 Veremos algunas definiciones:
-- **Proceso de desarrollo del software**: se define como el conjunto de actividades, acciones y tareas que se realizan cuando va a crearse un producto o sistema software; en definitiva, es un marco donde el que se va a trabajar. Se diferencia del método en que no busca un objetivo, el método es algo que usamos para desarrollar o hacer una actividad.
+- **Proceso de desarrollo del software**: se define como el conjunto de actividades, acciones y tareas que se realizan cuando va a crearse un producto o sistema software; en definitiva, es el marco donde se va a trabajar. Se diferencia del método en que no busca un objetivo, el método es algo que usamos para desarrollar o hacer una actividad.
 - **Actividad**: son una serie de elementos abstractos con los que se busca alcanzar un objetivo amplio y se aplica sin importar el dominio de aplicación, tamaño del proceso o complejidad. Un ejemplo de esto es comunicarse con los usuarios. Habrá dos tipos:
-    + Estructural: decimos que una tarea es estructuras cuando están dedicadas a obtener el producto. Estas actividades serán las mismas independientemente del producto a desarrollar y son las siguientes: **Comunicación** (hablar con el cliente para conocer los objetivos y requisitos), **planificación** (definir el plan del proyecto en el que se describen todo tipo de riesgos, recursos necesarios, productos obtenidos y se programan las actividades, acciones y tareas), **modelado** (representar el producto mediante modelos del sistema propuesto junto con la solución o soluciones apropiadas), **construcción** (general el código y probarlo) y **implementación** (entregar al cliente y recibir la evaluación del mismo).
-    + Sombrilla: se llaman así porque cubren todo el proceso y pueden aparecer en cualquier otro tipo de actividad realizada durante el proceso, de hecho no siempre tienen que aparecer en un proyecto. SOn varias: **Siguimiento y control del proyecto** (evaluar el progreso y lo compara con el plan del proyecto para ver si se está cumpliendo), **gestión de riesgos** (evaluar los riesgos que pueden afectar al resultado del proyecto o la calidad del producto), **aseguramiento de la calidad** (comprobar el cumplimiento de los aspectos de calidad esperados), **revisiones técnicas** (evaluar los productos para descubrir y eliminar errores), **medición** (definir mediciones del proceso y del producto para entregar software que cumpla con las encesidades del cliente), **gestión de la configuración** (destionar los efectos de cambio a lo largo del proceso), **gestión de reutilización** (definir los critarios para la reutilización del producto de trabajo y establece los mecanismos para obtener componentes reutilizables) y **preparación y producción del producto de trabajo** (actividades requeridas para crear productos de trabajo).
+    + Estructural: decimos que una tarea es estructural cuando están dedicadas a obtener el producto. Estas actividades serán las mismas independientemente del producto a desarrollar y son las siguientes: **Comunicación** (hablar con el cliente para conocer los objetivos y requisitos), **planificación** (definir el plan del proyecto en el que se describen todo tipo de riesgos, recursos necesarios, productos obtenidos y se programan las actividades, acciones y tareas), **modelado** (representar el producto mediante modelos del sistema propuesto junto con la solución o soluciones apropiadas), **construcción** (general el código y probarlo) e **implementación** (entregar al cliente y recibir la evaluación del mismo).
+    + Sombrilla: se llaman así porque cubren todo el proceso y pueden aparecer en cualquier otro tipo de actividad realizada durante el proceso, de hecho no siempre tienen que aparecer en un proyecto. Son varias: **Siguimiento y control del proyecto** (evaluar el progreso y lo compara con el plan del proyecto para ver si se está cumpliendo), **gestión de riesgos** (evaluar los riesgos que pueden afectar al resultado del proyecto o la calidad del producto), **aseguramiento de la calidad** (comprobar el cumplimiento de los aspectos de calidad esperados), **revisiones técnicas** (evaluar los productos para descubrir y eliminar errores), **medición** (definir mediciones del proceso y del producto para entregar software que cumpla con las encesidades del cliente), **gestión de la configuración** (destionar los efectos de cambio a lo largo del proceso), **gestión de reutilización** (definir los critarios para la reutilización del producto de trabajo y establece los mecanismos para obtener componentes reutilizables) y **preparación y producción del producto de trabajo** (actividades requeridas para crear productos de trabajo).
 - **Acción**: es un conjunto de tareas que generan un producto de trabajo, es decir, una serie de tareas relacionadas entre sí que nos dan un objetivo sobre el que trabajar.
 - **Tarea**: son aspectos que se centran en un objetivo pequeño, pero bien definido que produce un resultado tangible. Una prueba de unidad consiste en probar cada una de las partes de forma individual, otra tarea podría ser unificar dichas partes.
 
@@ -192,7 +192,7 @@ Veremos algunas definiciones:
 Hay dos tipos de modelo de proceso:
 #### Modelo genérico
 Se divide en varias partes:
-- Estructura del proceso: la estructura del proceso está formada por cada una de las atividades, acciones y tareas que forman parte de un proceso, reside dentro de un marco de trabajo que define su relación con el proceso entre sí. 
+- Estructura del proceso: la estructura del proceso está formada por cada una de las atividades, acciones y tareas que forman parte de un proceso, reside dentro de un marco de trabajo que define su relación con el proceso en sí. 
 
 No obstante, hay que tener en cuenta que se pueden desarrollar actividades sombrilla en cada parte del proceso.
 
@@ -213,7 +213,7 @@ Además, cada actividad del marco de trabajo está formada por un conjunto de ac
 Dentro de estas imágenes, cada flecha determina un paso posible a dar, cuando se toma una flecha se da por terminada, por ahora aunque dependerá del flujo usado, la etapa dejada atrás.
 
 La idea de esto es que dentro de una actividad realmente podemos dar muchas vueltas , no solo en cada etapa del flujo sino en cada una de las actividades de la etapa.
-- Acciones y tareas de actividades estructurales; las hay de varios tipos: 
+- Acciones y tareas de actividades estructurales: 
     + **obtención de requisitos**: indagar para obtener información sobre qué es lo que debe realizar el software; es una acción fundamental pues es aquella que nos permite conocer el problema.
     + **estimación y planificación del proyecto**: estimar el tiempo y los costes de desarrollo software.
     + **análisis de requisitos**: analizar el problema a resolver, documentar qué debe hacer el sistema software; también es una etapa fundamental pues permitirá a los usuarios o compañeros conocer qué es lo que hay que conseguir.
@@ -230,7 +230,7 @@ Además, buscan la estructura y el orden en el desarrollo de software. Por últi
 
 Hay algunos aspectos de estos modelos que no son determinísticos pues dependiendo del producto a desarrollar serán apropiados para cambios.
 
-- Modelo en cascada(o ciclo de vida clásico)
+##### Modelo en cascada(o ciclo de vida clásico)
  <div>
 <p style='text_align:center;'>
 <img src=./imagenes/modcas.png alt="Error" width=500px>
@@ -238,7 +238,8 @@ Hay algunos aspectos de estos modelos que no son determinísticos pues dependien
 </div>
 Dispone de una estructura secuencial y flujo de proceso lineal. No obstante, presenta una serie de problemas como la falta de adaptación de proyectos reales al flujo secuencial, la dificultad de indicar todos los requisitos de forma explícita al principio de un proyecto, la no disposición de una versión funcional de los programas hasta etapas avanzadas del proyecto o la poca detección de errores hasta que se revise el programa funcional.
 
-- Modelo de prototipos: como su nombre indica trabajamos con prototipos; donde un prototipo es una representación limitada de un producto, se usa para probar opciones de diseño y entender mejor el problema y sus posibles soluciones. 
+##### Modelo de prototipos
+Como su nombre indica trabajamos con prototipos; donde un prototipo es una representación limitada de un producto, se usa para probar opciones de diseño y entender mejor el problema y sus posibles soluciones. 
 
 Siguen el siguiente esquema:
 <div>
@@ -248,7 +249,7 @@ Siguen el siguiente esquema:
 </div>
 Cabe recalcar que un prototipo no contiene todos los requisitos del usuario, o no suele hacerlo. Por tanto, es claro que dispone de un funcionamiento limitado en cuanto a su capacidad, confiabilidad o eficiencia.
     
-Realmente el prototipo nos va a servir para recabar los requisitos del usuario, algo rápido que no sea muy perfeccionado ni perfectamente diseña. Es una especie de esbozo del proyecto que nos servirá para recaudar información por parte del usuario que probará este prototipo y nos dará su evaluación.
+Realmente el prototipo nos va a servir para recabar los requisitos del usuario, algo rápido que no sea muy perfeccionado ni perfectamente diseñado. Es una especie de esbozo del proyecto que nos servirá para recaudar información por parte del usuario que probará este prototipo y nos dará su evaluación.
     
 Este modelo se usa para facilitar la obtención y validadción de requisitos, estudios de viabilidad, propuestas de soluciones o diseños alternativ@s y en casos muy concretos nos servirán como producto final, pero cabe recalcar que el prototipo no debe ser el producto final. 
 
@@ -256,7 +257,8 @@ Además, su uso vendrá determinado por el tipo y complejaidad de la aplicación
     
 No obstante, tiene una serie de inconvenientes como crear falsas expectativas por parte del cliente e incluir decisiones del diseño del prototipo pasen a formar parte del producto final  por falta de tiempo, por ejemplo.
 
-- Modelos evolutivos, son muchos y todos son iterativos y surgen debido a la existencia de tiempo de entrega muy limitado, la necesidad de facilitar la incorporación de cambios o la necesidad de satisfacer al usuario. 
+##### Modelos evolutivos
+Son muchos y todos son iterativos; surgen debido a la existencia de tiempo de entrega muy limitado, la necesidad de facilitar la incorporación de cambios o la necesidad de satisfacer al usuario. 
     
 En definitiva, estos modelos se basan en crear versiones que vayan mejorándose, nosotros a las versiones las llamaremos incrementos. No obstante, cada versión es un producto terminado y operativo.
 
@@ -290,7 +292,7 @@ Las fases son las siguientes:
 - Concepción: comprende la parte de comunicación y parte de planificación. En ella se lleva a cabo la comunicación y la planificación dcon el cliente; ademá, los requisitos fundamentaes se describen a través de casos de uso que describen las características y funciones de cada clase principal de usuarios. Por último, la planificación identifica recursos, evalúa riesgos importantes y define un calendario preliminar para los incrementos de software.
 - Elaboración: comprende la fase de planificación restante y diseño. Conlleva los siguientes aspectos:
     + Incorpora las actividades de planificación y modelado del modelo genérico.
-    + Se refina y expande los casos de uso.
+    + Se refinan y expanden los casos de uso.
     + Incluye cinco perspectvas del software: el modelo de casos de uso, de análisi, de diseño, de implementación y de despliegue, esto último se refiere a cosas más técnicas y físicas.
     + Modificaciones al plan determinado.
 - Construcción: coincide con la etapa de construcción. Conlleva los siguientes aspectos:
