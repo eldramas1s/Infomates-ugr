@@ -134,36 +134,36 @@ Una de las cosas importantes sobre esta etapa es saber si el software que se va 
 Esta tarea, dada una pequeña descripción del sistema va a producir un informe de viabilidad que va a determinar el avance o no del proyecto.
 
 2. Obtención de requisitos. Una vez que el estudio de viabilidad ha resultado positiva pasamos al trabajo con los clientes y usuarios para: 
-    - Estudiar el funciamiento del sistema.
-    - Descubrir las necesidades reales.
-    - Consensuar los requisitos entre las distintas partes.
-    - Trabajo difícil apoyado por técnicas como entrevistas, escenarios, casos de usos, prototipos, análisis etnográficos...
+- Estudiar el funciamiento del sistema.
+- Descubrir las necesidades reales.
+- Consensuar los requisitos entre las distintas partes.
+- Trabajo difícil apoyado por técnicas como entrevistas, escenarios, casos de usos, prototipos, análisis etnográficos...
 
 Como productos generados de esta etapa tenemos:
-    - Documentos de entrevistas.
-    - Lista estructurada de requisitos.
-    - Diagramas de casos de uso junto a plantillas y diagramas de actividad.
+- Documentos de entrevistas.
+- Lista estructurada de requisitos.
+- Diagramas de casos de uso junto a plantillas y diagramas de actividad.
 
 [TODO imagen diap 17]
 
 3. Análisis de requisitos. En esta tarea, partiendo de la lista de requisistos e información proporcionada por el usuario podremos realizar la tarea más importante de todas que presenta como objetivos:
-    - Detección de conflictos entre los requisitos, pues a pesar de conocer los requisitos puede que no conozcamos que sus dominios se intersequen.
-    - Profundización en el conoceimiento del sistema.
-    - Establecimiento de las bases para el diseño.
-    - Construcción de mosdels abstactos, ya sea dinámico o estático.
+- Detección de conflictos entre los requisitos, pues a pesar de conocer los requisitos puede que no conozcamos que sus dominios se intersequen.
+- Profundización en el conoceimiento del sistema.
+- Establecimiento de las bases para el diseño.
+- Construcción de mosdels abstactos, ya sea dinámico o estático.
 Esta tarea se puede ver como un ciclo de subtareas: 
 [TODO imagen diap 19]
 
 4. Especificación de requisitos. Consiste en hacer una representación de los requisitos en base al modelo creado en la etapa anterior, haciendo uso de herramientas y estándares o manuales de usuario.
 
 Los productos que se generan en esta fase son:
-    - Modelo arquitectónico para el cual vamos a usar los diagramas de paquetes.
-    - Modelo estático para el cual usaremos el diagrama de clases aunque el modelo conceptual no este modelo.
-    - Modelo dinámico para el cual vamos a usar el diagrama de secuencia junto a los contratos.
+- Modelo arquitectónico para el cual vamos a usar los diagramas de paquetes.
+- Modelo estático para el cual usaremos el diagrama de clases aunque el modelo conceptual no este modelo.
+- Modelo dinámico para el cual vamos a usar el diagrama de secuencia junto a los contratos.
 
 5. Revisión de requisitos. una vez que ya tenemos el documento de especificación de requisitos vamos a realizar las siguientes tareas:
-    - Validación que consiste en comprobar que los requisitos documentados representen el rpoblema,
-    - Verificación que consiste en comprobar que la representación es correcta.
+- Validación que consiste en comprobar que los requisitos documentados representen el rpoblema,
+- Verificación que consiste en comprobar que la representación es correcta.
 Este proceso de revisión es un proceso continuo durante todo el desarrollo, es decir, es una tarea qu enunca termina.
 
 Para facilitar la revisión disponemos de prototipos, simulaciones, revisiones automáticas, y herramientas.
