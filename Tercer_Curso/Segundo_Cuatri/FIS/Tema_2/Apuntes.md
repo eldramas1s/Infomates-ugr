@@ -131,7 +131,7 @@ En este apartado vamos a estudiar varias tareas que están asociadas a la ingeni
 1. Estudio de viabilidad, es una etapa previa que hay que hacer antes de todo pues nos va a permitir saber si es posible desarrollar el producto. En esta tarea se va a dar respuesta a la pregunta sobre si es conveniente realizar el desarrollo del sistema.
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/rvi.png alt="Error" width=500px>
+<img src=./imagenes/rvi.png alt="Error" width=150px>
 </p>
 </div>
 
@@ -153,7 +153,7 @@ Como productos generados de esta etapa tenemos:
 
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/ore.png alt="Error" width=500px>
+<img src=./imagenes/ore.png alt="Error" width=150px>
 </p>
 </div>
 
@@ -165,7 +165,7 @@ Como productos generados de esta etapa tenemos:
 Esta tarea se puede ver como un ciclo de subtareas: 
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/are.png alt="Error" width=500px>
+<img src=./imagenes/are.png alt="Error" width=400px>
 </p>
 </div>
 
@@ -177,7 +177,7 @@ Los productos que se generan en esta fase son:
 - Modelo dinámico para el cual vamos a usar el diagrama de secuencia junto a los contratos.
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/ere.png alt="Error" width=500px>
+<img src=./imagenes/ere.png alt="Error" width=150px>
 </p>
 </div>
 5. Revisión de requisitos. una vez que ya tenemos el documento de especificación de requisitos vamos a realizar las siguientes tareas:
@@ -186,7 +186,7 @@ Los productos que se generan en esta fase son:
 Este proceso de revisión es un proceso continuo durante todo el desarrollo, es decir, es una tarea qu enunca termina.
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/rre.png alt="Error" width=500px>
+<img src=./imagenes/rre.png alt="Error" width=150px>
 </p>
 </div>
 Para facilitar la revisión disponemos de prototipos, simulaciones, revisiones automáticas, y herramientas.
