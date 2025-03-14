@@ -12,7 +12,11 @@
 
 Como introducción y motivación estudiamos un poco el motivo de por qué es necesario este estudio de los requisitos; para ello, hablamos del informe **CHAOS**, que incluye un estudio sobre el conjunto de proyectos software que han concluido en el tiempo establecido con los presupuestos y personal planificados.
 
-[TODO: imagen diap 4]
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/chaos.png alt="Error" width=500px>
+</p>
+</div>
 
 Los motivos principales por los cuales los proyectos no cumplieron los plazos son:
 - Falta de información por parte de los usuarios. Es el motivo fundamental y consiste en que los usuarios que requieren el producto no se comunican bien con los profesionales. De esta forma, el desarrollador no conocerá lo que debe hacer.
@@ -112,22 +116,25 @@ En definitiva, cubrirán cuestiones tecnológicas o de rendimiento.
 Se basa en una clasificación estándar de los requisitos no funcionales:
 - Fiabilidad: en este caso se encuentran los requisitos no funcionales que están asociados a algún requisito funcional.
 - Facilidad de uso: factores humanos, ayuda o documentación.
-- Fiabilidad:
-- Rendimiento:
-- Soporte:
+- Fiabilidad: Frecuencia de fallos, disponibilidad, capacidad de recuperación de un fallo y grado de previsión.
+- Rendimiento: Tiempos de respuesta, productividad, precisión, velocidad de uso de los recursos...
+- Soporte: Adaptabilidad, facilidad de mantenimiento, internacionalización, configurabilidad.
 - Pseudorrequisitos o restricciones de diseño.
-    + Implementación:
-    + Interfaz:
-    + Operación:
-    + Empaquetamiento: 
-    + Legales(son muy importantes):
-[TODO terminar diap 13 y 14]
+    + Implementación: limitación de recursos, lenguajes y herramientas...
+    + Interfaz: restricciones impuestas para la interacción con sistemas externos.
+    + Operación: gestión del sistema en su puesta en marcha y a nivel operacional.
+    + Empaquetamiento: formas de distribución, restricciones de instalación...
+    + Legales(son muy importantes): licencias, derechos de autor...
 
 ### Tareas de la ingeniería de requisitos
 En este apartado vamos a estudiar varias tareas que están asociadas a la ingeniería de requisitos:
 1. Estudio de viabilidad, es una etapa previa que hay que hacer antes de todo pues nos va a permitir saber si es posible desarrollar el producto. En esta tarea se va a dar respuesta a la pregunta sobre si es conveniente realizar el desarrollo del sistema.
-[TODO reflexionar diap 16]
-[TODO imagen diap 16]
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/rvi.png alt="Error" width=500px>
+</p>
+</div>
+
 
 Una de las cosas importantes sobre esta etapa es saber si el software que se va a desarrollar va a producir muchos más problemas que beneficios.
 
@@ -144,7 +151,11 @@ Como productos generados de esta etapa tenemos:
 - Lista estructurada de requisitos.
 - Diagramas de casos de uso junto a plantillas y diagramas de actividad.
 
-[TODO imagen diap 17]
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/ore.png alt="Error" width=500px>
+</p>
+</div>
 
 3. Análisis de requisitos. En esta tarea, partiendo de la lista de requisistos e información proporcionada por el usuario podremos realizar la tarea más importante de todas que presenta como objetivos:
 - Detección de conflictos entre los requisitos, pues a pesar de conocer los requisitos puede que no conozcamos que sus dominios se intersequen.
@@ -152,7 +163,11 @@ Como productos generados de esta etapa tenemos:
 - Establecimiento de las bases para el diseño.
 - Construcción de mosdels abstactos, ya sea dinámico o estático.
 Esta tarea se puede ver como un ciclo de subtareas: 
-[TODO imagen diap 19]
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/are.png alt="Error" width=500px>
+</p>
+</div>
 
 4. Especificación de requisitos. Consiste en hacer una representación de los requisitos en base al modelo creado en la etapa anterior, haciendo uso de herramientas y estándares o manuales de usuario.
 
@@ -160,17 +175,32 @@ Los productos que se generan en esta fase son:
 - Modelo arquitectónico para el cual vamos a usar los diagramas de paquetes.
 - Modelo estático para el cual usaremos el diagrama de clases aunque el modelo conceptual no este modelo.
 - Modelo dinámico para el cual vamos a usar el diagrama de secuencia junto a los contratos.
-
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/ere.png alt="Error" width=500px>
+</p>
+</div>
 5. Revisión de requisitos. una vez que ya tenemos el documento de especificación de requisitos vamos a realizar las siguientes tareas:
 - Validación que consiste en comprobar que los requisitos documentados representen el rpoblema,
 - Verificación que consiste en comprobar que la representación es correcta.
 Este proceso de revisión es un proceso continuo durante todo el desarrollo, es decir, es una tarea qu enunca termina.
-
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/rre.png alt="Error" width=500px>
+</p>
+</div>
 Para facilitar la revisión disponemos de prototipos, simulaciones, revisiones automáticas, y herramientas.
 
 ### Actores 
-
-[TODO diap 22]
+Definimos como actores a aquellos roles que se pueden distinguir en el proceso de ingeniería de requisitos:
+- Stakeholder; es cualquier persona que tenga una relación con el sistema.
+- Ingeniero de requisitos.
+- Analista de sistemas.
+- Arquitecto de software, es el encargado de realizar el diseño.
+- Documentalista.
+- Diseñador de interfaces de usuario.
+- Gestor de proyecto.
+- Revisor.
 
 <a id='2.2'><a/>
 ## 2.2.Obtención de requisitos
