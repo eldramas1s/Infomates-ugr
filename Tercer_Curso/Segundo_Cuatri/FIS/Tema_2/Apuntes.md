@@ -153,7 +153,7 @@ Como productos generados de esta etapa tenemos:
 
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/ore.png alt="Error" width=150px>
+<img src=./imagenes/ore.png alt="Error" width=100px>
 </p>
 </div>
 
