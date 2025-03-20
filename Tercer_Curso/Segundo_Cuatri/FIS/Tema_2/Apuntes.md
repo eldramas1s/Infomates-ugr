@@ -205,6 +205,81 @@ Definimos como actores a aquellos roles que se pueden distinguir en el proceso d
 <a id='2.2'><a/>
 ## 2.2.Obtención de requisitos
 
+### Proceso de obtención de requisitos
+Es la fase inicial de la ingeniería de requisitos, y está encaminada a la obtención del conjunto de requisitos del sistema a desarrollar. Como objetivo buscamos obtener:
+- Las necesidades y características del sistema.
+- Un informe que englob el alcance del sistema o producto.
+- La lista de los participantes.
+- Descripción del entorno.
+- Lista de los requisitos agrupados por su funcionalidad junto con las restricciones que se aplicarán a cada uno.
+
+Esta fase se divide en varias subfases que se tratarán a continuación siguiendo el sistema de adjudicación de proyectos.
+
+**Descripción inicial del problema**
+
+Pese a que en las diapositivas se trata con un ejemplo, aquí aparecerán anotaciones que se hayan dicho en clase.
+
+**Proceso a seguir**
+
+Se describen las pautas a seguir para realizar el proyecto o producto.
+
+**Restricciones a tener en cuenta**
+
+Se determinan las restricciones que se deben cumplir en el producto o en el proceso de su desarrollo.
+
+Tras eso se realiza la obtención de los objetivos, requisitos funcionales y requisitos no funcionales.
+
+**Tareas recomendadas**
+
+Además se plantean una serie de tareas que son recomendables hacer, por el siguiente orden:
+1. Obtener información sobre le dominio del problema y el sistema actual; como resultado se obtiene una introducción al sistema y el glosario de términos. Para ello, se consiguen los siguientes aspectos:
+    - Conocer el vocabulario propio.
+    - Conocer las características principales del dominio.
+    - Recopilar información sobre el dominio.
+    - Facilitar la comprensión de las necesidades del sistema.
+    - Favorecer la confianza del cliente.
+2. Preparar las reuniones de elicitación y negociación; necesitaremos realizar una actividad creítica pues ni el usuario ni nosotros sabemos lo que necesitamos. Para ello, se consiguen los siguientes aspectos:
+    - Identificar a los implicados.
+    - Conocer las necesidades de clientes y usuarios.
+    - Resolver posibles conflictos.
+3. Identificar y revisar los objetivos del sistema; aquí se redactarán los objetivos que se desean alcanzar una vez que el software esté en explotación; además, si el sistema es muy complejo se podría necesitar realizar una jerarquía de objetivos donde de cada objetivo se puede describir:
+    - Su importancia.
+    - Su urgencia.
+    - Su estado durante el desarrollo.
+    - Su estabilidad.
+4. Identificar y revisar los requisitos de información; donde se recopila toda la información relevante para el cliente que debe gestionar y almacenar el sistema software. De cada requisito se puede describir:
+    - Objetivos y requisitos asociados.
+    - Descripción del requisito.
+    - Contenido.
+    - Tiempo de vida.
+    - Ocurrencias simultáneas.
+    - Su importancia, urgencia, estado y estabilidad.
+5. Identificar y revisar los requisitos funcionales. Se determina qué es lo que debe hacer el sistema y existen varias notaciones para su descripción. De cada requisito:
+    - Objetivos y requisitos asociados.
+    - Secuencia de acciones.
+    - Frecuencia de uso de la función especificada.
+    - Rendimiento.
+    - Su importancia, urgencia, estado y estabilidad.
+6. Identificar y revisar los requisitos no funcionales. Consiste en obtener las restricciones aplicables a los requisitos de información y a los requisitos fucnionales; para cada requisito se puede incluir:
+    - Descripción.
+    - Objetivos y requisitos asociados.
+    - Su importancia, urgencia, estado y estabilidad.
+
+[TODO]: diaps_24-25
+
+Como resultado obtenemos la lista estructurada de requisitos.
+
+### Técnicas de obtención de requisitos
+
+
+### Técnicas de entrevistas
+
+
+
+### Técnicas de análisis etnográfico
+
+
+
 
 <a id='2.3'><a/>
 ## 2.3.Modelado de casos de uso
