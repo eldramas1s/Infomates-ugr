@@ -271,19 +271,89 @@ Como resultado obtenemos la lista estructurada de requisitos.
 
 ### Técnicas de obtención de requisitos
 
+Con estas técnicas vamos a ser capaces de obtener los requisitos. Ha varios tipos de métodos:
+- Tradicionales:
+    + Entrevistas individuales y en grupo.
+    + Realización de cuestionarios.
+    + Taller de requisitos; en lugar de realizar una entrevista se realiza un taller grupal.
+    + Análisis de protocolos.
+    + Recopilar y estudiar los documentos e informes generados; puede que le sistema tenga atos docmentados que nos puedan servir de guía para obtener los requisitos.
+- Otros métodos:
+    + Técnicas orientadas a los puntos de vistas.
+    + Escenarios y casos de uso.
+    + Análisis etnográfico.
+
+Para muchos de ellos necesitamos comunicación con los usuarios o implicados en el desarrollo del sistema; los llamaremos _StakeHolders_, estos son cualesquiera que directamente o indirectamente se beneficie del sistema a construir o que posea información sobre su funcionamiento o desarrollo, concretamente:
+- Responsables de su desarrollo.
+- Con interés financiero.
+- Responsable de la gestión del sistema.
+- Con interés en su utilización.
 
 ### Técnicas de entrevistas
 
+Consisten en técnicas encaminadas a obtener información sobre el sistema mediante el diálogo con los expertos en el dominio del problema. 
 
+Se conseguirán realizando entrevistas que las hay varios tipos:
+- Estructuradas o no estructuradas.
+- Formales o no formales.
+
+Una entrevista tiene varias fases:
+1. Preparación de la entrevista
+    + Estudiar el dominio del problema.
+    + Seleccionar a los entrevistados.
+    + Determinar el objetivo y contenido de la entrevista.
+    + Planificar las entrevistas.
+2. Realización de la entrevista.
+    + Apertura; se realiza una breve presentación y un informe sobre los objetivos de la entrevista.
+    + Desarrollo: Realización de la entrevista propiamente dicha.
+    + Terminación: Recapitulación de la información obtenida.
+3. Análisis de la entrevista.
+    + Reorganización de la información.
+    + Contraste con otras informaciones.
+    + Documentar la entrevista.
+    + Enviar copia al entrevistado.
+    + Preparar nuevas entrevistas.
+
+[TODO]: diap_33
 
 ### Técnicas de análisis etnográfico
 
+Consiste en realizar un análisis del entorno en el que podria usarse el producto pedido por el usuario, es decir, no existen de forma aislada, sino que están inmersos en un contexto social y de organización. Por tanto, el contexto afecta a los requisitos.
+[TODO]: diap_34 (puntos derequisitos sociale sy de organizacion...)
 
 
+Hay varias formas de realizar este tipo de observaciones:
+- Directas: donde el observador directamente está inmerso en el sistema.
+- Indirectas: se realizan mediante el uso de entornos de observación.
 
+Por último, estas técnicas son efectivas para dos tipos de requisitos:
+- Los que se derivan de la forma en que trabajn realmente y no de cómo se han definido los procesos.
+- Los que se derivan de la cooperación y el conocimiento de las actvidades de la gente.
+
+No obstante, estas técnicas no proporcionan un enfoque completo sino que tiene que apoyarse en otras técnicas como diagramas de casos de uso, entrevistas y prototipados.
 <a id='2.3'><a/>
 ## 2.3.Modelado de casos de uso
 
+[TODO]: Hasta_diaps_
+
+[NOTA]:_ Hay que poner el recuadro para delimitar el sistema a estudiar mirar p0.
+        Los destinararios son los usuaios asiqeu hayq ue hacerlo lo ams simple posible y entendible.
+        Lo que hay dentro del recuadro esta dentro del sistema y lo de fuera interactua con el sistema.
+### Diagramas de casos de uso
+
+### Actores
+
+### Casos de uso
+
+### Descripción de actores
+
+### Descripción de casos de uso
+
+### Relaciones en el modelo de caoss de uso
+
+### Construcción del modelo de casos de uso
+
+### Otros aspectos del modelo de casos de uso
 
 <a id='2.4'><a/>
 ## 2.4.Análisis y especificación de requisitos
