@@ -265,8 +265,7 @@ Además se plantean una serie de tareas que son recomendables hacer, por el sigu
     - Objetivos y requisitos asociados.
     - Su importancia, urgencia, estado y estabilidad.
 
-[TODO]: diaps_24-25
-
+Para captarlos puede ser interesante resolver una serie de preguntas en cada uno de los tipos de requisitos no funcionales. Para conocerlas, [pulse aquí](./Presentacion2_2.pdf) para acceder al archivo, busque las transparencias 24 y 25.
 Como resultado obtenemos la lista estructurada de requisitos.
 
 ### Técnicas de obtención de requisitos
@@ -314,13 +313,28 @@ Una entrevista tiene varias fases:
     + Enviar copia al entrevistado.
     + Preparar nuevas entrevistas.
 
-[TODO]: diap_33
+Aunque las entrevistas pueden ser un gran recurso para obtener información sobre el producto, presentan una serie de limitaciones:
+- Requiere mucho tiempo.
+- La información que se obtiene depende de las preguntas realizadas así como de las respuestas obtenidas del cliente.
+- La dificultad de resolución de las colisiones entre respuestas de clientes es bastante alta.
+- Lo que los entrevistados dicen no es siempre lo que los entrevistados hacen.
+- Aunque no es tan grave, algunos entrevistados pueden tener mayor timidez a la hora de establecer una conversación presencial.
+
+No obstante, esta técnica presenta ciertos beneficios:
+- La información obtenida es de primera mano.
+- La exigencia de detalle la determina el entrevistador.
+- Permite localizar áreas en las que profundizar.
+- Los clientes se sienten involucrados en el desarrollo.
+- Los clientes formulan problemas y pueden aportar soluciones.
 
 ### Técnicas de análisis etnográfico
 
 Consiste en realizar un análisis del entorno en el que podria usarse el producto pedido por el usuario, es decir, no existen de forma aislada, sino que están inmersos en un contexto social y de organización. Por tanto, el contexto afecta a los requisitos.
-[TODO]: diap_34 (puntos derequisitos sociale sy de organizacion...)
 
+Buscamos evaluar dos tipos de requisitos:
+- Requisitos sociales y de organización.
+- Requisitos reales y formales.
+En ambos casos, buscamos emplear técnicas basadas en la observación de la forma de trabajo de los clientes y no en cómo el sistema los hace trabajar.
 
 Hay varias formas de realizar este tipo de observaciones:
 - Directas: donde el observador directamente está inmerso en el sistema.
@@ -331,6 +345,7 @@ Por último, estas técnicas son efectivas para dos tipos de requisitos:
 - Los que se derivan de la cooperación y el conocimiento de las actvidades de la gente.
 
 No obstante, estas técnicas no proporcionan un enfoque completo sino que tiene que apoyarse en otras técnicas como diagramas de casos de uso, entrevistas y prototipados.
+
 <a id='2.3'><a/>
 ## 2.3.Modelado de casos de uso
 
