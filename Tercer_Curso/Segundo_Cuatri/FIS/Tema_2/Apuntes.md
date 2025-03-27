@@ -1,4 +1,4 @@
-# 2. Ingeniería de requisitos
+#2. Ingeniería de requisitos
 ---
 ## Índice
 1. [Introducción al modelado de requisitos](#2.1)
@@ -349,20 +349,138 @@ No obstante, estas técnicas no proporcionan un enfoque completo sino que tiene 
 <a id='2.3'><a/>
 ## 2.3.Modelado de casos de uso
 
-[TODO]: Hasta_diaps_
+El modelado de casos de uso es una técnica de ingeniería de requisitos que permite varios aspectos:
+- Delimitar el sistema a estudiar.
+- Delimitar el contexto de uso del sistema.
+- Describir el punto de vista de los usuarios del sistema.
 
-[NOTA]:_ Hay que poner el recuadro para delimitar el sistema a estudiar mirar p0.
-        Los destinararios son los usuaios asiqeu hayq ue hacerlo lo ams simple posible y entendible.
-        Lo que hay dentro del recuadro esta dentro del sistema y lo de fuera interactua con el sistema.
-### Diagramas de casos de uso
+Este modelo se usa en distintas etapas del desarrollo con el objetivo de:
+- Obtener requisitos.
+- Analizar y especificar requisitos.
+- Como base para el proceso de diseño y su validación.
+- Guiar el diseño de la interfaz de usuario y facilitar la construcción de prototipos.
+- Validar el software y asegurar la calidad durante el proceso de desarrollo.
+- Como punto de inicio de las ayudas en línea y el manual de usuario.
+
+Los idagramas están compuestos por actores, casos de uso y relaciones entre:
+- Actores
+- Actores y casos de uso.
+- Casos de uso.
+
+Aunque parece un poco, trivial hay que delimitar el sistema en cada uno de los diagramas de caoss de uso, para ello lo haremos mediante un rectángulo. Dentro de él aparecerán todos los casos de uso y fuera de él, los actores. 
+
+Para representar las interacciones de los actores con el sistema se usarán líneas.
+
+[TODO]: imagen diap 5
 
 ### Actores
 
+Los entendemos como abstracciones de entidades externas al sistema que interactúan directamente con él. Tienen las siguientes características:
+- Especifican roles que adoptan esas entidades externas cuando interactúan con el sistema.
+- Una entidad puede desempeñar varios roles simultáneamente a lo largo del tiempo.
+- Un rol puede ser desempeñado por varias entidades, serán nombres cortos y representativos.
+
+Para representarlos usaremos lo siguiente:
+
+[TODO]: imagen diap 6
+
+Hay dos tipos de actores:
+- **Principales**: son los encargados de iniciar un caso de uso del sistema, evidentemente interactúa con el caso de uso. Es aquel que, aunque principal y secundario forman parte del caso de uso, toma la iniciativa para que se active el caso de uso. 
+- **Secundarios**: Sólo se encargan de interactuar con el caso de uso pero no son capaces de activarlo.
+
+Además, pueden ser varias entidades:
+- **Personas**: tienen el rol de usuario en el sistema.
+- **Dispositivos de entrada/salida**: Sensores o mediadores, siempre que sean independientes de la acción de un usuario.
+- **Sistemas informáticos externos**: Con los que el sistema se tiene que comunicar, por ejemplo, en casos de uso de sistemas de pago, tiene qu ehaber externo al sistema algo que autorice esta transacción.
+- **Temporizador o reloj**: Cuando se haco algo como respuesta a un evento de tiempo periódico o en un momento determinado, sin que haya un actor que lo active.
+
+Para poder identificar a los actores podemos tratar de contestar las siguientes preguntas:
+- ¿Quién y qué utiliza el sistema?
+- ¿Qué roles desempeñan en la interacción?
+- ¿Quién instala el sistema?
+- ¿Quién o qué inicia y cierra el sistema?
+- ¿Quién mantiene el sistema?
+- ¿Qué otros sistemas interactúan con el sistema?
+- ¿Quién o qué proporciona información al sistema?
+
+Cabe destacar que no todos los implicados tienen que ser actores, de hecho, tampoco todos los actores tienen que ser implicados.
+
+#### Relación entre actores
+
+una relación entre actores expresa un comportamiento común entre actores, es decri, se relacionen de la misma forma con los mismos casos de uso. Como símil, se puede entender como herencia en programación orientada a objetos.
+
+En este caso, en el que un actor generaliza a otro, las interacciones del generalizador se trasladan a las interaccioens del generalizado pero no es necesario representarlas; es algo que se entiende por la herencia. La redundancia en los diagramas será penalizada.
+
 ### Casos de uso
+
+Un caso de uso especifica una secuencia de acciones, incluidas secuencias variantes y de error, que un sistema o susbsistema puede realizar al interactuar con actores externos.
+[TODO]: imagen diap 11
+
+Donde el nombre debe ser una frase verbal descriptiva y breve.
+
+Dependiendo de la importancia de los casos de usos, hay da varios tipos:
+- Primarios: son los mas importantes, probablemente se convertirán en funciones que se codifiquen en la primera versión. Es decir, el sistema no puede funcionar correctamente sin ellos.
+- Secundarios: suelen ser procesos de error o poco comunes, suelen llamarse 'procesos internos' y no se codifican en las primeras versiones.
+- Opcionales.
+
+#### Características
+Son las siguientes:
+- Iniciados por un actor, que intercambian datos o control con el sistema a través de él.
+- Descritos desde el punto de vista de los actores.
+- Describen el proceso de alcance de un objetivo de uno o varios actores.
+- Tienen una utilidad real y concreta para un actor.
+- Acotan una funcionalidad del sistema, es importante entender que deben representar uno o varios requisitos funcionales; y no necesariamente debe ser un solo requisito funcional. Sin embargo, todos los requisitos funcionales deben estar representados en algún caso de uso.
+- Describen un fragmento de la funcionalidad del sistema de principio a fin. Tienen que acabar y dar algún resultado.
+- La documentación usa un lenguaje poco formal; no se debe hacer con pseudocódigo.
+
+Para identificar los casos de uso podemos tratar de responder las siguientes preguntas:
+- ¿Qué objetivos o necesidades tendrá un actor específico?
+- ¿El sistema almacena y recupera información? Si es así, ¿qué actores activan este comportamiento?
+- ¿Qué sucede cuando el sistema cambia de estado?¿Se notifica algún error?
+- ¿Afecta algún evento externo al sistema?¿Qué se notificará sobre estos eventos?
+- ¿Interactúa el sistema con algún sistema externo?
+- ¿Genera el sistema algún informe?
 
 ### Descripción de actores
 
+Para describir a los actores usaremos una plantilla del siguiente tipo:
+[TODO]: imagen diap 16
+
+Con respecto a las relaciones cabe destacar que se puede quedar en blanco pues solo representa las relaciones entre actores, si no hay quedará vacía.
+
 ### Descripción de casos de uso
+
+[TODO]: diap 18
+
+La descripción de los casos de uso se pueden hacer dependiendo de dos cosas:
+- Del procesamiento
+    + Básico; descripción general del procesamiento, daremos el nombre, los casos de uso con los que se relaciona, una breve descripción del caso de uso...
+    + Extendido; descripción de la secuencia completa de acciones entre actores y sistema.
+- Del nivel de abstracción (debe aparecer en la descripción básica)
+    + Esencial; expresado de forma abstracta, contiene poca tecnología y pocos detalles de diseño.
+    + Real, expresado en base al diseño actual, en el que aparecen las relaciones con la interfaz del usuario, suelen contener tecnicismos.
+
+[NOTA]: Es importante que todas las descripciones que vamos a hacer en la practica van a ser esenciales pues no vamos a usar ningún tecnicismo. El que ponga que una descripción es real quita toda la práctica.
+
+Para realizar la descripción básica seguimos la siguiente plantilla:
+[TODO]: imagen diap 20
+
+En el caso de los actores, debemos determinar quién es el iniciador, asicomo si es primario o secundairio.
+
+[NOTA]: En la práctica que hacemos serán todos básicos.
+
+Tras la descripción básica, se realiza una descripción extendida donde trabajaremos con escenarios, cada uno será una secuencia específica y concreta de acciones e interacciones entre los actores y el sistema objeto de estudio. 
+
+Normalmente, cada caso de uso tendrá dos escenarios, uno básico y otro ocasionado por situaciones de error, también llamados flujos alternoso escenarios secundarios.
+
+Debemos añadir a la descripción básica de cada caso de uso la siguiente plantilla:
+
+[TODO]: imagen diap 23
+
+En el caso de los flujos alternos:
+
+[TODO]: imagen diap 24
+
 
 ### Relaciones en el modelo de caoss de uso
 
