@@ -484,6 +484,26 @@ En el caso de los flujos alternos:
 
 ### Relaciones en el modelo de caoss de uso
 
+Hablando un poco más sobre las relaciones en los modelos de casos de uso estudiando varios aspectos.
+
+Las relaciones en un modelo de casos de uso tienen las siguientes finalidades:
+- Organizar los casos de uso.
+- Mejorar la comprensión.
+- reducir la redundancia del texto.
+- Mejorar la gestión de los documentos generados.
+
+Además, las relaciones pueden ser de varios tipos según la siguiente tabla:
+[TODO]: diap 29
+
+[NOTA]: recomienda no usar mucho la relacion de extensión
+
+#### Inclusión
+
+Es una relación de dependencia entre dos casos de uso que permite incluir el comportamiento de un caso de uso en el flujo de otro caso de uso. Al caso de uso que incluye se le denomina caso de uso base y al incluido caso de uso de inclusión. 
+
+El caso de uso base se ejecuta hasta que se alcanza el punto en el que se encuentra la referencia al caso de uso de inclusión, momento en el que se pasa la ejecución a dicho caso. Cuando este se termina, el control regresa al caso de uso base.
+
+El caso de uso que está incluido es utilizado completamente por el caso de uso base; además, el caso de uso base no está completo sin el vaso de uso de inclusión. Como añadido, puede ser compartido por varios casos de uso base y no es opcional sino necesario para que tenga sentido.
 ### Construcción del modelo de casos de uso
 
 ### Otros aspectos del modelo de casos de uso
