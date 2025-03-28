@@ -533,8 +533,8 @@ Además, las relaciones pueden ser de varios tipos según la siguiente tabla:
 | **Tipo de Relación** | **Definición** | **Notación** |
 |----------------------|---------------|-------------|
 | **Asociación** | Comunicación entre un actor y un caso de uso en el que participa. | `———————` |
-| **Inclusión** | Inserción de comportamiento adicional dentro del caso de uso base que explícitamente hace referencia al caso de uso de inclusión. | `<<include>>` <br> `----------------->` |
-| **Extensión** | Inserción de fragmentos de comportamiento adicional sin que el caso de uso base sepa de los casos de uso de extensión. | `<<extend>>` <br> `----------------->` |
+| **Inclusión** | Inserción de comportamiento adicional dentro del caso de uso base que explícitamente hace referencia al caso de uso de inclusión. | `<<include>>` <br> `--------------->` |
+| **Extensión** | Inserción de fragmentos de comportamiento adicional sin que el caso de uso base sepa de los casos de uso de extensión. | `<<extend>>` <br> `--------------->` |
 | **Generalización** | Relación entre un caso de uso general y otro más específico, que hereda y añade características al caso de uso general. | `———————▷` |
 
 [NOTA]: recomienda no usar mucho la relacion de extensión
