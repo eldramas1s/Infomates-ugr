@@ -371,7 +371,11 @@ Aunque parece un poco, trivial hay que delimitar el sistema en cada uno de los d
 
 Para representar las interacciones de los actores con el sistema se usarán líneas.
 
-[TODO]: imagen diap 5
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/interacciones.png alt="Error" width=500px>
+</p>
+</div>
 
 ### Actores
 
@@ -382,7 +386,11 @@ Los entendemos como abstracciones de entidades externas al sistema que interact�
 
 Para representarlos usaremos lo siguiente:
 
-[TODO]: imagen diap 6
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/actor.png alt="Error" width=500px>
+</p>
+</div>
 
 Hay dos tipos de actores:
 - **Principales**: son los encargados de iniciar un caso de uso del sistema, evidentemente interactúa con el caso de uso. Es aquel que, aunque principal y secundario forman parte del caso de uso, toma la iniciativa para que se active el caso de uso. 
@@ -414,7 +422,11 @@ En este caso, en el que un actor generaliza a otro, las interacciones del genera
 ### Casos de uso
 
 Un caso de uso especifica una secuencia de acciones, incluidas secuencias variantes y de error, que un sistema o susbsistema puede realizar al interactuar con actores externos.
-[TODO]: imagen diap 11
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/casodeuso.png alt="Error" width=500px>
+</p>
+</div>
 
 Donde el nombre debe ser una frase verbal descriptiva y breve.
 
@@ -444,13 +456,25 @@ Para identificar los casos de uso podemos tratar de responder las siguientes pre
 ### Descripción de actores
 
 Para describir a los actores usaremos una plantilla del siguiente tipo:
-[TODO]: imagen diap 16
+
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/descripactor.png alt="Error" width=500px>
+</p>
+</div>
 
 Con respecto a las relaciones cabe destacar que se puede quedar en blanco pues solo representa las relaciones entre actores, si no hay quedará vacía.
 
 ### Descripción de casos de uso
 
-[TODO]: diap 18
+En una descripción de un caso de uso se deben tener en cuenta que debemos cubrir los siguientes aspectos:
+- El inicio: quién o qué lo produce.
+- El fin: cuándo se produce y por qué.
+- La interacción: qué mensajes intercambian los actores y el sistema.
+- El objetivo: para qué se usó o qué intenta el caso de uso.
+- Cronología y origen de las interacciones.
+- Repeticiones de comportamiento: qué acciones se repiten.
+- Situaciones opcionales o de error: qué situaciones alternativas se presentan en el caso de uso.
 
 La descripción de los casos de uso se pueden hacer dependiendo de dos cosas:
 - Del procesamiento
@@ -463,7 +487,12 @@ La descripción de los casos de uso se pueden hacer dependiendo de dos cosas:
 [NOTA]: Es importante que todas las descripciones que vamos a hacer en la practica van a ser esenciales pues no vamos a usar ningún tecnicismo. El que ponga que una descripción es real quita toda la práctica.
 
 Para realizar la descripción básica seguimos la siguiente plantilla:
-[TODO]: imagen diap 20
+
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/basicauso.png alt="Error" width=500px>
+</p>
+</div>
 
 En el caso de los actores, debemos determinar quién es el iniciador, asicomo si es primario o secundairio.
 
@@ -475,11 +504,19 @@ Normalmente, cada caso de uso tendrá dos escenarios, uno básico y otro ocasion
 
 Debemos añadir a la descripción básica de cada caso de uso la siguiente plantilla:
 
-[TODO]: imagen diap 23
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/extendidauso.png alt="Error" width=500px>
+</p>
+</div>
 
 En el caso de los flujos alternos:
 
-[TODO]: imagen diap 24
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/alternouso.png alt="Error" width=500px>
+</p>
+</div>
 
 
 ### Relaciones en el modelo de caoss de uso
@@ -493,7 +530,12 @@ Las relaciones en un modelo de casos de uso tienen las siguientes finalidades:
 - Mejorar la gestión de los documentos generados.
 
 Además, las relaciones pueden ser de varios tipos según la siguiente tabla:
-[TODO]: diap 29
+| **Tipo de Relación** | **Definición** | **Notación** |
+|----------------------|---------------|-------------|
+| **Asociación** | Comunicación entre un actor y un caso de uso en el que participa. | `———————` |
+| **Inclusión** | Inserción de comportamiento adicional dentro del caso de uso base que explícitamente hace referencia al caso de uso de inclusión. | `<<include>>` <br> `----------------->` |
+| **Extensión** | Inserción de fragmentos de comportamiento adicional sin que el caso de uso base sepa de los casos de uso de extensión. | `<<extend>>` <br> `----------------->` |
+| **Generalización** | Relación entre un caso de uso general y otro más específico, que hereda y añade características al caso de uso general. | `———————▷` |
 
 [NOTA]: recomienda no usar mucho la relacion de extensión
 
