@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="es" style="color-scheme:dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Educativa - Test</title>
+    <!-- MathJax para renderizar LaTeX -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <style>
+        body {
+            background-color: #505050; /* Fondo de la página */
+            color: #D0D0D0; /* Color del texto */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .FRAME_DARK {
+            background-color: #404040; /* Fondo de la estructura flotante */
+            border: 1px solid #4a5253;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 5px;
+            max-width: 900px;
+        }
+        .FRAME_TITLE_DARK {
+            font-size: 24px;
+            font-weight: bold;
+            color: #D0D0D0;
+            margin-bottom: 20px;
+        }
+        .FRAME_TBL_WIDE {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .FRAME_TBL_WIDE_MARGIN {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .CELLS_PAD_10 td {
+            padding: 10px;
+        }
+        .CLASSPHOTO_DARK {
+            color: #D0D0D0;
+            text-decoration: none;
+        }
+        .CLASSPHOTO_DARK:hover {
+            color: #66ccff; /* Mantenemos el azul para hover */
+        }
+        .COLOR0_DARK {
+            background-color: #484848; /* Fondo alternado pregunta 1 */
+        }
+        .COLOR1_DARK {
+            background-color: #404040; /* Fondo alternado pregunta 2 */
+        }
+        .BIG_INDEX_DARK {
+            font-size: 36px;
+            font-weight: bold;
+            color: #D0D0D0;
+            float: right;
+            margin-left: 10px;
+        }
+        .DAT_SMALL_DARK {
+            font-size: 12px;
+            color: #A0A0A0; /* Gris más oscuro para el texto pequeño */
+            float: right;
+            clear: right;
+            margin-top: 5px;
+        }
+        .Qst_TXT_DARK {
+            color: #D0D0D0;
+            font-size: 16px;
+            display: block;
+        }
+        .CELLS_PAD_2 td {
+            padding: 2px;
+        }
+        .RT {
+            text-align: right;
+            vertical-align: top;
+            width: 80px;
+        }
+        .LT {
+            text-align: left;
+            vertical-align: top;
+        }
+        .CM {
+            text-align: center;
+        }
+        .BT_SUBMIT {
+            background-color: #3C3C3C; /* Color del botón */
+            color: #D0D0D0;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .BT_SUBMIT:hover {
+            background-color: #2E2E2E; /* Un tono más oscuro para hover */
+        }
+        a {
+            color: #66ccff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="FRAME FRAME_DARK">
+        <div class="FRAME_TITLE FRAME_TITLE_DARK">Test</div>
+        <table class="FRAME_TBL_WIDE CELLS_PAD_10">
+            <tr>
+                <td class="LT" style="width:60px;">
+                    <a href="http://www.ugr.es/" target="_blank">
+                        <img src="https://via.placeholder.com/40" alt="Universidad" class="ICO40x40">
+                    </a>
+                </td>
+                <td class="CLASSPHOTO_TITLE CLASSPHOTO_DARK CM">
+                    <a href="http://www.ugr.es/" target="_blank" class="CLASSPHOTO_DARK">Universidad Ejemplo</a> - 
+                    <a href="#" target="_blank" class="CLASSPHOTO_DARK">Grado en Matemáticas</a><br>
+                    Métodos Numéricos II
+                </td>
+                <td class="RT" style="width:60px;">
+                    <a href="#" target="_blank" class="CLASSPHOTO_DARK">
+                        <img src="https://via.placeholder.com/40" alt="Grado" class="ICO40x40">
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <form method="post" action="#">
+            <table class="FRAME_TBL_WIDE_MARGIN CELLS_PAD_10">
+                <!-- Pregunta 1 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">1</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Sea \(g\) una función real continua en un intervalo \([a, b]\).
+                        </div>
+                        <table class="CELLS_PAD_2">
+                                <tr>
+                            <td class="LT"><input type="checkbox" name="Ans1_0" id="Ans1_0" value="1" checked></td>
+                            <td class="LT"><label for="Ans1_0" class="Qst_TXT_DARK">a) </label></td>
+                            <td class="LT"><label for="Ans1_0" class="Qst_TXT_DARK">Si \( g \) toma valores en \([ \frac{a+b}{2}, b ]\), entonces tiene al menos un punto fijo en \([a, b]\).</label></td>
+                        </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans1_0" id="Ans1_0" value="1" ></td>
+                                <td class="LT"><label for="Ans1_0" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans1_0" class="Qst_TXT_DARK">La ecuación \(x = g(x)\) tiene una única raíz en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans1_1" id="Ans1_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans1_1" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans1_1" class="Qst_TXT_DARK">Si \(g\) toma valores en \([a, b]\) y es contráctil, entonces tiene un único punto fijo en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans1_2" id="Ans1_2" value="3"></td>
+                                <td class="LT"><label for="Ans1_2" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans1_2" class="Qst_TXT_DARK">Si \(g\) toma valores en \([a, b]\) y es derivable con derivada menor que 1 en todo punto, entonces el correspondiente método de iteración funcional es convergente partiendo de un punto diferente de \(s\) pero suficientemente cercano.</label></td>
+                            </tr>
+                                <tr>
+                            <td class="LT"><input type="checkbox" name="Ans1_4" id="Ans1_4" value="5" checked></td>
+                            <td class="LT"><label for="Ans1_4" class="Qst_TXT_DARK">e) </label></td>
+                            <td class="LT"><label for="Ans1_4" class="Qst_TXT_DARK">Si \( g \) toma valores en \([a, b]\), entonces tiene al menos un punto fijo en \([a, b]\).</label></td>
+                        </tr>
+                                                        <tr>
+                            <td class="LT"><input type="checkbox" name="Ans1_5" id="Ans1_5" value="6"></td>
+                            <td class="LT"><label for="Ans1_5" class="Qst_TXT_DARK">f) </label></td>
+                            <td class="LT"><label for="Ans1_5" class="Qst_TXT_DARK">La ecuación \( x = g(x) \) tiene al menos una raíz en \([a, b]\). No se dice que aplique el intervalo en el mismo.</label></td>
+                        </tr>
+                                <tr>
+    <td class="LT"><input type="checkbox" name="Ans1_6" id="Ans1_6" value="7"></td>
+    <td class="LT"><label for="Ans1_6" class="Qst_TXT_DARK">g) </label></td>
+    <td class="LT"><label for="Ans1_6" class="Qst_TXT_DARK">Si \( g \) toma valores en \([a, b]\) y es derivable, entonces el correspondiente método de iteración funcional es convergente partiendo de un punto diferente de \( s \) pero suficientemente próximo a \( s \).</label></td>
+</tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+
+
+                <!-- Pregunta 2 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">2</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Sea \(f\) una función continua en \([a, b]\) con valores en \(\mathbb{R}\), tal que \(f(a)f(b) < 0\).<br>
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans53_0" id="Ans53_0" value="1"></td>
+                                <td class="LT"><label for="Ans53_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans53_0" class="Qst_TXT_DARK">Si \(f\) es derivable en \([a, b]\) la ecuación \(f(x) = 0\) tiene una sola raíz en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans53_1" id="Ans53_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans53_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans53_1" class="Qst_TXT_DARK">Si la derivada de \(f\) existe y en todo el intervalo abierto es negativa, entonces hay solo una raíz de \(f(x) = 0\) en el intervalo.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans53_2" id="Ans53_2" value="3" checked></td>
+                                <td class="LT"><label for="Ans53_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans53_2" class="Qst_TXT_DARK">Tanto el método de bisección como el de Regula Falsi convergentes, pero pueden converger a dos raíces diferentes de la ecuación \(f(x) = 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans53_3" id="Ans53_3" value="4" checked></td>
+                                <td class="LT"><label for="Ans53_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans53_3" class="Qst_TXT_DARK">La ecuación \(f(x) = 0\) tiene al menos una raíz en el intervalo abierto \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans53_4" id="Ans53_4" value="5"></td>
+                                <td class="LT"><label for="Ans53_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans53_4" class="Qst_TXT_DARK">Si la derivada de \(f\) existe y en todo el intervalo abierto es negativa, entonces el método de NR converge a la única raíz de \(f(x) = 0\), partiendo del centro del intervalo.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans53_5" id="Ans53_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans53_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans53_5" class="Qst_TXT_DARK">El método de la secante es aplicable pero no tiene garantía de convergencia a ninguna de las raíces de la ecuación \(f(x) = 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans53_6" id="Ans53_6" value="7" checked></td>
+                                <td class="LT"><label for="Ans53_6" class="Qst_TXT_DARK">g) </label></td>
+                                <td class="LT"><label for="Ans53_6" class="Qst_TXT_DARK">Si \(f\) es suficientemente derivable y en todo el intervalo abierto su primera derivada es negativa, entonces el método de NR converge a la única raíz de \(f(x) = 0\), partiendo de cualquier punto de algún subintervalo que contenga a la raíz.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Pregunta 3 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">3</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Iteraciones
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans54_0" id="Ans54_0" value="1" checked></td>
+                                <td class="LT"><label for="Ans54_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans54_0" class="Qst_TXT_DARK">El método de Newton-Raphson requiere una semilla.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans54_1" id="Ans54_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans54_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans54_1" class="Qst_TXT_DARK">El método de la Secante obtiene cada aproximación a partir de los dos anteriores.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans54_2" id="Ans54_2" value="3"></td>
+                                <td class="LT"><label for="Ans54_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans54_2" class="Qst_TXT_DARK">El método de Newton-Raphson tiene siempre convergencia local cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans54_3" id="Ans54_3" value="4"></td>
+                                <td class="LT"><label for="Ans54_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans54_3" class="Qst_TXT_DARK">El método de la secante requiere una semilla.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans54_4" id="Ans54_4" value="5" checked></td>
+                                <td class="LT"><label for="Ans54_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans54_4" class="Qst_TXT_DARK">El método de iteración funcional requiere una semilla.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans54_5" id="Ans54_5" value="6"></td>
+                                <td class="LT"><label for="Ans54_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans54_5" class="Qst_TXT_DARK">El método de Bisección requiere un intervalo donde se cumpla Bolzano.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans54_6" id="Ans54_6" value="7" checked></td>
+                                <td class="LT"><label for="Ans54_6" class="Qst_TXT_DARK">g) </label></td>
+                                <td class="LT"><label for="Ans54_6" class="Qst_TXT_DARK">Si la raíz es simple, entonces el método de Newton-Raphson tiene convergencia local al menos cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans54_7" id="Ans54_7" value="8" checked></td>
+                                <td class="LT"><label for="Ans54_7" class="Qst_TXT_DARK">h) </label></td>
+                                <td class="LT"><label for="Ans54_7" class="Qst_TXT_DARK">Cuando las aproximaciones están muy próximas a la solución, el método de la Secante puede incurrir en división por cero al computar.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+                <!-- Pregunta 4 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">4</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(g\) es derivable y aplica \([a, b]\) en \([a, b]\). Entonces:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_0" id="Ans5_0" value="1"></td>
+                                <td class="LT"><label for="Ans55_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans55_0" class="Qst_TXT_DARK">Si \(g(s) = s \ y \ g'(s) = 0\), existe un entorno de \(s\) en el cual la convergencia a \(s\) del método de iteración funcional asociado a \(g\) es exactamente cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans55_1" id="Ans5_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans5_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans5_1" class="Qst_TXT_DARK">Si \(g(s) = s \ y \ g'(s) = 0\), existe un entorno de \(s\) en el cual la convergencia a \(s\) del método de iteración funcional asociado a \(g\) es al menos cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans55_2" id="Ans5_2" value="3"></td>
+                                <td class="LT"><label for="Ans5_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans5_2" class="Qst_TXT_DARK">Si \(g(s) = s \ y \ g'(s) = 0\), existe un entorno de \(s\) en el cual la convergencia a \(s\) del método de iteración funcional asociado a \(g\) es más rápida que si aplicamos el metodo de NR a \(f(x) = x - g(x)\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans55_3" id="Ans5_3" value="4"></td>
+                                <td class="LT"><label for="Ans5_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans5_3" class="Qst_TXT_DARK">Si existe la derivada segunda de \(g\) y se verifica que \(g''(s) = 0\), la convergencia del método de iteración funcional es al menos cúbica.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans55_4" id="Ans5_4" value="5" checked></td>
+                                <td class="LT"><label for="Ans5_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans5_4" class="Qst_TXT_DARK">Si existe la derivada segunda de \(g\) y se verifica que \(g'(s) = s \ y \ g'(s) = g''(s) = 0\), la convergencia local del método de iteración funcional es al menos cúbica.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans55_5" id="Ans5_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans5_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans5_5" class="Qst_TXT_DARK">Si existe la derivada segunda de \(g\) y se verifica que \(g(s) = s \ y \ g'(s) = g''(s) = 0\), la convergencia local del método de iteración funcional es al menos cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans55_6" id="Ans5_6" value="7"></td>
+                                <td class="LT"><label for="Ans5_6" class="Qst_TXT_DARK">g) </label></td>
+                                <td class="LT"><label for="Ans5_6" class="Qst_TXT_DARK">Si existe la derivada segunda de \(g\) y se verifica que \(g(s) = s\ y \ g'(s) = g''(s) = 0\), la convergencia local del método de iteración funcional es cúbica.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+<!-- Pregunta 5 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">5</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si la función \(f(x)\) no es derivable, pero es continua y \(f(a)f(b) < 0\), entonces puedo aplicar los métodos de:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_0" id="Ans5_0" value="1"></td>
+                                <td class="LT"><label for="Ans5_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans5_0" class="Qst_TXT_DARK">Sólo los métodos de iteración funcional.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_1" id="Ans5_1" value="2"></td>
+                                <td class="LT"><label for="Ans5_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans5_1" class="Qst_TXT_DARK">Newton-Raphson y secante.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_2" id="Ans5_2" value="3"></td>
+                                <td class="LT"><label for="Ans5_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans5_2" class="Qst_TXT_DARK">Bisección y Newton-Raphson.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_3" id="Ans5_3" value="4" checked></td>
+                                <td class="LT"><label for="Ans5_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans5_3" class="Qst_TXT_DARK">Bisección, Secante y Regula Falsi.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_4" id="Ans5_4" value="5"></td>
+                                <td class="LT"><label for="Ans5_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans5_4" class="Qst_TXT_DARK">Todos los métodos estudiados.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_5" id="Ans5_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans5_5" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans5_5" class="Qst_TXT_DARK">Bisección.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+
+                <!-- Pregunta 6 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">6</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Tiene orden de convergencia local al menos cuadrático...
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans8_0" id="Ans8_0" value="1"></td>
+                                <td class="LT"><label for="Ans8_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans8_0" class="Qst_TXT_DARK">La iteración funcional cuando \(|g'(s)| < 1\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans8_1" id="Ans8_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans8_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans8_1" class="Qst_TXT_DARK">El método de Newton-Raphson cuando la raíz es simple.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans8_2" id="Ans8_2" value="3"></td>
+                                <td class="LT"><label for="Ans8_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans8_2" class="Qst_TXT_DARK">El método de la secante cuando la raíz es simple.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans8_3" id="Ans8_3" value="4" checked></td>
+                                <td class="LT"><label for="Ans8_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans8_3" class="Qst_TXT_DARK">La iteración funcional cuando \(g \in \mathcal{C}^2\) y \(|g'(s)| = 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans8_4" id="Ans8_4" value="5"></td>
+                                <td class="LT"><label for="Ans8_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans8_4" class="Qst_TXT_DARK">El método de bisección.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 7 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">7</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Un algoritmo eficiente y estable para la evaluación de polinomios es:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans9_0" id="Ans9_0" value="1"></td>
+                                <td class="LT"><label for="Ans9_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans9_0" class="Qst_TXT_DARK">El producto escalar del vector de coeficientes por el vector de potencias de la variable.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans9_1" id="Ans9_1" value="2"></td>
+                                <td class="LT"><label for="Ans9_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans9_1" class="Qst_TXT_DARK">El de Sturm.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans9_2" id="Ans9_2" value="3"></td>
+                                <td class="LT"><label for="Ans9_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans9_2" class="Qst_TXT_DARK">El de Newton-Raphson.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans9_3" id="Ans9_3" value="4"></td>
+                                <td class="LT"><label for="Ans9_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans9_3" class="Qst_TXT_DARK">El de Bisección seguido del de Newton-Raphson.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans9_4" id="Ans9_4" value="5" checked></td>
+                                <td class="LT"><label for="Ans9_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans9_4" class="Qst_TXT_DARK">El de Horner.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans9_5" id="Ans9_5" value="6"></td>
+                                <td class="LT"><label for="Ans9_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans9_5" class="Qst_TXT_DARK">El de Bisección.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">8</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Sea \(f\) una función real definida en un intervalo cerrado \([a, b]\). Entonces:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans10_0" id="Ans10_0" value="1" checked></td>
+                                <td class="LT"><label for="Ans10_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans10_0" class="Qst_TXT_DARK">No hay garantía de convergencia del método de la secante a una raíz de la ecuación \(f(x) = 0\), partiendo de las semillas \(a\) y \(b\) como valores iniciales.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans10_1" id="Ans10_1" value="2"></td>
+                                <td class="LT"><label for="Ans10_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans10_1" class="Qst_TXT_DARK">Si \(f(a)f(b) < 0\) entonces hay al menos un punto \(s\) comprendido entre \(a\) y \(b\) en el cual la función vale cero.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans10_2" id="Ans10_2" value="3"></td>
+                                <td class="LT"><label for="Ans10_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans10_2" class="Qst_TXT_DARK">Para que el método de la secante sea aplicable se necesita que \(f(a)f(b) > 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans10_3" id="Ans10_3" value="4"></td>
+                                <td class="LT"><label for="Ans10_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans10_3" class="Qst_TXT_DARK">La ecuación \(f(x) = 0\) tiene un número impar de raíces simples en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans10_4" id="Ans10_4" value="5"></td>
+                                <td class="LT"><label for="Ans10_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans10_4" class="Qst_TXT_DARK">Si la ecuación \(f(x) = 0\) tiene una única raíz en \([a, b]\) siempre puede aplicarse el método de bisección para aproximarla con un error menor que 0.05.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                    <!-- Pregunta 9 -->
+                    <tr>
+                        <td class="RT COLOR0_DARK">
+                            <div class="BIG_INDEX_DARK">9</div>
+                            <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                        </td>
+                        <td class="LT COLOR0_DARK">
+                            <div class="Qst_TXT_DARK">
+                                Si tiene que resolver un sistema no lineal de dos ecuaciones, \(F(X) = 0\).
+                            </div>
+                            <table class="CELLS_PAD_2">
+                                <tr>
+                                    <td class="LT"><input type="checkbox" name="Ans2_0" id="Ans2_0" value="1"></td>
+                                    <td class="LT"><label for="Ans2_0" class="Qst_TXT_DARK">a) </label></td>
+                                    <td class="LT"><label for="Ans2_0" class="Qst_TXT_DARK">Aplicaría Newton-Raphson a cada una de las dos ecuaciones.</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="LT"><input type="checkbox" name="Ans2_1" id="Ans2_1" value="2" checked></td>
+                                    <td class="LT"><label for="Ans2_1" class="Qst_TXT_DARK">b) </label></td>
+                                    <td class="LT"><label for="Ans2_1" class="Qst_TXT_DARK">Necesitaría dos semillas, una para cada componente.</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="LT"><input type="checkbox" name="Ans2_2" id="Ans2_2" value="3"></td>
+                                    <td class="LT"><label for="Ans2_2" class="Qst_TXT_DARK">c) </label></td>
+                                    <td class="LT"><label for="Ans2_2" class="Qst_TXT_DARK">Aplicaría primero el método de Bisección que es un método lento pero robusto.</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="LT"><input type="checkbox" name="Ans2_3" id="Ans2_3" value="4" checked></td>
+                                    <td class="LT"><label for="Ans2_3" class="Qst_TXT_DARK">d) </label></td>
+                                    <td class="LT"><label for="Ans2_3" class="Qst_TXT_DARK">Si existe la matriz Jacobiana de orden \(2 \times 2\), asociada a \(F\), con determinante no nulo, aplicaría Newton-Raphson para sistemas.</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="LT"><input type="checkbox" name="Ans2_4" id="Ans2_4" value="5" checked></td>
+                                    <td class="LT"><label for="Ans2_4" class="Qst_TXT_DARK">e) </label></td>
+                                    <td class="LT"><label for="Ans2_4" class="Qst_TXT_DARK">Lo más recomendable sería intentar resolverlo por el método de Newton-Raphson para sistemas, pero también se puede intentar escribir el sistema como \(X = G(X)\), que sea equivalente, y analizar si la correspondiente iteración funcional va a ser convergente.</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="LT"><input type="checkbox" name="Ans2_5" id="Ans2_5" value="6"></td>
+                                    <td class="LT"><label for="Ans2_5" class="Qst_TXT_DARK">f) </label></td>
+                                    <td class="LT"><label for="Ans2_5" class="Qst_TXT_DARK">Necesitaría dos semillas si se quiere resolver por el método de la secante.</label></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">9</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Sucesión de Sturm
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans3_0" id="Ans3_0" value="1" checked></td>
+                                <td class="LT"><label for="Ans3_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans3_0" class="Qst_TXT_DARK">Permite saber si una ecuación polinómica tiene raíces múltiples.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans3_1" id="Ans3_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans3_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans3_1" class="Qst_TXT_DARK">En un cero de la primera función la derivada de dicha función tiene el mismo signo que la siguiente función.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans3_2" id="Ans3_2" value="3" checked></td>
+                                <td class="LT"><label for="Ans3_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans3_2" class="Qst_TXT_DARK">Si la sucesión consta de cuatro funciones y la tercera se anula en un punto \(r\), la segunda no se anula y su signo es el contrario que el de la cuarta en \(r\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans3_3" id="Ans3_3" value="4" checked></td>
+                                <td class="LT"><label for="Ans3_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans3_3" class="Qst_TXT_DARK">Para obtener la tercera función de una sucesión de Sturm correspondiente a un polinomio cuyos ceros reales sean simples debemos dividir el polinomio entre su derivada y quedarnos con el resto cambiado de signo.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans3_4" id="Ans3_4" value="5"></td>
+                                <td class="LT"><label for="Ans3_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans3_4" class="Qst_TXT_DARK">A partir de un polinomio cualquiera puede obtenerse una sucesión de Sturm que tiene a dicha función como la primera función de dicha sucesión.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans3_4" id="Ans3_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans3_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans3_5" class="Qst_TXT_DARK">Permite separar raíces reales de una ecuación polinómica en intervalos disjuntos</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans3_4" id="Ans3_6" value="7"></td>
+                                <td class="LT"><label for="Ans3_6" class="Qst_TXT_DARK">g) </label></td>
+                                <td class="LT"><label for="Ans3_6" class="Qst_TXT_DARK">Para construir una sucesión de Sturm a partir de un polinomio, se pone en primer lugar ese polinomio, en segundo lugar su derivada, y así sucesivamente hasta que se obtenga una función constante.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans3_4" id="Ans3_4" value="5" checked></td>
+                                <td class="LT"><label for="Ans3_4" class="Qst_TXT_DARK">h) </label></td>
+                                <td class="LT"><label for="Ans3_4" class="Qst_TXT_DARK">En un cero de la primera función la derivada de esa función es no nula.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+                <!-- Pregunta 11 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">1</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(s\) es una raíz de multiplicidad \(m > 1\) del polinomio \(p\), entonces también es raíz de \(p'\) pero con multiplicidad:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans6_0" id="Ans6_0" value="1"></td>
+                                <td class="LT"><label for="Ans6_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans6_0" class="Qst_TXT_DARK">\(m\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans6_1" id="Ans6_1" value="2"></td>
+                                <td class="LT"><label for="Ans6_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans6_1" class="Qst_TXT_DARK">1</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans6_2" id="Ans6_2" value="3"></td>
+                                <td class="LT"><label for="Ans6_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans6_2" class="Qst_TXT_DARK">2</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans6_3" id="Ans6_3" value="4"></td>
+                                <td class="LT"><label for="Ans6_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans6_3" class="Qst_TXT_DARK">No se puede saber, depende de otros factores.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans6_4" id="Ans6_4" value="5"></td>
+                                <td class="LT"><label for="Ans6_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans6_4" class="Qst_TXT_DARK">\(m - 2\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans6_5" id="Ans6_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans6_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans6_5" class="Qst_TXT_DARK">\(m - 1\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans6_6" id="Ans6_6" value="7"></td>
+                                <td class="LT"><label for="Ans6_6" class="Qst_TXT_DARK">g) </label></td>
+                                <td class="LT"><label for="Ans6_6" class="Qst_TXT_DARK">No es raíz de \(p'\).</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+                <!-- Pregunta 12 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">2</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Para poder aplicar el método de la secante, la función \(f(x)\) ha de ser necesariamente:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans7_0" id="Ans7_0" value="1" checked></td>
+                                <td class="LT"><label for="Ans7_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans7_0" class="Qst_TXT_DARK">Continua.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans7_1" id="Ans7_1" value="2"></td>
+                                <td class="LT"><label for="Ans7_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans7_1" class="Qst_TXT_DARK">Derivable \(1 + \frac{\sqrt{5}}{2}\) veces.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans7_2" id="Ans7_2" value="3"></td>
+                                <td class="LT"><label for="Ans7_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans7_2" class="Qst_TXT_DARK">Creciente.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans7_3" id="Ans7_3" value="4"></td>
+                                <td class="LT"><label for="Ans7_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans7_3" class="Qst_TXT_DARK">Derivable dos veces.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans7_4" id="Ans7_4" value="5"></td>
+                                <td class="LT"><label for="Ans7_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans7_4" class="Qst_TXT_DARK">Derivable una vez.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Pregunta 13 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">3</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            La sucesión \(x_n\) converge a \(s\) linealmente con constante asintótica del error \(L = 1/\sqrt[5]{100}\) entonces, a largo plazo...
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans56_0" id="Ans56_0" value="1" checked></td>
+                                <td class="LT"><label for="Ans56_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans56_0" class="Qst_TXT_DARK">se ganan 2 dígitos de precisión cada 5 términos</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans56_1" id="Ans56_1" value="2"></td>
+                                <td class="LT"><label for="Ans56_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans56_1" class="Qst_TXT_DARK">se ganan 100 dígitos de precisión cada 5 términos</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans56_2" id="Ans56_2" value="3"></td>
+                                <td class="LT"><label for="Ans56_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans56_2" class="Qst_TXT_DARK">no puede ser convergente</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans56_3" id="Ans56_3" value="4"></td>
+                                <td class="LT"><label for="Ans56_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans56_3" class="Qst_TXT_DARK">se ganan 5 dígitos de precisión cada 100 términos</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans56_4" id="Ans56_4" value="5"></td>
+                                <td class="LT"><label for="Ans56_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans56_4" class="Qst_TXT_DARK">se ganan 5 dígitos de precisión cada 2 términos</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Pregunta 14 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">4</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Sucesión de Sturm
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans57_0" id="Ans57_0" value="1" checked></td>
+                                <td class="LT"><label for="Ans57_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans57_0" class="Qst_TXT_DARK">Todas las funciones son continuas, al menos, y la primera debe ser como mínimo derivable.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans57_1" id="Ans57_1" value="2"></td>
+                                <td class="LT"><label for="Ans57_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans57_1" class="Qst_TXT_DARK">Basta con que las funciones que la componen sean continuas en el intervalo común de definición.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans57_2" id="Ans57_2" value="3" ></td>
+                                <td class="LT"><label for="Ans57_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans57_2" class="Qst_TXT_DARK">Sirve exclusivamente para saber cuántas raíces reales tiene una ecuación polinómica.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans57_3" id="Ans57_3" value="4" checked></td>
+                                <td class="LT"><label for="Ans57_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans57_3" class="Qst_TXT_DARK">La última función no cambia de signo en el intervalo que estamos considerando.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans57_4" id="Ans57_4" value="5"></td>
+                                <td class="LT"><label for="Ans57_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans57_4" class="Qst_TXT_DARK">Todas las funciones que la componen deben ser de clase uno o superior.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans57_5" id="Ans57_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans57_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans57_5" class="Qst_TXT_DARK">Permite saber cuántas raíces complejas tiene una ecuación polinómica cuyas raíces reales son simples</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans57_6" id="Ans57_6" value="7"></td>
+                                <td class="LT"><label for="Ans57_6" class="Qst_TXT_DARK">g) </label></td>
+                                <td class="LT"><label for="Ans57_6" class="Qst_TXT_DARK">La sucesión de Sturm nos permite saber si un método iterativo converge o diverge.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans57_7" id="Ans57_7" value="8" checked></td>
+                                <td class="LT"><label for="Ans57_7" class="Qst_TXT_DARK">h) </label></td>
+                                <td class="LT"><label for="Ans57_7" class="Qst_TXT_DARK">La primera de las funciones debe ser derivable en todo el intervalo que estamos considerando.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Pregunta 15 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">5</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Toda función de iteración \(g(x)\) definida en \([0, 10]\)...
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_0" id="Ans15_0" value="1"></td>
+                                <td class="LT"><label for="Ans15_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans15_0" class="Qst_TXT_DARK">con valores en el intervalo \([5, 7]\) tiene al menos un punto fijo.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_1" id="Ans15_1" value="2"></td>
+                                <td class="LT"><label for="Ans15_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans15_1" class="Qst_TXT_DARK">continua y con valores en el intervalo \([5, 7]\) tiene un único punto fijo.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_2" id="Ans15_2" value="3"></td>
+                                <td class="LT"><label for="Ans15_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans15_2" class="Qst_TXT_DARK">con valores en el intervalo \([5, 7]\) tiene un único punto fijo. </label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_3" id="Ans15_3" value="4" checked></td>
+                                <td class="LT"><label for="Ans15_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans15_3" class="Qst_TXT_DARK">con valores en el intervalo \([5, 7]\) y derivada en valor absoluto menor que 1 en \([0, 10]\) ha de tener un único punto fijo.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_4" id="Ans15_4" value="5" checked></td>
+                                <td class="LT"><label for="Ans15_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans15_4" class="Qst_TXT_DARK">continua y con valores en el intervalo \([5, 7]\) tiene al menos un punto fijo.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 16 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">6</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Sea \(f\) de clase 1, \(s \in \mathbb{R}\) es una raíz simple de \(f\) si y solo si
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_0" id="Ans5_0" value="1" checked></td>
+                                <td class="LT"><label for="Ans5_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans5_0" class="Qst_TXT_DARK">\(f(s) = 0 \ y \ f'(s) \neq 0\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_1" id="Ans5_1" value="2"></td>
+                                <td class="LT"><label for="Ans5_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans5_1" class="Qst_TXT_DARK">\(f(s) \neq 0 \ y \ f'(s) = 0\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_2" id="Ans5_2" value="3"></td>
+                                <td class="LT"><label for="Ans5_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans5_2" class="Qst_TXT_DARK">\(f(s) \cdot f'(s) = 0\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_3" id="Ans5_3" value="4"></td>
+                                <td class="LT"><label for="Ans5_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans5_3" class="Qst_TXT_DARK">El método de Newton-Raphson converge localmente a \(s\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans5_4" id="Ans5_4" value="5"></td>
+                                <td class="LT"><label for="Ans5_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans5_4" class="Qst_TXT_DARK">\(f(s) = 0 \ y \ f'(s) = 0\)</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Pregunta 17 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">7</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            La sucesión \(x_n\) converge a \(s\) linealmente con constante asintótica del error \(L = 1/\sqrt{100000}\). Entonces, a largo plazo...
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_0" id="Ans17_0" value="1" checked></td>
+                                <td class="LT"><label for="Ans17_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans17_0" class="Qst_TXT_DARK">se ganan 5 dígitos de precisión cada 2 términos</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_1" id="Ans17_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans17_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans17_1" class="Qst_TXT_DARK">se ganan al menos 10 dígitos de precisión cada 5 términos</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_2" id="Ans17_2" value="3"></td>
+                                <td class="LT"><label for="Ans17_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans17_2" class="Qst_TXT_DARK">se ganan 2 dígitos de precisión cada 5 términos</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_3" id="Ans17_3" value="4"></td>
+                                <td class="LT"><label for="Ans17_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans17_3" class="Qst_TXT_DARK">se ganan 2 dígitos de precisión cada 100000 términos</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_4" id="Ans17_4" value="5"></td>
+                                <td class="LT"><label for="Ans17_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans17_4" class="Qst_TXT_DARK">no converge</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_5" id="Ans17_5" value="6"></td>
+                                <td class="LT"><label for="Ans17_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans17_5" class="Qst_TXT_DARK">se ganan 1 dígito de precisión cada 5 términos</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+                <!-- Pregunta 18 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">8</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Sea la ecuación \(x = g(x)\). Entonces, si \(g\) aplica el intervalo \([a, b]\) en \([a, b]\):
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans58_0" id="Ans58_0" value="1"></td>
+                                <td class="LT"><label for="Ans58_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans58_0" class="Qst_TXT_DARK">Si \(g\) es derivable y su derivada es negativa pero mayor que \(-1/2\), entonces el método de iteración funcional asociado genera una sucesión de aproximaciones decreciente hacia la raíz de la ecuación \(x = g(x)\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans58_1" id="Ans58_1" value="2"></td>
+                                <td class="LT"><label for="Ans58_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans58_1" class="Qst_TXT_DARK">Si \(g\) es derivable y su derivada está acotada en valor absoluto por \(\frac{1}{2}\) en todo el intervalo, entonces el método de iteración funcional asociado tiene convergencia al menos cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans58_2" id="Ans58_2" value="3" checked></td>
+                                <td class="LT"><label for="Ans58_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans58_2" class="Qst_TXT_DARK">Si \(g\) es de clase 2 y en un punto fijo \(s\) verifica \(g'(s) = 0\), entonces partiendo de un valor suficientemente próximo a \(s\) el método de iteración funcional converge con orden de convergencia al menos cuadrático.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans58_3" id="Ans58_3" value="4" checked></td>
+                                <td class="LT"><label for="Ans58_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans58_3" class="Qst_TXT_DARK">Si \(g\) es derivable y su derivada está acotada en valor absoluto por \(\frac{1}{2}\) en todo el intervalo, entonces el método de iteración funcional asociado comete tras \(n\) iteraciones un error menor que \(\frac{b-a}{2^n}\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans58_4" id="Ans58_4" value="5"></td>
+                                <td class="LT"><label for="Ans58_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans58_4" class="Qst_TXT_DARK">El método de iteración funcional asociado coincide con el de NR cuando la función \(g\) es derivable.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans58_5" id="Ans58_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans58_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans58_5" class="Qst_TXT_DARK">El método de iteración funcional asociado es localmente convergente a toda raíz \(s\) de dicha ecuación que verifique \(-1 < g'(s) < 1\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans58_5" id="Ans58_5" value="7" checked></td>
+                                <td class="LT"><label for="Ans58_5" class="Qst_TXT_DARK">g) </label></td>
+                                <td class="LT"><label for="Ans58_5" class="Qst_TXT_DARK">Si \(g\) es derivable y su derivada es positiva pero menor que \(\frac{1}{2}\), entonces el método de iteración funcional genera una sucesión de aproximaciones monótona hacia la raíz de la ecuación \(x = g(x)\)</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Pregunta 19 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">9</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Ecuaciones polinómicas
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_0" id="Ans19_0" value="1"></td>
+                                <td class="LT"><label for="Ans19_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans19_0" class="Qst_TXT_DARK">La ecuación \(7x^7 - 12x^5 - 3x^3 + 1 = 0\) no tiene raíces positivas.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_1" id="Ans19_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans19_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans19_1" class="Qst_TXT_DARK">La ecuación \(6x^7 - 2x^5 - 3x^3 + 1 = 0\) tiene sus raíces reales en \([-1.5, 1.5]\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_2" id="Ans19_2" value="3" checked></td>
+                                <td class="LT"><label for="Ans19_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans19_2" class="Qst_TXT_DARK">\(7x^7 + 12x^5 + 3x^3 + 1 = 0\) no tiene raíces positivas.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_3" id="Ans19_3" value="4"></td>
+                                <td class="LT"><label for="Ans19_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans19_3" class="Qst_TXT_DARK">\(x^7 - 21x^6 + 3x^3 - 12 = 0\) no puede tener sus raíces reales fuera del intervalo \([-13, 13]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_4" id="Ans19_4" value="5"></td>
+                                <td class="LT"><label for="Ans19_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans19_4" class="Qst_TXT_DARK">La ecuación \(2x^7 - 12x^5 - 3x^3 + 1 = 0\) no puede tener raíces con módulo mayor que 1.5</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_5" id="Ans19_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans19_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans19_5" class="Qst_TXT_DARK">La ecuación \(7x^7 + 2x^5 - 3x^3 + 1 = 0\) no puede tener raíces con módulo mayor que 1.5.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_6" id="Ans19_6" value="7" checked></td>
+                                <td class="LT"><label for="Ans19_6" class="Qst_TXT_DARK">g) </label></td>
+                                <td class="LT"><label for="Ans19_6" class="Qst_TXT_DARK">\(x^7 - 12x^5 + 3x^3 - 1 = 0\) tiene sus raíces reales en \([-13, 13]\)</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_7" id="Ans19_7" value="8"></td>
+                                <td class="LT"><label for="Ans19_7" class="Qst_TXT_DARK">h) </label></td>
+                                <td class="LT"><label for="Ans19_7" class="Qst_TXT_DARK">\(7x^7 + 12x^5 + 3x^3 + 1 = 0\) no tiene raíces reales.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Pregunta 20 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">1</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            El método de bisección
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_0" id="Ans20_0" value="1"></td>
+                                <td class="LT"><label for="Ans20_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans20_0" class="Qst_TXT_DARK">tiene orden de convergencia local al menos cuadrático</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_1" id="Ans20_1" value="2"></td>
+                                <td class="LT"><label for="Ans20_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans20_1" class="Qst_TXT_DARK">se puede extender a sistemas de ecuaciones no lineales</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_2" id="Ans20_2" value="3" checked></td>
+                                <td class="LT"><label for="Ans20_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans20_2" class="Qst_TXT_DARK">exige las mismas condiciones que el teorema de Bolzano</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_3" id="Ans20_3" value="4"></td>
+                                <td class="LT"><label for="Ans20_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans20_3" class="Qst_TXT_DARK">requiere una semilla</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_4" id="Ans20_4" value="5"></td>
+                                <td class="LT"><label for="Ans20_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans20_4" class="Qst_TXT_DARK">es un método de iteración funcional</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_5" id="Ans20_5" value="6" checked></td>
+                                <td class="LT"><label for="Ans20_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans20_5" class="Qst_TXT_DARK">tiene orden de convergencia lineal</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 21 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">2</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Marque las afirmaciones que sean ciertas sobre el método de Bisección
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_0" id="Ans21_0" value="1"></td>
+                                <td class="LT"><label for="Ans21_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans21_0" class="Qst_TXT_DARK">Reduce el error a la mitad en cada iteración.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_1" id="Ans21_1" value="2" checked></td>
+                                <td class="LT"><label for="Ans21_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans21_1" class="Qst_TXT_DARK">La sucesión de cotas de errores en el método de bisección es monótona decreciente.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_2" id="Ans21_2" value="3"></td>
+                                <td class="LT"><label for="Ans21_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans21_2" class="Qst_TXT_DARK">La sucesión de errores en el método de bisección es monótona decreciente.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_3" id="Ans21_3" value="4" checked></td>
+                                <td class="LT"><label for="Ans21_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans21_3" class="Qst_TXT_DARK">Permite calcular el número necesario de iteraciones para alcanzar una precisión dada, antes de realizarlas.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_4" id="Ans21_4" value="5"></td>
+                                <td class="LT"><label for="Ans21_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans21_4" class="Qst_TXT_DARK">Tiene velocidad cuadrática de convergencia.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_5" id="Ans21_5" value="6"></td>
+                                <td class="LT"><label for="Ans21_5" class="Qst_TXT_DARK">f) </label></td>
+                                <td class="LT"><label for="Ans21_5" class="Qst_TXT_DARK">Ninguna de las demás.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                    <!-- A PARTIR DE AQUI NO SE HAN COMPROBADO TODAVíA
+                <!-- Pregunta 3 -->
+
+                <!-- Pregunta 4 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">100</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(g\) es derivable y aplica \([a, b]\) en \([a, b]\). Entonces:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans4_0" id="Ans4_0" value="1"></td>
+                                <td class="LT"><label for="Ans4_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans4_0" class="Qst_TXT_DARK">Si \(g(s) = s\) y \(g'(s) = 0\), existe un entorno de \(s\) en el cual la convergencia a \(s\) del método de iteración funcional asociado a \(g\) es al menos cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans4_1" id="Ans4_1" value="2"></td>
+                                <td class="LT"><label for="Ans4_1" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans4_1" class="Qst_TXT_DARK">Si \(g(s) = s\) y \(g'(s) = 0\), existe un entorno de \(s\) en el cual la convergencia a \(s\) del método de iteración funcional asociado a \(g\) es al menos cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans4_2" id="Ans4_2" value="3"></td>
+                                <td class="LT"><label for="Ans4_2" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans4_2" class="Qst_TXT_DARK">Si existe la derivada segunda de \(g\) y se verifica que \(g'(s) = 0\), la convergencia del método de iteración funcional es al menos cúbica.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans4_3" id="Ans4_3" value="4"></td>
+                                <td class="LT"><label for="Ans4_3" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans4_3" class="Qst_TXT_DARK">Si existe la derivada segunda de \(g\) y se verifica que \(g(s) = s\) y \(g'(s) = g''(s) = 0\), la convergencia local del método de iteración funcional es al menos cuadrática.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+
+                                <!-- Pregunta 10 -->
+
+                <!-- Pregunta 11 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">11</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(f\) es una función real derivable en un intervalo abierto y \(s\) es una raíz de la ecuación \(f(x) = 0\) de multiplicidad \(m\) entonces:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans11_0" id="Ans11_0" value="1"></td>
+                                <td class="LT"><label for="Ans11_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans11_0" class="Qst_TXT_DARK">\(f'(s) = f''(s) = \dots = f^{(m-1)}(s) = 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans11_1" id="Ans11_1" value="2"></td>
+                                <td class="LT"><label for="Ans11_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans11_1" class="Qst_TXT_DARK">\(f'(s) = f''(s) = \dots = f^{(m)}(s) = 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans11_2" id="Ans11_2" value="3"></td>
+                                <td class="LT"><label for="Ans11_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans11_2" class="Qst_TXT_DARK">La convergencia del método de Newton-Raphson a \(s\) es siempre al menos cuadrática.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans11_3" id="Ans11_3" value="4"></td>
+                                <td class="LT"><label for="Ans11_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans11_3" class="Qst_TXT_DARK">\(f^{(m)}(s) \neq 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans11_4" id="Ans11_4" value="5"></td>
+                                <td class="LT"><label for="Ans11_4" class="Qst_TXT_DARK">e) </label></td>
+                                <td class="LT"><label for="Ans11_4" class="Qst_TXT_DARK">\(f^{(m+1)}(s) = 0\).</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 12 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">12</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Para resolver \(f(x) = 0\) en un intervalo \([a, b]\) en el cual \(f\) es continua y \(f(a)f(b) < 0\):
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans12_0" id="Ans12_0" value="1"></td>
+                                <td class="LT"><label for="Ans12_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans12_0" class="Qst_TXT_DARK">Siempre se puede aplicar el método de la bisección.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans12_1" id="Ans12_1" value="2"></td>
+                                <td class="LT"><label for="Ans12_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans12_1" class="Qst_TXT_DARK">El método de Newton-Raphson es el más eficiente si \(f\) es derivable y \(f'(x) \neq 0\) en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans12_2" id="Ans12_2" value="3"></td>
+                                <td class="LT"><label for="Ans12_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans12_2" class="Qst_TXT_DARK">El método de la secante requiere que \(f\) sea derivable en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans12_3" id="Ans12_3" value="4"></td>
+                                <td class="LT"><label for="Ans12_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans12_3" class="Qst_TXT_DARK">El método de Regula Falsi puede no converger si \(f\) no es monótona.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 13 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">13</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            El método de Newton-Raphson:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans13_0" id="Ans13_0" value="1"></td>
+                                <td class="LT"><label for="Ans13_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans13_0" class="Qst_TXT_DARK">Siempre converge si la función es continua.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans13_1" id="Ans13_1" value="2"></td>
+                                <td class="LT"><label for="Ans13_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans13_1" class="Qst_TXT_DARK">Tiene convergencia cuadrática si la raíz es simple y la función es suficientemente derivable.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans13_2" id="Ans13_2" value="3"></td>
+                                <td class="LT"><label for="Ans13_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans13_2" class="Qst_TXT_DARK">Requiere dos valores iniciales distintos.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans13_3" id="Ans13_3" value="4"></td>
+                                <td class="LT"><label for="Ans13_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans13_3" class="Qst_TXT_DARK">Es más lento que el método de bisección en términos de iteraciones.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 14 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">14</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(p(x)\) es un polinomio de grado \(n\), entonces:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans14_0" id="Ans14_0" value="1"></td>
+                                <td class="LT"><label for="Ans14_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans14_0" class="Qst_TXT_DARK">Tiene exactamente \(n\) raíces reales.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans14_1" id="Ans14_1" value="2"></td>
+                                <td class="LT"><label for="Ans14_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans14_1" class="Qst_TXT_DARK">Tiene como mucho \(n\) raíces reales.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans14_2" id="Ans14_2" value="3"></td>
+                                <td class="LT"><label for="Ans14_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans14_2" class="Qst_TXT_DARK">La \(n\)-ésima derivada de \(p(x)\) es siempre nula.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans14_3" id="Ans14_3" value="4"></td>
+                                <td class="LT"><label for="Ans14_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans14_3" class="Qst_TXT_DARK">No puede tener raíces de multiplicidad mayor que \(n\).</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 15 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">15</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            El método de bisección:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_0" id="Ans15_0" value="1"></td>
+                                <td class="LT"><label for="Ans15_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans15_0" class="Qst_TXT_DARK">Requiere que la función sea derivable.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_1" id="Ans15_1" value="2"></td>
+                                <td class="LT"><label for="Ans15_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans15_1" class="Qst_TXT_DARK">Tiene convergencia lineal.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_2" id="Ans15_2" value="3"></td>
+                                <td class="LT"><label for="Ans15_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans15_2" class="Qst_TXT_DARK">Es más rápido que el método de Newton-Raphson en términos de iteraciones.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans15_3" id="Ans15_3" value="4"></td>
+                                <td class="LT"><label for="Ans15_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans15_3" class="Qst_TXT_DARK">No garantiza convergencia si \(f(a)f(b) > 0\).</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 16 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">16</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(g\) es una función contráctil en \([a, b]\), entonces:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans16_0" id="Ans16_0" value="1"></td>
+                                <td class="LT"><label for="Ans16_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans16_0" class="Qst_TXT_DARK">Tiene un único punto fijo en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans16_1" id="Ans16_1" value="2"></td>
+                                <td class="LT"><label for="Ans16_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans16_1" class="Qst_TXT_DARK">El método de iteración funcional asociado converge a ese punto fijo desde cualquier punto inicial en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans16_2" id="Ans16_2" value="3"></td>
+                                <td class="LT"><label for="Ans16_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans16_2" class="Qst_TXT_DARK">Debe ser derivable en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans16_3" id="Ans16_3" value="4"></td>
+                                <td class="LT"><label for="Ans16_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans16_3" class="Qst_TXT_DARK">La constante de contracción debe ser mayor que 1.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 17 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">17</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            El método de Regula Falsi:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_0" id="Ans17_0" value="1"></td>
+                                <td class="LT"><label for="Ans17_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans17_0" class="Qst_TXT_DARK">Es siempre más rápido que el método de bisección.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_1" id="Ans17_1" value="2"></td>
+                                <td class="LT"><label for="Ans17_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans17_1" class="Qst_TXT_DARK">Requiere que \(f(a)f(b) < 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_2" id="Ans17_2" value="3"></td>
+                                <td class="LT"><label for="Ans17_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans17_2" class="Qst_TXT_DARK">Puede converger más lentamente que el método de bisección si la función no es convexa.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans17_3" id="Ans17_3" value="4"></td>
+                                <td class="LT"><label for="Ans17_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans17_3" class="Qst_TXT_DARK">Tiene convergencia cuadrática.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 18 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">18</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(f(x)\) tiene una raíz doble en \(s\), entonces:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans18_0" id="Ans18_0" value="1"></td>
+                                <td class="LT"><label for="Ans18_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans18_0" class="Qst_TXT_DARK">\(f(s) = 0\) y \(f'(s) \neq 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans18_1" id="Ans18_1" value="2"></td>
+                                <td class="LT"><label for="Ans18_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans18_1" class="Qst_TXT_DARK">\(f(s) = 0\) y \(f'(s) = 0\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans18_2" id="Ans18_2" value="3"></td>
+                                <td class="LT"><label for="Ans18_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans18_2" class="Qst_TXT_DARK">El método de Newton-Raphson tiene convergencia cuadrática cerca de \(s\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans18_3" id="Ans18_3" value="4"></td>
+                                <td class="LT"><label for="Ans18_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans18_3" class="Qst_TXT_DARK">\(f''(s) \neq 0\).</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 19 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">19</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            La sucesión de Sturm para un polinomio \(p(x)\):
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_0" id="Ans19_0" value="1"></td>
+                                <td class="LT"><label for="Ans19_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans19_0" class="Qst_TXT_DARK">Permite contar el número de raíces reales distintas en un intervalo.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_1" id="Ans19_1" value="2"></td>
+                                <td class="LT"><label for="Ans19_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans19_1" class="Qst_TXT_DARK">Requiere que \(p(x)\) sea derivable infinitas veces.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_2" id="Ans19_2" value="3"></td>
+                                <td class="LT"><label for="Ans19_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans19_2" class="Qst_TXT_DARK">Es un método numérico para encontrar raíces exactas.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans19_3" id="Ans19_3" value="4"></td>
+                                <td class="LT"><label for="Ans19_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans19_3" class="Qst_TXT_DARK">Siempre termina con una función constante.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 20 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">20</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(F: \mathbb{R}^2 \to \mathbb{R}^2\) es una función vectorial y se aplica el método de Newton-Raphson para resolver \(F(X) = 0\):
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_0" id="Ans20_0" value="1"></td>
+                                <td class="LT"><label for="Ans20_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans20_0" class="Qst_TXT_DARK">Se necesita la matriz Jacobiana de \(F\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_1" id="Ans20_1" value="2"></td>
+                                <td class="LT"><label for="Ans20_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans20_1" class="Qst_TXT_DARK">La convergencia es siempre lineal.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_2" id="Ans20_2" value="3"></td>
+                                <td class="LT"><label for="Ans20_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans20_2" class="Qst_TXT_DARK">No requiere derivadas de \(F\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans20_3" id="Ans20_3" value="4"></td>
+                                <td class="LT"><label for="Ans20_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans20_3" class="Qst_TXT_DARK">Es equivalente al método de bisección en dos dimensiones.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                                    <!-- Pregunta 21 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">21</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(g: [a, b] \to [a, b]\) es continua, entonces:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_0" id="Ans21_0" value="1"></td>
+                                <td class="LT"><label for="Ans21_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans21_0" class="Qst_TXT_DARK">Tiene al menos un punto fijo en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_1" id="Ans21_1" value="2"></td>
+                                <td class="LT"><label for="Ans21_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans21_1" class="Qst_TXT_DARK">Tiene exactamente un punto fijo en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_2" id="Ans21_2" value="3"></td>
+                                <td class="LT"><label for="Ans21_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans21_2" class="Qst_TXT_DARK">El método de iteración funcional siempre converge a un punto fijo.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans21_3" id="Ans21_3" value="4"></td>
+                                <td class="LT"><label for="Ans21_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans21_3" class="Qst_TXT_DARK">Debe ser derivable para garantizar un punto fijo.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 22 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">22</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            El método de la secante:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans22_0" id="Ans22_0" value="1"></td>
+                                <td class="LT"><label for="Ans22_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans22_0" class="Qst_TXT_DARK">Requiere una sola semilla inicial.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans22_1" id="Ans22_1" value="2"></td>
+                                <td class="LT"><label for="Ans22_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans22_1" class="Qst_TXT_DARK">Tiene orden de convergencia aproximadamente \(1.618\) si la raíz es simple.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans22_2" id="Ans22_2" value="3"></td>
+                                <td class="LT"><label for="Ans22_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans22_2" class="Qst_TXT_DARK">Es más rápido que el método de Newton-Raphson porque no usa derivadas.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans22_3" id="Ans22_3" value="4"></td>
+                                <td class="LT"><label for="Ans22_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans22_3" class="Qst_TXT_DARK">No puede aplicarse si la función no es continua.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 23 -->
+                <tr>
+                    <td class="RT COLOR0_DARK">
+                        <div class="BIG_INDEX_DARK">23</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR0_DARK">
+                        <div class="Qst_TXT_DARK">
+                            Si \(f(x)\) es una función continua en \([a, b]\) y \(f(a)f(b) > 0\):
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans23_0" id="Ans23_0" value="1"></td>
+                                <td class="LT"><label for="Ans23_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans23_0" class="Qst_TXT_DARK">No hay raíces de \(f(x) = 0\) en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans23_1" id="Ans23_1" value="2"></td>
+                                <td class="LT"><label for="Ans23_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans23_1" class="Qst_TXT_DARK">Puede haber raíces de \(f(x) = 0\) en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans23_2" id="Ans23_2" value="3"></td>
+                                <td class="LT"><label for="Ans23_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans23_2" class="Qst_TXT_DARK">El método de bisección siempre converge en \([a, b]\).</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans23_3" id="Ans23_3" value="4"></td>
+                                <td class="LT"><label for="Ans23_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans23_3" class="Qst_TXT_DARK">La función es monótona en \([a, b]\).</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Pregunta 24 -->
+                <tr>
+                    <td class="RT COLOR1_DARK">
+                        <div class="BIG_INDEX_DARK">24</div>
+                        <div class="DAT_SMALL_DARK">Elección múltiple</div>
+                    </td>
+                    <td class="LT COLOR1_DARK">
+                        <div class="Qst_TXT_DARK">
+                            El método de Horner:
+                        </div>
+                        <table class="CELLS_PAD_2">
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans24_0" id="Ans24_0" value="1"></td>
+                                <td class="LT"><label for="Ans24_0" class="Qst_TXT_DARK">a) </label></td>
+                                <td class="LT"><label for="Ans24_0" class="Qst_TXT_DARK">Es un método para resolver ecuaciones no lineales.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans24_1" id="Ans24_1" value="2"></td>
+                                <td class="LT"><label for="Ans24_1" class="Qst_TXT_DARK">b) </label></td>
+                                <td class="LT"><label for="Ans24_1" class="Qst_TXT_DARK">Permite evaluar un polinomio y su derivada simultáneamente.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans24_2" id="Ans24_2" value="3"></td>
+                                <td class="LT"><label for="Ans24_2" class="Qst_TXT_DARK">c) </label></td>
+                                <td class="LT"><label for="Ans24_2" class="Qst_TXT_DARK">Es menos eficiente que el cálculo directo de potencias.</label></td>
+                            </tr>
+                            <tr>
+                                <td class="LT"><input type="checkbox" name="Ans24_3" id="Ans24_3" value="4"></td>
+                                <td class="LT"><label for="Ans24_3" class="Qst_TXT_DARK">d) </label></td>
+                                <td class="LT"><label for="Ans24_3" class="Qst_TXT_DARK">Requiere que el polinomio sea de grado mayor que 2.</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                        </table>
+            <div class="CM">
+                <button type="submit" class="BT_SUBMIT">Hecho</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
