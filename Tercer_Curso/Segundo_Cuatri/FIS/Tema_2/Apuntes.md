@@ -1,4 +1,4 @@
-#2. Ingeniería de requisitos
+# 2. Ingeniería de requisitos
 ---
 ## Índice
 1. [Introducción al modelado de requisitos](#2.1)
