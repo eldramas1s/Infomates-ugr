@@ -183,7 +183,8 @@ Los productos que se generan en esta fase son:
 <img src=./imagenes/ere.png alt="Error" width=150px>
 </p>
 </div>
-5. **Revisión de requisitos**. una vez que ya tenemos el documento de especificación de requisitos vamos a realizar las siguientes tareas:
+
+5. **Revisión de requisitos**. Una vez que ya tenemos el documento de especificación de requisitos vamos a realizar las siguientes tareas:
     - Validación; que consiste en comprobar que los requisitos documentados representen el problema,
     - Verificación; que consiste en comprobar que la representación es correcta.
 Este proceso de revisión es un proceso continuo durante todo el desarrollo, es decir, es una tarea que nunca termina.
