@@ -547,13 +547,87 @@ Además, las relaciones pueden ser de varios tipos según la siguiente tabla:
 
 Es una relación de dependencia entre dos casos de uso que permite incluir el comportamiento de un caso de uso en el flujo de otro caso de uso. Al caso de uso que incluye se le denomina caso de uso base y al incluido caso de uso de inclusión. 
 
-El caso de uso base se ejecuta hasta que se alcanza el punto en el que se encuentra la referencia al caso de uso de inclusión, momento en el que se pasa la ejecución a dicho caso. Cuando este se termina, el control regresa al caso de uso base.
+El caso de uso base se ejecuta hasta que se alcanza el punto en el que se encuentra la referencia al caso de uso de inclusión, momento en el que se pasa la ejecución a dicho caso. Cuando este se termina, el control regresa al caso de uso base. Además, para que le caso de uso base esté completo es necesario que contenga a los casos de uso de inclusión.
 
-El caso de uso que está incluido es utilizado completamente por el caso de uso base; además, el caso de uso base no está completo sin el vaso de uso de inclusión. Como añadido, puede ser compartido por varios casos de uso base y no es opcional sino necesario para que tenga sentido.
+El caso de uso que está incluido es utilizado completamente por el caso de uso base; además, el caso de uso base no está completo sin el caso de uso de inclusión. Como añadido, puede ser compartido por varios casos de uso base y no es opcional sino necesario para que tenga sentido.
+
+#### Extensión
+
+La relación de extensión es una relación de dependencia que especifica que el comportamiento del caso de uso base puede ser extendido por otro caso de uso (caso de uso de extensión) bajo determinadas condiciones.
+
+El caso de uso base declara uno o más puntos de extensión que son como anclajes en los que se pueden añadir nuevos comportamientos. A diferencia de la relación de inclusión, no sabe nada de los casos de uso de extensión y **sí** que estará completo sin sus extensiones; de hecho, no tienen numeración en el flujo de eventos en el flujo del caso de uso base.
+
+Por su parte, el caso de uos de extensión define segmentos de inserción que pueden insertarse en los puntos de anclaje cuando se cumpla una determinada condición. En este caso, el caso de uso de extensión no podrá tener sentido de forma separada al caso de uso base.
+
+[TODO]: imagen diap 36,37
+
+[TODO]: imagen diap 38
+
+La representación más usada para esta relación es la extendidda pero sin poner las condiciones, eso ya se one en la descripción de los casos de uso. Ademñás, no tienen idenficador pues no son casos de uso por sí mismos, es decir, sólo extenderán un caso de uso base.
+
+La descripción de los casos de uso de extensión aparece a continuación de la plantilla del curso normal de eventos.
+
+[TODO]: diap 39
+
+En el caso de que el caso de uso de extensión tenga más de un segmento, es decir, más de una acción para solucionar la extensión; en nuestor ejemplo, una vez puesta una multa, puede elegir pargarla o no. En este caso, habrá dos segmentos, uno hasta tomar la decisión y otro despues de tomarla.
+
+[TODO]: diap 40
+##### Heurística de uso de relaciones
+Una idea clara para usar una relación u otra puede ser:
+- Usaremos la relación de **inclusión** para comportamientos que se compartan entre dos o más casos de uso, o bien para separar un caso de uso en subunidades.
+- Usaremos la relación de **extensión** para comportamientos excepcionales, opcionales o que rara vez ocurran. En definitiva, suelen ser para ramas de ejecución alternas, es decir, no son de la ejecución de la traza principal
+
+#### Generalización
+
+Es una relación entre un caso de uso general, que llamaremos caso de uso padre, y otros más especializados, que llamaremos casos de uso hijos.
+
+En el caso de los casos de uso hijo:
+- Heredan todas las características del caso de uso general.
+- Pueden añadir nuevas características.
+- PUeden anular o reescribir características del caso de uso general, a excepción de relaciones, puntos de extensión y precondiciones.
+
+[TODO]: diap 43, 44
+
+En las referencias, en el caso de uso padre, si hay casos de uso inclusión debemos ponerlos en las referencias. En un caso de uso hijo, en las referencias deberán aparecer en las referencias.
+
+#### Recomendaciones de uso de las relaciones
+
+Hay que tener siempre en cuenta que el modelado de casos de uso se realiza para que el cliente lo entienda mejor. Luego algunos consejos son:
+- Usar la relaciones entre caoss de uso cuando simplifiquen el modelo.
+- Un sencillo modelo de casos de uso es preferible a uno con demasiadas relaciones ya que son más fáciles de entender.
+- El uso de muchas relaciones de inclusión hace que se tengan que ver más de un caso de uso apra tener una idea completa.
+- Las relaciones de extensión son complejas y difíciles de entender por la comunidad de usuarios o clientes.
+- La generalizaciń de casos de uso debería evitarse a menos que se utilicen casos de uso apdre abstractos.
+
 ### Construcción del modelo de casos de uso
+
+Hayq ue seguir una serie de pasos, resumen de todo lo anterior que hemos visto. Cabe aclarar, que no tienen por qué seguirse todos en caso de que no sea necesario:
+1. Identificar actores, principales y secundarios.
+2. Identificar los principales casos de uso de cada actor identificando sus objetivos y necesidades:
+    - Cuáles son las tareas principales de cada actor.
+    - ¿Qué información del sistema debe adquirir, producir o cambiar?
+    - ¿Tiene que informar el actor sobre cambios ocurridos en el exterior del sistema?
+    - ¿Qué información desea adquirir el actor del sistema?
+    - ¿Desea el actor ser informado de cambios producidos en ele sistema?
+3. Identificar nuevos casos de uso a partir de los existentes; analizar las siguientes situaciones:
+    - Variaciones significatibas de lso casos de uso existentes.
+    - Acciones opuestas, es decir, estudiar si existen casos de uso opuestos a los existentes.
+    - Accioens opuestas deben realizarse antes o después de casos de uso existentes.
+4. Hacer los diagrams de casos de uso y el diagrama de paquetes en el que se muestren la relacioens lógicas entre diagramas de casos de uso.
+5. Hacer la descipción básica de cada caso de uso, usando la plantilla.
+6. Definir prioridades y seleccionar casos de uso primarios.
+7. Hacer la descripción extendida de cada caso de uso, completando la descripción básca con la plantilla extendida.
+8. Realizar los diagramas de actividad.
+9. Desarrollar prototipos de la interfaz de usuario.
 
 ### Otros aspectos del modelo de casos de uso
 
+Vamos a estudiar dos de ellos:
+- Diagramas de paquetes: es un diagrama UML usado para describir la estructuración de un sistema en base a agrupaciones lógicas. También muestra las dependencias entre agrupaciones. Se usa en el modelo de casos de uso para agrupar de forma lógica los diferentes diagramas de casos de uso. 
+[TODO]: diap 51
+    + La relación que viene representada por cada una de las flechas es la relación **<<use>>** que siginifica que tienen casos de uso en común, independientemente de hacia donde apunte la flecha.
+-  Diagramas de actividad: es un diagrama UML para la descripción del comportamiento que tienen un conjunto de tareas. Se usan para representar los flujos de actividades de los procesos de negocio de una empresa y los flujos de acciones de uno o varios casos de uso de forma gráfica.
+[TODO]: diap 52
 <a id='2.4'><a/>
 ## 2.4.Análisis y especificación de requisitos
 
