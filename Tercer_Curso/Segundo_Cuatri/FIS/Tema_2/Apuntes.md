@@ -371,7 +371,7 @@ Los idagramas están compuestos por actores, casos de uso y relaciones entre:
 - Actores y casos de uso.
 - Casos de uso.
 
-Aunque parece un poco, trivial hay que delimitar el sistema en cada uno de los diagramas de caoss de uso, para ello lo haremos mediante un rectángulo. Dentro de él aparecerán todos los casos de uso y fuera de él, los actores. 
+Aunque parece un poco, trivial hay que delimitar el sistema en cada uno de los diagramas de casos de uso, para ello lo haremos mediante un rectángulo. Dentro de él aparecerán todos los casos de uso y fuera de él, los actores. 
 
 Para representar las interacciones de los actores con el sistema se usarán líneas.
 
@@ -392,7 +392,7 @@ Para representarlos usaremos lo siguiente:
 
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/actor.png alt="Error" width=500px>
+<img src=./imagenes/actor.png alt="Error" width=200px>
 </p>
 </div>
 
@@ -421,6 +421,12 @@ Cabe destacar que no todos los implicados tienen que ser actores, de hecho, tamp
 
 una relación entre actores expresa un comportamiento común entre actores, es decri, se relacionen de la misma forma con los mismos casos de uso. Como símil, se puede entender como herencia en programación orientada a objetos.
 
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/relacionactores.png alt="Error" height=500px width=300px>
+</p>
+
+
 En este caso, en el que un actor generaliza a otro, las interacciones del generalizador se trasladan a las interaccioens del generalizado pero no es necesario representarlas; es algo que se entiende por la herencia. La redundancia en los diagramas será penalizada.
 
 ### Casos de uso
@@ -428,7 +434,7 @@ En este caso, en el que un actor generaliza a otro, las interacciones del genera
 Un caso de uso especifica una secuencia de acciones, incluidas secuencias variantes y de error, que un sistema o susbsistema puede realizar al interactuar con actores externos.
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/casodeuso.png alt="Error" width=500px>
+<img src=./imagenes/casodeuso.png alt="Error" width=200px>
 </p>
 </div>
 
@@ -463,7 +469,7 @@ Para describir a los actores usaremos una plantilla del siguiente tipo:
 
 <div>
 <p style='text_align:center;'>
-<img src=./imagenes/descripactor.png alt="Error" width=500px>
+<img src=./imagenes/plantillactor.png alt="Error" width=500px>
 </p>
 </div>
 
@@ -523,7 +529,7 @@ En el caso de los flujos alternos:
 </div>
 
 
-### Relaciones en el modelo de caoss de uso
+### Relaciones en el modelo de casos de uso
 
 Hablando un poco más sobre las relaciones en los modelos de casos de uso estudiando varios aspectos.
 
@@ -559,19 +565,46 @@ El caso de uso base declara uno o más puntos de extensión que son como anclaje
 
 Por su parte, el caso de uos de extensión define segmentos de inserción que pueden insertarse en los puntos de anclaje cuando se cumpla una determinada condición. En este caso, el caso de uso de extensión no podrá tener sentido de forma separada al caso de uso base.
 
-[TODO]: imagen diap 36,37
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/extension.png alt="Error" width=500px>
+</p>
+</div>
 
-[TODO]: imagen diap 38
+Si disponemos de condiciones podemos expresarlo de la siguiente manera:
+
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/extensioncond.png alt="Error" width=500px>
+</p>
+</div>
+
+Para indicar que se poroduce una extensión en la descripción del curso de eventos de un caso de uso, implementamos puntos de extensión:
+
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/extensiondescrip.png alt="Error" width=500px>
+</p>
+</div>
 
 La representación más usada para esta relación es la extendidda pero sin poner las condiciones, eso ya se one en la descripción de los casos de uso. Ademñás, no tienen idenficador pues no son casos de uso por sí mismos, es decir, sólo extenderán un caso de uso base.
 
-La descripción de los casos de uso de extensión aparece a continuación de la plantilla del curso normal de eventos.
+La descripción de los casos de uso de extensión aparece a continuación de la plantilla del curso normal de eventos. Y se rige por la plantilla siguiente:
 
-[TODO]: diap 39
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/extensioncase.png alt="Error" width=500px>
+</p>
+</div>
 
 En el caso de que el caso de uso de extensión tenga más de un segmento, es decir, más de una acción para solucionar la extensión; en nuestor ejemplo, una vez puesta una multa, puede elegir pargarla o no. En este caso, habrá dos segmentos, uno hasta tomar la decisión y otro despues de tomarla.
 
-[TODO]: diap 40
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/extensionmult.png alt="Error" width=500px>
+</p>
+</div>
+
 ##### Heurística de uso de relaciones
 Una idea clara para usar una relación u otra puede ser:
 - Usaremos la relación de **inclusión** para comportamientos que se compartan entre dos o más casos de uso, o bien para separar un caso de uso en subunidades.
@@ -586,14 +619,22 @@ En el caso de los casos de uso hijo:
 - Pueden añadir nuevas características.
 - PUeden anular o reescribir características del caso de uso general, a excepción de relaciones, puntos de extensión y precondiciones.
 
-[TODO]: diap 43, 44
+En los diagramas de UML las relaciones de generalización siguen una notación similar a la notación usada para la generalización de actores:
 
-En las referencias, en el caso de uso padre, si hay casos de uso inclusión debemos ponerlos en las referencias. En un caso de uso hijo, en las referencias deberán aparecer en las referencias.
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/generalizacionUML.png alt="Error" width=500px>
+</p>
+</div>
+
+Y para la descripción del caso de uso generalizado, usamos la plantilla de los casos de uso general, es decir, no se siguen ninguna plantilla especial.
+
+En el caso de uso padre, si hay casos de uso inclusión debemos ponerlos en las referencias. En un caso de uso hijo, en las referencias deberán aparecer los casos de uso padre de los que disponga, indicando que lo son.
 
 #### Recomendaciones de uso de las relaciones
 
 Hay que tener siempre en cuenta que el modelado de casos de uso se realiza para que el cliente lo entienda mejor. Luego algunos consejos son:
-- Usar la relaciones entre caoss de uso cuando simplifiquen el modelo.
+- Usar la relaciones entre casos de uso cuando simplifiquen el modelo.
 - Un sencillo modelo de casos de uso es preferible a uno con demasiadas relaciones ya que son más fáciles de entender.
 - El uso de muchas relaciones de inclusión hace que se tengan que ver más de un caso de uso apra tener una idea completa.
 - Las relaciones de extensión son complejas y difíciles de entender por la comunidad de usuarios o clientes.
@@ -624,10 +665,20 @@ Hayq ue seguir una serie de pasos, resumen de todo lo anterior que hemos visto. 
 
 Vamos a estudiar dos de ellos:
 - Diagramas de paquetes: es un diagrama UML usado para describir la estructuración de un sistema en base a agrupaciones lógicas. También muestra las dependencias entre agrupaciones. Se usa en el modelo de casos de uso para agrupar de forma lógica los diferentes diagramas de casos de uso. 
-[TODO]: diap 51
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/diagpaq.png alt="Error" width=500px>
+</p>
+</div>
     + La relación que viene representada por cada una de las flechas es la relación **<<use>>** que siginifica que tienen casos de uso en común, independientemente de hacia donde apunte la flecha.
 -  Diagramas de actividad: es un diagrama UML para la descripción del comportamiento que tienen un conjunto de tareas. Se usan para representar los flujos de actividades de los procesos de negocio de una empresa y los flujos de acciones de uno o varios casos de uso de forma gráfica.
-[TODO]: diap 52
+
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/diagacti.png alt="Error" width=500px>
+</p>
+</div>
+
 <a id='2.4'><a/>
 ## 2.4.Análisis y especificación de requisitos
 
