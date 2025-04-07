@@ -670,7 +670,7 @@ Vamos a estudiar dos de ellos:
 <img src=./imagenes/diagpaq.png alt="Error" width=500px>
 </p>
 </div>
-La relación que viene representada por cada una de las flechas es la relación **<< use >>** que siginifica que tienen casos de uso en común, independientemente de hacia donde apunte la flecha.
+La relación que viene representada por cada una de las flechas es la relación << use >> que siginifica que tienen casos de uso en común, independientemente de hacia donde apunte la flecha.
 
 -  Diagramas de actividad: es un diagrama UML para la descripción del comportamiento que tienen un conjunto de tareas. Se usan para representar los flujos de actividades de los procesos de negocio de una empresa y los flujos de acciones de uno o varios casos de uso de forma gráfica.
 
