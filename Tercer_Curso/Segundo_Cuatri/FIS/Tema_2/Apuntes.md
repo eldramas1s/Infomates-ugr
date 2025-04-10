@@ -683,3 +683,157 @@ La relación que viene representada por cada una de las flechas es la relación 
 <a id='2.4'><a/>
 ## 2.4.Análisis y especificación de requisitos
 
+### 2.4.1.Introducción
+
+#### El proceso de análisis
+El análisis de requisitos es la fase de la ingeniería de requisitos en la que se examinan los requisitos para delimitarlos y definir exactamente cada uno de ellos. COmo objetivos fundamentales tenemos:
+- Detectar y resolver conflictos entre requisitos.
+- Delimitar el software y establecer con qué elementos externos interacciona.
+- Elaborar los requisitos del sistema para obtener, a partir de ellos, los requisitos del software.
+- Profundizar en el conocimiento del sistema, lo que conlleva a realizar modelos; aportarán facilidad de comprensión de los requisitos para los desarrolladores y una base para el diseño.
+- Aumentar la formalización del conosimiento existente sobre el sistema para facilitar el mantenimiento.
+
+#### Objetivo principal del análisis
+[TODO]: imagen diap 4
+
+El objetivo principal del análisis es refinar, estructurar y describir los requisitos para conseguir una comprensión más precisa, más fácil de mantener y que ayude a estructurar el sistema completo.
+
+Es importante rastrear los requisitos de usuario a travñes de los requisitos del software.
+
+#### Diferencias entre modelos
+[TODO]: tabla diap 6(chatgpt)
+#### Actividades del análisis
+
+Disponemos de 5 actividades:
+- Clasificación de los requisitos: consiste en establecer un conjunto de categorías y situar cada requisito en ellas.
+- Priorización de los requisitos: consiste en determinar la importancia relativa de cada requisito en relación con los demás.
+- Modelo conceptual: representamos los requisitos con un lenguaje o notación que puedan comprenderlo todos.
+- Situación de los requisitos en la arquitectura del sistema: deberemos establecer qué elementos del sistema software van a satisfacer los distintos requisitos. Puede que en esta actividad podamos descubrir nuebos requisitos.
+- Negociación de los requisitos: consiste en detectar y resolver problema, definir de manera precisa los límites del sistema y cómo éste debe interaccionar con su entorno.
+
+#### Especificación de requisitos
+
+Obtendremos un documento que debe contener una completa descripción del sistema a desarrollar. Siguiendo un estándar impuesto por la *IEEE*, una especificación debe ser completa, verificable, consistente, modificable, susceptible de permitir seguimientos, utilizable durante las fases de operación y mantenimiento y no debe contener ambigüedades.
+
+### 2.4.2.Análisis orientado a objetos
+
+El análisis Orientado a Objetos examina y representa los requisitos desde la perspectiva de los objetos que se encuentran en el dominio del problema.
+
+Hay una gran variedad de métodos AOO(Análisis orientado a objetos), pero todos ellos se centran en la obtención de modelos:
+- Estáticos o de estructura
+- Dinámicos o de comportamiento
+
+Usaremos el lenguaje *UML* para representar los modelos.
+
+Hay tres motivos fundamentales para usar *AOO*:
+- Los tñerminos usados en los modelso están cercanos a los del mundo real.
+    + Facilita y mejora la obtención de requisitos.
+    + Acerca el espacio del problema al espacio de la solución.
+- Se modelan tanto elementos y propiedades estáticas como dinámicas del ámbito del problema.
+- Se manejan conceptos comunes durante el análisis, diseño e implementación del software.
+    + Mejor transición entre fases.
+    + Facilita el desarrollo iterativo.
+    + Difumina la barrera entre el qué y el cómo.
+[TODO]: imagen diap 11.
+
+### 2.4.3.Obtención del modelo estático
+
+Es un modelo conocido por varios nombres como *diagrama de conceptos*, *diagrama del análisis*, *diagrama conceptual*, *Modelo conceptual*, *Modelo de dominio*; en el que se representan los principales conceptos del dominio del problema, sus propiedades y relaciones entre ellos. 
+
+Esta obtención sería imposibles is no disponemos del modelo de casos de uso, pues es la base para obtener esta información para realizar el modelo.
+
+Usaremos los *diagramas de clases de UML*, en el que podrá haber:
+- Clases que se corresponderán con los conceptos del dominio del problema.
+- Asociaciones entre conceptos.
+- Generalizaciones de conceptos.
+- Atributos de los conceptos.
+
+Es importante concoer que aunque vayamos a usar los diagramas de clases de *UML*, el resultado de estos diagramas no serán diagramas de clases pues no habrá métodos ni navegabilidad.
+
+#### Pasos a seguir
+
+***Identificar e incorporar conceptos***
+
+En este paso deberemos:
+- Identificar los conceptos. Nosotros trabajaremos este aspecto estudiando los sustativos o frases nominales, esto nos dará una idea sobre los conceptos. No obstante, identificar conceptos tiene una serie de probelmas como son:
+    + No se puede hacer de forma mecánica, es decir, no existe un algoritmo que nos pueda determinar cuáles son los sustantivos que podrán desembocar en un concepto.
+    + Ambigüedad en el lenguaje natural, como la existencia de sinónimos o frases hechas.
+- Seleccionar los conceptos relevantes en el dominio del problema. Para lo que podemos seguir los siguientes elementos:
+    + Términos sinónimos.
+    + Relaciones.
+    + Atributos de conceptos o relaicones.
+    + Fuera del ámbito del problema.
+- Representarlos, como clases, en el diagrama de conceptos.
+
+Para conseguir el objetivo de este paso podemos seguir las siguientes estrategias:
+- Establecer una lista de categorías de conceptos y rellenarla a partir de la información de la qu edisponemos.
+- Encontrar los términos que se corresponden con sustantivos o frases nominales, éstos van a ser candidatos a conceptos.
+
+***Identificar y representar asociaciones***
+
+Antes definimos lo que es una **asociación**, es una conexión siginificativa y relevante entre conceptos.
+
+En este paso deberemos:
+1. Identificar las posibles asociaciones. Usaremos la lista de categoriía de relaciones entre conceptos que aparece a continuación como guía:
+[TODO]: imagen diap 25
+2. Representarlas en el diagrama y seleccionar las que sean válidad.
+[TODO]: seguir el proceso:
+En esta parte aparecerán relaciones repetidas (mismos conceptos relacionados), pero no tiene por qué ocurrir que las relaciones sean semánticamente iguales.
+3. Asignarles nombre.
+4. Identificar la multiplicidad.
+
+***Identificar e incorporar generalizaciones de concetos***
+
+En este paso deberemos:
+1. Identificar posibles generalizaciones.
+    + A partir de la descripción del problema y de las clases conceptuales identificadas, encontrar clases conceptuales con elementos comunes.
+    + Definir las relaciones de superclase y subclase.
+2. Validar las estructuras encontradas. Para lo cual comprobaremos que cada subclase potencial estará de acuerdo con:
+    + La regla del 100%(todo lo que está definido en la supercalse estará en la subclase).
+    + La regla "es-un"(un elemento de la subclase es un elemento de la superclase).
+3. Representarlas en el modelo conceptual. Algunas directrices para obtenerlas son:
+  - Para crear subclases a partir de subclases deberemos comprobar que:
+    + La subclase tiene atributos adicionales de interés.
+    + La subclase tiene asociaciones adicionales de interés.
+    + La subclase funciona, reacciona o se manupula de manera diferente a la superclase o a alguna subclase.
+  - Para crear superclases a partir de subclases potenciales.
+    + Cuando las subclases presentan variaciones de un concepto similar.
+    + Las subclases cumplen con las reglas del "100%" y "es-un".
+    + Todas las subclases tiene el mismo atributo que se puede factorizar en la superclase.
+    + Todas las subclases tienen la misma asociación que se puede factorizar en la superclase.
+
+Cabe destacar que este tipo de relaciones como son las generalizaciones se puedene entender como relaciones de "herencia" con muchas comillas, donde cada subclase es una especialización de una supercalse y las superclases son generalizaciones de subclases.
+
+***Identificar e incorporar atributos de conceptos***
+
+En este paso deberemos:
+1. Identificar atributos desde:
+    - Casos de uso y lista de requisitos.
+    - Otras fuentes de información.
+2. Representarlos en el diagrama, en los conceptos o en las relaciones que correspondan.
+
+Los atributos de los que hablamos y tratamos como válidos son de dos tipos:
+- Primitivos o valores puros de datos.
+- No primitivo.
+
+[TODO]: diap 38
+
+***Estructurar el modelo***
+
+[TODO]:diap 41
+
+### 2.4.4 Obtención del modelo de comportamiento
+
+COnsiste en un estudio adicional del dominio del problema en el que se añaden los requisitos funcionales; podemos seguir la frase :"¿Qué hace el sistema sin explicar cómo lo hace?"
+
+[TODO]: imagen diap 44
+
+Para representar los comportameinteos usaremos diagramas de secuencia de *UML* en los qu ese muestran cómo los eventos generados por los actores provocan la ejecución de una operación por el sistema, siendo éste visto como una caja negra.
+
+[TODO]: imagen diap 45
+
+[I don't know what she said but she said]
+
+[TODO]: diap 46
+
+***Incluir las operaciones en la clase dle sistema***
