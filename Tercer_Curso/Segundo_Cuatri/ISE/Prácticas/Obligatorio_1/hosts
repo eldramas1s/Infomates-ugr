@@ -1,0 +1,6 @@
+ungrouped:
+    hosts:
+        host1:
+            ansible_host: rocky
+    var:
+        por_ejemplo: 1

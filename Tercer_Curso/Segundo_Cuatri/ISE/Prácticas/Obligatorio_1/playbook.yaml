@@ -1,0 +1,17 @@
+##Es muy estricto con los espacios y las tabulaciones
+# Nombre del playbook
+- name: My first play
+# Decimos los hosts
+  hosts: ungrouped
+
+# Tareas  
+  tasks:
+
+  # Hacemos ping a todos
+   - name: Ping my hosts
+     ansible.builtin.ping:
+
+  # Vamos a imprimir un mensaje
+   - name: Print message
+     ansible.builtin.debug: 
+       msg: Hello world
