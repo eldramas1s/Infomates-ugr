@@ -694,14 +694,28 @@ El análisis de requisitos es la fase de la ingeniería de requisitos en la que 
 - Aumentar la formalización del conosimiento existente sobre el sistema para facilitar el mantenimiento.
 
 #### Objetivo principal del análisis
-[TODO]: imagen diap 4
+
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/objan.png alt="Error" width=500px>
+</p>
+</div>
 
 El objetivo principal del análisis es refinar, estructurar y describir los requisitos para conseguir una comprensión más precisa, más fácil de mantener y que ayude a estructurar el sistema completo.
 
 Es importante rastrear los requisitos de usuario a travñes de los requisitos del software.
 
 #### Diferencias entre modelos
-[TODO]: tabla diap 6(chatgpt)
+
+| MODELO DE CASOS DE USO                                              | MODELO DEL ANÁLISIS                                                                 |
+|---------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| Lenguaje del cliente                                                | Lenguaje del desarrollador                                                         |
+| Vista externa del sistema estructurado en casos de uso             | Vista interna del sistema estructurado en clases y subsistemas                     |
+| Contrato Clientes/Desarrolladores                                   | Con vistas a la solución                                                           |
+| Puede contener redundancias e inconsistencias entre requisitos      | No debe contenerlas                                                                |
+| Captura la funcionalidad del sistema                                | Esboza cómo llevar a cabo esta funcionalidad (primera aproximación a la arquitectura) |
+| Se definen casos de uso que luego serán analizados en mayor profundidad | Define relaciones entre casos de uso                                           |
+
 #### Actividades del análisis
 
 Disponemos de 5 actividades:
@@ -734,7 +748,12 @@ Hay tres motivos fundamentales para usar *AOO*:
     + Mejor transición entre fases.
     + Facilita el desarrollo iterativo.
     + Difumina la barrera entre el qué y el cómo.
-[TODO]: imagen diap 11.
+
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/diap11.png alt="Error" width=500px>
+</p>
+</div>
 
 ### 2.4.3.Obtención del modelo estático
 
@@ -775,7 +794,23 @@ Antes definimos lo que es una **asociación**, es una conexión siginificativa y
 
 En este paso deberemos:
 1. Identificar las posibles asociaciones. Usaremos la lista de categoriía de relaciones entre conceptos que aparece a continuación como guía:
-[TODO]: imagen diap 25
+| Categoría                                                             | Ejemplos                                       |
+|----------------------------------------------------------------------|------------------------------------------------|
+| A es una parte física de B                                           | Ala – Avión                                    |
+| A es una parte lógica de B                                           | Tramo de vuelo – Ruta de vuelo                 |
+| A está contenido físicamente en B                                    | Asiento – Avión                                |
+| A está contenido lógicamente en B                                    | Vuelo – Programa de vuelo                      |
+| A es una descripción de B                                            | Descripción de vuelo – Vuelo                   |
+| A es un elemento de línea en una transacción B                       | Trabajo de mantenimiento – Mantenimiento       |
+| A conoce / introduce / registra / presenta / captura B               | Reserva – Lista de pasajeros                   |
+| A es miembro de B                                                    | Piloto – Tripulación                           |
+| A es una sub-unidad organizacional de B                              | Unidad de mantenimiento – Compañía aérea       |
+| A usa o dirige B                                                     | Piloto – Avión                                 |
+| A se comunica con B                                                  | Agente de reserva – Pasajero                   |
+| A se relaciona con una transacción B                                 | Pasajero – Billete                             |
+| A es una transacción relacionada con otra transacción B              | Reserva – Cancelación                          |
+| A está contiguo a B                                                  | Ciudad – Ciudad                                |
+| A es propiedad de B                                                  | Avión – Compañía aérea                         |
 2. Representarlas en el diagrama y seleccionar las que sean válidad.
 [TODO]: seguir el proceso:
 En esta parte aparecerán relaciones repetidas (mismos conceptos relacionados), pero no tiene por qué ocurrir que las relaciones sean semánticamente iguales.
@@ -820,20 +855,43 @@ Los atributos de los que hablamos y tratamos como válidos son de dos tipos:
 
 ***Estructurar el modelo***
 
-[TODO]:diap 41
+Lo haremos mediante diagramas de paquetes, de manera que un paquete será una división del modelo agrupando conceptos que tienen una fuerte relación entre sí(facilita el modelado y la posterior representación mediante diagramas).
+
+[TODO]: Repasar esto (diap 41)
+
+Para estructurar el diagrama de conceptos:
+- Elementos que están en el mismo área de interés
+- Están juntos en una jerarquía de clases.
+- Participan en los mismos casos de uso.
+- Están fuertemente asociados.
 
 ### 2.4.4 Obtención del modelo de comportamiento
 
 COnsiste en un estudio adicional del dominio del problema en el que se añaden los requisitos funcionales; podemos seguir la frase :"¿Qué hace el sistema sin explicar cómo lo hace?"
 
-[TODO]: imagen diap 44
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/modcomp.png alt="Error" width=500px>
+</p>
+</div>
 
 Para representar los comportameinteos usaremos diagramas de secuencia de *UML* en los qu ese muestran cómo los eventos generados por los actores provocan la ejecución de una operación por el sistema, siendo éste visto como una caja negra.
 
-[TODO]: imagen diap 45
+<div>
+<p style='text_align:center;'>
+<img src=./imagenes/dss.png alt="Error" width=500px>
+</p>
+</div>
 
-[I don't know what she said but she said]
+[TODO]: mensaje irina
 
-[TODO]: diap 46
+Para elaborar un diagrama de secuencia seguimos los siguientes pasos:
+1. Identificar los actores que inician las operaciones.
+2. Asignar un nombre a todo el sistema.
+3. Identificar y nombrar la operaciones principales del sistema, a partir de las descripciones de los casos de uso.
+4. Determinar los parámetros de las operaciones.
+5. Representarlas en el diagrama de secuencia del sistema.
+6. Incluir las operaciones en la clase que identifica a todo el sistema.
+
 
 ***Incluir las operaciones en la clase dle sistema***
