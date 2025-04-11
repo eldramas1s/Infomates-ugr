@@ -794,6 +794,7 @@ Antes definimos lo que es una **asociación**, es una conexión siginificativa y
 
 En este paso deberemos:
 1. Identificar las posibles asociaciones. Usaremos la lista de categoriía de relaciones entre conceptos que aparece a continuación como guía:
+
 | Categoría                                                             | Ejemplos                                       |
 |----------------------------------------------------------------------|------------------------------------------------|
 | A es una parte física de B                                           | Ala – Avión                                    |
