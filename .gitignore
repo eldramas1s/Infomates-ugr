@@ -1,6 +1,8 @@
 #Ignorar imagenes
 #**/*.png
 
+# Ignorar carpeta phoronix
+**/Bloque_2
 # Ignorar archivos temporales
 **/*tmp
 
