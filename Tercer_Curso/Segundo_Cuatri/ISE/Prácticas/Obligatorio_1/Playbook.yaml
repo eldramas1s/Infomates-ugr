@@ -1,0 +1,127 @@
+
+---
+# PRECONDICIONES:
+# Debe existir el usuario admin y debe tener privilegios de root sin contraseña
+
+- name: Configurar servidor apache
+  hosts: apache
+  become: true
+
+
+  # Definimos las variables
+  # vars:
+  #   carpeta_apache: "/var/www/html"  # Carpeta donde se creará el archivo
+  #   archivo: "index.html"     # Nombre del archivo a crear
+  #   alumno: "Lucas Hidalgo Herrera"
+  #   contenido: "Bienvenido a la web de {{ alumno }} en Prácticas ISE."   # Contenido del archivo
+  
+  tasks:
+
+  # Instalamos apache
+  - name: Instalar apache
+    ansible.builtin.dnf:
+      name: httpd                 # Paquete a instalar
+      state: present   
+    tags: apache            # Aseguramos que el paquete está instalado
+  
+  # Creamos el archivo index.html en la carpeta /var/www/html
+  - name: Crear archivo index.html
+    ansible.builtin.file:
+      path: "{{ carpeta_apache }}/{{ archivo }}"  # Ruta del archivo a crear
+      state: touch
+      mode: 644
+    tags: apache
+
+  - name: Añadir contenido al archivo
+    ansible.builtin.lineinfile:
+      path: "{{ carpeta_apache }}/{{ archivo }}"  # Ruta del archivo a modificar
+      state: present
+      line: "{{ contenido }}"   
+    tags: apache          
+
+  # Activamos el servicio http
+  - name: Inicio y activación de httpd
+    ansible.builtin.service:
+      name: httpd
+      state: started
+      enabled: true
+    tags: apache
+
+  #? Hay que bloquear todos los puertos a excepción del 22 y el 80?
+  # Aseguramos que el servicio http esté activo
+  - name: Firewallcmd activo
+    ansible.builtin.service:
+      name: firewalld
+      state: started
+      enabled: true
+    tags: firewall
+
+  # Habilitamos los firewalls
+  - name: Habilitar acceso HTTP (puerto 80) en firewalld
+    ansible.builtin.firewalld:
+      port: 80/tcp
+      permanent: true
+      state: enabled
+      immediate: yes
+    tags: firewall  
+
+- name: Configurar servidor Nginx
+  hosts: nginx
+  become: true
+
+  vars: 
+    carpeta_nginx: "/usr/share/nginx/html"
+    archivo: "index.html"     # Nombre del archivo a crear
+    alumno: "Lucas Hidalgo Herrera"
+    contenido: "Bienvenido a la web de {{ alumno }} en Prácticas ISE."   # Contenido del archivo
+
+  tasks:
+
+  - name: Instalar nginx
+    ansible.builtin.dnf:
+      name: nginx
+      state: present
+    tags: nginx
+
+  # Si el archivo index.html no está creado lo creamos.
+  - name: Crear archivo index.html
+    ansible.builtin.file:
+      path: "{{ carpeta_nginx }}/{{ archivo }}"  # Ruta del archivo a crear
+      state: touch
+      mode: 644
+    tags: nginx
+
+  # Escribimos el contenido en el archivo
+  - name: Añadir contenido al archivo
+    ansible.builtin.lineinfile:
+      path: "{{ carpeta_nginx }}/{{ archivo }}"  # Ruta del archivo a modificar
+      state: present
+      line: "{{ contenido }}"   
+    tags: nginx 
+  
+  # Iniciamos nginx
+  - name: Inicio y activación de nginx
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: true
+    tags: nginx
+  
+  # Igual que con apache, trabajamos los firewalls
+
+  # Aseguramos que el servicio http esté activo
+  - name: Firewallcmd activo
+    ansible.builtin.service:
+      name: firewalld
+      state: started
+      enabled: true
+    tags: firewall
+
+  # Habilitamos los firewalls
+  - name: Habilitar acceso Nginx (puerto 80) en firewalld
+    ansible.builtin.firewalld:
+      port: 80/tcp
+      permanent: true
+      state: enabled
+      immediate: yes
+    tags: firewall

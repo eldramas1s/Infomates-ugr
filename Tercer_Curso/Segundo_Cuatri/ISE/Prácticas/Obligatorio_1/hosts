@@ -1,5 +1,31 @@
-ungrouped:
-    hosts:
-        host1:
-            ansible_host: rocky
-    
+all:
+    children:
+        servers:
+            hosts:
+                host1:
+                    ansible_host: 192.168.57.2
+                    ansible_user: admin
+                host2:
+                    ansible_host: 192.168.57.3
+                    ansible_user: admin
+
+            vars:
+                usrs:
+                    - admin
+                    - pablo
+                    - juana
+                    - lirili
+        web:
+            children:
+                apache:
+                    hosts:
+                        host1:
+                nginx:
+                    hosts:
+                        host2:
+            vars:
+                carpeta_nginx: "/usr/share/nginx/html"
+                archivo: "index.html"
+                alumno: "Lucas Hidalgo Herrera"
+                carpeta_apache: "/var/www/html"
+                contenido: "Bienvenido a la web de {{ alumno }} en Prácticas ISE."   # Contenido del archivo
