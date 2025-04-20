@@ -7,11 +7,5 @@
 # Tareas  
   tasks:
 
-  # Hacemos ping a todos
-   - name: Ping my hosts
-     ansible.builtin.ping:
-
-  # Vamos a imprimir un mensaje
-   - name: Print message
-     ansible.builtin.debug: 
-       msg: Hello world
+    - name: Crear usuario
+    
