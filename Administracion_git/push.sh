@@ -11,14 +11,15 @@ if [ $# -ne 0 ]; then
 	echo "Numero de parametros erroneo" > $ruta/push_error.txt
 	exit
 else
-	printf "ADD:\n" > $ruta/push_ok.txt
 	printf "ADD:\n" > $ruta/push_error.txt
-	git add $ruta_add/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
-	git add $ruta_add/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
-	git add $ruta_add/* 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt
+	printf "ADD:\n" > $ruta/push_ok.txt
+	git add $ruta_add/* 1>> $ruta/push_error.txt 2>> $ruta/push_ok.txt
+	git add $ruta_add/* 1>> $ruta/push_error.txt 2>> $ruta/push_ok.txt
+	git add $ruta_add/* 1>> $ruta/push_error.txt 2>> $ruta/push_ok.txt
 
 	printf "PUSH:\n" >> $ruta/push_ok.txt
 	printf "PUSH:\n" >> $ruta/push_error.txt
-	git push $ruta_add 1>> $ruta/push_ok.txt 2>> $ruta/push_error.txt #Si no hay nada que subir pondra "Everything-up-to-date" en el archivo error (asi esta predefinido en la orden git push)
+	git push 1>> $ruta/push_error.txt 2>> $ruta/push_ok.txt 
+
 fi
 
