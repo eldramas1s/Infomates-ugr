@@ -866,7 +866,7 @@ Para estructurar el diagrama de conceptos:
 - Participan en los mismos casos de uso.
 - Están fuertemente asociados.
 
-### 2.4.4 Obtención del modelo de comportamiento
+### 2.4.4.Obtención del modelo de comportamiento
 
 COnsiste en un estudio adicional del dominio del problema en el que se añaden los requisitos funcionales; podemos seguir la frase :"¿Qué hace el sistema sin explicar cómo lo hace?"
 
@@ -894,5 +894,54 @@ Para elaborar un diagrama de secuencia seguimos los siguientes pasos:
 5. Representarlas en el diagrama de secuencia del sistema.
 6. Incluir las operaciones en la clase que identifica a todo el sistema.
 
+***Identificar actres y asignar un nombre a todo el sistema***
+ [TODO]: Imagen diap 47
 
-***Incluir las operaciones en la clase dle sistema***
+ La profesora recomienda hacer un diagrama de secuencia del sistema para diagrama de caso de uso donde en cada uno de los sistemas debe aparecer una acción para cada caso de uso. No obstante, es probable que un caso de uso use varias acciones lo cual no es un inconveniente.
+
+***Identificar operaciones y parámetros, representarlas***
+
+[TODO]: imagen diap 48
+
+Cabe destacar que las acciones se representan como si fueran métodos de clase con sus paréntesis y las respuestas (lo que se devuelve por el sistema) con una línea discontinua.
+
+EN este momento, no es necesario que las operaciones que haya en el diagrama de secuencia disponga de un número de orden pues eso realmente no significa que sea ese orden el orden global.
+
+***Incluir las operaciones en la clase del sistema***
+
+[TODO]: imagen diap 49
+Es importante saber que el único objeto que debe aparecer en el diagrama de secuencia es el sistema; a esto se le suma que no deben haber interacciones entre actores y no se debe representar en un diagrama de secuencia del sistema.
+
+#### 2.4.4.5.Contratos
+
+Un contrato se define como un documento que describe lo que una operación se propone lograr, sin decir cómo se conseguirá. Cumple dos requisitos:
+- Define la especificación de una operación sin entrar en su implementación.
+- Suele redactarse con un estilo declarativo.
+
+[TODO]: Imagen diap 52 
+
+- Nombre: nombre completo de la acción de la que hablamos.
+- Responsabilidad: descripción de lo que se va a hacer.
+- TIpo: sólo hay que poner el nombre de la clase que representa al sistema, en general, hacia qué ojeto va la operación.
+- Notas: es opcional y solo son aclaraciones.
+- Excepciones: debemos poner hechos que harán que la acción deje de ejecutarse.
+- Salida: es lo que devuelve la operación como respuesta.
+- Precondiciones: son condiciones que se deben de cumplir antes de que empiece a ejeutarse; pues si no se cumplen, la operación no debe cumplirse.
+
+Para elaborar un contrato se siguen las siguientes restricciones:
+- El nombre de la operación viene del DSS correspondiente.
+- Comenzar con las responsabilidades, describiendo informalmente el propósito de la operación.
+- Continuar con las poscondiciones y finalizar con las demás secciones, especialmente con las precondiciones y excepciones.
+- Las poscondiciones deben escribir los cambios de estado de un sistema no sus acciones; estos son:
+    + Creación y destrucción de objetos.
+    + Creacción y destrucción de enlaces.
+    + Modificación de atributos.
+- Los objetos y enlaces que se pueden crear y destruir son los del modelo conceptual.
+- Las poscondiciones deben expresarse mediante una frase verbal en pretérito.
+
+***Poscondiciones del contrato***
+
+Para especificar las poscondiciones, hay que identificar en el diagrama de conceptos los objetos que intervienen en la operación.
+
+[TODO]: imagen diap 55
+
