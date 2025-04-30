@@ -1,6 +1,8 @@
 #Ignorar imagenes
 #**/*.png
 
+**/Practicas_IA_2
+
 **/Base
 # Ignorar carpeta phoronix
 **/Bloque_2
