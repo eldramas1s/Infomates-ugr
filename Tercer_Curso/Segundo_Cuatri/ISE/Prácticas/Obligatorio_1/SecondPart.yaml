@@ -1,19 +1,17 @@
 
 ---
+#### Playbook terminado al completo ####
+
+#? Debe comprobarse la precondicion de abajo?
+#? Hay que bloquear todos los puertos a excepción del 22 y el 80? Para ambos casos
+#? Hay alguna forma de hacer que tome children de web para manipular los firewalls de ambos en una regla solo? (mirar inventario)
+
 # PRECONDICIONES:
-# Debe existir el usuario admin y debe tener privilegios de root sin contraseña
+# Debe existir el usuario admin y debe tener privilegios de sudo sin contraseña
 
 - name: Configurar servidor apache
   hosts: apache
   become: true
-
-
-  # Definimos las variables
-  # vars:
-  #   carpeta_apache: "/var/www/html"  # Carpeta donde se creará el archivo
-  #   archivo: "index.html"     # Nombre del archivo a crear
-  #   alumno: "Lucas Hidalgo Herrera"
-  #   contenido: "Bienvenido a la web de {{ alumno }} en Prácticas ISE."   # Contenido del archivo
   
   tasks:
 
@@ -47,7 +45,6 @@
       enabled: true
     tags: apache
 
-  #? Hay que bloquear todos los puertos a excepción del 22 y el 80?
   # Aseguramos que el servicio http esté activo
   - name: Firewallcmd activo
     ansible.builtin.service:
@@ -68,12 +65,6 @@
 - name: Configurar servidor Nginx
   hosts: nginx
   become: true
-
-  vars: 
-    carpeta_nginx: "/usr/share/nginx/html"
-    archivo: "index.html"     # Nombre del archivo a crear
-    alumno: "Lucas Hidalgo Herrera"
-    contenido: "Bienvenido a la web de {{ alumno }} en Prácticas ISE."   # Contenido del archivo
 
   tasks:
 

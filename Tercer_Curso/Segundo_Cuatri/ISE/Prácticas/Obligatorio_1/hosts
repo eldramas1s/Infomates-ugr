@@ -1,31 +1,37 @@
 all:
     children:
-        servers:
+        my_root_hosts:
             hosts:
                 host1:
                     ansible_host: 192.168.57.2
-                    ansible_user: admin
+                    ansible_user: root
+                    ansible_ssh_pass: root
+
                 host2:
                     ansible_host: 192.168.57.3
-                    ansible_user: admin
+                    ansible_user: root
+                    ansible_ssh_pass: root
 
             vars:
                 usrs:
                     - admin
                     - pablo
                     - juana
-                    - lirili
         web:
             children:
                 apache:
                     hosts:
-                        host1:
+                        host3:
+                            ansible_host: 192.168.57.2
+                            ansible_user: admin
                 nginx:
                     hosts:
-                        host2:
+                        host4:
+                            ansible_host: 192.168.57.3
+                            ansible_user: admin
             vars:
                 carpeta_nginx: "/usr/share/nginx/html"
+                carpeta_apache: "/var/www/html"
                 archivo: "index.html"
                 alumno: "Lucas Hidalgo Herrera"
-                carpeta_apache: "/var/www/html"
                 contenido: "Bienvenido a la web de {{ alumno }} en Prácticas ISE."   # Contenido del archivo
