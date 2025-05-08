@@ -28,7 +28,7 @@ def secante(f,x,z):
         return None
     
 
-def metodo_secante(f,x0,x1,tol=28,max_iter=100):
+def metodo_secante(f,x0,x1,tol=28,prec=28,max_iter=1000):
     '''
         Metodo de la secante
         
@@ -47,7 +47,7 @@ def metodo_secante(f,x0,x1,tol=28,max_iter=100):
     er_abs=abs(x0-x1)
     for i in range(max_iter):
         array.append(secante(f,array[-2],array[-1]))
-        if(abs(array[-1]-array[-2])<10**(-tol)):
+        if(abs(array[-1]-array[-2])<10**(-tol) or abs(f(array[-1]))<10**(-prec)):
             return array,i+1
     return array,max_iter
 
@@ -63,7 +63,7 @@ def wittaker(f,x,m):
         return None
     
     
-def metodo_wittaker(f,x0,m,tol=28,max_iter=100):
+def metodo_wittaker(f,x0,m,tol=28,prec=28,max_iter=1000):
     '''
         Metodo de Wittaker
         
@@ -82,7 +82,7 @@ def metodo_wittaker(f,x0,m,tol=28,max_iter=100):
     array=[x0]       # Con esto evitamos problemas de que el array este vacio
     for i in range(max_iter):
         array.append(wittaker(f,array[-1],m))
-        if(abs(array[-1]-array[-2])<10**(-tol)):
+        if(abs(array[-1]-array[-2])<10**(-tol)or abs(f(array[-1]))<10**(-prec)):
             return array,i+1
     return array,max_iter
 
@@ -106,7 +106,7 @@ def newtonraphson(f,z):
             print("División por cero en la derivada.")
             return None
         
-def metodo_nr(f,x0,tol=28,max_iter=100):
+def metodo_nr(f,x0,tol=28,prec=28,max_iter=1000):
     '''
         Metodo de Newton-Raphson
         
@@ -129,11 +129,11 @@ def metodo_nr(f,x0,tol=28,max_iter=100):
     array=[x0]       # Con esto evitamos problemas de que el array este vacio
     for i in range(max_iter):
         array.append(newtonraphson(f,array[-1]))
-        if(abs(array[-1]-array[-2])<10**(-tol)):
+        if(abs(array[-1]-array[-2])<10**(-tol)or abs(f(array[-1]))<0):
             return array,i+1
     return array,max_iter
    
-def biseccion(f, a, b,tol=28,max_iter=100):
+def biseccion(f, a, b,tol=28,prec=28,max_iter=1000):
     '''
         Metodo de biseccion
         
@@ -161,12 +161,12 @@ def biseccion(f, a, b,tol=28,max_iter=100):
             
         array.append((a+b)/2) 
             
-        if(abs(array[-1]-array[-2])<10**(-tol)) or abs(f(array[-1])) < 10**(-tol):
+        if((abs(array[-1]-array[-2])<10**(-tol)) or abs((array[-1])) < 10**(-prec)):
             return array,i+1
     return array, max_iter
 
 
-def metodo_steffensen(f, x0, tol=28, max_iter=100):
+def metodo_steffensen(f, x0, tol=28,prec=28, max_iter=1000):
     '''
         Metodo de Steffensen
         
@@ -188,7 +188,7 @@ def metodo_steffensen(f, x0, tol=28, max_iter=100):
             num=f(array[-1])**2
             denom = f(array[-1]+f(array[-1]))-f(array[-1])
             array.append(array[-1] - num / denom)
-            if abs(array[-1] - array[-2]) < 10**(-tol):
+            if (abs(array[-1] - array[-2]) < 10**(-tol) or abs(f(array[-1])<10**(-prec))):
                 return array,i+1
         except ZeroDivisionError:
             print("División por cero en la derivada.")
@@ -197,7 +197,7 @@ def metodo_steffensen(f, x0, tol=28, max_iter=100):
     return array,max_iter
 
 
-def newton_steffensen(f, x0, tol=28, max_iter=100):
+def newton_steffensen(f, x0, tol=28,prec=28,max_iter=1000):
     '''
         Método de Newton-Raphson con aceleración de Steffensen.
         
@@ -228,7 +228,7 @@ def newton_steffensen(f, x0, tol=28, max_iter=100):
 
             x=array[-1]
             
-            if abs(array[-1]-array[-2]) < 10**(-tol):
+            if (abs(array[-1]-array[-2]) < 10**(-tol) or abs(f(array[-1])<10**(-prec))):
                 return array, i+1
 
         except ZeroDivisionError:
