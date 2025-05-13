@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ansible-playbook SecondPart.yaml
+ansible-playbook -i hosts SecondPart.yaml

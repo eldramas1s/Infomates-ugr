@@ -8,20 +8,15 @@
   hosts: my_root_hosts
   become: true       #Trabajamos con privilegios de root
 
-  vars: 
-    shell: /bin/bash # shell del usuario que vamos a crear
-    pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}" # Cargamos la clave pública desde el archivo id_rsa.pub con ruta relativa
-    group: wheel
-    path: /etc/sudoers
-    sshd_config: /etc/ssh/sshd_config
-    user: admin
+  vars_files:
+    - variables.yaml  # Cargamos las variables 
 
   tasks:
 
     # Creamos el usuario admin con permisos de root sin contraseña:
     #   1. Creamos el usuario con el módulo user de Ansible
     #   2. Añadimos el usuario al fichero sudoers con el módulo lineinfile de Ansible
-    - name: Crear usuario admin 
+    - name: Crear usuarios 
       ansible.builtin.user:         # Módulo de gestión de usuarios de Ansible
         name: "{{ item }}"
         state: present              # Aseguramos que el usuario existe, si existe previamente no lo crea
@@ -41,22 +36,22 @@
       ansible.builtin.lineinfile:   # Modulo de modificacion de ficheros
         path: "{{ path }}"
         state: present              # Aseguramos que la línea existe, si existe previamente no la añade
-        line: "{{ user }} ALL=(ALL) NOPASSWD: ALL" # Linea que vamos a añadir -> concede a usr los privilegios de usuario sin contraseña
+        line: "{{ usrs[0] }} ALL=(ALL) NOPASSWD: ALL" # Linea que vamos a añadir -> concede a usr los privilegios de usuario sin contraseña
         validate: 'visudo -cf %s' # Valida la sintaxis del fichero sudoers antes de escribirlo
 
     - name: Crear fichero authorized_keys
       ansible.builtin.file:
         path: "{{ file }}"
         state: touch
-        owner: "{{ user }}"
-        group: "{{ user }}"
+        owner: "{{ usrs[0] }}"
+        group: "{{ usrs[0] }}"
         mode: '0644'        # Permisos del fichero authorized_keys: el propietario puede leer y escribir, el grupo y otros solo pueden leer 
       vars:
-        file: "/home/{{ user }}/authorized_keys"
+        file: "/home/{{ usrs[0] }}/.ssh/authorized_keys"
 
-    - name: Copiar clave pública SSH a los usuarios
+    - name: Copiar clave pública SSH a admin
       ansible.posix.authorized_key:
-        user: "{{ user }}"
+        user: "{{ usrs[0] }}"
         state: present
         key: "{{ pub_key }}"
 

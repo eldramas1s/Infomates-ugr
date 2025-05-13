@@ -13,6 +13,8 @@
   hosts: apache
   become: true
   
+  vars_files:
+    - variables.yaml  # Cargamos las variables:
   tasks:
 
   # Instalamos apache
@@ -65,6 +67,9 @@
 - name: Configurar servidor Nginx
   hosts: nginx
   become: true
+
+  vars_files:
+    - variables.yaml  # Cargamos las variables:
 
   tasks:
 
