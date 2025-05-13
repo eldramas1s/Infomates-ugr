@@ -82,7 +82,7 @@ def metodo_wittaker(f,x0,m,tol=28,prec=28,max_iter=1000):
     array=[x0]       # Con esto evitamos problemas de que el array este vacio
     for i in range(max_iter):
         array.append(wittaker(f,array[-1],m))
-        if(abs(array[-1]-array[-2])<10**(-tol)or abs((array[-1]))<10**(-prec)):
+        if(abs(array[-1]-array[-2])<10**(-tol) or abs((array[-1]))<10**(-prec)):
             return array,i+1
     return array,max_iter
 
