@@ -272,3 +272,8 @@ Los pasos a seguir son lo siguientes:
     4. Establecer tipo de enlaces entre objetos.
 2. Inicialización del sistema
 3. Establecer las relaciones entre el modelo y la Interfaz de Usuario.
+
+[TODO]: Hacer a partir de la diap 19
+
+new -> estamos generando un enlace entre pro y cada una de las asignaturas de la lista (diap 26)
+Para obtener la lista de asignaturas, el plan de estudios debe mandar un mensaje al mutltiobjeto asignaturas.
