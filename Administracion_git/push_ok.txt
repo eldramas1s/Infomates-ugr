@@ -1,3 +1,21 @@
 ADD:
+warning: adding embedded git repository: Tercer_Curso/Segundo_Cuatri/IA/Practicas/Practica_3
+hint: You've added another git repository inside your current repository.
+hint: Clones of the outer repository will not contain the contents of
+hint: the embedded repository and will not know how to obtain it.
+hint: If you meant to add a submodule, use:
+hint: 
+hint: 	git submodule add <url> Tercer_Curso/Segundo_Cuatri/IA/Practicas/Practica_3
+hint: 
+hint: If you added this path by mistake, you can remove it from the
+hint: index with:
+hint: 
+hint: 	git rm --cached Tercer_Curso/Segundo_Cuatri/IA/Practicas/Practica_3
+hint: 
+hint: See "git help submodule" for more information.
 PUSH:
-Everything up-to-date
+ssh: Could not resolve hostname github.com: Temporary failure in name resolution
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.

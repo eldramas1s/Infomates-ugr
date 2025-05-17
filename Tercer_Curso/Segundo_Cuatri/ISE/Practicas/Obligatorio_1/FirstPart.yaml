@@ -51,9 +51,10 @@
 
     - name: Copiar clave pública SSH a admin
       ansible.posix.authorized_key:
-        user: "{{ usrs[0] }}"
+        user: "{{ item }}"
         state: present
         key: "{{ pub_key }}"
+      loop: "{{ usrs }}"
 
     # Crear el grupo wheel si no existe y añadir al usuario admin al grupo wheel
     #  1. Creamos el grupo wheel con el módulo group de Ansible

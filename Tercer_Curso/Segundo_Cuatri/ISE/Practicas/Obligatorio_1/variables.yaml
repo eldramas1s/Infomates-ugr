@@ -7,7 +7,7 @@ usrs:
   - juana
 
 shell: /bin/bash # shell del usuario que vamos a crear
-pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}" # Cargamos la clave pública desde el archivo id_rsa.pub con ruta relativa
+pub_key: "{{ lookup('file', './llaves/llave_prueba.pub') }}" # Cargamos la clave pública desde el archivo id_rsa.pub con ruta relativa
 group: wheel
 path: /etc/sudoers
 sshd_config: /etc/ssh/sshd_config
