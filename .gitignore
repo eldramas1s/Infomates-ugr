@@ -1,11 +1,16 @@
 #Ignorar imagenes
 #**/*.png
 
-**/Practicas_IA_2
+
+
+# Carpetas de clase con contenidos privado
+**/IA
+**/Bloque_2
+
+# llaves ssh
+**/llaves
 
 **/Base
-# Ignorar carpeta phoronix
-**/Bloque_2
 # Ignorar archivos temporales
 **/*tmp
 
