@@ -2,9 +2,12 @@
 
 # Variables del primer playbook
 usrs:
-  - admin
-  - pablo
-  - juana
+  - usr: admin
+    pub_key: "{{ lookup('file', './llaves/admin_key.pub') }}"
+  - usr: pablo
+    pub_key: "{{ lookup('file', './llaves/pablo_key.pub') }}"
+  - usr: juana
+    pub_key: "{{ lookup('file', './llaves/juana_key.pub') }}"
 
 shell: /bin/bash # shell del usuario que vamos a crear
 pub_key: "{{ lookup('file', './llaves/llave_prueba.pub') }}" # Cargamos la clave pública desde el archivo id_rsa.pub con ruta relativa

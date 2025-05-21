@@ -2,10 +2,6 @@
 ---
 #### Playbook terminado al completo ####
 
-#? Debe comprobarse la precondicion de abajo?
-#? Hay que bloquear todos los puertos a excepción del 22 y el 80? Para ambos casos
-#? Hay alguna forma de hacer que tome children de web para manipular los firewalls de ambos en una regla solo? (mirar inventario)
-
 # PRECONDICIONES:
 # Debe existir el usuario admin y debe tener privilegios de sudo sin contraseña
 

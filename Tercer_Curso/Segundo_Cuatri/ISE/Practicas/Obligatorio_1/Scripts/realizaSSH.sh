@@ -10,7 +10,7 @@ fi
 
 USUARIO="$1"
 DESTINO="$2"
-CLAVE="./llaves/llave_prueba"
+CLAVE="./llaves/${1}_key"
 
 # Elegir IP según segundo argumento
 if [ "$DESTINO" -eq 1 ]; then

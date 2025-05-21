@@ -1,8 +1,6 @@
 ---
 
 #### Playbook terminado al completo #### 
-#? Deberíamos contemplar que exista un archivo de configuración externo sobre permitRootLogin como aparece comentado? #!
-#? Hay que mandar ansible.cfg y hosts también?
 
 - name: Obligatorio_1
   hosts: my_root_hosts
@@ -18,42 +16,42 @@
     #   2. Añadimos el usuario al fichero sudoers con el módulo lineinfile de Ansible
     - name: Crear usuarios 
       ansible.builtin.user:         # Módulo de gestión de usuarios de Ansible
-        name: "{{ item }}"
+        name: "{{ item.usr }}"
         state: present              # Aseguramos que el usuario existe, si existe previamente no lo crea
         # Aquí podríamos añadir el usuario a algún grupo pero no lo hacemos pues es otra tarea
-        password: "{{ item | password_hash('sha512') }}" # Se crea la contraseña del usuario encriptada con sha512 (con motivos de prueba) 
+        password: "{{ item.usr | password_hash('sha512') }}" # Se crea la contraseña del usuario encriptada con sha512 (con motivos de prueba) 
       loop: "{{ usrs }}"
 
     - name: Asegurar permisos correctos en el directorio home de los usuarios
       ansible.builtin.file:
-        path: "/home/{{ item }}"
+        path: "/home/{{ item.usr }}"
         mode: '0755'
-        owner: "{{ item }}"
-        group: "{{ item }}"
+        owner: "{{ item.usr }}"
+        group: "{{ item.usr }}"
       loop: "{{ usrs }}"
 
     - name: Permitir sudo sin contraseña (solo a admin segun el enunciado)
       ansible.builtin.lineinfile:   # Modulo de modificacion de ficheros
         path: "{{ path }}"
         state: present              # Aseguramos que la línea existe, si existe previamente no la añade
-        line: "{{ usrs[0] }} ALL=(ALL) NOPASSWD: ALL" # Linea que vamos a añadir -> concede a usr los privilegios de usuario sin contraseña
+        line: "{{ usrs[0].usr }} ALL=(ALL) NOPASSWD: ALL" # Linea que vamos a añadir -> concede a usr los privilegios de usuario sin contraseña
         validate: 'visudo -cf %s' # Valida la sintaxis del fichero sudoers antes de escribirlo
 
     - name: Crear fichero authorized_keys
       ansible.builtin.file:
         path: "{{ file }}"
         state: touch
-        owner: "{{ usrs[0] }}"
-        group: "{{ usrs[0] }}"
+        owner: "{{ usrs[0].usr }}"
+        group: "{{ usrs[0].usr }}"
         mode: '0644'        # Permisos del fichero authorized_keys: el propietario puede leer y escribir, el grupo y otros solo pueden leer 
       vars:
-        file: "/home/{{ usrs[0] }}/.ssh/authorized_keys"
+        file: "/home/{{ usrs[0].usr }}/.ssh/authorized_keys"
 
     - name: Copiar clave pública SSH a admin
       ansible.posix.authorized_key:
-        user: "{{ item }}"
+        user: "{{ item.usr }}"
         state: present
-        key: "{{ pub_key }}"
+        key: "{{ item.pub_key }}"
       loop: "{{ usrs }}"
 
     # Crear el grupo wheel si no existe y añadir al usuario admin al grupo wheel
@@ -67,7 +65,7 @@
     
     - name: Añadir usuarios al grupo wheel
       ansible.builtin.user:
-        name: "{{ item }}"
+        name: "{{ item.usr }}"
         groups: "{{ group }}"     # podríamos usar group: "{{ group }}" pero para mayor generalidad usamos groups
         append: yes       # Añadimos el usuario al grupo wheel sin eliminarlo de otros grupos(requiere que usemos groups) -> si no aparece se borra de los demas grupos
         state: present
@@ -95,11 +93,11 @@
     #   2. Debe tener la clave publica
     #   3. Reiniciamos el servicio sshd para que los cambios tengan efecto
 
-    - name: Cambiar linea PermitRootLogin     #! Hay que tener en cuenta que puede haber creado un archivo de esta variable en /etc/ssh/sshd_config.d
+    - name: Cambiar linea PermitRootLogin     
       ansible.builtin.lineinfile:
         path: "{{ sshd_config }}"
         regexp: '^\#?PermitRootLogin\s+.*'
-        line: 'PermitRootLogin no' # Cambiamos la línea PermitRootLogin por PermitRootLogin prohibit-password
+        line: 'PermitRootLogin no'                # Cambiamos la línea PermitRootLogin por PermitRootLogin prohibit-password
         state: present                            
         validate: 'sshd -t -f %s'                 # Valida la sintaxis del fichero sshd_config antes de escribirlo
 
