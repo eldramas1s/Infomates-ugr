@@ -332,4 +332,4 @@ Lo latoso de esto no es hacer el diagrama de clases, sino que deberemos trabajar
  Además, en los diagramas de clases sólo deben aparecer las clases que salgan en los diagramas de comunicación pero no las que no aparezcan ahí, pudiendo no aparecer ciertas relaciones de generalización que haya en el diagrama de concpetos.
 
 
-**Nota**: Cuando creamos un objeto debemos enlazarlo al sistema de alguna manera, para que pertenezca al sistema y este conozca de su existencia.
+**Nota**: Cuando creamos un objeto debemos enlazarlo al sistema de alguna manera, para que pertenezca al sistema y este conozca de su existencia. De la misma manera, objeto que eliminemos se tiene que reflejar en el sistema.
