@@ -945,3 +945,9 @@ Para especificar las poscondiciones, hay que identificar en el diagrama de conce
 
 [TODO]: imagen diap 55
 
+***Últimas aclaraciones***
+- Poscondiciones siempre en pasado.
+- Operaciones en poscondiciones (**SOLO**)
+    - Crear/eliminar objetos/enlaces.
+    - Modificar/actualizar atributos.
+- Excepciones y precondiciones **NO** se repiten.

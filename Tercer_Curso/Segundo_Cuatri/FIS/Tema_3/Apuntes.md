@@ -145,7 +145,7 @@ El modelo de diseño se puede considerar como una elaboración o refinamiento de
 [TODO]: diap 23
 
 [TODO]: diap 24,25,26
-
+<a id='3.3'></a>
 ## 3.3.Diseño de los casos de uso
 
 ### Modelo de interacción de objetos
@@ -218,7 +218,7 @@ Resuelve el problema de elementos con demasiadas dependencias sobre elementos, y
 
 La solución propuesta es asignar responsabilidades de forma que se tengan elementos que dependena solamente de lo sñunicos elementos que necesite.
 
-Las conscuencias son:
+Las consecuencias son:
 - Malas: LLevada al extremo puede ocasionar diseños pobres; en un conjutno de clases debe haber un nivel de acoplamiento moderado y adecuado.
 - Buenas: No afectan los cambios en otros elementos, son fáciles de entender de manera aislada y provoca un aumento de la reutilización.
 
@@ -277,3 +277,55 @@ Los pasos a seguir son lo siguientes:
 
 new -> estamos generando un enlace entre pro y cada una de las asignaturas de la lista (diap 26)
 Para obtener la lista de asignaturas, el plan de estudios debe mandar un mensaje al mutltiobjeto asignaturas.
+
+<a id='3.4'></a>
+
+## 3.4. Diseño de la estructura de objetos
+
+### 3.4.1. Modelo de estructura de objetos
+[TODO]:Imagen diap 3
+
+#### Diagrama de clases de diseño
+
+Describe gráficamente las especificaciones de las clases e interfaces software, y las relaciones entre estas en una aplicación. A diferencia del modelo conceptual representa la solución a un problema.
+
+Puede contener los siguientes elementos:
+- Clases con sus atributos y operaciones.
+- Interfaces con sus operaciones y constantes.
+- Relaciones entre clases, entre interfaces o entre clases e interfaces.
+- Navegabilidad de las asociaciones.
+
+Herramientas para su representación:
+- Diagrama de clases de UML.
+
+**Nota**: El control 2 es un ejerficio con dos partes -> dado un diagrama o contrato hacer un diagrama de comunicacion. La segunda parte es generar el diagrama de clases de diseño desde el diagrama de comunicación.
+
+### 3.4.2. Elaboración del diagrama de clases del diseño
+
+Los pasos a seguir para su elaboración son:
+1. Identificar y representar las clases.
+    1. Identificar y representar las clases: dado un diagrama de comunicación, vamos a representar cada concepto de estilo `nombre:tipo` como una clse, concretamente el tipo de dato.
+    [TODO]: Imagen diap 6.
+    2. Representar las clases y sus atributos: los conceptos determinados en el paso anterior los representaremos como una nueva clase y le añadiremos atributos; dichos atributos deberán ser tomados del modelo conceptual.
+2. Identificar y añadir las operaciones.
+    1. Identificar operaciones: aparecerán en los diagramas de comunicación como operaciones usadas entre objetos. Las operaciones que son de incluir o identificar elementos de multiobjetos no se señalan porque realmente son operaciones por defecto para todos los multiobjetos. Es decir, son operaciones que se toman por conocidas en multiobjetos.
+> Una operación pertenece siempre a la clase del tipo del objeto al que va recibida, nunca del que sale.
+    2. Añadiremos las operaciones junto a su visibilidad(privada, pública o protegida) en cada una de las clases correspondientes.
+3. Añadir tipos de atributos y de parámetros. A diferencia de los modelos conceptuales, en este caso, **sí** que son obligatorios, tanto en los atributos como en las operaciones.
+4. Identificar e incluir asociaciones y su navegabilidad. Para obtener estos conceptos, vamos a mirar los estereotipos de visibilidad, es decir, los elementos `<<A>>` o similiares y de ellos dependerán los tipos de relaciones entre las clases que hemos identificado.
+    - Todos los envíos estereotipados como `<<A>>` deben de tener su correspondiente asociación (flecha continua) y la navegabilidad la determina la dirección del envío del mensaje y la multiplicidad la posible existencia de multiobjetos en la llegada.
+    - Basta con que haya un envío de una clase a otra para que se imponga la navegabilidad, luego pude haber la doble navegabilidad.
+    - La doble navegabilidad se impone al no poner flecha o al poner la flecha en ambos sentidos.
+    - Cuando la multiplicadad es 1 no es necesario poner el numerito.
+5. Identificar e incluir relaciones de dependencia. Todos los enlaces estereotipados con `<<L>>`(Envío local, solo el ámbito de la operacion), `<<P>>`(hacia donde se relaiza el envío contituye un elemento de la operación) o `<<G>>`. 
+    - Se traduce como una dependencia, se representan como líneas discontinuas con navegabilidad, es decir, hacia la clase que recibe el envío.
+    - Si ya esta puesta la asociación no hay que poner las dependencias; no es necesario, pero tampoco es un error.
+6. Incluir relaciones de generalización. Las generalizaciones que hay en el modelo conceptual también pueden aparecer en el diagrama de clases del diseño. Para obtenerlas hayque seguir el siguiente procedimiento. En el diagrama de clases del diseño obtenido, observar:
+    - Clases con nombres que identifiquen las distintas clasificaciones de un conjunto de objetos.
+    - Clases con los mismos atributos.
+    - Clases con la misma asociación con una clase.
+    - Clases con operaciones con el mismo nombre o parecido. Para asegurar que se corresponde con igual o parecida semántica, mirar la similitud de estructura de los diagramas de comunicación correspondientes.
+is e da una o varias de estas situaciones establecer una generalización entre las clases, llevando a la superclase atributos, operaciones y asociaciones comunes.
+**Importante:** El examen final es por la mañana.
+
+Lo latoso de esto no es hacer el diagrama de clases, sinoq eu deberemos trabajar con muchos diagramas de comunicación, lo cual puede ser lioso. Es decir, sólo hay un diagrama de clases.
