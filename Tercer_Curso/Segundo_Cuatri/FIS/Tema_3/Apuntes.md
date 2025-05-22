@@ -328,4 +328,5 @@ Los pasos a seguir para su elaboración son:
 is e da una o varias de estas situaciones establecer una generalización entre las clases, llevando a la superclase atributos, operaciones y asociaciones comunes.
 **Importante:** El examen final es por la mañana.
 
-Lo latoso de esto no es hacer el diagrama de clases, sinoq eu deberemos trabajar con muchos diagramas de comunicación, lo cual puede ser lioso. Es decir, sólo hay un diagrama de clases.
+Lo latoso de esto no es hacer el diagrama de clases, sino que deberemos trabajar con muchos diagramas de comunicación, lo cual puede ser lioso. Es decir, sólo hay un diagrama de clases.
+ Además, en los diagramas de clases sólo deben aparecer las clases que salgan en los diagramas de comunicación pero no las que no aparezcan ahí, pudiendo no aparecer ciertas relaciones de generalización que haya en el diagrama de concpetos.
