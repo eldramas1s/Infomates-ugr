@@ -333,3 +333,5 @@ Lo latoso de esto no es hacer el diagrama de clases, sino que deberemos trabajar
 
 
 **Nota**: Cuando creamos un objeto debemos enlazarlo al sistema de alguna manera, para que pertenezca al sistema y este conozca de su existencia. De la misma manera, objeto que eliminemos se tiene que reflejar en el sistema.
+
+**Nota**: Cuando la salida de una operación engloba elementos de varias clases creamos un objeto local `<<L>>` de manera que englobe todos estos datos. No obstante, no es una clase del  sistema y no se representa en el diagrama de clases.
