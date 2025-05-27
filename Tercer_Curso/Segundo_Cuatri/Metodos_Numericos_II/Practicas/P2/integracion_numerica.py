@@ -94,17 +94,14 @@ def Trapecios_compuesta(f,a,b,n):
         resultado de la integración
     """
     
-    h=(b-a)/n
-    
-    suma=f(a)+f(b)
-    
-    # Generaremos 2(n+1) nodos para la integración simulando ya que se han tomado los puntos medios.
-    
-    x_values = np.linspace(a, b, n+1)  # Genera los nodos de integración
-    
-    for i in range(1, len(x_values)-1):
-        suma+=2*f(x_values[i])
-    return (h/2)*suma
+    h = (b-a)/n
+    nodos = np.linspace(a, b, n+1)  # Genera los nodos de integración (incluyendo los extremos)
+    # Otra opción sería
+    # nodos = np.array([a + i*h for i in range(num_nodos+1)])
+
+    return h/2*(f(a)+2*np.sum(f(nodos[1:-1]))+f(b))
+    # Otra posible implementación sería
+    # return h/2*(f(a)+2*sum([f(a+i*h) for i in range(1,num_nodos)])+f(b))
 
 def calcular_T2n(i, a, b, f, Ti):
     """
@@ -142,6 +139,7 @@ def Integracion_Romberg(f,a,b,tol=5,max_iter=20):
 
     romberg0 = [Trapecios_compuesta(f, a, b, 1)]
     
+    
     for n in range(1, max_iter):
         # Se calcula R(n,0)
         romberg1 = [Trapecios_compuesta(f, a, b, 2**n)]
@@ -151,14 +149,46 @@ def Integracion_Romberg(f,a,b,tol=5,max_iter=20):
             romberg1.append((4**i * romberg1[i - 1] - romberg0[i - 1]) / (4**i - 1))
         
         # Condición de parada usando los últimos elementos de la diagonal
-        if abs(romberg1[n] - romberg0[n - 1]) < 10**tol:
+        if abs(romberg1[n] - romberg0[n - 1]) < 10**(-tol):
             return romberg1[n]
 
         # Actualiza romberg0 para la siguiente iteración
         romberg0 = romberg1
     
-    # Si se alcanza el máximo de iteraciones sin cumplir la condición
-    print("Advertencia: no se alcanzó la tolerancia deseada.")
+    return romberg1[-1]
+
+def Integracion_Romberg_eficiente(f,a,b,tol=5,max_iter=20):
+    """
+    Método de integración de Romberg.
+    Parametros:
+    f: función a integrar
+    a: límite inferior
+    b: límite superior
+    N: número de pasos
+    Devuelve:
+    resultado de la integración
+    """
+
+    romberg0 = [Trapecios_compuesta(f, a, b, 1)]
+    romberg2n= [romberg0[0]]  # Inicializa romberg2n con el primer valor de romberg0
+    
+    for n in range(1, max_iter):
+        # Se calcula R(n,0)
+        # romberg1 = [Trapecios_compuesta(f, a, b, 2**n)]
+        romberg2n.append(calcular_T2n(n, a, b, f, romberg2n[n - 1]))
+        romberg1 = [romberg2n[n]]
+        
+        # Se calculan R(n,i) con 1 <= i <= n
+        for i in range(1, n + 1):
+            romberg1.append((4**i * romberg1[i - 1] - romberg0[i - 1]) / (4**i - 1))
+        
+        # Condición de parada usando los últimos elementos de la diagonal
+        if abs(romberg1[n] - romberg0[n - 1]) < 10**(-tol):
+            return romberg1[n]
+
+        # Actualiza romberg0 para la siguiente iteración
+        romberg0 = romberg1
+    
     return romberg1[-1]
 
 def Integracion_adaptativa(f,a,b,eps):
