@@ -1,0 +1,109 @@
+---
+
+#### Playbook terminado al completo #### 
+
+- name: Obligatorio_1
+  hosts: my_root_hosts
+  become: true       #Trabajamos con privilegios de root
+
+  vars_files:
+    - variables.yaml  # Cargamos las variables 
+
+  tasks:
+
+    # Creamos el usuario admin con permisos de root sin contraseña:
+    #   1. Creamos el usuario con el módulo user de Ansible
+    #   2. Añadimos el usuario al fichero sudoers con el módulo lineinfile de Ansible
+    - name: Crear usuarios 
+      ansible.builtin.user:         # Módulo de gestión de usuarios de Ansible
+        name: "{{ item.usr }}"
+        state: present              # Aseguramos que el usuario existe, si existe previamente no lo crea
+        # Aquí podríamos añadir el usuario a algún grupo pero no lo hacemos pues es otra tarea
+        password: "{{ item.usr | password_hash('sha512') }}" # Se crea la contraseña del usuario encriptada con sha512 (con motivos de prueba) 
+      loop: "{{ usrs }}"
+
+    - name: Asegurar permisos correctos en el directorio home de los usuarios
+      ansible.builtin.file:
+        path: "/home/{{ item.usr }}"
+        mode: '0755'
+        owner: "{{ item.usr }}"
+        group: "{{ item.usr }}"
+      loop: "{{ usrs }}"
+
+    - name: Permitir sudo sin contraseña (solo a admin segun el enunciado)
+      ansible.builtin.lineinfile:   # Modulo de modificacion de ficheros
+        path: "{{ path }}"
+        state: present              # Aseguramos que la línea existe, si existe previamente no la añade
+        line: "{{ usrs[0].usr }} ALL=(ALL) NOPASSWD: ALL" # Linea que vamos a añadir -> concede a usr los privilegios de usuario sin contraseña
+        validate: 'visudo -cf %s' # Valida la sintaxis del fichero sudoers antes de escribirlo
+
+    - name: Crear fichero authorized_keys
+      ansible.builtin.file:
+        path: "{{ file }}"
+        state: touch
+        owner: "{{ usrs[0].usr }}"
+        group: "{{ usrs[0].usr }}"
+        mode: '0644'        # Permisos del fichero authorized_keys: el propietario puede leer y escribir, el grupo y otros solo pueden leer 
+      vars:
+        file: "/home/{{ usrs[0].usr }}/.ssh/authorized_keys"
+
+    - name: Copiar clave pública SSH a admin
+      ansible.posix.authorized_key:
+        user: "{{ item.usr }}"
+        state: present
+        key: "{{ item.pub_key }}"
+      loop: "{{ usrs }}"
+
+    # Crear el grupo wheel si no existe y añadir al usuario admin al grupo wheel
+    #  1. Creamos el grupo wheel con el módulo group de Ansible
+    #  2. Añadimos el usuario admin al grupo wheel con el módulo user de Ansible
+    - name: Crear grupo wheel
+      ansible.builtin.group:
+        name: "{{ group }}"
+        state: present
+        # Podriamos crear un grupo del sistema con el parámetro system: yes
+    
+    - name: Añadir usuarios al grupo wheel
+      ansible.builtin.user:
+        name: "{{ item.usr }}"
+        groups: "{{ group }}"     # podríamos usar group: "{{ group }}" pero para mayor generalidad usamos groups
+        append: yes       # Añadimos el usuario al grupo wheel sin eliminarlo de otros grupos(requiere que usemos groups) -> si no aparece se borra de los demas grupos
+        state: present
+      loop: "{{ usrs }}" 
+
+    - name: Permitir sudo a los usuarios de wheel
+      ansible.builtin.lineinfile:   # Modulo de modificacion de ficheros
+        path: "{{ path }}"
+        regexp: '^#\s*%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL'
+        state: present              # Aseguramos que la línea existe, si existe previamente no la añade
+        line: "%{{ group }} ALL=(ALL) ALL" # Linea que vamos a añadir -> concede a usr los privilegios de usuario sin contraseña
+        validate: 'visudo -cf %s' # Valida la sintaxis del fichero sudoers antes de escribirlo
+
+    # Deshabilitar el acceso por contraseña sobre SSH del usuario root
+    # Para ello editaremos el archivo /etc/ssh/sshd_config y cambiaremos la línea PermitRootLogin
+    # Las opciones son:
+    #   1. yes: permite el acceso por contraseña
+    #   2. no: no permite el acceso 
+    #   3. prohibit-password: permite el acceso por llave pública pero no por contraseña
+    #   4. forced-commands-only: permite el acceso por llave pública pero no por contraseña y solo si se ejecuta un comando forzado
+    #   5. without-password: permite el acceso por llave pública pero no por contraseña
+    # Usaremos por tanto la opcion no.
+    # Pasos:
+    #   1. Editamos el archivo /etc/ssh/sshd_config y cambiamos la linea PermitRootLogin
+    #   2. Debe tener la clave publica
+    #   3. Reiniciamos el servicio sshd para que los cambios tengan efecto
+
+    - name: Cambiar linea PermitRootLogin     
+      ansible.builtin.lineinfile:
+        path: "{{ sshd_config }}"
+        regexp: '^\#?PermitRootLogin\s+.*'
+        line: 'PermitRootLogin no'                # Cambiamos la línea PermitRootLogin por PermitRootLogin prohibit-password
+        state: present                            
+        validate: 'sshd -t -f %s'                 # Valida la sintaxis del fichero sshd_config antes de escribirlo
+
+    - name: Reiniciar servicio sshd
+      ansible.builtin.systemd:
+        name: sshd
+        state: restarted
+        enabled: true 
+               
