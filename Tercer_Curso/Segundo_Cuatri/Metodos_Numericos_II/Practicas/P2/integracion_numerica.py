@@ -34,38 +34,38 @@ def formula_rectangulo_medio(f,a,b,n):
 
 def Trapecio_simple(f,a,b):
     '''
-    Fórmula simple del trapecio 
-    Parametros:
-    f: función a integrar
-    a: límite inferior
-    b: límite superior
-    Devuelve:
-    aproximación de la integración
+        Fórmula simple del trapecio 
+        Parametros:
+            f: función a integrar
+            a: límite inferior
+            b: límite superior
+        Devuelve:
+            aproximación de la integración
     '''
     return (b-a)*(f(a)+f(b))/2
     
 def Simpson_simple(f,a,b):
     '''
-    Fórmula simple de Simpson
-    Parámetros:
-        f: funcion a integrar
-        a: limite inferior
-        b: limite superior
+        Fórmula simple de Simpson
+        Parámetros:
+            f: funcion a integrar
+            a: limite inferior
+            b: limite superior
         Devuelve:
-        aproximacion de la integral
+            aproximacion de la integral
     '''
     return (b-a)/6*(f(a)+4*f((a+b)*0.5)+f(b))
 
 def Simpson_compuesta(f,a,b,n):
     """ 
-    Fómula compuesta de Simpson
+        Fómula compuesta de Simpson
         Parametros:
-        f: función a integrar
-        a: límite inferior
-        b: límite superior
-        n: número de subintervalos
+            f: función a integrar
+            a: límite inferior
+            b: límite superior
+            n: número de subintervalos
         Devuelve:
-        resultado de la integración
+            resultado de la integración
     """
     
     h=(b-a)/n
@@ -84,14 +84,15 @@ def Simpson_compuesta(f,a,b,n):
     return (h/3)*suma
 
 def Trapecios_compuesta(f,a,b,n):
-    """fórmula compuesta de los trapecios
+    """
+        Fórmula compuesta de los trapecios
         Parametros:
-        f: función a integrar
-        a: límite inferior
-        b: límite superior
-        n: número de subintervalos
+            f: función a integrar
+            a: límite inferior
+            b: límite superior
+            n: número de subintervalos
         Devuelve:
-        resultado de la integración
+            resultado de la integración
     """
     
     h = (b-a)/n
@@ -105,15 +106,15 @@ def Trapecios_compuesta(f,a,b,n):
 
 def calcular_T2n(i, a, b, f, Ti):
     """
-    Calcula el valor de T2n utilizando el método del trapecio.
-    Parámetros:
-    i: índice del nivel anterior
-    a: límite inferior
-    b: límite superior
-    f: función a integrar
-    Ti: Ti (nivel anterior)
-    Devuelve:
-    T2n: valor de T2n
+        Calcula el valor de T2n utilizando el método del trapecio.
+        Parámetros:
+            i: índice del nivel anterior
+            a: límite inferior
+            b: límite superior
+            f: función a integrar
+            Ti: Ti (nivel anterior)
+        Devuelve:
+            T2n: valor de T2n
     """
     n = 2**i
     h = (b - a) / n
@@ -127,14 +128,14 @@ def calcular_T2n(i, a, b, f, Ti):
 
 def Integracion_Romberg(f,a,b,tol=5,max_iter=20):
     """
-    Método de integración de Romberg.
-    Parametros:
-    f: función a integrar
-    a: límite inferior
-    b: límite superior
-    N: número de pasos
-    Devuelve:
-    resultado de la integración
+        Método de integración de Romberg.
+        Parametros:
+            f: función a integrar
+            a: límite inferior
+            b: límite superior
+            N: número de pasos
+        Devuelve:
+            resultado de la integración
     """
 
     romberg0 = [Trapecios_compuesta(f, a, b, 1)]
@@ -159,14 +160,14 @@ def Integracion_Romberg(f,a,b,tol=5,max_iter=20):
 
 def Integracion_Romberg_eficiente(f,a,b,tol=5,max_iter=20):
     """
-    Método de integración de Romberg.
-    Parametros:
-    f: función a integrar
-    a: límite inferior
-    b: límite superior
-    N: número de pasos
-    Devuelve:
-    resultado de la integración
+        Método de integración de Romberg.
+        Parametros:
+            f: función a integrar
+            a: límite inferior
+            b: límite superior
+            N: número de pasos
+        Devuelve:
+            resultado de la integración
     """
 
     romberg0 = [Trapecios_compuesta(f, a, b, 1)]
@@ -193,15 +194,15 @@ def Integracion_Romberg_eficiente(f,a,b,tol=5,max_iter=20):
 
 def Integracion_adaptativa(f,a,b,eps):
     '''
-    Metodo de integracion adaptativa
-    Parámetros:
-        f: funcion a integrar
-        a: limite inferior
-        b: limite superior
-        eps: valor de acotación del error
-        
-    Devuelve:
-    aproximación de la integral
+        Metodo de integracion adaptativa
+        Parámetros:
+            f: funcion a integrar
+            a: limite inferior
+            b: limite superior
+            eps: valor de acotación del error
+            
+        Devuelve:
+            aproximación de la integral
     '''
     m=(a+b)/2
     valor_base=Simpson_simple(f,a,b)
