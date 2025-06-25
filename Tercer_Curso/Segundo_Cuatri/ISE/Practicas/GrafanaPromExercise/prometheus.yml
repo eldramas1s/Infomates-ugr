@@ -1,0 +1,14 @@
+global:
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: "prometheus_service"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  - job_name: "node_exporter_vm"
+    static_configs:
+      - targets: ["192.168.57.3:9100"]
+
+  - job_name: "api_WEB"
+    static_configs:
+      - targets: ["host.docker.internal:3000"]    
