@@ -36,34 +36,47 @@ def formulador(f,x_values,simbolo,orden):
     
     return p.subs({x:simbolo}).simplify()
 
-def derivada_numerica(f, x, formula=0, h=1e-5):
-    """
-    Calcula la derivada numérica de una función en un punto dado utilizando diferentes fórmulas.
-
+def derivada_numerica_iterativa(f, a, formula, n=1, h=0.001):
+    
+    '''
+    Función que calcula la derivada numérica de una función en un punto dado utilizando una fórmula específica.
+    Procede de forma iterativa para calcular la derivada de orden n.
     Parámetros:
     - f: función a derivar
-    - x: punto en el que se evalúa la derivada
-    - formula: tipo de fórmula a utilizar (0: centrada, 1: progresiva, 2: regresiva,3:centrada con dos nodos,4:centrada con cinco nodos)
-    - h: paso para la aproximación
+    - a: punto en el que se evalúa la derivada
+    - formula: fórmula a utilizar para calcular la derivada
+    - n: orden de la derivada a calcular (por defecto 1)
+    - h: paso a utilizar para la derivada numérica (por defecto 1e-5)
+    Retorna:
+    - Derivada numérica de orden n de la función en el punto dado
+    '''
     
-    Return:
-    - Derivada numérica de la función en el punto x utilizando la fórmula especificada.
-    - Si la fórmula no es válida, se lanza una excepción.
-    """
-    if formula == 0:
-        # Fórmula centrada
-        return (f(x + h) - f(x - h)) / (2 * h)
-    elif formula == 1:
-        # Fórmula progresiva
-        return (f(x + h) - f(x)) / h
-    elif formula == 2:
-        # Fórmula regresiva
-        return (f(x) - f(x - h)) / h
-    elif formula == 3:
-        # Fórmula centrada con tres nodos
-        return (f(x + h) - f(x - h)) / (2 * h)
-    elif formula == 4:
-        # Fórmula centrada con cinco nodos
-        return (-f(x + 2*h) + 8*f(x + h) - 8*f(x - h) + f(x - 2*h)) / (12 * h)
+    if n==0:
+        return f(a)
     else:
-        raise ValueError("Fórmula no válida. Debe ser 0, 1, 2, 3 o 4.")
+        fn = f          # Derivada n-ésima de f según la aproximación.
+        for i in range(n):
+            fn = lambda x, fn=fn: formula(fn, x, h)
+    
+    return fn(a)
+    
+   
+def derivada_numerica_recursiva(f, a, formula, n=1, h=1e-5):
+    
+    '''
+    Función que calcula la derivada numérica de una función en un punto dado utilizando una fórmula específica.
+    Procede de forma recursiva para calcular la derivada de orden n.
+    Parámetros:
+    - f: función a derivar
+    - a: punto en el que se evalúa la derivada
+    - formula: fórmula a utilizar para calcular la derivada
+    - n: orden de la derivada a calcular (por defecto 1)
+    - h: paso a utilizar para la derivada numérica (por defecto 1e-5)
+    Retorna:
+    - Derivada numérica de orden n de la función en el punto dado
+    '''
+    
+    if n==0:
+        return f(a)
+    else:
+        return formula(lambda x: derivada_numerica_recursiva(f,x,formula,n-1,h),a,h)
