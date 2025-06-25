@@ -4,14 +4,12 @@
 
 
 # Carpetas de clase con contenidos privado
-**/Practica2_actual
-**/Obligatorio_ii
-**/Monitoring
 
 # llaves ssh
 **/llaves
 
 **/Base
+
 # Ignorar archivos temporales
 **/*tmp
 
