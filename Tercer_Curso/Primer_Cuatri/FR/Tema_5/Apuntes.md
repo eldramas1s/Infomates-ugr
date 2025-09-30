@@ -324,7 +324,7 @@ Siguiendo con las características se cumple que:
 Una página web se define como un fichero _HTML_ formado por una serie de objetos como otrso ficheros(enlaces), imágenes, Java applets, ficheros de audio... Donde cada objeto se direcciona por una URL que tiene la siguiente estructura:
 
 
-(//(user(:password)@)dominio(:puerto)(/path)(/recurso)(?solicitud)(/\#fragment))
+**(//(user(:password)@)dominio(:puerto)(/path)(/recurso)(?solicitud)(/\#fragment))**
 
 
 Dichas páginas webs se rigen por le protocolo _HTTP_ mediante el modelo cliente servidor donde el cliente solicita, recibe y muestra los objetos en la red y el servidor se encarga de enviar los objetos web en respuesta a las peticiones.
