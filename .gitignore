@@ -28,4 +28,5 @@
 **/.DS_Store
 
 # Ignorar archivos x86.64
-**/ *\.x86_64
+# godot
+*/godot.x86_64
