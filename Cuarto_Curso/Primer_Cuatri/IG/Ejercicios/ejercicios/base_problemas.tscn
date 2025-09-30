@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://fnu144mmjrj"]
+
+[ext_resource type="Script" uid="uid://c8qnneiwugyrt" path="res://raiz_problemas_2D.gd" id="1_lh0aa"]
+[ext_resource type="Script" uid="uid://6rrx7lg01qkr" path="res://Scripts/poligono_regular_color_plano.gd" id="2_plp8k"]
+[ext_resource type="Script" uid="uid://b8qloag4rff2h" path="res://Scripts/poligono_regular_gradaciones.gd" id="3_n83fs"]
+
+[node name="BaseProblemas" type="Node2D"]
+script = ExtResource("1_lh0aa")
+
+[node name="PoligonoRegularColorPlano" type="MeshInstance2D" parent="."]
+visible = false
+script = ExtResource("2_plp8k")
+
+[node name="PoligonoRegularGradaciones" type="MeshInstance2D" parent="."]
+script = ExtResource("3_n83fs")
