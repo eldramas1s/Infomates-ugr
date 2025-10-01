@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="P2"
 run/main_scene="uid://j5ylltbkvldv"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 Utilidades="*res://utilidades.gd"
+Normales="*res://normales.gd"

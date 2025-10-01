@@ -9,6 +9,8 @@ func _ready() -> void:
 		
 	var normales := Utilidades.calcNormales( vertices, triangulos )
 			
+	#Normales.genSegNormales(vertices,normales,1.0,Color(1,1,1))
+			
 	## inicializar el array con las tablas
 	var tablas : Array = []   ## tabla vacía incialmente
 	tablas.resize( Mesh.ARRAY_MAX ) ## redimensionar al tamaño adecuado
@@ -28,6 +30,7 @@ func _ready() -> void:
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_VERTEX
 	
 	material_override = mat
+	
 	
 	
 	

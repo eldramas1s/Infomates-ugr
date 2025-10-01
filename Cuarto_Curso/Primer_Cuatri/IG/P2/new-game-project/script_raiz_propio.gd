@@ -16,3 +16,4 @@ func _unhandled_key_input(key_event):
 		else:
 			viewport.debug_draw = Viewport.DEBUG_DRAW_DISABLED
 			print("Dibujar en modo aristas: desactivado")
+			
