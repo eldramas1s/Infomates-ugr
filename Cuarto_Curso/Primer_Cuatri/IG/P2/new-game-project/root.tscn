@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://j5ylltbkvldv"]
+[gd_scene load_steps=11 format=3 uid="uid://j5ylltbkvldv"]
 
-[ext_resource type="Script" uid="uid://bqrv44cavspmy" path="res://camara_3d_orbital_simple.gd" id="1_pq8q7"]
-[ext_resource type="Script" uid="uid://dag4q68bk6png" path="res://script_raiz_propio.gd" id="1_vvh5c"]
-[ext_resource type="Script" uid="uid://q18dixnjdj21" path="res://ejes3D.gd" id="2_pyidc"]
+[ext_resource type="Script" uid="uid://bqrv44cavspmy" path="res://Scripts/camara_3d_orbital_simple.gd" id="1_pq8q7"]
+[ext_resource type="Script" uid="uid://dag4q68bk6png" path="res://Scripts/script_raiz_propio.gd" id="1_vvh5c"]
+[ext_resource type="Script" uid="uid://q18dixnjdj21" path="res://Scripts/ejes3D.gd" id="2_pyidc"]
 [ext_resource type="PackedScene" uid="uid://cyqon6vtaedoy" path="res://Modelos/Sci-fi_power_cell/Sci Fi Wall Power Cell.glb" id="4_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://o31yp4p3gc0x" path="res://Modelos/Ferrari-f40/DREAM FERRARI F40.glb" id="5_l8v81"]
 [ext_resource type="ArrayMesh" uid="uid://ci2hjpxhh6qdi" path="res://Modelos/Basketball/CHAHIN_BASKETBALL.obj" id="6_l8v81"]
-[ext_resource type="Script" uid="uid://dv46toag0aspw" path="res://cubo_8_vertices.gd" id="7_bf3um"]
-[ext_resource type="Script" uid="uid://ds72837623t2e" path="res://donut.gd" id="7_vyht1"]
-[ext_resource type="Script" uid="uid://bph8gaptmiw2e" path="res://cubo_24_vertices.gd" id="8_huihk"]
+[ext_resource type="Script" uid="uid://dv46toag0aspw" path="res://Scripts/cubo_8_vertices.gd" id="7_bf3um"]
+[ext_resource type="Script" uid="uid://ds72837623t2e" path="res://Scripts/donut.gd" id="7_vyht1"]
+[ext_resource type="Script" uid="uid://bph8gaptmiw2e" path="res://Scripts/cubo_24_vertices.gd" id="8_huihk"]
+[ext_resource type="Script" uid="uid://bfguvic8jvn7d" path="res://Scripts/malla_de_revolucion.gd" id="9_tw3kd"]
 
 [node name="root" type="Node3D"]
 script = ExtResource("1_vvh5c")
@@ -39,10 +40,16 @@ visible = false
 mesh = ExtResource("6_l8v81")
 
 [node name="Cubo8Vertices" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
 script = ExtResource("7_bf3um")
 
 [node name="Cubo24Vertices" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
 script = ExtResource("8_huihk")
 
+[node name="MallaDeRevolucion" type="MeshInstance3D" parent="ObjetosP2"]
+script = ExtResource("9_tw3kd")
+
 [node name="Donut" type="MeshInstance3D" parent="."]
+visible = false
 script = ExtResource("7_vyht1")

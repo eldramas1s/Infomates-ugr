@@ -17,5 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Utilidades="*res://utilidades.gd"
-Normales="*res://normales.gd"
+Utilidades="*res://Scripts/utilidades.gd"
+Normales="*res://Scripts/normales.gd"
+Revolucion="*res://Scripts/revolucion.gd"
