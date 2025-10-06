@@ -26,7 +26,6 @@ script = ExtResource("1_pq8q7")
 script = ExtResource("2_pyidc")
 
 [node name="ObjetosP2" type="Node3D" parent="."]
-visible = false
 
 [node name="Sci Fi Wall Power Cell" parent="ObjetosP2" instance=ExtResource("4_jnlp7")]
 visible = false
@@ -48,6 +47,7 @@ visible = false
 script = ExtResource("8_huihk")
 
 [node name="MallaDeRevolucion" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
 script = ExtResource("9_tw3kd")
 
 [node name="Donut" type="MeshInstance3D" parent="."]

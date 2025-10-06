@@ -71,7 +71,9 @@ func _ready() -> void:
 	triangulos.append_array([10,1,4,10,4,7])	
 		
 	var normales := Utilidades.calcNormales( vertices, triangulos )
-			
+	
+	var norm : MeshInstance3D = Normales.genSegNormales(vertices,normales,1.0,Color(0,0,0))	
+	
 	## inicializar el array con las tablas
 	var tablas : Array = []   ## tabla vacía incialmente
 	tablas.resize( Mesh.ARRAY_MAX ) ## redimensionar al tamaño adecuado
@@ -88,6 +90,7 @@ func _ready() -> void:
 	mat.albedo_color = Color( 1.0, 0.5, 0.2 )
 	mat.metallic = 0.3
 	mat.roughness = 0.2
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_VERTEX
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	
 	material_override = mat

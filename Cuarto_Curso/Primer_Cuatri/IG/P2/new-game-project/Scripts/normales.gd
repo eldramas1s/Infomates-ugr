@@ -1,8 +1,8 @@
 extends Node
 
-func genSegNormales( verts , norms : PackedVector3Array, lon : float, color : Color ) -> MeshInstance3D :
+func genSegNormales( verts : PackedVector3Array , norms : PackedVector3Array, lon : float, color : Color ) -> MeshInstance3D :
 	
-	var norm = MeshInstance3D.new()
+	var meshinstance = MeshInstance3D.new()
 	var mesh = ArrayMesh.new()
 	# Como me estan dando los vertices y las normales, debo obtener un nuevo punto usando la longitud
 	# dada por el parametro lon.
@@ -31,12 +31,12 @@ func genSegNormales( verts , norms : PackedVector3Array, lon : float, color : Co
 	mat.vertex_color_use_as_albedo = true
 	mat.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
 	
-	norm.mesh = mesh
-	norm.material_override = mat
+	meshinstance.mesh = mesh
+	meshinstance.material_override = mat
 	
-	get_tree().current_scene.add_child(norm)
+	add_child(meshinstance)
 	
-	return norm
+	return meshinstance
 	
 
 func getNormalVertex( vertex : Vector3, normal : Vector3, lon : float) -> Vector3 :

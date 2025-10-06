@@ -26,8 +26,8 @@ func calcNormales( verts : PackedVector3Array,
 		var b := verts[t[1]] ; 
 		var c := verts[t[2]] ; 
 		var normalv := (c-a).cross(b-a).normalized()
-		for iv in t :
-			normales[iv] += normalv
+		for iv in 3 :
+			normales[t[iv]] += normalv
 	
 	# Paso 4: normalizar normales
 	for iv in nv:
