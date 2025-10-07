@@ -3,6 +3,7 @@ extends Node
 # Esta funcion asume que los vertices vienen ordenados segun la altura,
 # en otro caso no se contempla su funcionamiento.
 # n es el numero de veces que quiero que este el perfil, no el numero de duplicaciones
+# El algoritmo esta creado para que la snormales queden hacia fuera si el perfil esta dado de arriba a abajo.
 func revoluciona(perfil : PackedVector2Array, n : int , vertex : PackedVector3Array, indexes : PackedInt32Array):
 	if vertex.size()!=0:
 		vertex.clear()
