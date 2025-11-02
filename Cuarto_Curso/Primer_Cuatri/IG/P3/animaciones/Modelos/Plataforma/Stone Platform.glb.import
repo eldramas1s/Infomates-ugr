@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c0hsk8sao0kmq"
-path="res://.godot/imported/Stone Platform.glb-49cbd66f9f595dc20be38e202cf0cae2.scn"
+uid="uid://bai7uafswkhyf"
+path="res://.godot/imported/Stone Platform.glb-43ee345f17ebcda0874fa5edabdbe4c8.scn"
 
 [deps]
 
-source_file="res://Modelos3D/Plataforma/Stone Platform.glb"
-dest_files=["res://.godot/imported/Stone Platform.glb-49cbd66f9f595dc20be38e202cf0cae2.scn"]
+source_file="res://Modelos/Plataforma/Stone Platform.glb"
+dest_files=["res://.godot/imported/Stone Platform.glb-43ee345f17ebcda0874fa5edabdbe4c8.scn"]
 
 [params]
 

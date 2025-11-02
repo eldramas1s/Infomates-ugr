@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://byxgq6swhtmeo"
-path="res://.godot/imported/metal scaffold.glb-35a1ba22c550f8bc5d68372ce3617881.scn"
+uid="uid://ii51t7tqdy42"
+path="res://.godot/imported/Crane.glb-734617da0f96f2b368c122d7301d1d85.scn"
 
 [deps]
 
-source_file="res://Modelos3D/pilar/metal scaffold.glb"
-dest_files=["res://.godot/imported/metal scaffold.glb-35a1ba22c550f8bc5d68372ce3617881.scn"]
+source_file="res://Modelos/gancho/Crane.glb"
+dest_files=["res://.godot/imported/Crane.glb-734617da0f96f2b368c122d7301d1d85.scn"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bipal0ef0mkg2"
-path.s3tc="res://.godot/imported/Crane_hazard-stripes-texture.jpg-a2ad57c3343d20014a9bd68a8d7c3613.s3tc.ctex"
+uid="uid://dt2mg6lvcdg0i"
+path.s3tc="res://.godot/imported/Crane_hazard-stripes-texture.jpg-016666848d9c3bcb6a86ddb15b41b620.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Modelos3D/gancho/Crane_hazard-stripes-texture.jpg"
-dest_files=["res://.godot/imported/Crane_hazard-stripes-texture.jpg-a2ad57c3343d20014a9bd68a8d7c3613.s3tc.ctex"]
+source_file="res://Modelos/gancho/Crane_hazard-stripes-texture.jpg"
+dest_files=["res://.godot/imported/Crane_hazard-stripes-texture.jpg-016666848d9c3bcb6a86ddb15b41b620.s3tc.ctex"]
 
 [params]
 
