@@ -13,8 +13,8 @@ visible = false
 script = ExtResource("2_plp8k")
 
 [node name="PoligonoRegularGradaciones" type="MeshInstance2D" parent="."]
-visible = false
 script = ExtResource("3_n83fs")
 
 [node name="PoligonoRegularAristas" type="MeshInstance2D" parent="."]
+visible = false
 script = ExtResource("4_ax6qk")

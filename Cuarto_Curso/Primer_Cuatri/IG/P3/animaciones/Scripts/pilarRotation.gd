@@ -10,13 +10,13 @@ var activa_izquierda := false
 func _process(delta: float) -> void:
 	
 	# Si se pulsa "1" rotamos a derecha
-	if Input.is_action_just_pressed("Rotarderecha"):
+	if Input.is_action_just_pressed("Rotarderecha") and !activa_izquierda:
 		activa_drcha = !activa_drcha
 	if activa_drcha:
 		rotation.y += deg_to_rad(rotation_speed * delta)
 	
 	# Si se pulsa "2" rotamos a izquierda
-	if Input.is_action_just_pressed("RotarIzquierda"):
+	if Input.is_action_just_pressed("RotarIzquierda") and !activa_drcha:
 		activa_izquierda = !activa_izquierda
 	if activa_izquierda:
 		rotation.y += deg_to_rad(-rotation_speed * delta)

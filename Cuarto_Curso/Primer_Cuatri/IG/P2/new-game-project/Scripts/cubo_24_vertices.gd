@@ -72,7 +72,7 @@ func _ready() -> void:
 		
 	var normales := Utilidades.calcNormales( vertices, triangulos )
 	
-	var norm : MeshInstance3D = Normales.genSegNormales(vertices,normales,1.0,Color(0,0,0))	
+	#var norm : MeshInstance3D = Normales.genSegNormales(vertices,normales,1.0,Color(0,0,0))	
 	
 	## inicializar el array con las tablas
 	var tablas : Array = []   ## tabla vacía incialmente

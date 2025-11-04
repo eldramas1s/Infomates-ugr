@@ -4,7 +4,7 @@ extends MeshInstance2D
 # Buscamos crear un poligono regular de radio r y de n lados de manera que aparezcan
 # todas las aristas entre el centro y cado uno de los vertices del poligono.
 
-const index : bool = false
+const index : bool = true
 const n : int = 8
 const r : float = 0.8
 const BLACK_COLOR = Color(0,0,0)

@@ -15,7 +15,7 @@
 script = ExtResource("1_vvh5c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.95985913, 0.13831212, -0.24400853, 0, 0.86996007, 0.4931222, 0.28048244, -0.47332785, 0.83503914, -0.456352, 1.1303298, 1.8159125)
+transform = Transform3D(0.99960107, 0.0047997925, 0.027832646, -0.0047707763, 0.99998796, -0.001109082, -0.027837634, 0.0009758565, 0.99961203, 0.058425188, -0.093536854, 2.3171394)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.8102271, -0.31309757, 0.49548155, -0.022556018, 0.82808155, 0.5601538, -0.58568186, -0.46502784, 0.6638719, 0.687449, 1.0586888, 1.3425882)
@@ -47,7 +47,6 @@ visible = false
 script = ExtResource("8_huihk")
 
 [node name="MallaDeRevolucion" type="MeshInstance3D" parent="ObjetosP2"]
-visible = false
 script = ExtResource("9_tw3kd")
 
 [node name="Donut" type="MeshInstance3D" parent="."]

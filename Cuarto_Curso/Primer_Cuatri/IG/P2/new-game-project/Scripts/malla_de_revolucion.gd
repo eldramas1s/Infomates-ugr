@@ -6,16 +6,16 @@ var indexes : PackedInt32Array = []
 var vertex : PackedVector3Array = []
 
 func _ready():
-	var perfil = PackedVector2Array([Vector2(1,1),Vector2(1,-1)])
+	var perfil = PackedVector2Array([Vector2(1,1),Vector2(1,0),Vector2(0,-1)])
 	var n : int = 20
 	const x0 : int = 1
 	const y0 : int = 0
 	
-	Revolucion.revoluciona(perfil,n,vertex,indexes)
+	Revolucion.revoluciona(perfil,n,vertex,indexes,true, false, 2 , Vector3(1,0,0))
 	
 	var normales := Utilidades.calcNormales( vertex, indexes )
 	
-	#Normales.genSegNormales(vertex,normales,1.0,Color(0,0,0))	 # Llama a la función global para mostrar normales
+	Normales.genSegNormales(vertex,normales,1.0,Color(0,0,0))	 # Llama a la función global para mostrar normales
 
 	var tablas : Array = []
 	tablas.resize( Mesh.ARRAY_MAX )
