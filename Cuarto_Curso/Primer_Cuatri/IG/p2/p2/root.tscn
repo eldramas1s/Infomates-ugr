@@ -1,0 +1,64 @@
+[gd_scene load_steps=13 format=3 uid="uid://j5ylltbkvldv"]
+
+[ext_resource type="Script" uid="uid://bqrv44cavspmy" path="res://Scripts/camara_3d_orbital_simple.gd" id="1_pq8q7"]
+[ext_resource type="Script" uid="uid://dag4q68bk6png" path="res://Scripts/script_raiz_propio.gd" id="1_vvh5c"]
+[ext_resource type="Script" uid="uid://q18dixnjdj21" path="res://Scripts/ejes3D.gd" id="2_pyidc"]
+[ext_resource type="PackedScene" uid="uid://cyqon6vtaedoy" path="res://Modelos/Sci-fi_power_cell/Sci Fi Wall Power Cell.glb" id="4_jnlp7"]
+[ext_resource type="PackedScene" uid="uid://o31yp4p3gc0x" path="res://Modelos/Ferrari-f40/DREAM FERRARI F40.glb" id="5_l8v81"]
+[ext_resource type="ArrayMesh" uid="uid://ci2hjpxhh6qdi" path="res://Modelos/Basketball/CHAHIN_BASKETBALL.obj" id="6_l8v81"]
+[ext_resource type="Script" uid="uid://dv46toag0aspw" path="res://Scripts/cubo_8_vertices.gd" id="7_bf3um"]
+[ext_resource type="Script" uid="uid://ds72837623t2e" path="res://Scripts/donut.gd" id="7_vyht1"]
+[ext_resource type="Script" uid="uid://bph8gaptmiw2e" path="res://Scripts/cubo_24_vertices.gd" id="8_huihk"]
+[ext_resource type="Script" uid="uid://bfguvic8jvn7d" path="res://Scripts/malla_de_revolucion.gd" id="9_tw3kd"]
+[ext_resource type="Script" uid="uid://jsg21l06sggw" path="res://Scripts/rejilla_y.gd" id="10_gd4vy"]
+[ext_resource type="Script" uid="uid://dkv2met5okcx3" path="res://Scripts/torre.gd" id="11_qw60f"]
+
+[node name="root" type="Node3D"]
+script = ExtResource("1_vvh5c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5656534, -0.5680373, 0.59780407, 0.33658826, 0.8208261, 0.46146828, -0.7528243, -0.05981732, 0.6554978, 2.0482302, 1.769318, 2.3171394)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.8102271, -0.31309757, 0.49548155, -0.022556018, 0.82808155, 0.5601538, -0.58568186, -0.46502784, 0.6638719, 0.687449, 1.0586888, 1.3425882)
+fov = 81.09459
+script = ExtResource("1_pq8q7")
+
+[node name="ejes3D" type="Node3D" parent="."]
+script = ExtResource("2_pyidc")
+
+[node name="ObjetosP2" type="Node3D" parent="."]
+
+[node name="Sci Fi Wall Power Cell" parent="ObjetosP2" instance=ExtResource("4_jnlp7")]
+visible = false
+
+[node name="DREAM FERRARI F40" parent="ObjetosP2" instance=ExtResource("5_l8v81")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.038643718, 0, 0)
+visible = false
+
+[node name="BasketBall" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+mesh = ExtResource("6_l8v81")
+
+[node name="Cubo8Vertices" type="MeshInstance3D" parent="ObjetosP2"]
+script = ExtResource("7_bf3um")
+
+[node name="Cubo24Vertices" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("8_huihk")
+
+[node name="MallaDeRevolucion" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("9_tw3kd")
+
+[node name="RejillaY" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("10_gd4vy")
+
+[node name="Torre" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("11_qw60f")
+
+[node name="Donut" type="MeshInstance3D" parent="."]
+visible = false
+script = ExtResource("7_vyht1")
