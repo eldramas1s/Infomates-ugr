@@ -11,9 +11,12 @@ extends Node3D
 var activa_izquierda : bool = false
 var activa_drcha : bool = false
 
+var tranform : bool = true
+
 func _ready():
 	
 	var cubo_grande = Node3D.new()
+	cubo_grande.transform = Transform3D.IDENTITY
 	add_child(cubo_grande)
 	
 	## crear un material
@@ -26,97 +29,200 @@ func _ready():
 	var indexes : PackedInt32Array = []
 	var colors : PackedColorArray = []
 	
-	var cubo = CrearCubo24()	#Esta centrado en (0,0,0)
-	var caracubo = CrearRejilla(n,n,0,vertex,indexes,colors,Vector3(-0.5,-0.5,-0.5),longitudInferior,longitudIzquierda)
+	var cubo = CrearCubo24()	#Esta centrado en (0.5,0.5,0.5)
+	var caracubo = CrearRejilla(n,n,0,vertex,indexes,colors,Vector3(0,0,0),longitudInferior,longitudIzquierda)
 	
-	#!!!! hay que tener cuidado en como aplicamos las transformaciones
 	
-	#Cara trasera
-	var trasera = MeshInstance3D.new()
-	trasera.mesh = caracubo
-	#cubo trasera
-	var c_trasero = MeshInstance3D.new()
-	c_trasero.mesh=cubo
-	c_trasero.material_override=mat
-	trasera.add_child(c_trasero)
-	c_trasero.scale = Vector3(0.25,0.5,0.25)
-	c_trasero.rotate_x(PI/2)
-	c_trasero.position = Vector3(0,0,-1)
-	cubo_grande.add_child(trasera)
+	var cubos_tranform = Transform3D().translated(Vector3(0.5,0.5,-0.5))* Transform3D().rotated(Vector3(1,0,0),PI/2) *  Transform3D().scaled(Vector3(0.25,0.5,0.25))
+	if(tranform):
+		#Cara trasera
+		var trasera = MeshInstance3D.new()
+		trasera.mesh = caracubo
+		trasera.transform = Transform3D().translated(Vector3(-0.5, -0.5, -0.5))
+		
+		#cubo trasera
+		var c_trasero = MeshInstance3D.new()
+		c_trasero.mesh=cubo
+		c_trasero.material_override=mat
+		trasera.add_child(c_trasero)
+		c_trasero.transform = cubos_tranform
+		
+		cubo_grande.add_child(trasera)
+		
+		# Cara delantera
+		var delantera = MeshInstance3D.new()
+		delantera.mesh = caracubo
+		delantera.transform = Transform3D().translated(Vector3(-0.5, -0.5, 0.5))
+		
+		#cubo delantera
+		var c_delantera = MeshInstance3D.new()
+		c_delantera.mesh=cubo
+		c_delantera.material_override=mat
+		delantera.add_child(c_delantera)
+		c_delantera.transform = Transform3D().scaled(Vector3(0.25,0.5,0.25))
+		c_delantera.transform = Transform3D().rotated(Vector3(1,0,0),PI/2)*c_delantera.transform
+		c_delantera.transform = Transform3D().translated(Vector3(0.5,0.5,0.5))* c_delantera.transform
+		cubo_grande.add_child(delantera)
+		
+		 #Cara inferior
+		var inferior = MeshInstance3D.new()
+		inferior.mesh = caracubo
+		inferior.transform = Transform3D().rotated(Vector3(1,0,0),-PI/2)
+		inferior.transform = Transform3D().translated(Vector3(-0.5, -0.5, 0.5))*inferior.transform
+		
+		#cubo inferior
+		var c_inferior = MeshInstance3D.new()
+		c_inferior.mesh=cubo
+		c_inferior.material_override=mat
+		inferior.add_child(c_inferior)
+		c_inferior.transform = cubos_tranform	
+		cubo_grande.add_child(inferior)
+		#Primero escalariamos pero no hace falta
+		
+		# Cara superior
+		var superior = MeshInstance3D.new()
+		superior.mesh = caracubo
+		superior.transform = Transform3D().rotated(Vector3(1,0,0),PI/2)
+		superior.transform = Transform3D().translated(Vector3(-0.5,0.5,-0.5))*superior.transform
 	
-	# Cara delantera
-	var delantera = MeshInstance3D.new()
-	delantera.mesh = caracubo
-	#cubo delantera
-	var c_delantera = MeshInstance3D.new()
-	c_delantera.mesh=cubo
-	c_delantera.material_override=mat
-	delantera.add_child(c_delantera)
-	c_delantera.scale = Vector3(0.25,0.5,0.25)
-	c_delantera.rotate_x(PI/2)
-	cubo_grande.add_child(delantera)
-	delantera.position = Vector3(0,0,1)
+		#cubo superior
+		var c_superior = MeshInstance3D.new()
+		c_superior.mesh=cubo
+		c_superior.material_override=mat
+		superior.add_child(c_superior)
+		c_superior.transform = cubos_tranform
+		
+		cubo_grande.add_child(superior)
+		
+		#Cara izquierda
+		var izquierda = MeshInstance3D.new()
+		izquierda.mesh = caracubo
+		izquierda.transform = Transform3D().rotated(Vector3(0,1,0),PI/2)
+		izquierda.transform = Transform3D().translated(Vector3(-0.5,-0.5,0.5)) * izquierda.transform
 	
-	# Cara inferior
-	var inferior = MeshInstance3D.new()
-	inferior.mesh = caracubo
-	#cubo inferior
-	var c_inferior = MeshInstance3D.new()
-	c_inferior.mesh=cubo
-	c_inferior.material_override=mat
-	inferior.add_child(c_inferior)
-	c_inferior.scale = Vector3(0.25,0.5,0.25)
-	c_inferior.rotate_x(PI/2)
-	c_inferior.position = Vector3(0,0,-1)
-	cubo_grande.add_child(inferior)
-	#Primero escalariamos pero no hace falta
-	inferior.rotate_x(-PI/2)
-	#
+		#cubo izquierda
+		var c_izquierda = MeshInstance3D.new()
+		c_izquierda.mesh=cubo
+		c_izquierda.material_override=mat
+		izquierda.add_child(c_izquierda)
+		c_izquierda.transform = cubos_tranform		
+		
+		cubo_grande.add_child(izquierda)
+
+		#Cara derecha
+		var derecha = MeshInstance3D.new()
+		derecha.mesh = caracubo
+		derecha.transform = Transform3D().rotated(Vector3(0,1,0),-PI/2)
+		derecha.transform = Transform3D().translated(Vector3(0.5,-0.5,-0.5))*derecha.transform
+
+		#cubo derecha
+		var c_derecha = MeshInstance3D.new()
+		c_derecha.mesh=cubo
+		c_derecha.material_override=mat
+		derecha.add_child(c_derecha)
+		c_derecha.transform = cubos_tranform	
+		
+		cubo_grande.add_child(derecha)
+		
+		
+	else:
 	
-	# Cara superior
-	var superior = MeshInstance3D.new()
-	superior.mesh = caracubo
-	#cubo superior
-	var c_superior = MeshInstance3D.new()
-	c_superior.mesh=cubo
-	c_superior.material_override=mat
-	superior.add_child(c_superior)
-	c_superior.scale = Vector3(0.25,0.5,0.25)
-	c_superior.rotate_x(-PI/2)
-	c_superior.position = Vector3(0,0,-1)
-	cubo_grande.add_child(superior)
-	#Primero escalariamos pero no hace falta
-	superior.rotate_x(PI/2)
-	
-	#Cara izquierda
-	var izquierda = MeshInstance3D.new()
-	izquierda.mesh = caracubo
-	#cubo izquierda
-	var c_izquierda = MeshInstance3D.new()
-	c_izquierda.mesh=cubo
-	c_izquierda.material_override=mat
-	izquierda.add_child(c_izquierda)
-	c_izquierda.scale = Vector3(0.25,0.5,0.25)
-	c_izquierda.rotate_x(-PI/2)
-	c_izquierda.position = Vector3(0,0,-1)
-	cubo_grande.add_child(izquierda)
-	#Primero escalariamos pero no hace falta
-	izquierda.rotate_y(PI/2)
-#
-	#Cara derecha
-	var derecha = MeshInstance3D.new()
-	derecha.mesh = caracubo
-	#cubo derecha
-	var c_derecha = MeshInstance3D.new()
-	c_derecha.mesh=cubo
-	c_derecha.material_override=mat
-	derecha.add_child(c_derecha)
-	c_derecha.scale = Vector3(0.25,0.5,0.25)
-	c_derecha.rotate_x(-PI/2)
-	c_derecha.position = Vector3(0,0,-1)
-	cubo_grande.add_child(derecha)
-	#Primero escalariamos pero no hace falta
-	derecha.rotate_y(-PI/2)
+		#!!!! hay que tener cuidado en como aplicamos las transformaciones
+		
+		##Cara trasera
+		var trasera = MeshInstance3D.new()
+		trasera.mesh = caracubo
+		trasera.position = Vector3(-0.5,-0.5,-0.5)
+		#cubo trasera
+		var c_trasero = MeshInstance3D.new()
+		c_trasero.mesh=cubo
+		c_trasero.material_override=mat
+		trasera.add_child(c_trasero)
+		c_trasero.scale = Vector3(0.25,0.5,0.25)
+		c_trasero.rotate_x(PI/2)
+		c_trasero.position = Vector3(0.5,0.5,-0.5)
+		cubo_grande.add_child(trasera)
+		
+		# Cara delantera
+		var delantera = MeshInstance3D.new()
+		delantera.mesh = caracubo
+		delantera.position = Vector3(-0.5,-0.5,0.5)
+		#cubo delantera
+		var c_delantera = MeshInstance3D.new()
+		c_delantera.mesh=cubo
+		c_delantera.material_override=mat
+		delantera.add_child(c_delantera)
+		c_delantera.scale = Vector3(0.25,0.5,0.25)
+		c_delantera.rotate_x(PI/2)
+		c_delantera.position = Vector3(0.5,0.5,0.5)
+		cubo_grande.add_child(delantera)
+		
+		# Cara inferior
+		var inferior = MeshInstance3D.new()
+		inferior.mesh = caracubo
+		inferior.rotate_x(-PI/2)
+		inferior.position=Vector3(-0.5,-0.5,0.5)
+		#cubo inferior
+		var c_inferior = MeshInstance3D.new()
+		c_inferior.mesh=cubo
+		c_inferior.material_override=mat
+		inferior.add_child(c_inferior)
+		c_inferior.scale = Vector3(0.25,0.5,0.25)
+		c_inferior.rotate_x(PI/2)
+		c_inferior.position = Vector3(0.5,0.5,-0.5)
+		cubo_grande.add_child(inferior)
+		#Primero escalariamos pero no hace falta
+		
+		
+		# Cara superior
+		var superior = MeshInstance3D.new()
+		superior.mesh = caracubo
+		#superior.rotate_x(PI/2)
+		superior.position = Vector3(-0.5,0.5,-0.5)
+		#cubo superior
+		var c_superior = MeshInstance3D.new()
+		c_superior.mesh=cubo
+		c_superior.material_override=mat
+		superior.add_child(c_superior)
+		c_superior.scale = Vector3(0.25,0.5,0.25)
+		c_superior.rotate_x(-PI/2)
+		c_superior.position = Vector3(0.5,0.5,-0.5)
+		cubo_grande.add_child(superior)
+		#Primero escalariamos pero no hace falta
+		superior.rotate_x(PI/2)
+		
+		#Cara izquierda
+		var izquierda = MeshInstance3D.new()
+		izquierda.mesh = caracubo
+		izquierda.rotate_y(PI/2)
+		izquierda.position = Vector3(-0.5,-0.5,0.5)
+		#cubo izquierda
+		var c_izquierda = MeshInstance3D.new()
+		c_izquierda.mesh=cubo
+		c_izquierda.material_override=mat
+		izquierda.add_child(c_izquierda)
+		c_izquierda.scale = Vector3(0.25,0.5,0.25)
+		c_izquierda.rotate_x(-PI/2)
+		c_izquierda.position = Vector3(0.5,0.5,-0.5)
+		cubo_grande.add_child(izquierda)
+		#Primero escalariamos pero no hace falta
+
+	##
+		#Cara derecha
+		var derecha = MeshInstance3D.new()
+		derecha.mesh = caracubo
+		derecha.rotate_y(-PI/2)
+		derecha.position = Vector3(0.5,-0.5,-0.5)
+		#cubo derecha
+		var c_derecha = MeshInstance3D.new()
+		c_derecha.mesh=cubo
+		c_derecha.material_override=mat
+		derecha.add_child(c_derecha)
+		c_derecha.scale = Vector3(0.25,0.5,0.25)
+		c_derecha.rotate_x(-PI/2)
+		c_derecha.position = Vector3(0.5,0.5,-0.5)
+		cubo_grande.add_child(derecha)
+		#Primero escalariamos pero no hace falta
 	
 func _process(delta:float):
 	# Si se pulsa "1" rotamos a derecha

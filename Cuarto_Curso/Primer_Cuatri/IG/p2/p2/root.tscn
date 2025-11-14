@@ -41,10 +41,10 @@ visible = false
 mesh = ExtResource("6_l8v81")
 
 [node name="Cubo8Vertices" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
 script = ExtResource("7_bf3um")
 
 [node name="Cubo24Vertices" type="MeshInstance3D" parent="ObjetosP2"]
-visible = false
 script = ExtResource("8_huihk")
 
 [node name="MallaDeRevolucion" type="MeshInstance3D" parent="ObjetosP2"]

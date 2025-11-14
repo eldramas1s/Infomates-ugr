@@ -4,7 +4,7 @@ extends MeshInstance3D
 
 @export var n : int = 10		# numero de divisiones en el eje x
 @export var m : int = 10		# numero de divisiones en el eje y
-@export var eje : int = 0	# indica si z=0, y=0, x=0 en ese orden de 0 a 2
+@export var eje : int = 1	# indica si z=0, y=0, x=0 en ese orden de 0 a 2
 @export var inferiorIzquierda : Vector3 = Vector3(0,0,0)
 @export var longitudInferior : float = 1.0		# Longitud del lado inferior
 @export var longitudIzquierda : float = 1.0		# Longitud del lado izquierdo

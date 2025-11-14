@@ -2,10 +2,10 @@
 ## email: lucashidalgo@correo.ugr.es, DNI o pasaporte: 26512990Q
 
 extends MeshInstance3D
-@export var n : int = 5
+@export var n : int = 8
 @export var rad : float = 0.5
-@export var eje : int = 2
-@export var centro : Vector3 = Vector3(1,0.5,0.5)
+@export var eje : int = 0
+@export var centro : Vector3 = Vector3(0.5,0.5,0)
 func _ready():
 	var poligonon = ArrayMeshPoligonoRegular(n,rad,eje,centro)
 	var mesh_instance = MeshInstance3D.new()

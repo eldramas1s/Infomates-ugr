@@ -4,8 +4,6 @@
 extends MeshInstance3D
 
 @export var altura: float = 0.25
-@export var tope_z: float = 1
-@export var tope_x: float = 1
 
 var material = StandardMaterial3D.new()
 

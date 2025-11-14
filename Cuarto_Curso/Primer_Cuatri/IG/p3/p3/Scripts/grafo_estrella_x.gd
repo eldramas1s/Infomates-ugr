@@ -2,7 +2,7 @@
 ## email: lucashidalgo@correo.ugr.es, DNI o pasaporte: 26512990Q
 extends Node3D
 
-@export var n : int = 8
+@export var n : int = 6
 @export var rad1 : float = 1
 @export var rad2 : float = 0.5
 @export var eje : int = 2
@@ -173,9 +173,7 @@ func GeneraCono(perfil : PackedVector2Array, n : int, eje : int, trasl : Vector3
 	tablas[ Mesh.ARRAY_VERTEX ] = vertex
 	tablas[ Mesh.ARRAY_INDEX  ] = indexes
 	tablas[ Mesh.ARRAY_NORMAL ] = Utilidades.calcNormales(vertex, indexes)
-	
-	# DUDA: Con generacion de normales se refiere a esto, o a que se muestren tambien los segmentos de las normales? 
-	
+		
 	## crear e inicialzar el objeto 'mesh' de este nodo 
 	var mesh = ArrayMesh.new() ## crea malla en modo diferido, vacía
 	mesh.add_surface_from_arrays( Mesh.PRIMITIVE_TRIANGLES, tablas )

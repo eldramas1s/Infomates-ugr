@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bqrv44cavspmy" path="res://Scripts/camara_3d_orbital_simple.gd" id="2_iupgd"]
 [ext_resource type="Script" uid="uid://q18dixnjdj21" path="res://Scripts/ejes3D.gd" id="3_lhnnm"]
 [ext_resource type="PackedScene" uid="uid://po63nhorkdit" path="res://Modelos/Scaffolding/metal scaffold.glb" id="5_5e3jd"]
-[ext_resource type="PackedScene" uid="uid://3sg40yv1ftbh" path="res://Modelos/Gancho3/Walking stick.glb" id="6_hgi0t"]
+[ext_resource type="PackedScene" uid="uid://4jf3nu6j1wli" path="res://Modelos/Crane/Crane.glb" id="6_hgi0t"]
 [ext_resource type="Script" uid="uid://baksfrjj2rvmm" path="res://Scripts/pilarRotation.gd" id="6_iupgd"]
 [ext_resource type="Script" uid="uid://b88j6bkrxladk" path="res://Scripts/ganchoAnimacion.gd" id="8_lhnnm"]
 [ext_resource type="Script" uid="uid://c5ctaj1818jlt" path="res://Scripts/grafo_estrella_x.gd" id="9_hgi0t"]
@@ -27,17 +27,17 @@ transform = Transform3D(0.66080797, -0.46862382, 0.58628035, 0.3505446, 0.883397
 
 [node name="Pilar" parent="Grua" instance=ExtResource("5_5e3jd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77, 0)
+visible = false
 script = ExtResource("6_iupgd")
 
 [node name="Brazo" parent="Grua/Pilar" instance=ExtResource("5_5e3jd")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.6, 0.55)
 
 [node name="Gancho" parent="Grua/Pilar/Brazo" instance=ExtResource("6_hgi0t")]
-transform = Transform3D(-3.278354e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.278354e-08, 0, 0.5, 0)
+transform = Transform3D(0.02, 0, 0, 0, 2.384976e-10, 0.02, 0, -0.02, 2.384976e-10, 0.01, 0.629, 0.975)
 script = ExtResource("8_lhnnm")
 
 [node name="GrafoEstrellaX" type="Node3D" parent="."]
-visible = false
 script = ExtResource("9_hgi0t")
 
 [node name="GrafoCubos" type="Node3D" parent="."]

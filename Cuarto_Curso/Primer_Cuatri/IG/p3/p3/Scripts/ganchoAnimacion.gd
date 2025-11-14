@@ -18,8 +18,8 @@ var active_tras_r := false
 
 # Variables movimiento vertical
 @export var vertical_speed := 0.4
-@export var high_limit := 0.5
-@export var low_limit := -0.5
+@export var high_limit := 1
+@export var low_limit := 0.3
 var active_high := false
 var active_low := false
 
