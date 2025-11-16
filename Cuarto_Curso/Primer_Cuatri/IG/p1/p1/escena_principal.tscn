@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpof5nb3cyy5t"]
+[gd_scene load_steps=10 format=3 uid="uid://cpof5nb3cyy5t"]
 
 [ext_resource type="Script" uid="uid://dlylt8msv5ty4" path="res://Scripts/script_raiz.gd" id="1_0or06"]
 [ext_resource type="Script" uid="uid://brbgrkl3xs81x" path="res://Scripts/ejes3D.gd" id="1_jdg2m"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" uid="uid://wirut2ui6vft" path="res://Scripts/piramideL.gd" id="5_afc6g"]
 [ext_resource type="Script" uid="uid://b4ys0474dq0rn" path="res://Scripts/poligononlados.gd" id="6_afc6g"]
 [ext_resource type="Script" uid="uid://c0eg6m8pu4t8m" path="res://Scripts/estrella_z.gd" id="7_iupgd"]
-[ext_resource type="Script" uid="uid://d0nq56rkoslo6" path="res://Scripts/casa_x.gd" id="8_lhnnm"]
-[ext_resource type="Script" uid="uid://c0bubqophu3um" path="res://Scripts/piramide_estrella_z.gd" id="9_hgi0t"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hcujj"]
 
@@ -48,11 +46,3 @@ script = ExtResource("6_afc6g")
 [node name="EstrellaZ" type="MeshInstance3D" parent="."]
 visible = false
 script = ExtResource("7_iupgd")
-
-[node name="CasaX" type="MeshInstance3D" parent="."]
-visible = false
-script = ExtResource("8_lhnnm")
-
-[node name="PiramideEstrellaZ" type="MeshInstance3D" parent="."]
-visible = false
-script = ExtResource("9_hgi0t")

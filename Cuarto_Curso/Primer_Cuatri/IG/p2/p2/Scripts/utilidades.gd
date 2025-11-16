@@ -101,35 +101,3 @@ func generarDonut( vertices: PackedVector3Array,
 	## Genera los triángulos con topología toroidal (la de un donut)	
 	GenTriToroidal( nu, nv, indices )
 	
-
-## -----------------------------------------------------------------------------
-## 
-## Función que invierte las caras de una malla indexada
-##
-##    indexes : indices de la malla antigua
-##	  newindexes : indices de la malla con caras invertidas
-## Esta funcion no reemplaza los indices por una nueva posible utilizacion de la antigua
-func invertMesh(indexes : PackedInt32Array, newindexes : PackedInt32Array):
-	# Esta funcion se encarga de cambiar toda una mesh de orientacion en una nueva cadena de indices, es decir, lo que eran caras delanteras ahora son traseras y al reves.
-
-	for i in range(0,indexes.size()-2,3):
-		newindexes.append(indexes[i])
-		newindexes.append(indexes[i+2])
-		newindexes.append(indexes[i+1])
-		
-## -----------------------------------------------------------------------------
-## 
-## Función que une dos mallas trabajando solo con vertices e indices
-##	  
-##	  vertex1 : vertices contenedores
-##    indexes1 : indices contenedores
-##	  vertex2 : vertices a unir
-##	  indexes2 : indices a unir
-func uneMallas(vertex1 : PackedVector3Array, indexes1 : PackedInt32Array, vertex2 : PackedVector3Array, indexes2 : PackedInt32Array):
-	if(vertex2.size()>0 and indexes2.size()>0):	
-		var tam_vertex_orig = vertex1.size()
-		for i in range(vertex2.size()):
-			vertex1.append(vertex2[i])
-		
-		for i in range(indexes2.size()):
-			indexes1.append(indexes2[i]+tam_vertex_orig)

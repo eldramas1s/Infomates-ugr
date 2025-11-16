@@ -12,9 +12,9 @@ func _ready():
 	var perfil = PackedVector2Array([Vector2(1,1),Vector2(1,0)])
 	var n : int = 20
 	
-	Revolucion.revoluciona(perfil,n,vertex,indexes,true, true, 1 , Vector3(0,0,0))
+	Propio.revoluciona(perfil,n,vertex,indexes,true, true, 1 , Vector3(0,0,0))
 	
-	var normales := Utilidades.calcNormales( vertex, indexes )
+	normales = Utilidades.calcNormales( vertex, indexes )
 	
 	#Normales.genSegNormales(vertex,normales,1.0,Color(0,0,0))	 # Llama a la función global para mostrar normales
 
@@ -22,6 +22,7 @@ func _ready():
 	tablas.resize( Mesh.ARRAY_MAX )
 	tablas[mesh.ARRAY_VERTEX] = vertex
 	tablas[mesh.ARRAY_INDEX] = indexes
+	tablas[mesh.ARRAY_NORMAL] = normales
 	
 	mesh = ArrayMesh.new() ## crea malla en modo diferido, vacía
 	mesh.add_surface_from_arrays( Mesh.PRIMITIVE_TRIANGLES, tablas )

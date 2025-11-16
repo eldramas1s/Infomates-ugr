@@ -15,15 +15,22 @@ func _ready():
 	#mesh_instance.material_override = material
 	#add_child(mesh_instance)
 	
-	var casa = crear_casaX(altura)
-	var mesh_instance = MeshInstance3D.new()
+	## Material a usar
 	var mat := StandardMaterial3D.new() 
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED		# Sin iluminacion
 	mat.vertex_color_use_as_albedo = true						# Difuminado de colores segun vertices
+
+	## Creacion de la instancia de malla
+	var casa = crear_casaX(altura)
+	var mesh_instance = MeshInstance3D.new()
 	mesh_instance.material_override = mat
 	mesh_instance.mesh = casa
 	add_child(mesh_instance)
 
+## Esta funcion esta hecha asi porque se hizo pensando en que tenia que estar en practica 1
+## Lo normal es crear el array de vertices, indexarlos por triangulos y añadir los colores.
+## De hecho, con las funciones de Propio.gd puedo hacer con cada cara un hijo a base de cuadrilateros 
+## o incluso haciendo uso de CrearPlanta.
 func crear_casaX(h: float) -> ArrayMesh:
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)

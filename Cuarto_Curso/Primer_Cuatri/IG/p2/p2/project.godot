@@ -19,5 +19,4 @@ config/icon="res://icon.svg"
 
 Utilidades="*res://Scripts/utilidades.gd"
 Normales="*res://Scripts/normales.gd"
-Revolucion="*res://Scripts/revolucion.gd"
 Propio="*res://Scripts/Propio.gd"

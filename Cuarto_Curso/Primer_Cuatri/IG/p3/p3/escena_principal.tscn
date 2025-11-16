@@ -24,10 +24,10 @@ script = ExtResource("3_lhnnm")
 transform = Transform3D(0.66080797, -0.46862382, 0.58628035, 0.3505446, 0.8833979, 0.31100926, -0.6636652, 0, 0.7480299, 1.988413, 1.6800354, 2.3240945)
 
 [node name="Grua" type="Node3D" parent="."]
+visible = false
 
 [node name="Pilar" parent="Grua" instance=ExtResource("5_5e3jd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77, 0)
-visible = false
 script = ExtResource("6_iupgd")
 
 [node name="Brazo" parent="Grua/Pilar" instance=ExtResource("5_5e3jd")]
@@ -38,8 +38,8 @@ transform = Transform3D(0.02, 0, 0, 0, 2.384976e-10, 0.02, 0, -0.02, 2.384976e-1
 script = ExtResource("8_lhnnm")
 
 [node name="GrafoEstrellaX" type="Node3D" parent="."]
+visible = false
 script = ExtResource("9_hgi0t")
 
 [node name="GrafoCubos" type="Node3D" parent="."]
-visible = false
 script = ExtResource("10_5e3jd")

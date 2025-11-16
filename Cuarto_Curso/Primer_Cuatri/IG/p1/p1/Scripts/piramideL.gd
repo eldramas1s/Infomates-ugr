@@ -6,15 +6,15 @@ extends MeshInstance3D
 # En la practica 2 se haria de otra manera, con un array de vertices y uno de indices para mallas indexadas
 @export var altura: float = 1.5
 
-var material = StandardMaterial3D.new()
-
 func _ready():
+	# Material a usar
+	var material = StandardMaterial3D.new()
+	material.albedo_color = Color(0.967, 0.161, 0.4, 1.0) # rosita
 	
+	# Creacion de la instancia de malla
 	var piramidel = crear_piramide(altura)
 	var mesh_instance = MeshInstance3D.new()
-	var material = StandardMaterial3D.new()
 	mesh_instance.mesh = piramidel
-	material.albedo_color = Color(0.967, 0.161, 0.4, 1.0) # rosita
 	mesh_instance.material_override = material
 	add_child(mesh_instance)
 
