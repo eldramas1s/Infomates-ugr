@@ -1,0 +1,61 @@
+extends Node3D
+
+@export var n : int = 3		## Numero de donuts por lado
+@export var m : int = 3
+@export var centro_p : Vector3 = Vector3(1.5,0,1.5)
+
+func _ready():
+	
+	##var cubos_tranform = Transform3D().translated(Vector3(0.5,0.5,-0.5))* Transform3D().rotated(Vector3(1,0,0),PI/2) *  Transform3D().scaled(Vector3(0.25,0.5,0.25))
+
+	var donutMat : StandardMaterial3D = StandardMaterial3D.new()
+	donutMat.albedo_color = Color( 1.0, 0.5, 0.2 )
+	donutMat.metallic = 0.3
+	donutMat.roughness = 0.2
+	donutMat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
+	
+	var sueloMat : StandardMaterial3D = StandardMaterial3D.new()
+	sueloMat.albedo_color = Color( 0, 0, 0 )
+	sueloMat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	sueloMat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
+	
+	var padre : Node3D = Node3D.new()
+	add_child(padre)
+	
+	var meshDonut : ArrayMesh = meshDonut()
+	
+	for i in range (n):
+		for j in range(m):
+			var donut : MeshInstance3D = MeshInstance3D.new()
+			donut.mesh = meshDonut
+			donut.material_override = donutMat
+			donut.transform = Transform3D().translated(Vector3(3*i,0,3*j)+centro_p)*Transform3D().rotated(Vector3(1,0,0),PI/2)*Transform3D().scaled(Vector3(1/1.2,1/1.2,1))
+			get_child(0).add_child(donut)
+
+	var suelo := MeshInstance3D.new()
+	suelo.mesh = Propio.ArrayMeshCuadrilatero(Vector3(0,-0.4,0),3*n,3*m,1)
+	suelo.material_override = sueloMat
+	get_child(0).add_child(suelo)
+	
+## Genera una mesh de un donut centrado en el (0,0,0)
+func meshDonut() -> ArrayMesh:
+	## crear las tablas de vértices y triángulos de un Donut 
+	var vertices   := PackedVector3Array([])
+	var triangulos := PackedInt32Array([])
+	Utilidades.generarDonut( vertices, triangulos )
+		
+	var normales := Utilidades.calcNormales( vertices, triangulos )
+			
+	## inicializar el array con las tablas
+	var tablas : Array = []   ## tabla vacía incialmente
+	tablas.resize( Mesh.ARRAY_MAX ) ## redimensionar al tamaño adecuado
+	tablas[ Mesh.ARRAY_VERTEX ] = vertices
+	tablas[ Mesh.ARRAY_INDEX  ] = triangulos
+	tablas[ Mesh.ARRAY_NORMAL ] = normales
+	
+	## crear e inicialzar el objeto 'mesh' de este nodo 
+	var mesh = ArrayMesh.new() ## crea malla en modo diferido, vacía
+	mesh.add_surface_from_arrays( Mesh.PRIMITIVE_TRIANGLES, tablas )
+	
+	return mesh
+	

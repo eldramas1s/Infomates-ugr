@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bahr6dkxnh0ac"]
+
+[ext_resource type="Script" path="res://Scripts/script_raiz.gd" id="1_hcujj"]
+[ext_resource type="Script" path="res://Scripts/ejes3D.gd" id="2_rftnj"]
+[ext_resource type="Script" path="res://Scripts/camara_3d_orbital_simple.gd" id="3_0or06"]
+[ext_resource type="Script" uid="uid://7jhy48534olj" path="res://escena_ej_41.gd" id="4_rftnj"]
+
+[node name="EscenaPrincipal" type="Node3D"]
+script = ExtResource("1_hcujj")
+
+[node name="Ejes3D" type="Node3D" parent="."]
+script = ExtResource("2_rftnj")
+
+[node name="LuzDireccional" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.61779106, 0, -0.7863423, -0.66326815, 0.53715235, 0.52109766, 0.42238563, 0.84348524, -0.33184794, 0, 1.2675068, 0)
+
+[node name="LuzOmni" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7038355, 1.4247448, 4.0295353)
+visible = false
+
+[node name="LuzSpot" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.458483, 0, 9.722972)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+visible = false
+script = ExtResource("3_0or06")
+
+[node name="EscenaEj41" type="Node3D" parent="."]
+script = ExtResource("4_rftnj")
