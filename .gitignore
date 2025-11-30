@@ -5,6 +5,12 @@
 
 # Carpetas de clase con contenidos privado
 
+# Ingnorar archivos de compilacion de archivos latex
+**/*.out
+**/*.tex
+**/*.log
+**/*.toc
+
 # llaves ssh
 **/llaves
 
