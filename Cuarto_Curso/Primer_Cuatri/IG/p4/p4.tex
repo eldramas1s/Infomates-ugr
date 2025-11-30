@@ -1,0 +1,69 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}      % Codificación UTF-8
+\usepackage[provide=*,spanish]{babel}  % Español con locale .ini (Debian TL2023)
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\geometry{top=3cm,bottom=3cm,left=3cm,right=3cm}
+
+\usepackage{graphicx}
+\usepackage{float} % Para [H] posicionamiento exacto
+
+\usepackage[hidelinks]{hyperref}  % ← Enlaces clicables
+
+% Configuración global para imágenes
+\graphicspath{{imagenes/}{figs/}{./}} % Directorios relativos
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.eps}
+
+% Comando abreviado para inserción
+\newcommand{\imagen}[4][H]{
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#2\textwidth,keepaspectratio]{#3}
+        \caption{#4}
+        \label{fig:#3}
+    \end{figure}
+}
+
+
+\begin{document}
+
+% Portada
+\begin{titlepage}
+    \centering
+
+    {\Huge \textbf{Práctica 4: Iluminación, materiales y texturas}} \\[1.5cm]
+    \includegraphics[width=0.6\textwidth]{/home/el_dramas/Desktop/ugr.jpg} \\[1.5cm] % Imagen
+    {\Large Autor: Lucas Hidalgo Herrera } \\[0.5cm] % Autor
+    {\large Grado: Doble Grado en Ingeniería Informática y Matemáticas} \\[0.5cm]
+    {\large Asignatura: Informática Gráfica} \\[0.5cm]% Curso o asignatura
+    {\large Fecha: \today} % Fecha actual
+
+    \vfill
+
+\end{titlepage}
+\newpage
+\renewcommand{\contentsname}{Índice General}
+\tableofcontents
+\addcontentsline{toc}{section}{1. Creación de la escena e Iluminación}
+
+\newpage
+
+\section*{1. Creación de la escena e Iluminación}
+
+\noindent
+Tras haber creado la figura con los recursos de prácticas anteriores, de forma modular y paramétrica, se han creado las tres fuentes de luz necesarias para la práctica. El árbol de escena aparece en la figura~\ref{fig:arbolEscena}.
+
+\imagen[htbp]{0.5}{arbolEscena}{Árbol de escena de la figura}
+
+\noindent
+El resultado de la iluminación que se pide en el documento de la práctica 4 es el que aparece en la figura~\ref{fig:iluminacionDiferencia}. En él se puede ver que la luz omni emite en todas las direcciones de una forma uniforme pero perdiendo intensidad; la luz direccional, en cambio, mantiene la intensidad en todo un cilindro en la dirección a la que apunta; y la luz puntual emite luz de la misma manera que lo haría un flexo de estudio.
+
+\imagen[htbp]{0.8}{iluminacionDiferencia}{Imagen iluminacion}
+
+\noindent
+Aunque puede no apreciarse bien la diferencia, sí que puede verse que la luz omni se encuentra encima del donut central, la luz puntual enfocando al donut delantero y la luz direccional apuntando desde el eje de coordenadas.
+
+
+\end{document}

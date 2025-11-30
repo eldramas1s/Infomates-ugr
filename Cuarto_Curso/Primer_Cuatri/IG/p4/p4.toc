@@ -1,0 +1,2 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{1. Creación de la escena e Iluminación}{1}{section*.1}%
