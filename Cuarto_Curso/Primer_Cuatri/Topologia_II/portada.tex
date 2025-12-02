@@ -1,16 +1,31 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage{graphicx} % Para incluir imágenes
-\usepackage{geometry} % Para ajustar márgenes
-\geometry{top=3cm,bottom=3cm,left=3cm,right=3cm}
-\usepackage{amsthm} % Paquete recomendado para entornos matemáticos
 
-\newtheorem{theorem}{Teorema}[section] % Teoremas numerados por sección
-\newtheorem{prop}{Proposición}[section] % Proposiciones numeradas por sección
-\newtheorem{lema}{Lema}[section] % Lemas numerados por sección
-\newtheorem{definition}{Definicion}
-\newtheorem{corollary}{Corolario}[section]
-\newtheorem{example}{Ejemplo}[section]
-\newtheorem{notation}{Notación}[section]
+\usepackage[utf8]{inputenc}      % Codificación UTF-8
+\usepackage[provide=*,spanish]{babel}  % Español con locale .ini (Debian TL2023)
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\geometry{top=3cm,bottom=3cm,left=3cm,right=3cm}
+
+\usepackage{graphicx}
+\usepackage{float} % Para [H] posicionamiento exacto
+
+\usepackage[hidelinks]{hyperref}  % ← Enlaces clicables
+
+% Configuración global para imágenes
+\graphicspath{{imagenes/}{figs/}{./}} % Directorios relativos
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.eps}
+
+% Comando abreviado para inserción
+\newcommand{\imagen}[4][H]{
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#2\textwidth,keepaspectratio]{#3}
+        \caption{#4}
+        \label{fig:#3}
+    \end{figure}
+}
+
 
 
 \begin{document}
@@ -19,11 +34,11 @@
 \begin{titlepage}
     \centering
 
-    {\Huge \textbf{Teorema de Seifert-vanKampen}} \\[1.5cm]
+    {\Huge \textbf{}} \\[1.5cm]
     \includegraphics[width=0.6\textwidth]{/home/el_dramas/Desktop/ugr.jpg} \\[1.5cm] % Imagen
-    {\Large Autor: Lucas Hidalgo Herrera } \\[0.5cm] % Autor
+    {\Large Autor:Lucas Hidalgo Herrera  } \\[0.5cm] % Autor
     {\large Grado: Doble Grado en Ingeniería Informática y Matemáticas} \\[0.5cm]
-    {\large Asignatura: Topología II} \\[0.5cm]% Curso o asignatura
+    {\large Asignatura: Topología II } \\[0.5cm]% Curso o asignatura
     {\large Fecha: \today} % Fecha actual
 
     \vfill
