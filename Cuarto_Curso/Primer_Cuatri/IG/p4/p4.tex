@@ -22,7 +22,7 @@
         \centering
         \includegraphics[width=#2\textwidth,keepaspectratio]{#3}
         \caption{#4}
-        \label{fig:#3}
+        \label{fig:#4}
     \end{figure}
 }
 
@@ -43,27 +43,39 @@
     \vfill
 
 \end{titlepage}
-\newpage
 \renewcommand{\contentsname}{Índice General}
 \tableofcontents
 \addcontentsline{toc}{section}{1. Creación de la escena e Iluminación}
-
-\newpage
+\addcontentsline{toc}{section}{2. Materiales}
 
 \section*{1. Creación de la escena e Iluminación}
 
 \noindent
-Tras haber creado la figura con los recursos de prácticas anteriores, de forma modular y paramétrica, se han creado las tres fuentes de luz necesarias para la práctica. El árbol de escena aparece en la figura~\ref{fig:arbolEscena}.
+Tras haber creado la figura con los recursos de prácticas anteriores, de forma modular y paramétrica, se han creado las tres fuentes de luz necesarias para la práctica. El árbol de escena aparece en la figura \ref{fig:arbolEscena}.
 
-\imagen[htbp]{0.5}{arbolEscena}{Árbol de escena de la figura}
+\imagen[htbp]{0.5}{arbolEscena}{arbolEscena}
 
 \noindent
-El resultado de la iluminación que se pide en el documento de la práctica 4 es el que aparece en la figura~\ref{fig:iluminacionDiferencia}. En él se puede ver que la luz omni emite en todas las direcciones de una forma uniforme pero perdiendo intensidad; la luz direccional, en cambio, mantiene la intensidad en todo un cilindro en la dirección a la que apunta; y la luz puntual emite luz de la misma manera que lo haría un flexo de estudio.
+El resultado de la iluminación que se pide en el documento de la práctica 4 es el que aparece en la figura \ref{fig:iluminacionDiferencia}. En él se puede ver que la luz omni emite en todas las direcciones de una forma uniforme pero perdiendo intensidad; la luz direccional, en cambio, mantiene la intensidad en todo un cilindro en la dirección a la que apunta; y la luz puntual emite luz de la misma manera que lo haría un flexo de estudio.
 
 \imagen[htbp]{0.8}{iluminacionDiferencia}{Imagen iluminacion}
 
 \noindent
 Aunque puede no apreciarse bien la diferencia, sí que puede verse que la luz omni se encuentra encima del donut central, la luz puntual enfocando al donut delantero y la luz direccional apuntando desde el eje de coordenadas.
 
+\section*{2. Materiales}
 
-\end{document}
+\noindent
+Debido a que estudiaremos un poco la generación de las sobras dependiendo de la transparencia, he elegido cambiar el color del suelo para facilitar la visión de las mismas. De hecho, deberemos ver que no se proyectan en el material.
+
+\noindent
+Antes de todo eso, se nos pedía hacer una degradación del color del material de forma que las filas tuvieran el mismo color y las columnas los mismos valores de rugosidad y metalicidad. Para ello, simplemente he añadido un factor sumando o restando de $\frac{i}{n}$ para el caso de las filas y $\frac{j}{m}$ para el caso de las columnas.
+
+El resultado aparece en la figura \ref{fig:materiales}.
+
+\imagen[htbp]{0.5}{materiales}{Asignación de materiales}
+
+
+
+
+

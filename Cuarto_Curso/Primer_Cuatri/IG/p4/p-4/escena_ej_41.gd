@@ -7,15 +7,8 @@ extends Node3D
 func _ready():
 	
 	##var cubos_tranform = Transform3D().translated(Vector3(0.5,0.5,-0.5))* Transform3D().rotated(Vector3(1,0,0),PI/2) *  Transform3D().scaled(Vector3(0.25,0.5,0.25))
-
-	var donutMat : StandardMaterial3D = StandardMaterial3D.new()
-	donutMat.albedo_color = Color( 1.0, 0.5, 0.2 )
-	donutMat.metallic = 0.3
-	donutMat.roughness = 0.2
-	donutMat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
-	
 	var sueloMat : StandardMaterial3D = StandardMaterial3D.new()
-	sueloMat.albedo_color = Color( 0, 0, 0 )
+	sueloMat.albedo_color = Color(0.518, 0.0, 0.0, 1.0)
 	sueloMat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	sueloMat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
 	
@@ -26,6 +19,16 @@ func _ready():
 	
 	for i in range (n):
 		for j in range(m):
+			## Creacion del material segun la practica
+			var donutMat : StandardMaterial3D = StandardMaterial3D.new()
+			donutMat.albedo_color = Color( 1.0-float(i)/float(n), 1.0-float(i)/float(n), 1.0-float(i)/float(n) )
+			donutMat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
+			donutMat.metallic = 1.0-(m-j)/float(m)
+			donutMat.roughness = j/float(m)
+			# Activamos la transparencia en el canal alpha del albedo color
+			donutMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			
+			## Creacion de la malla de uno de los donuts
 			var donut : MeshInstance3D = MeshInstance3D.new()
 			donut.mesh = meshDonut
 			donut.material_override = donutMat
@@ -33,7 +36,7 @@ func _ready():
 			get_child(0).add_child(donut)
 
 	var suelo := MeshInstance3D.new()
-	suelo.mesh = Propio.ArrayMeshCuadrilatero(Vector3(0,-0.4,0),3*n,3*m,1)
+	suelo.mesh = Propio.ArrayMeshCuadrilatero(Vector3(0,-0.5,0),3*n,3*m,1)
 	suelo.material_override = sueloMat
 	get_child(0).add_child(suelo)
 	
