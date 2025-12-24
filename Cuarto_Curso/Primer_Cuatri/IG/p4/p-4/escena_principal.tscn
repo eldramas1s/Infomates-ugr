@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bahr6dkxnh0ac"]
+[gd_scene load_steps=7 format=3 uid="uid://bahr6dkxnh0ac"]
 
 [ext_resource type="Script" uid="uid://da1cgutq3v53x" path="res://Scripts/script_raiz.gd" id="1_hcujj"]
 [ext_resource type="Script" uid="uid://q18dixnjdj21" path="res://Scripts/ejes3D.gd" id="2_rftnj"]
 [ext_resource type="Script" uid="uid://bqrv44cavspmy" path="res://Scripts/camara_3d_orbital_simple.gd" id="3_0or06"]
 [ext_resource type="Script" uid="uid://7jhy48534olj" path="res://escena_ej_41.gd" id="4_rftnj"]
+[ext_resource type="Script" uid="uid://yr5os1srmlkl" path="res://plano_texturizado.gd" id="5_0or06"]
+[ext_resource type="Texture2D" uid="uid://dfpmm7ffwd2eq" path="res://texturas/mapanormales.jpg" id="6_afc6g"]
 
 [node name="EscenaPrincipal" type="Node3D"]
 script = ExtResource("1_hcujj")
@@ -12,18 +14,18 @@ script = ExtResource("1_hcujj")
 script = ExtResource("2_rftnj")
 
 [node name="LuzDireccional" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.61779106, 0, -0.7863423, -0.66326815, 0.53715235, 0.52109766, 0.42238563, 0.84348524, -0.33184794, 0, 1.7264066, 0)
+transform = Transform3D(-0.24799685, 0.20202734, -0.94746107, -0.7915249, 0.5216359, 0.3184093, 0.55855703, 0.82890356, 0.030545533, -9, 1.726, 0)
 light_energy = 2.143
 directional_shadow_max_distance = 1479.0
 directional_shadow_pancake_size = 5.4
 
 [node name="LuzOmni" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7038355, 0.7592685, 4.0295353)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.759, 0)
 light_energy = 7.629
 omni_range = 2.057
 
 [node name="LuzSpot" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.458483, 0, 9.722972)
+transform = Transform3D(3.8230848e-08, 2.11917e-08, 1.0000001, 0.4848096, -0.8746199, 0, 0.8746199, 0.4848096, -4.3711392e-08, 8, 0, 0)
 light_energy = 2.143
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -31,3 +33,7 @@ script = ExtResource("3_0or06")
 
 [node name="EscenaEj41" type="Node3D" parent="."]
 script = ExtResource("4_rftnj")
+
+[node name="PlanoTexturizado" type="Node3D" parent="."]
+script = ExtResource("5_0or06")
+textura = ExtResource("6_afc6g")

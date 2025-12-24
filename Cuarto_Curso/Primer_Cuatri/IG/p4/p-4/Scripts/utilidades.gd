@@ -100,3 +100,92 @@ func generarDonut( vertices: PackedVector3Array,
 
 	## Genera los triángulos con topología toroidal (la de un donut)	
 	GenTriToroidal( nu, nv, indices )
+
+## -----------------------------------------------------------------------------
+## 
+## Función que calcula las coordenadas de textura de una malla de vertices en funcion de la altura
+##
+##
+##    vertices : vertices de la malla
+static func calcUVAltura(vertices: PackedVector3Array) -> PackedVector2Array:
+	var uvs := PackedVector2Array()
+	var max_u = 1.0
+	var max_v = 1.0
+	# Encontramos el min y el max de Y para normalizar v
+	var min_y = vertices[0].y
+	var max_y = vertices[0].y
+	
+	## Asignamos los bordes mediante una retraccion
+	for vertex in vertices:
+		if vertex.y < min_y:
+			min_y = vertex.y
+		if vertex.y > max_y:
+			max_y = vertex.y
+	
+	## Calculamos el rango de valores de y
+	## Cuando el maximo y el minimo coinciden asumimos como rango el valor 1
+	var range_y = max_y - min_y
+	if range_y == 0:
+		range_y = 1.0  # Evita división por cero
+		
+	for vertex in vertices:
+		# 1. Calcular el valor del parámetro u
+		var phi = atan2(vertex.z, vertex.x)
+		var u = max_u*((phi / (2*PI)+0.5))
+		# 2. Calcular el valor del parámetro v
+		
+		## Opcion basada en la altura, es decir, de forma aproximada en funcion de y
+		var v = max_v * ((vertex.y - min_y) / range_y)
+		
+		#Puedes calcularlo en función del desplazaniento en el perfil
+		# o de forma aproximada en función de y
+		var uv_coords = Vector2(u, v)
+		uvs.append(uv_coords)
+		
+	return uvs
+	
+## -----------------------------------------------------------------------------
+## 
+## Función que calcula las coordenadas de textura de una malla de vertices enfuncion del Radio
+##
+##
+##    vertices : vertices de la malla
+static func calcUVRadio(vertices: PackedVector3Array) -> PackedVector2Array:
+	var uvs := PackedVector2Array()
+	var max_u = 1.0
+	var max_v = 1.0
+	# Encontramos el min y el max de Y para normalizar v
+	var min_radius = sqrt(vertices[0].x * vertices[0].x + vertices[0].z * vertices[0].z)
+	var max_radius = min_radius
+	
+	
+	## Asignamos los bordes mediante una retraccion
+	for vertex in vertices:
+		var radius = sqrt(vertex.x * vertex.x + vertex.z * vertex.z)
+		if radius < min_radius:
+			min_radius = radius
+		if radius > max_radius:
+			max_radius = radius
+	
+	## Calculamos el rango de valores de y
+	## Cuando el maximo y el minimo coinciden asumimos como rango el valor 1
+	var range_radius = max_radius - min_radius
+	if range_radius == 0:
+		range_radius = 1.0  # Evita división por cero
+		
+	for vertex in vertices:
+		# 1. Calcular el valor del parámetro u
+		var phi = atan2(vertex.z, vertex.x)
+		var u = max_u*((phi / (2*PI)+0.5))
+		# 2. Calcular el valor del parámetro v
+		
+		## Opcion basada en funcion del desplazamiento del perfil
+		var radius = sqrt(vertex.x * vertex.x + vertex.z * vertex.z)
+		var v = max_v * ((radius - min_radius) / range_radius)
+		
+		#Puedes calcularlo en función del desplazamiento en el perfil
+		# o de forma aproximada en función de y
+		var uv_coords = Vector2(u, v)
+		uvs.append(uv_coords)
+		
+	return uvs

@@ -1,5 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
 \usepackage[utf8]{inputenc}      % Codificación UTF-8
 \usepackage[provide=*,spanish]{babel}  % Español con locale .ini (Debian TL2023)
 \usepackage{graphicx}
@@ -16,13 +18,18 @@
 \graphicspath{{imagenes/}{figs/}{./}} % Directorios relativos
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.eps}
 
-% Comando abreviado para inserción
-\newcommand{\imagen}[4][H]{
+% Comando mejorado con 5 argumentos:
+% #1 (Opcional): Posicionamiento (ej: [H], [htbp]) - Default: H
+% #2: Ancho relativo al texto (ej: 0.5)
+% #3: Nombre del archivo de la imagen (sin extensión si usas graphicspath)
+% #4: Pie de foto (Caption) que se verá en el PDF
+% #5: Nombre de la etiqueta (Label) para usar en \ref{fig:nombre}
+\newcommand{\imagen}[5][H]{
     \begin{figure}[#1]
         \centering
         \includegraphics[width=#2\textwidth,keepaspectratio]{#3}
         \caption{#4}
-        \label{fig:#4}
+        \label{fig:#5} % La etiqueta será fig: + lo que pongas en el 5º argumento
     \end{figure}
 }
 
@@ -43,39 +50,69 @@
     \vfill
 
 \end{titlepage}
+\pagenumbering{arabic}
 \renewcommand{\contentsname}{Índice General}
 \tableofcontents
-\addcontentsline{toc}{section}{1. Creación de la escena e Iluminación}
-\addcontentsline{toc}{section}{2. Materiales}
+\newpage
 
-\section*{1. Creación de la escena e Iluminación}
+\section{Creación de la escena e Iluminación}
 
-\noindent
 Tras haber creado la figura con los recursos de prácticas anteriores, de forma modular y paramétrica, se han creado las tres fuentes de luz necesarias para la práctica. El árbol de escena aparece en la figura \ref{fig:arbolEscena}.
 
-\imagen[htbp]{0.5}{arbolEscena}{arbolEscena}
+\imagen[htbp]{0.5}{arbolEscena}{Árbol de escena de la práctica}{arbolEscena}
 
-\noindent
+
 El resultado de la iluminación que se pide en el documento de la práctica 4 es el que aparece en la figura \ref{fig:iluminacionDiferencia}. En él se puede ver que la luz omni emite en todas las direcciones de una forma uniforme pero perdiendo intensidad; la luz direccional, en cambio, mantiene la intensidad en todo un cilindro en la dirección a la que apunta; y la luz puntual emite luz de la misma manera que lo haría un flexo de estudio.
 
-\imagen[htbp]{0.8}{iluminacionDiferencia}{Imagen iluminacion}
+\imagen[htbp]{0.5}{iluminacionDiferencia}{Imagen sobre las diferentes iluminaciones}{iluminacionDiferencia}
 
-\noindent
+
 Aunque puede no apreciarse bien la diferencia, sí que puede verse que la luz omni se encuentra encima del donut central, la luz puntual enfocando al donut delantero y la luz direccional apuntando desde el eje de coordenadas.
 
-\section*{2. Materiales}
+\section{Materiales}
 
-\noindent
 Debido a que estudiaremos un poco la generación de las sobras dependiendo de la transparencia, he elegido cambiar el color del suelo para facilitar la visión de las mismas. De hecho, deberemos ver que no se proyectan en el material.
 
-\noindent
 Antes de todo eso, se nos pedía hacer una degradación del color del material de forma que las filas tuvieran el mismo color y las columnas los mismos valores de rugosidad y metalicidad. Para ello, simplemente he añadido un factor sumando o restando de $\frac{i}{n}$ para el caso de las filas y $\frac{j}{m}$ para el caso de las columnas.
 
 El resultado aparece en la figura \ref{fig:materiales}.
 
-\imagen[htbp]{0.5}{materiales}{Asignación de materiales}
+\imagen[htbp]{0.5}{materiales}{Imagen de asignación de los materiales gradualmente}{materiales}
+
+En este ejercicio nos piden, además, se activemos el canal de transparencia \textit{alpha}. Este método de asignar la transparencia determina que le grado de opacidad del material viene determinado por la cuarta componente de \textit{albedo\_color}. 
+
+Siguiendo con la temática de asignación progresiva de características obtenemos la imagen \ref{fig:transparenciaProgre} donde se refleja esa asignación progresiva de las transparencias.
+
+%
+
+\imagen[htbp]{0.5}{transparenciaProgre}{Imagen de asignacion de transparencia por el canal \textit{alpha}}{transparenciaProgre}
+
+\section{Texturas}
+
+En este ejercicio se nos pide crear dos planos que cubran envuelvan la figura y que dispongan de unas coordenadas de texturas. He usado dos texturas diferentes, una para cada plano. 
+
+En la figura \ref{fig:texturasPlanos} aparece reflejado el resultado de esa asignación.
+
+\imagen[htbp]{0.5}{texturasPlanos}{Imagen con los planos texturizados}{texturasPlanos}
+
+En el punto 4 del ejercicio se nos pide que ambos planos usen coordenadas de texturas diferentes, para ello usaremos otra textura distinta donde se vea mas claro un patrón. El resultado de la asignación de coordenadas de textura aparece en la figura \ref{fig:mosaicoPlanos}.
+
+\imagen[htbp]{0.5}{mosaicoPlanos}{Imagen con planos en misma textura y diferentes coordenadas}{mosaicoPlanos}
+
+Por último, en el punto 5 de este ejercicio se nos pide que asignemos un mapa de normales, el resultado se aprecia en la figura \ref{fig:normalesPlanos}.
+
+\imagen[htbp]{0.5}{normalesPlanos}{Imagen con texturas como mapa de normales}{normalesPlanos}
 
 
+\subsection{Textura en el objeto de revolución}
 
+Como último ejercicio de la práctica, se nos pide asignarle texturas a cada uno de los objetos de revolución. Trataremos de emular la imagen que aparece en el guión de prácticas, donde no todos los objetos de revolución presentan texturas. De hecho, impondré que una de las filas sea con texturas, cada uno con una de ellas. 
 
+Para evitar sobrecargar el tamaño de la práctica, usaré las tres que ya han aparecido en las figuras \ref{fig:texturasPlanos}, \ref{fig:mosaicoPlanos} y \ref{fig:normalesPlanos}. El resultado puede verse en la figura \ref{fig:texturasRevolucion}.
+
+\imagen[htbp]{0.5}{texturasRevolucion}{Imagen con texturas en los objetos de revolución}{texturasRevolucion}
+
+Por último, cabe destacar que he usado el cálculo de la componente $v$ en función del desplazamiento en el perfil, en este caso, en función del radio. No obstante, en el script \textit{Utilidades} aparece la función del cálculo de la misma componente en función de la altura en el perfil. Es, por último, claro que la aproximación por el primer método debe ser mejor debido a la geometría del toroide.
+
+\end{document}
 

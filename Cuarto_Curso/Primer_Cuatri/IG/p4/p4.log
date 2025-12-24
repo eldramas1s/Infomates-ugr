@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.30)  6 DEC 2025 13:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.23)  23 DEC 2025 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -23,20 +23,40 @@ File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
 )
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count195
+))
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks17
-\inpenc@posthook=\toks18
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
 )
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2024/01/07 v24.1 The Babel package
-\babel@savecnt=\count195
+\babel@savecnt=\count196
 \U@D=\dimen141
 \l@unhyphenated=\language5
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count196
+\bbl@dirlevel=\count197
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
 Package babel Info: Importing data for spanish
@@ -47,10 +67,6 @@ Package babel Info: Hyphen rules for 'spanish' set to \l@english
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks19
-)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
 
@@ -77,9 +93,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count197
-\Gm@cntv=\count198
-\c@Gm@tempcnt=\count199
+\Gm@cnth=\count198
+\Gm@cntv=\count199
+\c@Gm@tempcnt=\count266
 \Gm@bindingoffset=\dimen144
 \Gm@wd@mp=\dimen145
 \Gm@odd@mp=\dimen146
@@ -92,7 +108,7 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 )
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count266
+\c@float@type=\count267
 \float@exts=\toks21
 \float@box=\box51
 \@float@everytoks=\toks22
@@ -101,18 +117,12 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
 
-(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)
 (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-)
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -138,15 +148,8 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
-))
-\c@section@level=\count267
 )
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count268
+\c@section@level=\count268
 )
 \@linkdim=\dimen152
 \Hy@linkcounter=\count269
@@ -241,24 +244,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (./p4.aux)
 \openout1 = `p4.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count280
@@ -315,24 +318,111 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 30.
+Package hyperref Info: Link coloring OFF on input line 37.
 (./p4.out) (./p4.out)
 \@outlinefile=\write3
 \openout3 = `p4.out'.
 
-</home/el_dramas/Desktop/ugr.jpg, id=4, 351.3125pt x 351.3125pt>
+</home/el_dramas/Desktop/ugr.jpg, id=20, 351.3125pt x 351.3125pt>
 File: /home/el_dramas/Desktop/ugr.jpg Graphic file (type jpg)
 <use /home/el_dramas/Desktop/ugr.jpg>
-Package pdftex.def Info: /home/el_dramas/Desktop/ugr.jpg  used on input line 37
+Package pdftex.def Info: /home/el_dramas/Desktop/ugr.jpg  used on input line 44
 .
 (pdftex.def)             Requested size: 256.07741pt x 256.09682pt.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/el_dramas/Desktop/ug
-r.jpg>] (./p4.toc)
+r.jpg>] (./p4.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 5.
+)
 \tf@toc=\write4
 \openout4 = `p4.toc'.
 
 
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.56 \newpage
+              [1]
+<imagenes/arbolEscena.png, id=40, 261.97874pt x 244.915pt>
+File: imagenes/arbolEscena.png Graphic file (type png)
+<use imagenes/arbolEscena.png>
+Package pdftex.def Info: imagenes/arbolEscena.png  used on input line 62.
+(pdftex.def)             Requested size: 213.39568pt x 199.50117pt.
+<imagenes/iluminacionDiferencia.png, id=42, 473.77pt x 420.57124pt>
+File: imagenes/iluminacionDiferencia.png Graphic file (type png)
+<use imagenes/iluminacionDiferencia.png>
+Package pdftex.def Info: imagenes/iluminacionDiferencia.png  used on input line
+ 67.
+(pdftex.def)             Requested size: 213.39568pt x 189.435pt.
+ [2 <./imagenes/arbolEscena.png> <./imagenes/iluminacionDiferencia.png>]
+<imagenes/materiales.png, id=52, 407.5225pt x 259.97125pt>
+File: imagenes/materiales.png Graphic file (type png)
+<use imagenes/materiales.png>
+Package pdftex.def Info: imagenes/materiales.png  used on input line 80.
+(pdftex.def)             Requested size: 213.39568pt x 136.12993pt.
+<imagenes/transparenciaProgre.png, id=54, 382.42876pt x 239.89626pt>
+File: imagenes/transparenciaProgre.png Graphic file (type png)
+<use imagenes/transparenciaProgre.png>
+Package pdftex.def Info: imagenes/transparenciaProgre.png  used on input line 8
+8.
+(pdftex.def)             Requested size: 213.39568pt x 133.86145pt.
+ [3 <./imagenes/materiales.png> <./imagenes/transparenciaProgre.png>]
+<imagenes/texturasPlanos.png, id=66, 1167.36125pt x 663.47874pt>
+File: imagenes/texturasPlanos.png Graphic file (type png)
+<use imagenes/texturasPlanos.png>
+Package pdftex.def Info: imagenes/texturasPlanos.png  used on input line 96.
+(pdftex.def)             Requested size: 213.39568pt x 121.2838pt.
+<imagenes/mosaicoPlanos.png, id=68, 1167.36125pt x 663.47874pt>
+File: imagenes/mosaicoPlanos.png Graphic file (type png)
+<use imagenes/mosaicoPlanos.png>
+Package pdftex.def Info: imagenes/mosaicoPlanos.png  used on input line 100.
+(pdftex.def)             Requested size: 213.39568pt x 121.2838pt.
+<imagenes/normalesPlanos.png, id=70, 1167.36125pt x 663.47874pt>
+File: imagenes/normalesPlanos.png Graphic file (type png)
+<use imagenes/normalesPlanos.png>
+Package pdftex.def Info: imagenes/normalesPlanos.png  used on input line 104.
+(pdftex.def)             Requested size: 213.39568pt x 121.2838pt.
+[4 <./imagenes/texturasPlanos.png> <./imagenes/mosaicoPlanos.png> <./imagenes/n
+ormalesPlanos.png>]
+<imagenes/texturasRevolucion.png, id=85, 1167.36125pt x 663.47874pt>
+File: imagenes/texturasRevolucion.png Graphic file (type png)
+<use imagenes/texturasRevolucion.png>
+Package pdftex.def Info: imagenes/texturasRevolucion.png  used on input line 11
+3.
+(pdftex.def)             Requested size: 213.39568pt x 121.2838pt.
+ [5 <./imagenes/texturasRevolucion.png>] (./p4.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+ ***********
+Package rerunfilecheck Info: File `p4.out' has not changed.
+(rerunfilecheck)             Checksum: 64B8B0DAA7017E02E84F3D2C5A9D4888;660.
+ ) 
+Here is how much of TeX's memory you used:
+ 10209 strings out of 476182
+ 163571 string characters out of 5795594
+ 1927975 words of memory out of 5000000
+ 32094 multiletter control sequences out of 15000+600000
+ 563276 words of font info for 53 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 69i,6n,79p,522b,486s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on p4.pdf (6 pages, 2869366 bytes).
+PDF statistics:
+ 126 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
+ 19 named destinations out of 1000 (max. 500000)
+ 78 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-LaTeX Warning: Reference `fig:arb
