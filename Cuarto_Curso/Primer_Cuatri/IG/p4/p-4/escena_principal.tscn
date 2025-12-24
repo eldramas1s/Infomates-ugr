@@ -39,7 +39,10 @@ visible = false
 script = ExtResource("3_0or06")
 
 [node name="EscenaEj41" type="Node3D" parent="."]
+visible = false
 script = ExtResource("4_rftnj")
+n = null
+m = null
 
 [node name="PlanoTexturizado" type="Node3D" parent="."]
 visible = false
@@ -59,5 +62,4 @@ visible = false
 script = ExtResource("9_hgi0t")
 
 [node name="DonutTexturizado" type="MeshInstance3D" parent="."]
-visible = false
 script = ExtResource("10_5e3jd")
