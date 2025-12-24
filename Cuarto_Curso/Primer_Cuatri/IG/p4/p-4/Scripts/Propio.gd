@@ -644,3 +644,292 @@ func revoluciona(perfil : PackedVector2Array, n : int , vertex : PackedVector3Ar
 				indexes.append(n*(perfil.size()-1)+j%n)
 				indexes.append(vertex.size()-1)
 				indexes.append(n*(perfil.size()-1)+(j+1)%n)
+
+## -----------------------------------------------------------------------------
+## 
+## Función que devuelve un arraymesh de un plano centrado en (0,0,0) 
+## y lado 2*D con sus coordenadas de textura
+##
+## D : entero que refleja la mitad del lado del plano
+func ArrayMeshPlanoUV(D : int) -> ArrayMesh:
+	var vertex := PackedVector3Array([
+		Vector3(-D, -D, 0),  # 0: esquina inferior-izq
+		Vector3( D, -D, 0),  # 1: inferior-der
+		Vector3( D,  D, 0),  # 2: superior-der  
+		Vector3(-D,  D, 0)   # 3: superior-izq	
+	])
+	var indexes := PackedInt32Array([0,1,2, 0,2,3])
+	
+	# UVs para textura completa: (0,0) -> (1,1)
+	var uvs := PackedVector2Array([
+		Vector2(0,1),  # inferior-izq
+		Vector2(1,1),  # inferior-der
+		Vector2(1,0),  # superior-der
+		Vector2(0,0)   # superior-izq
+	])
+	
+	var normales := Utilidades.calcNormales(vertex, indexes)
+	
+	var tablas : Array = []
+	tablas.resize(Mesh.ARRAY_MAX)
+	tablas[Mesh.ARRAY_VERTEX] = vertex
+	tablas[Mesh.ARRAY_INDEX]  = indexes
+	tablas[Mesh.ARRAY_NORMAL] = normales
+	tablas[Mesh.ARRAY_TEX_UV] = uvs 
+	
+	var mesh = ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, tablas)
+	return mesh
+	
+## -----------------------------------------------------------------------------
+## 
+## Función que devuelve un arraymesh de un cubo de 24 vertices centrado en (0,0,0) 
+## y lado 2*D con sus coordenadas de textura
+##
+## D : mitad del lado del cubo
+func ArrayMeshCubo24_CCT(D : int) -> ArrayMesh:
+	var vertex := PackedVector3Array([
+		# Cara frontal  (Z = +D)
+		Vector3(-D,-D, D), # 0  inf-izq
+		Vector3( D,-D, D), # 1  inf-der
+		Vector3( D, D, D), # 2  sup-der
+		Vector3(-D, D, D), # 3  sup-izq
+
+		# Cara trasera  (Z = -D)
+		Vector3( D,-D,-D), # 4  inf-izq (vista desde atrás)
+		Vector3(-D,-D,-D), # 5  inf-der
+		Vector3(-D, D,-D), # 6  sup-der
+		Vector3( D, D,-D), # 7  sup-izq
+
+		# Cara derecha  (X = +D)
+		Vector3( D,-D, D), # 8  inf-izq
+		Vector3( D,-D,-D), # 9  inf-der
+		Vector3( D, D,-D), #10  sup-der
+		Vector3( D, D, D), #11  sup-izq
+
+		# Cara izquierda (X = -D)
+		Vector3(-D,-D,-D), #12  inf-izq
+		Vector3(-D,-D, D), #13  inf-der
+		Vector3(-D, D, D), #14  sup-der
+		Vector3(-D, D,-D), #15  sup-izq
+
+		# Cara superior (Y = +D)
+		Vector3(-D, D, D), #16  inf-izq
+		Vector3( D, D, D), #17  inf-der
+		Vector3( D, D,-D), #18  sup-der
+		Vector3(-D, D,-D), #19  sup-izq
+
+		# Cara inferior (Y = -D)
+		Vector3(-D,-D,-D), #20  inf-izq
+		Vector3( D,-D,-D), #21  inf-der
+		Vector3( D,-D, D), #22  sup-der
+		Vector3(-D,-D, D)  #23  sup-izq
+	])
+	
+	var indexes := PackedInt32Array([
+		# Frontal  (0‑3)
+		0,2,1,  0,3,2,
+		# Trasera (4‑7) ojo al orden para que la normal salga hacia fuera
+		4,6,5,  4,7,6,
+		# Derecha (8‑11)
+		8,10,9, 8,11,10,
+		# Izquierda (12‑15)
+		12,14,13, 12,15,14,
+		# Superior (16‑19)
+		16,18,17, 16,19,18,
+		# Inferior (20‑23)
+		20,22,21, 20,23,22
+	])
+	
+	# Calculo de normales
+	var normales := Utilidades.calcNormales(vertex, indexes)
+	
+	# Coordenadas UV: Mismas por cada plano (cara)
+	var uvs := PackedVector2Array([])
+	
+	## Patrón UV por cara: 
+	# Hay que tener en cuenta que en las imagenes el vertice (0,0) es el de la esquina superior-izquierda
+	var uv_cara := PackedVector2Array([
+		Vector2(0,1),  # inferior-izquierda
+		Vector2(1,1),  # inferior-derecha  
+		Vector2(1,0),  # superior-derecha
+		Vector2(0,0)   # superior-izquierda
+	])
+	
+	# Repetir 6 veces (una por cada cara)
+	for i in range(6):
+		uvs.append_array(uv_cara)
+	
+	# Construir tablas de la malla
+	var tablas : Array = []
+	tablas.resize(Mesh.ARRAY_MAX)
+	tablas[Mesh.ARRAY_VERTEX]   = vertex
+	tablas[Mesh.ARRAY_INDEX]    = indexes
+	tablas[Mesh.ARRAY_NORMAL]   = normales
+	tablas[Mesh.ARRAY_TEX_UV]   = uvs  # ← ¡ACTIVA LAS TEXTURAS!
+	
+	# Crear y retornar el ArrayMesh
+	var mesh = ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, tablas)
+	
+	return mesh
+
+## -----------------------------------------------------------------------------
+## 
+## Función que devuelve un arraymesh de una piramide centrada con base en (0,0,0)
+## de lado 2*D y altura 2*D con sus coordenadas de textura
+##
+## D : mitad de lado de la base y altura
+func ArrayMeshPiramideUV(D : int) -> ArrayMesh:
+	var vertex := PackedVector3Array([
+		# Cara frontal  (Z = +D)
+		Vector3(-D,0, D), # 0  inf-izq
+		Vector3(D,0, D), # 1  inf-der
+		Vector3( 0,2*D, 0), # 2  sup
+
+		# Cara trasera  (Z = -D)
+		Vector3( -D,0,-D), # 3  inf-izq (vista desde atrás)
+		Vector3(D,0,-D), # 4  inf-der
+		Vector3( 0,2*D, 0), # 5  sup
+
+		# Cara derecha  (X = +D)
+		Vector3( D,0, D), # 6  inf-izq
+		Vector3( D,0,-D), # 7  inf-der
+		Vector3( 0,2*D, 0), # 8  sup
+
+		# Cara izquierda (X = -D)
+		Vector3(-D,0,-D), #9  inf-izq
+		Vector3(-D,0, D), #10  inf-der
+		Vector3( 0,2*D, 0), #11  sup
+
+		# Cara inferior (Y = 0)
+		Vector3(-D, 0, D), #12  delantero-izq
+		Vector3( D, 0, D), #13  delantero-der
+		Vector3( D, 0,-D), #14  trasero-der
+		Vector3(-D, 0,-D), #15  trasero-izq
+	])
+	var indexes := PackedInt32Array([
+		# Frontal  
+		0,2,1,
+		# Trasera 
+		3,4,5,
+		# Derecha 
+		6,8,7,
+		# Izquierda 
+		9,11,10,
+		# inferior
+		15,13,14, 15,12,13
+	])
+	
+	# Calculo de normales
+	var normales := Utilidades.calcNormales(vertex, indexes)
+	
+	# Coordenadas UV: 
+	var uvs := PackedVector2Array([])
+	## Patrón UV por cara: 
+	# Hay que tener en cuenta que en las imagenes el vertice (0,0) es el de la esquina superior-izquierda
+	var uv_cara := PackedVector2Array([
+		Vector2(0,1),  # inferior-izquierda
+		Vector2(1,1),  # inferior-derecha  
+		Vector2(0.5,0) # apice
+	])
+	var uv_base := PackedVector2Array([
+		Vector2(0,1),  # inferior-izquierda
+		Vector2(1,1),  # inferior-derecha  
+		Vector2(1,0),  # superior-derecha
+		Vector2(0,0)   # superior-izquierda
+	])
+	# Repetir 6 veces (una por cada cara)
+	for i in range(4):
+		uvs.append_array(uv_cara)
+	uvs.append_array(uv_base)
+	var tablas : Array = []
+	tablas.resize(Mesh.ARRAY_MAX)
+	tablas[Mesh.ARRAY_VERTEX]   = vertex
+	tablas[Mesh.ARRAY_INDEX]    = indexes
+	tablas[Mesh.ARRAY_NORMAL]   = normales
+	tablas[Mesh.ARRAY_TEX_UV]   = uvs  # ← ¡ACTIVA LAS TEXTURAS!
+	
+	# Crear y retornar el ArrayMesh
+	var mesh = ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, tablas)
+	
+	return mesh
+
+## -----------------------------------------------------------------------------
+##Genera un disco plano en el eje XZ. Basta hacerlo en un eje pues el resto son rotaciones o traslaciones
+## n : divisiones angulares
+## m : divisiones radiales
+## r_max : radio máximo del disco
+## uv_tipo = 0 -> (u, v) = (ángulo, radio)
+## uv_tipo = 1 -> (u, v) = lineal en (x,z)
+func ArrayMeshDiscoUV(n: int, m: int, r_max: float, uv_tipo:int = 0, centro :=Vector3(0,0,0)) -> ArrayMesh:
+	assert(n > 0 and m > 0)
+
+	var vertex  := PackedVector3Array()
+	var indexes := PackedInt32Array()
+
+	## Construimos los vertices
+	for j in range(m + 1):              # anillos 0..m
+		var r = r_max * float(j) / float(m)
+		for i in range(n):         # Duplicamos el 0 para cerrar 
+			var ang = 2*PI * float(i) / float(n)
+			var x = r * cos(ang)
+			var z = r * sin(ang)
+			vertex.append(Vector3(x, 0.0, z))
+
+	## Generamos los indices
+	# cada celda (j,i) forma 2 triángulos
+	# idx(j,i) = j*(n+1) + i
+	for j in range(m):
+		for i in range(n):
+			var ind0 = j*n + i
+			var ind1 = j*n + ((i + 1) % n)         
+			var ind2 = (j + 1)*n + i
+			var ind3 = (j + 1)*n + ((i + 1) % n)
+
+			# Triángulo 1
+			indexes.append(ind0)
+			indexes.append(ind3)
+			indexes.append(ind1)
+			# Triángulo 2
+			indexes.append(ind0)
+			indexes.append(ind2)
+			indexes.append(ind3)
+
+	var normales := Utilidades.calcNormales(vertex, indexes)
+
+	var uvs := PackedVector2Array()
+
+	if uv_tipo == 0:
+		# (u, v) proporcional a ángulo y radio
+		for a in vertex:
+			var dx = a.x - centro.x		# distancias de la suma al centro
+			var dz = a.z - centro.z
+			var r = sqrt(dx*dx + dz*dz) # distancia euclidea
+			var ang = atan2(dz, dx) + PI             # [-PI, PI]
+			var u = ang/ (2.0 * PI)      # 0..1	(angulo normalizado)
+			var v = r / r_max                   # 0..1 (proporcion desde el centro)
+			if u > 0.999:
+				u = 0.0
+
+			uvs.append(Vector2(u, v))
+	else:
+		# (u, v) lineales en (x,z)  -> proyección plana
+		for a in vertex:
+			var dx = a.x / r_max                 # -1..1
+			var dz = a.z / r_max                 # -1..1
+			var u = 0.5 * (dx + 1.0)             # 0..1
+			var v = 0.5 * (dz + 1.0)            # 0..1
+			uvs.append(Vector2(u, v))
+
+	var tablas : Array = []
+	tablas.resize(Mesh.ARRAY_MAX)
+	tablas[Mesh.ARRAY_VERTEX]   = vertex
+	tablas[Mesh.ARRAY_INDEX]    = indexes
+	tablas[Mesh.ARRAY_NORMAL]   = normales
+	tablas[Mesh.ARRAY_TEX_UV]   = uvs
+
+	var mesh := ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, tablas)
+	return mesh

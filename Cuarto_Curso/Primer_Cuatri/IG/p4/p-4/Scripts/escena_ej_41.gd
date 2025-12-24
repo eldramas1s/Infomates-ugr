@@ -63,7 +63,7 @@ func meshDonut() -> ArrayMesh:
 	
 	Utilidades.generarDonut( vertices, triangulos )
 	
-	var uvs := Utilidades.calcUVRadio(vertices)
+	var uvs := Utilidades.calcUVPerfil(vertices)
 	
 	var normales := Utilidades.calcNormales( vertices, triangulos )
 			
