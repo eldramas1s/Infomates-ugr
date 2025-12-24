@@ -63,8 +63,7 @@ func meshDonut() -> ArrayMesh:
 	
 	Utilidades.generarDonut( vertices, triangulos )
 	
-	var uvs := Utilidades.calcUVProfundo(vertices)
-	
+	var uvs := Utilidades.CalcUVCamposAlturas(vertices)
 	var normales := Utilidades.calcNormales( vertices, triangulos )
 			
 	## inicializar el array con las tablas

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bahr6dkxnh0ac"]
+[gd_scene load_steps=12 format=3 uid="uid://bahr6dkxnh0ac"]
 
 [ext_resource type="Script" uid="uid://da1cgutq3v53x" path="res://Scripts/script_raiz.gd" id="1_hcujj"]
 [ext_resource type="Script" uid="uid://q18dixnjdj21" path="res://Scripts/ejes3D.gd" id="2_rftnj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://y4exljn8yqov" path="res://Scripts/piramide_ugr.gd" id="8_lhnnm"]
 [ext_resource type="Script" uid="uid://46mr3srr5rya" path="res://Scripts/disco_diana.gd" id="9_hgi0t"]
 [ext_resource type="Script" uid="uid://criufnddgfihg" path="res://Scripts/donut_texturizado.gd" id="10_5e3jd"]
+[ext_resource type="Script" uid="uid://2ugd38o0n81u" path="res://Scripts/coca_cola.gd" id="11_1xgag"]
 
 [node name="EscenaPrincipal" type="Node3D"]
 script = ExtResource("1_hcujj")
@@ -41,8 +42,6 @@ script = ExtResource("3_0or06")
 [node name="EscenaEj41" type="Node3D" parent="."]
 visible = false
 script = ExtResource("4_rftnj")
-n = null
-m = null
 
 [node name="PlanoTexturizado" type="Node3D" parent="."]
 visible = false
@@ -62,4 +61,8 @@ visible = false
 script = ExtResource("9_hgi0t")
 
 [node name="DonutTexturizado" type="MeshInstance3D" parent="."]
+visible = false
 script = ExtResource("10_5e3jd")
+
+[node name="CocaCola" type="MeshInstance3D" parent="."]
+script = ExtResource("11_1xgag")

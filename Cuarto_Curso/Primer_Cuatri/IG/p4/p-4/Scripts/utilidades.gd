@@ -14,6 +14,7 @@ func calcNormales( verts : PackedVector3Array,
 	assert( tris.size() % 3 == 0 , "CalcNormales: el número de enteros en 'tris' debe ser múltiplo de 3")
 	
 	var nv : int = verts.size()  ## número de vértices
+	@warning_ignore("integer_division")
 	var nt : int = tris.size()/3 ## número de triángulos
 	
 	# Paso 2: inicializa normales a cero
@@ -102,144 +103,219 @@ func generarDonut( vertices: PackedVector3Array,
 	GenTriToroidal( nu, nv, indices )
 
 ## -----------------------------------------------------------------------------
-## 
-## Función que calcula las coordenadas de textura de una malla de vertices en funcion del perfil
-##
-##
-##    vertices : vertices de la malla
-static func calcUVPerfil(vertices: PackedVector3Array) -> PackedVector2Array:
-	var uvs := PackedVector2Array()
+## Calcula las coordenadas de textura usando funciones lineales
+## vertices : vertices del perfil
+func CalcUVLineal(vertices : PackedVector3Array)->PackedVector2Array:
+	assert(vertices.size()!=0, "necesito mas de 0 vertices")
+	
+	var uvs := PackedVector2Array([])
+	
+	return uvs
+	
+## -----------------------------------------------------------------------------
+## Calcula las coordenadas de textura usando campos de alturas
+## Realmente lo interpreto como una proyeccion en el eje y
+## vertices : vertices del perfil
+func CalcUVCamposAlturas(vertices : PackedVector3Array,eps:float=0.001, reps_u : float = 1.0, reps_v : float = 1.0)->PackedVector2Array:
+	assert(vertices.size()!=0, "necesito mas de 0 vertices")
+	assert(reps_u!=0 or reps_v!=0 , "No puedo poner texturas si no pongo una vez")
+	var uvs := PackedVector2Array([])
+	
+	var min_x = INF; var max_x = -INF
+	var min_z = INF; var max_z = -INF
+	
+	for v in vertices:
+		min_x = min(min_x, v.x)
+		max_x = max(max_x, v.x)
+		min_z = min(min_z, v.z)
+		max_z = max(max_z, v.z)
+	
+	var range_x = max_x - min_x
+	var range_z = max_z - min_z
+	if range_x == 0.0:
+		range_x = 1.0
+	if range_z == 0.0:
+		range_z = 1.0
+	for v in vertices:
+		var u_norm = (v.x - min_x) / range_x
+		var v_norm = (v.z - min_z) / range_z
+		
+		## Imponemos el numero de repeticiones que difa reps_u y reps_v
+		var u = u_norm * reps_u
+		if u < eps:
+			u += 0.0
+		var vv = v_norm * reps_v
+		if vv < eps:
+			vv += 0.0
+		uvs.append(Vector2(u,vv))
+	return uvs
 
-	# Obtenemos los radios del toroide, R y rho
-	var min_radio_xy = INF
-	var max_radio_xy = 0.0
-	var min_y = INF
-	var max_y = -INF
+## -----------------------------------------------------------------------------
+## Calcula las coordenadas de textura usando campos de alturas
+## Realmente lo interpreto como una proyeccion en el eje x
+## vertices : vertices del perfil
+func CalcUVCamposAnchuras(vertices : PackedVector3Array, eps : float=0.001, reps_u : float = 1.0, reps_v : float = 1.0)->PackedVector2Array:
+	assert(vertices.size()!=0, "necesito mas de 0 vertices")
+	assert(reps_u!=0 or reps_v!=0 , "No puedo poner texturas si no pongo una vez")
+	var uvs := PackedVector2Array([])
+	var min_y = INF; var max_y = -INF
+	var min_z = INF; var max_z = -INF
+	
+	for v in vertices:
+		min_y = min(min_y, v.y)
+		max_y = max(max_y, v.y)
+		min_z = min(min_z, v.z)
+		max_z = max(max_z, v.z)
+	
+	var range_y = max_y - min_y
+	var range_z = max_z - min_z
+	if range_z == 0.0:
+		range_z = 1.0
+	if range_y == 0.0:
+		range_y = 1.0
+	for v in vertices:
+		var u_norm = (v.z - min_z) / range_z
+		var v_norm = (v.y - min_y) / range_y
+		
+		## Imponemos el numero de repeticiones que difa reps_u y reps_v
+		var u = u_norm * reps_u
+		if u < eps:
+			u += 0.0
+		var vv = v_norm * reps_v
+		if vv < eps:
+			vv += 0.0
+		uvs.append(Vector2(u,vv))
+		
+	return uvs
+## -----------------------------------------------------------------------------
+## Calcula las coordenadas de textura usando campos de alturas
+## Realmente lo interpreto como una proyeccion en el eje z
+## vertices : vertices del perfil
+func CalcUVCamposProfundidad(vertices : PackedVector3Array, eps: float=0.001, reps_u : float = 1.0, reps_v : float = 1.0)->PackedVector2Array:
+	assert(vertices.size()!=0, "necesito mas de 0 vertices")
+	assert(reps_u!=0.0 or reps_v!=0.0 , "No puedo poner texturas si no pongo una vez")
+	var uvs := PackedVector2Array([])
+	
+	var min_x = INF; var max_x = -INF
+	var min_y = INF; var max_y = -INF
+	
+	for v in vertices:
+		min_x = min(min_x, v.x)
+		max_x = max(max_x, v.x)
+		min_y = min(min_y, v.y)
+		max_y = max(max_y, v.y)
+	
+	var range_x = max_x - min_x
+	var range_y = max_y - min_y
+	if range_x == 0.0:
+		range_x = 1.0
+	if range_y == 0.0:
+		range_y = 1.0
+	for v in vertices:
+		var u_norm = (v.x - min_x) / range_x
+		var v_norm = (v.y - min_y) / range_y
+		if v_norm < eps:
+			v_norm += 0.0
+		if u_norm < eps:
+			u_norm += 0.0
+		## Imponemos el numero de repeticiones que difa reps_u y reps_v
+		var u = u_norm * reps_u
+		var vv = v_norm * reps_v
+		
+			
+		uvs.append(Vector2(u,vv))
+		
+	return uvs
+	
+## -----------------------------------------------------------------------------
+## Calcula las coordenadas de textura usando coordenadas esfericas
+## Visualmente es introducir la figura o parte de ella en una esfera y absorber el aire de dentro
+## (probablemente segun su normal)
+## vertices : vertices del perfil
+func CalcUVEsfericas(vertices : PackedVector3Array,eps : float=0.001,reps_u : float = 1.0, reps_v : float = 1.0)->PackedVector2Array:
+	assert(reps_u!=0 or reps_v!=0 , "No puedo poner texturas si no pongo una vez")
+	var uvs := PackedVector2Array()
+	var max_u = 1.0
+	var max_v = 1.0
 
 	for v in vertices:
-		var radio = sqrt(v.x*v.x + v.y*v.y)  # distancia en plano XY
-		min_radio_xy = min(radio, min_radio_xy)
-		max_radio_xy = max(radio, max_radio_xy)
-		min_y = min(v.y, min_y)
-		max_y = max(v.y, max_y)
-
-	var R = (min_radio_xy + max_radio_xy) / 2.0      # radio mayor
-	var rho = (max_radio_xy - min_radio_xy) / 2.0    # radio menor
-	var centro_y = (min_y + max_y) / 2.0             # centro en Y
-
-	## Aunque es un caso trivial debemos evitar divisiones por cero
-	if rho == 0.0:
-		rho = 1.0
-
-	## Calculo de las UV
-	for vertex in vertices:
-		# u: ángulo de revolución (en plano XY alrededor de Z)
-		var phi = atan2(vertex.y, vertex.x)
-		var u = (phi + PI) / TAU              # Normalizar [-π, π] → [0,1]
-		if u > 0.999:
-			u = 0.0
+		# 1. Calcular el valor del parámetro u
+		var phi = atan2(v.z, v.x)
+		var u_base = max_u*((phi / (2*PI)+0.5))
 		
-		# v: ángulo del perfil (círculo local del tubo)
-		# El perfil está en el plano que contiene el eje Z y el radio
-		var radio_actual = sqrt(vertex.x*vertex.x + vertex.y*vertex.y)
-		var dy = vertex.y - centro_y          # desplazamiento vertical desde el centro
-		var dx_perfil = radio_actual - R      # desplazamiento radial desde el radio mayor
+		if u_base < eps:
+			u_base += 0.0
+		# 2. Calcular el valor del parámetro v
+		var beta = atan2(v.y,sqrt(v.x*v.x+v.z*v.z))
+		var vv_base = max_v*((beta/PI)+0.5)
 		
-		var theta_perfil = atan2(dy, dx_perfil)  # ángulo en el plano del perfil
-		var v = (theta_perfil + PI) / TAU         # Normalizar [-π, π] → [0,1]
-		if v > 0.999:
-			v = 0.0
-		
-		uvs.append(Vector2(u, v))
-
-
+		if vv_base < eps:
+			vv_base += 0.0
+			
+		var vv = vv_base * reps_v
+		var u = u_base * reps_u
+		var uv_coords = Vector2(u, vv)
+		uvs.append(uv_coords)
 	return uvs
 	
 ## -----------------------------------------------------------------------------
-## 
-## Función que calcula las coordenadas de textura de una malla de vertices en funcion de la altura
-##
-##
-##    vertices : vertices de la malla
-static func calcUVProfundo(vertices: PackedVector3Array) -> PackedVector2Array:
+## Calcula las coordenadas de textura usando coordenadas cilindricas
+## Visualmente es introducir la figura o parte de ella en una esfera y absorber el aire de dentro
+## (probablemente segun su normal)
+## vertices : vertices del perfil
+func CalcUVCilindricas(vertices : PackedVector3Array,eps:float=0.001,reps_u : float = 1.0, reps_v : float = 1.0, mode : int=0)->PackedVector2Array:
+	assert(mode==0 or mode==1 or mode==2, "NO se encuentra ese modo")
+	assert(reps_u!=0 or reps_v!=0 , "No puedo poner texturas si no pongo una vez")
 	var uvs := PackedVector2Array()
 	var max_u = 1.0
 	var max_v = 1.0
-	# Encontramos el min y el max de Y para normalizar v
-	var min_z = vertices[0].z
-	var max_z = vertices[0].z
+	var min_alt = INF
+	var max_alt = -INF
+	match mode:
+		0 : # Cilindro base en el plano XZ
+			for v in vertices:
+				min_alt = min(min_alt,v.y)
+				max_alt = max(max_alt,v.y)
+		1:	# Cilindro base en el plano XY
+			for v in vertices:
+				min_alt = min(min_alt,v.z)
+				max_alt = max(max_alt,v.z)
+		2:	# Cilindro base en el plano YZ
+			for v in vertices:
+				min_alt = min(min_alt,v.x)
+				max_alt = max(max_alt,v.x)
 	
-	## Asignamos los bordes mediante una retraccion
-	for vertex in vertices:
-		if vertex.z < min_z:
-			min_z = vertex.z
-		if vertex.z > max_z:
-			max_z = vertex.z
 	
-	## Calculamos el rango de valores de y
-	## Cuando el maximo y el minimo coinciden asumimos como rango el valor 1
-	var range_z = max_z- min_z
-	if range_z == 0:
-		range_z = 1.0  # Evita división por cero
-		
-	for vertex in vertices:
+	for v in vertices:
 		# 1. Calcular el valor del parámetro u
-		var phi = atan2(vertex.y, vertex.x)
-		var u = max_u*((phi / (2*PI)+0.5))
+		var phi = 0.0
+		var vnorm=0.0
 		# 2. Calcular el valor del parámetro v
+		match mode:
+			0:	# Cilindro base en el plano XZ
+				phi=atan2(v.z, v.x)
+				vnorm = max_v*((v.y-min_alt)/(max_alt-min_alt))
+			1: # Cilindro base en el plano XY
+				phi=atan2(v.y,v.x)
+				vnorm = max_v*((v.z-min_alt)/(max_alt-min_alt))
+			2: # Cilindro base en el plano YZ
+				phi=atan2(v.z,v.y)
+				vnorm = max_v*((v.x-min_alt)/(max_alt-min_alt))
+				
+		# Normalizar ángulo base [0,1]
+		var u_base = (phi / (2*PI)) + 0.5
 		
-		## Opcion basada en la altura, es decir, de forma aproximada en funcion de y
-		var v = max_v * ((vertex.z - min_z) / range_z)
+		# APLICAR REPETICIONES con fmod
+		var u = u_base * reps_u
+		var vv = vnorm * reps_v
 		
-		#Puedes calcularlo en función del desplazaniento en el perfil
-		# o de forma aproximada en función de y
-		var uv_coords = Vector2(u, v)
-		uvs.append(uv_coords)
+		if u < eps:
+			u += 0.0
+		if vv < eps:
+			vv += 0.0
 		
+		uvs.append(Vector2(u,vv))
 	return uvs
-## -----------------------------------------------------------------------------
-## 
-## Función que calcula las coordenadas de textura de una malla de vertices enfuncion del Radio
-##
-##
-##    vertices : vertices de la malla
-static func calcUVAltura(vertices: PackedVector3Array) -> PackedVector2Array:
-	var uvs := PackedVector2Array()
-	var max_u = 1.0
-	var max_v = 1.0
-	# Encontramos el min y el max de Y para normalizar v
-	var min_y = vertices[0].y
-	var max_y = vertices[0].y
-	
-	## Asignamos los bordes mediante una retraccion
-	for vertex in vertices:
-		if vertex.y < min_y:
-			min_y = vertex.y
-		if vertex.y > max_y:
-			max_y = vertex.y
-	
-	## Calculamos el rango de valores de y
-	## Cuando el maximo y el minimo coinciden asumimos como rango el valor 1
-	var range_y = max_y- min_y
-	if range_y == 0:
-		range_y = 1.0  # Evita división por cero
-		
-	for vertex in vertices:
-		# 1. Calcular el valor del parámetro u
-		var phi = atan2(vertex.y, vertex.x)
-		var u = max_u*((phi / (2*PI)+0.5))
-		# 2. Calcular el valor del parámetro v
-		
-		## Opcion basada en la altura, es decir, de forma aproximada en funcion de y
-		var v = max_v * ((vertex.y - min_y) / range_y)
-		
-		#Puedes calcularlo en función del desplazaniento en el perfil
-		# o de forma aproximada en función de y
-		var uv_coords = Vector2(u, v)
-		uvs.append(uv_coords)
-		
-	return uvs
-
 ## -----------------------------------------------------------------------------
 ## 
 ## Crea un objeto ImageTexture a raiz de la ruta dentro del proyecto
@@ -255,83 +331,7 @@ func CargarTextura( arch : String ) -> ImageTexture :
 	#print("Textura cargada desde archivo: '",arch,"'.")
 	## devolver la textura
 	return textura
-## -----------------------------------------------------------------------------
-## 
-## Función que calcula las coordenadas de textura de una malla de vertices enfuncion del Radio
-##
-##
-##    vertices : vertices de la malla
-static func calcUVParalelos(vertices: PackedVector3Array) -> PackedVector2Array:
-	var uvs := PackedVector2Array()
 
-	var min_radio_xy = INF
-	var max_radio_xy = 0.0
-	var min_y = INF
-	var max_y = -INF
-
-	for v in vertices:
-		var radio = sqrt(v.x*v.x + v.y*v.y)
-		min_radio_xy = min(radio, min_radio_xy)
-		max_radio_xy = max(radio, max_radio_xy)
-		min_y = min(v.y, min_y)
-		max_y = max(v.y, max_y)
-
-	var range_radio = max_radio_xy - min_radio_xy
-	var range_y = max_y - min_y
-
-	if range_radio == 0.0:
-		range_radio = 1.0
-	if range_y == 0.0:
-		range_y = 1.0
-
-	for vertex in vertices:
-		# u: normalizar radio (de centro hacia afuera)
-		var radio = sqrt(vertex.x*vertex.x + vertex.y*vertex.y)
-		var u = (radio - min_radio_xy) / range_radio
-
-		# v: normalizar altura Y
-		var v = (vertex.y - min_y) / range_y
-
-		uvs.append(Vector2(u, v))
-
-	return uvs
-
-static func calcUVVerticales(vertices: PackedVector3Array) -> PackedVector2Array:
-	var uvs := PackedVector2Array()
-	var max_u = 1.0
-	var max_v = 1.0
-	# Encontramos el min y el max de Y para normalizar v
-	var min_z = vertices[0].z
-	var max_z = vertices[0].z
-	
-	## Asignamos los bordes mediante una retraccion
-	for vertex in vertices:
-		if vertex.z < min_z:
-			min_z = vertex.z
-		if vertex.z > max_z:
-			max_z = vertex.z
-	
-	## Calculamos el rango de valores de y
-	## Cuando el maximo y el minimo coinciden asumimos como rango el valor 1
-	var range_z = max_z- min_z
-	if range_z == 0:
-		range_z = 1.0  # Evita división por cero
-		
-	for vertex in vertices:
-		# 1. Calcular el valor del parámetro u
-		var phi = atan2(vertex.y, vertex.x)
-		var u = max_u*((phi / (2*PI/4)+0.5))
-		# 2. Calcular el valor del parámetro v
-		
-		## Opcion basada en la altura, es decir, de forma aproximada en funcion de y
-		var v = max_v * ((vertex.z - min_z) / (range_z))
-		
-		#Puedes calcularlo en función del desplazaniento en el perfil
-		# o de forma aproximada en función de y
-		var uv_coords = Vector2(v, u)
-		uvs.append(uv_coords)
-		
-	return uvs
 
 ## -----------------------------------------------------------------------------
 ## 
@@ -347,7 +347,8 @@ static func calcUVVerticales(vertices: PackedVector3Array) -> PackedVector2Array
 ##    R  = radio mayor 
 ##    r  = radio menor
 
-func generarDonutUV( tipo_uv = 0, nu: int = 128, nv: int = 32, R: float = 1.2, r: float = 0.4)->ArrayMesh:			
+func generarDonutUV(tipo_uv : int = 0, eps:float=0.001 ,reps_u : float = 1.0, reps_v : float = 1.0,mode = 0, nu: int = 128, nv: int = 32, R: float = 1.2, r: float = 0.4)->ArrayMesh:			
+	assert(tipo_uv==0 or tipo_uv==1, "No existe el tipo determinado(0,1)")
 	
 	var vertices := PackedVector3Array([])
 	var indices := PackedInt32Array([])
@@ -360,9 +361,10 @@ func generarDonutUV( tipo_uv = 0, nu: int = 128, nv: int = 32, R: float = 1.2, r
 	GenTriToroidal( nu, nv, indices )
 	var normales := calcNormales(vertices, indices)
 	
-	var uvs := calcUVVerticales(vertices)
+	
+	var uvs := CalcUVCamposAlturas(vertices,eps,reps_u,reps_v)
 	if tipo_uv == 1:
-		uvs = calcUVVerticales(vertices)
+		uvs = CalcUVCamposProfundidad(vertices,eps,reps_u,reps_v)
 		
 	var tablas : Array = []
 	tablas.resize(Mesh.ARRAY_MAX)

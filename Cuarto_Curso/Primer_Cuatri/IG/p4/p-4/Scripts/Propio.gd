@@ -933,3 +933,105 @@ func ArrayMeshDiscoUV(n: int, m: int, r_max: float, uv_tipo:int = 0, centro :=Ve
 	var mesh := ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, tablas)
 	return mesh
+## -----------------------------------------------------------------------------
+## 
+## Función que devuelve el ArrayMesh de una rejilla
+##	  
+##	  perfil : vertices del perfil de la figura
+##	  n : numero de copias del perfil que tendra la figura, contando la de partida
+##	  tapa_sup : bool que representa si se crea la tapa superior o no
+##	  tapa_inf : bool que representa si se crea la tapa inferior o no
+# Esta funcion asume que los vertices vienen ordenados segun la altura,
+# en otro caso no se contempla su funcionamiento.
+# El algoritmo esta creado para que la snormales queden hacia fuera si el perfil esta dado de arriba a abajo.
+func revolucionaUV(perfil : PackedVector2Array, n : int, tapa_sup : bool, tapa_inf : bool)->ArrayMesh:
+	
+	var vertex :=PackedVector3Array([])
+	var indexes :=PackedInt32Array([])
+	var uvs := PackedVector2Array([])
+	if n>1 and perfil.size()>0:
+		var dist_acum := PackedFloat32Array()
+		dist_acum.resize(perfil.size())
+		
+		dist_acum[0] = 0.0
+		for i in range(1, perfil.size()):
+			## TODO: cambiar esto por la formula de la distancia
+			var d = perfil[i].distance_to(perfil[i - 1])
+			dist_acum[i] = dist_acum[i - 1] + d
+		
+		var total_dist = dist_acum[perfil.size() - 1]
+		if total_dist == 0.0:
+			total_dist = 1.0
+		# El perfil esta en el plano x-y
+		# Se supone que estamos creando los vertices por capas segun el perfil
+		# de abajo a arriba o de arriba abajo
+		# De esta manera tenemos que cada n casillas tenemos un vertices, correspondidos 
+		# por la coordenada z
+		# Los triangulos seran de la forma z->z+1->z+1(y+1) y z->z+1(y+1)->z(y+1)
+		for i in range(perfil.size()):
+			var v_param = dist_acum[i] / total_dist
+			for j in range(n+1):
+				
+				var ang = 2.0 * PI * float(j) / float(n)	# j=n → 2π
+				var x = perfil[i].x * cos(ang)
+				var y = perfil[i].y
+				var z = perfil[i].x * sin(ang)
+				vertex.append(Vector3(x, y, z))
+				
+				var u_param = float(j) / float(n)	# u ∈ [0,1] según ángulo
+				uvs.append(Vector2(u_param, v_param))	
+				
+		## TODO: Cambiar la textura de las tapas
+		var idx_centro_inf = vertex.size()
+		vertex.append(Vector3(0.0, perfil[0].y, 0.0))
+		uvs.append(Vector2(0.5, 0.0))
+		var idx_centro_sup = vertex.size()
+		vertex.append(Vector3(0.0, perfil[perfil.size() - 1].y, 0.0))
+		uvs.append(Vector2(0.5, 1.0))
+
+		# Asignamos los indices 
+
+		for i in range(perfil.size()-1):
+			# Añadimos una capa
+			for j in range(n):
+				var ind0 = i * (n + 1) + j
+				var ind1 = i * (n + 1) + (j + 1)
+				var ind2 = (i + 1) * (n + 1) + j
+				var ind3 = (i + 1) * (n + 1) + (j + 1)
+				
+				# Triángulo 1
+				indexes.append(ind0)
+				indexes.append(ind1)
+				indexes.append(ind3)
+				
+				# Triángulo 2
+				indexes.append(ind0)
+				indexes.append(ind3)
+				indexes.append(ind2)
+				
+			
+		# Añadimos la capa de abajo
+		if tapa_inf:
+			for j in range(n):
+				indexes.append(j)
+				indexes.append(j+1)
+				indexes.append(idx_centro_inf)	# Es el centro de la parte de abajo o arriba dependeidno del orden
+			
+			
+		# Añadimos la capa de arriba
+		if tapa_sup:
+			for j in range(n):
+				indexes.append((perfil.size()-1)*(n+1)+j)
+				indexes.append(idx_centro_sup)
+				indexes.append((perfil.size()-1)*(n+1)+j+1)
+		
+	var tablas : Array = []
+	tablas.resize(Mesh.ARRAY_MAX)
+	tablas[Mesh.ARRAY_VERTEX]   = vertex
+	tablas[Mesh.ARRAY_INDEX]    = indexes
+	tablas[Mesh.ARRAY_NORMAL]   = Utilidades.calcNormales(vertex,indexes)
+	tablas[Mesh.ARRAY_TEX_UV]   = uvs
+
+	var mesh := ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, tablas)
+	return mesh
