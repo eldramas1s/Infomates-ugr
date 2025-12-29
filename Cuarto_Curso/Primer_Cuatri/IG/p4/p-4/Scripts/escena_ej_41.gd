@@ -1,10 +1,12 @@
+## Nombre: Lucas, Apellidos: Hidalgo Herrera, Titulación: GIM
+## email: lucashidalgo@correo.ugr.es, DNI o pasaporte: 26512990Q
 extends Node3D
 
 @export var n : int = 3		## Numero de donuts por lado
 @export var m : int = 3
-@export var textura1 : Texture2D = load("res://texturas/ladrillos2.jpeg")
-@export var textura2 : Texture2D = load("res://texturas/mosaico.jpeg")
-@export var textura3 : Texture2D = load("res://texturas/mapanormales.jpg")
+@export var textura1 : ImageTexture = Utilidades.CargarTextura("res://texturas/ladrillos2.jpeg")
+@export var textura2 : ImageTexture = Utilidades.CargarTextura("res://texturas/mosaico.jpeg")
+@export var textura3 : ImageTexture = Utilidades.CargarTextura("res://texturas/mapanormales.jpg")
 
 func _ready():
 	
@@ -15,7 +17,7 @@ func _ready():
 	sueloMat.albedo_color = Color(0.518, 0.0, 0.0, 1.0)
 	sueloMat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	sueloMat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
-	
+
 	var padre : Node3D = Node3D.new()
 	add_child(padre)
 	

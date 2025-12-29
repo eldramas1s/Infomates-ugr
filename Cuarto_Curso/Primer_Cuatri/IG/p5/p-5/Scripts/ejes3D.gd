@@ -1,3 +1,5 @@
+## Nombre: Lucas, Apellidos: Hidalgo Herrera, Titulación: GIM
+## email: lucashidalgo@correo.ugr.es, DNI o pasaporte: 26512990Q
 extends Node3D
 
 func _crear_cilindro_y( n : int, dy : float ) -> ArrayMesh :

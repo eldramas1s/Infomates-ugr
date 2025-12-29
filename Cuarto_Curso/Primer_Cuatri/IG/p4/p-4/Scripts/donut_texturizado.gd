@@ -1,3 +1,5 @@
+## Nombre: Lucas, Apellidos: Hidalgo Herrera, Titulación: GIM
+## email: lucashidalgo@correo.ugr.es, DNI o pasaporte: 26512990Q
 extends MeshInstance3D
 @export var tipo :int=0
 @export var reps_u : float=2.0

@@ -1,3 +1,5 @@
+## Nombre: Lucas, Apellidos: Hidalgo Herrera, Titulación: GIM
+## email: lucashidalgo@correo.ugr.es, DNI o pasaporte: 26512990Q
 extends Node3D
 @export var n : int=4 # numero de radios
 @export var m : int=5 # numero de esferas por radio

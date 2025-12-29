@@ -22,55 +22,44 @@ script = ExtResource("1_fw4w5")
 script = ExtResource("3_aou4a")
 
 [node name="EscenaPracticas" type="Node3D" parent="."]
-visible = false
 
 [node name="Plano" type="MeshInstance3D" parent="EscenaPracticas"]
-visible = false
 script = ExtResource("4_otwa2")
 
 [node name="AreaPlano" type="Area3D" parent="EscenaPracticas/Plano"]
 transform = Transform3D(20, 0, 0, 0, -8.742278e-07, -0.1, 0, 20, -4.371139e-09, 0, 0, 0)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EscenaPracticas/Plano/AreaPlano"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-visible = false
 shape = SubResource("BoxShape3D_5ckkb")
 
 [node name="Cilindro" type="MeshInstance3D" parent="EscenaPracticas"]
-visible = false
 script = ExtResource("5_aou4a")
 
 [node name="AreaCilindro" type="Area3D" parent="EscenaPracticas/Cilindro"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EscenaPracticas/Cilindro/AreaCilindro"]
-visible = false
 shape = SubResource("CylinderShape3D_2hh7m")
 
 [node name="Cubo" type="MeshInstance3D" parent="EscenaPracticas"]
-visible = false
 script = ExtResource("6_5ckkb")
 
 [node name="AreaCubo" type="Area3D" parent="EscenaPracticas/Cubo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0.5)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EscenaPracticas/Cubo/AreaCubo"]
-visible = false
 shape = SubResource("BoxShape3D_2hh7m")
 
 [node name="Camera3D" type="Camera3D" parent="EscenaPracticas"]
-visible = false
 script = ExtResource("2_otwa2")
 
 [node name="RayCast3D" type="RayCast3D" parent="EscenaPracticas/Camera3D"]
-visible = false
 target_position = Vector3(0, 0, -1)
 collide_with_areas = true
 
 [node name="EscenaAdicional" type="Node3D" parent="."]
+visible = false
 script = ExtResource("7_2hh7m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="EscenaAdicional"]

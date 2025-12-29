@@ -140,7 +140,7 @@ func CalcUVCamposAlturas(vertices : PackedVector3Array,eps:float=0.001, reps_u :
 		var u_norm = (v.x - min_x) / range_x
 		var v_norm = (v.z - min_z) / range_z
 		
-		## Imponemos el numero de repeticiones que difa reps_u y reps_v
+		## Imponemos el numero de repeticiones reps_u y reps_v
 		var u = u_norm * reps_u
 		if u < eps:
 			u += 0.0

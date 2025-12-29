@@ -112,7 +112,8 @@ Para evitar sobrecargar el tamaño de la práctica, usaré las tres que ya han a
 
 \imagen[htbp]{0.5}{texturasRevolucion}{Imagen con texturas en los objetos de revolución}{texturasRevolucion}
 
-Por último, cabe destacar que he usado el cálculo de la componente $v$ mediante aproximación por la componente z, es decir, en función del radio mayor. No obstante, en el script \textit{Utilidades} aparece la función del cálculo de la misma componente mediante la aproximación de la altura en el perfil, es decir, el radio menor; y también, en función del perfil exacto. Es, por último, claro que la aproximación por el primer método es mejor debido a la geometría del toroide.
+Cabe destacar que, aunque he usado el cálculo de coordenadas de textura procedural de funciones lineales. esto es así por el calculo de la interpolación lineal realizado pra calcular \textit{u\_norm} y \textit{v\_norm}. No obstante, la interpretación del código es similar a una proyección sobre un campo de alturas. 
 
+Por último, también se han creado las funciones de calculo de coordenadas de textura con coordenadas paramétricas basadas en coordenadas esféricas y coordenadas cilíndricas. Estas funciones aparecen en el archivo \textit{Utilidades.gd}.
 \end{document}
 

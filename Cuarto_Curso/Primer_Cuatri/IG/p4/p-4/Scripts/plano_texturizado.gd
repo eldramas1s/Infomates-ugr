@@ -1,3 +1,5 @@
+## Nombre: Lucas, Apellidos: Hidalgo Herrera, Titulación: GIM
+## email: lucashidalgo@correo.ugr.es, DNI o pasaporte: 26512990Q
 extends Node3D
 
 @export var textura: Texture2D
