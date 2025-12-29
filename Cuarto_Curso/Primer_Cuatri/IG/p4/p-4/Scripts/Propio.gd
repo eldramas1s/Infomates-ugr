@@ -955,7 +955,6 @@ func revolucionaUV(perfil : PackedVector2Array, n : int, tapa_sup : bool, tapa_i
 		
 		dist_acum[0] = 0.0
 		for i in range(1, perfil.size()):
-			## TODO: cambiar esto por la formula de la distancia
 			var d = perfil[i].distance_to(perfil[i - 1])
 			dist_acum[i] = dist_acum[i - 1] + d
 		
@@ -981,7 +980,6 @@ func revolucionaUV(perfil : PackedVector2Array, n : int, tapa_sup : bool, tapa_i
 				var u_param = float(j) / float(n)	# u ∈ [0,1] según ángulo
 				uvs.append(Vector2(u_param, v_param))	
 				
-		## TODO: Cambiar la textura de las tapas
 		var idx_centro_inf = vertex.size()
 		vertex.append(Vector3(0.0, perfil[0].y, 0.0))
 		uvs.append(Vector2(0.5, 0.0))
