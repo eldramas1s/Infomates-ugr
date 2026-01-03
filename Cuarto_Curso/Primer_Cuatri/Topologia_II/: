@@ -1,0 +1,221 @@
+\documentclass[12pt,a4paper]{article}
+\setlength{\parindent}{0pt} 
+\usepackage[utf8]{inputenc}      % Codificación UTF-8
+\usepackage[provide=*,spanish]{babel}  % Español con locale .ini (Debian TL2023)
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\geometry{top=3cm,bottom=3cm,left=3cm,right=3cm}
+
+\usepackage{graphicx}
+\usepackage{float} % Para [H] posicionamiento exacto
+
+\usepackage[hidelinks]{hyperref}  % ← Enlaces clicables
+
+% Configuración global para imágenes
+\graphicspath{{imagenes/}{figs/}{./}} % Directorios relativos
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.eps}
+
+% Comando abreviado para inserción
+\newcommand{\imagen}[4][H]{
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#2\textwidth,keepaspectratio]{#3}
+        \caption{#4}
+        \label{fig:#3}
+    \end{figure}
+}
+
+\usepackage{amsthm} % Paquete recomendado para entornos matemáticos
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newtheorem{theorem}{Teorema}[section] % Teoremas numerados por sección
+\newtheorem{prop}{Proposición}[section] % Proposiciones numeradas por sección
+\newtheorem{lema}{Lema}[section] % Lemas numerados por sección
+\newtheorem{definition}{Definicion}
+\newtheorem{corollary}{Corolario}[section]
+\newtheorem{example}{Ejemplo}[section]
+\newtheorem{notation}{Notación}[section]
+
+
+\begin{document}
+
+% Portada
+\begin{titlepage}
+    \centering
+
+    {\Huge \textbf{Trabajo sobre superficies compactas}} \\[1.5cm]
+    \includegraphics[width=0.6\textwidth]{/home/el_dramas/Desktop/ugr.jpg} \\[1.5cm] % Imagen
+    {\Large Autor:Lucas Hidalgo Herrera  } \\[0.5cm] % Autor
+    {\large Grado: Doble Grado en Ingeniería Informática y Matemáticas} \\[0.5cm]
+    {\large Asignatura: Topología II } \\[0.5cm]% Curso o asignatura
+    {\large Fecha: \today} % Fecha actual
+
+    \vfill
+
+\end{titlepage}
+\renewcommand{\contentsname}{Índice General}
+\tableofcontents
+\newpage
+
+\section{Introducción}%
+\label{sec:Introducción}
+
+%TODO: Mirar si esto es así de vrd
+A lo largo de este documento trataremos de demostrar dos resultados bastante significativos en la clasificación de superficies compactas conexas ,como es la \textbf{invarianza de la característica de Euler por transformaciones elementales}, que dará lugar a un conjunto de equivalencias que, juanto al concepto de \textbf{orientabilidad}, nos permitirá obtener una clasificación consistente de estas superficies.
+
+Para ello, deberemos tratar una serie de conceptos preliminares que nos permitirán obtener estos resultados.
+
+\section{Preliminares}%
+\label{sec:Preliminares}
+
+\subsection{Superficies topológicas}
+\label{subsec:Superficies Topológicas}
+
+Tal y como se ha comentado en la introducción buscamos, como primer objetivo, obtener la invarianza de la característica de Euler por transformaciones elementales; no obstante, aún no sabemos qué es una \textbf{superficie topológica} o, siquiera, un espacio topológico \textbf{localmente euclídeo}.
+
+\begin{definition}[]
+Dado un espacio topológico $(X,\tau)$, se dice que es \textbf{localmente euclídeo} si, cada punto del espacio admite un entorno abierto que es homeomorfo a un abierto de $\mathbb{R}^n$ para algún natural $n \in \mathbb{N}$.
+\end{definition}
+
+\begin{definition}[]
+    Dado un espacio topológico $(S,\tau)$ cumpliendo el segundo axioma de separabilidad y el segundo axioma de numerabilidad, diremos que es una superficie si para cada punto existe un entorno abierto homeomorfo a un abierto de $\mathbb{R}^2$.    
+\end{definition}
+
+Una vez vistos estos conceptos básicos, necesitamos conocer el concepto de \textbf{disco regular} pues nos permitirá, tras un lema, definir el concepto de \textbf{suma conexa de superficies conexas disjuntas}.   
+
+\subsection{Presentaciones poligonales y tranformaciones elementales}
+\label{subsec:Presentaciones poligonales}
+
+\subsection{Clasificación de las superficies compactas}
+\label{subsec:Clasificación de las superficies compactas}
+
+\subsection{Orientabilidad}
+\label{subsec:Orientabilidad}
+
+Con vistas a la demostración del resultado de la sección \ref{sec:Equivalencias de orientabilidad}, vamos a tratar el concepto de orientabilidad de una superficie compacta cualquiera. Antes de tratar con superficies compactas, debemos tratar con alguna de sus presentaciones poligonales.
+
+\begin{definition}[]
+    Dada una presentación poligonal $P=\left\{a_1,\dots,a_n;w_1,\dots,w_m\right\},n,m \in \mathbb{N}$, diremos que es \textbf{no orientable} si, en alguna de sus expresiones, alguno de los símbolos aparece dos veces con el mismo exponente.
+
+    Análogamente, diremos que $P$ es una presentación poligonal \textbf{orientable} si en ninguna expresión, una vez aplicado el primer paso del algoritmo de determinación de $|P|$, aparece el mismo símbolo dos veces con el mismo exponente.
+    %TODO: Pensar esto mejor, porque al juntarlo por el algoritmo de determinación puede que sí se cumpla.
+\end{definition}
+
+\begin{definition}[]
+    Dada una superficie topológica compacta $(S,\tau_S)$, diremos que es \textbf{no orientable} cuando alguna de sus presentaciones poligonales es no orientada.
+
+    Análogamente, diremos que $S$ es orientable cuando todas sus presentaciones poligonales son orientadas.
+    
+\end{definition}
+
+
+\section{Invarianza por transformaciones elementales}%
+\label{sec:Invarianza por transformaciones elementales}
+
+Para probar con más facilidad el resultado sobre la invarianza de la característica de Euler por transformaciones elementales, vamos a probar antes que ciertas parejas de transformaciones elementales son inversas entre sí.
+
+%TODO: Pensar cómo escribir los casos contrarios para que quede claro
+%TODO: Preguntarle a Gálvez si puedo hace esto
+\begin{lema}[Transformaciones inversas]
+\label{lem:Transformaciones inversas}
+    Sean $\Delta = \left\{a_1,\dots,a_n\right\}$ una familia finita de símbolos con $n\in\mathbb{N}$ y $w=a_1^{\epsilon_1}\dots a_t^{\epsilon_t}, t\geq3$, una expresión con $a_i\in\Delta \forall i \in \left\{1,\dots,n\right\}$. Se cumple que:
+    \begin{itemize}
+        \item \textbf{Consolidar} es la inversa de subdividir \textbf{Subdividir}.
+        \item \textbf{Pegar} es la inversa de \textbf{Cortar}.
+        \item \textbf{Doblar} es la inversa de \textbf{Desdoblar}.
+    \end{itemize}
+\begin{proof}[Demostración]
+    
+    Probaremos, en cada uno de los casos, que aplicar ambas tranformaciones elementales a $w$ da lugar a la misma expresión, $w$:
+    \begin{itemize}
+        \item Probemos que consolidar tras subdividir produce esta invarianza. Sean $b_1,b_2$ otros símbolos con $b_1,b_2\notin\Delta$ y sea $i_0 \in \left\{1,\dots,t\right\}$. El proceso obtenido es el siguiente:
+            $$ a_1^{\epsilon_1}\dots a_{i_0}^{\epsilon_{i_0}} \dots a_t^{\epsilon_t} \stackrel{\text{Subdividir $a_{i_0}$}}{\rightsquigarrow}a_1^{\epsilon_1}\dots (b_1b_2)^{\epsilon_{i_0}} \dots a_t^{\epsilon_t}$$
+            Una vez hemos subdividido $a_{i_0}$, obtenemos el conjunto de símbolos $\Delta'=\left\{a_1,\dots,a_{i_0-1},b_1,b_2,a_{i_0+1},a_n\right\}$, podemos consolidar la expresión $b_1b_2$ en el símbolo $a_{i_0}\notin\Delta$.
+            $$a_1^{\epsilon_1}\dots (b_1b_2)^{\epsilon_{i_0}} \dots a_t^{\epsilon_t} \stackrel{\text{Consolidar $(b_1b_2)$}}{\rightsquigarrow} a_1^{\epsilon_1}\dots a_{i_0}^{\epsilon_{i_0}} \dots a_t^{\epsilon_t}$$
+Análogamente se consigue la aplicación contraria.
+        \item Veamos ahora que pegar después de cortar produce la invarianza que pedimos. Para ello, consideramos $i_0\in\left\{1,\dots,t\right\}$ y $b\notin\Delta$ otro símbolo cualquiera y obtenemos el siguiente resultado:
+            $$a_1^{\epsilon_1}\dots a_{i_0}^{\epsilon_{i_0}} \dots a_t^{\epsilon_t} \stackrel{\text{Cortar}}{\rightsquigarrow}a_1^{\epsilon_1}\dots a_{i_0}^{\epsilon_{i_0}} b, b^{-1}a_{i_0+1}^{\epsilon_{i_0+1}}\dots a_t^{\epsilon_t}\stackrel{\text{Pegar}}{\rightsquigarrow}a_1^{\epsilon_1}\dots a_{i_0}^{\epsilon_{i_0}} \dots a_t^{\epsilon_t}$$
+Análogamente, se consigue el resultado en sentido contrario.
+        \item Por último, demostremos que desdoblar y doblar deja invariante nuestra expresión. Para ello, sea $i_0\in\left\{1,\dots,t\right\}$ y $b\notin\Delta$ otro símbolo cualquiera y obtenemos el siguiente resultado:
+            $$a_1^{\epsilon_1}\dots a_{i_0}^{\epsilon_{i_0}} \dots a_t^{\epsilon_t} \stackrel{\text{Desdoblar}}{\rightsquigarrow}a_1^{\epsilon_1}\dots a_{i_0}^{\epsilon_{i_0}} bb^{-1}a_{i_0+1}^{\epsilon_{i_0+1}}\dots a_t^{\epsilon_t}\stackrel{\text{Doblar}}{\rightsquigarrow}a_1^{\epsilon_1}\dots a_{i_0}^{\epsilon_{i_0}} \dots a_t^{\epsilon_t}$$
+Análogamente, se obtiene el caso contrario.
+
+    \end{itemize}
+    
+\end{proof}
+\end{lema}
+%TODO: Pensar si introducir notación de operaciones -> preguntarle
+Por tanto, ya hemos probado este lema para el caso de una expresión única. Si embargo, este resultado es extensible para el caso de una presentación cualquiera.
+
+\begin{corollary}[Transformaciones inversas en presentaciones poligonales]
+\label{cor:Tranformaciones inversas en presentaciones poligonales}
+    Dada una presentación poligonal $P=\left\{ a_1\dots a_n;w_1,\dots, w_m\right\}$,$n,m\in\mathbb{N},n\geq2,m\geq1$. Entonces:
+    \begin{itemize}
+        \item \textbf{Consolidar} es la inversa de subdividir \textbf{Subdividir}.
+        \item \textbf{Pegar} es la inversa de \textbf{Cortar}.
+        \item \textbf{Doblar} es la inversa de \textbf{Desdoblar}.
+    \end{itemize}
+\end{corollary}
+
+
+Estamos ya en disposición de enunciar el primero de los objetivos de este documento. Buscamos probar que la característica de Euler es invariante por cualquiera de las transformaciones elementales que hemos citado anteriormente. 
+
+%TODO: Pensar si probar un lema que diga que la inversion en el sentido de un vértice no cambia el número de vértices de una presentación poligonal.
+%TODO: revisar formalismos
+\begin{prop}[Invarianza de la característica de Euler]
+    Dada una presentación poligonal $P=\left\{ a_1\dots a_n;w_1,\dots, w_m\right\}$ y sea $\chi(P)$ su característica de Euler, esta es invariante por cualquier transformación elemental.    
+\begin{proof}[Demostración]
+Veamos que esto es cierto para cualquiera de las transformaciones elementales que hemos visto:
+\begin{itemize}
+    \item \textbf{Renombrar}: Supongamos que dado $i\in\left\{1,\dots,n\right\}$, renombramos $a_i$ por $b_i$, lo cual no varía el número de caras (número de expresiones), tampoco el número de aristas(número de símbolos), ni el número de vértices. Esto último ocurre porque ninguna de las expresiones cambia, salvo el renombramiento, luego en el cociente todo sigue igual.
+    \item \textbf{Subdividir}: Supongamos que subdividimos el símbolo $a_i, i\in\left\{1,\dots,n\right\}$ añadiendo los símbolos $b_1,b_2$; distinguimos casos:
+        \begin{itemize}
+            \item $|\left\{j\in\left\{1,\dots,m\right\}|a_i\in w_j\right\}|=1$: En este caso, sea $w_{j_0}=a_{j_{0_1}}^{\epsilon_1}\dots a_i\dots a_i^{-1}\dots a_{j_{0_k}}^{\epsilon_k}$, la expresión tras la transformación es $w_{j_0}=a_{j_{0_1}}^{\epsilon_1}\dots b_1b_2\dots b_2^{-1}b_1^{-1}\dots a_{j_{0_k}}^{\epsilon_k}$. Por tanto, hemos añadido un vértice, consiguiendo así la invarianza.
+            \item $|\left\{j\in\left\{1,\dots,m\right\}|a_i\in w_j\right\}|=2$: En este caso, sea $w_{j_0}=a_{j_{0_1}}^{\epsilon_{0_1}}\dots a_i\dots a_{j_{0_k}}^{\epsilon_{0_k}}$ y $w_{j_1}=a_{j_{1_1}}^{\epsilon_{1_1}}\dots a_i^{-1}\dots a_{j_{1_k}}^{\epsilon_{1_k}}$, la expresión tras la transformación es $\bar{w_}{j_0}=a_{j_{0_1}}^{\epsilon_{0_1}}\dots b_1b_2\dots a_{j_{0_k}}^{\epsilon_k}$ y $\bar{w_{j_1}}=a_{j_{1_1}}^{\epsilon_{1_1}}\dots b_2^{-1}b_1^{-1}\dots a_{j_{0_k}}^{\epsilon_k}$. Por tanto, hemos añadido un vértice, consiguiendo así la invarianza.
+        \end{itemize}
+        
+    \item \textbf{Reflejar}: Supongamos que dado $j\in\left\{1,\dots,m\right\}$, reflejamos la expresión $w_j=a_{j_1}\dots a_{j_k}, k\geq3,k\in\mathbb{N}$, dejaría el número de aristas invariante pues no hemos introducido ningún símbolo asícomo el número de caras, pues no hemos introducido ninguna expresión.Por último, el número de vértices queda invariante, ya que invertir el sentido de los lados del polígono no cambia la adyacencia de los vertices del mismo en el cociente. 
+    \item \textbf{Rotar}: Supongamos que dado $j\in\left\{1,\dots,m\right\}$, rotamos la expresión $w_j=a_{j_1}\dots a_{j_k}, k\geq3,k\in\mathbb{N}$; en ese caso, el número de caras queda invariante, el número de aristas queda invariante al no añadir ningún símbolo más. Por último, el número de vértices no cambia, pues en el cociente no ha cambiado ninguna orientación de los lados. 
+    \item \textbf{Cortar}: 
+    \item \textbf{Desdoblar}:
+    \item \textbf{Consolidar,pegar y doblar}: Gracias al Corolario \ref{cor:Tranformaciones inversas en presentaciones poligonales} obtenemos de forma sencilla el resultado. Lo veremos para el caso de consolidar, pues el resto es análogo. Ya hemos visto que subdividir mantiene invariante la característica de Euler de la presentación poligonal $P$. Puesto que, componer subdivir y consolidar dejan invariante a la presentación independientemente del orden de aplicación, deducimos que consolidar deja invariante la característica de Euler; pues en caso contrario llegaríamos a contradicción.
+\end{itemize}
+
+\end{proof}
+\end{prop}
+
+\section{Equivalencias de orientabilidad}%
+\label{sec:Equivalencias de orientabilidad}
+
+Pasamos ya a enunciar el resultado que nos permitirá, junto a la \textbf{característica de Euler}, clasificar cualquier superficie compacta y conexa dada una presentación poligonal suya.
+
+%TODO: PUede ser bueno demostrar que si es conexa, su presentacion poligonal tiene una única expresion
+\begin{prop}[Equivalencias de orientabilidad]
+    Sea $(S,\tau_S)$ una superficie compacta y conexa. Entonces, equivalen:
+    \begin{itemize}
+        \item $S$ es orientable
+        \item $S$ tiene una presentación poligonal de una única expresión que es orientada.
+        \item Cualquier presentación poligonal de $S$ de una única expresión es orientada.
+    \end{itemize}
+      
+\begin{proof}[Demostración]
+
+    \begin{description}
+        \item 
+        \item $i) \Longrightarrow iii)$]
+        \item Supongamos que se cumple $i)$, en ese caso, por lo visto en la sección \ref{subsec:Orientabilidad}, como $S$ es orientable tenemos que todas sus presentaciones poligonales son orientadas. Además, como por hipótesis $S$ es conexa tenemos que, toda presentación poligonal, tras una serie de transformaciones elementales, puede obtenerse otra equivalente con una única expresión y optenemos $iii)$.
+        \item $iii) \Longrightarrow i)$]
+        \item Supongamos ahora que se cumple $iii)$, en ese caso, por la definición vista en la sección \ref{subsec:Orientabilidad} se tiene lo pedido.
+        \item $iii) \Longrightarrow ii)$]
+        \item Supongamos, de nuevo, que se cumple $iii)$, entonces es trivial que se cumple $ii)$.
+
+    \end{description}
+
+    %Esto no puede ser tan fácil, mirar el librito de los cojones.
+\end{proof}
+    
+\end{prop}
+
+\end{document}
