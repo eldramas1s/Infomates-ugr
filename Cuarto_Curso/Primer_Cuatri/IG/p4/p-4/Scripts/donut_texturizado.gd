@@ -3,7 +3,7 @@
 extends MeshInstance3D
 @export var tipo :int=0
 @export var reps_u : float=2.0
-@export var reps_v : float=2.0
+@export var reps_v : float=2.0	# Para tipo 1 -> 1.0, pera tipo 0 -> 2.0
 @export var eps : float=0.001
 
 func _ready():

@@ -22,6 +22,7 @@ script = ExtResource("1_fw4w5")
 script = ExtResource("3_aou4a")
 
 [node name="EscenaPracticas" type="Node3D" parent="."]
+visible = false
 
 [node name="Plano" type="MeshInstance3D" parent="EscenaPracticas"]
 script = ExtResource("4_otwa2")
@@ -59,7 +60,6 @@ target_position = Vector3(0, 0, -1)
 collide_with_areas = true
 
 [node name="EscenaAdicional" type="Node3D" parent="."]
-visible = false
 script = ExtResource("7_2hh7m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="EscenaAdicional"]

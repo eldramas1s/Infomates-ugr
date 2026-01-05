@@ -32,9 +32,13 @@ func crear_plano_uv( size: float, escala_uv: float,rx:float, rz:float, pos : Vec
 	var mesh = st.commit() ## termina de crear la malla
 	var mi = MeshInstance3D.new()
 	mi.mesh = mesh
+	# Cargamos el mapa de normales
+	var normal_map_texture = preload("res://texturas/mapanormales.jpg")
+	
 	# Crear material con textura
 	var mat = StandardMaterial3D.new()
 	mat.albedo_texture = textura
+	mat.normal_texture = normal_map_texture
 	mat.uv1_offset = Vector3.ZERO
 	mat.uv1_scale = Vector3(1, 1, 1)
 	mi.material_override = mat

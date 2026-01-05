@@ -768,7 +768,7 @@ func ArrayMeshCubo24_CCT(D : int) -> ArrayMesh:
 	tablas[Mesh.ARRAY_NORMAL]   = normales
 	tablas[Mesh.ARRAY_TEX_UV]   = uvs  # ← ¡ACTIVA LAS TEXTURAS!
 	
-	# Crear y retornar el ArrayMesh
+	# Crear y devolver el ArrayMesh
 	var mesh = ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, tablas)
 	
@@ -839,7 +839,7 @@ func ArrayMeshPiramideUV(D : int) -> ArrayMesh:
 		Vector2(1,0),  # superior-derecha
 		Vector2(0,0)   # superior-izquierda
 	])
-	# Repetir 6 veces (una por cada cara)
+	# Repetir 4 veces (una por cada cara)
 	for i in range(4):
 		uvs.append_array(uv_cara)
 	uvs.append_array(uv_base)
@@ -872,7 +872,7 @@ func ArrayMeshDiscoUV(n: int, m: int, r_max: float, uv_tipo:int = 0, centro :=Ve
 	## Construimos los vertices
 	for j in range(m + 1):              # anillos 0..m
 		var r = r_max * float(j) / float(m)
-		for i in range(n):         # Duplicamos el 0 para cerrar 
+		for i in range(n+1):         # Duplicamos el 0 para cerrar 
 			var ang = 2*PI * float(i) / float(n)
 			var x = r * cos(ang)
 			var z = r * sin(ang)
@@ -916,6 +916,7 @@ func ArrayMeshDiscoUV(n: int, m: int, r_max: float, uv_tipo:int = 0, centro :=Ve
 			uvs.append(Vector2(u, v))
 	else:
 		# (u, v) lineales en (x,z)  -> proyección plana
+		# considera el punto medio como metodo de interpolacion
 		for a in vertex:
 			var dx = a.x / r_max                 # -1..1
 			var dz = a.z / r_max                 # -1..1
@@ -953,6 +954,8 @@ func revolucionaUV(perfil : PackedVector2Array, n : int, tapa_sup : bool, tapa_i
 		var dist_acum := PackedFloat32Array()
 		dist_acum.resize(perfil.size())
 		
+		## Tomamos las distancias acumulativas del vertice inicial al final
+		## Nos servira para hacer la interpolacione en la textura
 		dist_acum[0] = 0.0
 		for i in range(1, perfil.size()):
 			var d = perfil[i].distance_to(perfil[i - 1])
@@ -968,16 +971,17 @@ func revolucionaUV(perfil : PackedVector2Array, n : int, tapa_sup : bool, tapa_i
 		# por la coordenada z
 		# Los triangulos seran de la forma z->z+1->z+1(y+1) y z->z+1(y+1)->z(y+1)
 		for i in range(perfil.size()):
+			# Para cada "aro" de la revolucion la distancia proporcion entre la distancia acumulada y 
+			# la total es la misma; refleja la altura en la textura
 			var v_param = dist_acum[i] / total_dist
 			for j in range(n+1):
 				
+				# Tomamos el angulo correspondiente y añadimos el vertice
 				var ang = 2.0 * PI * float(j) / float(n)	# j=n → 2π
-				var x = perfil[i].x * cos(ang)
-				var y = perfil[i].y
-				var z = perfil[i].x * sin(ang)
-				vertex.append(Vector3(x, y, z))
+				vertex.append(Vector3(perfil[i].x * cos(ang),  perfil[i].y, perfil[i].x * sin(ang)))
 				
-				var u_param = float(j) / float(n)	# u ∈ [0,1] según ángulo
+				#Asignamos las coordenadas de textura por vertices
+				var u_param = float(j) / float(n)	# u esta en [0,1] según ángulo. Estamos haciendo una especie de proyeccion angular
 				uvs.append(Vector2(u_param, v_param))	
 				
 		var idx_centro_inf = vertex.size()
@@ -992,6 +996,7 @@ func revolucionaUV(perfil : PackedVector2Array, n : int, tapa_sup : bool, tapa_i
 		for i in range(perfil.size()-1):
 			# Añadimos una capa
 			for j in range(n):
+				#Indices del cuadrado de revolucion
 				var ind0 = i * (n + 1) + j
 				var ind1 = i * (n + 1) + (j + 1)
 				var ind2 = (i + 1) * (n + 1) + j

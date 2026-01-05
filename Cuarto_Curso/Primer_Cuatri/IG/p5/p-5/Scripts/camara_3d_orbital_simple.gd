@@ -29,13 +29,12 @@ func _actualiza_transf_vista(  ) -> void :
 
 ## -------------------------------------------------------------------
 func _ready() -> void :  ## se ejecuta una vez al inicio
-	make_current()
 	_actualiza_transf_vista() ## inicializa la vista al inicio
 		
 @onready var ray = $RayCast3D # == nodo `RayCast3D` hijo de la camara
 
 func _input( event ):
-	if current:
+	if self.get_parent().get_parent().escena==1:
 		var mouse_pos = get_viewport().get_mouse_position()
 		var from = project_ray_origin( mouse_pos )
 		var to = from + project_ray_normal( mouse_pos ) * 1000.0
@@ -91,12 +90,12 @@ func _input( event ):
 		
 func _unhandled_key_input(key_event):
 	# Cambiar parte con flechas
-	if key_event.keycode == KEY_UP and not key_event.pressed:
+	if key_event.keycode == KEY_H and not key_event.pressed:
 		current_figure_index = (current_figure_index + 1) % figures.size()
 		select_figure_by_name(figures[current_figure_index])
 		print("Parte: ", figures[current_figure_index])
 	
-	if key_event.keycode == KEY_DOWN and not key_event.pressed:
+	if key_event.keycode == KEY_L and not key_event.pressed:
 		current_figure_index = (current_figure_index - 1 + figures.size()) % figures.size()
 		select_figure_by_name(figures[current_figure_index])
 		print("Parte: ", figures[current_figure_index])

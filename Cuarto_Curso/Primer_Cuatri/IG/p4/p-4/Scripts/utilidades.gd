@@ -137,10 +137,13 @@ func CalcUVCamposAlturas(vertices : PackedVector3Array,eps:float=0.001, reps_u :
 	if range_z == 0.0:
 		range_z = 1.0
 	for v in vertices:
+		# Calculo las coordenadas para el caso sin repeticiones
 		var u_norm = (v.x - min_x) / range_x
 		var v_norm = (v.z - min_z) / range_z
 		
 		## Imponemos el numero de repeticiones reps_u y reps_v
+		# Estamos diciendo que cada vez que cada componente sea reps_u veces o reps_v veces respectivamente
+		# la coordenada que deberia ser en caso reps_u=reps_v=1
 		var u = u_norm * reps_u
 		if u < eps:
 			u += 0.0
@@ -332,6 +335,24 @@ func CargarTextura( arch : String ) -> ImageTexture :
 	## devolver la textura
 	return textura
 
+func CalcUVDonut(vertices : PackedVector3Array,reps_u : float = 1.0, reps_v : float = 1.0)->PackedVector2Array:
+
+	var uvs := PackedVector2Array()
+	
+	var min_x = INF; var max_x = -INF
+	var min_z = INF; var max_z = -INF
+	
+	for v in vertices:
+		min_x = min(min_x, v.x)
+		max_x = max(max_x, v.x)
+		min_z = min(min_z, v.z)
+		max_z = max(max_z, v.z)
+		
+	for v in vertices:
+		var u = ((v.x-min_x)/(max_x-min_x))*reps_u
+		var vv = ((v.z-min_x)/(max_z-min_z))*reps_v
+		uvs.append(Vector2(u,vv))
+	return uvs
 
 ## -----------------------------------------------------------------------------
 ## 
@@ -361,10 +382,11 @@ func generarDonutUV(tipo_uv : int = 0, eps:float=0.001 ,reps_u : float = 1.0, re
 	GenTriToroidal( nu, nv, indices )
 	var normales := calcNormales(vertices, indices)
 	
-	
-	var uvs := CalcUVCamposAlturas(vertices,eps,reps_u,reps_v)
+	var uvs := CalcUVCamposProfundidad(vertices,eps,reps_u,reps_v)
 	if tipo_uv == 1:
-		uvs = CalcUVCamposProfundidad(vertices,eps,reps_u,reps_v)
+		# Hay dos posibilidades
+		uvs = CalcUVDonut(vertices,reps_u,reps_v)
+		#uvs = CalcUVCamposAlturas(vertices,eps,reps_u,reps_v)
 		
 	var tablas : Array = []
 	tablas.resize(Mesh.ARRAY_MAX)

@@ -28,11 +28,10 @@ func _actualiza_transf_vista(  ) -> void :
 
 ## -------------------------------------------------------------------
 func _ready() -> void :  ## se ejecuta una vez al inicio
-	make_current()
 	_actualiza_transf_vista() ## inicializa la vista al inicio
 
 func _input( event ):
-	if current:
+	if self.get_parent().get_parent().escena!=1:
 		if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
 			## 1. Buscar nodo de la camara
 			var cam : Node =self
