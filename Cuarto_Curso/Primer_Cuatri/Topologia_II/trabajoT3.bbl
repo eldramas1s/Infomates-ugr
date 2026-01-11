@@ -1,0 +1,76 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{apuntes_topo}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=439486de1326fbbff0c326290cfcd1e2}{%
+           family={{Departamento de Geometría y Topología}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{439486de1326fbbff0c326290cfcd1e2}
+      \strng{fullhash}{439486de1326fbbff0c326290cfcd1e2}
+      \strng{bibnamehash}{439486de1326fbbff0c326290cfcd1e2}
+      \strng{authorbibnamehash}{439486de1326fbbff0c326290cfcd1e2}
+      \strng{authornamehash}{439486de1326fbbff0c326290cfcd1e2}
+      \strng{authorfullhash}{439486de1326fbbff0c326290cfcd1e2}
+      \field{labelalpha}{Dep26}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Universidad de Granada}
+      \field{note}{Doble Grado en Ingeniería Informática y Matemáticas}
+      \field{title}{Apuntes de la asignatura Topología II}
+      \field{year}{2026}
+      \true{nocite}
+    \endentry
+    \entry{lee2026}{book}{}
+      \name{author}{1}{}{%
+        {{hash=36896354ee3aedc1a13d683ea773634e}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={John\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{36896354ee3aedc1a13d683ea773634e}
+      \strng{fullhash}{36896354ee3aedc1a13d683ea773634e}
+      \strng{bibnamehash}{36896354ee3aedc1a13d683ea773634e}
+      \strng{authorbibnamehash}{36896354ee3aedc1a13d683ea773634e}
+      \strng{authornamehash}{36896354ee3aedc1a13d683ea773634e}
+      \strng{authorfullhash}{36896354ee3aedc1a13d683ea773634e}
+      \field{labelalpha}{Lee11}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{note}{Graduate Texts in Mathematics}
+      \field{title}{Introduction to Topological Manifolds}
+      \field{year}{2011}
+      \true{nocite}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

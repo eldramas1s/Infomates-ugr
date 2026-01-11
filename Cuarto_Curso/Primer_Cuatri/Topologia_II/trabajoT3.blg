@@ -1,0 +1,14 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'trabajoT3.blg'
+[132] biber:340> INFO - === dom ene 11, 2026, 13:43:03
+[161] Biber.pm:419> INFO - Reading 'trabajoT3.bcf'
+[271] Biber.pm:979> INFO - Found 2 citekeys in bib section 0
+[295] Biber.pm:4419> INFO - Processing section 0
+[314] Biber.pm:4610> INFO - Looking for bibtex file 'referencias.bib' for section 0
+[315] bibtex.pm:1713> INFO - LaTeX decoding ...
+[320] bibtex.pm:1519> INFO - Found BibTeX data source 'referencias.bib'
+[394] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[394] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[394] Biber.pm:4239> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'es-ES'
+[399] bbl.pm:660> INFO - Writing 'trabajoT3.bbl' with encoding 'UTF-8'
+[401] bbl.pm:763> INFO - Output to trabajoT3.bbl
