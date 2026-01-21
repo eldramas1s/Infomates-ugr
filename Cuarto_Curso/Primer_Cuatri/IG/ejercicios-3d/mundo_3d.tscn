@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dyulpf0gvgx56"]
+
+[node name="Mundo3D" type="Node3D"]
+
+[node name="Tema5" type="Node3D" parent="."]

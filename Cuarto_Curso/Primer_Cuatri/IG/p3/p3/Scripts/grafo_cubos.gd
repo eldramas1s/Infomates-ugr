@@ -41,7 +41,6 @@ func _ready():
 	var caracubo = Propio.ArrayMeshRejilla(n,n,0,vertex,indexes,colors,Vector3(0,0,0),longitudInferior,longitudIzquierda)
 	
 	var cubos_tranform = Transform3D().translated(Vector3(0.5,0.5,-0.5))* Transform3D().rotated(Vector3(1,0,0),PI/2) *  Transform3D().scaled(Vector3(0.25,0.5,0.25))
-	
 	if(tranform):
 		#Cara trasera
 		var trasera = MeshInstance3D.new()
