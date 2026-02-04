@@ -10,6 +10,9 @@
 **/*.tex
 **/*.log
 **/*.toc
+**/*.aux
+**/*.bcf
+**/*.run.xml
 
 # llaves ssh
 **/llaves
