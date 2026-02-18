@@ -1,0 +1,123 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\usepackage[utf8]{inputenc}      % Codificación UTF-8
+\usepackage[provide=*,spanish]{babel}  % Español con locale .ini (Debian TL2023)
+\usepackage{graphicx}
+
+\usepackage[backend=biber, style=alphabetic]{biblatex} %Para bibliografias
+\addbibresource{referencias.bib}  % Sin .bib
+
+\usepackage{geometry}
+\geometry{top=3cm,bottom=3cm,left=3cm,right=3cm}
+\usepackage{float} % Para [H] posicionamiento exacto
+
+\usepackage[hidelinks]{hyperref}  % ← Enlaces clicables
+
+\usepackage{amsthm} % Paquete recomendado para entornos matemáticos
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newtheorem{theorem}{Teorema}[section] % Teoremas numerados por sección
+\newtheorem{prop}{Proposición}[section] % Proposiciones numeradas por sección
+\newtheorem{lema}{Lema}[section] % Lemas numerados por sección
+\newtheorem{definition}{Definicion}
+\newtheorem{corollary}{Corolario}[section]
+\newtheorem{example}{Ejemplo}[section]
+\newtheorem{notation}{Notación}[section]
+
+
+\usepackage{makecell} % Tratamiento de tablas
+\begin{document}
+
+% Portada
+\begin{titlepage}
+    \centering
+
+    {\Huge \textbf{Apuntes}} \\[1.5cm]
+    \includegraphics[width=0.6\textwidth]{/home/el_dramas/Desktop/ugr.jpg} \\[1.5cm] % Imagen
+    {\Large Autor: Lucas Hidalgo Herrera } \\[0.5cm] % Autor
+    {\large Grado: Doble Grado en Ingeniería Informática y Matemáticas} \\[0.5cm]
+    {\large Asignatura: Curvas y Superficies} \\[0.5cm]% Curso o asignatura
+    {\large Profesor: } \\[0.5cm]
+    {\large Fecha: \today} % Fecha actual
+
+    \vfill
+
+\end{titlepage}
+\pagenumbering{arabic}
+\renewcommand{\contentsname}{Índice General}
+\tableofcontents
+\newpage
+
+\section{Introducción y motivación}%
+\label{sec:Introducción y motivación}
+
+A lo largo de la carrera se han estudiado una serie de geometrías, en este documento, se estudiará la última de ellas, séase \textbf{Curvas y Superficies}.
+
+Antes de nada, aún no sabemos, ni siquiera de forma vulgar y cotidiana lo que es una geometría aunque la hayamos trabajado varios años. Ésta es, el estudio \textbf{cuantitativo} de las formas y su evolucion para ciertas figuras en el espacio; es decir, vamos a estudiar qué aspecto y qué deformaciones podemos realizar a figuras del plano euclídeo o del espacio euclídeo tridimensional.
+
+Aún así, no hemos  definido lo que es una forma o una figura, pese a que su uso cotidiano nos permite tener una intuición de la materia que estudiamos.
+
+Por último, antes de realizar un contraste de las distintas asignaturas que hemos visto, cabe destacar que el estudio que vamos a realizar es de carácter cuantitativo, es decir, no se va a asemejar al estudio de las formas y figuras de otras áreas como pueden ser el arte, la arquitectura, la moda...
+
+\subsection{Contraste de las distintas geometrías}
+\label{subsec:contraste-de-las-distintas-geometrías-}
+
+Como ya recalcamos en la motivación, para saber dónde nos encontramos y hacia dónde nos dirigimos, vamos a realizar un contraste entre las asignaturas relacionadas con alguna de las áreas de la geometría, véase la figura \ref{tab:Contraste_geometrías}; estas son: \textit{Geometría I}, \textit{Geometría II}, \textit{Geometría III}, \textit{Topología I}, \textit{Topología II} y \textit{Curvas y Superficies}.
+
+\begin{table}[htpb]
+    \centering
+    \caption{Contraste de las geometrías}
+    \label{tab:Contraste_geometrias}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Asignatura} & \textbf{Espacio ambiente} & \textbf{Figuras} & \textbf{Soporte matemático} & \textbf{Área de estudio} \\
+        \hline
+        Geometría I & Espacio vectorial & Subespacios vectoriales: rectas, planos, etc. & Espacio vectorial: $\cup$,$+$ & Polinomios homogéneos de primer grado\\
+        \hline
+        Geometría II & Espacio métrico & Subespacios vectoriales: rectas, planos, etc. & Espacio vectorial con métrica: $\cup$,$+$ $\bot$, $\sphericalangle$ & Polinomios homogéneos de primer grado\\
+        \hline
+        Geometría III & Espacio afín métrico & Subespacios afines: rectas, planos, etc. & Espacio vectorial con métrica: $\cup$,$+$ $\bot$, $\sphericalangle$, distancias, cónicas, cuádricas, etc. & Geometría algebraica\\
+        \hline
+        Topología I & ninguno \footnote{Podríamos estar trabajando en el propio espacio topológico sin tener un marco más grande que nos englobe} / espacio topológico \footnote{En este caso, nos referimos a encontrarnos en un subespacio topológico dentro de otro espacio topológico} & Subespacios topológicos & Topología del espacio topológico: homeomorfismo de conjuntos & Topología intoductoria\\
+        \hline
+        Topología II & ninguno / espacio topológico & Subespacios topológicos & Topología del espacio topológico: homeomorfismo de conjuntos y teoría de grupos \footnote{La herramienta matemática es realmente el \textbf{Grupo fundamental} pero el soporte matemático necesario es la teoría de grupos}& Topología algebraica\\
+        \hline
+        Curvas y Superficies & \makecell{curvas: $\mathbb{R}^2$, $\mathbb{R}^3$ \\ superficies: $\mathbb{R}^3$ } & Curvas y superficies & Todas las herramientas anteriores junto al análisis & Geometría diferencial \\
+        \hline
+    \end{tabular}
+
+\end{table}
+
+
+Una vez visto esto, podríamos ya determinar que este documento pretende realizar una breve introducción al área que se conoce como \textbf{Geometría diferencial}\footnote{Actualmente, por motivos económicos, el nombre de esta disciplina suele ser \textbf{Análisis geométrico}}. 
+
+\section{Curvas en el plano y en el espacio}%
+\label{sec:Curvas en el plano y en el espacio}
+
+\subsection{Curvas parametrizadas. Curvas regulares. Longitud de arco}
+\label{subsec:curvas-parametrizadas-. curvas-regulares-. longitud-de-arco-}
+
+\subsection{Teoría local de curvas regulares planas: curvatura y diedro de Frenet}
+\label{subsec:teoría-local-de-curvas-regulares-planas-: curvatura-y-diedro-de-frenet-}
+
+\subsection{Teoría local de curvas regulares en el espacio: curvatura, torsión y triedro de Frenet}
+\label{subsec:teoría-local-de-curvas-regulares-en-el-espacio-: curvatura-, torsión-y-triedro-de-frenet-}
+
+
+\subsection{Teorema fundamental de curvas en el espacio}
+\label{subsec:teorema-fundamental-de-curvas-en-el-espacio-}
+
+\section{Superficies en el espacio}%
+\label{sec:Superficies en el espacio}
+
+\subsection{Definición de superficie y ejemplos}
+\label{subsec:definición-de-superficie-y-ejemplos-}
+
+\subsection{El cambio de parámetros. Funciones y aplicaciones diferenciables sobre superficies}
+\label{subsec:el-cambio-de-parámetros-. funciones-y-aplicaciones-diferenciables-sobre-superficies-}
+
+\end{document}
