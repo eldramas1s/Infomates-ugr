@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <table border="1" summary="Esta tabla nos ofrece un ejemplo de cómo construirlas en HTML">
+        <caption>Título de la tabla – caption</caption>
+        <thead>
+            <tr>
+                <th rowspan="2">Encabezamiento multifila - thead/tr/th - Ejemplo de rowspan</th>
+                <th colspan="2">Encabezamiento multicolumna - thead/tr/th Ejemplo de colspan</th>
+            </tr>
+            <tr>
+                <th>Encabezamiento columna 1 – tr/th</th>
+                <th>Encabezamiento columna 2 - tr/th </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="3">Esto es un ejemplo de un pié de tabla - Ejemplo de tfoot y colspan</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <th>Fila 1 – tr/th</th>
+                <td>Fila 1 - Columna 1 – tr/td</td>
+                <td>Fila 1 - Columna 2 - tr/td </td>
+            </tr>
+            <tr>
+                <th>Fila 2 - tr/th </th>
+                <td>Fila 2 - Columna 1 – tr/td</td>
+                <td>Fila 2 - Columna 2 – tr/td</td>
+            </tr>
+        </tbody>
+        </table>
+        <table summary="Mi horario" border="1">
+        <caption>Mi horario</caption>
+            <thead>
+                <tr>
+                    <th>Hora de inicio</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <th>9:00</th>
+                  <td rowspan="2">Curvas y Superficies</td>
+                  <td>Curvas y Superficies</td>
+                  <td>Curvas y Superficies</td>
+              </tr>
+              <tr>
+                  <th>10:00</th>
+                  <td rowspan="2">Ecuaciones Diferenciales II</td>
+                  <td>Ecuaciones Diferenciales II</td>
+              </tr>
+              <tr>
+                  <th>11:00</th>
+                  <td>Ecuaciones Diferenciales II</td>
+                  <td rowspan="2">Modelos Matemáticos II</td>
+              </tr>
+              <tr>
+                  <th>12:00</th>
+                  <td>Modelos Matemáticos II</td>
+                  <td>Modelos Matemáticos II</td>
+              </tr>
+              
+              <tr style="height: 20px; background-color: #f0f0f0;">
+                  <td colspan="6"></td>
+              </tr>
+
+              <tr>
+                  <th>15:30</th>
+                  <td rowspan="2"></td>
+                  <td rowspan="4"></td>
+                  <td rowspan="2">Sistemas de Información para Empresas</td>
+                  <td rowspan="2">Administración de Bases de Datos</td>
+                  <td rowspan="2">Programación Web</td>
+              </tr>
+            
+              <tr>
+                  <th>16:30</th>   
+              </tr>
+              <tr>
+                  <th>17:30</th>
+                  <td rowspan="2">Programación Web</td>
+                  <td rowspan="2">Administración de Bases de Datos</td>
+                  <td rowspan="2">Sistemas de Información para Empresas</td>
+                  <td rowspan="2"></td>
+              </tr>
+              <tr>
+                  <th>18:30</th>
+              </tr>
+              
+              
+              
+              
+               
+               
+        
+            </tbody>
+        </table>
+        
+    </body>
+</html>
+
