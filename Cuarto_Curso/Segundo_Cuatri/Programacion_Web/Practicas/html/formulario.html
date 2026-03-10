@@ -1,23 +1,108 @@
-<!docktype html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <title>Formulario de inscripción al congreso</title>
-        
-    </head>
-    <body>
-        <header id="HForm"> 
-             
-        </header>
-        <main >
-            
-        </main>
-        <footer > 
-             
-        </footer>
-        
-        
-        
-    </body>
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+
+<body>
+    <header>
+        <h1>Formulario de asistencia al congreso sobre TDA</h1>
+        <p> Fecha de celebración: 15 de junio de 2026 </p>
+    </header>
+    <hr>
+    <main>
+        <section id="Precios">
+            <h2>Abono de las entradas</h2>
+                <table id="Precios_tabla" border="2" summary="Tabla de precios de las entradas para el congreso sobre TDA">
+                    <tr>
+                        <th rowspan="2">Tipo de entrada</th>
+                        <th colspan="3">Registro</th>
+                    </tr>
+                    <tr>
+                        <th> Temprano </th>
+                        <th> Tardío </th>
+                        <th> Durante el congreso </th>
+                    </tr>
+                    <tr>
+                        <td>Entrada general</td>
+                        <td align="center">50€</td>
+                        <td align="center"> 60€</td>
+                        <td align="center"> 75€ </td>
+                    </tr>
+                    <tr>
+                        <td>Entrada para estudiantes</td>
+                        <td align="center">30€</td>
+                        <td colspan="2" align="center"> 50€</td>
+                    </tr>
+                    <tr>
+                        <td>Entrada para profesionales con acreditación</td>
+                        <td colspan="3" align="center">25€</td>
+                    </tr>
+                    <caption>Precio de entradas</caption>
+                </table>
+        </section>
+        <section>
+            <h2>Formulario de inscripción</h2>
+            <form action="https://www.ejemplo.com/submit" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required><br><br>
+
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}"><br><br>
+
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
+
+                <label for="Acompañantes" >Número de acompañantes (1-4):</label>
+                <input type="number" id="cantidad" name="cantidad" min="0" max="4" value="0"><br><br>
+
+                <label for="asistencia" >¿Es tu primera vez asistiendo al congreso?</label>
+                <input type="radio"  name="asistencia" id="asistencia_si" value="Sí" checked/>
+                <label for="asistencia_si" >Sí</label>
+                <input type="radio"  name="asistencia" id="asistencia_no" value="No"/>
+                <label for="asistencia_no" class="asistencia">No</label><br><br>
+                
+                <label for="Conocimiento">¿Cómo conociste el evento?</label>
+                <input type="text" id="como_conociste" name="Conocimiento" list="opciones_conociste">
+                <datalist id="opciones_conociste">
+                    <option value = "Redes sociales">
+                    <option value = "Correo electrónico">
+                    <option value = "Sitio web">
+                    <option value = "Otro">
+                </datalist><br><br>
+
+                <label for="Correo_E"> Correo electrónico para recibir las entradas: </label>
+                <input type="email" id="correo_entradas" name="Correo_E" required><br><br>
+                
+                <span><input type="submit" value="Enviar"></span><span><input type="reset" value="Reiniciar"></span>
+
+            </form>
+        </section>
+    </main>
+    <br>
+    <aside>
+        <h2>Contacto con el autor</h2>
+        <p>Si tienes alguna pregunta o comentario sobre este formulario, no dudes en ponerte en contacto conmigo a través de alguna de las siguientes platadormas:
+            <ul>
+                <li><a href="mailto:autor@universidad.edu">Correo electrónico</a></li>
+                <li><a href="https://www.linkedin.com/in/autor" target="_blank">LinkedIn</a></li>
+                <li><a href="https://twitter.com/autor" target="_blank">Twitter</a></li>
+            </ul>
+        </p>
+    </aside>   
+    <hr> 
+    <footer>
+        <p>© 2026 Congreso sobre TDA.</p>
+        <p>Dra. Elena Vázquez</p>
+    </footer>
+</body>
+
 </html>
