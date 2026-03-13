@@ -1,0 +1,52 @@
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    /* El borde en la tabla sólo dibuja el contorno exterior.
+       Para que se vean las líneas internas, hay que añadir borde a las celdas. */
+
+    /*border-spacing: 0;*/
+    /* El borde entre celdas se puede eliminar con esta propiedad, pero solo es visible
+         con el modelo de bordes separados, así que no se puede usar con border-collapse: collapse; */
+
+    border-color: teal;
+    border-top-left-radius: 10px;
+
+
+    margin : auto;
+    /*Tambien admite que lo hagamos borde a borde (me refiero a izquierda, derecha...)*/
+
+    padding: 10px;
+    /* El padding en la tabla no se aplica a las celdas, sino a la tabla en sí, así que no se puede usar para separar el contenido de las celdas del borde de la tabla. */
+    
+    
+}
+
+/* Áreas de la tabla: thead (encabezado), tbody (cuerpo), tfoot (pie) */
+thead th, thead td {
+    background-color: rgb(211, 230, 173);
+    margin: 10px;
+}
+
+tbody th{
+    background-color: rgb(113, 183, 94);
+    margin: 10px;
+}
+
+tbody td {
+    background-color: rgb(173, 210, 230);
+    margin: 10px;   
+    /* align-items: center;  <- Esto no funciona en celdas de tabla */
+}
+
+tfoot th,
+tfoot td {
+    background-color: rgb(48, 147, 180);
+}
+
+/* Centrar contenido en todas las celdas */
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px; /* Espacio interno para mejor apariencia */
+}
+
