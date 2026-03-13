@@ -1,0 +1,101 @@
+
+body{
+    background-image: url("../html/images/ugr.jpg");
+    /* background-size: cover;  Anula si hay background-repeat */
+    background-repeat: repeat-x;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p{
+    /* Relativo al color */
+    color: rgb(3, 3, 3);
+    background-color: rgb(212, 208, 202);
+
+    /* Relativo a la fuente*/
+    font-style: normal;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family:  'Times New Roman', Times, serif;
+
+    /* Relativo al texto */
+    text-decoration: none;
+    text-align: justify;
+
+}
+h1{
+    color: rgb(144, 38, 197);
+    background-color: rgb(244, 243, 246);
+    font-style: italic;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family:  'Times New Roman', Times, serif;
+    text-decoration: none;
+    text-align: center;
+}
+
+#F1{ 
+    background-image: url("../html/images/google.png");
+    background-attachment: local;
+    text-indent: 40px;
+    direction: ltr;
+    letter-spacing: normal;
+    white-space: inherit;
+    vertical-align: top;
+}
+
+#Bach{
+    text-indent: 40px;
+    direction: rtl;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgb(14, 212, 193);
+    white-space:unset;
+    vertical-align: bottom;
+}
+
+#Basket{
+    text-indent: 40px;
+    direction: inherit;
+    letter-spacing: normal;
+    white-space: inherit;
+    vertical-align: middle;
+}
+
+/* sobre enlaces */
+a:link{ /* Color por primera vez*/
+    color:#0004ff;
+    text-decoration:none;
+    transition: color 0.3s, text-decoration 0.3s; /* Transición suave para cambios */
+}
+a:visited { /*Cuando ya se ha visitado*/
+    color:#ae00ff;
+    text-decoration:none;
+}
+a:hover { /*Cuando pasa el cursor*/
+    color:#00ff40;
+    text-decoration:underline;
+    cursor: pointer; /* Cambia el cursor a mano */
+}
+a:active { /*Cuando se hace clic */
+    color:#ff0000;
+    text-decoration:none;
+}
+a:focus { /* Para accesibilidad, cuando el enlace tiene foco */
+    outline: 2px solid blue;
+}
+
+
+/*SObre listas*/
+ul{
+    list-style-type: square;
+    /*list-style-image: url("../html/images/ugr.jpg");*/
+    list-style-position: inside;
+}
+
+ol{
+    /*list-style-type: upper-roman;*/
+    list-style-type: lower-alpha;
+    list-style-position: outside;
+}

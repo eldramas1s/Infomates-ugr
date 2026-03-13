@@ -46,41 +46,47 @@
         <section>
             <h2>Formulario de inscripción</h2>
             <form action="https://www.ejemplo.com/submit" method="post">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required><br><br>
+                <fieldset id="datosPersonales">
+                    <legend>Datos personales</legend>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" size="20"><br><br>
 
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required><br><br>
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" size="20" required><br><br>
 
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required><br><br>
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" size="30" required><br><br>
 
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}"><br><br>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}"><br><br>
 
-                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
-
-                <label for="Acompañantes" >Número de acompañantes (1-4):</label>
-                <input type="number" id="cantidad" name="cantidad" min="0" max="4" value="0"><br><br>
-
-                <label for="asistencia" >¿Es tu primera vez asistiendo al congreso?</label>
-                <input type="radio"  name="asistencia" id="asistencia_si" value="Sí" checked/>
-                <label for="asistencia_si" >Sí</label>
-                <input type="radio"  name="asistencia" id="asistencia_no" value="No"/>
-                <label for="asistencia_no" class="asistencia">No</label><br><br>
-                
-                <label for="Conocimiento">¿Cómo conociste el evento?</label>
-                <input type="text" id="como_conociste" name="Conocimiento" list="opciones_conociste">
-                <datalist id="opciones_conociste">
-                    <option value = "Redes sociales">
-                    <option value = "Correo electrónico">
-                    <option value = "Sitio web">
-                    <option value = "Otro">
-                </datalist><br><br>
-
-                <label for="Correo_E"> Correo electrónico para recibir las entradas: </label>
-                <input type="email" id="correo_entradas" name="Correo_E" required><br><br>
+                    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br>
+                    
+                </fieldset>
+                <fieldset id="registroDeAsistencia">
+                    <legend>Registro de asistencia</legend>
+                    <label for="Acompañantes" >Número de acompañantes (1-4):</label>
+                    <input type="number" id="cantidad" name="cantidad" min="0" max="4" value="0"><br>
+                </fieldset>
+                <fieldset id="informacionAdicional">
+                    <legend>Información adicional</legend>
+                    <label for="asistencia" >¿Es tu primera vez asistiendo al congreso?</label>
+                    <input type="radio"  name="asistencia" id="asistencia_si" value="Sí" checked/>
+                    <label for="asistencia_si" >Sí</label>
+                    <input type="radio"  name="asistencia" id="asistencia_no" value="No"/>
+                    <label for="asistencia_no" class="asistencia">No</label><br><br>
+                    
+                    <label for="searchDatalist">¿Cómo conociste el evento?</label>
+                    <input type="search" id="searchDatalist" name="searchDatalist" list="opciones_conociste" placeholder="Escribe para buscar...">
+                    
+                    <datalist id="opciones_conociste">
+                        <option value = "Redes sociales">
+                        <option value = "Correo electrónico">
+                        <option value = "Sitio web">
+                        <option value = "Otro">
+                    </datalist><br><br>
+                </fieldset>
                 
                 <span><input type="submit" value="Enviar"></span><span><input type="reset" value="Reiniciar"></span>
 
