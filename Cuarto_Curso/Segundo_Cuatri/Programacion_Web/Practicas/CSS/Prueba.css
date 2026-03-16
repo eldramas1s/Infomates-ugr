@@ -1,0 +1,36 @@
+header{
+    display: block;
+    border-color: black;
+    border-style: solid;
+    border-width: 4px;
+
+    margin: 5%;
+}
+section{
+    border-color: black;
+    border-style: solid;
+    border-width: 4px;
+    margin: 7%;
+}
+
+#sec1{
+    background-color: red;
+    float: left;
+}
+#sec2{
+    background-color: green;
+    float: left;
+}
+#sec3{
+    background-color: blue;
+    float: left;
+}
+
+footer{
+    clear: both;
+    display: block;
+    border-color: black;
+    border-style: solid;
+    border-width: 4px;
+    margin: 4px;
+}

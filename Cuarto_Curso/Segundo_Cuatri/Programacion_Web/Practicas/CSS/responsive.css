@@ -1,0 +1,45 @@
+@media (min-width: 481px) {
+    .columns {
+        width: 100%;
+        /* same as 100% */
+    }
+
+    .columns:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .first-column {
+        background-color: #cccccc;
+        float: left;
+        width: 33%;
+    }
+
+    .second-column {
+        float: left;
+        width: 67%;
+    }
+}
+
+@media (max-width: 480px) {
+    .columns {
+        width: 100%;
+        /* same as 100% */
+    }
+
+    .columns:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .first-column {
+        background-color: #ff0000;
+        width: 100%;
+    }
+
+    .second-column {
+        width: 100%;
+    }
+}
