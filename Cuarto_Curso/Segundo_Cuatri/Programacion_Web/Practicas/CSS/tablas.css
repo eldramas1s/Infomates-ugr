@@ -10,6 +10,7 @@ table {
 
     border-color: teal;
     border-top-left-radius: 10px;
+    border-width: 0.2em;
 
 
     margin : auto;
@@ -25,16 +26,17 @@ table {
 thead th, thead td {
     background-color: rgb(211, 230, 173);
     margin: 10px;
+    border-width: 0.2em;
 }
 
 tbody th{
     background-color: rgb(113, 183, 94);
     margin: 10px;
+    border-width: 0.2em;
 }
 
 tbody td {
-    background-color: rgb(173, 210, 230);
-    margin: 10px;   
+    background-color: rgb(173, 210, 230);  
     /* align-items: center;  <- Esto no funciona en celdas de tabla */
 }
 
@@ -47,6 +49,6 @@ tfoot td {
 th, td {
     text-align: center;
     vertical-align: middle;
-    padding: 8px; /* Espacio interno para mejor apariencia */
+    padding: 8px; 
 }
 
