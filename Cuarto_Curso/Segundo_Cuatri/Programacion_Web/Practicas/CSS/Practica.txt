@@ -1,0 +1,15 @@
+Cabecera y pie de pagina (referencias a codigo y explicando lo mas impotante en todas las secciones)
+
+Aspectos importantes en cada paina; por ejemplo cómo se ha planteado 3 viajes por columna
+
+Cisualización correcta del calendario, etc....
+
+Diseño responsive explciar como
+
+Sección para detallar y explicar los aspectos innovadores
+
+Es importnte la memoria; da un punto y medio con la memoria y hará qu ele que mira la practica tiene mas buenos ojos.
+
+Ser honesto con el uso de la IA, decir donde como cuando y por que. Usar IA no da la maxima nota, premia ser resolutivo por uno mismo.
+
+Hay una defensa importante, tendremos que explicar lo que hemos hecho, como lo hemos hecho y todo eso; si no pongo que uso IA y me pillan me crujen
