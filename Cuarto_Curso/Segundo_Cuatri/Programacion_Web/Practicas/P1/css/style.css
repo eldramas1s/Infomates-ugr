@@ -1,0 +1,41 @@
+/* CSS Document */
+
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* body */
+
+body{
+    background-color: #F8F9FA; /*fondo muy claro*/
+    color: #1A1A1A; /*texto muy oscuro*/
+    font-family: 'Montserrat', sans-serif; /* fuente elegante */
+}
+
+header{
+    display: "flex";
+    align-items: "center";
+    justify-content: "space-between";
+    padding: 0.3em 0.8em;
+
+    #nombreHeader{
+        font-size: 1.5em;
+        color: #1A1A1A;
+        font-family: 'Montserrat', sans-serif;
+    }
+    #logoHeader{
+        width: 0.5em;
+        height: 0.5em;
+    }
+    #formulario_sesion{
+        font-size: 1em;
+        color: #1A1A1A;
+        text-decoration: none;
+        padding: 0.5em 1em;
+        border: 2px solid #1A1A1A;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s; 
+    }
+}

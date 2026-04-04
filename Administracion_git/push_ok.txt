@@ -1,3 +1,9 @@
 ADD:
+The following paths are ignored by one of your .gitignore files:
+q.log
+The following paths are ignored by one of your .gitignore files:
+q.log
+The following paths are ignored by one of your .gitignore files:
+q.log
 PUSH:
 Everything up-to-date

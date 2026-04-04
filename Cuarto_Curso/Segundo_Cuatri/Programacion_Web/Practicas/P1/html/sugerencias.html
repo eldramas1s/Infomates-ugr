@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Azimut Viajes | Sugerencias</title>
+    </head>
+    <body>
+        <header>
+            <img src="../images/logoAzimut.png" alt="Logotipo Azimut">
+
+            <h1 id="nombre_head">Azimut</h1>
+
+            <a href="../html/altausuarios.html" id="formulario_sesion">Log In</a>
+
+            <nav id="head_menu">
+                <ul>
+                    <li><a href="../html/index.html">Inicio</a></li>
+                    <li><a href="../html/viajes.html">Viajes</a></li>
+                    <li><a href="../html/viajes_grupo.html">Viajes en grupo</a></li>
+                    <li><a href="../html/ofertas.html">Ofertas</a></li>
+                    <li><a href="../html/sobre_agencia.html">Sobre nuestra
+                            agencia</a></li>
+                    <li><a href="../html/sugerencias.html">Sugerencias</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="listaExperiencias">
+                <h2>Experiencias y Opiniones de otros usuarios</h2>
+                <article>
+                    <h3 class="sugerencia"> Carlos M. - <small>Sugerencia</small></h3>
+                    <p>Valoración: &starf; &starf; &starf; &star; &star; </p>
+                    <p>Podrían ofertar más viajes orientados a climas fríos.</p>
+                    
+                    <p>¿Qué se ofrecía en tu experiencia? Alojamiento en Hotel, Transporte privado</p>
+                </article>
+
+                <article>
+                    <h3 class="experiencia"> Paula M. - <small>Experiencia</small></h3>
+                    <p>Valoración: &starf; &starf; &starf; &starf; &star; </p>
+                    <p>Visité Sabiote, es un pueblo pequeño; coincidí con las fiestas del Medievo y el ambiente fue espectacular. Durante el primer fin de semana de mayo, parte del pueblo se convierte en una aldea medival.</p>
+                    <p>Lo único que no me gustó fue que el alojamiento proporcionado no fue demasiado bueno.</p>
+                    <p>¿Qué se ofrecía en tu experiencia?Alojamiento en Hotel, Transporte privado</p>
+                </article>
+                <article>
+                    <h3 class="experiencia"> Jaime H. - <small>Experiencia</small></h3>
+                    <p>Valoración: &starf; &starf; &starf; &starf; &star; </p>
+                    <p>La experiencia viendo las auroras boreales de Laponia fue increíble, el paisaje es espectacular y el ambiente es muy tranquilo. Además, el alojamiento proporcionado era de gran calidad.</p>
+                    <p>Lo único que no me gustó fue que el viaje se hizo un poco corto, me hubiera gustado que durara un poco más.</p>
+                    <p>¿Qué se ofrecía en tu experiencia? Alojamiento en Hotel, Transporte privado, Guía turístico </p>
+                </article>
+            </section>
+
+            <form autocomplete="off">
+                <h2>Comparte tu experiencia o sugerencia</h2>
+                <fieldset id="formularioSugerencias">
+                    <p>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </p>
+                    <p>
+                        <label for="tipo">Tipo de comentario:</label>
+                        <select id="tipo" name="tipo" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="experiencia">Experiencia</option>
+                            <option value="sugerencia">Sugerencia</option>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="radio" id="star1" name="valoracion" class="valoracion" value=1 > <label for="star1"> &star;</label>
+                        <input type="radio" id="star2" name="valoracion" class="valoracion" value=2 > <label for="star2"> &star;</label>
+                        <input type="radio" id="star3" name="valoracion" class="valoracion" value=3 > <label for="star3"> &star;</label>
+                        <input type="radio" id="star4" name="valoracion" class="valoracion" value=4 > <label for="star4"> &star;</label>
+                        <input type="radio" id="star5" name="valoracion" class="valoracion" value=5 > <label for="star5"> &star;</label>
+                    </p>
+                    <p>
+                        <label for="comentario">Comentario:</label>
+                        <textarea id="comentario" name="comentario" rows="10" required></textarea>
+                    </p>
+                    <p>
+                        <legend>¿Qué se ofrecía en tu experiencia?</legend>
+                    <p>
+                        <input type="checkbox" id="guia" name="servicios" value="guia">
+                        <label for="guia">Guía turístico</label>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" id="hotel" name="servicios" value="hotel">
+                        <label for="hotel">Alojamiento en Hotel</label>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" id="transporte" name="servicios" value="transporte">
+                        <label for="transporte">Transporte privado</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="comida" name="servicios" value="comida">
+                        <label for="comida">Comida incluida</label>
+                    </p>
+                    <button type="submit" formaction="../procesarSugerencia.php" formmethod="post">Enviar</button>
+                </fieldset>
+
+            </form>
+        </main>
+        <footer>
+            <nav id="pie_menu">
+                <ul>
+                    <li><a href="../html/contacto.html">Contacte con nosotros</a></li>
+                    <li><a href="../memoria/como_se_hizo.pdf">Cómo se
+                            hizo</a></li>
+                    <li><p>Fecha de modificación: </p></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>

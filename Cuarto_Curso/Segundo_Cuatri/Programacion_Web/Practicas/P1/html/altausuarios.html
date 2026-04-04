@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Azimut Viajes | Alta de usuarios</title>
+    </head>
+    <body>
+        <header>
+            <img src="../images/logoAzimut.png" alt="Logotipo Azimut">
+
+            <h1 id="nombre_head">Azimut</h1>
+
+            <a href="../html/altausuarios.html" id="formulario_sesion">Log In</a>
+
+            <nav id="head_menu">
+                <ul>
+                    <li><a href="../html/index.html">Inicio</a></li>
+                    <li><a href="../html/viajes.html">Viajes</a></li>
+                    <li><a href="../html/viajes_grupo.html">Viajes en grupo</a></li>
+                    <li><a href="../html/ofertas.html">Ofertas</a></li>
+                    <li><a href="../html/sobre_agencia.html">Sobre nuestra
+                            agencia</a></li>
+                    <li><a href="../html/sugerencias.html">Sugerencias</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+
+            <form id="formularioAlta">
+
+                <fieldset>
+                    <legend>Alta de usuarios</legend>
+
+                    <p>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required pattern="([A-Za-z]+( [A-Za-z]+)+)">
+                    </p>
+
+                    <p>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required pattern="[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?">
+                    </p>
+
+                    <p>
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" required pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/">
+                    </p>
+                    <p>
+                        <label for="adultez">¿Eres mayor de edad?</label>
+                        <input type="radio" name="adultez" value="adulto"> Si
+                        <input type="radio" name="adultez" value="menor"> No
+                    </p>
+
+                    <p>
+                        <a href="../aviso_legal.pdf" target="_blank">Aviso legal</a>
+                    </p>
+                    <p>
+                        Ha leído el aviso legal: <input type="checkbox" name="aceptar" required>
+                    </p>
+                    <p>
+                        <button type="submit">Registrarse</button>
+                    </p>
+                </fieldset>
+
+            </form>
+            
+        </main>
+        <footer>
+            <nav id="pie_menu">
+                <ul>
+                    <li><a href="../html/contacto.html">Contacte con nosotros</a></li>
+                    <li><a href="../memoria/como_se_hizo.pdf">Cómo se
+                            hizo</a></li>
+                    <li><p>Fecha de modificación: </p></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>

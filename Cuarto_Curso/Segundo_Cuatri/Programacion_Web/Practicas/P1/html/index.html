@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../CSS/style.css">
+        <title>Azimut Viajes | Exclusividad en cada sitio</title>
+    </head>
+    <body>
+        <header>
+
+            <h1 class="nombreDecor" id="nombreHeader">Azimut Viajes</h1>
+
+            <img  id="logoHeader" src="../images/logoAzimut.png" alt="Logotipo Azimut">
+
+            <a href="../html/altausuarios.html" id="formulario_sesion">Log
+                In</a>
+
+            <nav id="menuHeader">
+                <ul>
+                    <li><a href="../html/index.html">Inicio</a></li>
+                    <li><a href="../html/viajes.html">Viajes</a></li>
+                    <li><a href="../html/viajes_grupo.html">Viajes en
+                            grupo</a></li>
+                    <li><a href="../html/ofertas.html">Ofertas</a></li>
+                    <li><a href="../html/sobre_agencia.html">Sobre nuestra
+                            agencia</a></li>
+                    <li><a href="../html/sugerencias.html">Sugerencias</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <!-- meter todas las posibles opciones ofertadas -->
+            <!-- También podemos poner que ponga una cosa u otra segun el país elegido-->
+            <section id="introYBusqueda">
+                <article>
+                    <h2 id="nombreIndex" class="nombreDecor">Azimut Viajes</h2>
+                    <img src="../images/brasilPLNM.png" alt="Imagen de Brasil" >
+                    <p>Azimut Viajes es una agencia de viajes minimalista y de alto nivel que pretende ofrecer los viajes de mejor calidad en cinco de los países más bonitos del mundo. Estos viajes concentran distintas culturas, aportando al cliente una 
+                        experiencia única e inolvidable. En Azimut Viajes, nos esforzamos por ofrecer un servicio de gran calidad para que le cliente siempre se sienta cubierto.
+                    </p>
+                    <p>"Azimut" es una palabra de origen árabe que significa "el rumbo" o "la dirección"; con esta palabra queremos transmitir la idea de un viaje con rumbo definido y una dirección clara.</p>
+                </article>
+                
+                <form autocomplete="off" target="blank">
+
+                    <!-- Lista de destinos ofertados-->
+                    <datalist id="destinos">
+                        <option value="España, Granada, Granada">
+                        <option value="España, Jaén, Sabiote">
+                        <option value="España, Galicia, Santiago de Compostela">
+                        <option value="India, Rajastán">
+                        <option value="India, Kerala">
+                        <option value="India, Agra">
+                        <option value="Brasil, Río de Janeiro">
+                        <option value="Brasil, Maranao">
+                        <option value="Brasil, Manaos">
+                        <option value="Suecia, Laponia">
+                        <option value="Suecia, Harads">
+                        <option value="Suecia, Hamneskär">
+                        <option value="Madagascar, Nosy Ankao"></option>
+                        <option value="Madagascar, Antsalova"></option>
+                        <option value="Madagascar, Toliara"></option>
+                    </datalist>
+
+                    <fieldset id="formularioBusqueda">
+                        <label for="destino"></label>
+                        <input type="search" id="destino" name="destino" required
+                            placeholder="Destination" list="destinos" 
+                            pattern="España, Granada, Granada|España, Jaén, Sabiote|España, Galicia, Santiago de Compostela|India, Rajastán|India, Kerala|India, Agra|Brasil, Río de Janeiro|Brasil, Maranao|Brasil, Manaos|Suecia, Laponia|Suecia, Harads|Suecia, Hamneskär|Madagascar, Nosy Ankao|Madagascar, Begara|Madagascar, Toliara"
+                        >
+
+                        <label for="fecha_salida">From:</label>
+                        <input type="date" id="fecha_salida" name="fecha_salida"
+                            required placeholder="Departure Date" min="2026-04-22">
+
+                        <label for="fecha_regreso">To:</label>
+                        <input type="date" id="fecha_regreso" name="fecha_regreso"
+                            placeholder="Return Date" min="2026-04-23">
+
+                        <button type="submit" formaction="../html/busqueda.html" formmethod="get"><img id="icono_busqueda"
+                                src="../images/icono_busqueda.png"
+                                alt="Buscar"></button>
+                    </fieldset>
+                    
+                </form>
+
+            </section>
+        </main>
+        <footer>
+            <nav id="pie_menu">
+                <ul>
+                    <li><a href="../html/contacto.html">Contacte con
+                            nosotros</a></li>
+                    <li><a href="../memoria/como_se_hizo.pdf" target="_blank">Cómo se
+                            hizo</a></li>
+                    <li><p>Fecha de modificación: </p></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>
+
