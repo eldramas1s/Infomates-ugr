@@ -57,7 +57,7 @@
                 <fieldset id="formularioSugerencias">
                     <p>
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <input type="text" id="nombre" name="nombre" pattern="([A-Za-z]+( [A-Za-z]+)+)" max="30" required>
                     </p>
                     <p>
                         <label for="tipo">Tipo de comentario:</label>
