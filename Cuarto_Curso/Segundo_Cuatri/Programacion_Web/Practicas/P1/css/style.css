@@ -1,41 +1,149 @@
-/* CSS Document */
-
-/* General */
+/* =========================================
+   GENERAL Y RESPONSIVE BÁSICO
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; 
 }
 
-/* body */
+/* =========================================
+   BODY Y FONDO (BLOQUEO DE PANTALLA)
+   ========================================= */
+body {
+    /*TODO: Cambiar a grid*/
+    width: 100%;
+    height: 100vh; /* Obliga a que la altura sea exactamente la de la pantalla */
+    overflow: hidden; /* Corta de raíz cualquier barra de scroll */
+    
+    display: flex;
+    flex-direction: column; /* Apila cabecera -> main -> footer */
 
-body{
-    background-color: #F8F9FA; /*fondo muy claro*/
-    color: #1A1A1A; /*texto muy oscuro*/
-    font-family: 'Montserrat', sans-serif; /* fuente elegante */
+    background-image: url("../images/fondo.png"); 
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-color: #F8F9FA; 
+    
+    color: #1A1A1A; 
+    font-family: 'Montserrat', sans-serif; 
 }
 
-header{
-    display: "flex";
-    align-items: "center";
-    justify-content: "space-between";
-    padding: 0.3em 0.8em;
+p{
+    text-align: justify;
+    padding: 0.5em;
+}
 
-    #nombreHeader{
-        font-size: 1.5em;
-        color: #1A1A1A;
-        font-family: 'Montserrat', sans-serif;
+/* =========================================
+   HEADER y FOOTER
+   ========================================= */
+header, footer {
+    display: flex; 
+    flex-wrap: wrap;    
+    align-items: center; 
+    padding: 1em 2em;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.85); 
+    flex-shrink: 0; /* Prohíbe que se encojan */
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+    justify-content: space-between;
+    height: 15em;
+}
+
+footer{
+    justify-content: center;
+}
+
+header .nombreDecor {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em; 
+    font-weight: 300; 
+    text-transform: uppercase; 
+    color: #B59349; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+    margin: 0;
+    flex: 1; /* Empuja al logo al centro */
+}
+
+header #logoHeader {
+    width: 8em; 
+    height: auto;
+    
+    position:absolute;
+    
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%)translateY(-50%);
+}
+
+/* =========================================
+   MENÚ DE NAVEGACIÓN
+   ========================================= */
+nav#menuHeader {
+    width: 100%; /* Obliga al menú a bajar a su propia línea en la cabecera */
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5em; 
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #1A1A1A;
+    font-size: 1.1em;
+    padding: 0.5em 1em;
+    border: 2px solid transparent; 
+    border-radius: 5px;
+    transition: all 0.3s ease; 
+}
+
+nav ul li a:hover {
+    background-color: #515151;
+    color: white; 
+}
+
+/* Pie de página */
+footer nav#menuFooter ul {
+    align-items: center;
+}
+
+
+
+/* =========================================
+   MEDIA QUERIES (MÓVILES)
+   ========================================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
     }
-    #logoHeader{
-        width: 0.5em;
-        height: 0.5em;
+    
+    header .nombreDecor { flex: none; }
+    
+    #signUpForm {
+        flex: none;
+        margin: 0 auto;
     }
-    #formulario_sesion{
-        font-size: 1em;
-        color: #1A1A1A;
-        text-decoration: none;
-        padding: 0.5em 1em;
-        border: 2px solid #1A1A1A;
-        border-radius: 5px;
-        transition: background-color 0.3s, color 0.3s; 
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #formularioBusqueda fieldset {
+        flex-direction: column; /* En móvil sí se pone vertical */
+        align-items: stretch;
     }
 }

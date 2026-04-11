@@ -3,18 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../CSS/style.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/form.css">
+        <link rel="stylesheet" href="../css/index.css">
         <title>Azimut Viajes | Exclusividad en cada sitio</title>
     </head>
     <body>
         <header>
 
-            <h1 class="nombreDecor" id="nombreHeader">Azimut Viajes</h1>
+            <h1 class="nombreDecor" >Azimut Viajes</h1>
 
             <img  id="logoHeader" src="../images/logoAzimut.png" alt="Logotipo Azimut">
 
-            <a href="../html/altausuarios.html" id="formulario_sesion">Log
-                In</a>
+            <form class="index" id="signUpForm" autocomplete="off">
+                <label for="usr">Usuario:</label>
+                <input type="email" id="usr" name="usr" required placeholder="Usuario" pattern="([A-Za-z]+( [A-Za-z]+)+)">
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required placeholder="Contraseña" pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/">
+
+                <button type="submit" formaction="../html/sesion.html" formmethod="post">Log In</button>
+                <a href="../html/altausuarios.html"> Sign Up</a>
+            </form>
 
             <nav id="menuHeader">
                 <ul>
@@ -32,17 +42,15 @@
         <main>
             <!-- meter todas las posibles opciones ofertadas -->
             <!-- También podemos poner que ponga una cosa u otra segun el país elegido-->
-            <section id="introYBusqueda">
+            <section id="introSection">
                 <article>
-                    <h2 id="nombreIndex" class="nombreDecor">Azimut Viajes</h2>
-                    <img src="../images/brasilPLNM.png" alt="Imagen de Brasil" >
-                    <p>Azimut Viajes es una agencia de viajes minimalista y de alto nivel que pretende ofrecer los viajes de mejor calidad en cinco de los países más bonitos del mundo. Estos viajes concentran distintas culturas, aportando al cliente una 
-                        experiencia única e inolvidable. En Azimut Viajes, nos esforzamos por ofrecer un servicio de gran calidad para que le cliente siempre se sienta cubierto.
-                    </p>
-                    <p>"Azimut" es una palabra de origen árabe que significa "el rumbo" o "la dirección"; con esta palabra queremos transmitir la idea de un viaje con rumbo definido y una dirección clara.</p>
+                    <h2 class="nombreDecor">Azimut Viajes</h2>
+                    <img src="../images/brasilPLNM.png" alt="Imagen de Brasil" id="imagenIndex" >
+                    <p>Bienvenido a Azimut Viajes, tu agencia de viajes de confianza para descubrir los mejores destinos del mundo. Aquí encontrarás las mejores ofertas para tu próximo viaje. Seremos tu <strong>rumbo</strong> y tu <strong>dirección</strong> en cada aventura.</p>
                 </article>
-                
-                <form autocomplete="off" target="blank">
+            </section>
+            <section id="searchSection">
+                <form id="formularioBusqueda" autocomplete="off" target="blank">
 
                     <!-- Lista de destinos ofertados-->
                     <datalist id="destinos">
@@ -63,7 +71,7 @@
                         <option value="Madagascar, Toliara"></option>
                     </datalist>
 
-                    <fieldset id="formularioBusqueda">
+                    <fieldset>
                         <label for="destino"></label>
                         <input type="search" id="destino" name="destino" required
                             placeholder="Destination" list="destinos" 
@@ -88,7 +96,7 @@
             </section>
         </main>
         <footer>
-            <nav id="pie_menu">
+            <nav id="menuFooter">
                 <ul>
                     <li><a href="../html/contacto.html">Contacte con
                             nosotros</a></li>
