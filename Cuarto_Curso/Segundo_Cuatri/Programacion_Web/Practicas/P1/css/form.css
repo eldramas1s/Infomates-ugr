@@ -2,6 +2,7 @@
    FORMULARIO DE INICIO DE SESIÓN (HEADER)
    ========================================= */
 #signUpForm {
+    grid-area: signUpForm;
     display: grid;
     grid-template-columns: 1fr 1fr; 
     gap: 0.5em; /* Un poco más de espacio */
@@ -120,4 +121,24 @@
 
 #icono_busqueda {
     width: 1.5em; 
+}
+@media (max-width: 768px) {
+    form fieldset {
+        flex-direction: column; /* Cambia de fila a columna */
+        align-items: stretch;    
+        gap: 0.6em;               
+        padding: 0.6em;
+    }
+    
+
+    form input {
+        width: 100%;             /* Asegura que los inputs no se queden pequeños */
+        margin-bottom: 5px;      /* Espacio extra bajo cada input */
+    }
+
+
+    #signUpForm {
+        flex: none;
+        margin: 0 auto;
+    }
 }

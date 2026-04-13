@@ -10,14 +10,18 @@
 /* =========================================
    BODY Y FONDO (BLOQUEO DE PANTALLA)
    ========================================= */
-body {
-    /*TODO: Cambiar a grid*/
-    width: 100%;
-    height: 100vh; /* Obliga a que la altura sea exactamente la de la pantalla */
-    overflow: hidden; /* Corta de raíz cualquier barra de scroll */
+
+body{
+    display: grid;
+    grid-template-rows: auto 1fr auto; 
+    grid-template-columns: 16rem 1fr auto;
+
+    grid-template-areas :
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
     
-    display: flex;
-    flex-direction: column; /* Apila cabecera -> main -> footer */
+    min-height: 100vh;
 
     background-image: url("../images/fondo.png"); 
     background-size: cover; 
@@ -25,7 +29,7 @@ body {
     background-position: center; 
     background-repeat: no-repeat; 
     background-color: #F8F9FA; 
-    
+
     color: #1A1A1A; 
     font-family: 'Montserrat', sans-serif; 
 }
@@ -49,6 +53,7 @@ header, footer {
 }
 
 header {
+    grid-area: header;
     position: sticky;
     top: 0;
     z-index: 1000; 
@@ -57,10 +62,12 @@ header {
 }
 
 footer{
+    grid-area: footer;
     justify-content: center;
 }
 
 header .nombreDecor {
+    grid-area: nombreDecor;
     font-family: 'Montserrat', sans-serif;
     font-size: 2.2em; 
     font-weight: 300; 
@@ -72,6 +79,7 @@ header .nombreDecor {
 }
 
 header #logoHeader {
+    grid-area: logoHeader;
     width: 8em; 
     height: auto;
     
@@ -86,6 +94,7 @@ header #logoHeader {
    MENÚ DE NAVEGACIÓN
    ========================================= */
 nav#menuHeader {
+    grid-area: menuHeader;
     width: 100%; /* Obliga al menú a bajar a su propia línea en la cabecera */
     display: flex;
     justify-content: center;
@@ -124,26 +133,45 @@ footer nav#menuFooter ul {
    MEDIA QUERIES (MÓVILES)
    ========================================= */
 @media (max-width: 768px) {
+    body{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(5rem, auto) 1fr minmax(5rem, auto) auto;
+        grid-template-areas :
+            "header"
+            "nav"
+            "main"
+            "aside"
+            "footer";
+        gap: 1.8em;
+    }
     header {
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "nombreDecor"
+            "logoHeader"
+            "signUpForm"
+            "menuHeader";
+        height: auto;
         flex-direction: column;
         text-align: center;
-        gap: 15px;
+        gap: 0.7em;
+
+        position: static;
     }
-    
+    footer{position: static;}
     header .nombreDecor { flex: none; }
     
-    #signUpForm {
-        flex: none;
+    header #logoHeader {
+        position: static;
+        transform: none;
+        width: 6em; 
         margin: 0 auto;
     }
 
     nav ul {
         flex-direction: column;
-        gap: 10px;
-    }
-
-    #formularioBusqueda fieldset {
-        flex-direction: column; /* En móvil sí se pone vertical */
-        align-items: stretch;
+        
     }
 }

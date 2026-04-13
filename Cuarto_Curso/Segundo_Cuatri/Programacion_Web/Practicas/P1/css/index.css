@@ -2,6 +2,8 @@
    MAIN Y CONTENIDO CENTRAL (INDEX)
    ========================================= */
 main{ 
+    grid-area:main;
+
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
@@ -14,7 +16,13 @@ main{
 
 /* Artículo de presentación */
 main section#introSection article {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "title title"
+        "image text";
+
     align-items: center;
     padding: 1.5em;
     max-width: 35em;
@@ -24,8 +32,18 @@ main section#introSection article {
 }
 
 main section#introSection article img {
+    grid-area: image;
     max-height: 25vh; /* Altura controlada para dejar espacio a lo demás */
     width: auto; 
     border-radius: 0.6em;
     margin-top: 1em;
+}
+
+main section#introSection article h2 {
+    grid-area: title;
+}
+
+main section#introSection article p {
+    grid-area: text;
+    margin-top: 0.5em;
 }
