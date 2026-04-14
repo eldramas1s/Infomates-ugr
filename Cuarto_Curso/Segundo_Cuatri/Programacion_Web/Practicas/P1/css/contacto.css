@@ -1,9 +1,8 @@
 /* =========================================
-   MAIN Y CONTENIDO CENTRAL (INDEX)
+   MAIN y CONTENIDO CENTRAL (CONTACTO)
    ========================================= */
 
-/* Artículo de presentación */
-main section#introSection article {
+main section#sobreMi article {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
@@ -12,17 +11,22 @@ main section#introSection article {
         "image text";
 
     align-items: center;
+    padding: 1.5em;
+    gap: 3em;
 }
 
-main section#introSection article img {
+main section#sobreMi article img {
     grid-area: image;
 }
 
-main section#introSection article h2 {
+main section#sobreMi article h2 {
     grid-area: title;
 }
 
-main section#introSection article p {
+main section#sobreMi article ul {
     grid-area: text;
     margin-top: 0.5em;
 }
+
+main section#sobreMi article ul li {
+    margin-bottom: 0.3em;

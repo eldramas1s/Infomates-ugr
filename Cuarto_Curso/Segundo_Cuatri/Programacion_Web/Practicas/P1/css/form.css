@@ -1,14 +1,88 @@
 /* =========================================
+   CONFIGURACION GENERAL
+   ========================================= */
+
+form {
+    display: flex;
+    flex-direction: column; /* ANTES: row */
+    align-items: stretch;   
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2em;
+    border-radius: 0.6em;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 0.2em solid #B59349;
+    max-width: 500px;       /* Evita que se estire demasiado en pantallas grandes */
+    margin: 0 auto;         /* Lo centra en la pantalla */
+}
+
+form fieldset{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8em;
+}
+
+form label{
+    font-size: 1.1em;
+    color: #1A1A1A;
+}
+
+form input{
+    padding: 0.6em;
+    border: 1px solid #ccc;
+    border-radius: 0.4em;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    transition: transform 0.3s ease;
+}
+
+form input:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+form input:focus {
+    transform: scale(1);
+    border-color: #B59349;
+}
+form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; 
+    width: 100%; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    color: #1A1A1A;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.4em;
+    transition: all 0.3s ease;
+    white-space: nowrap; 
+}
+form button:hover {
+    background-color: #B59349;
+    border-color: #B59349;
+    color: white;
+    transform: scale(0.97);
+}
+
+/* =========================================
    FORMULARIO DE INICIO DE SESIÓN (HEADER)
    ========================================= */
 #signUpForm {
     grid-area: signUpForm;
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    gap: 0.5em; /* Un poco más de espacio */
-    max-width: 280px; /* Ancho fijo para que no se deforme */
-    flex: 1; /* Ocupa el espacio de la derecha */
-    justify-content: end;
+    gap: 0.5em; 
+    max-width: 280px; 
+    
+    justify-self: end; /* Se alinea a la derecha */
 }
 
 #signUpForm label, #signUpForm input {
@@ -29,14 +103,10 @@
     font-family: 'Montserrat', sans-serif;
     outline: none;
 }
-#signUpForm input:focus {
-    transform: scale(1);
-    border-color: #B59349;
-}
+
 #signUpForm button { grid-column: 1 / 2; }
 #signUpForm a { grid-column: 2 / 3; }
 
-#signUpForm button,
 #signUpForm a {
     display: flex;
     justify-content: center;
@@ -56,7 +126,6 @@
     white-space: nowrap; 
 }
 
-#signUpForm button:hover,
 #signUpForm a:hover {
     background-color: #B59349;
     border-color: #B59349;
@@ -68,46 +137,19 @@
    FORMULARIO DE BUSQUEDA (MAIN)
    ========================================= */
 #formularioBusqueda {
-    flex-shrink: 0; 
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 1em 1.5em;
-    border-radius: 0.6em;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 0.2em solid #B59349;
+    flex-direction: row;
+    align-items: center;
+    max-width: 800px;
+    padding: 1em 2em;
+    margin: 0 auto;
+    width: 100%;
 }
 
-#formularioBusqueda fieldset {
-    border: none;
-    display: flex;
+#formularioBusqueda fieldset{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 15px;
 }
-
-#formularioBusqueda label {
-    font-size: 1.1em;
-    color: #1A1A1A;
-}
-
-#formularioBusqueda input {
-    padding: 0.6em;
-    border: 1px solid #ccc;
-    border-radius: 0.4em;
-    font-family: 'Montserrat', sans-serif;
-    outline: none;
-    transition: transform 0.3s ease;
-}
-
-#formularioBusqueda input:hover {
-    transform: scale(1.05);
-}
-
-#formularioBusqueda input:focus {
-    transform: scale(1);
-    border-color: #B59349;
-}
-
 #formularioBusqueda button {
     background: transparent;
     border: none;
@@ -115,16 +157,11 @@
     transition: transform 0.3s ease;
 }
 
-#formularioBusqueda button:hover {
-    transform: scale(1.1);
-}
-
 #icono_busqueda {
     width: 1.5em; 
 }
 @media (max-width: 768px) {
     form fieldset {
-        flex-direction: column; /* Cambia de fila a columna */
         align-items: stretch;    
         gap: 0.6em;               
         padding: 0.6em;
@@ -132,13 +169,19 @@
     
 
     form input {
-        width: 100%;             /* Asegura que los inputs no se queden pequeños */
-        margin-bottom: 5px;      /* Espacio extra bajo cada input */
+        width: 100%;             
+        margin-bottom: 5px;      
     }
 
 
     #signUpForm {
         flex: none;
         margin: 0 auto;
+    }
+
+    #formularioBusqueda fieldset{
+        flex-direction: column;
+        align-items: center;
+
     }
 }
