@@ -30,3 +30,22 @@ main section#sobreMi article ul {
 
 main section#sobreMi article ul li {
     margin-bottom: 0.3em;
+    list-style-type: square;
+}
+
+@media (max-width: 768px){
+    main section#sobreMi article{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+            "title"
+            "image"
+            "text";
+
+        align-items: center;
+    }
+
+    main section#sobreMi article img{
+        margin: 0 auto;
+    }
+}

@@ -26,3 +26,20 @@ main section#introSection article p {
     grid-area: text;
     margin-top: 0.5em;
 }
+
+
+@media (max-width: 768px) {
+    main section#introSection article {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+            "title"
+            "image"
+            "text";
+
+        align-items: center;
+    }
+    main section#introSection article img {
+        margin: 0 auto;
+    }
+}

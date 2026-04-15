@@ -47,6 +47,10 @@ form input:focus {
     transform: scale(1);
     border-color: #B59349;
 }
+
+form input[type="text"],form input[type="email"], form input[type="password"] {
+    flex-grow: 1; 
+}
 form button {
     display: flex;
     justify-content: center;
