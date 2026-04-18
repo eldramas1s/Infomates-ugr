@@ -1,0 +1,114 @@
+/* =========================================
+   MAIN y CONTENIDO CENTRAL (SUGERENCIAS Y NUESTRA AGENCIA)
+   ========================================= */
+main section.intercalar{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 100%;
+    max-width:900px;
+    margin: 0 auto;
+}
+
+main section.intercalar article {
+   width:65%;
+   max-width: none;
+}
+
+main section.intercalar article:nth-of-type(odd) {
+    align-self: flex-start;
+    border-left: 0.4em solid #B59349;
+}
+
+main section.intercalar article:nth-of-type(even) {
+    align-self: flex-end;
+    border-right: 0.4em solid #B59349;
+}
+
+.stars{
+    display: inline-block;
+    color: #B59349;
+}
+
+.sucursales{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        "lugar lugar"
+        "iframe iframe"
+        "viajes horario";
+    gap: 2em;
+}
+
+.sucursales.lugar{
+    grid-area: lugar;
+    text-align: center;
+    border-bottom: #B59349 solid 0.4em;
+}
+
+.localizacion{
+    grid-area: iframe;
+    width:100%;
+    height:24em;
+    margin-top: 2em;
+    align-self: center;
+    justify-self: center;
+}
+
+.sucursales aside.viajesPosibles{
+    grid-area: viajes;
+}
+
+.sucursales aside.horario{
+    grid-area: horario;
+}
+
+.sucursales aside.viajesPosibles ol li {
+    list-style: lower-roman;
+    list-style-position: inside;
+    margin-bottom: 0.8em;     /* Espacio entre cada destino */
+    line-height: 1.5;         /* Espacio entre líneas de texto */
+    padding-left: 0.5em;      /* Separa un poco el texto del número/viñeta */
+    justify-self: end;
+}
+
+.sucursales aside.horario p {
+    line-height: 1.8;         /* Hace que el texto del horario respire mucho más */
+    margin-top: 0.5em;
+}
+
+.sucursales aside.viajesPosibles h4, .sucursales aside.horario h4 {
+    margin-bottom: 1.2em;     /* Empuja el contenido hacia abajo */
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(181, 147, 73, 0.3); /* Línea decorativa fina */
+}
+
+
+/* =========================================
+   MEDIA QUERIES (MÓVILES)
+   ========================================= */
+
+@media (max-width: 768px) {
+    main section.intercalar article {
+        width: 100%;
+    }
+
+    main section.intercalar article{
+        align-self: center !important;
+        border: none;
+    }
+
+    .sucursales{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: 
+        "lugar"
+        "iframe"
+        "viajes"
+        "horario";
+    gap: 2em;
+}
+
+}
