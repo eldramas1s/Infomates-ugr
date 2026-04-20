@@ -28,22 +28,21 @@
         </header>
         <main>
 
-            <form id="formularioAlta">
+            <form id="formularioAlta" method="index.html" action="post">
                 <h1>Alta de usuarios</h1>
                 <fieldset>
-
                     <p>
-                        <label for="nombre">Nombre:</label>
+                        <label for="nombre">Nombre:*</label>
                         <input type="text" id="nombre" name="nombre" required pattern="([A-Za-z]+( [A-Za-z]+)+)">
                     </p>
 
                     <p>
-                        <label for="email">Email:</label>
+                        <label for="email">Email:*</label>
                         <input type="email" id="email" name="email" required  pattern="[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?">
                     </p>
 
                     <p>
-                        <label for="password">Contraseña:</label>
+                        <label for="password">Contraseña:*</label>
                         <input type="password" id="password" name="password" required pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/">
                     </p>
                     <p>
@@ -56,7 +55,7 @@
                         <a href="../aviso_legal.pdf" target="_blank" id="enlaceLegal">Aviso legal</a>
                     </p>
                     <p class="zonaAceptar">
-                        Ha leído el aviso legal: <input type="checkbox" name="aceptar" id="checkLegal" required>
+                        Ha leído el aviso legal:* <input type="checkbox" name="aceptar" id="checkLegal" required>
                     </p>
                     <p>
                         <button type="submit">Registrarse</button>

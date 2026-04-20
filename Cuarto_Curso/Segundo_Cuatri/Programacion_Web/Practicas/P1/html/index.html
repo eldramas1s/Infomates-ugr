@@ -11,18 +11,18 @@
     <body>
         <header>
 
-            <h1 class="nombreDecor" >Azimut Viajes</h1>
+            <h1 class="nombreDecor">Azimut Viajes</h1>
 
             <img  id="logoHeader" src="../images/logoAzimut.png" alt="Logotipo Azimut">
 
-            <form class="index" id="signUpForm" autocomplete="off">
-                <label for="usr">Usuario:</label>
+            <form class="index" method="index.html" action="post" id="signUpForm" autocomplete="off">
+                <label for="usr">Usuario:*</label>
                 <input type="email" id="usr" name="usr" required placeholder="Usuario" pattern="([A-Za-z]+( [A-Za-z]+)+)">
 
-                <label for="password">Contraseña:</label>
+                <label for="password">Contraseña:*</label>
                 <input type="password" id="password" name="password" required placeholder="Contraseña" pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/">
 
-                <button type="submit" formaction="../html/sesion.html" formmethod="post">Log In</button>
+                <button type="submit">Log In</button>
                 <a href="../html/altausuarios.html"> Sign Up</a>
             </form>
 
@@ -49,9 +49,10 @@
                     <p>Bienvenido a Azimut Viajes, tu agencia de viajes de confianza para descubrir los mejores destinos del mundo. Aquí encontrarás las mejores ofertas para tu próximo viaje. Seremos tu <strong>rumbo</strong> y tu <strong>dirección</strong> en cada aventura.</p>
                 </article>
             </section>
-            <section id="searchSection">
+            <section id="searchSection" method="index.html" action="post">
                 <form id="formularioBusqueda" autocomplete="off" target="blank">
 
+                    <!-- SEGUNDA PRACTICA (comprobación de aspectos) -->
                     <!-- Lista de destinos ofertados-->
                     <datalist id="destinos">
                         <option value="España, Granada, Granada">
@@ -86,7 +87,7 @@
                         <input type="date" id="fecha_regreso" name="fecha_regreso"
                             required min="2026-04-23">
 
-                        <button type="submit" formaction="../html/busqueda.html" formmethod="get"><img id="icono_busqueda"
+                        <button type="submit"><img id="icono_busqueda"
                                 src="../images/icono_busqueda.png"
                                 alt="Buscar"></button>
                     </fieldset>

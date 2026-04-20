@@ -9,7 +9,7 @@ form {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 2em;
     border-radius: 0.6em;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 0.3em 0.8em rgba(0,0,0,0.1);
     border: 0.2em solid #B59349;
     max-width: 500px;       /* Evita que se estire demasiado en pantallas grandes */
     margin: 0 auto;         /* Lo centra en la pantalla */
@@ -31,7 +31,7 @@ form label{
 
 form input{
     padding: 0.6em;
-    border: 1px solid #ccc;
+    border: 0.1em solid #ccc;
     border-radius: 0.4em;
     font-family: 'Montserrat', sans-serif;
     transition: transform 0.3s ease;
@@ -53,7 +53,7 @@ form input[type="text"],form input[type="email"], form input[type="password"] {
 
 form textarea {
     padding: 0.6em;
-    border: 1px solid #ccc;
+    border: 0.1em solid #ccc;
     border-radius: 0.4em;
     font-family: 'Montserrat', sans-serif;
     transition: transform 0.3s ease;
@@ -67,7 +67,7 @@ form textarea:hover {
 
 form select {
     padding: 0.6em;
-    border: 1px solid #ccc;
+    border: 0.1em solid #ccc;
     border-radius: 0.4em;
     font-family: 'Montserrat', sans-serif;
     transition: transform 0.3s ease;
@@ -87,9 +87,9 @@ form button {
     font-size: 0.9em;
     text-decoration: none;
     background-color: transparent;
-    border: 2px solid #1A1A1A;
+    border: 0.2em solid #1A1A1A;
     color: #1A1A1A;
-    border-radius: 5px;
+    border-radius: 0.3em;
     cursor: pointer;
     padding: 0.4em;
     transition: all 0.3s ease;
@@ -118,7 +118,7 @@ form fieldset legend{
     display: grid;
     grid-template-columns: 1fr 1fr; 
     gap: 0.5em; 
-    max-width: 280px; 
+    max-width: 17.5em; 
     
     justify-self: end; /* Se alinea a la derecha */
 }
@@ -130,7 +130,7 @@ form fieldset legend{
 }
 
 #signUpForm label {
-    margin-bottom: -5px; 
+    margin-bottom: -0.5em; 
     font-size: 0.9em;
 }
 
@@ -155,9 +155,9 @@ form fieldset legend{
     font-size: 0.9em;
     text-decoration: none;
     background-color: transparent;
-    border: 2px solid #1A1A1A;
+    border: 0.2em solid #1A1A1A;
     color: #1A1A1A;
-    border-radius: 5px;
+    border-radius: 0.3em;
     cursor: pointer;
     padding: 0.4em;
     transition: all 0.3s ease;
@@ -177,7 +177,7 @@ form fieldset legend{
 #formularioBusqueda {
     flex-direction: row;
     align-items: center;
-    max-width: 800px;
+    max-width: 50em;
     padding: 1em 2em;
     margin: 0 auto;
     width: 100%;
@@ -315,7 +315,6 @@ form#formularioAlta a:visited{
     #formularioBusqueda fieldset{
         flex-direction: column;
         align-items: center;
-
     }
 
     #signUpForm {
