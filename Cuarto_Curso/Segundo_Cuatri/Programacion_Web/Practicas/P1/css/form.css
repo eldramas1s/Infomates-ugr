@@ -4,15 +4,15 @@
 
 form {
     display: flex;
-    flex-direction: column; /* ANTES: row */
+    flex-direction: column; 
     align-items: stretch;   
     background-color: rgba(255, 255, 255, 0.9);
     padding: 2em;
     border-radius: 0.6em;
     box-shadow: 0 0.3em 0.8em rgba(0,0,0,0.1);
     border: 0.2em solid #B59349;
-    max-width: 500px;       /* Evita que se estire demasiado en pantallas grandes */
-    margin: 0 auto;         /* Lo centra en la pantalla */
+    max-width: 500px;       
+    margin: 0 auto;         
 }
 
 form fieldset{
@@ -57,7 +57,7 @@ form textarea {
     border-radius: 0.4em;
     font-family: 'Montserrat', sans-serif;
     transition: transform 0.3s ease;
-    resize: vertical; /* Permite redimensionar solo verticalmente */
+    resize: vertical; 
 }
 
 form textarea:hover {
@@ -97,7 +97,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #B59349;  /*Warning: al tener el mismo color que el borde*/
+    background-color: #B59349;  
     border-color: #B59349;
     color: white;
     transform: scale(0.97);
@@ -310,6 +310,24 @@ form#formularioAlta a:visited{
 #formularioSugerencias #buttons button {
     width: 50%;
 }
+
+/* =========================================
+   FORMULARIO DE VIAJES
+   ========================================= */
+
+form.fechaViaje{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+form.fechaViaje select{
+    background-color: #ccc;
+    color: #1A1A1A;
+    border-radius: 0.4em;
+    border: #B59349 solid 0.1em;
+}
+
 @media (max-width: 768px) {
 
     #formularioBusqueda fieldset{

@@ -23,7 +23,7 @@ body{
     
     min-height: 100vh;
 
-    background-image: url("../images/fondo.png"); 
+    background-image: url("../imagenes/fondo.png"); 
     background-size: cover; 
     background-attachment: fixed; 
     background-position: center; 
@@ -32,6 +32,17 @@ body{
 
     color: #1A1A1A; 
     font-family: 'Montserrat', sans-serif; 
+}
+
+main{ 
+    grid-area:main;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5em;
+    padding: 1em;
 }
 
 p{
@@ -48,7 +59,7 @@ section article{
 }
 
 img {
-    max-height: 25vh; /* Altura controlada para dejar espacio a lo demás */
+    max-height: 25vh; 
     width: auto; 
     border-radius: 0.6em;
     margin-top: 1em;
@@ -66,18 +77,16 @@ aside{
     box-shadow: 0 0.3em 0.8em rgba(0,0,0,0.1);
     padding: 1em;
 }
+
+hr {
+    grid-area: linea;
+    color: #ccc;
+    margin: 0.2em;
+}
+
 /* =========================================
    HEADER y FOOTER
    ========================================= */
-footer {
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    padding: 1em 2em;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.85); 
-    grid-area: footer;
-}
 
 header {
     grid-area: header;
@@ -96,7 +105,7 @@ header {
     row-gap: 1em; 
 }
 
-h1.nombreDecor {
+h1#nombreDecor {
     grid-area: nombreDecor;
     justify-self: start; /* Lo pega a la izquierda */
     font-size: 2.2em; 
@@ -111,6 +120,22 @@ header #logoHeader {
     justify-self: center; /* Lo centra perfectamente */
     width: 8em; 
     height: auto;
+}
+
+footer {
+    display: flex; 
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center;
+    padding: 1em 2em;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.85); 
+    grid-area: footer;
+}
+
+footer nav#menuFooter ul li {
+    align-items: center;
+    justify-self: center;
 }
 
 /* =========================================
@@ -136,7 +161,7 @@ nav ul {
     gap: 1.5em; 
 }
 
-nav ul li a {
+nav ul li a, details{
     text-decoration: none;
     color: #1A1A1A;
     font-size: 1.1em;
@@ -145,26 +170,20 @@ nav ul li a {
     transition: all 0.3s ease; 
 }
 
-nav ul li a:hover {
+details summary{
+    list-style: none;
+    text-align: left;
+}
+
+nav ul li a:hover, details:not([open]):hover{
     background-color: #515151;
     color: white; 
+    cursor: pointer;
 }
 
-/* Pie de página */
-footer nav#menuFooter ul li {
-    align-items: center;
-    justify-self: center;
-}
-
-main{ 
-    grid-area:main;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5em;
-    padding: 1em;
+details[open],
+details[open]:hover{
+    cursor: pointer
 }
 
 /* =========================================
@@ -180,7 +199,7 @@ main{
             "main"
             "aside"
             "footer";
-        gap: 1.8em;
+        gap: 0.2em;
     }
     header {
         grid-template-columns: 1fr;
@@ -192,6 +211,7 @@ main{
         justify-items: center; /* Centra todo en el móvil */
         text-align: center;
         position: static;
+        padding-bottom: 0.5em;
     }
     header #logoHeader {
         width: 6em; 
@@ -204,7 +224,7 @@ main{
         align-self: center;
     }
 
-    header .nombreDecor { flex: none; }
+    header #nombreDecor { flex: none; }
     
     header #logoHeader {
         position: static;
@@ -215,5 +235,17 @@ main{
 
     nav ul {
         flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    main {
+        padding-top: 0; 
+        
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-bottom: 1em;
+        
+        gap: 0.5em; 
     }
 }

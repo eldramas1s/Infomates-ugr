@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../css/style.css">
-        <title>Inicio</title>
+        <link rel="stylesheet" href="../../css/form.css">
+        <link rel="stylesheet" href="../../css/viajes.css">
+        <title>Azimut Viajes | España</title>
     </head>
     <body>
         <header>
 
-            <h1 class="nombreDecor" >Azimut Viajes</h1>
+            <h1 id="nombreDecor">Azimut Viajes</h1>
 
-            <img  id="logoHeader" src="../images/logoAzimut.png" alt="Logotipo Azimut">
+            <img id="logoHeader" src="../../imagenes/logoAzimut.png"
+                alt="Logotipo Azimut">
 
             <nav id="menuHeader">
                 <ul>
-                    <li><a href="../../html/index.html">Inicio</a></li>
+                    <li><a href="../../index.html">Inicio</a></li>
                     <li><a href="../../html/viajes.html">Viajes</a></li>
                     <li><a href="../../html/viajes_grupo.html">Viajes en
                             grupo</a></li>
@@ -26,18 +29,143 @@
                 </ul>
             </nav>
         </header>
-        <main>
-            
+        <aside id="menuViajesPais">
+            <nav>
+                <h2>Destinos</h2>
+                <details class="listaContinentes">
+                    <summary>&#127757; Europa</summary>
+                    <ul class="listaPaises">
+                        <li><a
+                                href="../../html/viajes_españa/viajes_españa.html">España</a></li>
+                        <li><a
+                                href="../../html/viajes_suecia/viajes_suecia.html">Suecia</a></li>
+                    </ul>
+                </details>
+                <details class="listaContinentes">
+                    <summary>&#127758; América</summary>
+                    <ul class="listaPaises">
+                        <li><a
+                                href="../../html/viajes_brasil/viajes_brasil.html">Brasil</a></li>
+                    </ul>
+                </details>
+                <details class="listaContinentes">
+                    <summary>&#127757; África</summary>
+                    <ul class="listaPaises">
+                        <li><a
+                                href="../../html/viajes_madagascar/viajes_madagascar.html">Madagascar</a></li>
+                    </ul>
+                </details>
+                <details class="listaContinentes">
+                    <summary>&#127759;Asia</summary>
+                    <ul class="listaPaises">
+                        <li><a
+                                href="../../html/viajes_india/viajes_india.html">La
+                                India</a></li>
+                    </ul>
+                </details>
+            </nav>
+
+        </aside>
+        <main class="viajesCuadricula">
+            <!-- Botones para moverse por los grupos de viajes -->
+            <input type="radio" name="navGrupo" id="radio1" checked>
+            <input type="radio" name="navGrupo" id="radio2">
+            <!-- /Botones para moverse por los grupos de viajes -->
+
+            <nav class="flechasGrupos">
+                <label for="radio1"
+                    class="flechaIzq">&#10094;</label>
+                <label for="radio2"
+                    class="flechaDcha">&#10095;</label>
+            </nav>
+            <section class="viajes" id="grupo1">
+                <h2>Viajes</h2>
+                <article class="viajeTipo">
+                    <h3>Jaén, España</h3>
+                    <a href="../../html/viajes_españa/viaje_Jaen.html" target="_blank"><img
+                            src="../../imagenes/sabiote.jpg" alt="Imagen Jaen"></a>
+                    <form action="../../html/viajes.html" method="post"
+                        class="fechaViaje">
+                        <select name="fecha" class="selectorFecha">
+                            <option value="null">Seleccione fecha</option>
+                            <option
+                                value="1404;1804">14/04/2026-18/04/2026</option>
+                            <option
+                                value="0105;0405">1/05/2026-4/05/2026</option>
+                        </select>
+                    </form>
+                    <p class="precio"><strong>850€</strong></p>
+                </article>
+
+                <article class="viajeTipo">
+                    <h3>Galicia, España</h3>
+                    <a href="../../html/viajes_españa/viajes_españa.html"><img
+                            src="../../imagenes/galicia.png"
+                            alt="Imagen Rio de Janeiro"></a>
+                    <form action="../../html/viajes.html" method="post"
+                        class="fechaViaje">
+                        <select name="fecha" class="selectorFecha">
+                            <option value="null">Seleccione fecha</option>
+                            <option
+                                value="0603;0604">6/03/2026-6/04/2026</option>
+                            <option
+                                value="0509;1009">5/9/2026-10/9/2026</option>
+                        </select>
+                    </form>
+                    <p class="precio"><strong>3500€</strong></p>
+                </article>
+
+                <article class="viajeTipo">
+                    <h3>Granada, España</h3>
+                    <a href="../../html/viajes_españa/viajes_españa.html"><img
+                            src="../../imagenes/granada.jpg"
+                            alt="Imagen Granada"></a>
+                    <form action="../../html/viajes.html" method="post"
+                        class="fechaViaje">
+                        <select name="fecha" class="selectorFecha">
+                            <option value="null">Seleccione fecha</option>
+                            <option
+                                value="1407;1807">14/07/2026-18/07/2026</option>
+                            <option
+                                value="0110;0410">1/10/2026-4/10/2026</option>
+                        </select>
+                    </form>
+                    <p class="precio"><strong>650€</strong></p>
+                </article>
+            </section>
+            <section class="viajes" id="grupo2">
+                <h2>Viajes</h2>
+                <article class="viajeTipo">
+                    <h3>Asturias, España</h3>
+                    <a href="../../html/viajes_españa/viajes_españa.html"><img
+                            src="../../imagenes/mieresAsturias.jpg"
+                            alt="Imagen Asturias"></a>
+                    <form action="../../html/viajes.html" method="post"
+                        class="fechaViaje">
+                        <select name="fecha" class="selectorFecha">
+                            <option value="null">Seleccione fecha</option>
+                            <option
+                                value="1404;1804">14/04/2026-18/04/2026</option>
+                            <option
+                                value="0105;0405">1/05/2026-4/05/2026</option>
+                        </select>
+                    </form>
+                    <p class="precio"><strong>950€</strong></p>
+                </article>
+            </section>
+
         </main>
         <footer>
-            <nav id="pie_menu">
+            <nav id="menuFooter">
                 <ul>
-                    <li><a href="../../html/contacto.html">Contacte con nosotros</a></li>
-                    <li><a href="../../memoria/como_se_hizo.pdf">Cómo se
+                    <li><a href="../../html/contacto.html">Contacte con
+                            nosotros</a></li>
+                    <li><a href="../../como_se_hizo.pdf"
+                            target="_blank">Cómo se
                             hizo</a></li>
-                    <li><p>Fecha de modificación: </p></li>
                 </ul>
             </nav>
+            <p id="fechaModificacion">25/04/2026</p>
         </footer>
     </body>
 </html>
