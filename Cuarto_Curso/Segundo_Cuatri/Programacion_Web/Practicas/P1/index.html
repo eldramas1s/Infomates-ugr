@@ -15,12 +15,13 @@
 
             <img  id="logoHeader" src="./imagenes/logoAzimut.png" alt="Logotipo Azimut">
 
-            <form class="index" method="index.html" action="post" id="signUpForm" autocomplete="off">
-                <label for="usr">Usuario:*</label>
-                <input type="email" id="usr" name="usr" required placeholder="Usuario" pattern="([A-Za-z]+( [A-Za-z]+)+)">
+            <form class="index" method="post" action="./index.html" id="signUpForm" autocomplete="off">
+                <label for="usr">Email:*</label>
+                <input type="email" id="usr" name="usr" required placeholder="Email">
 
                 <label for="password">Contraseña:*</label>
-                <input type="password" id="password" name="password" required placeholder="Contraseña" pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/">
+                <input type="password" id="password" name="password" required placeholder="Contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.]).{8,15}"
+                        title="Entre 8 y 15 caracteres, al menos una mayúscula, una minúscula, un dígito, un carácter especial y sin espacios. ">
 
                 <button type="submit">Log In</button>
                 <a href="./html/altausuarios.html"> Sign Up</a>
@@ -47,8 +48,8 @@
                     <p>Bienvenido a Azimut Viajes, tu agencia de viajes de confianza para descubrir los mejores destinos del mundo. Aquí encontrarás las mejores ofertas para tu próximo viaje. Seremos tu <strong>rumbo</strong> y tu <strong>dirección</strong> en cada aventura.</p>
                 </article>
             </section>
-            <section id="searchSection" method="index.html" action="post">
-                <form id="formularioBusqueda" autocomplete="off" target="blank">
+            <section id="searchSection" >
+                <form id="formularioBusqueda" method="post" action="./index.html" autocomplete="off" target="blank">
 
                     <fieldset>
                         <input type="search" id="destino" name="destino" required
@@ -81,7 +82,7 @@
                             hizo</a></li>
                 </ul>
             </nav>
-            <p id="fechaModificacion">25/04/2026</p>
+            <p id="fechaModificacion">27/04/2026</p>
         </footer>
     </body>
 </html>

@@ -126,7 +126,6 @@ form fieldset legend{
 #signUpForm label, #signUpForm input {
     grid-column: 1 / 3; 
     width: 100%;
-    box-sizing: border-box; 
 }
 
 #signUpForm label {
@@ -149,11 +148,9 @@ form fieldset legend{
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box; 
-    width: 100%; 
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9em;
     text-decoration: none;
+    width: 100%; 
+    font-size: 0.9em;
     background-color: transparent;
     border: 0.2em solid #1A1A1A;
     color: #1A1A1A;

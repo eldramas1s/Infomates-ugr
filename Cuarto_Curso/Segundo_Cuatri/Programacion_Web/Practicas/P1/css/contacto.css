@@ -1,8 +1,16 @@
 /* =========================================
-   MAIN y CONTENIDO CENTRAL (CONTACTO)
+   MAIN y CONTENIDO CENTRAL (CONTACTO Y VALIDACION)
    ========================================= */
 
-main section#sobreMi article {
+main#basicMain section{
+    padding: 1.5em;
+    max-width: 35em;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.6em;
+    box-shadow: 0 0.3em 0.8em rgba(0,0,0,0.1);
+}
+
+main#basicMain section#sobreMi {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
@@ -11,30 +19,58 @@ main section#sobreMi article {
         "image text";
 
     align-items: center;
-    padding: 1.5em;
     gap: 3em;
 }
 
-main section#sobreMi article img {
+main#basicMain section#sobreMi img {
     grid-area: image;
 }
 
-main section#sobreMi article h2 {
+main#basicMain section#sobreMi h2 {
     grid-area: title;
 }
 
-main section#sobreMi article ul {
+main#basicMain section#sobreMi ul {
     grid-area: text;
     margin-top: 0.5em;
 }
 
-main section#sobreMi article ul li {
+main#basicMain section#sobreMi ul li {
     margin-bottom: 0.3em;
     list-style-type: square;
 }
 
+main#basicMain section#todoOkey{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+main#basicMain section#todoOkey a{
+    position: absolute;
+    width: fit-content; 
+    bottom: 0.2em;
+    right:0.2em;
+    font-size: 0.9em;
+    background-color: transparent;
+    border: 0.2em solid #1A1A1A;
+    color: #1A1A1A;
+    border-radius: 0.3em;
+    cursor: pointer;
+    padding: 0.4em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+main#basicMain section#todoOkey a:hover{
+    background-color: #B59349;
+    border-color: #B59349;
+    color: white;
+    transform: scale(0.97);
+}
+
 @media (max-width: 768px){
-    main section#sobreMi article{
+    main#basicMain section#sobreMi {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
         grid-template-areas: 
@@ -45,7 +81,7 @@ main section#sobreMi article ul li {
         align-items: center;
     }
 
-    main section#sobreMi article img{
+    main#basicMain section img{
         margin: 0 auto;
     }
 }
