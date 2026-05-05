@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    let cantidad = 0;
+    let resultado = cantidad ?? 100; // Devuelve 0 (porque 0 no es null/undefined)
+    let nombre = null;
+    let mostrar = nombre ?? "Anónimo"; // Devuelve Antónimo "Anónimo"
+
+    let contador = 0;
+    while (contador <= 12)
+        contador = contador + 2;
+    for (let contador = 0; contador <= 12; contador = contador + 2)
+        document.write(contador);
+
+    for (let cont = 0; cont < 20; cont++) {
+        if (cont > 15)
+         document.write(cont + "**");
+        else if (cont > 10)
+          document.write(cont + "*");
+        else document.write(cont);
+    }
+
+    let variable = "fuera";
+    function funcionPadre() {
+        let variable = "local";
+        function funcionHija() {
+            document.write(variable);
+        }
+        funcionHija();
+        
+    }
+    funcionPadre();
+</script>
