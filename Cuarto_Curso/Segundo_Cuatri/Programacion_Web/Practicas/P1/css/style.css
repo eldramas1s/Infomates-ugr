@@ -99,7 +99,7 @@ header {
     display: grid;
     grid-template-columns: 1fr auto 1fr; 
     grid-template-areas: 
-        "nombreDecor logoHeader signUpForm"
+        "logoHeader nombreDecor signUpForm"
         "menuHeader menuHeader menuHeader"; 
     align-items: center;
     row-gap: 1em; 
