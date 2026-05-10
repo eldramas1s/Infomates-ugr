@@ -1,0 +1,131 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{borrie:firebirdbook}{book}{}
+      \name{author}{1}{}{%
+        {{hash=0376bfc79161a9507ef5733a5e87e77e}{%
+           family={Borrie},
+           familyi={B\bibinitperiod},
+           given={Helen},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IBPhoenix}%
+      }
+      \strng{namehash}{0376bfc79161a9507ef5733a5e87e77e}
+      \strng{fullhash}{0376bfc79161a9507ef5733a5e87e77e}
+      \strng{bibnamehash}{0376bfc79161a9507ef5733a5e87e77e}
+      \strng{authorbibnamehash}{0376bfc79161a9507ef5733a5e87e77e}
+      \strng{authornamehash}{0376bfc79161a9507ef5733a5e87e77e}
+      \strng{authorfullhash}{0376bfc79161a9507ef5733a5e87e77e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Firebird Book: A Reference for Database Developers}
+      \field{year}{2004}
+      \true{nocite}
+    \endentry
+    \entry{firebird:systables}{manual}{}
+      \name{author}{1}{}{%
+        {{hash=ea10c3976e5de1844739b9ee242aa5f8}{%
+           family={{Firebird Project}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{fullhash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{bibnamehash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{authorbibnamehash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{authornamehash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{authorfullhash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Documentación técnica sobre tablas RDB y SEC}
+      \field{title}{Appendix D: System Tables}
+      \field{year}{2025}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.firebirdsql.org/file/documentation/chunk/en/refdocs/fblangref30/fblangref30-appx04-systables.html
+      \endverb
+      \verb{url}
+      \verb https://www.firebirdsql.org/file/documentation/chunk/en/refdocs/fblangref30/fblangref30-appx04-systables.html
+      \endverb
+    \endentry
+    \entry{firebirdref}{manual}{}
+      \name{author}{1}{}{%
+        {{hash=268ccf198bfe87af40b002a5e149065b}{%
+           family={Foundation},
+           familyi={F\bibinitperiod},
+           given={Firebird},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{268ccf198bfe87af40b002a5e149065b}
+      \strng{fullhash}{268ccf198bfe87af40b002a5e149065b}
+      \strng{bibnamehash}{268ccf198bfe87af40b002a5e149065b}
+      \strng{authorbibnamehash}{268ccf198bfe87af40b002a5e149065b}
+      \strng{authornamehash}{268ccf198bfe87af40b002a5e149065b}
+      \strng{authorfullhash}{268ccf198bfe87af40b002a5e149065b}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Documentación completa sobre Firebird}
+      \field{title}{Firebird 5.0 Language Reference}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://firebirdsql.org/file/documentation/html/en/refdocs/fblangref50/firebird-50-language-reference.html
+      \endverb
+      \verb{url}
+      \verb https://firebirdsql.org/file/documentation/html/en/refdocs/fblangref50/firebird-50-language-reference.html
+      \endverb
+    \endentry
+    \entry{wiki:firebird}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Firebird --- Wikipedia, la enciclopedia libre}
+      \field{year}{2026}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://es.wikipedia.org/wiki/Firebird
+      \endverb
+      \verb{url}
+      \verb https://es.wikipedia.org/wiki/Firebird
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
