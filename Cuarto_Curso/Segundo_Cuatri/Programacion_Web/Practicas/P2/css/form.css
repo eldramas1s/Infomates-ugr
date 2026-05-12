@@ -1,0 +1,342 @@
+/* =========================================
+   CONFIGURACION GENERAL
+   ========================================= */
+
+form {
+    display: flex;
+    flex-direction: column; 
+    align-items: stretch;   
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2em;
+    border-radius: 0.6em;
+    box-shadow: 0 0.3em 0.8em rgba(0,0,0,0.1);
+    border: 0.2em solid #B59349;
+    max-width: 500px;       
+    margin: 0 auto;         
+}
+
+form fieldset{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8em;
+}
+
+form label{
+    font-size: 1.1em;
+    color: #1A1A1A;
+}
+
+form input{
+    padding: 0.6em;
+    border: 0.1em solid #ccc;
+    border-radius: 0.4em;
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.3s ease;
+}
+
+form input:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+form input:focus {
+    transform: scale(1);
+    border-color: #B59349;
+}
+
+form input[type="text"],form input[type="email"], form input[type="password"] {
+    flex-grow: 1; 
+}
+
+form textarea {
+    padding: 0.6em;
+    border: 0.1em solid #ccc;
+    border-radius: 0.4em;
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.3s ease;
+    resize: vertical; 
+}
+
+form textarea:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+form select {
+    padding: 0.6em;
+    border: 0.1em solid #ccc;
+    border-radius: 0.4em;
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.3s ease;
+}
+
+form select:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    text-decoration: none;
+    background-color: transparent;
+    border: 0.2em solid #1A1A1A;
+    color: #1A1A1A;
+    border-radius: 0.3em;
+    cursor: pointer;
+    padding: 0.4em;
+    transition: all 0.3s ease;
+    white-space: nowrap; 
+}
+
+form button:hover {
+    background-color: #B59349;  
+    border-color: #B59349;
+    color: white;
+    transform: scale(0.97);
+}
+
+form fieldset legend{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #1A1A1A;
+    margin-bottom: 0.5em;
+}
+
+/* =========================================
+   FORMULARIO DE INICIO DE SESIÓN (HEADER)
+   ========================================= */
+#signUpForm {
+    grid-area: signUpForm;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 0.5em; 
+    max-width: 17.5em; 
+    
+    justify-self: end; /* Se alinea a la derecha */
+}
+
+#signUpForm label, #signUpForm input {
+    grid-column: 1 / 3; 
+    width: 100%;
+}
+
+#signUpForm label {
+    margin-bottom: -0.5em; 
+    font-size: 0.9em;
+}
+
+#signUpForm input {
+    padding: 0.4em;
+    border: 1px solid #ccc;
+    border-radius: 0.3em;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+}
+
+#signUpForm button { grid-column: 1 / 2; }
+#signUpForm a { grid-column: 2 / 3; }
+
+#signUpForm a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 100%; 
+    font-size: 0.9em;
+    background-color: transparent;
+    border: 0.2em solid #1A1A1A;
+    color: #1A1A1A;
+    border-radius: 0.3em;
+    cursor: pointer;
+    padding: 0.4em;
+    transition: all 0.3s ease;
+    white-space: nowrap; 
+}
+
+#signUpForm a:hover {
+    background-color: #B59349;
+    border-color: #B59349;
+    color: white;
+    transform: scale(0.97);
+}
+
+/* =========================================
+   FORMULARIO DE BUSQUEDA (MAIN)
+   ========================================= */
+#formularioBusqueda {
+    flex-direction: row;
+    align-items: center;
+    max-width: 50em;
+    padding: 1em 2em;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#formularioBusqueda fieldset{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#formularioBusqueda button {
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#icono_busqueda {
+    width: 1.5em; 
+}
+/* =========================================
+   FORMULARIO DE ALTA 
+   ========================================= */
+
+form#formularioAlta a:visited{
+    color:purple;
+}
+
+/* =========================================
+   FORMULARIO DE SUGERENCIAS
+   ========================================= */
+#formularioSugerencias {
+    display: flex;
+    gap: 0.5em;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+#formularioSugerencias p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 0.5em;
+}
+
+#formularioSugerencias p label {
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    font-size: 1.1em;
+    color: #1A1A1A;
+}
+
+#formularioSugerencias input[type="text"],
+#formularioSugerencias select,
+#formularioSugerencias textarea {
+    width: 100%;
+}
+
+#formularioSugerencias fieldset#servicios {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.8em 0.5em;
+    
+    align-items: center;
+    justify-content: start;
+    width:100%;
+}
+#formularioSugerencias fieldset#servicios legend {
+    font-weight: bold;
+    grid-column: 1 / 3;
+    font-size: 1.1em;
+    color: #1A1A1A;
+}
+#formularioSugerencias fieldset#servicios input[type="checkbox"] {
+    grid-column:1 / 2;
+    margin:0;
+    padding:0;
+    width:1.2em;
+    height:1.2em;
+}
+
+#formularioSugerencias fieldset#servicios input[type="checkbox"]:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#formularioSugerencias fieldset#servicios label {
+    grid-column: 2 / 3;
+    text-align:left;
+    margin:0;
+}
+
+#formularioSugerencias #labelComentario{
+    margin-top:0;
+    margin-right:0.6em;
+}
+
+/*Interaccion con las estrellas*/
+.Score {
+    flex-direction: row-reverse !important; 
+    justify-content:center;
+    align-items: center;
+}
+
+#formularioSugerencias input[type="radio"].valoracion{
+    display: none;
+}
+#formularioSugerencias .Score label{
+    color: transparent;
+    font-size: 2em;
+    cursor:pointer;
+    -webkit-text-stroke-color: #B59349;
+    -webkit-text-stroke-width: 1px;
+    transition: color 0.2s ease;
+}
+
+#formularioSugerencias .Score label:hover,
+#formularioSugerencias .Score label:hover ~ label,
+#formularioSugerencias .Score input[type="radio"]:checked ~ label {
+    color: #B59349;
+}
+
+#formularioSugerencias #buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    width: 100%;
+}
+#formularioSugerencias #buttons button {
+    width: 50%;
+}
+
+/* =========================================
+   FORMULARIO DE VIAJES
+   ========================================= */
+
+form.fechaViaje{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+form.fechaViaje select{
+    background-color: #ccc;
+    color: #1A1A1A;
+    border-radius: 0.4em;
+    border: #B59349 solid 0.1em;
+}
+
+@media (max-width: 768px) {
+
+    #formularioBusqueda fieldset{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #signUpForm {
+        flex: none;
+        margin: 0 auto;
+    }
+}
+
+
+    

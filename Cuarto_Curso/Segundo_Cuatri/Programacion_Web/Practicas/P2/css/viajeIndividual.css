@@ -1,0 +1,144 @@
+/* =========================================
+   MAIN y CONTENIDO CENTRAL (VIAJE INDIVIDUAL)
+   ========================================= */
+
+main#viajeIndividualMain {
+
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+
+    grid-column: -1 / 1;
+}
+
+main#viajeIndividualMain section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "title  title"
+        "image  image"
+        "info  links";
+
+    background-color: transparent;
+}
+
+main#viajeIndividualMain section h2 {
+    grid-area: title;
+
+    justify-self: center;
+    justify-content: center;
+    padding: 2em;
+}
+
+main#viajeIndividualMain section img {
+    grid-area: image;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: none;
+    border-radius: 0;
+}
+
+main#viajeIndividualMain section article {
+    margin: 2em;
+    max-width: none;
+    width: 100%;
+}
+
+main#viajeIndividualMain section article#infoArticle {
+    grid-area: info;
+}
+
+main#viajeIndividualMain section article h3 {
+    justify-content: center;
+
+    padding: 0.3em;
+    margin: 0.2em;
+}
+
+main#viajeIndividualMain section article#infoArticle ul {
+    list-style: none;
+    gap: 0.5em;
+}
+
+main#viajeIndividualMain section article#infoArticle ul li::before {
+    content: "\1F3E8";
+    margin: 0.2em;
+}
+
+main#viajeIndividualMain section article#infoArticle ul li {
+    list-style-position: inside;
+}
+
+main#viajeIndividualMain section article#interesArticle {
+    grid-area: links;
+    padding: 0;
+    align-self: center;
+    justify-self: center;
+    max-width: 20em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+main#viajeIndividualMain section article#interesArticle nav#relatedTripsNav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    padding-bottom: 1em;
+
+}
+
+/* =========================================
+   MEDIA QUERIES (MÓVILES)
+   ========================================= */
+@media(max-width: 768px) {
+
+    main#viajeIndividualMain section {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "title"
+            "image"
+            "info"
+            "links";
+    }
+
+    main#viajeIndividualMain section article {
+        width: auto;
+        max-width: none;
+        margin: 1em;
+    }
+
+    main#viajeIndividualMain section article#interesArticle {
+        width: auto;
+        max-width: none;
+        margin: 1em;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main#viajeIndividualMain section h2 {
+        text-align: center;
+        padding: 0;
+        width: 100%;
+        margin:0;
+    }
+
+    main#viajeIndividualMain section img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        
+    }
+
+}

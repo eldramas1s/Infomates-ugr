@@ -1,0 +1,108 @@
+/* =========================================
+   MAIN y CONTENIDO CENTRAL (VIAJES EN GRUPO)
+   ========================================= */
+
+main#grupoMain section {
+    max-width: 80%;
+    width: 100%;
+}
+
+main#grupoMain section article.viajeGrupo {
+    min-width: 100%;
+    margin-top: 3em;
+
+    display: grid;
+    grid-template-columns: auto 2fr auto;
+    grid-template-rows: auto auto auto;
+    justify-content: left;
+    align-items: self-start;
+    padding-bottom: 4em;
+}
+
+main#grupoMain section article.viajeGrupo:nth-of-type(even) {
+
+    grid-template-areas:
+        "place place place"
+        "linea linea linea"
+        "image itinerario basicInfo";
+    border-left: solid 0.5em #B59349;
+}
+
+main#grupoMain section article.viajeGrupo:nth-of-type(odd) {
+    grid-template-areas:
+        "place place place"
+        "linea linea linea"
+        "basicInfo itinerario image";
+    border-right: solid 0.5em #B59349;
+}
+
+main#grupoMain section article.viajeGrupo h3 {
+    grid-area: place;
+    justify-self: center;
+    align-self: center;
+    color: #B59349;
+    font-weight: bold;
+    font-size: 1.1em;
+
+    padding-bottom: 0.8em;
+}
+
+main#grupoMain section article.viajeGrupo img {
+    grid-area: image;
+    border-radius: 0.6em;
+    height: 100%;
+    align-self:center;
+    justify-self: center;
+    padding: 0.5em;
+}
+
+main#grupoMain section article.viajeGrupo article.basicInfo {
+    grid-area: basicInfo;
+    padding: 1em;
+    margin-top: 1.2em;
+    margin-left: 0.5em;
+    height: 100%;
+    width: 100%;
+}
+
+main#grupoMain section article.viajeGrupo article.basicInfo ol {
+    list-style: none;
+    list-style-position: inside;
+}
+
+main#grupoMain section article.viajeGrupo article.itinerario {
+    grid-area: itinerario;
+    padding: 1em;
+    margin-top: 1.2em;
+    margin-left: 0.5em;
+    height: 100%;
+    width: 100%;
+    justify-self: center;
+}
+
+main#grupoMain section article.viajeGrupo article.itinerario ol {
+    list-style: none;
+    list-style-position: inside;
+}
+
+/* =========================================
+   MEDIA QUERIES (MÓVILES)
+   ========================================= */
+
+@media (max-width: 768px) {
+    main#grupoMain section article.viajeGrupo:nth-of-type(even),
+    main#grupoMain section article.viajeGrupo:nth-of-type(odd) {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas:
+            "place"
+            "linea"
+            "image"
+            "itinerario"
+            "basicInfo";
+        border-left: solid 0.5em #B59349;
+        border-right: solid 0.5em #B59349;
+    }
+
+}
