@@ -4,10 +4,11 @@
  * se realizarán a través de esta clase.
  */
 class Database{
-    private $host = 'localhost';
-    private $db   = 'dblucashidalgo_pw2526'; //
-    private $user = 'pwlucashidalgo';      //
-    private $pass = '25lucashidalgo26';    //
+    //TODO: cambiar los datos a como los tiene gabri
+    private $host = 'localhost'; // Dirección del servidor de base de datos
+    private $db   = 'dblucashidalgo_pw2526'; // Nombre de la base de datos
+    private $user = 'pwlucashidalgo';      // Nombre de usuario
+    private $pass = '25lucashidalgo26';    // Contraseña
     private $charset = 'utf8mb4';
 
     public $conn;

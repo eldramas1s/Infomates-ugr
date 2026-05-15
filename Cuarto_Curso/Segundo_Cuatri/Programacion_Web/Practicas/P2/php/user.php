@@ -150,30 +150,30 @@ class UserManager
     }
 
     /**
-     * Valida que los datos de un usuario sean correctos
-     *
-     * @param User $user
+     * Valida un usuario según las reglas de negocio y seguridad establecidas
+     * 
+     * Reglas de negocio:
+     * 1. No se admiten menores de edad
+     * Reglas de seguridad:
+     * 1. Evitar que entren datos nulos o vacíos a la BD
+     * 
+     * @param User $user 
      * @return array Un array con los errores encontrados, vacío si no hay errores
      */
     public function validateUser(User $user): array
     {
         $errors = [];
 
-        if (empty($user->nickName)) {
-            $errors[] = "El nickname es obligatorio";
+        // 1. Regla estricta de negocio: No se admiten menores
+        if (!$user->adultez) {
+            $errors[] = "Política: Debes ser mayor de edad para registrarte.";
         }
 
-        if (!filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "Email no válido";
+        // 2. Seguridad básica: Evitar que entren datos nulos o vacíos a la BD
+        if (empty(trim($user->nickName)) || empty(trim($user->email)) || empty(trim($user->password)) || empty(trim($user->nombre))) {
+            $errors[] = "Faltan datos obligatorios para crear el registro en la base de datos.";
         }
 
-        if (strlen($user->password) < 6) {
-            $errors[] = "La contraseña debe tener al menos 6 caracteres";
-        }
-
-        if (empty($user->nombre)) {
-            $errors[] = "El nombre es obligatorio";
-        }
         return $errors;
     }
 }

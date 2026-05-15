@@ -50,6 +50,15 @@ p{
     padding: 0.5em;
 }
 
+p.error{
+    color: #B00020;
+    font-weight: bold;
+    background-color: #F8F9FA;
+    border-radius: 0.6em;
+    border: 1px solid #B00020;
+    margin: 1em 0;
+}
+
 section article{
     padding: 1.5em;
     max-width: 35em;
