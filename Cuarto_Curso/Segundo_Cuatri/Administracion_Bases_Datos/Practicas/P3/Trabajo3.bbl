@@ -42,7 +42,6 @@
       \field{labeltitlesource}{title}
       \field{title}{The Firebird Book: A Reference for Database Developers}
       \field{year}{2004}
-      \true{nocite}
     \endentry
     \entry{firebird:systables}{manual}{}
       \name{author}{1}{}{%
@@ -56,19 +55,47 @@
       \strng{authorbibnamehash}{ea10c3976e5de1844739b9ee242aa5f8}
       \strng{authornamehash}{ea10c3976e5de1844739b9ee242aa5f8}
       \strng{authorfullhash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \field{extraname}{1}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{Documentación técnica sobre tablas RDB y SEC}
+      \field{note}{Documentación técnica sobre tablas RDB}
       \field{title}{Appendix D: System Tables}
       \field{year}{2025}
-      \true{nocite}
       \verb{urlraw}
       \verb https://www.firebirdsql.org/file/documentation/chunk/en/refdocs/fblangref30/fblangref30-appx04-systables.html
       \endverb
       \verb{url}
       \verb https://www.firebirdsql.org/file/documentation/chunk/en/refdocs/fblangref30/fblangref30-appx04-systables.html
+      \endverb
+    \endentry
+    \entry{firebird:sectables}{manual}{}
+      \name{author}{1}{}{%
+        {{hash=ea10c3976e5de1844739b9ee242aa5f8}{%
+           family={{Firebird Project}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{fullhash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{bibnamehash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{authorbibnamehash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{authornamehash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \strng{authorfullhash}{ea10c3976e5de1844739b9ee242aa5f8}
+      \field{extraname}{2}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Documentación técnica sobre tablas SEC}
+      \field{title}{Appendix F: Security Tables}
+      \field{year}{2025}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://firebirdsql.org/file/documentation/html/en/refdocs/fblangref50/firebird-50-language-reference.html#fblangref50-appx06-sectables
+      \endverb
+      \verb{url}
+      \verb https://firebirdsql.org/file/documentation/html/en/refdocs/fblangref50/firebird-50-language-reference.html#fblangref50-appx06-sectables
       \endverb
     \endentry
     \entry{firebirdref}{manual}{}
@@ -99,6 +126,31 @@
       \verb https://firebirdsql.org/file/documentation/html/en/refdocs/fblangref50/firebird-50-language-reference.html
       \endverb
     \endentry
+    \entry{ibm}{online}{}
+      \name{author}{1}{}{%
+        {{hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Lenguaje de Procedimiento SQL}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://www.ibm.com/docs/es/db2/11.1.0?topic=data-sql-pl-support
+      \endverb
+      \verb{url}
+      \verb https://www.ibm.com/docs/es/db2/11.1.0?topic=data-sql-pl-support
+      \endverb
+    \endentry
     \entry{wiki:firebird}{misc}{}
       \name{author}{1}{}{%
         {{hash=b6aea1a416c89509a7df1cbb69249cb6}{%
@@ -117,7 +169,6 @@
       \field{labeltitlesource}{title}
       \field{title}{Firebird --- Wikipedia, la enciclopedia libre}
       \field{year}{2026}
-      \true{nocite}
       \verb{urlraw}
       \verb https://es.wikipedia.org/wiki/Firebird
       \endverb

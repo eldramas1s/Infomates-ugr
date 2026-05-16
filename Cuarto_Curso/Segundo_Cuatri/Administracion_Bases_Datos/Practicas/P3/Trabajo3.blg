@@ -1,14 +1,14 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'Trabajo3.blg'
-[42] biber:340> INFO - === dom may 10, 2026, 19:09:04
-[50] Biber.pm:419> INFO - Reading 'Trabajo3.bcf'
-[85] Biber.pm:976> INFO - Using all citekeys in bib section 0
-[93] Biber.pm:4419> INFO - Processing section 0
-[99] Biber.pm:4610> INFO - Looking for bibtex file 'referencias.bib' for section 0
-[99] bibtex.pm:1713> INFO - LaTeX decoding ...
-[102] bibtex.pm:1519> INFO - Found BibTeX data source 'referencias.bib'
-[129] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[129] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[129] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'es-ES'
-[134] bbl.pm:660> INFO - Writing 'Trabajo3.bbl' with encoding 'UTF-8'
-[135] bbl.pm:763> INFO - Output to Trabajo3.bbl
+[131] biber:340> INFO - === sáb may 16, 2026, 09:53:34
+[156] Biber.pm:419> INFO - Reading 'Trabajo3.bcf'
+[268] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[291] Biber.pm:4419> INFO - Processing section 0
+[309] Biber.pm:4610> INFO - Looking for bibtex file 'referencias.bib' for section 0
+[311] bibtex.pm:1713> INFO - LaTeX decoding ...
+[319] bibtex.pm:1519> INFO - Found BibTeX data source 'referencias.bib'
+[427] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[427] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[427] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'es-ES'
+[444] bbl.pm:660> INFO - Writing 'Trabajo3.bbl' with encoding 'UTF-8'
+[448] bbl.pm:763> INFO - Output to Trabajo3.bbl
