@@ -10,7 +10,7 @@ class User
     public $nombre;
     public $email;
     public $password;
-    public $adultez;
+    public $admin = 0;
 
     /**
      * Constructor de la clase User.
@@ -19,15 +19,15 @@ class User
      * @param string $nombre El nombre del usuario.
      * @param string $email El email del usuario.
      * @param string $password La contraseña del usuario.
-     * @param bool $adultez Indica si el usuario es mayor de edad.
+     * @param int $admin Indica si el usuario es administrador.
      */
-    public function __construct(string $nickName, string $nombre, string $email, string $password, bool $adultez)
+    public function __construct(string $nickName, string $nombre, string $email, string $password, int $admin = 0)
     {
         $this->nickName = $nickName;
         $this->nombre = $nombre;
         $this->email = $email;
         $this->password = $password;
-        $this->adultez = $adultez;
+        $this->admin = (int)$admin;
     }
 }
 
@@ -74,19 +74,19 @@ class UserManager
      */
     public function create(User $user): bool
     {
-        if ($this->exists($user->nickName, $user->email)) {
-            return false;
-        } else if (!empty($this->validateUser($user))) {
-            return false;
-        } else {
-            try {
-                $query = "INSERT INTO {$this->table} (nickName, nombre, email, password, adultez) VALUES (?, ?, ?, ?, ?)";
-                $stmt = $this->conn->prepare($query);
-                return $stmt->execute([$user->nickName, $user->nombre, $user->email, password_hash($user->password, PASSWORD_DEFAULT), $user->adultez]); //Ciframos la contraseña
-            } catch (PDOException $e) {
-                error_log('UserManager::create: ' . $e->getMessage());
-                return false;
+        try {
+            $query = "INSERT INTO Users (nickName, nombre, email, password, admin)
+                VALUES (?,?,?,?,?)";
+            $stmt = $this->conn->prepare($query);
+            $hashedPassword = password_hash($user->password, PASSWORD_DEFAULT);
+
+            if ($stmt->execute([$user->nickName, $user->nombre, $user->email, $hashedPassword, $user->admin])) {
+                return true;
             }
+            return false;
+        } catch (PDOException $e) {
+            error_log('UserManager::create: ' . $e->getMessage());
+            return false;
         }
     }
 
@@ -105,7 +105,7 @@ class UserManager
             $stmt->execute([$nickname, $email]);
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($data) {
-                return new User($data['nickName'], $data['nombre'], $data['email'], $data['password'], (bool)$data['adultez']);
+                return new User($data['nickName'], $data['nombre'], $data['email'], $data['password'], (bool)$data['admin']);
             }
             return null;
         } catch (PDOException $e) {
@@ -164,12 +164,6 @@ class UserManager
     {
         $errors = [];
 
-        // 1. Regla estricta de negocio: No se admiten menores
-        if (!$user->adultez) {
-            $errors[] = "Política: Debes ser mayor de edad para registrarte.";
-        }
-
-        // 2. Seguridad básica: Evitar que entren datos nulos o vacíos a la BD
         if (empty(trim($user->nickName)) || empty(trim($user->email)) || empty(trim($user->password)) || empty(trim($user->nombre))) {
             $errors[] = "Faltan datos obligatorios para crear el registro en la base de datos.";
         }

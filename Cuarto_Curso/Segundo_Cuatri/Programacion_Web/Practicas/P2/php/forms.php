@@ -7,19 +7,27 @@ abstract class FormHandler
      * Se encarga de validar el formulario y procesarlo
      *
      * @param array $data
-     * @return void
+     * @return bool True si el formulario se ha procesado correctamente, false en caso contrario (o si hay errores de validación)
      */
-    public function handle(array $data): void
+    public function handle(array $data): bool
     {
+        $this->validate($data);
 
-        if (empty($this->validate($data))) {
-            $this->process($data);
-        } else {
-            // Mostrar errores
-            foreach ($this->errors as $field => $message) {
-                echo "<p class=\"error\">Error en $field: $message</p>";
-            }
+        if(empty($this->errors)) {
+            return $this->process($data);
         }
+
+        return false;    
+    }
+
+    /**
+     * Devuelve los errores que tenga el formulario
+     *
+     * @return array Un array con los errores encontrados, vacío si no hay errores
+     */
+    public function getErrors(): array
+    {
+        return $this->errors;
     }
 
     /**
@@ -28,7 +36,7 @@ abstract class FormHandler
      * @param array $data
      * @return array Un array con los errores encontrados, vacío si no hay errores
      */
-    abstract public function validate(array $data): array;
+    abstract public function validate(array $data);
 
     /**
      * Procesa la informacion del usuario
@@ -36,7 +44,7 @@ abstract class FormHandler
      * @param array $data
      * @return bool|User|string True si el proceso se ha realizado correctamente, un mensaje de error en caso contrario, o un objeto User si se ha creado uno nuevo
      */
-    abstract public function process(array $data): User|bool|string;
+    abstract public function process(array $data);
 
     /**
      * Añade un error a la lista de errores
@@ -45,7 +53,7 @@ abstract class FormHandler
      * @param string $message
      * @return void
      */
-    protected function addError(string $field, string $message): void
+    protected function addError(string $field, string $message)
     {
         $this->errors[$field] = $message;
     }
@@ -72,9 +80,9 @@ class FormSignUp extends FormHandler
      * Validación de campos del formulario
      *
      * @param array $data
-     * @return array errores encontrados, vacío si no hay errores
+     * @return void Rellena los errores en el array de errores
      */
-    public function validate(array $data): array
+    public function validate(array $data)
     {
         $this->errors = [];
 
@@ -118,45 +126,53 @@ class FormSignUp extends FormHandler
         }
 
         if (!isset($data['adultez'])) {
-            $this->addError('adultez', 'Debes indicar si eres mayor de edad');
-        }
+        $this->addError('adultez', 'Debes indicar si eres mayor o menor de edad.');
+        } 
 
-        // Si ya hay errores, no seguimos
-        if (!empty($this->errors)) {
-            return $this->errors;
-        }
-
-        return $this->errors;
     }
 
     /**
      * Procesa el formulario, se encarga de crear el usuario
      *
      * @param array $data
-     * @return User|boolean|string Un objeto User si se ha creado correctamente, un mensaje de error en caso contrario, o true si el proceso se ha realizado correctamente pero no se ha creado un nuevo usuario (TODO: esto último no sé si lo voy a usar)
+     * @return void 
      */
-    public function process(array $data): User|bool|string
+    public function process(array $data)
     {
+        
+        $esAdulto = (isset($data['adultez']) && (int)$data['adultez'] === 1);
+
         $user = new User(
             $data['nickName'],
             $data['nombre'],
             $data['email'],
-            $data['password'],
-            $data['adultez'] === 'adulto'
+            $data['password']
         );
+        if (!$esAdulto) {
+            $this->addError('adultez', 'Debes ser mayor de edad para registrarte.');
+            return false;
+        }
+        $erroresValidacion = $this->userManager->validateUser($user);
+        if (!empty($erroresValidacion)) {
+            foreach ($erroresValidacion as $error) {
+                $this->addError('Usuario', $error); 
+            }
+            return false; 
+        }
 
-        // Validación del modelo
-        $errors = $this->userManager->validateUser($user);
-
-        // Lo juntamos con los errores (TODO)
-        if (!empty($errors)) {
-            return implode("<br>", $errors);
+        // Aunque lo hace create por seguridad, comprobamos antes la existencia para disponer de errores más específicos
+        if ($this->userManager->exists($user->nickName, $user->email)) {
+            $this->addError('general', 'El nickname o el correo electrónico ya están en uso.');
+            return false; // Salimos para no intentar crearlo
         }
 
         // Crear usuario
-        $this->userManager->create($user);
-
-        return $user;
+        $creado = $this->userManager->create($user);
+        if (!$creado) {
+            $this->addError('general', 'Ha ocurrido un error al crear el usuario. Por favor, inténtalo de nuevo más tarde.');
+            return false;
+        }
+        return true;
     }
 }
 
@@ -186,19 +202,33 @@ class FormLogIn extends FormHandler
 
         return $this->errors;   
     }
-    //TODO: hacer lo de las sesiones
-    public function process(array $data): User|bool|string
+
+    /**
+     * Impone los valores de la sesion o devuelve errores
+     *
+     * @param array $data Datos del formulario de sesion
+     * @return void 
+     */
+    public function process(array $data)
     {
 
         // Validación del modelo
         if(!$this->userManager->exists($data['nickName'], '') || !$this->userManager->verifyPassword($data['nickName'], '' , $data['password']))
         {
-            return 'Nickname o contraseña incorrectos';
-        } 
-            //TODO: hacer lo de las sesiones
-        return true;
+            $this->addError('general', 'Nickname o contraseña incorrectos');
+            return false;
+        } else {
+
+            $_SESSION['nickName'] = $data['nickName'];
+            $_SESSION['loggedIn'] = true;
+            //TODO: Poner si es admin o no
+
+            //Guardamos la inicial del nickName para mostrarla cuando se inicie sesión
+            $_SESSION['initial'] = strtoupper($data['nickName'][0]);
+            return true;
+        }
+
     }
 
+
 }
-
-

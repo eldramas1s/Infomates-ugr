@@ -338,5 +338,35 @@ form.fechaViaje select{
     }
 }
 
+/* =========================================
+   FORMULARIO DE LOGOUT
+   ========================================= */
 
-    
+form#logoutForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin:0;
+    padding: 0.3em;
+
+}
+
+form#logoutForm button#logoutbtn {
+    padding: 0.4em 0.8em;
+    font-size: 0.85em;
+    border: none;
+    border-radius: 0.4em;
+    background-color: #B00020;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#logoutbtn:hover {
+    background-color: #7a0015;
+    transform: scale(1.1);
+}

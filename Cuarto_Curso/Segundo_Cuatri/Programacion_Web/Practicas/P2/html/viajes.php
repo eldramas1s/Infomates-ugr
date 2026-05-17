@@ -16,16 +16,25 @@
             <img id="logoHeader" src="../imagenes/logoAzimut.png"
                 alt="Logotipo Azimut">
 
+            <?php
+            require_once '../php/utils.php';
+            session_start();
+
+            //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
+            if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
+                putAvatar($_SESSION['initial'], $_SESSION['nickName']);
+            }
+            ?>
             <nav id="menuHeader">
                 <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="../html/viajes.html">Viajes</a></li>
-                    <li><a href="../html/viajes_grupo.html">Viajes en
+                    <li><a href="../index.php">Inicio</a></li>
+                    <li><a href="../html/viajes.php">Viajes</a></li>
+                    <li><a href="../html/viajes_grupo.php">Viajes en
                             grupo</a></li>
-                    <li><a href="../html/ofertas.html">Ofertas</a></li>
-                    <li><a href="../html/sobre_agencia.html">Sobre nuestra
+                    <li><a href="../html/ofertas.php">Ofertas</a></li>
+                    <li><a href="../html/sobre_agencia.php">Sobre nuestra
                             agencia</a></li>
-                    <li><a href="../html/sugerencias.html">Sugerencias</a></li>
+                    <li><a href="../html/sugerencias.php">Sugerencias</a></li>
                 </ul>
             </nav>
         </header>
@@ -84,7 +93,7 @@
                     <h3>Jaén, España</h3>
                     <a href="../html/viajes_españa/viajes_españa.html"><img
                             src="../imagenes/jaenIndiv.jpg" alt="Imagen Jaen"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -102,7 +111,7 @@
                     <a href="../html/viajes_brasil/viajes_brasil.html"><img
                             src="../imagenes/brasilBetter.jpg"
                             alt="Imagen Rio de Janeiro"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -121,7 +130,7 @@
                     <a href="../html/viajes_españa/viajes_españa.html"><img
                             src="../imagenes/galicia.png"
                             alt="Imagen Rio de Janeiro"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -139,7 +148,7 @@
                     <a href="../html/viajes_india/viajes_india.html"><img
                             src="../imagenes/rajastanBetter.jpg"
                             alt="Imagen Rajastan"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -157,7 +166,7 @@
                     <a href="../html/viajes_brasil/viajes_brasil.html"><img
                             src="../imagenes/anavilhanas.jpg"
                             alt="Imagen Anavilhanas"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -176,7 +185,7 @@
                         href="../html/viajes_madagascar/viajes_madagascar.html"><img
                             src="../imagenes/andasibeGrupo.jpg"
                             alt="Imagen Andasibe"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -194,7 +203,7 @@
                     <a href="../html/viajes_españa/viajes_españa.html"><img
                             src="../imagenes/granada.jpg"
                             alt="Imagen Granada"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -212,7 +221,7 @@
                     <a href="../html/viajes_suecia/viajes_suecia.html"><img
                             src="../imagenes/paterNosterIndiv.jpg"
                             alt="Imagen Pater Noster"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -230,7 +239,7 @@
                     <a href="../html/viajes_suecia/viajes_suecia.html"><img
                             src="../imagenes/articBath.jpg"
                             alt="Imagen Pater Noster"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -248,7 +257,7 @@
                     <a href="../html/viajes_india/viajes_india.html"><img
                             src="../imagenes/agraGrupo.jpg"
                             alt="Imagen Agra"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -267,7 +276,7 @@
                         href="../html/viajes_madagascar/viajes_madagascar.html"><img
                             src="../imagenes/noseAnkao.png"
                             alt="Imagen Nosy Ankao"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -285,7 +294,7 @@
                     <a href="../html/viajes_suecia/viajes_suecia.html"><img
                             src="../imagenes/estocolmoGrupo.jpg"
                             alt="Imagen Estocolmo"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -302,7 +311,7 @@
                     <h3>Kerala, La India</h3>
                     <a href="../html/viajes_india/viajes_india.html"><img
                             src="../imagenes/kerala.jpg" alt="Imagen Kerala"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -321,7 +330,7 @@
                         href="../html/viajes_madagascar/viajes_madagascar.html"><img
                             src="../imagenes/tsingyBetter.jpg"
                             alt="Imagen Tsingy"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -338,7 +347,7 @@
                     <h3>Laponia, Suecia</h3>
                     <a href="../html/viajes_suecia/viajes_suecia.html"><img
                             src="../imagenes/laponia.jpg" alt="Imagen Kerala"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -358,7 +367,7 @@
                     <a href="../html/viajes_españa/viajes_españa.html"><img
                             src="../imagenes/mieresAsturias.jpg"
                             alt="Imagen Asturias"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -376,7 +385,7 @@
                         href="../html/viajes_brasil/viajes_brasil.html"><img
                             src="../imagenes/natal.jpg"
                             alt="Imagen Natal"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -394,7 +403,7 @@
                     <a href="../html/viajes_suecia/viajesuecia.html"><img
                             src="../imagenes/uppsala.jpg"
                             alt="Imagen Uppsala"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -412,7 +421,7 @@
                     <a href="../html/viajes_india/viajes_india.html"><img
                             src="../imagenes/jaipur.jpg"
                             alt="Imagen Pater Noster"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -431,7 +440,7 @@
                         href="../html/viajes_madagascar/viajes_madagascar.html"><img
                             src="../imagenes/nosyBoraha.jpg"
                             alt="Imagen Nosy Boraha"></a>
-                    <form action="../html/viajes.html" method="post"
+                    <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
                         <select name="fecha" class="selectorFecha">
                             <option value="null">Seleccione fecha</option>
@@ -449,7 +458,7 @@
         <footer>
             <nav id="menuFooter">
                 <ul>
-                    <li><a href="../html/contacto.html">Contacte con
+                    <li><a href="../html/contacto.php">Contacte con
                             nosotros</a></li>
                     <li><a href="../como_se_hizo.pdf"
                             target="_blank">Cómo se

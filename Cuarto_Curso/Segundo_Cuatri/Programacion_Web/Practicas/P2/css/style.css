@@ -59,6 +59,15 @@ p.error{
     margin: 1em 0;
 }
 
+p.informativo{
+    color: #1A1A1A;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.6em;
+    border: 1px solid #1A1A1A;
+    margin: 1em 0;
+}
+
 section article{
     padding: 1.5em;
     max-width: 35em;
@@ -106,12 +115,13 @@ header {
     padding: 1em 2em;
     
     display: grid;
-    grid-template-columns: 1fr auto 1fr; 
+    grid-template-columns: 1fr auto 1fr;
     grid-template-areas: 
         "logoHeader nombreDecor signUpForm"
         "menuHeader menuHeader menuHeader"; 
     align-items: center;
     row-gap: 1em; 
+    column-gap: 1.5em;
 }
 
 h1#nombreDecor {
@@ -126,7 +136,7 @@ h1#nombreDecor {
 
 header #logoHeader {
     grid-area: logoHeader;
-    justify-self: center; /* Lo centra perfectamente */
+    justify-self: center; /* Lo centra perfectamente */ 
     width: 8em; 
     height: auto;
 }
@@ -145,6 +155,49 @@ footer {
 footer nav#menuFooter ul li {
     align-items: center;
     justify-self: center;
+}
+
+div#userMenu {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    gap: 0.7em;
+}
+
+header > #userMenu {
+    grid-area: signUpForm;
+    justify-self: end;
+    align-self: center;
+}
+
+div#userMenu div#avatar {
+    width: 2.8em;
+    height: 2.8em;
+    border-radius: 50%;
+    background: #F8F9FA;
+    border: 0.15em solid #B59349;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.5em;
+    margin: 0.5em;
+
+    font-weight: 600;
+    font-size: 1em;
+    color: #B59349;
+}
+
+div#userMenu div#avatar:hover {
+    cursor: pointer;
+    background: #ccc;
+    transform: scale(1.1);
+}
+
+div#userMenu div#userName{
+    font-size: 0.95em;
+    font-weight: 500;
 }
 
 /* =========================================

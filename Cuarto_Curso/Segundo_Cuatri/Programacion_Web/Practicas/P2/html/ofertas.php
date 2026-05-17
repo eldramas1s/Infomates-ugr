@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ofertas.css">
+    <title>Azimut Viajes | Ofertas </title>
+</head>
+
+<body>
+    <header>
+
+        <h1 id="nombreDecor">Azimut Viajes</h1>
+
+        <img id="logoHeader" src="../imagenes/logoAzimut.png"
+            alt="Logotipo Azimut">
+
+        <?php
+        require_once '../php/utils.php';
+        session_start();
+
+        //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
+            if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
+            putAvatar($_SESSION['initial'], $_SESSION['nickName']);
+        }
+        ?>
+        <nav id="menuHeader">
+            <ul>
+                <li><a href="../index.php">Inicio</a></li>
+                <li><a href="../html/viajes.php">Viajes</a></li>
+                <li><a href="../html/viajes_grupo.php">Viajes en
+                        grupo</a></li>
+                <li><a href="../html/ofertas.php">Ofertas</a></li>
+                <li><a href="../html/sobre_agencia.php">Sobre nuestra
+                        agencia</a></li>
+                <li><a href="../html/sugerencias.php">Sugerencias</a></li>
+            </ul>
+        </nav>
+    </header>
+    <aside class="leyenda">
+        <h2>Leyenda calendario</h2>
+        <section id="leyendaTemporadas">
+            <h3>Temporadas</h3>
+            <ul>
+                <li id="item-baja">Temporada baja</li>
+                <li id="item-media">Temporada media</li>
+                <li id="item-alta">Temporada alta</li>
+            </ul>
+        </section>
+        <section id="leyendaOfertas">
+            <h3>Ofertas por país</h3>
+            <ul>
+                <li id="item-oferta-es">España</li>
+                <li id="item-oferta-br">Brasil</li>
+                <li id="item-oferta-se">Suecia</li>
+                <li id="item-oferta-in">India</li>
+                <li id="item-oferta-mad">Madagascar</li>
+            </ul>
+        </section>
+        <section id="leyendaPorcentajes">
+            <h3>Porcentajes de descuento</h3>
+            <p id="descuento"> Descuento</p>
+        </section>
+    </aside>
+    <main id="ofertasMain">
+        <!-- Botones para moverse por los calendarios -->
+        <input type="radio" name="navMes" id="radioMarzo" checked>
+        <input type="radio" name="navMes" id="radioAbril">
+        <input type="radio" name="navMes" id="radioMayo">
+        <input type="radio" name="navMes" id="radioJunio">
+        <!-- /Botones para moverse por los calendarios -->
+        <section id="ofertas">
+            <h2>Ofertas para ti</h2>
+            <article class="mesWrapper" id="marzo">
+                <h3>Marzo</h3>
+                <nav class="flechasMes">
+                    <label for="radioAbril"
+                        class="flechaDcha">&#10095;</label>
+                </nav>
+                <table class="tablaCalendario">
+                    <thead>
+                        <tr>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                            <th>Sábado</th>
+                            <th>Domingo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="noMes temp-baja">23</td>
+                            <td class="noMes temp-baja">4</td>
+                            <td class="noMes temp-baja">25</td>
+                            <td class="noMes temp-baja">26</td>
+                            <td class="noMes temp-baja">27</td>
+                            <td class="noMes temp-media oferta-es"
+                                data-dto="5">28</td>
+                            <td class="mes domingo temp-media">1</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-media">2</td>
+                            <td class="mes temp-media">3</td>
+                            <td class="mes temp-media">4</td>
+                            <td class="mes temp-media">5</td>
+                            <td class="mes temp-media oferta-mad"
+                                data-dto="10">6</td>
+                            <td class="mes temp-media oferta-mad"
+                                data-dto="10">7</td>
+                            <td class="mes domingo temp-media oferta-mad"
+                                data-dto="10">8</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja oferta-mad"
+                                data-dto="10">9</td>
+                            <td class="mes temp-baja oferta-mad"
+                                data-dto="10">10</td>
+                            <td class="mes temp-baja oferta-mad"
+                                data-dto="10">11</td>
+                            <td class="mes temp-baja">12</td>
+                            <td class="mes temp-baja">13</td>
+                            <td class="mes temp-baja">14</td>
+                            <td class="mes domingo temp-baja">15</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">16</td>
+                            <td class="mes temp-baja">17</td>
+                            <td class="mes temp-baja">18</td>
+                            <td class="mes temp-baja">19</td>
+                            <td class="mes temp-baja">20</td>
+                            <td class="mes temp-baja">21</td>
+                            <td class="mes domingo temp-baja">22</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">23</td>
+                            <td class="mes temp-baja">24</td>
+                            <td class="mes temp-baja">25</td>
+                            <td class="mes temp-baja">26</td>
+                            <td class="mes temp-baja">27</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="20">28</td>
+                            <td class="mes domingo temp-alta oferta-es"
+                                data-dto="20">29</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="20">30</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="20">31</td>
+                            <td class="noMes temp-alta oferta-es"
+                                data-dto="20">1</td>
+                            <td class="noMes temp-alta oferta-es"
+                                data-dto="20">2</td>
+                            <td class="noMes temp-alta oferta-es"
+                                data-dto="20">3</td>
+                            <td class="noMes temp-alta oferta-es"
+                                data-dto="20">4</td>
+                            <td class="noMes domingo temp-alta oferta-es"
+                                data-dto="20">5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+
+            <article class="mesWrapper" id="abril">
+                <h3>Abril</h3>
+                <nav class="flechasMes">
+                    <label for="radioMarzo"
+                        class="flechaIzq">&#10094;</label>
+                    <label for="radioMayo"
+                        class="flechaDcha">&#10095;</label>
+                </nav>
+                <table class="tablaCalendario">
+                    <thead>
+                        <tr>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                            <th>Sábado</th>
+                            <th>Domingo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="noMes temp-alta oferta-es"
+                                data-dto="20">30</td>
+                            <td class="noMes temp-alta oferta-es"
+                                data-dto="20">31</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="20">1</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="20">2</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="20">3</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="20">4</td>
+                            <td class="mes domingo temp-alta oferta-es"
+                                data-dto="20">5</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-media">6</td>
+                            <td class="mes temp-media">7</td>
+                            <td class="mes temp-media">8</td>
+                            <td class="mes temp-media oferta-sue"
+                                data-dto="25">9</td>
+                            <td class="mes temp-media oferta-sue"
+                                data-dto="25">10</td>
+                            <td class="mes temp-media oferta-sue"
+                                data-dto="25">11</td>
+                            <td class="mes domingo temp-media">12</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">13</td>
+                            <td class="mes temp-baja">14</td>
+                            <td class="mes temp-baja">15</td>
+                            <td class="mes temp-baja">16</td>
+                            <td class="mes temp-baja">17</td>
+                            <td class="mes temp-baja">18</td>
+                            <td class="mes domingo temp-baja">19</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">20</td>
+                            <td class="mes temp-baja">21</td>
+                            <td class="mes temp-baja">22</td>
+                            <td class="mes temp-baja">23</td>
+                            <td class="mes temp-baja">24</td>
+                            <td class="mes temp-baja">25</td>
+                            <td class="mes domingo temp-baja">26</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">27</td>
+                            <td class="mes temp-baja">28</td>
+                            <td class="mes temp-baja">29</td>
+                            <td class="mes temp-baja">30</td>
+                            <td class="noMes temp-alta oferta-in"
+                                data-dto="15">1</td>
+                            <td class="noMes temp-alta oferta-in"
+                                data-dto="15">2</td>
+                            <td class="noMes domingo temp-alta oferta-in"
+                                data-dto="15">3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+
+            <article class="mesWrapper" id="mayo">
+                <h3>Mayo</h3>
+                <nav class="flechasMes">
+                    <label for="radioAbril"
+                        class="flechaIzq">&#10094;</label>
+                    <label for="radioJunio"
+                        class="flechaDcha">&#10095;</label>
+                </nav>
+                <table class="tablaCalendario">
+                    <thead>
+                        <tr>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                            <th>Sábado</th>
+                            <th>Domingo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="noMes temp-baja">27</td>
+                            <td class="noMes temp-baja">28</td>
+                            <td class="noMes temp-baja">29</td>
+                            <td class="noMes temp-baja">30</td>
+                            <td class="mes festivo temp-alta oferta-in"
+                                data-dto="15">1</td>
+                            <td class="mes temp-alta oferta-in"
+                                data-dto="15">2</td>
+                            <td class="mes domingo temp-alta oferta-in"
+                                data-dto="15">3</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">4</td>
+                            <td class="mes temp-baja">5</td>
+                            <td class="mes temp-baja">6</td>
+                            <td class="mes temp-baja">7</td>
+                            <td class="mes temp-baja">8</td>
+                            <td class="mes temp-baja">9</td>
+                            <td class="mes domingo temp-baja">10</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">11</td>
+                            <td class="mes temp-baja">12</td>
+                            <td class="mes temp-baja">13</td>
+                            <td class="mes temp-baja">14</td>
+                            <td class="mes temp-baja">15</td>
+                            <td class="mes temp-baja">16</td>
+                            <td class="mes domingo temp-baja">17</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">18</td>
+                            <td class="mes temp-baja">19</td>
+                            <td class="mes temp-baja">20</td>
+                            <td class="mes temp-baja">21</td>
+                            <td class="mes temp-baja">22</td>
+                            <td class="mes temp-baja">23</td>
+                            <td class="mes domingo temp-baja">24</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">25</td>
+                            <td class="mes temp-baja">26</td>
+                            <td class="mes temp-baja">27</td>
+                            <td class="mes temp-baja">28</td>
+                            <td class="mes temp-baja">29</td>
+                            <td class="mes temp-baja">30</td>
+                            <td class="mes domingo temp-baja">31</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+
+            <article class="mesWrapper" id="junio">
+                <h3>Junio</h3>
+                <nav class="flechasMes">
+                    <label for="radioMayo"
+                        class="flechaIzq">&#10094;</label>
+                </nav>
+                <table class="tablaCalendario">
+                    <thead>
+                        <tr>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                            <th>Sábado</th>
+                            <th>Domingo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="mes temp-alta oferta-bra"
+                                data-dto="25">1</td>
+                            <td class="mes temp-alta oferta-bra"
+                                data-dto="25">2</td>
+                            <td class="mes temp-alta oferta-bra"
+                                data-dto="25">3</td>
+                            <td class="mes temp-alta oferta-bra"
+                                data-dto="25">4</td>
+                            <td class="mes temp-alta oferta-bra"
+                                data-dto="10">5</td>
+                            <td class="mes temp-alta oferta-bra"
+                                data-dto="10">6</td>
+                            <td class="mes domingo temp-alta oferta-bra"
+                                data-dto="10">7</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="15">8</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="15">9</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="15">10</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="15">11</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="15">12</td>
+                            <td class="mes temp-alta oferta-es"
+                                data-dto="15">13</td>
+                            <td class="mes domingo temp-alta oferta-es"
+                                data-dto="15">14</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-alta oferta-mad"
+                                data-dto="5">15</td>
+                            <td class="mes temp-alta oferta-mad"
+                                data-dto="5">16</td>
+                            <td class="mes temp-alta oferta-mad"
+                                data-dto="5">17</td>
+                            <td class="mes temp-alta oferta-mad"
+                                data-dto="5">18</td>
+                            <td class="mes temp-alta oferta-mad"
+                                data-dto="5">19</td>
+                            <td class="mes temp-alta oferta-mad"
+                                data-dto="5">20</td>
+                            <td class="mes domingo temp-alta oferta-mad"
+                                data-dto="5">21</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-media">22</td>
+                            <td class="mes temp-media">23</td>
+                            <td class="mes temp-media">24</td>
+                            <td class="mes temp-media">25</td>
+                            <td class="mes temp-media">26</td>
+                            <td class="mes temp-media">27</td>
+                            <td class="mes domingo temp-media">28</td>
+                        </tr>
+                        <tr>
+                            <td class="mes temp-baja">29</td>
+                            <td class="mes temp-baja">30</td>
+                            <td class="mes temp-baja">31</td>
+                            <td class="noMes temp-baja">1</td>
+                            <td class="noMes temp-baja">2</td>
+                            <td class="noMes temp-baja">3</td>
+                            <td class="noMes domingo temp-baja">4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <nav id="menuFooter">
+            <ul>
+                <li><a href="../html/contacto.php">Contacte con
+                        nosotros</a></li>
+                <li><a href="../como_se_hizo.pdf"
+                        target="_blank">Cómo se
+                        hizo</a></li>
+            </ul>
+        </nav>
+        <p id="fechaModificacion">27/04/2026</p>
+    </footer>
+</body>
+
+</html>
