@@ -22,7 +22,7 @@
 
             //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
             if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-                putAvatar($_SESSION['initial'], $_SESSION['nickName']);
+                putAvatar($_SESSION['admin'], $_SESSION['nickName'],1);
             }
             ?>
             <nav id="menuHeader">
@@ -45,30 +45,30 @@
                     <summary>&#127757; Europa</summary>
                     <ul class="listaPaises">
                         <li><a
-                                href="../html/viajes_españa/viajes_españa.html">España</a></li>
+                                href="../html/viajes_españa/viajes_españa.php">España</a></li>
                         <li><a
-                                href="../html/viajes_suecia/viajes_suecia.html">Suecia</a></li>
+                                href="../html/viajes_suecia/viajes_suecia.php">Suecia</a></li>
                     </ul>
                 </details>
                 <details class="listaContinentes">
                     <summary>&#127758; América</summary>
                     <ul class="listaPaises">
                         <li><a
-                                href="../html/viajes_brasil/viajes_brasil.html">Brasil</a></li>
+                                href="../html/viajes_brasil/viajes_brasil.php">Brasil</a></li>
                     </ul>
                 </details>
                 <details class="listaContinentes">
                     <summary>&#127757; África</summary>
                     <ul class="listaPaises">
                         <li><a
-                                href="../html/viajes_madagascar/viajes_madagascar.html">Madagascar</a></li>
+                                href="../html/viajes_madagascar/viajes_madagascar.php">Madagascar</a></li>
                     </ul>
                 </details>
                 <details class="listaContinentes">
                     <summary>&#127759;Asia</summary>
                     <ul class="listaPaises">
                         <li><a
-                                href="../html/viajes_india/viajes_india.html">La
+                                href="../html/viajes_india/viajes_india.php">La
                                 India</a></li>
                     </ul>
                 </details>
@@ -91,7 +91,7 @@
                 <h2>Viajes</h2>
                 <article class="viajeTipo">
                     <h3>Jaén, España</h3>
-                    <a href="../html/viajes_españa/viajes_españa.html"><img
+                    <a href="../html/viajes_españa/viajes_españa.php"><img
                             src="../imagenes/jaenIndiv.jpg" alt="Imagen Jaen"></a>
                     <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
@@ -108,7 +108,7 @@
 
                 <article class="viajeTipo">
                     <h3>Rio de Janeiro, Brasil</h3>
-                    <a href="../html/viajes_brasil/viajes_brasil.html"><img
+                    <a href="../html/viajes_brasil/viajes_brasil.php"><img
                             src="../imagenes/brasilBetter.jpg"
                             alt="Imagen Rio de Janeiro"></a>
                     <form action="../html/viajes.php" method="post"
@@ -127,7 +127,7 @@
 
                 <article class="viajeTipo">
                     <h3>Galicia, España</h3>
-                    <a href="../html/viajes_españa/viajes_españa.html"><img
+                    <a href="../html/viajes_españa/viajes_españa.php"><img
                             src="../imagenes/galicia.png"
                             alt="Imagen Rio de Janeiro"></a>
                     <form action="../html/viajes.php" method="post"
@@ -145,7 +145,7 @@
 
                 <article class="viajeTipo">
                     <h3>Rajastán, La India</h3>
-                    <a href="../html/viajes_india/viajes_india.html"><img
+                    <a href="../html/viajes_india/viajes_india.php"><img
                             src="../imagenes/rajastanBetter.jpg"
                             alt="Imagen Rajastan"></a>
                     <form action="../html/viajes.php" method="post"
@@ -163,7 +163,7 @@
 
                 <article class="viajeTipo">
                     <h3>Anavilhanas, Brasil</h3>
-                    <a href="../html/viajes_brasil/viajes_brasil.html"><img
+                    <a href="../html/viajes_brasil/viajes_brasil.php"><img
                             src="../imagenes/anavilhanas.jpg"
                             alt="Imagen Anavilhanas"></a>
                     <form action="../html/viajes.php" method="post"
@@ -182,7 +182,7 @@
                 <article class="viajeTipo">
                     <h3>Andasibe, Madagascar</h3>
                     <a
-                        href="../html/viajes_madagascar/viajes_madagascar.html"><img
+                        href="../html/viajes_madagascar/viajes_madagascar.php"><img
                             src="../imagenes/andasibeGrupo.jpg"
                             alt="Imagen Andasibe"></a>
                     <form action="../html/viajes.php" method="post"
@@ -200,7 +200,7 @@
 
                 <article class="viajeTipo">
                     <h3>Granada, España</h3>
-                    <a href="../html/viajes_españa/viajes_españa.html"><img
+                    <a href="../html/viajes_españa/viajes_españa.php"><img
                             src="../imagenes/granada.jpg"
                             alt="Imagen Granada"></a>
                     <form action="../html/viajes.php" method="post"
@@ -218,7 +218,7 @@
 
                 <article class="viajeTipo">
                     <h3>Pater Noster, Suecia</h3>
-                    <a href="../html/viajes_suecia/viajes_suecia.html"><img
+                    <a href="../html/viajes_suecia/viajes_suecia.php"><img
                             src="../imagenes/paterNosterIndiv.jpg"
                             alt="Imagen Pater Noster"></a>
                     <form action="../html/viajes.php" method="post"
@@ -236,7 +236,7 @@
 
                 <article class="viajeTipo">
                     <h3>Lule River, Suecia</h3>
-                    <a href="../html/viajes_suecia/viajes_suecia.html"><img
+                    <a href="../html/viajes_suecia/viajes_suecia.php"><img
                             src="../imagenes/articBath.jpg"
                             alt="Imagen Pater Noster"></a>
                     <form action="../html/viajes.php" method="post"
@@ -254,7 +254,7 @@
 
                 <article class="viajeTipo">
                     <h3>Agra, La India</h3>
-                    <a href="../html/viajes_india/viajes_india.html"><img
+                    <a href="../html/viajes_india/viajes_india.php"><img
                             src="../imagenes/agraGrupo.jpg"
                             alt="Imagen Agra"></a>
                     <form action="../html/viajes.php" method="post"
@@ -273,7 +273,7 @@
                 <article class="viajeTipo">
                     <h3>Nosy Ankao, Madagascar</h3>
                     <a
-                        href="../html/viajes_madagascar/viajes_madagascar.html"><img
+                        href="../html/viajes_madagascar/viajes_madagascar.php"><img
                             src="../imagenes/noseAnkao.png"
                             alt="Imagen Nosy Ankao"></a>
                     <form action="../html/viajes.php" method="post"
@@ -291,7 +291,7 @@
 
                 <article class="viajeTipo">
                     <h3>Estocolmo, Suecia</h3>
-                    <a href="../html/viajes_suecia/viajes_suecia.html"><img
+                    <a href="../html/viajes_suecia/viajes_suecia.php"><img
                             src="../imagenes/estocolmoGrupo.jpg"
                             alt="Imagen Estocolmo"></a>
                     <form action="../html/viajes.php" method="post"
@@ -309,7 +309,7 @@
 
                 <article class="viajeTipo">
                     <h3>Kerala, La India</h3>
-                    <a href="../html/viajes_india/viajes_india.html"><img
+                    <a href="../html/viajes_india/viajes_india.php"><img
                             src="../imagenes/kerala.jpg" alt="Imagen Kerala"></a>
                     <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
@@ -327,7 +327,7 @@
                 <article class="viajeTipo">
                     <h3>Tsingy, Madagascar</h3>
                     <a
-                        href="../html/viajes_madagascar/viajes_madagascar.html"><img
+                        href="../html/viajes_madagascar/viajes_madagascar.php"><img
                             src="../imagenes/tsingyBetter.jpg"
                             alt="Imagen Tsingy"></a>
                     <form action="../html/viajes.php" method="post"
@@ -345,7 +345,7 @@
 
                 <article class="viajeTipo">
                     <h3>Laponia, Suecia</h3>
-                    <a href="../html/viajes_suecia/viajes_suecia.html"><img
+                    <a href="../html/viajes_suecia/viajes_suecia.php"><img
                             src="../imagenes/laponia.jpg" alt="Imagen Kerala"></a>
                     <form action="../html/viajes.php" method="post"
                         class="fechaViaje">
@@ -364,7 +364,7 @@
                 <h2>Viajes</h2>
                 <article class="viajeTipo">
                     <h3>Asturias, España</h3>
-                    <a href="../html/viajes_españa/viajes_españa.html"><img
+                    <a href="../html/viajes_españa/viajes_españa.php"><img
                             src="../imagenes/mieresAsturias.jpg"
                             alt="Imagen Asturias"></a>
                     <form action="../html/viajes.php" method="post"
@@ -382,7 +382,7 @@
                 <article class="viajeTipo">
                     <h3>Natal, Brasil</h3>
                     <a
-                        href="../html/viajes_brasil/viajes_brasil.html"><img
+                        href="../html/viajes_brasil/viajes_brasil.php"><img
                             src="../imagenes/natal.jpg"
                             alt="Imagen Natal"></a>
                     <form action="../html/viajes.php" method="post"
@@ -418,7 +418,7 @@
 
                 <article class="viajeTipo">
                     <h3>Jaipur, India</h3>
-                    <a href="../html/viajes_india/viajes_india.html"><img
+                    <a href="../html/viajes_india/viajes_india.php"><img
                             src="../imagenes/jaipur.jpg"
                             alt="Imagen Pater Noster"></a>
                     <form action="../html/viajes.php" method="post"
@@ -437,7 +437,7 @@
                 <article class="viajeTipo">
                     <h3>Nosy Boraha, Madagascar</h3>
                     <a
-                        href="../html/viajes_madagascar/viajes_madagascar.html"><img
+                        href="../html/viajes_madagascar/viajes_madagascar.php"><img
                             src="../imagenes/nosyBoraha.jpg"
                             alt="Imagen Nosy Boraha"></a>
                     <form action="../html/viajes.php" method="post"

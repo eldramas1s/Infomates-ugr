@@ -18,13 +18,11 @@
             <?php
             require_once './php/utils.php';
             require_once './php/forms.php';
-            require_once './php/conection.php';
             session_start();
 
             //Procesamos el formulario de login
             if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nickName']) && isset($_POST['password'])){
-                $db = new Database();
-                $form = new FormLogIn($db->connect());
+                $form = new FormLogIn();
                 $form->handle($_POST); //Si hay errores se escriben en el html
             }
 
@@ -32,7 +30,7 @@
             if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
                 putsignUpForm();
             } else { //Si se ha loggeado ponemos el avatar con la inicial del nickname y el boton de cierre de sesión
-                putAvatar($_SESSION['initial'], $_SESSION['nickName'], true);
+                putAvatar($_SESSION['admin'], $_SESSION['nickName']);
             }
             ?> 
             <nav id="menuHeader">

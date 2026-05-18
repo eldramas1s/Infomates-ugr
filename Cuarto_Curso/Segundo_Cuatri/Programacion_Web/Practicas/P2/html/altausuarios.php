@@ -31,15 +31,14 @@
     <main>
         <?php
         require_once '../php/forms.php';
-        require_once '../php/conection.php';
 
         $sent = false;
         $status = false;
         $errorsList = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sent = true;
-            $db = new Database();
-            $form = new FormSignUp($db->connect());
+            
+            $form = new FormSignUp();
             $status = $form->handle($_POST);
 
             if(!$status){
@@ -84,8 +83,8 @@
                 </p>
                 <p>
                     <label for="adulto">¿Eres mayor de edad?</label>
-                    <input type="radio" name="adultez" id="adulto" value="1" <?php echo (isset($_POST['adultez']) && $_POST['adultez'] === 'adulto') ? 'checked' : ''; ?>> Si
-                    <input type="radio" name="adultez" id="menor" value="0" <?php echo (isset($_POST['adultez']) && $_POST['adultez'] === 'menor') ? 'checked' : ''; ?>> No
+                    <input type="radio" name="adultez" id="adulto" value="1" <?php echo (isset($_POST['adultez']) && $_POST['adultez'] === '1') ? 'checked' : ''; ?>> Si
+                    <input type="radio" name="adultez" id="menor" value="0" <?php echo (isset($_POST['adultez']) && $_POST['adultez'] === '0') ? 'checked' : ''; ?>> No
                 </p>
 
                 <p>

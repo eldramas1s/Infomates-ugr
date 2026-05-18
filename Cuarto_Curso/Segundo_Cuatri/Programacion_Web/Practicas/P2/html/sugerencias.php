@@ -22,7 +22,7 @@
 
             //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
             if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-                putAvatar($_SESSION['initial'], $_SESSION['nickName']);
+                putAvatar($_SESSION['admin'], $_SESSION['nickName'],1);
             }
             ?>
             <nav id="menuHeader">

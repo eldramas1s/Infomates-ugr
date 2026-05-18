@@ -1,28 +1,32 @@
 <?php
 /**
- * Escribe el avatar mas el boton de cierre de sesion
+ * Escribe el avatar del usuario logueado
  *
- * @param [type] $initial
- * @param [type] $nickName
- * @return void 
+ * @param string $admin Indica si el usuario es admin
+ * @param string $nickName Nickname del usuario
+ * @param boolean $index Si se llama desde index.php o no (para rutas relativas)
+ * @return void
  */
-function putAvatar($initial, $nickName, $index = false) {
+function putAvatar($admin, $nickName, $level = 0){ 
     $html = '<div id="userMenu">
-        <div id="avatar">' . htmlspecialchars($initial ?? '') . '</div>
-        <div id="nickName">' . htmlspecialchars($nickName ?? '') . '</div>';
-
-    if ($index) {
-        $html.= '<form id="logoutForm" method="post" action="./php/logout.php">
-            <button type="submit" id="logoutbtn">Log Out</button>
-        </form>
-        </div>';
-    } else{
-        $html.= '<form id="logoutForm" method="post" action="../php/logout.php">
-            <button type="submit" id="logoutbtn">Log Out</button>
-        </form>
-        </div>';
+        <div id="avatar">' ;
+    if ($admin == 1) {
+        $html.= '&#128187; </div>';
+    } else {
+        $html.= '&#128100; </div>';
     }
-
+        $html.= '<div id="nickName">' . htmlspecialchars($nickName ?? '') . '</div>
+        <form id="logoutForm" method="post" action="';
+    if ($level == 0) {
+        $html.= './php/logout.php">';
+    } else if ($level == 1) {
+        $html.= '../php/logout.php">';
+    } else {
+        $html.= '../../php/logout.php">';
+    }
+    $html.= '<button type="submit" id="logoutbtn">Log Out</button>
+        </form>
+        </div>';
     echo $html;
 }
 
