@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber como_se_hizo"] 0 "como_se_hizo.bcf" "como_se_hizo.bbl" "como_se_hizo" 1779133198.44535 -1
-  "como_se_hizo.bcf" 1779133198.26115 107769 20d40ae660a8d35b62eb3dc7b474ac8e "pdflatex"
+["biber como_se_hizo"] 0 "como_se_hizo.bcf" "como_se_hizo.bbl" "como_se_hizo" 1779133200.81367 -1
+  "como_se_hizo.bcf" 1779133200.64519 107769 20d40ae660a8d35b62eb3dc7b474ac8e "pdflatex"
   "referencias.bib" 1778614088.45105 1 68b329da9893e34099c7d8ad5cb9c940 ""
   (generated)
   "como_se_hizo.bbl"
   "como_se_hizo.blg"
   (rewritten before read)
-["pdflatex"] 1779133196.43148 "/home/el_dramas/Desktop/Infomates/Cuarto_Curso/Segundo_Cuatri/Programacion_Web/Practicas/P2/memoria/como_se_hizo.tex" "como_se_hizo.pdf" "como_se_hizo" 1779133198.44607 2
+["pdflatex"] 1779133198.73982 "/home/el_dramas/Desktop/Infomates/Cuarto_Curso/Segundo_Cuatri/Programacion_Web/Practicas/P2/memoria/como_se_hizo.tex" "como_se_hizo.pdf" "como_se_hizo" 1779133200.81445 2
   "/etc/texmf/web2c/texmf.cnf" 1730279047.23061 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/el_dramas/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcit1000.600pk" 1779130149.59875 11252 160f6c527a9a1a5f8980d9be2261db72 ""
   "/home/el_dramas/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1767002589.85771 14040 02efc327c46e7e030f2249630d73636a ""
@@ -122,12 +122,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1771439300.20672 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1771439371 6800795 eee6b0d5735f3bdef66f29f254f0fd9e ""
-  "como_se_hizo.aux" 1779133198.25415 3111 f480212917125a53459b23515ff7c63f "pdflatex"
+  "como_se_hizo.aux" 1779133200.63919 3085 f6a00400e2bac29f914a304b97d14acb "pdflatex"
   "como_se_hizo.bbl" 1779132075.40022 466 ee04f40f768daeed26442158e95aba61 "biber como_se_hizo"
-  "como_se_hizo.out" 1779133198.25815 1790 50b6087f4583790953ec500664f3357d "pdflatex"
-  "como_se_hizo.run.xml" 1779133198.26315 2362 58c5c631e517be5bcc03b9fa7d73fcd8 "pdflatex"
+  "como_se_hizo.out" 1779133200.64319 1790 50b6087f4583790953ec500664f3357d "pdflatex"
   "como_se_hizo.tex" 1779133196.11211 19350 e2d9daa25c89eb7b632f66ec821673dd ""
-  "como_se_hizo.toc" 1779133198.26315 1026 6ce9efc4a0333a031f36a9a6df6a6833 "pdflatex"
+  "como_se_hizo.toc" 1779133200.64719 1026 6ce9efc4a0333a031f36a9a6df6a6833 "pdflatex"
   (generated)
   "como_se_hizo.aux"
   "como_se_hizo.bcf"
