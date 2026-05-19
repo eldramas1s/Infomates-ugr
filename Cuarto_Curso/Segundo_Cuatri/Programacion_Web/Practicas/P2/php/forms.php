@@ -123,7 +123,7 @@ class FormSignUp extends FormHandler
             'admin' => 0
         ]);
 
-        $errores = User::validateUser($user);
+        $errores = $user->validateUser();
 
         if (!empty($errores)) {
             foreach ($errores as $error) {

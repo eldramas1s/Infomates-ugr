@@ -128,5 +128,24 @@ function putFormSugerencias(){
     echo $html;
 }
 
+//TODO:DOCUMENTACION
+
+function validateDate($date){
+        $validDate = false;
+        try {
+            // Creamos el objeto DateTime a partir del formato esperado
+            $dateObj = DateTime::createFromFormat('Y-m-d', $date);
+
+            // Verificamos que la fecha sea válida (ej: que no sea un 32 de diciembre)
+            if ($dateObj && $dateObj->format('Y-m-d') === $date) {
+                $validDate = true;
+            }
+        } catch (Exception $e) {
+            $validDate = false;
+            error_log('Trips::create fecha inválida');
+        }
+
+        return $validDate;
+    }
 ?>
 

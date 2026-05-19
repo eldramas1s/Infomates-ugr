@@ -87,11 +87,11 @@ class User extends DataObject
         }
     }
 
-    public static function validateUser(User $user): array
+    public function validateUser(): array
     {
         $errors = [];
 
-        if (empty(trim($user->datos['nickName'])) || empty(trim($user->datos['email'])) || empty(trim($user->datos['password'])) || empty(trim($user->datos['nombre']))) {
+        if (empty(trim($this->datos['nickName'])) || empty(trim($this->datos['email'])) || empty(trim($this->datos['password'])) || empty(trim($this->datos['nombre']))) {
             $errors[] = "Faltan datos obligatorios para crear el registro en la base de datos.";
         }
 

@@ -4,4 +4,7 @@
     define("DB_CONTRASENIA", "25lucashidalgo26" );
     
     define("TABLA_USUARIOS", "Users");
+    define("TABLA_SUGERENCIAS", "Sugestions");
+    define("TABLA_VIAJES", "Trips");
+    define("TABLA_PRECIOS", "Prices");
 ?>
