@@ -79,8 +79,8 @@ class FormSignUp extends FormHandler
             $this->addError('nickName', 'El nickname es obligatorio');
         } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', $data['nickName'])) {
             $this->addError('nickName', 'Solo letras, números y _');
-        } elseif (strlen($data['nickName']) < 3 || strlen($data['nickName']) > 20) {
-            $this->addError('nickName', 'Debe tener entre 3 y 20 caracteres');
+        } elseif (strlen($data['nickName']) < 3 || strlen($data['nickName']) > 30) {
+            $this->addError('nickName', 'Debe tener entre 3 y 30 caracteres');
         }
 
         if (empty($data['email'])) {

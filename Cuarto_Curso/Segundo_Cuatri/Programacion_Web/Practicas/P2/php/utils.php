@@ -46,7 +46,7 @@ function putsignUpForm(){
                 title="Entre 8 y 15 caracteres, al menos una mayúscula, una minúscula, un dígito, un carácter especial y sin espacios. ">
 
         <button type="submit">Log In</button>
-        <a href="./html/altausuarios.php"> Sign Up</a>
+        <a href="./html/altausuarios.html"> Sign Up</a>
     </form>';
 }
 

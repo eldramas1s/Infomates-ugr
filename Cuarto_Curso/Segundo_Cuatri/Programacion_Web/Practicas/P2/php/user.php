@@ -14,6 +14,13 @@ class User extends DataObject
         "admin" => 0
     );
 
+    /**
+     * Comprueba si un usuario existe en la base da datos
+     *
+     * @param [type] $nickname
+     * @param [type] $email
+     * @return boolean True si existe y false si no existe o no se ha podido hacer la operacion
+     */
     public static function exists($nickname, $email): bool
     {
         $conn = parent::conectar();
@@ -28,7 +35,13 @@ class User extends DataObject
         }
     }
 
-    public static function create(array $data){
+    /**
+     * Crea una nueva tupla en la base de datos
+     *
+     * @param array $data
+     * @return boolean True si se puede crar y false en caso contrario
+     */ 
+    public static function create(array $data):bool{
         $conn = parent::conectar();
         $query = "INSERT INTO " . TABLA_USUARIOS . " (nickName, nombre, email, password, admin)
                 VALUES (?,?,?,?,?)";
@@ -47,6 +60,12 @@ class User extends DataObject
         }
     }
 
+    /**
+     * Obtiene un usuario según su nickName
+     *
+     * @param [type] $nickname
+     * @return  User|null Usuario si existe y null si no se encuentra
+     */
     public static function getUserByNickname($nickname): ?User
     {
         $conn = parent::conectar();
@@ -65,6 +84,13 @@ class User extends DataObject
         }
     }
 
+    /**
+     * Verifica la contraseña del usuario
+     *
+     * @param [type] $nickname
+     * @param [type] $password
+     * @return boolean True si es correcta y false si no lo es
+     */
     public static function verifyPassword($nickname, $password): bool
     {
         $user = self::getUserByNickname($nickname);
@@ -74,6 +100,12 @@ class User extends DataObject
         return false;
     }
 
+    /**
+     * Borra un usuario según su nickName
+     *
+     * @param [type] $nickname
+     * @return boolean True si consigue realizar la operacion y false en caso contrario
+     */
     public static function deleteByNickname($nickname): bool
     {
         $conn = parent::conectar();
@@ -87,6 +119,11 @@ class User extends DataObject
         }
     }
 
+    /**
+     * Valida que un usuario no se cree con datos nulos donde no los deba haber
+     *
+     * @return array Error sobre nulidad de elementos o array vacio
+     */
     public function validateUser(): array
     {
         $errors = [];
@@ -98,11 +135,21 @@ class User extends DataObject
         return $errors;
     }
 
+    /**
+     * Devuelve los datos del objeto implicito
+     *
+     * @return array Datos del objeto implicito
+     */
     public function getDatos(): array
     {
         return $this->datos;
     }
 
+    /**
+     * Comprueba si el objeto implicito es administrador
+     *
+     * @return boolean True si lo es y false si no lo es.
+     */
     public function isAdmin(): bool
     {
         return $this->datos['admin'] == 1;

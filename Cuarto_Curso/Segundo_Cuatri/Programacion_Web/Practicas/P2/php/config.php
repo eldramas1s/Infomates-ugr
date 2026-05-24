@@ -5,6 +5,7 @@
     
     define("TABLA_USUARIOS", "Users");
     define("TABLA_SUGERENCIAS", "Sugestions");
-    define("TABLA_VIAJES", "Trips");
-    define("TABLA_PRECIOS", "Prices");
+    define("TABLA_VIAJES", "Trip");
+    define("TABLA_INFO", "infoTrips");
+
 ?>

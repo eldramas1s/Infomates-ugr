@@ -21,7 +21,8 @@ form fieldset{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.8em;
+    gap: 0.4em;
+    
 }
 
 form label{
@@ -34,21 +35,22 @@ form input{
     border: 0.1em solid #ccc;
     border-radius: 0.4em;
     font-family: 'Montserrat', sans-serif;
-    transition: transform 0.3s ease;
+    transition: border-color 0.3s ease;
 }
 
 form input:hover {
-    transform: scale(1.05);
     cursor: pointer;
 }
 
 form input:focus {
-    transform: scale(1);
     border-color: #B59349;
 }
 
 form input[type="text"],form input[type="email"], form input[type="password"] {
     flex-grow: 1; 
+}
+form input.error {
+    border: 0.2em solid red;
 }
 
 form textarea {
@@ -56,13 +58,16 @@ form textarea {
     border: 0.1em solid #ccc;
     border-radius: 0.4em;
     font-family: 'Montserrat', sans-serif;
-    transition: transform 0.3s ease;
+    transition: border-color 0.3s ease;
     resize: vertical; 
 }
 
 form textarea:hover {
-    transform: scale(1.05);
     cursor: pointer;
+}
+
+form textarea.error{
+    border: 0.2em solid red;
 }
 
 form select {
@@ -74,7 +79,6 @@ form select {
 }
 
 form select:hover {
-    transform: scale(1.05);
     cursor: pointer;
 }
 
@@ -369,4 +373,26 @@ form#logoutForm button#logoutbtn {
 #logoutbtn:hover {
     background-color: #7a0015;
     transform: scale(1.1);
+}
+
+.field {
+    position: relative;
+    display: block;
+    padding: 1em;
+}
+
+/* =========================================
+    ERRORES
+   ========================================= */
+
+.errorMessage {
+
+    position: absolute;
+    top: -1.2em;
+    right: 0;
+    color: red;
+    font-size: 0.8em;
+    white-space: nowrap;
+    margin : 0.3em;
+
 }

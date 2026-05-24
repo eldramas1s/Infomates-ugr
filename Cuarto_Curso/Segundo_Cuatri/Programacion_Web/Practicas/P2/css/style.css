@@ -46,6 +46,7 @@ main{
 }
 
 p{
+    position: relative;
     text-align: justify;
     padding: 0.5em;
 }

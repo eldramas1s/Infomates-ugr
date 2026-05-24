@@ -63,11 +63,11 @@
 
                         <label for="fecha_salida">From:</label>
                         <input type="date" id="fecha_salida" name="fecha_salida"
-                            required min="2026-04-22">
+                            required min=<?php echo date('Y-m-d');?>>
 
                         <label for="fecha_regreso">To:</label>
                         <input type="date" id="fecha_regreso" name="fecha_regreso"
-                            required min="2026-04-23">
+                            required min=<?php echo date('Y-m-d');?>>
 
                         <button type="submit"><img id="icono_busqueda"
                                 src="./imagenes/icono_busqueda.png"

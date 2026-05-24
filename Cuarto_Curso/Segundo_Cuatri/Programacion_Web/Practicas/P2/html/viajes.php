@@ -25,6 +25,7 @@
                 putAvatar($_SESSION['admin'], $_SESSION['nickName'],1);
             }
             ?>
+
             <nav id="menuHeader">
                 <ul>
                     <li><a href="../index.php">Inicio</a></li>
@@ -454,6 +455,30 @@
                 </article>
             </section>
 
+        <?php if($_SESSION['admin']): ?>
+        <form action="addTrip.php" method="post">
+            <div class="field">
+                <label for="paisViaje" name="pais">Pais</label>
+                <input type="text" name="pais" id="paisViaje">
+            </div>
+            <div class="field">
+                <label for="lugarViaje" name="place">Lugar</label>
+                <input type="text" name="place" id="lugarViaje">
+            </div>
+            <div class="field">
+                <label for="precioViaje" name="price">Precio</label>
+                <input type="number" name="price" id="precioViaje" step="0.01" min ="0.00">
+            </div>
+            <div class="field">
+                <label for="fechaViaje" name="date">Fecha</label>
+                <input type="date" name="date" id="fechaViaje">
+            </div>
+            <div class="field">
+                <label for="fechaViaje" name="date">Fecha</label>
+                <input type="date" name="date" id="fechaViaje" min=<?php echo date('Y-m-d');?>>
+            </div>
+        </form>
+        <?php endif; ?>
         </main>
         <footer>
             <nav id="menuFooter">
