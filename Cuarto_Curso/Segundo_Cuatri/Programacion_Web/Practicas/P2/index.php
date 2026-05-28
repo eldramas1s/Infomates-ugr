@@ -1,3 +1,9 @@
+<?php
+    //Iniciamos la sesión
+    session_start();
+    require_once './php/utils.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -16,15 +22,7 @@
             <img  id="logoHeader" src="./imagenes/logoAzimut.png" alt="Logotipo Azimut">
 
             <?php
-            require_once './php/utils.php';
-            require_once './php/forms.php';
-            session_start();
-
-            //Procesamos el formulario de login
-            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nickName']) && isset($_POST['password'])){
-                $form = new FormLogIn();
-                $form->handle($_POST); //Si hay errores se escriben en el html
-            }
+            
 
             //Si no se ha loggeado, pongo el formulario
             if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
@@ -54,6 +52,7 @@
                     <p>Bienvenido a Azimut Viajes, tu agencia de viajes de confianza para descubrir los mejores destinos del mundo. Aquí encontrarás las mejores ofertas para tu próximo viaje. Seremos tu <strong>rumbo</strong> y tu <strong>dirección</strong> en cada aventura.</p>
                 </article>
             </section>
+            <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
             <section id="searchSection" >
                 <form id="formularioBusqueda" method="post" action="./index.php" autocomplete="off" target="blank">
 
@@ -77,6 +76,7 @@
                 </form>
 
             </section>
+            <?php endif ?>
         </main>
         <footer>
             <nav id="menuFooter">
@@ -90,6 +90,7 @@
             </nav>
             <p id="fechaModificacion">27/04/2026</p>
         </footer>
+        <script type="module" src="./js/main.js"></script>
     </body>
 </html>
 

@@ -13,9 +13,7 @@ export class formularioAlta extends formularioBase{
      */
     constructor(){
         super("formularioAlta");
-        //TODO: Corregir url
         this.endpoint = "../php/api/altausuarios.php"
-        //this.endpoint = "https://bahia.ugr.es/~lucashidalgo/pe2/php/api/altausuarios.php";
         this.avisoLeido = false;
     }
 

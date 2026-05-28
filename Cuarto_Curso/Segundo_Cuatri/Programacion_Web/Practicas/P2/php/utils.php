@@ -38,13 +38,16 @@ function putAvatar($admin, $nickName, $level = 0){
 function putsignUpForm(){
     echo '
     <form class="index" method="post" action="./index.php" id="signUpForm" autocomplete="off">
-        <label for="nickName">Nickname:*</label>
-        <input type="text" id="nickName" name="nickName" required placeholder="menganito68">
+        <div class="field">
+            <label for="nickName">Nickname:*</label>
+            <input type="text" id="nickName" name="nickName" placeholder="menganito68">
+        </div>
 
-        <label for="password">Contraseña:*</label>
-        <input type="password" id="password" name="password" required placeholder="Contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.]).{8,15}"
-                title="Entre 8 y 15 caracteres, al menos una mayúscula, una minúscula, un dígito, un carácter especial y sin espacios. ">
-
+        <div class="field">
+            <label for="password">Contraseña:*</label>
+            <input type="password" id="password" name="password" placeholder="Contraseña">
+        </div>
+        
         <button type="submit">Log In</button>
         <a href="./html/altausuarios.html"> Sign Up</a>
     </form>';

@@ -13,11 +13,11 @@ abstract class FormHandler
     {
         $this->validate($data);
 
-        if(empty($this->errors)) {
+        if (empty($this->errors)) {
             return $this->process($data);
         }
 
-        return false;    
+        return false;
     }
 
     /**
@@ -59,8 +59,8 @@ abstract class FormHandler
     }
 }
 
-require_once 'user.php';
-require_once 'conection.php';
+require_once __DIR__ . '/user.php';
+require_once __DIR__ . '/conection.php';
 class FormSignUp extends FormHandler
 {
     public function validate(array $data)
@@ -146,6 +146,8 @@ class FormSignUp extends FormHandler
     }
 }
 
+require_once __DIR__ . '/trips.php';
+
 class FormLogIn extends FormHandler
 {
     public function validate(array $data)
@@ -173,8 +175,91 @@ class FormLogIn extends FormHandler
 
         $_SESSION['nickName'] = $data['nickName'];
         $_SESSION['loggedIn'] = true;
-        $_SESSION['admin'] = User::getUserByNickname($data['nickName'])->isAdmin(); 
+        $_SESSION['admin'] = User::getUserByNickname($data['nickName'])->isAdmin();
 
+        return true;
+    }
+}
+
+class FormAddTrip extends FormHandler
+{
+    private $healthData = [];
+
+    public function validate($data)
+    {
+        $this->errors=[];
+        
+        //Trabajamos con los datos saneados para poder modificarlos
+        $this->healthData = $data;
+
+        if (empty($data['continente'])) {
+            $this->addError('continente', 'El continente es necesario');
+        }
+        if (empty($data['pais'])) {
+            $this->addError('pais', 'El pais es necesario');
+        }
+        if (empty($data['place'])) {
+            $this->addError('place', 'El lugar es necesario');
+        }
+        if (empty($data['price'])) {
+            $data['price'] = 0.0;
+        }
+        if (empty($data['departureDate'])) {
+            $this->addError('departureDate', 'La fecha de salida es obligatoria');
+        }
+        if (empty($data['returnDate'])) {
+            $this->addError('returnDate', 'La fecha de vuelta es obligatoria');
+        }
+        if (empty($data['imagen'])) {
+            $data['imagen'] = 'default.jpg';
+        } else {
+            $img = basename($data['imagen']); //Se queda solo con [nombre].[formato]
+
+            //Ahora debemos buscar la imagen
+            $rutaImagenes = __DIR__ . '/../imagenes/';
+            $imagenDefecto = 'default.jpg';
+
+            $rutaCompleta = $rutaImagenes . $img;
+
+            if (file_exists($rutaCompleta)) {
+                $healthData['img']=$img;
+            } else {
+                $healthData['img']=$imagenDefecto;
+            }
+        }
+
+        // Validamos las fechas por seguridad, aunque en la base de datos también se haga
+        if (!empty($data['departureDate']) && !empty($data['returnDate'])) {
+            $fechaSalida = new DateTime($data['departureDate']);
+            $fechaVuelta = new DateTime($data['returnDate']);
+            $diferencia = $fechaSalida->diff($fechaVuelta)->days;
+
+            if ($fechaVuelta <= $fechaSalida) {
+                $this->addError('returnDate', 'La vuelta debe ser posterior a la salida');
+            } elseif ($diferencia < 3) {
+                $this->addError('returnDate', 'El viaje debe durar al menos 3 días');
+            }
+        }
+    }
+
+
+    //TODO: Modificar la imagen no me lo permite (DECIDIDO ASÍ)
+    public function process($data) {
+        //Buscar si existe el viaje
+        $trip = Trip::getTrip($this->healthData['continente'],$this->healthData['pais'],$this->healthData['place'], $this->healthData['departureDate'],$this->healthData['returnDate']);
+
+        if($trip==null){
+            if(!Trip::create($this->healthData)){
+                $this->addError('general','Ha habido un error al crear el viaje');
+                return false;
+            }
+        }else{
+            $datos=$trip->getDatos();
+            if(!Trip::modify($datos['continent'],$datos['country'],$datos['place'],$this->healthData['departureDate'],$datos['returnDate'],$this->healthData['departureDate'],$this->healthData['returnDate'])){
+                $this->addError('general','Ha habido un erro al modificar el viaje');
+                return false;
+            }
+        }
         return true;
     }
 }

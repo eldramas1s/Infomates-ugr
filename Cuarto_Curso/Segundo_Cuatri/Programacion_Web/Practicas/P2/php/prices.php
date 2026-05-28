@@ -1,8 +1,9 @@
 <?php
-
-use function PHPSTORM_META\type;
+////Esto no sirve (se hizo antes del cambio en la BD)
+//use function PHPSTORM_META\type;
 
 require_once __DIR__ . '/DataObject.php';
+require_once __DIR__ . '/config.php';
 
 /**
  * Clase que representa los precios de los viajes

@@ -7,5 +7,4 @@
     define("TABLA_SUGERENCIAS", "Sugestions");
     define("TABLA_VIAJES", "Trip");
     define("TABLA_INFO", "infoTrips");
-
 ?>
