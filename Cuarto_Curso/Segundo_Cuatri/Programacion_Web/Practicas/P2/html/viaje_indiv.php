@@ -10,26 +10,35 @@
     <body>
         <header>
 
-            <h1 id="nombreDecor">Azimut Viajes</h1>
+        <h1 id="nombreDecor">Azimut Viajes</h1>
 
-            <img id="logoHeader" src="../../imagenes/logoAzimut.png"
-                alt="Logotipo Azimut">
+        <img id="logoHeader" src="../imagenes/logoAzimut.png"
+            alt="Logotipo Azimut">
 
-            <nav id="menuHeader">
-                <ul>
-                    <li><a href="../../index.php">Inicio</a></li>
-                    <li><a href="../../html/viajes.php">Viajes</a></li>
-                    <li><a href="../../html/viajes_grupo.php">Viajes en
-                            grupo</a></li>
-                    <li><a href="../../html/ofertas.php">Ofertas</a></li>
-                    <li><a href="../../html/sobre_agencia.php">Sobre nuestra
-                            agencia</a></li>
-                    <li><a
-                            href="../../html/sugerencias.php">Sugerencias</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php
+        require_once '../php/utils.php';
+        require_once '../php/trips.php';
+        session_start();
 
+        //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
+        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
+            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 1);
+        }
+        ?>
+
+        <nav id="menuHeader">
+            <ul>
+                <li><a href="../index.php">Inicio</a></li>
+                <li><a href="../html/viajes.php?page=1">Viajes</a></li>
+                <li><a href="../html/viajes_grupo.php">Viajes en
+                        grupo</a></li>
+                <li><a href="../html/ofertas.php">Ofertas</a></li>
+                <li><a href="../html/sobre_agencia.php">Sobre nuestra
+                        agencia</a></li>
+                <li><a href="../html/sugerencias.php">Sugerencias</a></li>
+            </ul>
+        </nav>
+    </header>
         <main id="viajeIndividualMain">
             <section>
                 <h2>Jaén, el paraíso interior</h2>

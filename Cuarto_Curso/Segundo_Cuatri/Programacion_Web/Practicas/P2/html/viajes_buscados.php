@@ -1,10 +1,10 @@
+
 <?php
 require_once '../php/utils.php';
 require_once '../php/trips.php';
 session_start();
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,7 +14,7 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/form.css">
     <link rel="stylesheet" href="../css/viajes.css">
-    <title>Azimut Viajes | Viajes</title>
+    <title>Azimut Viajes | España</title>
 </head>
 
 <body>
@@ -22,21 +22,20 @@ error_reporting(E_ALL);
 
         <h1 id="nombreDecor">Azimut Viajes</h1>
 
-        <img id="logoHeader" src="../imagenes/logoAzimut.png"
+        <img id="logoHeader" src="../../imagenes/logoAzimut.png"
             alt="Logotipo Azimut">
 
-
         <?php
+
         //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 1);
+            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 2);
         }
         ?>
-
         <nav id="menuHeader">
             <ul>
                 <li><a href="../index.php">Inicio</a></li>
-                <li><a href="../html/viajes.php?page=1">Viajes</a></li>
+                <li><a href="../html/viajes.php">Viajes</a></li>
                 <li><a href="../html/viajes_grupo.php">Viajes en
                         grupo</a></li>
                 <li><a href="../html/ofertas.php">Ofertas</a></li>
@@ -59,24 +58,23 @@ error_reporting(E_ALL);
                             <summary>&#127757; " . htmlspecialchars($continentName) . " </summary>
                         <ul class=\"listaPaises\">";
                     foreach ($countriesArray as $country) {
-                        echo "<li><a href=\"../html/viajes_pais.php?country=" . htmlspecialchars($country) . "\"> " . $country . "</a></li>";
+                        echo "<li><a href=\"../html/viajes_pais.php?" . htmlspecialchars($country) . "\"> " . $country . "</a></li>";
                     }
                     echo "</ul> </details>";
                 }
             } else {
                 echo "<p> Parece que no hay destinos ;) </p>";
             }
-
             ?>
-
         </nav>
 
     </aside>
     <main class="viajesCuadricula">
-
         <?php
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $trips = Trip::getAll();
+        $country = isset($_GET['country']) ? $_GET['country'] : "";
+        //TODO: Cambiar 
+        $trips = Trip::getAllBetween($country,-1,-1);
         $trips = groupByNumber($trips, 9);
         $totalPages = count($trips);
         $prePag = $page;
@@ -112,65 +110,18 @@ error_reporting(E_ALL);
 
         ?>
 
-        <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === true): ?>
-            <h2>!Gestiona los viajes <?php echo $_SESSION['nickName'] ?>! </h2>
-            <form id="countryForm" action="./viajes.php" method="post">
-                <div class="field">
-                    <datalist id="continentes">
-                        <option value="Asia">Asia</option>
-                        <option value="Africa">Africa</option>
-                        <option value="Europa">Europa</option>
-                        <option value="Oceania">Oceania</option>
-                        <option value="America">America</option>
-                    </datalist>
-                    <label for="continent">Continente</label>
-                    <input type="text" id="continent" name="continent" list="continentes">
-                </div>
-                <div class="field">
-                    <label for="country">Pais</label>
-                    <input type="text" name="country" id="country" list="paises">
-                    <datalist id="paises"></datalist>
-                </div>
-                <div class="field">
-                    <label for="place">Lugar</label>
-                    <input type="text" name="place" id="place" list="places">
-                    <datalist id="places"></datalist>
-                </div>
-                <div class="field">
-                    <label for="price">Precio</label>
-                    <input type="number" name="price" id="price" step="0.01" min="0.00">
-                </div>
-                <div class="field">
-                    <label for="fechaSalida">Fecha</label>
-                    <input type="date" name="departureDate" id="fechaSalida" min=<?php echo date('Y-m-d'); ?>>
-                </div>
-                <div class="field">
-                    <label for="fechaVuelta">Fecha</label>
-                    <input type="date" name="returnDate" id="fechaVuelta" min=<?php echo date('Y-m-d'); ?>>
-                </div>
-                <div class="field">
-                    <label for="img">Nombre de la imagen</label>
-                    <input type="text" name="img" id="img" placeholder="ejemplo.jpg">
-                </div>
-                <button type="submit">Done</button>
-            </form>
-
-            <!--Los scripts solo aportan funcionalidades a los administradores-->
-            <script src="../js/main.js" type="module"></script>
-            <script src="../js/deleteTrip.js" type="module"></script>
-        <?php endif; ?>
     </main>
     <footer>
         <nav id="menuFooter">
             <ul>
-                <li><a href="../html/contacto.php">Contacte con
+                <li><a href="../../html/contacto.php">Contacte con
                         nosotros</a></li>
-                <li><a href="../como_se_hizo.pdf"
+                <li><a href="../../como_se_hizo.pdf"
                         target="_blank">Cómo se
                         hizo</a></li>
             </ul>
         </nav>
-        <p id="fechaModificacion"><?php echo date('Y-m-d') ?></p>
+        <p id="fechaModificacion">27/04/2026</p>
     </footer>
 </body>
 

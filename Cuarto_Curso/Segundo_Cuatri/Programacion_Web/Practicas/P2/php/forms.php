@@ -185,24 +185,24 @@ class FormAddTrip extends FormHandler
 {
     private $healthData = [];
 
-    public function validate($data)
+    public function validate(array $data)
     {
         $this->errors=[];
         
         //Trabajamos con los datos saneados para poder modificarlos
         $this->healthData = $data;
 
-        if (empty($data['continente'])) {
-            $this->addError('continente', 'El continente es necesario');
+        if (empty($data['continent'])) {
+            $this->addError('continent', 'El continente es necesario');
         }
-        if (empty($data['pais'])) {
-            $this->addError('pais', 'El pais es necesario');
+        if (empty($data['country'])) {
+            $this->addError('country', 'El pais es necesario');
         }
         if (empty($data['place'])) {
             $this->addError('place', 'El lugar es necesario');
         }
         if (empty($data['price'])) {
-            $data['price'] = 0.0;
+            $this->healthData['price'] = 0.0;
         }
         if (empty($data['departureDate'])) {
             $this->addError('departureDate', 'La fecha de salida es obligatoria');
@@ -210,10 +210,10 @@ class FormAddTrip extends FormHandler
         if (empty($data['returnDate'])) {
             $this->addError('returnDate', 'La fecha de vuelta es obligatoria');
         }
-        if (empty($data['imagen'])) {
-            $data['imagen'] = 'default.jpg';
+        if (empty($data['img'])) {
+            $this->healthData['img'] = 'default.jpg';
         } else {
-            $img = basename($data['imagen']); //Se queda solo con [nombre].[formato]
+            $img = basename($data['img']); //Se queda solo con [nombre].[formato]
 
             //Ahora debemos buscar la imagen
             $rutaImagenes = __DIR__ . '/../imagenes/';
@@ -222,9 +222,9 @@ class FormAddTrip extends FormHandler
             $rutaCompleta = $rutaImagenes . $img;
 
             if (file_exists($rutaCompleta)) {
-                $healthData['img']=$img;
+                $this->healthData['img']=$img;
             } else {
-                $healthData['img']=$imagenDefecto;
+                $this->healthData['img']=$imagenDefecto;
             }
         }
 
@@ -244,9 +244,9 @@ class FormAddTrip extends FormHandler
 
 
     //TODO: Modificar la imagen no me lo permite (DECIDIDO ASÍ)
-    public function process($data) {
+    public function process(array $data) {
         //Buscar si existe el viaje
-        $trip = Trip::getTrip($this->healthData['continente'],$this->healthData['pais'],$this->healthData['place'], $this->healthData['departureDate'],$this->healthData['returnDate']);
+        $trip = Trip::getTrip($this->healthData['continent'],$this->healthData['country'],$this->healthData['place'], $this->healthData['departureDate'],$this->healthData['returnDate']);
 
         if($trip==null){
             if(!Trip::create($this->healthData)){
@@ -255,7 +255,7 @@ class FormAddTrip extends FormHandler
             }
         }else{
             $datos=$trip->getDatos();
-            if(!Trip::modify($datos['continent'],$datos['country'],$datos['place'],$this->healthData['departureDate'],$datos['returnDate'],$this->healthData['departureDate'],$this->healthData['returnDate'])){
+            if(!Trip::modify($datos['continent'],$datos['country'],$datos['place'],$datos['departureDate'],$datos['returnDate'],$this->healthData['departureDate'],$this->healthData['returnDate'])){
                 $this->addError('general','Ha habido un erro al modificar el viaje');
                 return false;
             }

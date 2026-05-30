@@ -22,7 +22,7 @@
     if(!$status){
         echo json_encode([
             "success"=>false,
-            "message"=>$form->getErrors()
+            "errors"=>$form->getErrors()
         ]);
         exit;
     }

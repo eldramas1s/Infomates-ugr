@@ -125,33 +125,16 @@ nav.flechasGrupos label:hover {
     transform: scale(1.2);
 }
 
-/* =========================================
-   INTERACTIVIDAD DE LOS GRUPOS
-   ========================================= */
-main.viajesCuadricula input[name="navGrupo"] {
-    display: none;
-}
-
 .viajes{
-    display: none;
     animation: aparecer 0.4s ease-out;
 }
 
-#radio1:checked~section.viajes#grupo1,
-#radio2:checked~section.viajes#grupo2{
+section.viajes{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     position:relative;
     width:100%;
     padding-bottom: 4em;
-}
-
-#radio1:checked ~ .flechasGrupos .flechaIzq {
-    display: none;
-}
-
-#radio2:checked ~ .flechasGrupos .flechaDcha {
-    display: none;
 }
 @keyframes aparecer {
     from {
@@ -163,18 +146,47 @@ main.viajesCuadricula input[name="navGrupo"] {
     }
 }
 
+
+main.viajesCuadricula section.viajes article.viajeTipo button.deleteButton{
+    position:absolute;
+
+    top: 0.3em;
+    right: 0.3em;
+    width:4.3em;
+    height: 4.3em;
+    border-radius: 50%;
+    border:none;
+
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    overflow: hidden;
+    
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+main.viajesCuadricula section.viajes article.viajeTipo button.deleteButon img{
+    
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    
+    
+    object-fit: cover !important;
+    object-position: center !important;
+}
 /* =========================================
    MEDIA QUERIES (MÓVILES)
    ========================================= */
 
 @media(max-width: 768px) {
-    #radio1:checked~section.viajes#grupo1,
-    #radio2:checked~section.viajes#grupo2{
-        display: grid;
-        grid-template-columns: 1fr;
+    section.viajes {
+        grid-template-columns: 1fr !important;
     }
 
-    aside#menuViajesPais{
+    aside#menuViajesPais {
         position: static;
         justify-items: center;
         align-items: center;
