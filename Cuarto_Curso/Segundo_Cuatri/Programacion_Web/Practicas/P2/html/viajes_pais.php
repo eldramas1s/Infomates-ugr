@@ -21,7 +21,7 @@ session_start();
 
         <h1 id="nombreDecor">Azimut Viajes</h1>
 
-        <img id="logoHeader" src="../../imagenes/logoAzimut.png"
+        <img id="logoHeader" src="../imagenes/logoAzimut.png"
             alt="Logotipo Azimut">
 
         <?php

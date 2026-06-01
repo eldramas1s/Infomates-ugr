@@ -150,6 +150,18 @@ error_reporting(E_ALL);
                     <input type="date" name="returnDate" id="fechaVuelta" min=<?php echo date('Y-m-d'); ?>>
                 </div>
                 <div class="field">
+                    <label for="lodging">Alojamiento</label>
+                    <input type="text" name="lodging" id="lodging" placeholder="[hotel], [albergue], [hostal]">
+                </div>
+                <div class="field">
+                    <label for="sortDesc">Breve descripción:</label>
+                    <input type="textarea" name="sortDesc" id="sortDesc" rows="3" columns="34" placeholder="Escribe una breve descripcion">
+                </div>
+                <div class="field">
+                    <label for="longDesc">Descripción:</label>
+                    <input type="textarea" name="longDesc" id="longDesc" rows="5" columns="50" placeholder="Escribe una breve descripcion">
+                </div>
+                <div class="field">
                     <label for="img">Nombre de la imagen</label>
                     <input type="text" name="img" id="img" placeholder="ejemplo.jpg">
                 </div>

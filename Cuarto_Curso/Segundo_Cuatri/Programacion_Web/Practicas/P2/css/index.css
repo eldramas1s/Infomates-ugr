@@ -2,24 +2,146 @@
    MAIN Y CONTENIDO CENTRAL (INDEX)
    ========================================= */
 
-/* Artículo de presentación */
 main section#introSection article {
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    grid-template-areas: 
-        "title title"
-        "image text";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "title "
+        "carrusel "
+        "text ";
 
     align-items: center;
 }
 
-main section#introSection article img {
-    grid-area: image;
+main section#introSection article div.carrusel {
+    grid-area: carrusel;
+    width: 100%;
+    position: relative;
 }
+
+main section#introSection article div.carrusel div.infoWrapper {
+    position: relative;
+    width: 100%;
+    height: 31.25em;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+main section#introSection article div.carrusel div.infoWrapper img#carruselImg {
+    width: 100%;
+    height: 100%; 
+    
+    max-height: none; 
+    margin-top: 0;    
+    
+    object-fit: cover;  
+    display: block;
+
+    background-color: #1A1A1A;
+    opacity: 1; 
+    transition: opacity 0.4s ease-in-out;
+}
+
+main section#introSection article div.carrusel div.infoWrapper h3#carruselNames {
+    position: absolute;
+    top: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #F8F9FA;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    z-index: 100;
+}
+
+main section#introSection article div.carrusel div.infoWrapper.apagado {
+    animation: desaparecer 1s ease-out forwards;
+}
+
+main section#introSection article div.carrusel div.infoWrapper.encendido {
+    animation: aparecer 1s ease-out forwards;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes desaparecer {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+main section#introSection article div.carrusel div.infoWrapper p#infoCarrusel {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80%;
+    text-align: center;
+    background-color: rgba(248, 249, 250, 0.6);
+    padding: 1em;
+    border-radius: 0.5em;
+    z-index: 100;
+}
+
+main section#introSection article div.carrusel nav.flechasGrupos {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em;
+    z-index: 101;
+
+    pointer-events: none;
+}
+
+main section#introSection article div.carrusel nav.flechasGrupos .flechaDcha,
+main section#introSection article div.carrusel nav.flechasGrupos .flechaIzq {
+    margin: 0;
+}
+
+main section#introSection article div.carrusel nav.flechasGrupos a {
+    pointer-events: auto;
+    text-decoration: none;
+    font-size: 3rem;
+    color: #B59349;
+    font-weight: bold;
+    line-height: 1;
+    transition: transform 0.2s ease, color 0.2s ease;
+
+
+    background: rgba(26, 26, 26, 0.7);
+    padding: 0.1em 0.35em 0.2em;
+    border-radius: 50%;
+}
+
+main section#introSection article div.carrusel nav.flechasGrupos a:hover {
+    color: #F8F9FA;
+    transform: scale(1.2);
+}
+
 
 main section#introSection article h2 {
     grid-area: title;
+    justify-self: center;
 }
 
 main section#introSection article p {
@@ -32,13 +154,14 @@ main section#introSection article p {
     main section#introSection article {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
-        grid-template-areas: 
+        grid-template-areas:
             "title"
             "image"
             "text";
 
         align-items: center;
     }
+
     main section#introSection article img {
         margin: 0 auto;
     }

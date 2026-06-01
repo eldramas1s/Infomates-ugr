@@ -107,6 +107,8 @@ export class formularioPaises extends formularioBase {
         const continentRegex = /^(Asia|Africa|África|Europa|Oceania|Oceanía|America|América)$/i;
         const ciudadRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+)*$/;
         const imgRegex = /^[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp|gif)$/i;
+        const textRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s.,!?¿¡-]+$/;
+        const lodgingRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜÇç0-9\s.'*-]+(?:,\s*[a-zA-ZáéíóúÁÉÍÓÚñÑüÜÇç0-9\s.'*-]+)*$/;
         const formData = this.obtenerDatos();
 
         const hoy = new Date();
@@ -170,7 +172,29 @@ export class formularioPaises extends formularioBase {
                 if (!value || value.trim() === "") return "Necesito una imagen";
                 if (!imgRegex.test(value.trim())) return "Formato inválido. Debe ser un nombre de archivo (ej: paris_2026.jpg).";
                 return null;
+            },
+
+            lodging: (value) => {
+                if(!value || value.trim()==="") return null;
+                if(value.length > 255) return "No permitimos tantos alojamientos";
+                if(!lodgingRegex.test(value)) return "Esto no son alojamientos en el formato correcto";
+                return null;
+            },
+
+            sortDesc: (value) =>{
+                if(!value || this.validCountries.trim()==="") return null;
+                if(value.length > 100) return "Esto es muy largo como descripción corta";
+                if(!textRegex.test(value)) return "¿Seguro que tienes buenas intenciones?¡No es texto!";
+                return null;
+            },
+
+            longDesc: (value) =>{
+                if(!value || this.validCountries.trim()==="") return null;
+                if(value.length > 255) return "Demasiado largo";
+                if(!textRegex.test(value)) return "¿Seguro que tienes buenas intenciones?¡No es texto!";
+                return null;
             }
+
         }
     }
 

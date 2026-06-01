@@ -12,7 +12,10 @@ class InfoTrips extends DataObject
         "country" => "",
         "place" => "",
         "price" => 0.0,
-        "img" => ""
+        "img" => "",
+        "lodging" =>"",
+        "sortDesc" => "",
+        "longDesc" => ""
     );
 
     /**
@@ -47,12 +50,36 @@ class InfoTrips extends DataObject
     public static function modify($data): bool
     {
         $conn = parent::conectar();
-        $query = "UPDATE " . TABLA_INFO . " SET price = ?, img=? WHERE
-         continent = ? AND country = ? AND place = ?";
+        $query = "UPDATE " . TABLA_INFO;
+         //continent = ? AND country = ? AND place = ?";
+
+        $modify=["price=?", "img=?"];
+        $parameters=[$data['price'],$data['img']];
+
+        if($data['lodging']!==""){
+            $modify[]="lodging=?";
+            $parameters[]=$data['lodging'];
+        }
+        if($data['sortDesc']!==""){
+            $modify[]="sortDesc=?";
+            $parameters[]=$data['sortDesc'];
+        }
+        if($data['longDesc']!==""){
+            $modify[]="longDesc=?";
+            $parameters[]=$data['longDesc'];
+        }
+
+        $query.=" SET " . implode(",", $modify);
+
+        $parameters[]=$data['continent'];
+        $parameters[]=$data['country'];
+        $parameters[]=$data['place'];
+
+        $query.=" WHERE continent=? AND country=? AND place=?";
 
         try {
             $stmt = $conn->prepare($query);
-            if ($stmt->execute([$data['price'], $data['img'], $data['continent'], $data['country'], $data['place']])) {
+            if ($stmt->execute($parameters)) {
                 return true;
             }
             return false;
@@ -71,11 +98,11 @@ class InfoTrips extends DataObject
     public static function create($data): bool
     {
         $conn = parent::conectar();
-        $query = "INSERT INTO " . TABLA_INFO . " (continent,country,place,price,img) VALUES (?,?,?,?,?)";
+        $query = "INSERT INTO " . TABLA_INFO . " (continent,country,place,price,img,lodging,sortDesc,longDesc) VALUES (?,?,?,?,?)";
 
         try {
             $stmt = $conn->prepare($query);
-            if ($stmt->execute([$data['continent'], $data['country'], $data['place'], $data['price'], $data['img']])) {
+            if ($stmt->execute([$data['continent'], $data['country'], $data['place'], $data['price'], $data['img'],$data['lodging'],$data['sortDesc'],$data['longDesc']])) {
                 return true;
             }
             return false;
@@ -144,6 +171,22 @@ class InfoTrips extends DataObject
             return -1;
         }
     }
+
+    public static function getForCarrusel(): array{
+        $conn = parent::conectar();
+        $query = "SELECT place, img, sortDesc FROM " . TABLA_INFO . " WHERE img IS NOT NULL
+                AND img!='' ORDER BY RAND() LIMIT 7";
+
+        try{
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        }catch(PDOException $e){
+            error_log('InfoTrips::getForCarrusel: '. $e->getMessage());
+            return [];
+        }
+    }
 }
 
 /**
@@ -158,7 +201,10 @@ class Trip extends DataObject
         "departureDate" => "",
         "returnDate" => "",
         "price" => 0.0,
-        "img" => ""
+        "img" => "",
+        "lodging" => "",
+        "sortDesc" => "",
+        "longDesc" => ""
     );
 
     public function __construct($data = [])
@@ -186,7 +232,10 @@ class Trip extends DataObject
             "country" => $data['country'],
             "place" => $data['place'],
             "price" => $data['price'],
-            "img" => $data['img']
+            "img" => $data['img'],
+            "lodging" => $data['lodging'],
+            "sortDesc" => $data['sortDesc'],
+            "longDesc" => $data['longDesc']
         );
         if (!InfoTrips::exists($data['continent'], $data['country'], $data['place'])) {
             InfoTrips::create($infoData);
@@ -488,7 +537,4 @@ class Trip extends DataObject
             return [];
         }
     }
-
-    //TODO: getAllByPlace(continent,country,place)
-
 }
