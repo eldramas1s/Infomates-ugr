@@ -402,7 +402,7 @@ class Trip extends DataObject
         return $html;
     }
 
-    public static function getAllBetween($country, $departureDate, $returnDate): array
+    public static function getAllBetween($continent,$country,$place, $departureDate, $returnDate): array
     {
         $conn = parent::conectar();
 
@@ -432,8 +432,18 @@ class Trip extends DataObject
         }
 
         if ($country !== -1 && $country !== "-1") {
-            $condiciones[] = "t.country = ?";
-            $parametros[] = $country;
+            $condiciones[] = "t.country LIKE ?";
+            $parametros[] = "%".$country."%";
+        }
+
+        if ($continent !== -1 && $continent!=='-1' ){
+            $condiciones[] = "t.continent LIKE ?";
+            $parametros[] = "%".$continent."%";
+        }
+
+        if($place !== -1 && $place !== '-1'){
+            $condiciones[] = "t.place LIKE ?";
+            $parametros[] = "%".$place."%";
         }
 
         // Si tenemos alguna condicion, la añadimos a la consulta

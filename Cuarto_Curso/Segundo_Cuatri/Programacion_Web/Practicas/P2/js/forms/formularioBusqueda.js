@@ -1,23 +1,106 @@
 ////////////////////////////
-// FORMULARIO PAISES
-////////////////////////////7
+// FORMULARIO BASICO
+////////////////////////////
 
 import { formularioBase } from "./formularioBase.js";
 
-export class formularioPaises extends formularioBase {
+export class formularioBusqueda extends formularioBase {
 
-    /**
-     * Constructor del manjeador del formulario de añadir un viaje
-     */
     constructor() {
-        super("countryForm");
-        this.endpoint = "../php/api/addTrip.php";
+        super('formularioBusqueda');
         this.validCountries = [];
         this.countriesDictionary = {};
         this.loadCountries();
 
-        this.setUpCountryChangeListener();
+
+        //Levantamos los listeners
         this.setUpContinentChangeListener();
+        this.setUpCountryChangeListener();
+    }
+
+    reglas() {
+        const continentRegex = /^(Asia|Africa|África|Europa|Oceania|Oceanía|America|América)$/i;
+        const ciudadRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+)*$/;
+
+        const formData = this.obtenerDatos();
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+
+        return {
+            continent: (value) => {
+                if (!value || value.trim() === "") return null;
+                if (!continentRegex.test(value.trim())) return "No es un continente válido";
+                return null;
+            },
+
+            country: (value) => {
+                if (!value || value.trim() === "") return null;
+                if (!formData.continent) return "Sin continente no hay país";
+                if (this.validCountries.length === 0) return null; //La lista de paises validos fallo
+                if (!this.validCountries.includes(value.trim())) return "El país que se ha introducido no existe";
+                return null;
+            },
+
+            place: (value) => {
+                if (!value || value.trim() === "") return null;
+                if (!ciudadRegex.test(value.trim())) return "Introduce un nombre de ciudad válido (solo letras, espacios, guiones o apóstrofes).";
+                return null;
+            },
+
+            departureDate: (value) => {
+                if (!value || value.trim() === "") return null;
+                const fechaSalida = new Date(value.trim());
+                fechaSalida.setHours(0, 0, 0, 0);
+
+                if (fechaSalida < hoy) return "La fecha no puede ser anterior a hoy";
+                return null;
+            },
+
+            returnDate: (value) => {
+                if (!value || value.trim() === "") return null;
+
+                const fechaVuelta = new Date(value.trim());
+
+                if (fechaVuelta < hoy) return "La fecha de vuelta no puede ser anterior a hoy";
+
+                if (formData.departureDate) {
+                    const fechaSalida = new Date(formData.departureDate);
+                    fechaSalida.setHours(0, 0, 0, 0);
+
+                    if (fechaVuelta <= fechaSalida) return "La vuelta debe ser posterior a la salida";
+
+                    const diferenciaMilisegundos = fechaVuelta - fechaSalida;
+                    const diferenciaDias = diferenciaMilisegundos / (1000 * 60 * 60 * 24);
+
+                    if (diferenciaDias < 3) return "El viaje debe ser de al menos 3 días";
+                }
+
+                return null;
+            }
+        }
+    }
+
+    async enviar(event) {
+        event.preventDefault();
+
+        const reglas = this.reglas();
+
+        for (const field in reglas) {
+            this.limpiarError(field);
+        }
+
+        const datos = this.obtenerDatos();
+        const errors = this.validar(datos);
+
+        if (Object.keys(errors).length > 0) {
+            for (const field in errors) {
+                this.mostrarError(field, errors[field]);
+            }
+        }
+        else {
+            this.form.submit(); //Ejecutamos una versión similar al envío que hay en el php
+        }
+
     }
 
     /**
@@ -98,91 +181,17 @@ export class formularioPaises extends formularioBase {
         }
     }
 
-    /**
-     * Devuelve las reglas del formulario de creacion y modificado de viajes
-     * @returns Array asociativo de funciones según el campo
-     */
-    reglas() {
-
-        const continentRegex = /^(Asia|Africa|África|Europa|Oceania|Oceanía|America|América)$/i;
-        const ciudadRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+)*$/;
-        const imgRegex = /^[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp|gif)$/i;
-        const formData = this.obtenerDatos();
-
-        const hoy = new Date();
-        hoy.setHours(0, 0, 0, 0); //Comparamos solo dias
-        return {
-            continent: (value) => {
-                if (!value || value.trim() === "") return "Continente vacío";
-                if (!continentRegex.test(value.trim())) return "No es un continente válido";
-                return null;
-            },
-
-            country: (value) => {
-                if (!value || value.trim() === "") return "Pais vacío";
-                if (!formData.continent) return "Sin continente no hay país";
-                if (this.validCountries.length === 0) return null; //La lista de paises validos fallo
-                if (!this.validCountries.includes(value.trim())) return "El país que se ha introducido no existe";
-                return null;
-            },
-
-            place: (value) => {
-                if (!value || value.trim() === "") return "Ciudad vacía";
-                if (!formData.country) return "Sin país no hay ciudad";
-                if (value.length < 2 || value.length > 50) return "El nombre de la ciudad debe tener entre 2 y 50 caracteres.";
-                if (!ciudadRegex.test(value.trim())) return "Introduce un nombre de ciudad válido (solo letras, espacios, guiones o apóstrofes).";
-                return null;
-            },
-
-            price: (value) => {
-                if (!value ) return "Precio inválido";
-                if (isNaN(value)) return "El precio debe ser un número.";
-                let price = parseFloat(value.trim());
-                if (price < 0) return "El precio lo paga el cliente";
-                return null;
-            },
-
-            departureDate: (value) => {
-                if (!value) return "Debe haber una fecha de salida";
-                const fechaSalida = new Date(value.trim());
-
-                if (fechaSalida <= hoy) return "La fecha debe ser posterior";
-                return null;
-            },
-
-            returnDate: (value) => {
-                if (!value) return "Los clientes deben volver";
-                const fechaVuelta = new Date(value.trim());
-                let fechaSalida = formData.departureDate;
-                if (!fechaSalida) return "La fecha de salida es necesaria";
-                fechaSalida = new Date(fechaSalida);
-                if (fechaVuelta <= hoy) return "La fecha de vuelta debe ser posterior a hoy"
-                if (fechaVuelta <= fechaSalida) return "No pueden volver si no se han ido los clientes";
-
-                //Un viaje durara tres dias como minimo
-                const diferenciaMilisegundos = fechaVuelta - fechaSalida;
-                const diferenciaDias = diferenciaMilisegundos / (1000 * 60 * 60 * 24);
-                if (diferenciaDias < 3) return "El viaje es muy corto";
-                return null;
-            },
-
-            img: (value) => {
-                if (!value || value.trim() === "") return "Necesito una imagen";
-                if (!imgRegex.test(value.trim())) return "Formato inválido. Debe ser un nombre de archivo (ej: paris_2026.jpg).";
-                return null;
-            }
-        }
-    }
-
     setUpCountryChangeListener() {
         //Tomamos el input del pais
         const inputCountry = document.querySelector('input[name="country"]');
 
         if (inputCountry) {
             inputCountry.addEventListener('change', (e) => {
+
                 let countrySelected = e.target.value.trim();
 
                 let placesList = document.getElementById('places');
+
                 //Vaciamos el input de la ciudad
                 const inputPlace = document.querySelector('input[name="place"]');
                 if (inputPlace) inputPlace.value = "";
@@ -203,7 +212,7 @@ export class formularioPaises extends formularioBase {
         const inputContinent = document.querySelector('input[name="continent"]');
         if (inputContinent) {
             inputContinent.addEventListener('change', () => {
-                //Vaciamos los input de pais y ciudad
+                //Vaciamos el input del pais y al ciudad
                 const inputCountry = document.querySelector('input[name="country"]');
                 const inputPlace = document.querySelector('input[name="place"]');
                 if (inputCountry) inputCountry.value = "";
@@ -212,6 +221,8 @@ export class formularioPaises extends formularioBase {
             })
         }
     }
+
+
     async loadCities(englishName) {
         const placesList = document.getElementById('places');
 
@@ -258,13 +269,4 @@ export class formularioPaises extends formularioBase {
         }
     }
 
-
-    /**
-     * Procesa el caso de exito
-     * @param {json} json 
-     */
-    onSuccess(json) {
-        alert(json.message);
-        location.reload();
-    }
 }

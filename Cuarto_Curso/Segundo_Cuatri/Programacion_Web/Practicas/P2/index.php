@@ -27,7 +27,7 @@
             if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
                 putsignUpForm();
             } else { //Si se ha loggeado ponemos el avatar con la inicial del nickname y el boton de cierre de sesión
-                putAvatar($_SESSION['admin'], $_SESSION['nickName']);
+                putAvatar($_SESSION['admin'], $_SESSION['nickName'],0);
             }
             ?> 
             <nav id="menuHeader">
@@ -53,19 +53,31 @@
             </section>
             <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
             <section id="searchSection" >
-                <form id="formularioBusqueda" method="post" action="./index.php" autocomplete="off" target="blank">
+                <form id="formularioBusqueda" method="get" action="./html/viajes_buscados.php" autocomplete="off" target="_self">
 
                     <fieldset>
-                        <input type="search" id="destino" name="destino" required
-                            placeholder="Destination" >
+                        <datalist id="continentes">
+                            <option value="Europa">Europa</option>
+                            <option value="Asia">Asia</option>
+                            <option value="America">América</option>
+                            <option value="Africa">África</option>
+                            <option value="Oceania">Oceanía</option>
+                        </datalist>
+                        <input type="text" id="continent" name="continent" placeholder="Continente" list="continentes">
+
+                        <datalist id="paises"></datalist>
+                        <input type="text" id="country" name="country" placeholder="País" list="paises">
+
+                        <datalist id="lugares"></datalist>
+                        <input type="text" id="place" name="place" placeholder="Lugar" list="lugares">
 
                         <label for="fecha_salida">From:</label>
-                        <input type="date" id="fecha_salida" name="fecha_salida"
-                            required min=<?php echo date('Y-m-d');?>>
+                        <input type="date" id="departureDate" name="departureDate"
+                            min="<?php echo date('Y-m-d');?>">
 
                         <label for="fecha_regreso">To:</label>
-                        <input type="date" id="fecha_regreso" name="fecha_regreso"
-                            required min=<?php echo date('Y-m-d');?>>
+                        <input type="date" id="returnDate" name="returnDate"
+                            min="<?php echo date('Y-m-d');?>">
 
                         <button type="submit"><img id="icono_busqueda"
                                 src="./imagenes/icono_busqueda.png"

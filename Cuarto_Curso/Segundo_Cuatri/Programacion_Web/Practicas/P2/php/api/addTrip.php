@@ -15,7 +15,7 @@
         exit;
     }
 
-    //Si no está avía la procesamos
+    //Si existen los datos, procesamos
     $form = new FormAddTrip();
     $status = $form->handle($data);
 

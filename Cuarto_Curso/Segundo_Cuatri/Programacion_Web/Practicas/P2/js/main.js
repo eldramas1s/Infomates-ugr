@@ -1,4 +1,5 @@
 import {formularioAlta} from "./forms/fomularioAlta.js";
+import { formularioBusqueda } from "./forms/formularioBusqueda.js";
 import { formularioPaises } from "./forms/formularioPaises.js";
 import { formularioSesion } from "./forms/formularioSesion.js";
 
@@ -12,4 +13,8 @@ if(document.getElementById("signUpForm")){
 
 if(document.getElementById("countryForm")){
     new formularioPaises();
+}
+
+if(document.getElementById("formularioBusqueda")){
+    new formularioBusqueda();
 }

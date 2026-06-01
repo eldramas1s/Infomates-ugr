@@ -21,8 +21,6 @@ function putAvatar($admin, $nickName, $level = 0){
         $html.= './php/logout.php">';
     } else if ($level == 1) {
         $html.= '../php/logout.php">';
-    } else {
-        $html.= '../../php/logout.php">';
     }
     $html.= '<button type="submit" id="logoutbtn">Log Out</button>
         </form>

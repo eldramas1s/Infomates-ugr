@@ -28,7 +28,7 @@ session_start();
 
         //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 2);
+            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 1);
         }
         ?>
         <nav id="menuHeader">
@@ -57,7 +57,7 @@ session_start();
                             <summary>&#127757; " . htmlspecialchars($continentName) . " </summary>
                         <ul class=\"listaPaises\">";
                     foreach ($countriesArray as $country) {
-                        echo "<li><a href=\"../html/viajes_pais.php?" . htmlspecialchars($country) . "\"> " . $country . "</a></li>";
+                        echo "<li><a href=\"../html/viajes_pais.php?country=" . htmlspecialchars($country) . "\"> " . $country . "</a></li>";
                     }
                     echo "</ul> </details>";
                 }
@@ -72,7 +72,7 @@ session_start();
         <?php
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $country = isset($_GET['country']) ? $_GET['country'] : "";
-        $trips = Trip::getAllBetween($country,-1,-1);
+        $trips = Trip::getAllBetween(-1, $country,-1,-1,-1);
         $trips = groupByNumber($trips, 9);
         $totalPages = count($trips);
         $prePag = $page;

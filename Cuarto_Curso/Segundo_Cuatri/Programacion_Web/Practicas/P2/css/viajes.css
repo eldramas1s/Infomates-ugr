@@ -89,16 +89,7 @@ main.viajesCuadricula section.viajes h2 {
    DISEÑO DE LOS BOTONES
    ========================================= */
 
-nav.flechasGrupos {
-    position:absolute;
-    display: flex;
-    width:100%;
-    left:0;
-    bottom:0;
-    z-index: 20;
-    pointer-events: none;
-    justify-content: space-between;
-}
+
 
 nav.flechasGrupos .flechaDcha {
     margin-left: auto;
@@ -110,21 +101,28 @@ nav.flechasGrupos .flechaIzq {
     margin-left: 1em;
 }
 
-nav.flechasGrupos label {
-    pointer-events: auto;
-    font-size: 3em;
-    color: #B59349;
-    cursor: pointer;
-    font-weight: bold;
-    user-select: none;
-    transition: transform 0.2s, color 0.2s;
+nav.flechasGrupos {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 4rem; 
+    width: 100%;
+    margin: 2rem 0; 
 }
 
-nav.flechasGrupos label:hover {
+nav.flechasGrupos a {
+    text-decoration: none; /* Elimina el molesto subrayado de los enlaces */
+    font-size: 2.5rem; /* Hace las flechas grandes y visibles */
+    color: #B59349; /* Usa el color dorado que usas en tus bordes (puedes cambiarlo) */
+    font-weight: bold;
+    line-height: 1; /* Evita que ocupen más alto del necesario */
+    transition: transform 0.2s ease, color 0.2s ease; /* Suaviza tu animación de hover */
+}
+
+nav.flechasGrupos a:hover {
     color: #1A1A1A;
     transform: scale(1.2);
 }
-
 .viajes{
     animation: aparecer 0.4s ease-out;
 }

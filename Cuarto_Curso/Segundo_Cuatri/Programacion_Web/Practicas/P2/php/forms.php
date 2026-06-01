@@ -187,8 +187,8 @@ class FormAddTrip extends FormHandler
 
     public function validate(array $data)
     {
-        $this->errors=[];
-        
+        $this->errors = [];
+
         //Trabajamos con los datos saneados para poder modificarlos
         $this->healthData = $data;
 
@@ -201,8 +201,17 @@ class FormAddTrip extends FormHandler
         if (empty($data['place'])) {
             $this->addError('place', 'El lugar es necesario');
         }
-        if (empty($data['price'])) {
-            $this->healthData['price'] = 0.0;
+        if (!isset($data['price']) || trim($data['price']) === '' || !is_numeric($data['price'])) {
+            $this->healthData['price'] = 0.0; // O manejas un error de validación
+        } else {
+            // 2. Si es numérico, lo transformamos a float y lo limitamos a 2 decimales
+            $priceFloat = (float)$data['price'];
+
+            if ($priceFloat < 0) {
+                $this->healthData['price'] = 0.0; // Evitamos precios negativos
+            } else {
+                $this->healthData['price'] = round($priceFloat, 2);
+            }
         }
         if (empty($data['departureDate'])) {
             $this->addError('departureDate', 'La fecha de salida es obligatoria');
@@ -222,9 +231,9 @@ class FormAddTrip extends FormHandler
             $rutaCompleta = $rutaImagenes . $img;
 
             if (file_exists($rutaCompleta)) {
-                $this->healthData['img']=$img;
+                $this->healthData['img'] = $img;
             } else {
-                $this->healthData['img']=$imagenDefecto;
+                $this->healthData['img'] = $imagenDefecto;
             }
         }
 
@@ -244,19 +253,20 @@ class FormAddTrip extends FormHandler
 
 
     //TODO: Modificar la imagen no me lo permite (DECIDIDO ASÍ)
-    public function process(array $data) {
+    public function process(array $data)
+    {
         //Buscar si existe el viaje
-        $trip = Trip::getTrip($this->healthData['continent'],$this->healthData['country'],$this->healthData['place'], $this->healthData['departureDate'],$this->healthData['returnDate']);
+        $trip = Trip::getTrip($this->healthData['continent'], $this->healthData['country'], $this->healthData['place'], $this->healthData['departureDate'], $this->healthData['returnDate']);
 
-        if($trip==null){
-            if(!Trip::create($this->healthData)){
-                $this->addError('general','Ha habido un error al crear el viaje');
+        if ($trip == null) {
+            if (!Trip::create($this->healthData)) {
+                $this->addError('general', 'Ha habido un error al crear el viaje');
                 return false;
             }
-        }else{
-            $datos=$trip->getDatos();
-            if(!Trip::modify($datos['continent'],$datos['country'],$datos['place'],$datos['departureDate'],$datos['returnDate'],$this->healthData['departureDate'],$this->healthData['returnDate'])){
-                $this->addError('general','Ha habido un erro al modificar el viaje');
+        } else {
+            $datos = $trip->getDatos();
+            if (!Trip::modify($datos['continent'], $datos['country'], $datos['place'], $datos['departureDate'], $datos['returnDate'], $this->healthData['departureDate'], $this->healthData['returnDate'])) {
+                $this->addError('general', 'Ha habido un erro al modificar el viaje');
                 return false;
             }
         }

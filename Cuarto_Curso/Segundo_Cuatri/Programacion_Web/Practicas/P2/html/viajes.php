@@ -1,6 +1,7 @@
 <?php
 require_once '../php/utils.php';
 require_once '../php/trips.php';
+
 session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -138,7 +139,7 @@ error_reporting(E_ALL);
                 </div>
                 <div class="field">
                     <label for="price">Precio</label>
-                    <input type="number" name="price" id="price" step="0.01" min="0.00">
+                    <input type="number" name="price" id="price" step="1" min="0">
                 </div>
                 <div class="field">
                     <label for="fechaSalida">Fecha</label>

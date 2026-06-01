@@ -22,7 +22,7 @@ session_start();
 
         <h1 id="nombreDecor">Azimut Viajes</h1>
 
-        <img id="logoHeader" src="../../imagenes/logoAzimut.png"
+        <img id="logoHeader" src="../imagenes/logoAzimut.png"
             alt="Logotipo Azimut">
 
         <?php
@@ -58,7 +58,7 @@ session_start();
                             <summary>&#127757; " . htmlspecialchars($continentName) . " </summary>
                         <ul class=\"listaPaises\">";
                     foreach ($countriesArray as $country) {
-                        echo "<li><a href=\"../html/viajes_pais.php?" . htmlspecialchars($country) . "\"> " . $country . "</a></li>";
+                        echo "<li><a href=\"../html/viajes_pais.php?country=" . htmlspecialchars($country) . "\"> " . $country . "</a></li>";
                     }
                     echo "</ul> </details>";
                 }
@@ -70,11 +70,16 @@ session_start();
 
     </aside>
     <main class="viajesCuadricula">
+        
         <?php
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $country = isset($_GET['country']) ? $_GET['country'] : "";
-        //TODO: Cambiar 
-        $trips = Trip::getAllBetween($country,-1,-1);
+        $country = isset($_GET['country']) && $_GET['country'] !== ''? $_GET['country'] : -1;
+        $continent = isset($_GET['continent']) && $_GET['continent'] !== ''? $_GET['continent'] : -1;
+        $place = isset($_GET['place']) && $_GET['place'] !== ''? $_GET['place'] : -1;
+        $departureDate = !empty($_GET['departureDate']) && $_GET['departureDate'] !== ''? $_GET['departureDate'] : -1;
+        $returnDate = !empty($_GET['returnDate']) && $_GET['returnDate'] !== ''? $_GET['returnDate'] : -1;
+
+        $trips = Trip::getAllBetween($continent,$country,$place,$departureDate,$returnDate);
         $trips = groupByNumber($trips, 9);
         $totalPages = count($trips);
         $prePag = $page;
@@ -85,11 +90,15 @@ session_start();
             $posPag = ($page % $totalPages) + 1;
         }
 
+        //Tomamos los parametros para la consulta de cambio de página
+        $urlParams=$_GET;
+        unset($urlParams['page']); //La pagina la gestionamos nosotros, asique la quitamos
+        $queryString = http_build_query($urlParams);
         ?>
         <?php if($totalPages>1):?>
             <nav class="flechasGrupos">
-                <a href="../html/viajes.php?page=<?php echo $prePag; ?>" class="flechaIzq">&#10094;</a>
-                <a href="../html/viajes.php?page=<?php echo $posPag; ?>" class="flechaDcha">&#10095;</a>
+                <a href="../html/viajes.php?page=<?php echo $prePag; ?>&<?php echo $queryString?>" class="flechaIzq">&#10094;</a>
+                <a href="../html/viajes.php?page=<?php echo $posPag; ?>&<?php echo $queryString?>" class="flechaDcha">&#10095;</a>
             </nav>
         <?php endif?>
 
