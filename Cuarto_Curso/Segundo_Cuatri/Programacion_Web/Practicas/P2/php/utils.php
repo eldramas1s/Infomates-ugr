@@ -129,8 +129,12 @@ function putFormSugerencias(){
     echo $html;
 }
 
-//TODO:DOCUMENTACION
-
+/**
+ * VAlida que la fecha pasada como argumento sea válida
+ *
+ * @param [type] $date
+ * @return void
+ */
 function validateDate($date){
     $validDate = false;
     try {
@@ -149,12 +153,109 @@ function validateDate($date){
     return $validDate;
 }
 
-function groupByNumber($array, $number){
+/**
+ * Dado un array y un número positivo, lo agrupa en subarrays de ese numero de elementos o menor
+ *
+ * @param [type] $array
+ * @param [type] $number
+ * @return array 
+ */
+function groupByNumber($array, $number):array{
     if($number <= 1) return $array;
 
     return array_chunk($array, $number);
 }
 
+
+/**
+ * Escribe la cabecera según el nuvel de la jerarquía de archivos en la que nos encontremos
+ *
+ * @param integer $level nivel de la jerarquía de archivos (0 para index.php, 1 para archivos dentro de html/)
+ * @return void 
+ */
+function putHeader($level=0){
+    echo "<header>
+
+        <h1 id=\"nombreDecor\">Azimut Viajes</h1>";
+
+    if($level == 0){
+        echo "<img id=\"logoHeader\" src=\"./imagenes/logoAzimut.png\" alt=\"Logotipo Azimut\">";
+    } else if($level == 1){
+        echo "<img id=\"logoHeader\" src=\"../imagenes/logoAzimut.png\" alt=\"Logotipo Azimut\">";
+    }
+
+    //Si no se ha loggeado, pongo el formulario
+    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
+        if($level == 0){
+            putsignUpForm();
+        } else if($level == 1){
+            echo '<a href="../index.php" id="Session" style="grid-area: signUpForm; justify-self: center;">Inicia sesión</a>';
+
+        }
+    } else { //Si se ha loggeado ponemos el avatar con la inicial del nickname y el boton de cierre de sesión
+        putAvatar($_SESSION['admin'], $_SESSION['nickName'], $level);
+    }
+    
+    if($level == 0){
+        echo "<nav id=\"menuHeader\">
+            <ul>
+                <li><a href=\"./index.php\">Inicio</a></li>
+                <li><a href=\"./html/viajes.php?page=1\">Viajes</a></li>
+                <li><a href=\"./html/viajes_grupo.php\">Viajes en
+                        grupo</a></li>
+                <li><a href=\"./html/ofertas.php\">Ofertas</a></li>
+                <li><a href=\"./html/sobre_agencia.php\">Sobre nuestra
+                        agencia</a></li>
+                <li><a href=\"./html/sugerencias.php\">Sugerencias</a></li>
+            </ul>
+        </nav>";
+    } else if($level == 1){
+        echo "<nav id=\"menuHeader\">
+            <ul>
+                <li><a href=\"../index.php\">Inicio</a></li>
+                <li><a href=\"../html/viajes.php?page=1\">Viajes</a></li>
+                <li><a href=\"../html/viajes_grupo.php\">Viajes en
+                        grupo</a></li>
+                <li><a href=\"../html/ofertas.php\">Ofertas</a></li>
+                <li><a href=\"../html/sobre_agencia.php\">Sobre nuestra
+                        agencia</a></li>
+                <li><a href=\"../html/sugerencias.php\">Sugerencias</a></li>
+            </ul>
+        </nav>";
+    }
+    echo "</header>";
+}
+
+/**
+ * Escribe el pie de página según el nivel de la jerarquía de archivos en la que nos encontremos
+ *
+ * @param integer $level
+ * @return void
+ */
+function putFooter($level = 0){
+    echo "<footer>
+        <nav id=\"menuFooter\">
+            <ul>";
+
+    if($level == 0){
+        echo "<li><a href=\"./html/contacto.php\">Contacte con
+                        nosotros</a></li>
+              <li><a href=\"./como_se_hizo.pdf\"
+                        target=\"_blank\">Cómo se
+                        hizo</a></li>";
+
+    } else if($level == 1){
+        echo "<li><a href=\"../html/contacto.php\">Contacte con
+                        nosotros</a></li>
+              <li><a href=\"../como_se_hizo.pdf\"
+                        target=\"_blank\">Cómo se
+                        hizo</a></li>";
+    }
+    echo "</ul>
+        </nav>
+        <p id=\"fechaModificacion\">" . date('Y-m-d') . "</p>
+    </footer>";
+}
 ?>
 
 

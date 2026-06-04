@@ -7,12 +7,13 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     buttons.forEach(button =>{
         button.addEventListener('click',async (e)=>{
+            e.preventDefault();
             //Obtenemos la tarjeta y las fechas necesarias
             const card = button.closest('.viajeTipo');
             const dateSelector = card.querySelector('.selectorFecha');
             const valueDate = dateSelector.value;
 
-            if(valueDate==null){
+            if(valueDate==null || valueDate.trim()==="null" || valueDate.trim()===""){
                 alert('Por favor, seleccione una fecha');
                 return;
             }

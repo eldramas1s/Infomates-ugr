@@ -66,25 +66,19 @@ export class formularioPaises extends formularioBase {
 
         //Ya tenemos los paises entonces, los procesamos segun como los devuelve la API
         // Mapeamos para obtener los nombres comunes en español y los ordenamos de la A a la Z
-        this.validCountries = paises
-            .map(p => {
+        this.validCountries = paises.map(p => {
                 const nombreEspaniol = p.translations?.spa?.common;
                 const nombreIngles = p.name?.common;
                 if (!nombreEspaniol) return null;
 
-                const paisFormateado = nombreEspaniol
-                    .split(' ')
-                    .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
-                    .join(' ');
+                const paisFormateado = nombreEspaniol.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(' ');
 
                 if (nombreIngles) {
                     this.countriesDictionary[paisFormateado] = nombreIngles;
                 }
 
                 return paisFormateado;
-            })
-            .filter(Boolean)
-            .sort((a, b) => a.localeCompare(b));
+            }).filter(Boolean).sort((a, b) => a.localeCompare(b));
 
         //Rellenamos el datalist paises
         let lista = document.getElementById("paises");
@@ -137,7 +131,7 @@ export class formularioPaises extends formularioBase {
             },
 
             price: (value) => {
-                if (!value ) return "Precio inválido";
+                if (!value || value.trim() === "") return "Precio inválido";
                 if (isNaN(value)) return "El precio debe ser un número.";
                 let price = parseFloat(value.trim());
                 if (price < 0) return "El precio lo paga el cliente";
@@ -145,7 +139,7 @@ export class formularioPaises extends formularioBase {
             },
 
             departureDate: (value) => {
-                if (!value) return "Debe haber una fecha de salida";
+                if (!value || value.trim() === "") return "Debe haber una fecha de salida";
                 const fechaSalida = new Date(value.trim());
 
                 if (fechaSalida <= hoy) return "La fecha debe ser posterior";
@@ -153,7 +147,7 @@ export class formularioPaises extends formularioBase {
             },
 
             returnDate: (value) => {
-                if (!value) return "Los clientes deben volver";
+                if (!value || value.trim() === "") return "Los clientes deben volver";
                 const fechaVuelta = new Date(value.trim());
                 let fechaSalida = formData.departureDate;
                 if (!fechaSalida) return "La fecha de salida es necesaria";
@@ -182,14 +176,14 @@ export class formularioPaises extends formularioBase {
             },
 
             sortDesc: (value) =>{
-                if(!value || this.validCountries.trim()==="") return null;
+                if(!value || value.trim()==="") return null;
                 if(value.length > 100) return "Esto es muy largo como descripción corta";
                 if(!textRegex.test(value)) return "¿Seguro que tienes buenas intenciones?¡No es texto!";
                 return null;
             },
 
             longDesc: (value) =>{
-                if(!value || this.validCountries.trim()==="") return null;
+                if(!value || value.trim()==="") return null;
                 if(value.length > 255) return "Demasiado largo";
                 if(!textRegex.test(value)) return "¿Seguro que tienes buenas intenciones?¡No es texto!";
                 return null;
@@ -198,6 +192,9 @@ export class formularioPaises extends formularioBase {
         }
     }
 
+    /**
+     * Configura el listener para cuando se cambia el país, para cargar las ciudades correspondientes
+     */
     setUpCountryChangeListener() {
         //Tomamos el input del pais
         const inputCountry = document.querySelector('input[name="country"]');
@@ -223,6 +220,9 @@ export class formularioPaises extends formularioBase {
 
     }
 
+    /**
+     * Configura el listener para cuando se cambia el continente, para cargar los países correspondientes
+     */
     setUpContinentChangeListener() {
         const inputContinent = document.querySelector('input[name="continent"]');
         if (inputContinent) {
@@ -236,6 +236,12 @@ export class formularioPaises extends formularioBase {
             })
         }
     }
+
+    /**
+     * Carga las ciudades disponibles para un país dado utilizando la API gratuita Countries Now.
+     * @param {string} englishName Nombre del país en inglés
+     * @returns nothing
+     */
     async loadCities(englishName) {
         const placesList = document.getElementById('places');
 

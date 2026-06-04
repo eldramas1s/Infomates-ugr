@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}formularioAlta\PYGZdq{}}\PYG{p}{))\PYGZob{}}
+\PYG{+w}{    }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+nx}{formularioAlta}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

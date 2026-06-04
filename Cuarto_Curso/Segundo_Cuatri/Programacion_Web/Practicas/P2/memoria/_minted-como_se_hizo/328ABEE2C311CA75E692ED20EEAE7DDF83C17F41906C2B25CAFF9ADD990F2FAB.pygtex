@@ -1,0 +1,46 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\PYG{o}{\PYGZlt{}?}\PYG{n+nx}{php}
+\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Crea un viaje creando el destino si no existe o modificandolo si existe}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param [type] \PYGZdl{}data}
+\PYG{c+cm}{     * @return boolean True si se crea y false si no se crea o si hay fallo}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kr}{public}\PYG{+w}{ }\PYG{k}{static}\PYG{+w}{ }\PYG{k+kd}{function}\PYG{+w}{ }\PYG{n+nx}{create}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{)}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{bool}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{\PYGZdl{}conn}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{parent}\PYG{o}{::}\PYG{n+nx}{conectar}\PYG{p}{();}
+\PYG{+w}{        }\PYG{n+nx}{\PYGZdl{}infoData}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{array}\PYG{p}{(}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}continent\PYGZdq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}country\PYGZdq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}place\PYGZdq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}price\PYGZdq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}img\PYGZdq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}img\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}lodging\PYGZdq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lodging\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}sortDesc\PYGZdq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sortDesc\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}longDesc\PYGZdq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}longDesc\PYGZsq{}}\PYG{p}{]}
+\PYG{+w}{        }\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{InfoTrips}\PYG{o}{::}\PYG{n+nx}{exists}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{],}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{InfoTrips}\PYG{o}{::}\PYG{n+nx}{create}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}infoData}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{InfoTrips}\PYG{o}{::}\PYG{n+nx}{modify}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}infoData}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{n+nx}{\PYGZdl{}query}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}INSERT INTO \PYGZdq{}}\PYG{+w}{ }\PYG{p}{.}\PYG{+w}{ }\PYG{n+nx}{TABLA\PYGZus{}VIAJES}\PYG{+w}{ }\PYG{p}{.}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}(continent, country, place, departureDate, returnDate) VALUES(?,?,?,?,?)\PYGZdq{}}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}stmt}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}conn}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{prepare}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}query}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{execute}\PYG{p}{([}
+\PYG{+w}{                }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{                }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{                }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{                }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{                }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{]}
+\PYG{+w}{            }\PYG{p}{]);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{PDOException}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{error\PYGZus{}log}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Trip::create \PYGZsq{}}\PYG{+w}{ }\PYG{p}{.}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}e}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{getMessage}\PYG{p}{());}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{o}{?\PYGZgt{}}
+\end{Verbatim}

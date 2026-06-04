@@ -135,6 +135,17 @@ h1#nombreDecor {
     margin: 0;
 }
 
+main section h2 {
+
+    justify-self: center;
+    justify-content: center;
+    padding: 1em;
+    background-color: #F8F9FA;
+    border-radius: 14em;
+    margin-bottom: 0.5em;
+
+}
+
 header #logoHeader {
     grid-area: logoHeader;
     justify-self: center; /* Lo centra perfectamente */ 
@@ -224,7 +235,7 @@ nav ul {
     gap: 1.5em; 
 }
 
-nav ul li a, details{
+nav ul li a, details, #Session{
     text-decoration: none;
     color: #1A1A1A;
     font-size: 1.1em;
@@ -238,7 +249,7 @@ details summary{
     text-align: left;
 }
 
-nav ul li a:hover, details:not([open]):hover{
+nav ul li a:hover, details:not([open]):hover, #Session:hover {
     background-color: #515151;
     color: white; 
     cursor: pointer;

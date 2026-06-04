@@ -1,0 +1,90 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZlt{}?}\PYG{n+nx}{php}
+
+\PYG{k+kd}{class}\PYG{+w}{ }\PYG{n+nx}{FormSignUp}\PYG{+w}{ }\PYG{k}{extends}\PYG{+w}{ }\PYG{n+nx}{FormHandler}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kr}{public}\PYG{+w}{ }\PYG{k+kd}{function}\PYG{+w}{ }\PYG{n+nx}{validate}\PYG{p}{(}\PYG{n+nx}{array}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{errors}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[];}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{empty}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nombre\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}nombre\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}El nombre es obligatorio\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n+nx}{elseif}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{strlen}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nombre\PYGZsq{}}\PYG{p}{])}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{30}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}nombre\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}El nombre no puede tener más de 30 caracteres\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n+nx}{elseif}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{preg\PYGZus{}match}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}/\PYGZca{}[A\PYGZhy{}Za\PYGZhy{}zÁÉÍÓÚáéíóúÑñÜü ]+\PYGZdl{}/\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nombre\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}nombre\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}El nombre solo puede contener letras y espacios\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{empty}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}El nickname es obligatorio\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n+nx}{elseif}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{preg\PYGZus{}match}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}/\PYGZca{}[a\PYGZhy{}zA\PYGZhy{}Z0\PYGZhy{}9\PYGZus{}]+\PYGZdl{}/\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Solo letras, números y \PYGZus{}\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n+nx}{elseif}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{strlen}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{])}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mf}{3}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{strlen}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{])}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{30}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Debe tener entre 3 y 30 caracteres\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{empty}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}email\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}email\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}El email es obligatorio\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n+nx}{elseif}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{filter\PYGZus{}var}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}email\PYGZsq{}}\PYG{p}{],}\PYG{+w}{ }\PYG{n+nx}{FILTER\PYGZus{}VALIDATE\PYGZus{}EMAIL}\PYG{p}{))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}email\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Email no válido\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{empty}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}La contraseña es obligatoria\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n+nx}{elseif}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{strlen}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{])}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mf}{8}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{strlen}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{])}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{15}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Debe tener entre 8 y 15 caracteres\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n+nx}{elseif}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{preg\PYGZus{}match}\PYG{p}{(}
+\PYG{+w}{        }\PYG{l+s+s1}{\PYGZsq{}/(?=.*[a\PYGZhy{}z])(?=.*[A\PYGZhy{}Z])(?=.*\PYGZbs{}d)(?=.*[\PYGZdl{}@\PYGZdl{}!\PYGZpc{}*?\PYGZam{}.]).\PYGZob{}8,15\PYGZcb{}/\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Debe contener mayúscula, minúscula, número y símbolo\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{isset}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}aceptar\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}aceptar\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Debes aceptar el aviso legal\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{isset}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}adultez\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}adultez\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Debes indicar si eres mayor de edad\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kr}{public}\PYG{+w}{ }\PYG{k+kd}{function}\PYG{+w}{ }\PYG{n+nx}{process}\PYG{p}{(}\PYG{n+nx}{array}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{\PYGZdl{}esAdulto}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{isset}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}adultez\PYGZsq{}}\PYG{p}{])}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kr}{int}\PYG{p}{)}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}adultez\PYGZsq{}}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+m+mf}{1}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{\PYGZdl{}esAdulto}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}adultez\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Debes ser mayor de edad\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{n+nx}{\PYGZdl{}user}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+nx}{User}\PYG{p}{([}
+\PYG{+w}{            }\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s1}{\PYGZsq{}nombre\PYGZsq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nombre\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s1}{\PYGZsq{}email\PYGZsq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}email\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{],}
+\PYG{+w}{            }\PYG{l+s+s1}{\PYGZsq{}admin\PYGZsq{}}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{0}
+\PYG{+w}{        }\PYG{p}{]);}
+
+\PYG{+w}{        }\PYG{n+nx}{\PYGZdl{}errores}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}user}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{validateUser}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{empty}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}errores}\PYG{p}{))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{foreach}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}errores}\PYG{+w}{ }\PYG{k+kr}{as}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}error}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}general\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}error}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{User}\PYG{o}{::}\PYG{n+nx}{exists}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{],}\PYG{+w}{ }\PYG{n+nx}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}email\PYGZsq{}}\PYG{p}{]))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}general\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Nickname o email ya en uso\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{User}\PYG{o}{::}\PYG{n+nx}{create}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}user}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{getDatos}\PYG{p}{()))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}general\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Error al crear usuario\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{o}{?\PYGZgt{}}
+\end{Verbatim}

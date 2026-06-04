@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+\PYG{k}{public} \PYG{k}{static} \PYG{k}{function} \PYG{n+nf}{getAll}\PYG{p}{()}\PYG{o}{:} \PYG{k}{array}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}conn} \PYG{o}{=} \PYG{k}{parent}\PYG{o}{::}\PYG{n+na}{conectar}\PYG{p}{();}
+        \PYG{n+nv}{\PYGZdl{}query} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}SELECT DISTINCT t.continent, t.country, t.place, i.price, i.img FROM \PYGZdq{}} \PYG{o}{.} \PYG{n+nx}{TABLA\PYGZus{}VIAJES} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{} t JOIN \PYGZdq{}} \PYG{o}{.} \PYG{n+nx}{TABLA\PYGZus{}INFO} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{} i}
+\PYG{l+s+s2}{                  ON t.continent = i.continent AND t.country = i.country AND t.place = i.place WHERE t.departureDate \PYGZgt{}= NOW() ORDER BY t.continent, t.country, t.place\PYGZdq{}}\PYG{p}{;}
+
+        \PYG{k}{try}\PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}stmt} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}conn}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{prepare}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}query}\PYG{p}{);}
+            \PYG{n+nv}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{execute}\PYG{p}{();}
+            \PYG{k}{return} \PYG{n+nv}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{fetchAll}\PYG{p}{(}\PYG{n+nx}{PDO}\PYG{o}{::}\PYG{n+na}{FETCH\PYGZus{}ASSOC}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}} \PYG{k}{catch}\PYG{p}{(}\PYG{n+nx}{PDOException} \PYG{n+nv}{\PYGZdl{}e}\PYG{p}{)\PYGZob{}}
+            \PYG{n+nb}{error\PYGZus{}log}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}InfoTrips::getAll: \PYGZsq{}} \PYG{o}{.} \PYG{n+nv}{\PYGZdl{}e}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getMessage}\PYG{p}{());}
+            \PYG{k}{return} \PYG{p}{[];}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

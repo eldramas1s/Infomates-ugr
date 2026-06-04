@@ -1,0 +1,227 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{export}\PYG{+w}{ }\PYG{k+kd}{class}\PYG{+w}{ }\PYG{n+nx}{formularioBase}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Construye un objeto formulario tomandolo del archivo en el que se ejecuta}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param \PYGZob{}string\PYGZcb{} idFormulario identificador del formulario}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kr}{constructor}\PYG{p}{(}\PYG{n+nx}{idFormulario}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{n+nx}{idFormulario}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}submit\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{enviar}\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{));}
+
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{realTimeValidation}\PYG{p}{();}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Construye un objeto que representa las entradas del formulario}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @returns Objeto cuyas entradas son los datos del formulario}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{obtenerDatos}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{datos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+nx}{FormData}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{Object}\PYG{p}{.}\PYG{n+nx}{fromEntries}\PYG{p}{(}\PYG{n+nx}{datos}\PYG{p}{.}\PYG{n+nx}{entries}\PYG{p}{());}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Valida los datos, se implementa en las hijas}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param \PYGZob{}Object\PYGZcb{} datos datos a validar}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{validar}\PYG{p}{(}\PYG{n+nx}{datos}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{reglas}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{errors}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}\PYGZcb{};}
+
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{campo}\PYG{+w}{ }\PYG{o+ow}{in}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{validador}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{p}{[}\PYG{n+nx}{campo}\PYG{p}{];}
+
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{error}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{validador}\PYG{p}{(}\PYG{n+nx}{datos}\PYG{p}{[}\PYG{n+nx}{campo}\PYG{p}{])}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{error}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{errors}\PYG{p}{[}\PYG{n+nx}{campo}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{error}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nx}{errors}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Envia los datos al servidor para procesarlos}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param \PYGZob{}Event\PYGZcb{} event}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k}{async}\PYG{+w}{ }\PYG{n+nx}{enviar}\PYG{p}{(}\PYG{n+nx}{event}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{preventDefault}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{reglas}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{campo}\PYG{+w}{ }\PYG{o+ow}{in}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{limpiarError}\PYG{p}{(}\PYG{n+nx}{campo}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{datos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{obtenerDatos}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{errors}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validar}\PYG{p}{(}\PYG{n+nx}{datos}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{Object}\PYG{p}{.}\PYG{n+nx}{keys}\PYG{p}{(}\PYG{n+nx}{errors}\PYG{p}{).}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o+ow}{in}\PYG{+w}{ }\PYG{n+nx}{errors}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{elements}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{].}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{mostrarError}\PYG{p}{(}\PYG{n+nx}{field}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{errors}\PYG{p}{[}\PYG{n+nx}{field}\PYG{p}{]);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{c+c1}{//Enviamos los datos}
+\PYG{+w}{            }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{c+c1}{//Hacemos el fetch asíncrono}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{fetch}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{endpoint}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{n+nx}{method}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}POST\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{n+nx}{headers}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Content\PYGZhy{}Type\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}application/json\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{                    }\PYG{n+nx}{body}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nb}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(}\PYG{n+nx}{datos}\PYG{p}{)}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{});}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{ok}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{throw}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+ne}{Error}\PYG{p}{(}\PYG{l+s+sb}{`Error en la red: }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{status}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{`}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{                }\PYG{c+c1}{//Si hay respuesta la procesamos pasandola a json}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{json}\PYG{p}{();}
+
+\PYG{+w}{                }\PYG{c+c1}{//Procesamos la respuesta}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{success}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{onSuccess}\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{c+c1}{//Si hay errores los procesamos}
+\PYG{+w}{                    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{errors}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o+ow}{in}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{errors}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{mostrarError}\PYG{p}{(}\PYG{n+nx}{field}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{errors}\PYG{p}{[}\PYG{n+nx}{field}\PYG{p}{]);}
+\PYG{+w}{                        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                        }\PYG{c+c1}{//Si no hay errores procesamos el mensaje}
+\PYG{+w}{                    }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{message}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                        }\PYG{n+nx}{alert}\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{message}\PYG{p}{);}
+\PYG{+w}{                    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{error}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{console}\PYG{p}{.}\PYG{n+nx}{error}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Hubo un problema con la petición fetch:\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{error}\PYG{p}{);}
+\PYG{+w}{                }\PYG{n+nx}{alert}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Crea un mensaje de error en el formulario}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param \PYGZob{}string\PYGZcb{} fieldName nombre del campo del formulario}
+\PYG{c+cm}{     * @param \PYGZob{}string\PYGZcb{} message mensaje de error}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{mostrarError}\PYG{p}{(}\PYG{n+nx}{fieldName}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{message}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{fieldName}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}general\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{alert}\PYG{p}{(}\PYG{n+nx}{message}\PYG{p}{);}
+\PYG{+w}{            }\PYG{n+nx}{location}\PYG{p}{.}\PYG{n+nx}{reload}\PYG{p}{();}
+\PYG{+w}{            }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{elements}\PYG{p}{[}\PYG{n+nx}{fieldName}\PYG{p}{];}
+\PYG{+w}{        }\PYG{c+c1}{//Si es un radio button, nos quedamos con el primero}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o+ow}{instanceof}\PYG{+w}{ }\PYG{n+nx}{RadioNodeList}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{p}{[}\PYG{l+m+mf}{0}\PYG{p}{];}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{field}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{            }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{container}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{p}{.}\PYG{n+nx}{closest}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}.field\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{container}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{container}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{add}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}error\PYGZdq{}}\PYG{p}{)}
+
+\PYG{+w}{                }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{pError}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{container}\PYG{p}{.}\PYG{n+nx}{querySelector}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}.errorMessage\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{pError}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{                    }\PYG{n+nx}{pError}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{createElement}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}div\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                    }\PYG{n+nx}{pError}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{add}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}errorMessage\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{                    }\PYG{n+nx}{container}\PYG{p}{.}\PYG{n+nx}{appendChild}\PYG{p}{(}\PYG{n+nx}{pError}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                }\PYG{n+nx}{pError}\PYG{p}{.}\PYG{n+nx}{textContent}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{message}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Limpia el error que habia en el campo con nombre fieldName}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param \PYGZob{}string\PYGZcb{} fieldName nombre del campo}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{limpiarError}\PYG{p}{(}\PYG{n+nx}{fieldName}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{elements}\PYG{p}{[}\PYG{n+nx}{fieldName}\PYG{p}{];}
+
+\PYG{+w}{        }\PYG{c+c1}{//Si son los radio buttons pues cojemos el primero solo}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o+ow}{instanceof}\PYG{+w}{ }\PYG{n+nx}{RadioNodeList}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{p}{[}\PYG{l+m+mf}{0}\PYG{p}{];}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{field}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{container}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{p}{.}\PYG{n+nx}{closest}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}.field\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{container}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{                }\PYG{n+nx}{container}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{remove}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}error\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{pError}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{container}\PYG{p}{.}\PYG{n+nx}{querySelector}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}.errorMessage\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{pError}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{n+nx}{pError}\PYG{p}{.}\PYG{n+nx}{remove}\PYG{p}{()}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Devuelve las reglas de cada campo de un formulario}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @returns diccionario con las reglas de cada campo}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{reglas}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Procesa el json en caso de exito}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param \PYGZob{}json\PYGZcb{} json Mensaje de validacion}
+\PYG{c+cm}{     * @returns Depende de la clase}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{onSuccess}\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nx}{realTimeValidation}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{eventos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}input\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}change\PYGZsq{}}\PYG{p}{];}
+
+\PYG{+w}{        }\PYG{n+nx}{eventos}\PYG{p}{.}\PYG{n+nx}{forEach}\PYG{p}{(}\PYG{n+nx}{tipoEvento}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{c+c1}{//Imponemos un eventListener en los eventos recogidos}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{n+nx}{tipoEvento}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{e}\PYG{p}{.}\PYG{n+nx}{target}\PYG{p}{.}\PYG{n+nx}{name}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{reglas}\PYG{p}{();}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{reglas}\PYG{p}{[}\PYG{n+nx}{field}\PYG{p}{])}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{limpiarError}\PYG{p}{(}\PYG{n+nx}{field}\PYG{p}{);}
+
+\PYG{+w}{                    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{datos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{obtenerDatos}\PYG{p}{();}
+\PYG{+w}{                    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{error}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{p}{[}\PYG{n+nx}{field}\PYG{p}{](}\PYG{n+nx}{datos}\PYG{p}{[}\PYG{n+nx}{field}\PYG{p}{]);}
+
+\PYG{+w}{                    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{error}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{mostrarError}\PYG{p}{(}\PYG{n+nx}{field}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{error}\PYG{p}{);}
+\PYG{+w}{                    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{});}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{})}
+
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{p}{\PYGZcb{}}
+
+\end{Verbatim}

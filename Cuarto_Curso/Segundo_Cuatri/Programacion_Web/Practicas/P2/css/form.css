@@ -212,6 +212,84 @@ form#formularioAlta a:visited{
     color:purple;
 }
 
+form#formularioAlta div#adultez{
+    display:grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "label label"
+        "Si Si"
+        "No No";
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+form#formularioAlta div#adultez label{
+    grid-area: label;
+    font-size: 1.1em;
+    color: #1A1A1A;
+    justify-content: left;
+}
+
+form #formularioAlta div#adultez input[type="radio"]#adulto{
+    grid-area: Si;
+    margin: 0;
+    padding: 0;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+form #formularioAlta div#adultez input[type="radio"]#menor{
+    grid-area: No;
+    margin: 0;
+    padding: 0;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+form#formularioAlta div#legal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    align-self: stretch;
+    text-align: center;
+}
+
+form#formularioAlta div#legal a{
+    display: inline-block;
+    font-size: 1.1em;
+    padding: 0.5em 1em;
+    transition: all 0.3s ease; 
+    text-align: center;
+}
+
+form#formularioAlta div#checkLegalDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;            
+    justify-content: flex-start;    
+    flex-wrap: nowrap;
+    gap: 10px;                      
+    width: 100%;                    
+    padding: 0.5em 0;
+}
+
+form#formularioAlta div#checkLegalDiv label {
+    flex-grow: 0;                   
+    white-space: nowrap;          
+}
+
+form#formularioAlta div#checkLegalDiv input[type="checkbox"] {
+    flex-shrink: 0;                 
+    width: 18px !important;         
+    height: 18px !important;        
+    cursor: pointer;                
+}
+
+
 /* =========================================
    FORMULARIO DE SUGERENCIAS
    ========================================= */
@@ -385,6 +463,7 @@ form#logoutForm button#logoutbtn {
     position: relative;
     display: block;
     padding: 1em;
+    align-self: self-start;
 }
 
 /* =========================================

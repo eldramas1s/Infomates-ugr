@@ -1,0 +1,265 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{////////////////////////////}
+\PYG{c+c1}{// FORMULARIO BASICO}
+\PYG{c+c1}{////////////////////////////}
+
+\PYG{k}{import}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{formularioBase}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k+kr}{from}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}./formularioBase.js\PYGZdq{}}\PYG{p}{;}
+
+\PYG{k}{export}\PYG{+w}{ }\PYG{k+kd}{class}\PYG{+w}{ }\PYG{n+nx}{formularioBusqueda}\PYG{+w}{ }\PYG{k}{extends}\PYG{+w}{ }\PYG{n+nx}{formularioBase}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{    }\PYG{k+kr}{constructor}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{super}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}formularioBusqueda\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validCountries}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[];}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{countriesDictionary}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}\PYGZcb{};}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{loadCountries}\PYG{p}{();}
+
+
+\PYG{+w}{        }\PYG{c+c1}{//Levantamos los listeners}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{setUpContinentChangeListener}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{setUpCountryChangeListener}\PYG{p}{();}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nx}{reglas}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{continentRegex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sr}{/\PYGZca{}(Asia|Africa|África|Europa|Oceania|Oceanía|America|América)\PYGZdl{}/i}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{ciudadRegex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sr}{/\PYGZca{}[A\PYGZhy{}Za\PYGZhy{}zÁÉÍÓÚáéíóúÑñÜüÇç[\PYGZsq{}\PYGZhy{}]+(?: [A\PYGZhy{}Za\PYGZhy{}zÁÉÍÓÚáéíóúÑñÜüÇç[\PYGZsq{}\PYGZhy{}]+)*\PYGZdl{}/}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{formData}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{obtenerDatos}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{hoy}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+nb}{Date}\PYG{p}{();}
+\PYG{+w}{        }\PYG{n+nx}{hoy}\PYG{p}{.}\PYG{n+nx}{setHours}\PYG{p}{(}\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{continent}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{continentRegex}\PYG{p}{.}\PYG{n+nx}{test}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()))}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}No es un continente válido\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{},}
+
+\PYG{+w}{            }\PYG{n+nx}{country}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validCountries}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//La lista de paises validos fallo}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validCountries}\PYG{p}{.}\PYG{n+nx}{includes}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{())}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validCountries}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}El país que se ha introducido no existe\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{},}
+
+\PYG{+w}{            }\PYG{n+nx}{place}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{ciudadRegex}\PYG{p}{.}\PYG{n+nx}{test}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()))}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Introduce un nombre de ciudad válido (solo letras, espacios, guiones o apóstrofes).\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{},}
+
+\PYG{+w}{            }\PYG{n+nx}{departureDate}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{fechaSalida}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+nb}{Date}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{());}
+\PYG{+w}{                }\PYG{n+nx}{fechaSalida}\PYG{p}{.}\PYG{n+nx}{setHours}\PYG{p}{(}\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{);}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{fechaSalida}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n+nx}{hoy}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}La fecha no puede ser anterior a hoy\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{},}
+
+\PYG{+w}{            }\PYG{n+nx}{returnDate}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{fechaVuelta}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+nb}{Date}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{());}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{fechaVuelta}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n+nx}{hoy}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}La fecha de vuelta no puede ser anterior a hoy\PYGZdq{}}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{formData}\PYG{p}{.}\PYG{n+nx}{departureDate}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{fechaSalida}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+nb}{Date}\PYG{p}{(}\PYG{n+nx}{formData}\PYG{p}{.}\PYG{n+nx}{departureDate}\PYG{p}{);}
+\PYG{+w}{                    }\PYG{n+nx}{fechaSalida}\PYG{p}{.}\PYG{n+nx}{setHours}\PYG{p}{(}\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{);}
+
+\PYG{+w}{                    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{fechaVuelta}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n+nx}{fechaSalida}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}La vuelta debe ser posterior a la salida\PYGZdq{}}\PYG{p}{;}
+
+\PYG{+w}{                    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{diferenciaMilisegundos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{fechaVuelta}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nx}{fechaSalida}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{diferenciaDias}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{diferenciaMilisegundos}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{1000}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{60}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{60}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{24}\PYG{p}{);}
+
+\PYG{+w}{                    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{diferenciaDias}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mf}{3}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}El viaje debe ser de al menos 3 días\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k}{async}\PYG{+w}{ }\PYG{n+nx}{enviar}\PYG{p}{(}\PYG{n+nx}{event}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{preventDefault}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{reglas}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{field}\PYG{+w}{ }\PYG{o+ow}{in}\PYG{+w}{ }\PYG{n+nx}{reglas}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{limpiarError}\PYG{p}{(}\PYG{n+nx}{field}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{datos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{obtenerDatos}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{errors}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validar}\PYG{p}{(}\PYG{n+nx}{datos}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{Object}\PYG{p}{.}\PYG{n+nx}{keys}\PYG{p}{(}\PYG{n+nx}{errors}\PYG{p}{).}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{submit}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{//Ejecutamos una versión similar al envío que hay en el php}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Funcion asíncrona que carga todos los países de la API gratuita Rest Countries}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k}{async}\PYG{+w}{ }\PYG{n+nx}{loadCountries}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{formData}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{obtenerDatos}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Para poder usarla en toda la funcion}
+\PYG{+w}{        }\PYG{c+c1}{//Rellenamos el datalist paises}
+\PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{lista}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}paises\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{formData}\PYG{p}{.}\PYG{n+nx}{continent}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{                }\PYG{c+c1}{//Accedemos a la API Rest Countries para obtener todos los países que necesitamos}
+\PYG{+w}{                }\PYG{n+nx}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{fetch}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}https://restcountries.com/v3.1/}
+\PYG{l+s+s2}{                all?fields=translations,name\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{mapaContinentes}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{l+s+s1}{\PYGZsq{}europa\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}europe\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{l+s+s1}{\PYGZsq{}asia\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}asia\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{l+s+s1}{\PYGZsq{}áfrica\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}africa\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{l+s+s1}{\PYGZsq{}africa\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}africa\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{l+s+s1}{\PYGZsq{}oceanía\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}oceania\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{l+s+s1}{\PYGZsq{}oceania\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}oceania\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{l+s+s1}{\PYGZsq{}américa\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}americas\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{l+s+s1}{\PYGZsq{}america\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}americas\PYGZsq{}}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{};}
+
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{continenteApi}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{mapaContinentes}\PYG{p}{[}\PYG{n+nx}{formData}\PYG{p}{.}\PYG{n+nx}{continent}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{().}\PYG{n+nx}{toLowerCase}\PYG{p}{()];}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{continenteApi}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{c+c1}{//Accedemos a la API Rest Countries para obtener todos los países que necesitamos según el continente}
+\PYG{+w}{                    }\PYG{n+nx}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{fetch}\PYG{p}{(}\PYG{l+s+sb}{`https://restcountries.com/v3.1/region/}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{continenteApi}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{?fields=translations,name`}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{c+c1}{// Por si acaso el usuario escribe algo raro}
+\PYG{+w}{                    }\PYG{n+nx}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{fetch}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}https://restcountries.com/v3.1/all?fields=translations,name\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{ok}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{throw}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+ne}{Error}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Error al conectar con la API de países\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{c+c1}{//Si hay respuesta la procesamos}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{paises}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{json}\PYG{p}{();}
+
+\PYG{+w}{            }\PYG{c+c1}{//Ya tenemos los paises entonces, los procesamos segun como los devuelve la API}
+\PYG{+w}{            }\PYG{c+c1}{// Mapeamos para obtener los nombres comunes en español y los ordenamos de la A a la Z}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validCountries}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{paises}\PYG{p}{.}\PYG{n+nx}{map}\PYG{p}{(}\PYG{n+nx}{p}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{nombreEspaniol}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{p}\PYG{p}{.}\PYG{n+nx}{translations}\PYG{o}{?}\PYG{p}{.}\PYG{n+nx}{spa}\PYG{o}{?}\PYG{p}{.}\PYG{n+nx}{common}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{nombreIngles}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{p}\PYG{p}{.}\PYG{n+nx}{name}\PYG{o}{?}\PYG{p}{.}\PYG{n+nx}{common}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{nombreEspaniol}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{paisFormateado}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{nombreEspaniol}\PYG{p}{.}\PYG{n+nx}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{map}\PYG{p}{(}\PYG{n+nx}{palabra}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{palabra}\PYG{p}{.}\PYG{n+nx}{charAt}\PYG{p}{(}\PYG{l+m+mf}{0}\PYG{p}{).}\PYG{n+nx}{toUpperCase}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nx}{palabra}\PYG{p}{.}\PYG{n+nx}{slice}\PYG{p}{(}\PYG{l+m+mf}{1}\PYG{p}{)).}\PYG{n+nx}{join}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{);}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{nombreIngles}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{countriesDictionary}\PYG{p}{[}\PYG{n+nx}{paisFormateado}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{nombreIngles}\PYG{p}{;}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nx}{paisFormateado}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}).}\PYG{n+nx}{filter}\PYG{p}{(}\PYG{n+nb}{Boolean}\PYG{p}{).}\PYG{n+nx}{sort}\PYG{p}{((}\PYG{n+nx}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{b}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{a}\PYG{p}{.}\PYG{n+nx}{localeCompare}\PYG{p}{(}\PYG{n+nx}{b}\PYG{p}{));}
+
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{lista}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{lista}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Limpiamos la lista}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validCountries}\PYG{p}{.}\PYG{n+nx}{forEach}\PYG{p}{(}\PYG{n+nx}{nombrePais}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{option}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{createElement}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}option\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                    }\PYG{n+nx}{option}\PYG{p}{.}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{nombrePais}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{n+nx}{lista}\PYG{p}{.}\PYG{n+nx}{appendChild}\PYG{p}{(}\PYG{n+nx}{option}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{})}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{error}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{console}\PYG{p}{.}\PYG{n+nx}{error}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Error cargando los países. Vuelva a intentarlo más tarde.\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{lista}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nx}{lista}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Limpiamos la lista si hay error de conexión}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nx}{setUpCountryChangeListener}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{//Tomamos el input del pais}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{inputCountry}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{querySelector}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}input[name=\PYGZdq{}country\PYGZdq{}]\PYGZsq{}}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{inputCountry}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{inputCountry}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}change\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{                }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{countrySelected}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{e}\PYG{p}{.}\PYG{n+nx}{target}\PYG{p}{.}\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{();}
+
+\PYG{+w}{                }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n+nx}{placesList}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}places\PYGZsq{}}\PYG{p}{);}
+
+\PYG{+w}{                }\PYG{c+c1}{//Vaciamos el input de la ciudad}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{inputPlace}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{querySelector}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}input[name=\PYGZdq{}place\PYGZdq{}]\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{inputPlace}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nx}{inputPlace}\PYG{p}{.}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{countrySelected}\PYG{+w}{ }\PYG{o+ow}{in}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{countriesDictionary}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{englishName}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{countriesDictionary}\PYG{p}{[}\PYG{n+nx}{countrySelected}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{countrySelected}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{loadCities}\PYG{p}{(}\PYG{n+nx}{englishName}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{placesList}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nx}{placesList}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{})}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nx}{setUpContinentChangeListener}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{inputContinent}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{querySelector}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}input[name=\PYGZdq{}continent\PYGZdq{}]\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{inputContinent}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{inputContinent}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}change\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{()}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{c+c1}{//Vaciamos el input del pais y al ciudad}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{inputCountry}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{querySelector}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}input[name=\PYGZdq{}country\PYGZdq{}]\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{inputPlace}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{querySelector}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}input[name=\PYGZdq{}place\PYGZdq{}]\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{inputCountry}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nx}{inputCountry}\PYG{p}{.}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{inputPlace}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nx}{inputPlace}\PYG{p}{.}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{loadCountries}\PYG{p}{();}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{})}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+
+\PYG{+w}{    }\PYG{k}{async}\PYG{+w}{ }\PYG{n+nx}{loadCities}\PYG{p}{(}\PYG{n+nx}{englishName}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{placesList}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}places\PYGZsq{}}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{placesList}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{//Para que el usuario sea consciente que se estan cargando las ciudades}
+\PYG{+w}{        }\PYG{n+nx}{placesList}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}option value=\PYGZsq{}Cargando ciudades...\PYGZsq{}\PYGZgt{}\PYGZdq{}}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{//Intentamos obtener las ciudades}
+\PYG{+w}{        }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{fetch}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}https://countriesnow.space/api/v0.1/countries/cities\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{method}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}POST\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n+nx}{headers}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Content\PYGZhy{}Type\PYGZdq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}application/json\PYGZdq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{                }\PYG{n+nx}{body}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nb}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{country}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{englishName}\PYG{+w}{ }\PYG{p}{\PYGZcb{})}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{});}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{ok}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{throw}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+ne}{Error}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Error al conectar con la API de países\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{json}\PYG{p}{();}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{error}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{placesList}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{places}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{data}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n+nx}{placesList}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{n+nx}{places}\PYG{p}{.}\PYG{n+nx}{sort}\PYG{p}{((}\PYG{n+nx}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{b}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{a}\PYG{p}{.}\PYG{n+nx}{localeCompare}\PYG{p}{(}\PYG{n+nx}{b}\PYG{p}{)).}\PYG{n+nx}{forEach}\PYG{p}{(}\PYG{n+nx}{city}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{option}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{createElement}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}option\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{n+nx}{option}\PYG{p}{.}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{city}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n+nx}{placesList}\PYG{p}{.}\PYG{n+nx}{appendChild}\PYG{p}{(}\PYG{n+nx}{option}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{})}
+
+
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{error}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{console}\PYG{p}{.}\PYG{n+nx}{error}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Error cargando las ciudades. Vuelva a intentarlo más tarde.\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n+nx}{placesList}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Limpiamos si hay error de conexión}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

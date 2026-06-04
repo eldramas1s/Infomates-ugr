@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+    \PYG{k}{require\PYGZus{}once} \PYG{n+no}{\PYGZus{}\PYGZus{}DIR\PYGZus{}\PYGZus{}}\PYG{o}{.}\PYG{l+s+s2}{\PYGZdq{}/../model/trips.php\PYGZdq{}}\PYG{p}{;}
+
+    \PYG{n+nb}{header}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Content\PYGZhy{}Type: application/json\PYGZsq{}}\PYG{p}{);}
+
+    \PYG{n+nv}{\PYGZdl{}trips} \PYG{o}{=} \PYG{n+nx}{InfoTrips}\PYG{o}{::}\PYG{n+na}{getForCarrusel}\PYG{p}{();}
+
+    \PYG{k}{if}\PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}trips}\PYG{p}{))\PYGZob{}}
+        \PYG{k}{echo} \PYG{n+nb}{json\PYGZus{}encode}\PYG{p}{([}
+            \PYG{l+s+s2}{\PYGZdq{}success\PYGZdq{}}\PYG{o}{=\PYGZgt{}}\PYG{k}{false}\PYG{p}{,}
+            \PYG{l+s+s2}{\PYGZdq{}message\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{l+s+s2}{\PYGZdq{}Ups! Parece que no hay viajes ;)\PYGZdq{}}
+        \PYG{p}{]);}
+        \PYG{k}{exit}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else}\PYG{p}{\PYGZob{}}
+        \PYG{c+c1}{//Si no ponemos \PYGZam{} no se modifica el campo, en php se toman copias en los foreach}
+        \PYG{k}{foreach}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}trips} \PYG{k}{as} \PYG{o}{\PYGZam{}}\PYG{n+nv}{\PYGZdl{}trip}\PYG{p}{)\PYGZob{}}
+            \PYG{k}{if}\PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}trip}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sortDesc\PYGZsq{}}\PYG{p}{]))\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}trip}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sortDesc\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}¡Ven a descubrir \PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{\PYGZdl{}trip}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{]} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{} con Azimut Viajes! Una experiencia inolvidable.\PYGZdq{}}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{echo} \PYG{n+nb}{json\PYGZus{}encode}\PYG{p}{([}
+            \PYG{l+s+s2}{\PYGZdq{}success\PYGZdq{}}\PYG{o}{=\PYGZgt{}}\PYG{k}{true}\PYG{p}{,}
+            \PYG{l+s+s2}{\PYGZdq{}data\PYGZdq{}}\PYG{o}{=\PYGZgt{}}\PYG{n+nv}{\PYGZdl{}trips}
+        \PYG{p}{]);}
+        \PYG{k}{exit}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

@@ -4,17 +4,20 @@
 
 main#viajeIndividualMain {
 
-    padding: 0;
+    grid-column: 1 / -1 !important; 
+    
+    padding: 0 !important; 
+    margin: 0;
     width: 100%;
     max-width: 100vw;
-
-    grid-column: -1 / 1;
+    
+    display: block !important;
 }
 
 main#viajeIndividualMain section {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: min-content min-content auto;
     grid-template-areas:
         "title  title"
         "image  image"
@@ -26,16 +29,13 @@ main#viajeIndividualMain section {
 main#viajeIndividualMain section h2 {
     grid-area: title;
 
-    justify-self: center;
-    justify-content: center;
-    padding: 2em;
 }
 
-main#viajeIndividualMain section img {
+main#viajeIndividualMain section img#imgIndiv {
     grid-area: image;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+    width: 100%;       
+    height: auto;      
+    display: block;    
     max-height: none;
     border-radius: 0;
 }
@@ -133,12 +133,11 @@ main#viajeIndividualMain section article#interesArticle nav#relatedTripsNav ul {
         margin:0;
     }
 
-    main#viajeIndividualMain section img {
+    main#viajeIndividualMain section img#imgIndiv {
         width: 100%;
         max-width: 100%;
         height: auto;
         display: block;
-        
     }
 
 }

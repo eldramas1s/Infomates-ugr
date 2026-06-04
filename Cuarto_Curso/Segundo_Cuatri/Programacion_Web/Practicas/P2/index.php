@@ -17,34 +17,7 @@ require_once './php/utils.php';
 </head>
 
 <body>
-    <header>
-
-        <h1 id="nombreDecor">Azimut Viajes</h1>
-
-        <img id="logoHeader" src="./imagenes/logoAzimut.png" alt="Logotipo Azimut">
-
-        <?php
-
-        //Si no se ha loggeado, pongo el formulario
-        if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
-            putsignUpForm();
-        } else { //Si se ha loggeado ponemos el avatar con la inicial del nickname y el boton de cierre de sesión
-            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 0);
-        }
-        ?>
-        <nav id="menuHeader">
-            <ul>
-                <li><a href="./index.php">Inicio</a></li>
-                <li><a href="./html/viajes.php?page=1">Viajes</a></li>
-                <li><a href="./html/viajes_grupo.php">Viajes en
-                        grupo</a></li>
-                <li><a href="./html/ofertas.php">Ofertas</a></li>
-                <li><a href="./html/sobre_agencia.php">Sobre nuestra
-                        agencia</a></li>
-                <li><a href="./html/sugerencias.php">Sugerencias</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php putHeader(); ?>
     <main id="mainIndex">
         <section id="introSection">
             <article>
@@ -71,8 +44,8 @@ require_once './php/utils.php';
                         <datalist id="paises"></datalist>
                         <input type="text" id="country" name="country" placeholder="País" list="paises">
 
-                        <datalist id="lugares"></datalist>
-                        <input type="text" id="place" name="place" placeholder="Lugar" list="lugares">
+                        <datalist id="places"></datalist>
+                        <input type="text" id="place" name="place" placeholder="Lugar" list="places">
 
                         <label for="fecha_salida">From:</label>
                         <input type="date" id="departureDate" name="departureDate"
@@ -92,18 +65,7 @@ require_once './php/utils.php';
             </section>
         <?php endif ?>
     </main>
-    <footer>
-        <nav id="menuFooter">
-            <ul>
-                <li><a href="./html/contacto.php">Contacte con
-                        nosotros</a></li>
-                <li><a href="./como_se_hizo.pdf"
-                        target="_blank">Cómo se
-                        hizo</a></li>
-            </ul>
-        </nav>
-        <p id="fechaModificacion"><?php echo date('Y-m-d') ?></p>
-    </footer>
+    <?php putFooter(); ?>
     <script type="module" src="./js/main.js"></script>
 </body>
 

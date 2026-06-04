@@ -1,3 +1,7 @@
+<?php
+require_once '../php/utils.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -9,35 +13,7 @@
         <title>Azimut Viajes | En grupo</title>
     </head>
     <body>
-        <header>
-
-            <h1 id="nombreDecor">Azimut Viajes</h1>
-
-            <img id="logoHeader" src="../imagenes/logoAzimut.png"
-                alt="Logotipo Azimut">
-
-            <?php
-            require_once '../php/utils.php';
-            session_start();
-
-            //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
-            if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-                putAvatar($_SESSION['admin'], $_SESSION['nickName'],1);
-            }
-            ?>
-            <nav id="menuHeader">
-                <ul>
-                    <li><a href="../index.php">Inicio</a></li>
-                    <li><a href="../html/viajes.php">Viajes</a></li>
-                    <li><a href="../html/viajes_grupo.php">Viajes en
-                            grupo</a></li>
-                    <li><a href="../html/ofertas.php">Ofertas</a></li>
-                    <li><a href="../html/sobre_agencia.php">Sobre nuestra
-                            agencia</a></li>
-                    <li><a href="../html/sugerencias.php">Sugerencias</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php putHeader(1); ?>
         <main id="grupoMain">
             <section>
                 <h2>Todo en compañía es mejor... ¿no?</h2>
@@ -273,17 +249,6 @@
             </section>
 
         </main>
-        <footer>
-            <nav id="menuFooter">
-                <ul>
-                    <li><a href="../html/contacto.php">Contacte con
-                            nosotros</a></li>
-                    <li><a href="../como_se_hizo.pdf"
-                            target="_blank">Cómo se
-                            hizo</a></li>
-                </ul>
-            </nav>
-            <p id="fechaModificacion">27/04/2026</p>
-        </footer>
+        <?php putFooter(1); ?>
     </body>
 </html>

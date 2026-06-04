@@ -1,0 +1,86 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+class FormSignUp extends FormHandler
+\PYGZob{}
+    public function validate(array \PYGZdl{}data)
+    \PYGZob{}
+        \PYGZdl{}this\PYGZhy{}\PYGZgt{}errors = [];
+
+        if (empty(\PYGZdl{}data[\PYGZsq{}nombre\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}nombre\PYGZsq{}, \PYGZsq{}El nombre es obligatorio\PYGZsq{});
+        \PYGZcb{} elseif (strlen(\PYGZdl{}data[\PYGZsq{}nombre\PYGZsq{}]) \PYGZgt{} 30) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}nombre\PYGZsq{}, \PYGZsq{}El nombre no puede tener más de 30 caracteres\PYGZsq{});
+        \PYGZcb{} elseif (!preg\PYGZus{}match(\PYGZsq{}/\PYGZca{}[A\PYGZhy{}Za\PYGZhy{}zÁÉÍÓÚáéíóúÑñÜü ]+\PYGZdl{}/\PYGZsq{}, \PYGZdl{}data[\PYGZsq{}nombre\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}nombre\PYGZsq{}, \PYGZsq{}El nombre solo puede contener letras y espacios\PYGZsq{});
+        \PYGZcb{}
+
+        if (empty(\PYGZdl{}data[\PYGZsq{}nickName\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}nickName\PYGZsq{}, \PYGZsq{}El nickname es obligatorio\PYGZsq{});
+        \PYGZcb{} elseif (!preg\PYGZus{}match(\PYGZsq{}/\PYGZca{}[a\PYGZhy{}zA\PYGZhy{}Z0\PYGZhy{}9\PYGZus{}]+\PYGZdl{}/\PYGZsq{}, \PYGZdl{}data[\PYGZsq{}nickName\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}nickName\PYGZsq{}, \PYGZsq{}Solo letras, números y \PYGZus{}\PYGZsq{});
+        \PYGZcb{} elseif (strlen(\PYGZdl{}data[\PYGZsq{}nickName\PYGZsq{}]) \PYG{p}{\PYGZlt{}} \PYG{n+nt}{3} \PYG{err}{||} \PYG{n+na}{strlen}\PYG{err}{(\PYGZdl{}}\PYG{n+na}{data}\PYG{err}{[\PYGZsq{}}\PYG{n+na}{nickName}\PYG{err}{\PYGZsq{}])} \PYG{p}{\PYGZgt{}} 30) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}nickName\PYGZsq{}, \PYGZsq{}Debe tener entre 3 y 30 caracteres\PYGZsq{});
+        \PYGZcb{}
+
+        if (empty(\PYGZdl{}data[\PYGZsq{}email\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}email\PYGZsq{}, \PYGZsq{}El email es obligatorio\PYGZsq{});
+        \PYGZcb{} elseif (!filter\PYGZus{}var(\PYGZdl{}data[\PYGZsq{}email\PYGZsq{}], FILTER\PYGZus{}VALIDATE\PYGZus{}EMAIL)) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}email\PYGZsq{}, \PYGZsq{}Email no válido\PYGZsq{});
+        \PYGZcb{}
+
+        if (empty(\PYGZdl{}data[\PYGZsq{}password\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}password\PYGZsq{}, \PYGZsq{}La contraseña es obligatoria\PYGZsq{});
+        \PYGZcb{} elseif (strlen(\PYGZdl{}data[\PYGZsq{}password\PYGZsq{}]) \PYG{p}{\PYGZlt{}} \PYG{n+nt}{8} \PYG{err}{||} \PYG{n+na}{strlen}\PYG{err}{(\PYGZdl{}}\PYG{n+na}{data}\PYG{err}{[\PYGZsq{}}\PYG{n+na}{password}\PYG{err}{\PYGZsq{}])} \PYG{p}{\PYGZgt{}} 15) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}password\PYGZsq{}, \PYGZsq{}Debe tener entre 8 y 15 caracteres\PYGZsq{});
+        \PYGZcb{} elseif (!preg\PYGZus{}match(\PYGZsq{}/(?=.*[a\PYGZhy{}z])(?=.*[A\PYGZhy{}Z])(?=.*\PYGZbs{}d)(?=.*[\PYGZdl{}@\PYGZdl{}!\PYGZpc{}*?\PYG{err}{\PYGZam{}}.]).\PYGZob{}8,15\PYGZcb{}/\PYGZsq{}, \PYGZdl{}data[\PYGZsq{}password\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}password\PYGZsq{}, \PYGZsq{}Debe contener mayúscula, minúscula, número y símbolo\PYGZsq{});
+        \PYGZcb{}
+
+        if (!isset(\PYGZdl{}data[\PYGZsq{}aceptar\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}aceptar\PYGZsq{}, \PYGZsq{}Debes aceptar el aviso legal\PYGZsq{});
+        \PYGZcb{}
+
+        if (!isset(\PYGZdl{}data[\PYGZsq{}adultez\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}adultez\PYGZsq{}, \PYGZsq{}Debes indicar si eres mayor de edad\PYGZsq{});
+        \PYGZcb{}
+    \PYGZcb{}
+
+    public function process(array \PYGZdl{}data)
+    \PYGZob{}
+        \PYGZdl{}esAdulto = isset(\PYGZdl{}data[\PYGZsq{}adultez\PYGZsq{}]) \PYG{err}{\PYGZam{}\PYGZam{}} (int)\PYGZdl{}data[\PYGZsq{}adultez\PYGZsq{}] === 1;
+
+        if (!\PYGZdl{}esAdulto) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}adultez\PYGZsq{}, \PYGZsq{}Debes ser mayor de edad\PYGZsq{});
+            return false;
+        \PYGZcb{}
+
+        \PYGZdl{}user = new User([
+            \PYGZsq{}nickName\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZsq{}nickName\PYGZsq{}],
+            \PYGZsq{}nombre\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZsq{}nombre\PYGZsq{}],
+            \PYGZsq{}email\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZsq{}email\PYGZsq{}],
+            \PYGZsq{}password\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZsq{}password\PYGZsq{}],
+            \PYGZsq{}admin\PYGZsq{} =\PYGZgt{} 0
+        ]);
+
+        \PYGZdl{}errores = \PYGZdl{}user\PYGZhy{}\PYGZgt{}validateUser();
+
+        if (!empty(\PYGZdl{}errores)) \PYGZob{}
+            foreach (\PYGZdl{}errores as \PYGZdl{}error) \PYGZob{}
+                \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}general\PYGZsq{}, \PYGZdl{}error);
+            \PYGZcb{}
+            return false;
+        \PYGZcb{}
+
+        if (User::exists(\PYGZdl{}data[\PYGZsq{}nickName\PYGZsq{}], \PYGZdl{}data[\PYGZsq{}email\PYGZsq{}])) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}general\PYGZsq{}, \PYGZsq{}Nickname o email ya en uso\PYGZsq{});
+            return false;
+        \PYGZcb{}
+
+        if (!User::create(\PYGZdl{}user\PYGZhy{}\PYGZgt{}getDatos())) \PYGZob{}
+            \PYGZdl{}this\PYGZhy{}\PYGZgt{}addError(\PYGZsq{}general\PYGZsq{}, \PYGZsq{}Error al crear usuario\PYGZsq{});
+            return false;
+        \PYGZcb{}
+
+        return true;
+    \PYGZcb{}
+\PYGZcb{}
+\end{Verbatim}

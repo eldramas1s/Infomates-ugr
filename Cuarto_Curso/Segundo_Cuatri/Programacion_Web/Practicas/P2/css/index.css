@@ -43,6 +43,7 @@ main section#introSection article div.carrusel div.infoWrapper img#carruselImg {
     background-color: #1A1A1A;
     opacity: 1; 
     transition: opacity 0.4s ease-in-out;
+    align-self: center;
 }
 
 main section#introSection article div.carrusel div.infoWrapper h3#carruselNames {
@@ -156,7 +157,7 @@ main section#introSection article p {
         grid-template-rows: auto auto auto;
         grid-template-areas:
             "title"
-            "image"
+            "carrusel"
             "text";
 
         align-items: center;

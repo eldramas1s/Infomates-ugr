@@ -1,0 +1,55 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{///////////////////////}
+\PYG{c+c1}{// FORMULARIO INICIO SESION}
+\PYG{c+c1}{///////////////////////}
+
+\PYG{c+c1}{//Importamos la clase genérica}
+
+\PYG{k}{import}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{formularioBase}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k+kr}{from}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}./formularioBase.js\PYGZdq{}}\PYG{p}{;}
+
+\PYG{k}{export}\PYG{+w}{ }\PYG{k+kd}{class}\PYG{+w}{ }\PYG{n+nx}{formularioSesion}\PYG{+w}{ }\PYG{k}{extends}\PYG{+w}{ }\PYG{n+nx}{formularioBase}\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Constructor del manejador del formulario de inicio de sesion}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kr}{constructor}\PYG{p}{()\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{super}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}signUpForm\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{endpoint}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}./php/api/inicioSesion.php\PYGZdq{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Devuelve las reglas asociadas al formulario de inicio de sesion}
+\PYG{c+cm}{     * @returns Array asociativo de funciones}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{reglas}\PYG{p}{()\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{nickNameRegex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sr}{/\PYGZca{}[a\PYGZhy{}zA\PYGZhy{}Z0\PYGZhy{}9\PYGZus{}]+\PYGZdl{}/}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{passwordRegex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sr}{/(?=.*[a\PYGZhy{}z])(?=.*[A\PYGZhy{}Z])(?=.*\PYGZbs{}d)(?=.*[\PYGZdl{}@\PYGZdl{}!\PYGZpc{}*?\PYGZam{}.]).\PYGZob{}8,15\PYGZcb{}/}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{nickName}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}NickName vacío\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mf}{3}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{30}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Entre 3 y 30 caracteres\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{nickNameRegex}\PYG{p}{.}\PYG{n+nx}{test}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{))}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Solo letras, números y \PYGZus{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{},}
+
+\PYG{+w}{            }\PYG{n+nx}{password}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{value}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Contraseña vacía\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mf}{8}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{value}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{15}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Debe tener entre 8 y 15 caracteres\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{passwordRegex}\PYG{p}{.}\PYG{n+nx}{test}\PYG{p}{(}\PYG{n+nx}{value}\PYG{p}{))}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Debe contener mayúscula, minúscula, número y símbolo\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Respuesta del servidor cuando sí se loguea el usuario}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param \PYGZob{}json\PYGZcb{} json}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{onSuccess}\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{location}\PYG{p}{.}\PYG{n+nx}{reload}\PYG{p}{();}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+
+\end{Verbatim}

@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{main}\PYG{+w}{ }\PYG{n+nt}{section}\PYG{p}{\PYGZsh{}}\PYG{n+nn}{introSection}\PYG{+w}{ }\PYG{n+nt}{article}\PYG{+w}{ }\PYG{n+nt}{div}\PYG{p}{.}\PYG{n+nc}{carrusel}\PYG{+w}{ }\PYG{n+nt}{div}\PYG{p}{.}\PYG{n+nc}{infoWrapper}\PYG{p}{.}\PYG{n+nc}{apagado}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{animation}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{desaparecer}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{k+kt}{s}\PYG{+w}{ }\PYG{k+kc}{ease\PYGZhy{}out}\PYG{+w}{ }\PYG{k+kc}{forwards}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nt}{main}\PYG{+w}{ }\PYG{n+nt}{section}\PYG{p}{\PYGZsh{}}\PYG{n+nn}{introSection}\PYG{+w}{ }\PYG{n+nt}{article}\PYG{+w}{ }\PYG{n+nt}{div}\PYG{p}{.}\PYG{n+nc}{carrusel}\PYG{+w}{ }\PYG{n+nt}{div}\PYG{p}{.}\PYG{n+nc}{infoWrapper}\PYG{p}{.}\PYG{n+nc}{encendido}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{animation}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{aparecer}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{k+kt}{s}\PYG{+w}{ }\PYG{k+kc}{ease\PYGZhy{}out}\PYG{+w}{ }\PYG{k+kc}{forwards}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{p}{@}\PYG{k}{keyframes}\PYG{+w}{ }\PYG{n+nt}{aparecer}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n+nt}{from}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{opacity}\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nt}{to}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{opacity}\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{p}{@}\PYG{k}{keyframes}\PYG{+w}{ }\PYG{n+nt}{desaparecer}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n+nt}{from}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{opacity}\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nt}{to}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{opacity}\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\end{Verbatim}

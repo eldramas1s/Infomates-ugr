@@ -1,6 +1,6 @@
 <?php
 require_once '../php/utils.php';
-require_once '../php/trips.php';
+require_once '../php/model/trips.php';
 
 session_start();
 ini_set('display_errors', 1);
@@ -19,34 +19,7 @@ error_reporting(E_ALL);
 </head>
 
 <body>
-    <header>
-
-        <h1 id="nombreDecor">Azimut Viajes</h1>
-
-        <img id="logoHeader" src="../imagenes/logoAzimut.png"
-            alt="Logotipo Azimut">
-
-
-        <?php
-        //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
-        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 1);
-        }
-        ?>
-
-        <nav id="menuHeader">
-            <ul>
-                <li><a href="../index.php">Inicio</a></li>
-                <li><a href="../html/viajes.php?page=1">Viajes</a></li>
-                <li><a href="../html/viajes_grupo.php">Viajes en
-                        grupo</a></li>
-                <li><a href="../html/ofertas.php">Ofertas</a></li>
-                <li><a href="../html/sobre_agencia.php">Sobre nuestra
-                        agencia</a></li>
-                <li><a href="../html/sugerencias.php">Sugerencias</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php putHeader(1); ?>
     <aside id="menuViajesPais">
         <nav>
             <?php
@@ -77,7 +50,7 @@ error_reporting(E_ALL);
 
         <?php
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $trips = Trip::getAll();
+        $trips = infoTrips::getAll();
         $trips = groupByNumber($trips, 9);
         $totalPages = count($trips);
         $prePag = $page;
@@ -103,7 +76,7 @@ error_reporting(E_ALL);
             echo "<section class=\"viajes\" id=\"grupo" . $page . "\">";
             echo "<h2>Viajes</h2>";
             foreach ($group as $elem => $tripData) {
-                $trip = new Trip($tripData);
+                $trip = new infoTrips($tripData);
                 echo $trip->tripToHtml(true, $page);
             }
             echo "</section>";
@@ -139,7 +112,7 @@ error_reporting(E_ALL);
                 </div>
                 <div class="field">
                     <label for="price">Precio</label>
-                    <input type="number" name="price" id="price" step="1" min="0">
+                    <input type="number" name="price" id="price" step="0.5" min="0">
                 </div>
                 <div class="field">
                     <label for="fechaSalida">Fecha</label>
@@ -154,12 +127,12 @@ error_reporting(E_ALL);
                     <input type="text" name="lodging" id="lodging" placeholder="[hotel], [albergue], [hostal]">
                 </div>
                 <div class="field">
-                    <label for="sortDesc">Breve descripción:</label>
-                    <input type="textarea" name="sortDesc" id="sortDesc" rows="3" columns="34" placeholder="Escribe una breve descripcion">
+                    <label for="sortDesc" style="display:block">Breve descripción:</label>
+                    <textarea name="sortDesc" id="sortDesc" rows="3" columns="34" placeholder="Escribe una breve descripcion"></textarea>
                 </div>
                 <div class="field">
-                    <label for="longDesc">Descripción:</label>
-                    <input type="textarea" name="longDesc" id="longDesc" rows="5" columns="50" placeholder="Escribe una breve descripcion">
+                    <label for="longDesc" style="display:block">Descripción:</label>
+                    <textarea name="longDesc" id="longDesc" rows="5" columns="50" placeholder="Escribe una descripcion"></textarea>
                 </div>
                 <div class="field">
                     <label for="img">Nombre de la imagen</label>
@@ -171,20 +144,10 @@ error_reporting(E_ALL);
             <!--Los scripts solo aportan funcionalidades a los administradores-->
             <script src="../js/main.js" type="module"></script>
             <script src="../js/deleteTrip.js" type="module"></script>
+            
         <?php endif; ?>
     </main>
-    <footer>
-        <nav id="menuFooter">
-            <ul>
-                <li><a href="../html/contacto.php">Contacte con
-                        nosotros</a></li>
-                <li><a href="../como_se_hizo.pdf"
-                        target="_blank">Cómo se
-                        hizo</a></li>
-            </ul>
-        </nav>
-        <p id="fechaModificacion"><?php echo date('Y-m-d') ?></p>
-    </footer>
+    <?php putFooter(); ?>
 </body>
 
 </html>

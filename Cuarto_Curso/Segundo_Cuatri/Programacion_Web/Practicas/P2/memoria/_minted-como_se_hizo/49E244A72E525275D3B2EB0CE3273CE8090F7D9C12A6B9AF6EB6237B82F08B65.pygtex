@@ -1,0 +1,74 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+\PYG{c+c1}{//Iniciamos la sesión}
+\PYG{n+nb}{session\PYGZus{}start}\PYG{p}{();}
+\PYG{k}{require\PYGZus{}once} \PYG{l+s+s1}{\PYGZsq{}./php/utils.php\PYGZsq{}}\PYG{p}{;}
+\PYG{c+cp}{?\PYGZgt{}}
+
+\PYG{x}{\PYGZlt{}!DOCTYPE html\PYGZgt{}}
+\PYG{x}{\PYGZlt{}html lang=\PYGZdq{}es\PYGZdq{}\PYGZgt{}}
+
+\PYG{x}{\PYGZlt{}head\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}meta charset=\PYGZdq{}UTF\PYGZhy{}8\PYGZdq{}\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}meta name=\PYGZdq{}viewport\PYGZdq{} content=\PYGZdq{}width=device\PYGZhy{}width, initial\PYGZhy{}scale=1.0\PYGZdq{}\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}link rel=\PYGZdq{}stylesheet\PYGZdq{} href=\PYGZdq{}./css/style.css\PYGZdq{}\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}link rel=\PYGZdq{}stylesheet\PYGZdq{} href=\PYGZdq{}./css/form.css\PYGZdq{}\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}link rel=\PYGZdq{}stylesheet\PYGZdq{} href=\PYGZdq{}./css/index.css\PYGZdq{}\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}title\PYGZgt{}Azimut Viajes | Exclusividad en cada sitio\PYGZlt{}/title\PYGZgt{}}
+\PYG{x}{\PYGZlt{}/head\PYGZgt{}}
+
+\PYG{x}{\PYGZlt{}body\PYGZgt{}}
+\PYG{x}{    }\PYG{c+cp}{\PYGZlt{}?php} \PYG{n+nx}{putHeader}\PYG{p}{();} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}main id=\PYGZdq{}mainIndex\PYGZdq{}\PYGZgt{}}
+\PYG{x}{        \PYGZlt{}section id=\PYGZdq{}introSection\PYGZdq{}\PYGZgt{}}
+\PYG{x}{            \PYGZlt{}article\PYGZgt{}}
+\PYG{x}{                \PYGZlt{}h2\PYGZgt{}Azimut Viajes\PYGZlt{}/h2\PYGZgt{}}
+\PYG{x}{                \PYGZlt{}div class=\PYGZdq{}carrusel\PYGZdq{} id=\PYGZdq{}carrusel\PYGZdq{}\PYGZgt{}}
+\PYG{x}{                \PYGZlt{}/div\PYGZgt{}}
+\PYG{x}{                \PYGZlt{}p\PYGZgt{}Bienvenido a Azimut Viajes, tu agencia de viajes de confianza para descubrir los mejores destinos del mundo. Aquí encontrarás las mejores ofertas para tu próximo viaje. Seremos tu \PYGZlt{}strong\PYGZgt{}rumbo\PYGZlt{}/strong\PYGZgt{} y tu \PYGZlt{}strong\PYGZgt{}dirección\PYGZlt{}/strong\PYGZgt{} en cada aventura.\PYGZlt{}/p\PYGZgt{}}
+\PYG{x}{            \PYGZlt{}/article\PYGZgt{}}
+\PYG{x}{        \PYGZlt{}/section\PYGZgt{}}
+\PYG{x}{        }\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{isset}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}loggedIn\PYGZsq{}}\PYG{p}{])} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}loggedIn\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{k}{true}\PYG{p}{)}\PYG{o}{:} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{            \PYGZlt{}section id=\PYGZdq{}searchSection\PYGZdq{}\PYGZgt{}}
+\PYG{x}{                \PYGZlt{}form id=\PYGZdq{}formularioBusqueda\PYGZdq{} method=\PYGZdq{}get\PYGZdq{} action=\PYGZdq{}./html/viajes\PYGZus{}buscados.php\PYGZdq{} autocomplete=\PYGZdq{}off\PYGZdq{} target=\PYGZdq{}\PYGZus{}self\PYGZdq{}\PYGZgt{}}
+
+\PYG{x}{                    \PYGZlt{}fieldset\PYGZgt{}}
+\PYG{x}{                        \PYGZlt{}datalist id=\PYGZdq{}continentes\PYGZdq{}\PYGZgt{}}
+\PYG{x}{                            \PYGZlt{}option value=\PYGZdq{}Europa\PYGZdq{}\PYGZgt{}Europa\PYGZlt{}/option\PYGZgt{}}
+\PYG{x}{                            \PYGZlt{}option value=\PYGZdq{}Asia\PYGZdq{}\PYGZgt{}Asia\PYGZlt{}/option\PYGZgt{}}
+\PYG{x}{                            \PYGZlt{}option value=\PYGZdq{}America\PYGZdq{}\PYGZgt{}América\PYGZlt{}/option\PYGZgt{}}
+\PYG{x}{                            \PYGZlt{}option value=\PYGZdq{}Africa\PYGZdq{}\PYGZgt{}África\PYGZlt{}/option\PYGZgt{}}
+\PYG{x}{                            \PYGZlt{}option value=\PYGZdq{}Oceania\PYGZdq{}\PYGZgt{}Oceanía\PYGZlt{}/option\PYGZgt{}}
+\PYG{x}{                        \PYGZlt{}/datalist\PYGZgt{}}
+\PYG{x}{                        \PYGZlt{}input type=\PYGZdq{}text\PYGZdq{} id=\PYGZdq{}continent\PYGZdq{} name=\PYGZdq{}continent\PYGZdq{} placeholder=\PYGZdq{}Continente\PYGZdq{} list=\PYGZdq{}continentes\PYGZdq{}\PYGZgt{}}
+
+\PYG{x}{                        \PYGZlt{}datalist id=\PYGZdq{}paises\PYGZdq{}\PYGZgt{}\PYGZlt{}/datalist\PYGZgt{}}
+\PYG{x}{                        \PYGZlt{}input type=\PYGZdq{}text\PYGZdq{} id=\PYGZdq{}country\PYGZdq{} name=\PYGZdq{}country\PYGZdq{} placeholder=\PYGZdq{}País\PYGZdq{} list=\PYGZdq{}paises\PYGZdq{}\PYGZgt{}}
+
+\PYG{x}{                        \PYGZlt{}datalist id=\PYGZdq{}places\PYGZdq{}\PYGZgt{}\PYGZlt{}/datalist\PYGZgt{}}
+\PYG{x}{                        \PYGZlt{}input type=\PYGZdq{}text\PYGZdq{} id=\PYGZdq{}place\PYGZdq{} name=\PYGZdq{}place\PYGZdq{} placeholder=\PYGZdq{}Lugar\PYGZdq{} list=\PYGZdq{}places\PYGZdq{}\PYGZgt{}}
+
+\PYG{x}{                        \PYGZlt{}label for=\PYGZdq{}fecha\PYGZus{}salida\PYGZdq{}\PYGZgt{}From:\PYGZlt{}/label\PYGZgt{}}
+\PYG{x}{                        \PYGZlt{}input type=\PYGZdq{}date\PYGZdq{} id=\PYGZdq{}departureDate\PYGZdq{} name=\PYGZdq{}departureDate\PYGZdq{}}
+\PYG{x}{                            min=\PYGZdq{}}\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{echo} \PYG{n+nb}{date}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Y\PYGZhy{}m\PYGZhy{}d\PYGZsq{}}\PYG{p}{);} \PYG{c+cp}{?\PYGZgt{}}\PYG{x}{\PYGZdq{}\PYGZgt{}}
+
+\PYG{x}{                        \PYGZlt{}label for=\PYGZdq{}fecha\PYGZus{}regreso\PYGZdq{}\PYGZgt{}To:\PYGZlt{}/label\PYGZgt{}}
+\PYG{x}{                        \PYGZlt{}input type=\PYGZdq{}date\PYGZdq{} id=\PYGZdq{}returnDate\PYGZdq{} name=\PYGZdq{}returnDate\PYGZdq{}}
+\PYG{x}{                            min=\PYGZdq{}}\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{echo} \PYG{n+nb}{date}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Y\PYGZhy{}m\PYGZhy{}d\PYGZsq{}}\PYG{p}{);} \PYG{c+cp}{?\PYGZgt{}}\PYG{x}{\PYGZdq{}\PYGZgt{}}
+
+\PYG{x}{                        \PYGZlt{}button type=\PYGZdq{}submit\PYGZdq{}\PYGZgt{}\PYGZlt{}img id=\PYGZdq{}icono\PYGZus{}busqueda\PYGZdq{}}
+\PYG{x}{                                src=\PYGZdq{}./imagenes/icono\PYGZus{}busqueda.png\PYGZdq{}}
+\PYG{x}{                                alt=\PYGZdq{}Buscar\PYGZdq{}\PYGZgt{}\PYGZlt{}/button\PYGZgt{}}
+\PYG{x}{                    \PYGZlt{}/fieldset\PYGZgt{}}
+
+\PYG{x}{                \PYGZlt{}/form\PYGZgt{}}
+
+\PYG{x}{            \PYGZlt{}/section\PYGZgt{}}
+\PYG{x}{        }\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{endif} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}/main\PYGZgt{}}
+\PYG{x}{    }\PYG{c+cp}{\PYGZlt{}?php} \PYG{n+nx}{putFooter}\PYG{p}{();} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{    \PYGZlt{}script type=\PYGZdq{}module\PYGZdq{} src=\PYGZdq{}./js/main.js\PYGZdq{}\PYGZgt{}\PYGZlt{}/script\PYGZgt{}}
+\PYG{x}{\PYGZlt{}/body\PYGZgt{}}
+
+\PYG{x}{\PYGZlt{}/html\PYGZgt{}}
+\end{Verbatim}

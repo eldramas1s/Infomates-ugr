@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+    \PYG{c+c1}{//Mostrar los botones}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{isset}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}admin\PYGZsq{}}\PYG{p}{])} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}admin\PYGZsq{}}\PYG{p}{]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nv}{\PYGZdl{}general}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}html} \PYG{o}{.=} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}button class=}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{deleteButton}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}
+\PYG{l+s+s2}{                        data\PYGZhy{}continent=}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{.} \PYG{n+nb}{htmlspecialchars}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{])} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}
+\PYG{l+s+s2}{                        data\PYGZhy{}country=}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{.} \PYG{n+nb}{htmlspecialchars}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{])} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}
+\PYG{l+s+s2}{                        data\PYGZhy{}place=}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{.} \PYG{n+nb}{htmlspecialchars}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{])} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{\PYGZgt{}}
+\PYG{l+s+s2}{                        \PYGZlt{}img src=}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{../imagenes/deleteButton.png}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{ alt=}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{Eliminar}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s+s2}{\PYGZgt{}}
+\PYG{l+s+s2}{                     \PYGZlt{}/button\PYGZgt{}\PYGZdq{}}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

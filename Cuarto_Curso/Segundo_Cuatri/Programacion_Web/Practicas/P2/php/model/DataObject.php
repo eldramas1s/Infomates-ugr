@@ -3,7 +3,7 @@
  * Clase de conexión a la base de datos, todas las conexiones 
  * se realizarán a través de esta clase.
  */
-require_once 'config.php';
+require_once __DIR__.'/../config.php';
 abstract class DataObject{
     protected $datos = array();
     public function __construct( $datos ) {

@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php} \PYG{n+nv}{\PYGZdl{}relatedTrips} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}infoTrip}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getRelatedTrips}\PYG{p}{();} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{\PYGZlt{}nav id=\PYGZdq{}relatedTripsNav\PYGZdq{}\PYGZgt{}}
+
+\PYG{x}{    }\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}relatedTrips}\PYG{p}{))}\PYG{o}{:} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{        \PYGZlt{}ul\PYGZgt{}}
+\PYG{x}{            }\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}relatedTrips} \PYG{k}{as} \PYG{n+nv}{\PYGZdl{}relatedTrip}\PYG{p}{)}\PYG{o}{:}
+                \PYG{n+nv}{\PYGZdl{}datos} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}relatedTrip}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getDatos}\PYG{p}{();}
+            \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{                \PYGZlt{}li\PYGZgt{}}
+\PYG{x}{                    \PYGZlt{}a href=\PYGZdq{}../html/viaje\PYGZus{}indiv.php?continent=}\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{echo} \PYG{n+nb}{htmlspecialchars}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{]);} \PYG{c+cp}{?\PYGZgt{}}\PYG{x}{\PYGZam{}country=}\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{echo} \PYG{n+nb}{htmlspecialchars}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{]);} \PYG{c+cp}{?\PYGZgt{}}\PYG{x}{\PYGZam{}place=}\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{echo} \PYG{n+nb}{htmlspecialchars}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{]);} \PYG{c+cp}{?\PYGZgt{}}\PYG{x}{\PYGZdq{}\PYGZgt{}}
+\PYG{x}{                        }\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{echo} \PYG{n+nb}{htmlspecialchars}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{]} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{}, \PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{]);} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{                    \PYGZlt{}/a\PYGZgt{}}
+\PYG{x}{                \PYGZlt{}/li\PYGZgt{}}
+\PYG{x}{            }\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{endforeach}\PYG{p}{;} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{        \PYGZlt{}/ul\PYGZgt{}}
+\PYG{x}{    }\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{else}\PYG{o}{:} \PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{        \PYGZlt{}p\PYGZgt{}Lo sentimos, no hay viajes relacionados disponibles en este momento.\PYGZlt{}/p\PYGZgt{}}
+\PYG{x}{    }\PYG{c+cp}{\PYGZlt{}?php} \PYG{k}{endif}\PYG{p}{;} \PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

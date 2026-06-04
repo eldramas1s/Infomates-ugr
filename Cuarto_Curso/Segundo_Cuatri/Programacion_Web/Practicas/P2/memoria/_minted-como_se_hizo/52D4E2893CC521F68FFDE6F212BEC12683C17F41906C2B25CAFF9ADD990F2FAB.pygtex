@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{validCountries}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{paises}\PYG{p}{.}\PYG{n+nx}{map}\PYG{p}{(}\PYG{n+nx}{p}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{nombreEspaniol}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{p}\PYG{p}{.}\PYG{n+nx}{translations}\PYG{o}{?}\PYG{p}{.}\PYG{n+nx}{spa}\PYG{o}{?}\PYG{p}{.}\PYG{n+nx}{common}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{nombreIngles}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{p}\PYG{p}{.}\PYG{n+nx}{name}\PYG{o}{?}\PYG{p}{.}\PYG{n+nx}{common}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{nombreEspaniol}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{paisFormateado}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{nombreEspaniol}\PYG{p}{.}\PYG{n+nx}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{map}\PYG{p}{(}\PYG{n+nx}{palabra}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{palabra}\PYG{p}{.}\PYG{n+nx}{charAt}\PYG{p}{(}\PYG{l+m+mf}{0}\PYG{p}{).}\PYG{n+nx}{toUpperCase}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nx}{palabra}\PYG{p}{.}\PYG{n+nx}{slice}\PYG{p}{(}\PYG{l+m+mf}{1}\PYG{p}{)).}\PYG{n+nx}{join}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{nombreIngles}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{countriesDictionary}\PYG{p}{[}\PYG{n+nx}{paisFormateado}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{nombreIngles}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nx}{paisFormateado}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}).}\PYG{n+nx}{filter}\PYG{p}{(}\PYG{n+nb}{Boolean}\PYG{p}{).}\PYG{n+nx}{sort}\PYG{p}{((}\PYG{n+nx}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{b}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{a}\PYG{p}{.}\PYG{n+nx}{localeCompare}\PYG{p}{(}\PYG{n+nx}{b}\PYG{p}{));}
+\end{Verbatim}

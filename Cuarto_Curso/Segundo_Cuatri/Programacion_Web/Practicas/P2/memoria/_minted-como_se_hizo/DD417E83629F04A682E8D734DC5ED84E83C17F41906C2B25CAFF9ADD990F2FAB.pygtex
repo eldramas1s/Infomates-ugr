@@ -1,0 +1,161 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//////////////////////////}
+\PYG{c+c1}{// CARRUSEL DE VIAJES}
+\PYG{c+c1}{//////////////////////////}
+
+\PYG{k}{export}\PYG{+w}{ }\PYG{k+kd}{class}\PYG{+w}{ }\PYG{n+nx}{Carrusel}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Carrusel que muestra los viajes destacados en la página principal}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     * @param \PYGZob{}string\PYGZcb{} idContenedor contenedor que contiene el carrusel}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kr}{constructor}\PYG{p}{(}\PYG{n+nx}{idContenedor}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{container}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{n+nx}{idContenedor}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{endpoint}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}./php/api/getCarrusel.php\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{trips}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[];}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{currentIndex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{container}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{initCarrusel}\PYG{p}{();}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{initAutoPlay}\PYG{p}{();}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Carga los viajes destacados desde la API y los muestra en el carrusel. Si hay un error, muestra un mensaje de error en el contenedor.}
+\PYG{c+cm}{     *}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k}{async}\PYG{+w}{ }\PYG{n+nx}{initCarrusel}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{fetch}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{endpoint}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{method}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}GET\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n+nx}{headers}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Content\PYGZhy{}Type\PYGZsq{}}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}application/json\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{});}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{ok}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{throw}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+ne}{Error}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Ha habido un fallo con la api del carrusel\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{json}\PYG{p}{();}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{success}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{data}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{trips}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{data}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{c+c1}{//Construimos el DOM}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{buildDOM}\PYG{p}{();}
+
+\PYG{+w}{                }\PYG{c+c1}{//Actualizamos la vista}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{updateView}\PYG{p}{();}
+
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{container}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}p\PYGZgt{}\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{message}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}/p\PYGZgt{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{error}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{console}\PYG{p}{.}\PYG{n+nx}{error}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Error al cargar el carrusel:\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{error}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{container}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}p\PYGZgt{}Error de conexión al cargar los destinos.\PYGZlt{}/p\PYGZgt{}\PYGZdq{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Construye el DOM del carrusel, añadiendo los elementos necesarios para mostrar la información de los viajes y las flechas de navegación. También añade los event listeners a las flechas para navegar entre los viajes.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{buildDOM}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{container}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sb}{`}
+\PYG{l+s+sb}{            \PYGZlt{}div id=\PYGZdq{}infoWrapper\PYGZdq{}class=\PYGZdq{}infoWrapper\PYGZdq{}\PYGZgt{}}
+\PYG{l+s+sb}{                \PYGZlt{}h3 id=\PYGZdq{}carruselNames\PYGZdq{}\PYGZgt{}Buscando viajes...\PYGZlt{}/h3\PYGZgt{}}
+\PYG{l+s+sb}{                \PYGZlt{}img id=\PYGZdq{}carruselImg\PYGZdq{} src=\PYGZdq{}\PYGZdq{} alt=\PYGZdq{}imagen carrusel\PYGZdq{}\PYGZgt{}}
+\PYG{l+s+sb}{                \PYGZlt{}p id=\PYGZdq{}infoCarrusel\PYGZdq{}\PYGZgt{}\PYGZlt{}/p\PYGZgt{}}
+\PYG{l+s+sb}{            \PYGZlt{}/div\PYGZgt{}}
+
+\PYG{l+s+sb}{            \PYGZlt{}nav class=\PYGZdq{}flechasGrupos\PYGZdq{}\PYGZgt{}}
+\PYG{l+s+sb}{                \PYGZlt{}a href=\PYGZdq{}\PYGZsh{}\PYGZdq{} id=\PYGZdq{}flechaIzq\PYGZdq{}\PYGZgt{}\PYGZam{}\PYGZsh{}10094;\PYGZlt{}/a\PYGZgt{}}
+\PYG{l+s+sb}{                \PYGZlt{}a href=\PYGZdq{}\PYGZsh{}\PYGZdq{} id=\PYGZdq{}flechaDcha\PYGZdq{}\PYGZgt{}\PYGZam{}\PYGZsh{}10095;\PYGZlt{}/a\PYGZgt{}}
+\PYG{l+s+sb}{            \PYGZlt{}/nav\PYGZgt{}}
+\PYG{l+s+sb}{        `}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{//Obtenemos los elementos creados}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{wrapper}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}infoWrapper\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{img}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}carruselImg\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{title}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}carruselNames\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{info}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}infoCarrusel\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{btnIzq}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}flechaIzq\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{btnDcha}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}flechaDcha\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{n+nx}{btnIzq}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}click\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{e}\PYG{p}{.}\PYG{n+nx}{preventDefault}\PYG{p}{();}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{anterior}\PYG{p}{();}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{})}
+
+\PYG{+w}{        }\PYG{n+nx}{btnDcha}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}click\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{e}\PYG{p}{.}\PYG{n+nx}{preventDefault}\PYG{p}{();}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{siguiente}\PYG{p}{();}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{})}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Muestra el siguiente viaje en el carrusel. Actualiza el índice actual y la vista, y reinicia el temporizador de autoplay para que no se pisen los temporizadores.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{siguiente}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{//Actualizamos el indice}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{currentIndex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{currentIndex}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mf}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{trips}\PYG{p}{.}\PYG{n+nx}{length}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{updateView}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{initAutoPlay}\PYG{p}{();}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Muestra el viaje anterior en el carrusel. Actualiza el índice actual y la vista, y reinicia el temporizador de autoplay para que no se pisen los temporizadores.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{anterior}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{currentIndex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{currentIndex}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mf}{1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{trips}\PYG{p}{.}\PYG{n+nx}{length}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{trips}\PYG{p}{.}\PYG{n+nx}{length}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{updateView}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{initAutoPlay}\PYG{p}{();}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Actualiza la vista del carrusel con la información del viaje actual. Cambia la imagen, el título y la descripción del viaje, y añade una animación de transición para que el cambio sea más suave. Si no hay un viaje actual o el wrapper no está definido, no hace nada.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{updateView}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{actualTrip}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{trips}\PYG{p}{[}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{currentIndex}\PYG{p}{];}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{actualTrip}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{wrapper}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{wrapper}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{remove}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}encendido\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{wrapper}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{add}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}apagado\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{n+nx}{setTimeout}\PYG{p}{(()}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{img}\PYG{p}{.}\PYG{n+nx}{src}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sb}{`./imagenes/}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{actualTrip}\PYG{p}{.}\PYG{n+nx}{img}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{`}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{title}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{actualTrip}\PYG{p}{.}\PYG{n+nx}{place}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{info}\PYG{p}{.}\PYG{n+nx}{innerHTML}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{actualTrip}\PYG{p}{.}\PYG{n+nx}{sortDesc}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{img}\PYG{p}{.}\PYG{n+nx}{onload}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{()}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{wrapper}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{remove}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}apagado\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{wrapper}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{add}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}encendido\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{};}
+
+\PYG{+w}{                }\PYG{c+c1}{//Por si no salta el onload}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{img}\PYG{p}{.}\PYG{n+nx}{complete}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{wrapper}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{remove}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}apagado\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                    }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{wrapper}\PYG{p}{.}\PYG{n+nx}{classList}\PYG{p}{.}\PYG{n+nx}{add}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}encendido\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{p}{\PYGZcb{},}\PYG{+w}{ }\PYG{l+m+mf}{1000}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Inicia el autoplay del carrusel, haciendo que se muestre el siguiente viaje cada 4 segundos. Si ya había un temporizador funcionando, lo borra para que no se pisen los temporizadores.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{n+nx}{initAutoPlay}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// Si ya había un temporizador funcionando, lo borramos para que no se pisen}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{timer}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{clearInterval}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{timer}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{c+c1}{// Le decimos que ejecute \PYGZdq{}this.siguiente()\PYGZdq{} cada 4 segundos (4000 ms)}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{timer}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{setInterval}\PYG{p}{(()}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{siguiente}\PYG{p}{();}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{},}\PYG{+w}{ }\PYG{l+m+mf}{4000}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,6 +1,6 @@
 <?php
 require_once '../php/utils.php';
-require_once '../php/trips.php';
+require_once '../php/model/trips.php';
 session_start();
 ?>
 
@@ -17,33 +17,7 @@ session_start();
 </head>
 
 <body>
-    <header>
-
-        <h1 id="nombreDecor">Azimut Viajes</h1>
-
-        <img id="logoHeader" src="../imagenes/logoAzimut.png"
-            alt="Logotipo Azimut">
-
-        <?php
-
-        //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
-        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 1);
-        }
-        ?>
-        <nav id="menuHeader">
-            <ul>
-                <li><a href="../index.php">Inicio</a></li>
-                <li><a href="../html/viajes.php">Viajes</a></li>
-                <li><a href="../html/viajes_grupo.php">Viajes en
-                        grupo</a></li>
-                <li><a href="../html/ofertas.php">Ofertas</a></li>
-                <li><a href="../html/sobre_agencia.php">Sobre nuestra
-                        agencia</a></li>
-                <li><a href="../html/sugerencias.php">Sugerencias</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php putHeader(1); ?>
     <aside id="menuViajesPais">
         <nav>
             <?php
@@ -72,7 +46,7 @@ session_start();
         <?php
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $country = isset($_GET['country']) ? $_GET['country'] : "";
-        $trips = Trip::getAllBetween(-1, $country,-1,-1,-1);
+        $trips = infoTrips::getAllBetween(-1, $country,-1,-1,-1);
         $trips = groupByNumber($trips, 9);
         $totalPages = count($trips);
         $prePag = $page;
@@ -98,8 +72,8 @@ session_start();
             echo "<section class=\"viajes\" id=\"grupo" . $page . "\">";
             echo "<h2>Viajes</h2>";
             foreach ($group as $elem => $tripData) {
-                $trip = new Trip($tripData);
-                echo $trip->tripToHtml(true, $page);
+                $trip = new infoTrips($tripData);
+                echo $trip->tripToHtml(false, $page);
             }
             echo "</section>";
         } else {
@@ -107,20 +81,10 @@ session_start();
         }
 
         ?>
-
+        <script src="../js/main.js" type="module"></script>
     </main>
-    <footer>
-        <nav id="menuFooter">
-            <ul>
-                <li><a href="../../html/contacto.php">Contacte con
-                        nosotros</a></li>
-                <li><a href="../../como_se_hizo.pdf"
-                        target="_blank">Cómo se
-                        hizo</a></li>
-            </ul>
-        </nav>
-        <p id="fechaModificacion">27/04/2026</p>
-    </footer>
+    <?php putFooter(1);?>
+    
 </body>
 
 </html>

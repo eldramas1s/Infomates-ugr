@@ -1,0 +1,66 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//////////////////////////}
+\PYG{c+c1}{// EVENT LISTENER PARA ADMIN}
+\PYG{c+c1}{//////////////////////////}
+
+\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}DOMContentLoaded\PYGZdq{}}\PYG{p}{,()=\PYGZgt{}\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{buttons}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{querySelectorAll}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}.deleteButton\PYGZsq{}}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{n+nx}{buttons}\PYG{p}{.}\PYG{n+nx}{forEach}\PYG{p}{(}\PYG{n+nx}{button}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{button}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}click\PYGZsq{}}\PYG{p}{,}\PYG{k}{async}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{)=\PYGZgt{}\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{e}\PYG{p}{.}\PYG{n+nx}{preventDefault}\PYG{p}{();}
+\PYG{+w}{            }\PYG{c+c1}{//Obtenemos la tarjeta y las fechas necesarias}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{card}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{button}\PYG{p}{.}\PYG{n+nx}{closest}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}.viajeTipo\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{dateSelector}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{card}\PYG{p}{.}\PYG{n+nx}{querySelector}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}.selectorFecha\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{valueDate}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{dateSelector}\PYG{p}{.}\PYG{n+nx}{value}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{valueDate}\PYG{o}{==}\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{valueDate}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{o}{===}\PYG{l+s+s2}{\PYGZdq{}null\PYGZdq{}}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n+nx}{valueDate}\PYG{p}{.}\PYG{n+nx}{trim}\PYG{p}{()}\PYG{o}{===}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{alert}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Por favor, seleccione una fecha\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{p}{[}\PYG{n+nx}{departureDate}\PYG{p}{,}\PYG{n+nx}{returnDate}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{valueDate}\PYG{p}{.}\PYG{n+nx}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{};\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{c+c1}{//Obtenemos la info con los data\PYGZhy{}*}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{continent}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{button}\PYG{p}{.}\PYG{n+nx}{dataset}\PYG{p}{.}\PYG{n+nx}{continent}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{country}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{button}\PYG{p}{.}\PYG{n+nx}{dataset}\PYG{p}{.}\PYG{n+nx}{country}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{place}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{button}\PYG{p}{.}\PYG{n+nx}{dataset}\PYG{p}{.}\PYG{n+nx}{place}\PYG{p}{;}
+\PYG{+w}{            }\PYG{c+c1}{//Pedimos confirmacion}
+\PYG{+w}{            }\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{confirm}\PYG{p}{(}\PYG{l+s+sb}{`¿Seguro que quieres eliminar  viaje a }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{place}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{ del }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{departureDate}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{ ?`}\PYG{p}{))\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{c+c1}{//Hacemos la peticion fetch a la api;}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{endpoint}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}../php/api/deleteDestiny.php\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{fetch}\PYG{p}{(}\PYG{n+nx}{endpoint}\PYG{p}{,\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{method}\PYG{o}{:}\PYG{l+s+s2}{\PYGZdq{}POST\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n+nx}{headers}\PYG{o}{:}\PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}Content\PYGZhy{}Type\PYGZdq{}}\PYG{o}{:}\PYG{l+s+s2}{\PYGZdq{}application/json\PYGZdq{}}\PYG{p}{\PYGZcb{},}
+\PYG{+w}{                }\PYG{n+nx}{body}\PYG{o}{:}\PYG{n+nb}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(\PYGZob{}}
+\PYG{+w}{                    }\PYG{n+nx}{continent}\PYG{o}{:}\PYG{n+nx}{continent}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{n+nx}{country}\PYG{o}{:}\PYG{n+nx}{country}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{n+nx}{place}\PYG{o}{:}\PYG{n+nx}{place}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{n+nx}{departureDate}\PYG{o}{:}\PYG{n+nx}{departureDate}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{n+nx}{returnDate}\PYG{o}{:}\PYG{n+nx}{returnDate}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{})}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{});}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{ok}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{throw}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+ne}{Error}\PYG{p}{(}\PYG{l+s+sb}{`Error en la red: }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{status}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{`}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{c+c1}{//Si tenemos respuesta la obtenemos}
+\PYG{+w}{            }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{json}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{response}\PYG{p}{.}\PYG{n+nx}{json}\PYG{p}{();}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{success}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{                }\PYG{c+c1}{//Lo único que debemos hacer es recargar la página para notar el cambio}
+\PYG{+w}{                }\PYG{n+nx}{alert}\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{message}\PYG{p}{);}
+\PYG{+w}{                }\PYG{n+nx}{location}\PYG{p}{.}\PYG{n+nx}{reload}\PYG{p}{();}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{k}{else}\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n+nx}{alert}\PYG{p}{(}\PYG{n+nx}{json}\PYG{p}{.}\PYG{n+nx}{message}\PYG{p}{);}
+\PYG{+w}{                }\PYG{n+nb}{window}\PYG{p}{.}\PYG{n+nx}{location}\PYG{p}{.}\PYG{n+nx}{href}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}../index.php\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{p}{\PYGZcb{});}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{});}
+\PYG{p}{\PYGZcb{})}
+\end{Verbatim}

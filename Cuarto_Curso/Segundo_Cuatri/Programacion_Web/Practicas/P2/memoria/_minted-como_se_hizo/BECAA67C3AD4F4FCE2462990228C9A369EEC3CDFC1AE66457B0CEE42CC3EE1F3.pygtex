@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+            \PYGZdl{}data = json\PYGZbs{}\PYGZus{}decode(file\PYGZbs{}\PYGZus{}get\PYGZbs{}\PYGZus{}contents(\PYGZdq{}php://input\PYGZdq{}), true);
+\end{Verbatim}

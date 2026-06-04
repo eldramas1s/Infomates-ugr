@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/../php/utils.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -52,18 +56,19 @@
                     <label for="password">Contraseña:*</label>
                     <input type="password" id="password" name="password">
                 </div>
-                <div class="field">
+                <div class="field" id="adultez">
                     <label for="adulto">¿Eres mayor de edad?</label>
                     <input type="radio" name="adultez" id="adulto" value="1" > Si
                     <input type="radio" name="adultez" id="menor" value="0" > No
                 </div>
 
-                <div class="field">
+                <div class="field" id="legal">
                     <a href="../aviso_legal.pdf" target="_blank" id="enlaceLegal">Aviso legal</a>
                 </div>
-                <div class="field">
-                    Ha leído el aviso legal:* <input type="checkbox" name="aceptar" id="checkLegal">
-                </div class="field">
+                <div class="field" id="checkLegalDiv">
+                    <label for="checkLegal">He leído el aviso legal*</label>
+                    <input type="checkbox" name="aceptar" id="checkLegal">
+                </div>
                 <div>
                     <button type="submit">Registrarse</button>
                 </div>
@@ -72,18 +77,7 @@
         </form>
 
     </main>
-    <footer>
-        <nav id="menuFooter">
-            <ul>
-                <li><a href="../html/contacto.php">Contacte con
-                        nosotros</a></li>
-                <li><a href="../como_se_hizo.pdf"
-                        target="_blank">Cómo se
-                        hizo</a></li>
-            </ul>
-        </nav>
-        <p id="fechaModificacion">27/04/2026</p>
-    </footer>
+    <?php putFooter(1); ?>
     <script type="module" src="../js/main.js"></script>
 </body>
 

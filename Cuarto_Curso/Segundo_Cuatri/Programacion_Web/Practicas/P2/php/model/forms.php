@@ -59,7 +59,7 @@ abstract class FormHandler
     }
 }
 
-require_once __DIR__ . '/user.php';
+require_once __DIR__ . '/model/user.php';
 require_once __DIR__ . '/conection.php';
 class FormSignUp extends FormHandler
 {
@@ -146,7 +146,7 @@ class FormSignUp extends FormHandler
     }
 }
 
-require_once __DIR__ . '/trips.php';
+require_once __DIR__ . '/model/trips.php';
 
 class FormLogIn extends FormHandler
 {
@@ -204,13 +204,13 @@ class FormAddTrip extends FormHandler
         if (!isset($data['price']) || trim($data['price']) === '' || !is_numeric($data['price'])) {
             $this->healthData['price'] = 0.0; // O manejas un error de validación
         } else {
-            // 2. Si es numérico, lo transformamos a float y lo limitamos a 2 decimales
+            //Si el precio que se obtiene es un número, lo convertimos a float y lo redondeamos a 2 decimales, además de evitar precios negativos
             $priceFloat = (float)$data['price'];
 
             if ($priceFloat < 0) {
                 $this->healthData['price'] = 0.0; // Evitamos precios negativos
             } else {
-                $this->healthData['price'] = round($priceFloat, 2);
+                $this->healthData['price'] = round($priceFloat, 2); //Tomar dos decimales
             }
         }
         if (empty($data['departureDate'])) {
@@ -252,7 +252,6 @@ class FormAddTrip extends FormHandler
     }
 
 
-    //TODO: Modificar la imagen no me lo permite (DECIDIDO ASÍ)
     public function process(array $data)
     {
         //Buscar si existe el viaje

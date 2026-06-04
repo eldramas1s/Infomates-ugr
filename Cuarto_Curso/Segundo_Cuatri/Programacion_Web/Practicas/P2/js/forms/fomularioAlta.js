@@ -17,6 +17,10 @@ export class formularioAlta extends formularioBase{
         this.avisoLeido = false;
     }
 
+    /**
+     * Construye y devuelve las reglas de validacion de los campos del formulario de alta de usuarios
+     * @returns diccionario de pares clave-valor con las funciones que comprueban los campos
+     */
     reglas(){
         const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü ]+$/;
         const nickNameRegex = /^[a-zA-Z0-9_]+$/;
@@ -30,41 +34,41 @@ export class formularioAlta extends formularioBase{
 
         return {
             nombre : (value) => {
-                if(!value) return "Nombre vacío";
+                if(!value || value.trim() === "") return "Nombre vacío";
                 if(value.length > 30) return "Máximo 30 caracteres";
                 if(!nameRegex.test(value)) return "Solo letras y espacios";
                 return null;
             },
 
             nickName : (value) => {
-                if(!value) return "NickName vacío";
+                if(!value || value.trim() === "") return "NickName vacío";
                 if(value.length < 3 || value.length > 30) return "Entre 3 y 30 caracteres";
                 if(!nickNameRegex.test(value)) return "Solo letras, números y _";
                 return null;
             },
 
             email : (value) => {
-                if(!value) return "Email vacío";
+                if(!value || value.trim() === "") return "Email vacío";
                 if(value.length > 100) return "Máximo 100 caracteres";
                 if(!emailRegex.test(value)) return "Email no válido";
                 return null;
             },
 
             password : (value) => {
-                if(!value) return "Contraseña vacía";
+                if(!value || value.trim() === "") return "Contraseña vacía";
                 if(value.length < 8 || value.length > 15) return "Debe tener entre 8 y 15 caracteres";
                 if(!passwordRegex.test(value)) return "Debe contener mayúscula, minúscula, número y símbolo";
                 return null;
             },
 
             aceptar : (value) => {
-                if(!value) return "Debes aceptar el aviso legal";
+                if(!value || value.trim() === "") return "Debes aceptar el aviso legal";
                 if(!this.avisoLeido) return "Debes leer el aviso legal";
                 return null;
             },
 
             adultez : (value) => {
-                if(!value) return "Debes confirmar que eres mayor de edad";
+                if(!value || value.trim() === "") return "Debes confirmar que eres mayor de edad";
                 return null;
             }
         }

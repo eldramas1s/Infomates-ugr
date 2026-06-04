@@ -83,12 +83,12 @@ export class Carrusel {
 
         btnIzq.addEventListener("click", (e) => {
             e.preventDefault();
-            this.siguiente();
+            this.anterior();
         })
 
         btnDcha.addEventListener("click", (e) => {
             e.preventDefault();
-            this.anterior();
+            this.siguiente();
         })
     }
 
@@ -117,6 +117,7 @@ export class Carrusel {
     updateView() {
         const actualTrip = this.trips[this.currentIndex];
         if (actualTrip && this.wrapper) {
+            
             this.wrapper.classList.remove("encendido");
             this.wrapper.classList.add("apagado");
             setTimeout(() => {

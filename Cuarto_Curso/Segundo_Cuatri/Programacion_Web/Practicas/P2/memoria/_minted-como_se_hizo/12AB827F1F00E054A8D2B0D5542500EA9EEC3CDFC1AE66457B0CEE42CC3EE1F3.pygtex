@@ -1,0 +1,61 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+abstract class FormHandler
+\PYGZob{}
+    protected \PYGZdl{}errors = [];
+
+    /**
+     * Se encarga de validar el formulario y procesarlo
+     *
+     * @param array \PYGZdl{}data
+     * @return bool True si el formulario se ha procesado correctamente, false en caso contrario (o si hay errores de validación)
+     */
+    public function handle(array \PYGZdl{}data): bool
+    \PYGZob{}
+        \PYGZdl{}this\PYGZhy{}\PYGZgt{}validate(\PYGZdl{}data);
+
+        if (empty(\PYGZdl{}this\PYGZhy{}\PYGZgt{}errors)) \PYGZob{}
+            return \PYGZdl{}this\PYGZhy{}\PYGZgt{}process(\PYGZdl{}data);
+        \PYGZcb{}
+
+        return false;
+    \PYGZcb{}
+
+    /**
+     * Devuelve los errores que tenga el formulario
+     *
+     * @return array Un array con los errores encontrados, vacío si no hay errores
+     */
+    public function getErrors(): array
+    \PYGZob{}
+        return \PYGZdl{}this\PYGZhy{}\PYGZgt{}errors;
+    \PYGZcb{}
+
+    /**
+     * Valida el formulario
+     *
+     * @param array \PYGZdl{}data
+     * @return array Un array con los errores encontrados, vacío si no hay errores
+     */
+    abstract public function validate(array \PYGZdl{}data);
+
+    /**
+     * Procesa la informacion del usuario
+     *
+     * @param array \PYGZdl{}data
+     * @return bool|User|string True si el proceso se ha realizado correctamente, un mensaje de error en caso contrario, o un objeto User si se ha creado uno nuevo
+     */
+    abstract public function process(array \PYGZdl{}data);
+
+    /**
+     * Añade un error a la lista de errores
+     *
+     * @param string \PYGZdl{}field
+     * @param string \PYGZdl{}message
+     * @return void
+     */
+    protected function addError(string \PYGZdl{}field, string \PYGZdl{}message)
+    \PYGZob{}
+        \PYGZdl{}this\PYGZhy{}\PYGZgt{}errors[\PYGZdl{}field] = \PYGZdl{}message;
+    \PYGZcb{}
+\PYGZcb{}
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+            echo json\PYGZus{}encode([
+                \PYGZdq{}success\PYGZdq{} =\PYGZgt{} true,
+                \PYGZdq{}message\PYGZdq{} =\PYGZgt{} \PYGZdq{}Usuario registrado con éxito\PYGZdq{}
+            ]);
+\end{Verbatim}

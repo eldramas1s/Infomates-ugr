@@ -16,5 +16,210 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{javaScriptTutorial}{online}{}
+      \name{author}{1}{}{%
+        {{hash=e5847c3b0519e7ea29df20ed967386e4}{%
+           family={{MoureDev}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {MoireDev}%
+      }
+      \strng{namehash}{e5847c3b0519e7ea29df20ed967386e4}
+      \strng{fullhash}{e5847c3b0519e7ea29df20ed967386e4}
+      \strng{bibnamehash}{e5847c3b0519e7ea29df20ed967386e4}
+      \strng{authorbibnamehash}{e5847c3b0519e7ea29df20ed967386e4}
+      \strng{authornamehash}{e5847c3b0519e7ea29df20ed967386e4}
+      \strng{authorfullhash}{e5847c3b0519e7ea29df20ed967386e4}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Curso COMPLETO de JavaScript DESDE CERO para Principiantes}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=1glVfFxj8a4
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=1glVfFxj8a4
+      \endverb
+    \endentry
+    \entry{mdn_js_guide}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b60670879f1423e1836ce56369588ec1}{%
+           family={{Mozilla Resources}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {MDN Web Docs}%
+      }
+      \strng{namehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{fullhash}{b60670879f1423e1836ce56369588ec1}
+      \strng{bibnamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authorbibnamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authornamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authorfullhash}{b60670879f1423e1836ce56369588ec1}
+      \field{extraname}{1}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{JavaScript Guide}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://developer.mozilla.org/es/docs/Web/JavaScript/Guide
+      \endverb
+      \verb{url}
+      \verb https://developer.mozilla.org/es/docs/Web/JavaScript/Guide
+      \endverb
+    \endentry
+    \entry{mdn_keyframes}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b60670879f1423e1836ce56369588ec1}{%
+           family={{Mozilla Resources}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {MDN Web Docs}%
+      }
+      \strng{namehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{fullhash}{b60670879f1423e1836ce56369588ec1}
+      \strng{bibnamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authorbibnamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authornamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authorfullhash}{b60670879f1423e1836ce56369588ec1}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{KeyFrames CSS}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://developer.mozilla.org/es/docs/Web/CSS/Reference/At-rules/@keyframes
+      \endverb
+      \verb{url}
+      \verb https://developer.mozilla.org/es/docs/Web/CSS/Reference/At-rules/@keyframes
+      \endverb
+    \endentry
+    \entry{mdn_setTimeout}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b60670879f1423e1836ce56369588ec1}{%
+           family={{Mozilla Resources}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {MDN Web Docs}%
+      }
+      \strng{namehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{fullhash}{b60670879f1423e1836ce56369588ec1}
+      \strng{bibnamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authorbibnamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authornamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authorfullhash}{b60670879f1423e1836ce56369588ec1}
+      \field{extraname}{3}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{setTimeout()}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://developer.mozilla.org/es/docs/Web/API/Window/setTimeout
+      \endverb
+      \verb{url}
+      \verb https://developer.mozilla.org/es/docs/Web/API/Window/setTimeout
+      \endverb
+    \endentry
+    \entry{mdn_fetch}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b60670879f1423e1836ce56369588ec1}{%
+           family={{Mozilla Resources}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {MDN Web Docs}%
+      }
+      \strng{namehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{fullhash}{b60670879f1423e1836ce56369588ec1}
+      \strng{bibnamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authorbibnamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authornamehash}{b60670879f1423e1836ce56369588ec1}
+      \strng{authorfullhash}{b60670879f1423e1836ce56369588ec1}
+      \field{extraname}{4}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Using fetch}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch
+      \endverb
+      \verb{url}
+      \verb https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch
+      \endverb
+    \endentry
+    \entry{php_arrays}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2fec392304a5c23ac138da22847f9b7c}{%
+           family={{PHP}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {PHP}%
+      }
+      \strng{namehash}{2fec392304a5c23ac138da22847f9b7c}
+      \strng{fullhash}{2fec392304a5c23ac138da22847f9b7c}
+      \strng{bibnamehash}{2fec392304a5c23ac138da22847f9b7c}
+      \strng{authorbibnamehash}{2fec392304a5c23ac138da22847f9b7c}
+      \strng{authornamehash}{2fec392304a5c23ac138da22847f9b7c}
+      \strng{authorfullhash}{2fec392304a5c23ac138da22847f9b7c}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{PHP Array Tutorial}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.php.net/manual/es/language.types.array.php
+      \endverb
+      \verb{url}
+      \verb https://www.php.net/manual/es/language.types.array.php
+      \endverb
+    \endentry
+    \entry{wwwschools_php}{online}{}
+      \name{author}{1}{}{%
+        {{hash=bd21525362368ddbd79358cdcf66005d}{%
+           family={{W3Schools}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {W3Schools}%
+      }
+      \strng{namehash}{bd21525362368ddbd79358cdcf66005d}
+      \strng{fullhash}{bd21525362368ddbd79358cdcf66005d}
+      \strng{bibnamehash}{bd21525362368ddbd79358cdcf66005d}
+      \strng{authorbibnamehash}{bd21525362368ddbd79358cdcf66005d}
+      \strng{authornamehash}{bd21525362368ddbd79358cdcf66005d}
+      \strng{authorfullhash}{bd21525362368ddbd79358cdcf66005d}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{PHP Tutorial}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.w3schools.com/php/default.asp
+      \endverb
+      \verb{url}
+      \verb https://www.w3schools.com/php/default.asp
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

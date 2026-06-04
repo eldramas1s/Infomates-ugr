@@ -6,6 +6,12 @@ import { formularioBase } from "./formularioBase.js";
 
 export class formularioBusqueda extends formularioBase {
 
+    /**
+     * Crea el objeto formularioBusqueda, que extiende de formularioBase. 
+     * Se encarga de cargar los países disponibles según el continente seleccionado 
+     * y de cargar las ciudades disponibles según el país seleccionado. 
+     * Además, valida que los datos introducidos sean correctos antes de enviar el formulario.
+     */
     constructor() {
         super('formularioBusqueda');
         this.validCountries = [];
@@ -18,6 +24,10 @@ export class formularioBusqueda extends formularioBase {
         this.setUpCountryChangeListener();
     }
 
+    /**
+     * Define las reglas de validación para cada campo del formulario.
+     * @returns Diccionario con las funciones de validación para cada campo. 
+     */
     reglas() {
         const continentRegex = /^(Asia|Africa|África|Europa|Oceania|Oceanía|America|América)$/i;
         const ciudadRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+)*$/;
@@ -35,9 +45,8 @@ export class formularioBusqueda extends formularioBase {
 
             country: (value) => {
                 if (!value || value.trim() === "") return null;
-                if (!formData.continent) return "Sin continente no hay país";
                 if (this.validCountries.length === 0) return null; //La lista de paises validos fallo
-                if (!this.validCountries.includes(value.trim())) return "El país que se ha introducido no existe";
+                if (!this.validCountries.includes(value.trim()) && this.validCountries.length > 0) return "El país que se ha introducido no existe";
                 return null;
             },
 
@@ -80,6 +89,11 @@ export class formularioBusqueda extends formularioBase {
         }
     }
 
+    /**
+     * Función asíncrona que se ejecuta al enviar el formulario. 
+     * Valida los datos introducidos y, si son correctos, envía el formulario.
+     * @param {Event} event 
+     */
     async enviar(event) {
         event.preventDefault();
 
@@ -92,15 +106,9 @@ export class formularioBusqueda extends formularioBase {
         const datos = this.obtenerDatos();
         const errors = this.validar(datos);
 
-        if (Object.keys(errors).length > 0) {
-            for (const field in errors) {
-                this.mostrarError(field, errors[field]);
-            }
-        }
-        else {
+        if (Object.keys(errors).length === 0) {
             this.form.submit(); //Ejecutamos una versión similar al envío que hay en el php
         }
-
     }
 
     /**
@@ -110,77 +118,81 @@ export class formularioBusqueda extends formularioBase {
 
         const formData = this.obtenerDatos();
         let response = null; //Para poder usarla en toda la funcion
+        //Rellenamos el datalist paises
+        let lista = document.getElementById("paises");
 
-        if (formData.continent.trim() === "") {
+        try {
+            if (formData.continent.trim() === "") {
 
-            //Accedemos a la API Rest Countries para obtener todos los países que necesitamos
-            response = await fetch("https://restcountries.com/v3.1/all?fields=translations,name");
-        }
-        else {
-
-            const mapaContinentes = {
-                'europa': 'europe',
-                'asia': 'asia',
-                'áfrica': 'africa',
-                'africa': 'africa',
-                'oceanía': 'oceania',
-                'oceania': 'oceania',
-                'américa': 'americas',
-                'america': 'americas'
-            };
-
-            const continenteApi = mapaContinentes[formData.continent.trim().toLowerCase()];
-
-            if (continenteApi) {
-                //Accedemos a la API Rest Countries para obtener todos los países que necesitamos según el continente
-                response = await fetch(`https://restcountries.com/v3.1/region/${continenteApi}?fields=translations,name`);
-            } else {
-                // Por si acaso el usuario escribe algo raro
+                //Accedemos a la API Rest Countries para obtener todos los países que necesitamos
                 response = await fetch("https://restcountries.com/v3.1/all?fields=translations,name");
             }
+            else {
 
-        }
-        if (!response.ok) {
-            throw new Error("Error al conectar con la API de países");
-        }
+                const mapaContinentes = {
+                    'europa': 'europe',
+                    'asia': 'asia',
+                    'áfrica': 'africa',
+                    'africa': 'africa',
+                    'oceanía': 'oceania',
+                    'oceania': 'oceania',
+                    'américa': 'americas',
+                    'america': 'americas'
+                };
 
-        //Si hay respuesta la procesamos
-        const paises = await response.json();
+                const continenteApi = mapaContinentes[formData.continent.trim().toLowerCase()];
 
-        //Ya tenemos los paises entonces, los procesamos segun como los devuelve la API
-        // Mapeamos para obtener los nombres comunes en español y los ordenamos de la A a la Z
-        this.validCountries = paises
-            .map(p => {
+                if (continenteApi) {
+                    //Accedemos a la API Rest Countries para obtener todos los países que necesitamos según el continente
+                    response = await fetch(`https://restcountries.com/v3.1/region/${continenteApi}?fields=translations,name`);
+                } else {
+                    // Por si acaso el usuario escribe algo raro
+                    response = await fetch("https://restcountries.com/v3.1/all?fields=translations,name");
+                }
+
+            }
+            if (!response.ok) {
+                throw new Error("Error al conectar con la API de países");
+            }
+
+            //Si hay respuesta la procesamos
+            const paises = await response.json();
+
+            //Ya tenemos los paises entonces, los procesamos segun como los devuelve la API
+            // Mapeamos para obtener los nombres comunes en español y los ordenamos de la A a la Z
+            this.validCountries = paises.map(p => {
                 const nombreEspaniol = p.translations?.spa?.common;
                 const nombreIngles = p.name?.common;
                 if (!nombreEspaniol) return null;
 
-                const paisFormateado = nombreEspaniol
-                    .split(' ')
-                    .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
-                    .join(' ');
+                const paisFormateado = nombreEspaniol.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(' ');
 
                 if (nombreIngles) {
                     this.countriesDictionary[paisFormateado] = nombreIngles;
                 }
 
                 return paisFormateado;
-            })
-            .filter(Boolean)
-            .sort((a, b) => a.localeCompare(b));
+            }).filter(Boolean).sort((a, b) => a.localeCompare(b));
 
-        //Rellenamos el datalist paises
-        let lista = document.getElementById("paises");
-        if (lista) {
-            lista.innerHTML = ""; //Limpiamos la lista
-            this.validCountries.forEach(nombrePais => {
-                const option = document.createElement("option");
-                option.value = nombrePais;
-                lista.appendChild(option);
-            })
+
+            if (lista) {
+                lista.innerHTML = ""; //Limpiamos la lista
+                this.validCountries.forEach(nombrePais => {
+                    const option = document.createElement("option");
+                    option.value = nombrePais;
+                    lista.appendChild(option);
+                })
+            }
+        } catch (error) {
+            console.error("Error cargando los países. Vuelva a intentarlo más tarde.");
+            if (lista) lista.innerHTML = ""; //Limpiamos la lista si hay error de conexión
         }
     }
 
+    /**
+     * Función que crea un listener que se ejecuta al cambiar el país seleccionado. 
+     * Carga las ciudades disponibles para ese país.
+     */
     setUpCountryChangeListener() {
         //Tomamos el input del pais
         const inputCountry = document.querySelector('input[name="country"]');
@@ -197,7 +209,6 @@ export class formularioBusqueda extends formularioBase {
                 if (inputPlace) inputPlace.value = "";
                 if (countrySelected in this.countriesDictionary) {
                     const englishName = this.countriesDictionary[countrySelected] || countrySelected;
-
                     this.loadCities(englishName);
                 }
                 else {
@@ -208,6 +219,10 @@ export class formularioBusqueda extends formularioBase {
 
     }
 
+    /**
+     * Función que crea un listener que se ejecuta al cambiar el continente seleccionado. 
+     * Vacia el input del país y de la ciudad, y carga los países disponibles para ese continente.
+     */
     setUpContinentChangeListener() {
         const inputContinent = document.querySelector('input[name="continent"]');
         if (inputContinent) {
@@ -223,6 +238,11 @@ export class formularioBusqueda extends formularioBase {
     }
 
 
+    /**
+     * Carga las ciudades disponibles para un país dado utilizando la API gratuita Countries Now.
+     * @param {string} englishName Nombre del país en inglés
+     * @returns nothing
+     */
     async loadCities(englishName) {
         const placesList = document.getElementById('places');
 
@@ -254,13 +274,11 @@ export class formularioBusqueda extends formularioBase {
             const places = json.data;
             placesList.innerHTML = "";
 
-            places
-                .sort((a, b) => a.localeCompare(b))
-                .forEach(city => {
-                    const option = document.createElement("option");
-                    option.value = city;
-                    placesList.appendChild(option);
-                })
+            places.sort((a, b) => a.localeCompare(b)).forEach(city => {
+                const option = document.createElement("option");
+                option.value = city;
+                placesList.appendChild(option);
+            })
 
 
         } catch (error) {

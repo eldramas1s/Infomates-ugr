@@ -1,0 +1,96 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+\PYG{n+nx}{lass} \PYG{n+nx}{FormAddTrip} \PYG{k}{extends} \PYG{n+nx}{FormHandler}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{private} \PYG{n+nv}{\PYGZdl{}healthData} \PYG{o}{=} \PYG{p}{[];}
+
+    \PYG{k}{public} \PYG{k}{function} \PYG{n+nf}{validate}\PYG{p}{(}\PYG{k}{array} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{errors} \PYG{o}{=} \PYG{p}{[];}
+
+        \PYG{c+c1}{//Trabajamos con los datos saneados para poder modificarlos}
+        \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{;}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}El continente es necesario\PYGZsq{}}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}El pais es necesario\PYGZsq{}}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}El lugar es necesario\PYGZsq{}}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n+nb}{isset}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{])} \PYG{o}{||} \PYG{n+nb}{trim}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{])} \PYG{o}{===} \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}} \PYG{o}{||} \PYG{o}{!}\PYG{n+nb}{is\PYGZus{}numeric}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mf}{0.0}\PYG{p}{;} \PYG{c+c1}{// O manejas un error de validación}
+        \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+            \PYG{c+c1}{//Si el precio que se obtiene es un número, lo convertimos a float y lo redondeamos a 2 decimales, además de evitar precios negativos}
+            \PYG{n+nv}{\PYGZdl{}priceFloat} \PYG{o}{=} \PYG{p}{(}\PYG{n+nx}{float}\PYG{p}{)}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{];}
+
+            \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}priceFloat} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mf}{0.0}\PYG{p}{;} \PYG{c+c1}{// Evitamos precios negativos}
+            \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{round}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}priceFloat}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{);} \PYG{c+c1}{//Tomar dos decimales}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}La fecha de salida es obligatoria\PYGZsq{}}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}La fecha de vuelta es obligatoria\PYGZsq{}}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}img\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}img\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}default.jpg\PYGZsq{}}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}img} \PYG{o}{=} \PYG{n+nb}{basename}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}img\PYGZsq{}}\PYG{p}{]);} \PYG{c+c1}{//Se queda solo con [nombre].[formato]}
+
+            \PYG{c+c1}{//Ahora debemos buscar la imagen}
+            \PYG{n+nv}{\PYGZdl{}rutaImagenes} \PYG{o}{=} \PYG{n+no}{\PYGZus{}\PYGZus{}DIR\PYGZus{}\PYGZus{}} \PYG{o}{.} \PYG{l+s+s1}{\PYGZsq{}/../imagenes/\PYGZsq{}}\PYG{p}{;}
+            \PYG{n+nv}{\PYGZdl{}imagenDefecto} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}default.jpg\PYGZsq{}}\PYG{p}{;}
+
+            \PYG{n+nv}{\PYGZdl{}rutaCompleta} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}rutaImagenes} \PYG{o}{.} \PYG{n+nv}{\PYGZdl{}img}\PYG{p}{;}
+
+            \PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{file\PYGZus{}exists}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}rutaCompleta}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}img\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}img}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}img\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}imagenDefecto}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{c+c1}{// Validamos las fechas por seguridad, aunque en la base de datos también se haga}
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{])} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}fechaSalida} \PYG{o}{=} \PYG{k}{new} \PYG{n+nx}{DateTime}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{]);}
+            \PYG{n+nv}{\PYGZdl{}fechaVuelta} \PYG{o}{=} \PYG{k}{new} \PYG{n+nx}{DateTime}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{]);}
+            \PYG{n+nv}{\PYGZdl{}diferencia} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}fechaSalida}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{diff}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}fechaVuelta}\PYG{p}{)}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{days}\PYG{p}{;}
+
+            \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}fechaVuelta} \PYG{o}{\PYGZlt{}=} \PYG{n+nv}{\PYGZdl{}fechaSalida}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}La vuelta debe ser posterior a la salida\PYGZsq{}}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}} \PYG{k}{elseif} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}diferencia} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}El viaje debe durar al menos 3 días\PYGZsq{}}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+
+
+    \PYG{k}{public} \PYG{k}{function} \PYG{n+nf}{process}\PYG{p}{(}\PYG{k}{array} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{c+c1}{//Buscar si existe el viaje}
+        \PYG{n+nv}{\PYGZdl{}trip} \PYG{o}{=} \PYG{n+nx}{Trip}\PYG{o}{::}\PYG{n+na}{getTrip}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{]);}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}trip} \PYG{o}{==} \PYG{k}{null}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{Trip}\PYG{o}{::}\PYG{n+na}{create}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}general\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Ha habido un error al crear el viaje\PYGZsq{}}\PYG{p}{);}
+                \PYG{k}{return} \PYG{k}{false}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}datos} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}trip}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getDatos}\PYG{p}{();}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{Trip}\PYG{o}{::}\PYG{n+na}{modify}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{healthData}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}general\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Ha habido un erro al modificar el viaje\PYGZsq{}}\PYG{p}{);}
+                \PYG{k}{return} \PYG{k}{false}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{return} \PYG{k}{true}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

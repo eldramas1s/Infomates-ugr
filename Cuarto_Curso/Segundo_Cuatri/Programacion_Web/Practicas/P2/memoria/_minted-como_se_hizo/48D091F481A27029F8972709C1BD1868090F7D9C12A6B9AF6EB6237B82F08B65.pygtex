@@ -1,0 +1,77 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+
+\PYG{k}{class} \PYG{n+nc}{FormLogIn} \PYG{k}{extends} \PYG{n+nx}{FormHandler}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{public} \PYG{k}{function} \PYG{n+nf}{validate}\PYG{p}{(}\PYG{k}{array} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{errors} \PYG{o}{=} \PYG{p}{[];}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}El nickname es obligatorio\PYGZsq{}}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{empty}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}La contraseña es obligatoria\PYGZsq{}}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{public} \PYG{k}{function} \PYG{n+nf}{process}\PYG{p}{(}\PYG{k}{array} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}
+            \PYG{o}{!}\PYG{n+nx}{User}\PYG{o}{::}\PYG{n+na}{exists}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)} \PYG{o}{||}
+            \PYG{o}{!}\PYG{n+nx}{User}\PYG{o}{::}\PYG{n+na}{verifyPassword}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}password\PYGZsq{}}\PYG{p}{])}
+        \PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{addError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}general\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Nickname o contraseña incorrectos\PYGZsq{}}\PYG{p}{);}
+            \PYG{k}{return} \PYG{k}{false}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{];}
+        \PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}loggedIn\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{k}{true}\PYG{p}{;}
+        \PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}admin\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n+nx}{User}\PYG{o}{::}\PYG{n+na}{getUserByNickname}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}nickName\PYGZsq{}}\PYG{p}{])}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{isAdmin}\PYG{p}{();}
+
+        \PYG{k}{return} \PYG{k}{true}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{?\PYGZgt{}}
+
+\PYG{x}{//API de inicio de sesión}
+\PYG{c+cp}{\PYGZlt{}?php}
+\PYG{c+c1}{//Necesitamos iniciar la sesión dentro de la api porque}
+\PYG{c+c1}{//el formulario trabaja directamente con \PYGZdl{}\PYGZus{}SESSION}
+\PYG{n+nb}{session\PYGZus{}start}\PYG{p}{();}
+
+\PYG{k}{require\PYGZus{}once} \PYG{n+no}{\PYGZus{}\PYGZus{}DIR\PYGZus{}\PYGZus{}}\PYG{o}{.}\PYG{l+s+s1}{\PYGZsq{}/../model/forms.php\PYGZsq{}}\PYG{p}{;}
+\PYG{k}{require\PYGZus{}once} \PYG{n+no}{\PYGZus{}\PYGZus{}DIR\PYGZus{}\PYGZus{}}\PYG{o}{.}\PYG{l+s+s1}{\PYGZsq{}/../utils.php\PYGZsq{}}\PYG{p}{;}
+
+\PYG{n+nb}{header}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Content\PYGZhy{}Type: application/json\PYGZsq{}}\PYG{p}{);}
+
+\PYG{n+nv}{\PYGZdl{}data} \PYG{o}{=} \PYG{n+nb}{json\PYGZus{}decode}\PYG{p}{(}\PYG{n+nb}{file\PYGZus{}get\PYGZus{}contents}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}php://input\PYGZdq{}}\PYG{p}{),}\PYG{k}{true}\PYG{p}{);}
+
+\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{echo} \PYG{n+nb}{json\PYGZus{}encode}\PYG{p}{([}
+        \PYG{l+s+s2}{\PYGZdq{}success\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{k}{false}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}message\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{l+s+s2}{\PYGZdq{}No se han recibido datos\PYGZdq{}}
+    \PYG{p}{]);}
+    \PYG{k}{exit}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nv}{\PYGZdl{}form} \PYG{o}{=} \PYG{k}{new} \PYG{n+nx}{FormLogIn}\PYG{p}{();}
+\PYG{n+nv}{\PYGZdl{}status} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}form}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{handle}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{);}
+
+\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n+nv}{\PYGZdl{}status}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{echo} \PYG{n+nb}{json\PYGZus{}encode}\PYG{p}{([}
+        \PYG{l+s+s2}{\PYGZdq{}success\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{k}{false}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}errors\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}form}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getErrors}\PYG{p}{()}
+    \PYG{p}{]);}
+    \PYG{k}{exit}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{echo} \PYG{n+nb}{json\PYGZus{}encode}\PYG{p}{([}
+    \PYG{l+s+s2}{\PYGZdq{}success\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{k}{true}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}message\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{l+s+s2}{\PYGZdq{}¡Usuario loggeado correctamente!\PYGZdq{}}
+\PYG{p}{]);}
+
+\PYG{k}{exit}\PYG{p}{;}
+\PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{this.validCountries = paises.map(p =\PYGZgt{} \PYGZob{}}
+\PYG{x}{    const nombreEspaniol = p.translations?.spa?.common;}
+\PYG{x}{    const nombreIngles = p.name?.common;}
+\PYG{x}{    if (!nombreEspaniol) return null;}
+
+\PYG{x}{    const paisFormateado = nombreEspaniol.split(\PYGZsq{} \PYGZsq{}).map(palabra =\PYGZgt{} palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(\PYGZsq{} \PYGZsq{});}
+
+\PYG{x}{    if (nombreIngles) \PYGZob{}}
+\PYG{x}{        this.countriesDictionary[paisFormateado] = nombreIngles;}
+\PYG{x}{    \PYGZcb{}}
+
+\PYG{x}{    return paisFormateado;}
+\PYG{x}{\PYGZcb{}).filter(Boolean).sort((a, b) =\PYGZgt{} a.localeCompare(b));}
+\end{Verbatim}

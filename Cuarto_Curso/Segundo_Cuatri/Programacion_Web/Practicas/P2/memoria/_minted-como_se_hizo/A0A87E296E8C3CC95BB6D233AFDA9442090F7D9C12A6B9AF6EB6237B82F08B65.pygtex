@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{            }\PYG{c+cp}{\PYGZlt{}?php}
+            \PYG{l+s+sd}{/**}
+\PYG{l+s+sd}{     * Elimina un destino de la base de datos}
+\PYG{l+s+sd}{     *}
+\PYG{l+s+sd}{     * @param [type] \PYGZdl{}continent}
+\PYG{l+s+sd}{     * @param [type] \PYGZdl{}country}
+\PYG{l+s+sd}{     * @param [type] \PYGZdl{}place}
+\PYG{l+s+sd}{     * @return boolean True si ha podido realizar la operacion y false en caso contrario}
+\PYG{l+s+sd}{     */}
+    \PYG{k}{public} \PYG{k}{static} \PYG{k}{function} \PYG{n+nf}{delete}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}continent}\PYG{p}{,} \PYG{n+nv}{\PYGZdl{}country}\PYG{p}{,} \PYG{n+nv}{\PYGZdl{}place}\PYG{p}{)}\PYG{o}{:} \PYG{n+nx}{bool}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}conn} \PYG{o}{=} \PYG{k}{parent}\PYG{o}{::}\PYG{n+na}{conectar}\PYG{p}{();}
+        \PYG{n+nv}{\PYGZdl{}query} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}DELETE FROM \PYGZdq{}} \PYG{o}{.} \PYG{n+nx}{TABLA\PYGZus{}INFO} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{} WHERE continent = ? AND country = ? AND place = ?\PYGZdq{}}\PYG{p}{;}
+
+        \PYG{k}{try} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}stmt} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}conn}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{prepare}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}query}\PYG{p}{);}
+            \PYG{k}{return} \PYG{n+nv}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{execute}\PYG{p}{([}\PYG{n+nv}{\PYGZdl{}continent}\PYG{p}{,} \PYG{n+nv}{\PYGZdl{}country}\PYG{p}{,} \PYG{n+nv}{\PYGZdl{}place}\PYG{p}{]);}
+        \PYG{p}{\PYGZcb{}} \PYG{k}{catch} \PYG{p}{(}\PYG{n+nx}{PDOException} \PYG{n+nv}{\PYGZdl{}e}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{n+nb}{error\PYGZus{}log}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}InfoTrips::delete \PYGZsq{}} \PYG{o}{.} \PYG{n+nv}{\PYGZdl{}e}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getMessage}\PYG{p}{());}
+            \PYG{k}{return} \PYG{k}{false}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+            \PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

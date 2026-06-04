@@ -1,7 +1,6 @@
-
 <?php
 require_once '../php/utils.php';
-require_once '../php/trips.php';
+require_once '../php/model/trips.php';
 session_start();
 ?>
 
@@ -18,33 +17,7 @@ session_start();
 </head>
 
 <body>
-    <header>
-
-        <h1 id="nombreDecor">Azimut Viajes</h1>
-
-        <img id="logoHeader" src="../imagenes/logoAzimut.png"
-            alt="Logotipo Azimut">
-
-        <?php
-
-        //Si se ha loggeado ponemos el avatar y el boton de cerrar sesion
-        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-            putAvatar($_SESSION['admin'], $_SESSION['nickName'], 2);
-        }
-        ?>
-        <nav id="menuHeader">
-            <ul>
-                <li><a href="../index.php">Inicio</a></li>
-                <li><a href="../html/viajes.php">Viajes</a></li>
-                <li><a href="../html/viajes_grupo.php">Viajes en
-                        grupo</a></li>
-                <li><a href="../html/ofertas.php">Ofertas</a></li>
-                <li><a href="../html/sobre_agencia.php">Sobre nuestra
-                        agencia</a></li>
-                <li><a href="../html/sugerencias.php">Sugerencias</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php putHeader(1); ?>
     <aside id="menuViajesPais">
         <nav>
             <?php
@@ -70,16 +43,16 @@ session_start();
 
     </aside>
     <main class="viajesCuadricula">
-        
+
         <?php
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $country = isset($_GET['country']) && $_GET['country'] !== ''? $_GET['country'] : -1;
-        $continent = isset($_GET['continent']) && $_GET['continent'] !== ''? $_GET['continent'] : -1;
-        $place = isset($_GET['place']) && $_GET['place'] !== ''? $_GET['place'] : -1;
-        $departureDate = !empty($_GET['departureDate']) && $_GET['departureDate'] !== ''? $_GET['departureDate'] : -1;
-        $returnDate = !empty($_GET['returnDate']) && $_GET['returnDate'] !== ''? $_GET['returnDate'] : -1;
+        $country = isset($_GET['country']) && $_GET['country'] !== '' ? $_GET['country'] : -1;
+        $continent = isset($_GET['continent']) && $_GET['continent'] !== '' ? $_GET['continent'] : -1;
+        $place = isset($_GET['place']) && $_GET['place'] !== '' ? $_GET['place'] : -1;
+        $departureDate = !empty($_GET['departureDate']) && $_GET['departureDate'] !== '' ? $_GET['departureDate'] : -1;
+        $returnDate = !empty($_GET['returnDate']) && $_GET['returnDate'] !== '' ? $_GET['returnDate'] : -1;
 
-        $trips = Trip::getAllBetween($continent,$country,$place,$departureDate,$returnDate);
+        $trips = infoTrips::getAllBetween($continent, $country, $place, $departureDate, $returnDate);
         $trips = groupByNumber($trips, 9);
         $totalPages = count($trips);
         $prePag = $page;
@@ -91,16 +64,16 @@ session_start();
         }
 
         //Tomamos los parametros para la consulta de cambio de página
-        $urlParams=$_GET;
+        $urlParams = $_GET;
         unset($urlParams['page']); //La pagina la gestionamos nosotros, asique la quitamos
         $queryString = http_build_query($urlParams);
         ?>
-        <?php if($totalPages>1):?>
+        <?php if ($totalPages > 1): ?>
             <nav class="flechasGrupos">
-                <a href="../html/viajes.php?page=<?php echo $prePag; ?>&<?php echo $queryString?>" class="flechaIzq">&#10094;</a>
-                <a href="../html/viajes.php?page=<?php echo $posPag; ?>&<?php echo $queryString?>" class="flechaDcha">&#10095;</a>
+                <a href="../html/viajes.php?page=<?php echo $prePag; ?>&<?php echo $queryString ?>" class="flechaIzq">&#10094;</a>
+                <a href="../html/viajes.php?page=<?php echo $posPag; ?>&<?php echo $queryString ?>" class="flechaDcha">&#10095;</a>
             </nav>
-        <?php endif?>
+        <?php endif ?>
 
         <?php
         if (!empty($trips) && $page >= 1 && $page <= $totalPages) {
@@ -109,7 +82,7 @@ session_start();
             echo "<section class=\"viajes\" id=\"grupo" . $page . "\">";
             echo "<h2>Viajes</h2>";
             foreach ($group as $elem => $tripData) {
-                $trip = new Trip($tripData);
+                $trip = new infoTrips($tripData);
                 echo $trip->tripToHtml(true, $page);
             }
             echo "</section>";
@@ -118,20 +91,10 @@ session_start();
         }
 
         ?>
+        <script src="../js/main.js" type="module"></script>
 
     </main>
-    <footer>
-        <nav id="menuFooter">
-            <ul>
-                <li><a href="../../html/contacto.php">Contacte con
-                        nosotros</a></li>
-                <li><a href="../../como_se_hizo.pdf"
-                        target="_blank">Cómo se
-                        hizo</a></li>
-            </ul>
-        </nav>
-        <p id="fechaModificacion">27/04/2026</p>
-    </footer>
+    <?php putFooter(1); ?>
 </body>
 
 </html>

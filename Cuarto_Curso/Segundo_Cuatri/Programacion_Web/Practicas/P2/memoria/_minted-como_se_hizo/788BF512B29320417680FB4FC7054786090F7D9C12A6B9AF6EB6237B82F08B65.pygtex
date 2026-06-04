@@ -1,0 +1,55 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{///////////////////////}
+\PYG{x}{// FORMULARIO INICIO SESION}
+\PYG{x}{///////////////////////}
+
+\PYG{x}{//Importamos la clase genérica}
+
+\PYG{x}{import \PYGZob{} formularioBase \PYGZcb{} from \PYGZdq{}./formularioBase.js\PYGZdq{};}
+
+\PYG{x}{export class formularioSesion extends formularioBase\PYGZob{}}
+
+\PYG{x}{    /**}
+\PYG{x}{     * Constructor del manejador del formulario de inicio de sesion}
+\PYG{x}{     */}
+\PYG{x}{    constructor()\PYGZob{}}
+\PYG{x}{        super(\PYGZdq{}signUpForm\PYGZdq{});}
+\PYG{x}{        this.endpoint = \PYGZdq{}./php/api/inicioSesion.php\PYGZdq{}}
+\PYG{x}{    \PYGZcb{}}
+
+\PYG{x}{    /**}
+\PYG{x}{     * Devuelve las reglas asociadas al formulario de inicio de sesion}
+\PYG{x}{     * @returns Array asociativo de funciones}
+\PYG{x}{     */}
+\PYG{x}{    reglas()\PYGZob{}}
+\PYG{x}{        const nickNameRegex = /\PYGZca{}[a\PYGZhy{}zA\PYGZhy{}Z0\PYGZhy{}9\PYGZus{}]+\PYGZdl{}/;}
+\PYG{x}{        const passwordRegex = /(?=.*[a\PYGZhy{}z])(?=.*[A\PYGZhy{}Z])(?=.*\PYGZbs{}d)(?=.*[\PYGZdl{}@\PYGZdl{}!\PYGZpc{}*?\PYGZam{}.]).\PYGZob{}8,15\PYGZcb{}/;}
+\PYG{x}{        return \PYGZob{}}
+\PYG{x}{            nickName: (value) =\PYGZgt{} \PYGZob{}}
+\PYG{x}{                if(!value || value.trim() === \PYGZdq{}\PYGZdq{}) return \PYGZdq{}NickName vacío\PYGZdq{};}
+\PYG{x}{                if(value.length \PYGZlt{} 3 || value.length \PYGZgt{} 30) return \PYGZdq{}Entre 3 y 30 caracteres\PYGZdq{};}
+\PYG{x}{                if(!nickNameRegex.test(value)) return \PYGZdq{}Solo letras, números y \PYGZus{}\PYGZdq{};}
+\PYG{x}{                return null;}
+\PYG{x}{            \PYGZcb{},}
+
+\PYG{x}{            password: (value) =\PYGZgt{} \PYGZob{}}
+\PYG{x}{                if(!value || value.trim() === \PYGZdq{}\PYGZdq{}) return \PYGZdq{}Contraseña vacía\PYGZdq{};}
+\PYG{x}{                if(value.length \PYGZlt{} 8 || value.length \PYGZgt{} 15) return \PYGZdq{}Debe tener entre 8 y 15 caracteres\PYGZdq{};}
+\PYG{x}{                if(!passwordRegex.test(value)) return \PYGZdq{}Debe contener mayúscula, minúscula, número y símbolo\PYGZdq{};}
+\PYG{x}{                return null;}
+\PYG{x}{            \PYGZcb{}}
+\PYG{x}{        \PYGZcb{}}
+\PYG{x}{    \PYGZcb{}}
+
+\PYG{x}{    /**}
+\PYG{x}{     * Respuesta del servidor cuando sí se loguea el usuario}
+\PYG{x}{     *}
+\PYG{x}{     * @param \PYGZob{}json\PYGZcb{} json}
+\PYG{x}{     */}
+\PYG{x}{    onSuccess(json)\PYGZob{}}
+\PYG{x}{        location.reload();}
+\PYG{x}{    \PYGZcb{}}
+\PYG{x}{\PYGZcb{}}
+
+
+\end{Verbatim}

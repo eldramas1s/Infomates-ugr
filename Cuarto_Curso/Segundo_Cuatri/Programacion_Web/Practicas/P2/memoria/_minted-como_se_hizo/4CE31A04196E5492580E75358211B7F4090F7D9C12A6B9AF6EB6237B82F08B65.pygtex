@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+
+\PYG{n+nb}{session\PYGZus{}start}\PYG{p}{();}
+
+\PYG{c+c1}{// Vaciamos la sesion para eliminar cualquier dato del usuario}
+
+\PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION} \PYG{o}{=} \PYG{p}{[];}
+
+\PYG{c+c1}{// Destruimos la sesion para asegurarnos de que se cierre la sesion}
+\PYG{n+nb}{session\PYGZus{}destroy}\PYG{p}{();}
+
+\PYG{n+nb}{header}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Location: ../index.php\PYGZsq{}}\PYG{p}{);}
+
+\PYG{c+c1}{//Detenemos la ejecucion del script, php no lo hace tras una redireccion}
+\PYG{k}{exit}\PYG{p}{();}
+\PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

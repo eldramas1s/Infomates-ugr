@@ -1,0 +1,64 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+    \PYG{l+s+sd}{/**}
+\PYG{l+s+sd}{     * Obtiene 7 destinos a lo sumo para poder completar el carrusel.}
+\PYG{l+s+sd}{     *}
+\PYG{l+s+sd}{     * @return array COn los \PYGZlt{}=7 destinos con imagen y descripcion para el carrusel, o array vacio si no se han podido obtener los datos.}
+\PYG{l+s+sd}{     */}
+    \PYG{k}{public} \PYG{k}{static} \PYG{k}{function} \PYG{n+nf}{getForCarrusel}\PYG{p}{()}\PYG{o}{:} \PYG{k}{array}\PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}conn} \PYG{o}{=} \PYG{k}{parent}\PYG{o}{::}\PYG{n+na}{conectar}\PYG{p}{();}
+        \PYG{n+nv}{\PYGZdl{}query} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}SELECT place, img, sortDesc FROM \PYGZdq{}} \PYG{o}{.} \PYG{n+nx}{TABLA\PYGZus{}INFO} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{} WHERE img IS NOT NULL}
+\PYG{l+s+s2}{                AND img!=\PYGZsq{}\PYGZsq{} ORDER BY RAND() LIMIT 7\PYGZdq{}}\PYG{p}{;}
+
+        \PYG{k}{try}\PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}stmt} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}conn}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{prepare}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}query}\PYG{p}{);}
+            \PYG{n+nv}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{execute}\PYG{p}{();}
+            \PYG{k}{return} \PYG{n+nv}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{fetchAll}\PYG{p}{(}\PYG{n+nx}{PDO}\PYG{o}{::}\PYG{n+na}{FETCH\PYGZus{}ASSOC}\PYG{p}{);}
+
+        \PYG{p}{\PYGZcb{}}\PYG{k}{catch}\PYG{p}{(}\PYG{n+nx}{PDOException} \PYG{n+nv}{\PYGZdl{}e}\PYG{p}{)\PYGZob{}}
+            \PYG{n+nb}{error\PYGZus{}log}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}InfoTrips::getForCarrusel: \PYGZsq{}}\PYG{o}{.} \PYG{n+nv}{\PYGZdl{}e}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getMessage}\PYG{p}{());}
+            \PYG{k}{return} \PYG{p}{[];}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{?\PYGZgt{}}
+\PYG{x}{    \PYGZbs{}item \PYGZbs{}textit\PYGZob{}infoTrips::getrelatedTrips\PYGZcb{}: se encarga de devolver una lista con, a lo sumo, \PYGZdl{}4\PYGZdl{} viajes relacionados con el \PYGZbs{}textit\PYGZob{}infoTrips\PYGZcb{} implícito mediante el país. Podríamos preguntarnos por qué devuelve viajes concretos con fechas. El motivo es sencillo, si quiero que sean viajes disponibles debo tratar fechas, entonces no me es ningún problema devolver los viajes y yo procesar los destinos.}
+
+\PYG{x}{    \PYGZbs{}begin\PYGZob{}minted\PYGZcb{}\PYGZob{}php\PYGZcb{}}
+
+\PYG{c+cp}{\PYGZlt{}?php}
+    \PYG{l+s+sd}{/**}
+\PYG{l+s+sd}{     * Obtiene un array con \PYGZlt{}=4 viajes relacionados con un destino y que sean posteriores a la fecha actual.}
+\PYG{l+s+sd}{     *}
+\PYG{l+s+sd}{     * @return  array viajes relacionados con el destino, o array vacio si no se han podido obtener los datos o no hay viajes relacionados.}
+\PYG{l+s+sd}{     */}
+    \PYG{k}{public} \PYG{k}{function} \PYG{n+nf}{getRelatedTrips}\PYG{p}{()}\PYG{o}{:} \PYG{k}{array}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}conn} \PYG{o}{=} \PYG{k}{parent}\PYG{o}{::}\PYG{n+na}{conectar}\PYG{p}{();}
+        \PYG{n+nv}{\PYGZdl{}query} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}SELECT DISTINCT t.continent, t.country, t.place, i.price, i.img}
+\PYG{l+s+s2}{                  FROM \PYGZdq{}} \PYG{o}{.} \PYG{n+nx}{TABLA\PYGZus{}VIAJES} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{} t}
+\PYG{l+s+s2}{                  INNER JOIN \PYGZdq{}} \PYG{o}{.} \PYG{n+nx}{TABLA\PYGZus{}INFO} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{} i}
+\PYG{l+s+s2}{                  ON t.continent = i.continent}
+\PYG{l+s+s2}{                    AND t.country = i.country}
+\PYG{l+s+s2}{                    AND t.place = i.place}
+\PYG{l+s+s2}{                  WHERE t.departureDate \PYGZgt{}= NOW()}
+\PYG{l+s+s2}{                    AND t.country = ?}
+\PYG{l+s+s2}{                    AND t.place \PYGZlt{}\PYGZgt{} ?}
+\PYG{l+s+s2}{                  ORDER BY t.continent, t.country, t.place}
+\PYG{l+s+s2}{                  LIMIT 4\PYGZdq{}}\PYG{p}{;}
+
+        \PYG{k}{try} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}stmt} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}conn}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{prepare}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}query}\PYG{p}{);}
+            \PYG{n+nv}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{execute}\PYG{p}{([}\PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{datos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{]]);}
+            \PYG{n+nv}{\PYGZdl{}rows} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{fetchAll}\PYG{p}{(}\PYG{n+nx}{PDO}\PYG{o}{::}\PYG{n+na}{FETCH\PYGZus{}ASSOC}\PYG{p}{);}
+            \PYG{n+nv}{\PYGZdl{}relatedTrips} \PYG{o}{=} \PYG{p}{[];}
+            \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}rows} \PYG{k}{as} \PYG{n+nv}{\PYGZdl{}row}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}relatedTrips}\PYG{p}{[]} \PYG{o}{=} \PYG{k}{new} \PYG{n+nx}{Trip}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}row}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{k}{return} \PYG{n+nv}{\PYGZdl{}relatedTrips}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}} \PYG{k}{catch} \PYG{p}{(}\PYG{n+nx}{PDOException} \PYG{n+nv}{\PYGZdl{}e}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{n+nb}{error\PYGZus{}log}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}InfoTrips::getRelatedTrips \PYGZsq{}} \PYG{o}{.} \PYG{n+nv}{\PYGZdl{}e}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getMessage}\PYG{p}{());}
+            \PYG{k}{return} \PYG{p}{[];}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}

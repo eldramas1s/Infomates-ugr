@@ -98,7 +98,7 @@ class InfoTrips extends DataObject
     public static function create($data): bool
     {
         $conn = parent::conectar();
-        $query = "INSERT INTO " . TABLA_INFO . " (continent,country,place,price,img,lodging,sortDesc,longDesc) VALUES (?,?,?,?,?)";
+        $query = "INSERT INTO " . TABLA_INFO . " (continent,country,place,price,img,lodging,sortDesc,longDesc) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
             $stmt = $conn->prepare($query);
@@ -152,26 +152,10 @@ class InfoTrips extends DataObject
     }
 
     /**
-     * Devuelve el precio de un destino
+     * Obtiene 7 destinos a lo sumo para poder completar el carrusel.
      *
-     * @return float Precio del destino o -1 si hay fallo
+     * @return array COn los <=7 destinos con imagen y descripcion para el carrusel, o array vacio si no se han podido obtener los datos.
      */
-    public function getPrice(): float
-    {
-        $conn = parent::conectar();
-        $query = "SELECT price FROM " . TABLA_INFO . " WHERE country = ? AND continent = ? AND place = ?";
-
-        try {
-            $stmt = $conn->prepare($query);
-            $stmt->execute([$this->datos['country'], $this->datos['continent'], $this->datos['place']]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result ? (float)$result['price'] : -1;
-        } catch (PDOException $e) {
-            error_log('InfoTrips::getPrice: ' . $e->getMessage());
-            return -1;
-        }
-    }
-
     public static function getForCarrusel(): array{
         $conn = parent::conectar();
         $query = "SELECT place, img, sortDesc FROM " . TABLA_INFO . " WHERE img IS NOT NULL
@@ -186,6 +170,254 @@ class InfoTrips extends DataObject
             error_log('InfoTrips::getForCarrusel: '. $e->getMessage());
             return [];
         }
+    }
+
+    /**
+     * Obtiene, si existe, el infoTrip con clave primaria pasada como argumento
+     *
+     * @param [type] $continent continente
+     * @param [type] $country pais
+     * @param [type] $place lugar
+     * @return InfoTrips|null infoTrips si existe y null si no existe
+     */
+    public static function getInfoTrips($continent, $country, $place): InfoTrips|null
+    {
+        $conn = parent::conectar();
+        $query = "SELECT * FROM " . TABLA_INFO . " WHERE continent = ? AND country = ? AND place = ?";
+
+        try {
+            $stmt = $conn->prepare($query);
+            $stmt->execute([$continent, $country, $place]);
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($data) {
+                return new InfoTrips($data);
+            }
+            return null;
+        } catch (PDOException $e) {
+            error_log('InfoTrips::getInfoTrip: ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    public static function getAll(): array
+    {
+        $conn = parent::conectar();
+        $query = "SELECT DISTINCT t.continent, t.country, t.place, i.price, i.img FROM " . TABLA_VIAJES . " t JOIN " . TABLA_INFO . " i 
+                  ON t.continent = i.continent AND t.country = i.country AND t.place = i.place WHERE t.departureDate >= NOW() ORDER BY t.continent, t.country, t.place";
+
+        try{
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $e){
+            error_log('InfoTrips::getAll: ' . $e->getMessage());
+            return [];
+        }
+    }
+    /**
+     * Devuelve el array de datos por comodidad
+     *
+     * @return array datos del objeto implícito
+     */
+    public function getDatos(): array
+    {
+        return $this->datos;
+    }
+
+    /**
+     * Obtiene un array con <=4 viajes relacionados con un destino y que sean posteriores a la fecha actual.
+     *
+     * @return  array viajes relacionados con el destino, o array vacio si no se han podido obtener los datos o no hay viajes relacionados.
+     */
+    public function getRelatedTrips(): array
+    {
+        $conn = parent::conectar();
+        $query = "SELECT DISTINCT t.continent, t.country, t.place, i.price, i.img
+                  FROM " . TABLA_VIAJES . " t
+                  INNER JOIN " . TABLA_INFO . " i 
+                  ON t.continent = i.continent 
+                    AND t.country = i.country 
+                    AND t.place = i.place 
+                  WHERE t.departureDate >= NOW() 
+                    AND t.country = ? 
+                    AND t.place <> ?
+                  ORDER BY t.continent, t.country, t.place
+                  LIMIT 4";
+
+        try {
+            $stmt = $conn->prepare($query);
+            $stmt->execute([$this->datos['country'], $this->datos['place']]);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $relatedTrips = [];
+            foreach ($rows as $row) {
+                $relatedTrips[] = new Trip($row);
+            }
+            return $relatedTrips;
+        } catch (PDOException $e) {
+            error_log('InfoTrips::getRelatedTrips ' . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Obtiene los viajes que cumplen los filtros pasados como argumento, siempre y cuando sean posteriores a la fecha actual. 
+     * Si un filtro es -1, se ignora.
+     *
+     * @param [type] $continent continente
+     * @param [type] $country pais
+     * @param [type] $place lugar
+     * @param [type] $departureDate fecha de salida
+     * @param [type] $returnDate fecha de vuelta
+     * @return array viajes que cumplen los filtros, o array vacio si no se han podido obtener los datos o no hay viajes que cumplan los filtros.
+     */
+    public static function getAllBetween($continent,$country,$place, $departureDate, $returnDate): array
+    {
+        $conn = parent::conectar();
+
+        // Creamos la consulta base
+        $query = "SELECT DISTINCT t.continent, t.country, t.place, 
+                         i.img, i.price
+                  FROM " . TABLA_VIAJES . " t 
+                  INNER JOIN " . TABLA_INFO . " i 
+                    ON t.continent = i.continent 
+                   AND t.country = i.country 
+                   AND t.place = i.place AND t.departureDate >= NOW()";
+
+        //Guardamos los filtros y los parametros dependiendo de lo que nos den
+        $condiciones = [];
+        $parametros = [];
+
+        /// Filtramos los parámetros
+        if ($departureDate !== -1 && $departureDate !== "-1") {
+            $condiciones[] = "t.departureDate >= ?";
+            $parametros[] = $departureDate;
+        }
+
+        if ($returnDate !== -1 && $returnDate !== "-1") {
+            $condiciones[] = "t.returnDate <= ?";
+            $parametros[] = $returnDate;
+        }
+
+        if ($country !== -1 && $country !== "-1") {
+            $condiciones[] = "t.country LIKE ?";
+            $parametros[] = "%".$country."%";
+        }
+
+        if ($continent !== -1 && $continent!=='-1' ){
+            $condiciones[] = "t.continent LIKE ?";
+            $parametros[] = "%".$continent."%";
+        }
+
+        if($place !== -1 && $place !== '-1'){
+            $condiciones[] = "t.place LIKE ?";
+            $parametros[] = "%".$place."%";
+        }
+
+        // Si tenemos alguna condicion, la añadimos a la consulta
+        if (count($condiciones) > 0) {
+            $query .= " WHERE " . implode(" AND ", $condiciones);
+        }
+
+        //Añadimos la ordenacion
+        $query .= " ORDER BY t.continent, t.country, t.place";
+
+        try {
+            $stmt = $conn->prepare($query);
+
+            //Ejecutamos la consulta
+            $stmt->execute($parametros);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Trip::getAllBetween " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Convierte un viaje en una tarjeta de destino con fechas a elegir y lo enlaza a una página u otra dependiendo de $general.
+     * $page se usa para poder gestionar las páginas en los enlaces, simplemente se incrusta.
+     * 
+     * Antes de hacer nada, toma todas las fechas asociadas a los destinos del objeto implícito.
+     *
+     * @param [type] $general
+     * @param [type] $page
+     * @return  string cadena de caracteres con el html asociado a la carta de destino.
+     */
+    public function tripToHtml($general, $page): string
+    {
+        //Buscamos todas las fechas asociadas al viaje
+        $conn = parent::conectar();
+        $query = "SELECT departureDate, returnDate FROM " . TABLA_VIAJES . " 
+                  WHERE continent = ? AND country = ? AND place = ? AND departureDate >= NOW()
+                  ORDER BY departureDate ASC";
+
+        $optionsHtml = "";
+
+        try {
+            $stmt = $conn->prepare($query);
+            $stmt->execute([
+                $this->datos['continent'],
+                $this->datos['country'],
+                $this->datos['place']
+            ]);
+            $viajesDisponibles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            //Construimos el select con cada resultado que hemos obtenido
+            foreach ($viajesDisponibles as $viaje) {
+                // Convertimos el formato YYYY-MM-DD de la base de datos a DD/MM/YYYY
+                if (!empty($viaje['departureDate']) && !empty($viaje['returnDate'])) {
+                    $dateSalida = new DateTime($viaje['departureDate']);
+                    $fechaSalidaFormateada = $dateSalida->format('d/m/Y');
+                    $dateVuelta = new DateTime($viaje['returnDate']);
+                    $fechaVueltaFormateada = $dateVuelta->format('d/m/Y');
+                } else {
+                    $fechaSalidaFormateada = '';
+                    $fechaVueltaFormateada = '';
+                }
+
+                //El valor serán las fechas de salida y regreso concretas separadas por comas
+                $value = $viaje['departureDate'] . ";" . $viaje['returnDate'];
+
+                $optionsHtml .= "<option value=\"{$value}\">{$fechaSalidaFormateada}-{$fechaVueltaFormateada}</option>\n";
+            }
+        } catch (PDOException $e) {
+            error_log('Error en Trip::tripToHtml al cargar fechas: ' . $e->getMessage());
+        }
+
+        //Construimos la tarjeta de viaje
+        $html = "<article class=\"viajeTipo\"><h3>" . htmlspecialchars($this->datos['place']) . ", " . htmlspecialchars($this->datos['country']) . "</h3>";
+
+        if ($general) {
+            $html .= "<a href=\"../html/viajes_pais.php?page=1&country=" . htmlspecialchars($this->datos['country']) . "\">
+                    <img src=\"../imagenes/" . htmlspecialchars($this->datos['img']) . "\" alt=\"Imagen de " . htmlspecialchars($this->datos['place']) . "\">
+                </a>
+                <form action=\"../html/viajes.php?page=" . htmlspecialchars($page) . "\" method=\"post\" class=\"fechaViaje\">";
+        } else {
+            $html .= "<a href=\"../html/viaje_indiv.php?continent=" . htmlspecialchars($this->datos['continent']) . "&country=" . htmlspecialchars($this->datos['country']) . "&place=" . htmlspecialchars($this->datos['place']) . "\">
+                    <img src=\"../imagenes/" . htmlspecialchars($this->datos['img']) . "\" alt=\"Imagen de " . htmlspecialchars($this->datos['place']) . "\">
+                </a>
+                <form action=\"../html/viajes_pais.php?country=" . htmlspecialchars($this->datos['country']) . "\" method=\"post\" class=\"fechaViaje\">";
+        }
+
+        $html .= "<select name=\"fecha\" class=\"selectorFecha\">
+                    <option value=\"null\">Seleccione fecha</option>
+                    " . $optionsHtml . "
+                    </select>
+                </form> <p class=\"precio\"><strong>" . number_format($this->datos['price'], 0, ',', '.') . "€</strong></p>";
+
+        //Si el usuario es admin y estamos en el caso general, le permitimos borrar el destino
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] && $general) {
+            $html .= "<button class=\"deleteButton\" 
+                        data-continent=\"" . htmlspecialchars($this->datos['continent']) . "\" 
+                        data-country=\"" . htmlspecialchars($this->datos['country']) . "\" 
+                        data-place=\"" . htmlspecialchars($this->datos['place']) . "\">
+                        <img src=\"../imagenes/deleteButton.png\" alt=\"Eliminar\">
+                     </button>";
+        }
+        $html .= "</article>";
+
+        return $html;
     }
 }
 
@@ -207,17 +439,6 @@ class Trip extends DataObject
         "longDesc" => ""
     );
 
-    public function __construct($data = [])
-    {
-        if (!empty($data) && is_array($data)) {
-            foreach ($data as $key => $value) {
-                // Rellenamos el atributo $datos si la clave coincide con nuestra estructura
-                if (array_key_exists($key, $this->datos)) {
-                    $this->datos[$key] = $value;
-                }
-            }
-        }
-    }
     /**
      * Crea un viaje creando el destino si no existe o modificandolo si existe
      *
@@ -378,144 +599,13 @@ class Trip extends DataObject
         }
     }
 
-    public function tripToHtml($general, $page): string
-    {
-        //Buscamos todas las fechas asociadas al viaje
-        $conn = parent::conectar();
-        $query = "SELECT departureDate, returnDate FROM " . TABLA_VIAJES . " 
-                  WHERE continent = ? AND country = ? AND place = ? AND departureDate >= NOW()
-                  ORDER BY departureDate ASC";
-
-        $optionsHtml = "";
-
-        try {
-            $stmt = $conn->prepare($query);
-            $stmt->execute([
-                $this->datos['continent'],
-                $this->datos['country'],
-                $this->datos['place']
-            ]);
-            $viajesDisponibles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            //Construimos el select con cada resultado que hemos obtenido
-            foreach ($viajesDisponibles as $viaje) {
-                // Convertimos el formato YYYY-MM-DD de la base de datos a DD/MM/YYYY
-                if (!empty($viaje['departureDate'])) {
-                    $dateSalida = new DateTime($viaje['departureDate']);
-                    $fechaSalidaFormateada = $dateSalida->format('d/m/Y');
-                } else {
-                    $fechaSalidaFormateada = '';
-                }
-
-                //El valor serán las fechas de salida y regreso concretas separadas por comas
-                $value = $viaje['departureDate'] . ";" . $viaje['returnDate'];
-
-                $optionsHtml .= "<option value=\"{$value}\">{$fechaSalidaFormateada}</option>\n";
-            }
-        } catch (PDOException $e) {
-            error_log('Error en Trip::tripToHtml al cargar fechas: ' . $e->getMessage());
-        }
-
-        //Construimos la tarjeta de viaje
-        $html = "<article class=\"viajeTipo\"><h3>" . htmlspecialchars($this->datos['place']) . ", " . htmlspecialchars($this->datos['country']) . "</h3>";
-
-        if ($general) {
-            $html .= "<a href=\"../html/viajes_pais.php?page=1&country=" . htmlspecialchars($this->datos['country']) . "\">
-                    <img src=\"../imagenes/" . htmlspecialchars($this->datos['img']) . "\" alt=\"Imagen de " . htmlspecialchars($this->datos['place']) . "\">
-                </a>
-                <form action=\"../html/viajes.php?page=" . htmlspecialchars($page) . "\" method=\"post\" class=\"fechaViaje\">";
-        } else {
-            $html .= "<a href=\"../html/viaje_indiv.php?continent=" . htmlspecialchars($this->datos['continent']) . "&country=" . htmlspecialchars($this->datos['country']) . "&place=" . htmlspecialchars($this->datos['place']) . "\">
-                    <img src=\"../imagenes/" . htmlspecialchars($this->datos['img']) . "\" alt=\"Imagen de " . htmlspecialchars($this->datos['place']) . "\">
-                </a>
-                <form action=\"../html/viajes_pais.php?country=" . htmlspecialchars($this->datos['country']) . "\" method=\"post\" class=\"fechaViaje\">";
-        }
-
-        $html .= "<select name=\"fecha\" class=\"selectorFecha\">
-                    <option value=\"null\">Seleccione fecha</option>
-                    " . $optionsHtml . "
-                    </select>
-                </form> <p class=\"precio\"><strong>" . number_format($this->datos['price'], 0, ',', '.') . "€</strong></p>";
-
-        //Si el usuario es admin y estamos en el caso general, le permitimos borrar el destino
-        if (isset($_SESSION['admin']) && $_SESSION['admin'] && $general) {
-            $html .= "<button class=\"deleteButton\" 
-                        data-continent=\"" . htmlspecialchars($this->datos['continent']) . "\" 
-                        data-country=\"" . htmlspecialchars($this->datos['country']) . "\" 
-                        data-place=\"" . htmlspecialchars($this->datos['place']) . "\">
-                        <img src=\"../imagenes/deleteButton.png\" alt=\"Eliminar\">
-                     </button>";
-        }
-        $html .= "</article>";
-
-        return $html;
-    }
-
-    public static function getAllBetween($continent,$country,$place, $departureDate, $returnDate): array
-    {
-        $conn = parent::conectar();
-
-        // Creamos la consulta base
-        $query = "SELECT t.continent, t.country, t.place, 
-                         i.img, i.price, t.departureDate, t.returnDate
-                  FROM " . TABLA_VIAJES . " t 
-                  INNER JOIN " . TABLA_INFO . " i 
-                    ON t.continent = i.continent 
-                   AND t.country = i.country 
-                   AND t.place = i.place AND t.departureDate >= NOW()";
-
-        //Guardamos los filtros y los parametros dependiendo de lo que nos den
-        $condiciones = [];
-        $parametros = [];
-
-        // Si la fecha de salida no es -1 añadimos la condicion
-        if ($departureDate !== -1 && $departureDate !== "-1") {
-            $condiciones[] = "t.departureDate >= ?";
-            $parametros[] = $departureDate;
-        }
-
-        // Si la fecha de vuelta no es -1 añadimos la condicion
-        if ($returnDate !== -1 && $returnDate !== "-1") {
-            $condiciones[] = "t.returnDate <= ?";
-            $parametros[] = $returnDate;
-        }
-
-        if ($country !== -1 && $country !== "-1") {
-            $condiciones[] = "t.country LIKE ?";
-            $parametros[] = "%".$country."%";
-        }
-
-        if ($continent !== -1 && $continent!=='-1' ){
-            $condiciones[] = "t.continent LIKE ?";
-            $parametros[] = "%".$continent."%";
-        }
-
-        if($place !== -1 && $place !== '-1'){
-            $condiciones[] = "t.place LIKE ?";
-            $parametros[] = "%".$place."%";
-        }
-
-        // Si tenemos alguna condicion, la añadimos a la consulta
-        if (count($condiciones) > 0) {
-            $query .= " WHERE " . implode(" AND ", $condiciones);
-        }
-
-        //Añadimos la ordenacion
-        $query .= " ORDER BY t.continent, t.country, t.place, t.departureDate, t.returnDate";
-
-        try {
-            $stmt = $conn->prepare($query);
-
-            //Ejecutamos la consulta
-            $stmt->execute($parametros);
-
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log("Trip::getAllBetween " . $e->getMessage());
-            return [];
-        }
-    }
-
+    
+    /**
+     * Obtiene un array con los países agrupados por continente, es decir, 
+     * el array devuelto tiene como claves los continentes y como valores arrays con los países de cada continente.
+     *
+     * @return array
+     */
     public static function getCountriesByContinents(): array
     {
         $conn = parent::conectar();

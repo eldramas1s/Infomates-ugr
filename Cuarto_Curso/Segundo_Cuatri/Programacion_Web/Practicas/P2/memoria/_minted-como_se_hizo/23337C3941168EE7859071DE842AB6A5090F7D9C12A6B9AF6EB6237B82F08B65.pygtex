@@ -1,0 +1,46 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\PYG{c+cp}{\PYGZlt{}?php}
+\PYG{l+s+sd}{/**}
+\PYG{l+s+sd}{     * Crea un viaje creando el destino si no existe o modificandolo si existe}
+\PYG{l+s+sd}{     *}
+\PYG{l+s+sd}{     * @param [type] \PYGZdl{}data}
+\PYG{l+s+sd}{     * @return boolean True si se crea y false si no se crea o si hay fallo}
+\PYG{l+s+sd}{     */}
+    \PYG{k}{public} \PYG{k}{static} \PYG{k}{function} \PYG{n+nf}{create}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{)}\PYG{o}{:} \PYG{n+nx}{bool}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}conn} \PYG{o}{=} \PYG{k}{parent}\PYG{o}{::}\PYG{n+na}{conectar}\PYG{p}{();}
+        \PYG{n+nv}{\PYGZdl{}infoData} \PYG{o}{=} \PYG{k}{array}\PYG{p}{(}
+            \PYG{l+s+s2}{\PYGZdq{}continent\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{],}
+            \PYG{l+s+s2}{\PYGZdq{}country\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],}
+            \PYG{l+s+s2}{\PYGZdq{}place\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{],}
+            \PYG{l+s+s2}{\PYGZdq{}price\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}price\PYGZsq{}}\PYG{p}{],}
+            \PYG{l+s+s2}{\PYGZdq{}img\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}img\PYGZsq{}}\PYG{p}{],}
+            \PYG{l+s+s2}{\PYGZdq{}lodging\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lodging\PYGZsq{}}\PYG{p}{],}
+            \PYG{l+s+s2}{\PYGZdq{}sortDesc\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sortDesc\PYGZsq{}}\PYG{p}{],}
+            \PYG{l+s+s2}{\PYGZdq{}longDesc\PYGZdq{}} \PYG{o}{=\PYGZgt{}} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}longDesc\PYGZsq{}}\PYG{p}{]}
+        \PYG{p}{);}
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{InfoTrips}\PYG{o}{::}\PYG{n+na}{exists}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],} \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{]))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nx}{InfoTrips}\PYG{o}{::}\PYG{n+na}{create}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}infoData}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+            \PYG{n+nx}{InfoTrips}\PYG{o}{::}\PYG{n+na}{modify}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}infoData}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{n+nv}{\PYGZdl{}query} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}INSERT INTO \PYGZdq{}} \PYG{o}{.} \PYG{n+nx}{TABLA\PYGZus{}VIAJES} \PYG{o}{.} \PYG{l+s+s2}{\PYGZdq{}(continent, country, place, departureDate, returnDate) VALUES(?,?,?,?,?)\PYGZdq{}}\PYG{p}{;}
+
+        \PYG{k}{try} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}stmt} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}conn}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{prepare}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}query}\PYG{p}{);}
+            \PYG{k}{return} \PYG{n+nv}{\PYGZdl{}stmt}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{execute}\PYG{p}{([}
+                \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}continent\PYGZsq{}}\PYG{p}{],}
+                \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}country\PYGZsq{}}\PYG{p}{],}
+                \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}place\PYGZsq{}}\PYG{p}{],}
+                \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}departureDate\PYGZsq{}}\PYG{p}{],}
+                \PYG{n+nv}{\PYGZdl{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}returnDate\PYGZsq{}}\PYG{p}{]}
+            \PYG{p}{]);}
+        \PYG{p}{\PYGZcb{}} \PYG{k}{catch} \PYG{p}{(}\PYG{n+nx}{PDOException} \PYG{n+nv}{\PYGZdl{}e}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{n+nb}{error\PYGZus{}log}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Trip::create \PYGZsq{}} \PYG{o}{.} \PYG{n+nv}{\PYGZdl{}e}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+na}{getMessage}\PYG{p}{());}
+            \PYG{k}{return} \PYG{k}{false}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{?\PYGZgt{}}
+\end{Verbatim}
