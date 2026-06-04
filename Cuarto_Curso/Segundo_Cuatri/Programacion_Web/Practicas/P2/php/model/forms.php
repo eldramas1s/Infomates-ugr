@@ -59,8 +59,7 @@ abstract class FormHandler
     }
 }
 
-require_once __DIR__ . '/model/user.php';
-require_once __DIR__ . '/conection.php';
+require_once __DIR__ . '/user.php';
 class FormSignUp extends FormHandler
 {
     public function validate(array $data)
@@ -146,7 +145,7 @@ class FormSignUp extends FormHandler
     }
 }
 
-require_once __DIR__ . '/model/trips.php';
+require_once __DIR__ . '/trips.php';
 
 class FormLogIn extends FormHandler
 {

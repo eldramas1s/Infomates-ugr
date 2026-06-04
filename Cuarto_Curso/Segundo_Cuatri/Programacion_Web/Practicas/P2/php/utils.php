@@ -47,7 +47,7 @@ function putsignUpForm(){
         </div>
         
         <button type="submit">Log In</button>
-        <a href="./html/altausuarios.html"> Sign Up</a>
+        <a href="./html/altausuarios.php"> Sign Up</a>
     </form>';
 }
 

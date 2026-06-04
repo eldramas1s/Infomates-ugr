@@ -85,12 +85,15 @@ export class formularioBase {
                     body: JSON.stringify(datos)
                 });
 
+
                 if (!response.ok) {
                     throw new Error(`Error en la red: ${response.status}`);
                 }
 
+
                 //Si hay respuesta la procesamos pasandola a json
                 const json = await response.json();
+                
 
                 //Procesamos la respuesta
                 if (json.success) {

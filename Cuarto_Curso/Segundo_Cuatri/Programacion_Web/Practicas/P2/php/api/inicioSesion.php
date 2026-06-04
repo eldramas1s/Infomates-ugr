@@ -3,8 +3,8 @@
 //el formulario trabaja directamente con $_SESSION
 session_start();
 
-require_once __DIR__.'/../model/forms.php';
-require_once __DIR__.'/../utils.php';
+require_once __DIR__ . '/../model/forms.php';
+require_once __DIR__ . '/../utils.php';
 
 // Establecemos el tipo de contenido a JSON
 header('Content-Type: application/json');
