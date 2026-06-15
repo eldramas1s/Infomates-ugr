@@ -11,6 +11,10 @@ session_destroy();
 
 header('Location: ../index.php');
 
+if (isset($_COOKIE['name'])) {
+    setcookie('name', '', time() - 3600, '/');
+}
+
 //Detenemos la ejecucion del script, php no lo hace tras una redireccion
 exit();
 ?>

@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?php}
+\PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{isset}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}loggedIn\PYGZsq{}}\PYG{p}{])}\PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}loggedIn\PYGZsq{}}\PYG{p}{]} \PYG{o}{===} \PYG{k}{true}\PYG{p}{)\PYGZob{}}
+    \PYG{c+c1}{//El último parámetro debe ser false para que JS pueda leerla (HttpOnly = false)}
+    \PYG{n+nb}{setcookie}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{,} \PYG{n+nv}{\PYGZdl{}\PYGZus{}SESSION}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}name\PYGZsq{}}\PYG{p}{],} \PYG{n+nb}{time}\PYG{p}{()} \PYG{o}{+} \PYG{l+m+mi}{3600}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}/\PYGZdq{}}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,} \PYG{k}{false}\PYG{p}{,} \PYG{k}{false}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{?\PYGZgt{}}
+
+\end{Verbatim}

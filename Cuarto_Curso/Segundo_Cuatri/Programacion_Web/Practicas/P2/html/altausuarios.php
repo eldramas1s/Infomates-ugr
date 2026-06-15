@@ -34,7 +34,7 @@ require_once __DIR__ . '/../php/utils.php';
     </header>
     <main>
 
-        <form id="formularioAlta" method="post" action="../html/altausuarios.html">
+        <form name="formularioAlta" id="formularioAlta" method="post" action="../html/altausuarios.html">
             <h1>Alta de usuarios</h1>
             <fieldset>
                 <div class="field">

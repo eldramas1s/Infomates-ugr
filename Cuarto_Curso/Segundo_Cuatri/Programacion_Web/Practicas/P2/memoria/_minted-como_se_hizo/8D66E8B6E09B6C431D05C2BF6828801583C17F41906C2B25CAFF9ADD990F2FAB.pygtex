@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nx}{obtenerCookie}\PYG{p}{(}\PYG{n+nx}{nombre}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{//console.log(\PYGZdq{}Cookie:\PYGZdq{}+document.cookie);}
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{valor}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sb}{`; }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{cookie}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{`}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{partes}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{valor}\PYG{p}{.}\PYG{n+nx}{split}\PYG{p}{(}\PYG{l+s+sb}{`; }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{nombre}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{=`}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{partes}\PYG{p}{.}\PYG{n+nx}{length}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+m+mf}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nx}{partes}\PYG{p}{.}\PYG{n+nx}{pop}\PYG{p}{().}\PYG{n+nx}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{};\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{shift}\PYG{p}{();}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

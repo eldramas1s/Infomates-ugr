@@ -35,7 +35,7 @@ function putAvatar($admin, $nickName, $level = 0){
  */
 function putsignUpForm(){
     echo '
-    <form class="index" method="post" action="./index.php" id="signUpForm" autocomplete="off">
+    <form name="signUpForm" class="index" method="post" action="./index.php" id="signUpForm" autocomplete="off">
         <div class="field">
             <label for="nickName">Nickname:*</label>
             <input type="text" id="nickName" name="nickName" placeholder="menganito68">
@@ -57,23 +57,14 @@ function putsignUpForm(){
  * @return void 
  */
 function putFormSugerencias(){
-    $html = '<form autocomplete="off" method="post" action="../html/sugerencias.php">
+    $html = '<form id="formSugerencias" name="formSugerencias" autocomplete="off" method="post" action="../html/sugerencias.php">
         <h2>Comparte tu experiencia o sugerencia</h2>
         <fieldset id="formularioSugerencias">
-            <p>
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre"
-                    pattern="([A-Za-z]+( [A-Za-z]+)+)" required>
-            </p>
-            <p>
+            <div class="field">
                 <label for="tipo">Tipo de comentario</label>
-                <select id="tipo" name="tipo" required>
-                    <option value>Selecciona una opción</option>
-                    <option value="experiencia">Experiencia</option>
-                    <option value="sugerencia">Sugerencia</option>
-                </select>
-            </p>
-            <p class="Score">
+                <input type="text" name="tipo" id="tipo" placeholder="Experiencia|Sugerencia">            
+            </div>
+            <div class="field">
                 <input type="radio" id="star5" name="valoracion"
                     class="valoracion" value="5">
                 <label for="star5">&starf;</label>
@@ -93,31 +84,32 @@ function putFormSugerencias(){
                 <input type="radio" id="star1" name="valoracion"
                     class="valoracion" value="1">
                 <label for="star1">&starf;</label>
-            </p>
-            <p>
+            </div>
+            <div class="field">
                 <label id="labelComentario"
                     for="comentario">Comentario:</label>
-                <textarea id="comentario" name="comentario" rows="10"
-                    required></textarea>
-            </p>
+                <textarea id="comentario" name="comentario" rows="10"></textarea>
+            </div>
 
             <fieldset id="servicios">
                 <legend>¿Qué se ofrecía en tu experiencia?</legend>
-                <input type="checkbox" id="guia" name="servicios"
-                    value="guia">
-                <label for="guia">Guía turístico</label>
+                <div class="field" id="serviciosField">
+                    <input type="checkbox" id="guia" name="servicios"
+                        value="guia">
+                    <label for="guia">Guía turístico</label>
 
-                <input type="checkbox" id="hotel" name="servicios"
-                    value="hotel">
-                <label for="hotel">Alojamiento en Hotel</label>
+                    <input type="checkbox" id="hotel" name="servicios"
+                        value="hotel">
+                    <label for="hotel">Alojamiento en Hotel</label>
 
-                <input type="checkbox" id="transporte" name="servicios"
-                    value="transporte">
-                <label for="transporte">Transporte privado</label>
+                    <input type="checkbox" id="transporte" name="servicios"
+                        value="transporte">
+                    <label for="transporte">Transporte privado</label>
 
-                <input type="checkbox" id="comida" name="servicios"
-                    value="comida">
-                <label for="comida">Comida incluida</label>
+                    <input type="checkbox" id="comida" name="servicios"
+                        value="comida">
+                    <label for="comida">Comida incluida</label>
+                </div>
             </fieldset>
 
             <fieldset id="buttons">

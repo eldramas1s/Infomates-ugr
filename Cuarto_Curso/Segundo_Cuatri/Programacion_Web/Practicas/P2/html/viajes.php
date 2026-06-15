@@ -88,7 +88,7 @@ error_reporting(E_ALL);
 
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === true): ?>
             <h2>!Gestiona los viajes <?php echo $_SESSION['nickName'] ?>! </h2>
-            <form id="countryForm" action="./viajes.php" method="post">
+            <form name="countryForm" id="countryForm" action="./viajes.php" method="post">
                 <div class="field">
                     <datalist id="continentes">
                         <option value="Asia">Asia</option>

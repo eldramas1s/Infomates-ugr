@@ -29,7 +29,7 @@ require_once './php/utils.php';
         </section>
         <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
             <section id="searchSection">
-                <form id="formularioBusqueda" method="get" action="./html/viajes_buscados.php" autocomplete="off" target="_self">
+                <form name="formularioBusqueda" id="formularioBusqueda" method="get" action="./html/viajes_buscados.php" autocomplete="off" target="_self">
 
                     <fieldset>
                         <datalist id="continentes">

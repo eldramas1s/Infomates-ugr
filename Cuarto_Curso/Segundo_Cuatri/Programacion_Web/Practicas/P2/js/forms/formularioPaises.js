@@ -101,7 +101,7 @@ export class formularioPaises extends formularioBase {
         const continentRegex = /^(Asia|Africa|África|Europa|Oceania|Oceanía|America|América)$/i;
         const ciudadRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñÜüÇç['-]+)*$/;
         const imgRegex = /^[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp|gif)$/i;
-        const textRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s.,!?¿¡-]+$/;
+        const textRegex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s.,!?¿¡-]+$/;
         const lodgingRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜÇç0-9\s.'*-]+(?:,\s*[a-zA-ZáéíóúÁÉÍÓÚñÑüÜÇç0-9\s.'*-]+)*$/;
         const formData = this.obtenerDatos();
 

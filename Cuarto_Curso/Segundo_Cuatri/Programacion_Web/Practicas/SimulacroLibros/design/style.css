@@ -1,0 +1,166 @@
+* {
+    box-sizing: border-box;
+    border: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+
+    padding: 2em;
+    margin: 1em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.button {
+    border: 2px solid;
+    border-radius: 10%;
+    box-shadow: 2em;
+    background-color: bisque;
+    transition: transform ease 0.4s;
+    
+    min-width: 3em;
+    max-width: 5em;
+    min-height: 3em;
+    max-height: 5em;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+header.header {
+    grid-area: header;
+    align-items: center;
+    justify-items: center;
+}
+
+main#indexMain {
+    grid-area: main;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+}
+
+main#indexMain section.tarjetas {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+    padding: 3em;
+    margin: 2em;
+}
+
+main#indexMain section.tarjetas h2{
+    grid-column: -1/1;
+}
+
+main#indexMain section.tarjetas a.button{
+    grid-column: -1/1;
+}
+
+main#indexMain section.tarjetas article.tarjeta {
+    position: relative;
+    display: grid;
+    grid-template-areas:
+        "title"
+        "img"
+        "autor"
+        "genero";
+
+    margin: 2em;
+    align-items: center;
+    justify-items: center;
+}
+
+main#indexMain section.tarjetas article.tarjeta h3 {
+    grid-area: title;
+
+    margin: 2em;
+
+}
+
+main#indexMain section.tarjetas article.tarjeta img {
+    grid-area: img;
+    max-width: 50%;
+    height: auto;
+
+    padding: 2em;
+}
+
+main#indexMain section.tarjetas article.tarjeta p.autor {
+    grid-area: autor;
+    align-self: left;
+}
+
+main#indexMain section.tarjetas article.tarjeta p.genero {
+    grid-area: genero;
+    align-self: left;
+}
+
+main#indexMain section.tarjetas article.tarjeta a {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+}
+
+footer.footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-areas: "date" "name";
+
+    gap: 2em;
+    align-items: center;
+    justify-items: center;
+}
+
+footer.footer p.date {
+    grid-area: date;
+    max-width: 10em;
+    text-justify: right;
+}
+
+footer.footer p.name {
+    grid-area: name;
+    max-width: 30em;
+    text-justify: left;
+}
+
+main.mainForms {
+    grid-area: main;
+    align-items: center;
+}
+
+form {
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    align-items: center;
+    justify-items: center;
+    text-justify: left;
+}
+
+form fieldset.field {
+    display: grid;
+    grid-template-columns: auto auto;
+    text-justify: left;
+    padding: 2em;
+}
+
+form fieldset.field input {
+    border: 2px solid black;
+}
+
+form div.divButons {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-items: center;
+    padding: 2em;
+    margin: 2em;
+}

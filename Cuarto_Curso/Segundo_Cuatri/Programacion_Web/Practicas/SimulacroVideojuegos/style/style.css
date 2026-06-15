@@ -1,0 +1,166 @@
+*{
+    box-sizing:border-box;
+    padding:0em;
+    margin:0em;
+}
+
+body{
+    display:grid;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    
+    margin: 0 auto ;
+    padding: 3em;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+.button{
+    border: black solid 2px;
+    border-radius: 5%;
+
+    background-color: antiquewhite;
+
+    text-align: center;
+    text-justify:auto;
+
+    padding:1em;
+    margin: 1em;
+
+    transition: transform 0.4s ease;
+}
+
+.button:hover, input:hover{
+    transform: scale(1.1);
+}
+
+.divButtons{
+    display: grid;
+    grid-template-columns: auto auto;
+
+    margin: 2em;
+    padding:0.7em;
+
+    align-items: center;
+
+    min-width: fit-content;
+}
+
+
+header{
+    grid-area: header;
+    margin: 3em;
+    align-items: center;
+    text-align: center;
+}
+
+main#mainIndex{
+    grid-area: main;
+    display: grid;
+    grid-template-columns: auto;
+
+    margin: 0 auto;
+}
+
+main#mainIndex section.cartelera{
+    display:grid;
+    grid-template-columns: auto auto auto auto;
+
+    border: black solid 2px; /*No recuerdo el em asociado*/
+    border-radius: 15%;
+    padding:3em;
+}
+
+main#mainIndex section.cartelera h2{
+    grid-column: -1/1;
+    align-self: center;
+    margin: 0 auto;
+}
+
+main#mainIndex section.cartelera a#Aniadir{
+    grid-column: -1/1;
+    align-self: center;
+    max-width: fit-content;
+    margin: 0 auto;
+}
+main#mainIndex section.cartelera article.cartel{
+
+    display:grid;
+    grid-template-columns: auto;
+
+    max-width: fit-content;
+
+    border: black solid 2px;
+    border-radius: 10%;
+
+    padding: 0.8em;
+    margin: 0.6em;
+
+    align-items: self-start;
+}
+
+footer{
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: auto auto;
+
+    align-items: center;
+    text-align: justify;
+}
+
+p{
+    min-width:fit-content;
+}
+
+footer p.date{
+    text-align: right;
+}
+
+footer p.autor{
+    text-align: left;
+}
+
+img{
+    max-width: 13em;
+    max-height: 13em;
+}
+
+main#mainForms{
+    grid-area: main;
+
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0 auto;
+}
+
+main#mainForms form{
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+
+    gap:0.8em;
+    text-align: start;
+
+    border: black 2px solid;
+    border-radius: 5%;
+}
+
+main#mainForms form fieldset.field{
+    display: grid;
+    grid-template-columns: auto auto;
+
+    gap: 0.4em;
+    padding: 0.6em;
+    
+    border: none;
+
+}
+
+main#mainForms form fieldset.field input{
+    border: black solid 2px;
+    transition: transform 0.4s ease;
+}

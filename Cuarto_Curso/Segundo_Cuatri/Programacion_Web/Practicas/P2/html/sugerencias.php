@@ -4,6 +4,12 @@
 ?>
 <!DOCTYPE html>
 <html lang="es">
+    <?php
+        if(isset($_SESSION['loggedIn'])&& $_SESSION['loggedIn'] === true){
+            //El último parámetro debe ser false para que JS pueda leerla (HttpOnly = false)
+            setcookie("name", $_SESSION['name'], time() + 3600, "/","", false, false);
+        }
+    ?>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,10 +67,12 @@
             <?php
             if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
                 putFormSugerencias();
+                echo "<script src=\"../js/main.js\" type=\"module\"></script>";
             } else {
                 echo '<p class="informativo" id="mensajeLogin">Inicia sesión para compartir tu experiencia o sugerencia.</p>';
             }
             ?>
+            
         </main>
         <?php putFooter(1); ?>
     </body>

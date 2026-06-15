@@ -6,7 +6,7 @@
 \PYG{c+cm}{     * @param \PYGZob{}string\PYGZcb{} idFormulario identificador del formulario}
 \PYG{c+cm}{     */}
 \PYG{+w}{    }\PYG{k+kr}{constructor}\PYG{p}{(}\PYG{n+nx}{idFormulario}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
-\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{n+nx}{idFormulario}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{forms}\PYG{p}{[}\PYG{n+nx}{idFormulario}\PYG{p}{];}
 
 \PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{addEventListener}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}submit\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{enviar}\PYG{p}{(}\PYG{n+nx}{e}\PYG{p}{));}
 

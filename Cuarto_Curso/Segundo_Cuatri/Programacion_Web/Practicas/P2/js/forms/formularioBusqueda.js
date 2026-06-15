@@ -72,18 +72,6 @@ export class formularioBusqueda extends formularioBase {
 
                 if (fechaVuelta < hoy) return "La fecha de vuelta no puede ser anterior a hoy";
 
-                if (formData.departureDate) {
-                    const fechaSalida = new Date(formData.departureDate);
-                    fechaSalida.setHours(0, 0, 0, 0);
-
-                    if (fechaVuelta <= fechaSalida) return "La vuelta debe ser posterior a la salida";
-
-                    const diferenciaMilisegundos = fechaVuelta - fechaSalida;
-                    const diferenciaDias = diferenciaMilisegundos / (1000 * 60 * 60 * 24);
-
-                    if (diferenciaDias < 3) return "El viaje debe ser de al menos 3 días";
-                }
-
                 return null;
             }
         }
@@ -106,6 +94,14 @@ export class formularioBusqueda extends formularioBase {
         const datos = this.obtenerDatos();
         const errors = this.validar(datos);
 
+        if (Object.keys(errors).length > 0) {
+            for (const field in errors) {
+                if (field == 'password') {
+                    this.form.elements['password'].value = "";
+                }
+                this.mostrarError(field, errors[field]);
+            }
+        }
         if (Object.keys(errors).length === 0) {
             this.form.submit(); //Ejecutamos una versión similar al envío que hay en el php
         }

@@ -172,9 +172,11 @@ class FormLogIn extends FormHandler
             return false;
         }
 
+        $user = User::getUserByNickname($data['nickName']);
         $_SESSION['nickName'] = $data['nickName'];
         $_SESSION['loggedIn'] = true;
-        $_SESSION['admin'] = User::getUserByNickname($data['nickName'])->isAdmin();
+        $_SESSION['admin'] = $user->isAdmin();
+        $_SESSION['name'] = $user->getDatos()['nombre'];
 
         return true;
     }

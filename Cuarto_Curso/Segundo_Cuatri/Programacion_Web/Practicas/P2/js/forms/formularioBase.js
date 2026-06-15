@@ -9,7 +9,7 @@ export class formularioBase {
      * @param {string} idFormulario identificador del formulario
      */
     constructor(idFormulario) {
-        this.form = document.getElementById(idFormulario);
+        this.form = document.forms[idFormulario];
 
         this.form.addEventListener('submit', (e) => this.enviar(e));
 
@@ -203,6 +203,10 @@ export class formularioBase {
         return;
     }
 
+    /**
+     * Crea un event listener para los cambios e inputs en los campos del formulario para aplicar las 
+     * reglas de validacion en tiempo real.
+     */
     realTimeValidation() {
 
         const eventos = ['input', 'change'];

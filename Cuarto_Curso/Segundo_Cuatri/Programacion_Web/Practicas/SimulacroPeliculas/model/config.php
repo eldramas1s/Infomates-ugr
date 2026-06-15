@@ -1,0 +1,10 @@
+<?php
+
+    define("DB_DSN", "mysql:host=localhost;dbname=dblucashidalgo_pw2526;charset=utf8mb4" );
+    define("DB_USUARIO", "pwlucashidalgo" );
+    define("DB_CONTRASENIA", "25lucashidalgo26" );
+    
+    define("TABLA_FILMS", "films");
+    define("TABLA_STREAMS", "stream");
+
+?>
