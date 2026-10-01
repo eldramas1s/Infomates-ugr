@@ -1,0 +1,34 @@
+hotel
+
+
+ESCRIBIR POR PRADO
+
+
+
+Pensar lo siguiente:
+
+- Base de Datos: Fondo común de información almacenada en una computadora relativa a un mismo contexto, organizada de forma sistemática para servir a un propósito concreto. La info debe de estar disponible para cualquier persona o programa autorizado para acceder a ella.
+
+- SGBD: conjunto de programas o software con capacidad para definir, mantener y utilizar una base de datos.
+
+- Sistema de bases de datos: conjunto estructurado de datos, hardware, software y usuarios que permite almacenar, organizar, modificar y recuperar información de forma rápida y segura. Se puede entender como la caja más exterior que engloba a la BD, el SGDB, el hardware y los usuarios.
+
+- Esquema de bases de datos: es la estructura lógica y formal que define cómo se organizan, relacionan y restringen los datos dentro de un sistema de gestion de bases de datos. (NO es la estructura de las tablas, sino la implementación concreta del modelo que se diseña frente a un problema, p.e. la representación en el sistema del modelo entidad-relación)
+
+
+
+DE clase:
+- Base de datos: conjunto de datos y valores de datos relacionados, estructurasdos y gestionados como una unidad. Un dato es como tal la característica que estamos modalizando (p.e. el nombre de los usuarios). El valor del dato es el contenido de una tupla en ese dato (p.e "Pepe").
+- SGDB/DBMS: (esta bien la definicion que yo doy)
+- Sistema de Base de Datos: Para nosotros sera la BD y el DBMS.
+- Esquema de base de datos: es la descripción de todos los datos y relaciones entre datos de una base de datos. Según el informe de ANSI/SPARC, para una BD centralizada hay tres tipos de esquemas:
+    - Conceptual: no necesariamente informatico sino que muestra la organizacion de los datos
+    - Lógico: Representa la organizacion pero teniendo en cuenta el sistema sobre el que trabakjamos
+    - Físico:
+
+    Podemos pasar del esquema conceptual al lógico y del logico al fisico. Para hacer estas representaciones usamos los modelos de datos; hay muchos pero usaremso uno que es el modelo entidad-relacion.
+
+    Para el caso del esquema lógico, como el DBMS que vamos a usar es relacional, usaremso un modelo relacional. Este modelo solo hay una entidad para hacerlo, las tablas que se llaman tmb relaciones.
+
+
+
